@@ -20,3 +20,6 @@ To expose a finished book's summary on the site:
 ## Imported from Books (tracker app).pdf (2026-06-21)
 - [ ] Project name for planned iOS companion tracker app: "Digest" (decided, not applied — this repo is the separate live books.heyitsmejosh.com rankings site, unrelated to the new app).
 - [ ] Build iOS companion app — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding. No API/data layer exists yet.
+
+## Imported from books.pdf + Books2.pdf (2026-06-21)
+- [ ] Summaries not appearing for the pre-calc book (AI book's summary works fine) — likely a missing `summaries/<slug>.md` file or slug mismatch for the pre-calc entry; not yet diagnosed.
