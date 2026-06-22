@@ -21,5 +21,5 @@ To expose a finished book's summary on the site:
 - [ ] Project name for planned iOS companion tracker app: "Digest" (decided, not applied — this repo is the separate live books.heyitsmejosh.com rankings site, unrelated to the new app).
 - [ ] Build iOS companion app — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding. No API/data layer exists yet.
 
-## Imported from books.pdf + Books2.pdf (2026-06-21)
-- [ ] Summaries not appearing for the pre-calc book (AI book's summary works fine) — likely a missing `summaries/<slug>.md` file or slug mismatch for the pre-calc entry; not yet diagnosed.
+## Resolved 2026-06-21
+- [x] PC for Dummies summary missing — root cause: `summarize.sh`'s headless `claude -p` call hit a permission prompt instead of reading the images, wrote that prompt text as if it were the summary, and the script's "non-empty = success" check deleted the original chapter photos anyway. Fixed in `summarize.sh` (now uses `--dangerously-skip-permissions` + validates output isn't a permission-request before deleting sources). Garbage summary files and the "Summary" badge for PC for Dummies were removed — chapters 1-7 have no surviving photos and need to be re-photographed from scratch.
