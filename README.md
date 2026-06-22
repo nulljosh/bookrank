@@ -2,6 +2,8 @@
 
 # Books
 
+![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbooks-black?logo=github)](https://github.com/nulljosh/books)
+
 A curated collection of book rankings based on Goodreads ratings and reviews.
 Live at [books.heyitsmejosh.com](https://books.heyitsmejosh.com).
 
