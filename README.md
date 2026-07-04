@@ -28,3 +28,11 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 ## Project Map
 
 ![project map](architecture.svg)
+
+## Roadmap
+
+- [x] iOS companion — `ios/BooksApp` is a thin WKWebView wrapper around the live site (no native rebuild needed)
+- [ ] Mac companion — no target yet, add via `xcodegen` in `ios/` once iOS wrapper is confirmed working
+- [ ] Supabase/profiles — no backend exists; only worth adding if the app needs per-user state (e.g. personal TBR/read status). Until then the site stays static, no auth needed
+- [ ] Goodreads sync — no API integration; rankings are hand-curated in `book_rankings.md` + `index.html` (kept in parallel, see `CLAUDE.md`). Goodreads' public API has been closed to new keys for years — would need scraping or a manual export, not a live sync
+
