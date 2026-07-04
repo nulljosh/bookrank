@@ -1,21 +1,23 @@
 # Books Roadmap
 
-## Pending: iCloud summarize pipeline
+## iCloud summarize pipeline — all caught up (2026-07-04)
 
-**Newton** (chapters 2–4 raw HEICs pending)
-- bg job running as of 2026-06-27 night — check `Newton/` for summary.md files
-- If ch2/ch3/ch4 succeeded: run `sync-summaries.sh`, add badge in `index.html`
-- `summarize.sh` fix landed: `env -u CLAUDE_CODE_SESSION_ID ...` prevents context contamination
+**Newton** — all chapters done, PDF merged. Nothing pending.
 
-**Machine Learning for Dummies** (ch4–6 raw HEICs + orphaned JPGs pending)
-- Run `./summarize.sh "Machine learning for dummies "` (trailing space in folder name)
-- Then sync + badge
+**Machine Learning for Dummies** — all chapters done (1-3, 4-6, 7-9, 10, 11, 12) 2026-07-04. Nothing pending.
 
-**Agentic AI for Dummies**
-- ch2–15 all done, PDF merged — nothing pending
+**Exercise Science for Dummies** — all chapters done (1-2 through 16-18) 2026-07-04. Nothing pending.
 
-**AI Investing for Dummies**
-- ch1–3 done, PDF merged — nothing pending
+**Agentic AI for Dummies** — ch2–15 all done, PDF merged. Nothing pending.
+
+**AI Investing for Dummies** — ch1–3 done, PDF merged. Nothing pending.
+
+No raw photos remain in the iCloud source folder for any book as of 2026-07-04.
+
+## Bigger asks, not started (raised 2026-07-04, deferred — weekly budget was at 86%)
+- **Goodreads sync**: read-only import of shelf into book_rankings.md/index.html. Scoped, one-session-sized.
+- **Landing page split**: separate marketing/landing page from the rankings-list homepage. Design + build.
+- **iOS/Mac companion app ("Digest")**: BLOCKED — needs a backend decision (Supabase vs static JSON) before scaffolding; no API/data layer exists yet. Multi-session project, not a quick add. See repo CLAUDE.md "Imported from Books (tracker app).pdf" section.
 
 ## After summaries are done
 1. `cd ~/Documents/Code/books && ./sync-summaries.sh`
