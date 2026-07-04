@@ -16,3 +16,17 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.books
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
+  BooksAppMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources: [BooksApp]
+    info:
+      path: BooksApp/Info.plist
+      properties:
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.books.mac
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
