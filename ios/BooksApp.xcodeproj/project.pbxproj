@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E094A9AE1E492A459F834BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F14EE5FD76A3F4C9388705A /* Assets.xcassets */; };
 		22747C5641CC49E3550F0D7F /* BooksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DF1ACE636652BB6E748C5 /* BooksApp.swift */; };
+		298DD6FC7241B37B73D32D06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F14EE5FD76A3F4C9388705A /* Assets.xcassets */; };
 		5F8A8A578B8CF123BDBCF88D /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB20BF62B9DADC3C2B1081E /* WebView.swift */; };
 		B2FBDDF3A74A4957415F4940 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB20BF62B9DADC3C2B1081E /* WebView.swift */; };
 		C02F17019C9F56BA6A68DDE3 /* BooksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DF1ACE636652BB6E748C5 /* BooksApp.swift */; };
@@ -15,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		3B8DF1ACE636652BB6E748C5 /* BooksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksApp.swift; sourceTree = "<group>"; };
+		4F14EE5FD76A3F4C9388705A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		598E5F599E4D95EA7CB15362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5E08925432C2A13050BFBCEB /* BooksApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BooksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926FD256058B51DC51E0D7FD /* BooksAppMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooksAppMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +45,7 @@
 		53CDBAF2C62970AF3C080ACD /* BooksApp */ = {
 			isa = PBXGroup;
 			children = (
+				4F14EE5FD76A3F4C9388705A /* Assets.xcassets */,
 				3B8DF1ACE636652BB6E748C5 /* BooksApp.swift */,
 				598E5F599E4D95EA7CB15362 /* Info.plist */,
 				9FB20BF62B9DADC3C2B1081E /* WebView.swift */,
@@ -57,6 +61,7 @@
 			buildConfigurationList = 997A6805C847AE66B24E4BB7 /* Build configuration list for PBXNativeTarget "BooksAppMac" */;
 			buildPhases = (
 				31E833C3D071C4B5A3514030 /* Sources */,
+				6D5CB30B393BD94F13ADA6C6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -74,6 +79,7 @@
 			buildConfigurationList = A43339982616B8D87AB96D3A /* Build configuration list for PBXNativeTarget "BooksApp" */;
 			buildPhases = (
 				4AB2659C28B9E320E7E6B971 /* Sources */,
+				74CBAE5AF6CE322805C85414 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -95,6 +101,14 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					2FF1D7A9E80EE3F0E290C96F = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
+					5343C39D0320276AA294A796 = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D8EDEA18D64C737A9FB7B996 /* Build configuration list for PBXProject "BooksApp" */;
@@ -116,6 +130,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D5CB30B393BD94F13ADA6C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				298DD6FC7241B37B73D32D06 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74CBAE5AF6CE322805C85414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E094A9AE1E492A459F834BD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		31E833C3D071C4B5A3514030 /* Sources */ = {
@@ -143,8 +176,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = BooksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -162,7 +197,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = BooksApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -181,7 +218,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = BooksApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -260,8 +299,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = BooksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
