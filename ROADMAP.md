@@ -26,13 +26,13 @@ Done:
 - App icon generated from `icon.svg` → `Assets.xcassets/AppIcon.appiconset` (1024x1024, no alpha), wired via `ASSETCATALOG_COMPILER_APPICON_NAME` in `project.yml`
 - `CODE_SIGN_STYLE: Automatic` + `DEVELOPMENT_TEAM: QMM486NPYC` added to both targets
 - Bundle IDs registered in ASC: `com.heyitsmejosh.books` (iOS), `com.heyitsmejosh.books.mac` (macOS)
-- ASC app records: in progress via browser (New App dialog) — confirm both "Books" (iOS) and "Books Mac" (macOS) got created
+- ASC app records created via browser: **books-ios** (app ID `6787499076`, iOS, `com.heyitsmejosh.books`) — note: named "books-ios" not "Books" due to a form mixup, rename under App Information whenever; **Books Mac** (app ID `6787499349`, macOS, `com.heyitsmejosh.books.mac`) — named correctly
+- `ios/BooksApp/Assets.xcassets` + `project.yml` changes committed and pushed (commit `830b741`)
 
 Remaining:
-1. Confirm both app records exist: `asc apps list --bundle-id com.heyitsmejosh.books,com.heyitsmejosh.books.mac`
-2. Archive + upload using the existing ship pipeline: `~/.claude/skills/icon-audit/ship.sh ~/Documents/Code/books/ios BooksApp` and `... BooksAppMac` (uses `-allowProvisioningUpdates`, auto-creates profiles against the existing distribution certs — no new certs needed, team already has `iPhone Distribution` and `3rd Party Mac Developer Application` certs for QMM486NPYC)
+1. Archive + upload using the existing ship pipeline: `~/.claude/skills/icon-audit/ship.sh ~/Documents/Code/books/ios BooksApp` and `... BooksAppMac` (uses `-allowProvisioningUpdates`, auto-creates profiles against the existing distribution certs — no new certs needed, team already has `iPhone Distribution` and `3rd Party Mac Developer Application` certs for QMM486NPYC)
+2. Optionally rename "books-ios" app record to "Books" in App Information
 3. Fill minimum ASC metadata (category, privacy) to get past "Prepare for Submission"; screenshots/description can follow once a build is processing
-4. Commit the `ios/BooksApp/Assets.xcassets` + `project.yml` changes (not yet committed as of this session)
 
 ## After summaries are done
 1. `cd ~/Documents/Code/books && ./sync-summaries.sh`
