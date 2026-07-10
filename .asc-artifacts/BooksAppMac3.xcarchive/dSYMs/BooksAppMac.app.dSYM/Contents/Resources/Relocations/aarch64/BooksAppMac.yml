@@ -1,0 +1,49 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/joshua/Library/Developer/Xcode/DerivedData/BooksApp-axelbumafuqbktgmcmbmlqlznhdq/Build/Intermediates.noindex/ArchiveIntermediates/BooksAppMac/InstallationBuildProductsLocation/Applications/BooksAppMac.app/Contents/MacOS/BooksAppMac'
+relocations:
+  - { offset: 0xB8F13, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0V4bodyQrvg7SwiftUI4ViewPAEE15ignoresSafeArea_5edgesQrAE0iJ7RegionsV_AE4EdgeO3SetVtFQOyAA03WebG0V_Qo_ycfU_', symObjAddr: 0x0, symBinAddr: 0x1000010D8, symSize: 0xFC }
+  - { offset: 0xB9077, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0VAC7SwiftUI0B0AAWl', symObjAddr: 0x254, symBinAddr: 0x10000132C, symSize: 0x40 }
+  - { offset: 0xB908B, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0VMa', symObjAddr: 0x294, symBinAddr: 0x10000136C, symSize: 0x10 }
+  - { offset: 0xB909F, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0V7SwiftUI0B0AA4BodyAdEP_AD5ScenePWT', symObjAddr: 0x2A4, symBinAddr: 0x10000137C, symSize: 0x10 }
+  - { offset: 0xB90B3, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledNameV2, symObjAddr: 0x2B4, symBinAddr: 0x10000138C, symSize: 0x50 }
+  - { offset: 0xB90C7, size: 0x8, addend: 0x0, symName: '_$s7SwiftUI15ModifiedContentVy11BooksAppMac7WebViewVAA30_SafeAreaRegionsIgnoringLayoutVGACyxq_GAA0I0A2aKRzAA0I8ModifierR_rlWl', symObjAddr: 0x304, symBinAddr: 0x1000013DC, symSize: 0x78 }
+  - { offset: 0xB90DB, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledNameAbstractV2, symObjAddr: 0x37C, symBinAddr: 0x100001454, symSize: 0x54 }
+  - { offset: 0xB90EF, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVAC7SwiftUI0E0AAWl', symObjAddr: 0x3D0, symBinAddr: 0x1000014A8, symSize: 0x44 }
+  - { offset: 0xB9103, size: 0x8, addend: 0x0, symName: '_$s7SwiftUI11WindowGroupVyAA15ModifiedContentVy11BooksAppMac7WebViewVAA30_SafeAreaRegionsIgnoringLayoutVGGACyxGAA5SceneAAWl', symObjAddr: 0x414, symBinAddr: 0x1000014EC, symSize: 0x50 }
+  - { offset: 0xB91E1, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0V4bodyQrvg7SwiftUI4ViewPAEE15ignoresSafeArea_5edgesQrAE0iJ7RegionsV_AE4EdgeO3SetVtFQOyAA03WebG0V_Qo_ycfU_', symObjAddr: 0x0, symBinAddr: 0x1000010D8, symSize: 0xFC }
+  - { offset: 0xB92F8, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0V7SwiftUI0B0AadEP4body4BodyQzvgTW', symObjAddr: 0xFC, symBinAddr: 0x1000011D4, symSize: 0x120 }
+  - { offset: 0xB9343, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac0aB0V7SwiftUI0B0AadEPxycfCTW', symObjAddr: 0x21C, symBinAddr: 0x1000012F4, symSize: 0x4 }
+  - { offset: 0xB9374, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x220, symBinAddr: 0x1000012F8, symSize: 0x34 }
+  - { offset: 0xB94A5, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwCP', symObjAddr: 0x0, symBinAddr: 0x100001540, symSize: 0x3C }
+  - { offset: 0xB9644, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwCP', symObjAddr: 0x0, symBinAddr: 0x100001540, symSize: 0x3C }
+  - { offset: 0xB9658, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwxx', symObjAddr: 0x3C, symBinAddr: 0x10000157C, symSize: 0x34 }
+  - { offset: 0xB966C, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwcp', symObjAddr: 0x70, symBinAddr: 0x1000015B0, symSize: 0x44 }
+  - { offset: 0xB9680, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwca', symObjAddr: 0xB4, symBinAddr: 0x1000015F4, symSize: 0x44 }
+  - { offset: 0xB9694, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwtk', symObjAddr: 0xF8, symBinAddr: 0x100001638, symSize: 0x44 }
+  - { offset: 0xB96A8, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwta', symObjAddr: 0x13C, symBinAddr: 0x10000167C, symSize: 0x44 }
+  - { offset: 0xB96BC, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwet', symObjAddr: 0x180, symBinAddr: 0x1000016C0, symSize: 0xC }
+  - { offset: 0xB96D0, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVwst', symObjAddr: 0x1C8, symBinAddr: 0x100001708, symSize: 0xC }
+  - { offset: 0xB96E4, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVMa', symObjAddr: 0x214, symBinAddr: 0x100001754, symSize: 0x38 }
+  - { offset: 0xB96F8, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewVMr', symObjAddr: 0x24C, symBinAddr: 0x10000178C, symSize: 0x68 }
+  - { offset: 0xB970C, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAaD0E0PWb', symObjAddr: 0x2B4, symBinAddr: 0x1000017F4, symSize: 0x24 }
+  - { offset: 0xB979F, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI0E0AA4BodyAdEP_AGWT', symObjAddr: 0x430, symBinAddr: 0x100001970, symSize: 0xC }
+  - { offset: 0xB983C, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP04makeH07context0H4TypeQzAD0hI7ContextVyxG_tFTW', symObjAddr: 0x2D8, symBinAddr: 0x100001818, symSize: 0x1C }
+  - { offset: 0xB98E1, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP06updateH0_7contexty0H4TypeQz_AD0hI7ContextVyxGtFTW', symObjAddr: 0x2F4, symBinAddr: 0x100001834, symSize: 0x118 }
+  - { offset: 0xB992B, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP09dismantleH0_11coordinatory0H4TypeQz_11CoordinatorQztFZTW', symObjAddr: 0x40C, symBinAddr: 0x10000194C, symSize: 0x4 }
+  - { offset: 0xB993F, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP15makeCoordinator0K0QzyFTW', symObjAddr: 0x410, symBinAddr: 0x100001950, symSize: 0x4 }
+  - { offset: 0xB9953, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP011_identifiedE4Tree2inAD011_IdentifiedeK0O0H4TypeQz_tFTW', symObjAddr: 0x414, symBinAddr: 0x100001954, symSize: 0x4 }
+  - { offset: 0xB9A2D, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP12sizeThatFits_02nsE07contextSo6CGSizeVSgAD08ProposedE4SizeV_0H4TypeQzAD0hI7ContextVyxGtFTW', symObjAddr: 0x418, symBinAddr: 0x100001958, symSize: 0x4 }
+  - { offset: 0xB9A5A, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP21_overrideSizeThatFits_2in02nsE0ySo6CGSizeVz_AD09_ProposedK0V0H4TypeQztFTW', symObjAddr: 0x41C, symBinAddr: 0x10000195C, symSize: 0x4 }
+  - { offset: 0xB9A6E, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP21_overrideLayoutTraits_3foryAD01_kL0Vz_0H4TypeQztFTW', symObjAddr: 0x420, symBinAddr: 0x100001960, symSize: 0x4 }
+  - { offset: 0xB9A82, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP014_modifyBridgedE6InputsyyAD01_eL0VzFZTW', symObjAddr: 0x424, symBinAddr: 0x100001964, symSize: 0x4 }
+  - { offset: 0xB9A96, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP35_invalidatesSizeOnConstraintChangesSbvgZTW', symObjAddr: 0x428, symBinAddr: 0x100001968, symSize: 0x4 }
+  - { offset: 0xB9AAA, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI19NSViewRepresentableAadEP14_layoutOptionsyAD09_Platformei6LayoutK0V0H4TypeQzFZTW', symObjAddr: 0x42C, symBinAddr: 0x10000196C, symSize: 0x4 }
+  - { offset: 0xB9ABE, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI0E0AadEP05_makeE04view6inputsAD01_E7OutputsVAD11_GraphValueVyxG_AD01_E6InputsVtFZTW', symObjAddr: 0x43C, symBinAddr: 0x10000197C, symSize: 0x60 }
+  - { offset: 0xB9AD2, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI0E0AadEP05_makeE4List4view6inputsAD01_eI7OutputsVAD11_GraphValueVyxG_AD01_eI6InputsVtFZTW', symObjAddr: 0x49C, symBinAddr: 0x1000019DC, symSize: 0x60 }
+  - { offset: 0xB9AE6, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI0E0AadEP14_viewListCount6inputsSiSgAD01_eiJ6InputsV_tFZTW', symObjAddr: 0x4FC, symBinAddr: 0x100001A3C, symSize: 0x4 }
+  - { offset: 0xB9AFA, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac7WebViewV7SwiftUI0E0AadEP4body4BodyQzvgTW', symObjAddr: 0x500, symBinAddr: 0x100001A40, symSize: 0x34 }
+  - { offset: 0xB9C46, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac19ResourceBundleClass33_E615896C087A92EA8653689BB54BEA9BLLCfD', symObjAddr: 0x0, symBinAddr: 0x100001AB4, symSize: 0x10 }
+  - { offset: 0xB9C88, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac19ResourceBundleClass33_E615896C087A92EA8653689BB54BEA9BLLCMa', symObjAddr: 0x10, symBinAddr: 0x100001AC4, symSize: 0x20 }
+  - { offset: 0xB9CA8, size: 0x8, addend: 0x0, symName: '_$s11BooksAppMac19ResourceBundleClass33_E615896C087A92EA8653689BB54BEA9BLLCfD', symObjAddr: 0x0, symBinAddr: 0x100001AB4, symSize: 0x10 }
+...

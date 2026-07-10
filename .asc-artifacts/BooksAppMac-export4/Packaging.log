@@ -1,0 +1,122 @@
+2026-07-08 04:00:05 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x892610c00; archive(resolved)="<IDEArchive: 0x8903d81c0>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team(resolved)="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x892610c00; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x892611500; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c59400; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c59e00; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c5a300; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c58f00; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c5a580; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c5a800; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c5aa80; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c58c80; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c58a00; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c58780; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="<IDEProvisioningBasicTeam: 0x892691f80; teamID='QMM486NPYC', teamName='(null)'>">
+	<IDEDistributionContext: 0x891c58500; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="(null)">
+	<IDEDistributionContext: 0x891c58000; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="<IDEDistributionMethodMacAppStoreDistribution: 0x892533860>", team="(null)">
+	<IDEDistributionContext: 0x102b0a760; archive = "<IDEArchive: 0x8903d81c0>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x892610c00>
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2026-07-08 04:00:05 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app' '/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app'
+2026-07-08 04:00:05 +0000  >>> Copying /Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app 
+2026-07-08 04:00:05 +0000  copying file ./Contents/_CodeSignature/CodeResources ... 
+2026-07-08 04:00:05 +0000  2819 bytes for ./Contents/_CodeSignature/CodeResources
+2026-07-08 04:00:05 +0000  copying file ./Contents/MacOS/BooksAppMac ... 
+2026-07-08 04:00:05 +0000  162352 bytes for ./Contents/MacOS/BooksAppMac
+2026-07-08 04:00:05 +0000  copying file ./Contents/Resources/AppIcon.icns ... 
+2026-07-08 04:00:05 +0000  14182 bytes for ./Contents/Resources/AppIcon.icns
+2026-07-08 04:00:05 +0000  copying file ./Contents/Resources/Assets.car ... 
+2026-07-08 04:00:05 +0000  56360 bytes for ./Contents/Resources/Assets.car
+2026-07-08 04:00:05 +0000  copying file ./Contents/embedded.provisionprofile ... 
+2026-07-08 04:00:05 +0000  12247 bytes for ./Contents/embedded.provisionprofile
+2026-07-08 04:00:05 +0000  copying file ./Contents/Info.plist ... 
+2026-07-08 04:00:05 +0000  2106 bytes for ./Contents/Info.plist
+2026-07-08 04:00:05 +0000  copying file ./Contents/PkgInfo ... 
+2026-07-08 04:00:05 +0000  8 bytes for ./Contents/PkgInfo
+2026-07-08 04:00:05 +0000 [MT] /usr/bin/ditto exited with 0
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2026-07-08 04:00:05 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2026-07-08 04:00:05 +0000 [MT] Writing /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Symbols/310C6DCD-0F2F-34BA-985C-DF5643607804.symbols
+2026-07-08 04:00:05 +0000 [MT] Writing /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Symbols/A986B601-7AD2-3CE3-B6E7-430504A7406A.symbols
+2026-07-08 04:00:05 +0000 [MT] Writing /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Symbols/310C6DCD-0F2F-34BA-985C-DF5643607804.symbols
+2026-07-08 04:00:05 +0000 [MT] Writing /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Symbols/A986B601-7AD2-3CE3-B6E7-430504A7406A.symbols
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2026-07-08 04:00:05 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2026-07-08 04:00:05 +0000 [MT] Archs to thin for item /Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app are []
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionODRStep
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2026-07-08 04:00:05 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2026-07-08 04:00:05 +0000 [MT] Entitlements for <IDEDistributionItem: 0x892637780; bundleID='com.heyitsmejosh.books.mac', path='<DVTFilePath:0x892635ce0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x892637720; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88fee5740; name='3rd Party Mac Developer Application: Joshua Trommel (QMM486NPYC)', hash='841ED832F5CB2EA83C5EE8C502992F8B46BBBC32', serialNumber='73DCA9E738799BBA3D5E0528049833E9', certificateKinds='(
+    "1.2.840.113635.100.6.1.7"
+), issueDate='2026-06-24 21:15:58 +0000''>', entitlements='{
+    "com.apple.application-identifier" = "QMM486NPYC.com.heyitsmejosh.books.mac";
+    "com.apple.developer.team-identifier" = QMM486NPYC;
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.network.client" = 1;
+}', teamID='QMM486NPYC', identifier='com.heyitsmejosh.books.mac', executablePath='<DVTFilePath:0x8926375a0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app/Contents/MacOS/BooksAppMac'>', hardenedRuntime='0'>'>: {
+    "com.apple.application-identifier" = "QMM486NPYC.com.heyitsmejosh.books.mac";
+    "com.apple.developer.team-identifier" = QMM486NPYC;
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.network.client" = 1;
+}
+2026-07-08 04:00:05 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-07-08 04:00:05 +0000 [MT] Entitlements for <IDEDistributionItem: 0x892637780; bundleID='com.heyitsmejosh.books.mac', path='<DVTFilePath:0x892635ce0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x892637720; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88fee4840; name='3rd Party Mac Developer Application: Joshua Trommel (QMM486NPYC)', hash='841ED832F5CB2EA83C5EE8C502992F8B46BBBC32', serialNumber='73DCA9E738799BBA3D5E0528049833E9', certificateKinds='(
+    "1.2.840.113635.100.6.1.7"
+), issueDate='2026-06-24 21:15:58 +0000''>', entitlements='{
+    "com.apple.application-identifier" = "QMM486NPYC.com.heyitsmejosh.books.mac";
+    "com.apple.developer.team-identifier" = QMM486NPYC;
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.network.client" = 1;
+}', teamID='QMM486NPYC', identifier='com.heyitsmejosh.books.mac', executablePath='<DVTFilePath:0x8926375a0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app/Contents/MacOS/BooksAppMac'>', hardenedRuntime='0'>'> are: {
+    "com.apple.application-identifier" = "QMM486NPYC.com.heyitsmejosh.books.mac";
+    "com.apple.developer.team-identifier" = QMM486NPYC;
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.network.client" = 1;
+}
+2026-07-08 04:00:05 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x892637780; bundleID='com.heyitsmejosh.books.mac', path='<DVTFilePath:0x892635ce0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x892637720; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x88fee4840; name='3rd Party Mac Developer Application: Joshua Trommel (QMM486NPYC)', hash='841ED832F5CB2EA83C5EE8C502992F8B46BBBC32', serialNumber='73DCA9E738799BBA3D5E0528049833E9', certificateKinds='(
+    "1.2.840.113635.100.6.1.7"
+), issueDate='2026-06-24 21:15:58 +0000''>', entitlements='{
+    "com.apple.application-identifier" = "QMM486NPYC.com.heyitsmejosh.books.mac";
+    "com.apple.developer.team-identifier" = QMM486NPYC;
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.network.client" = 1;
+}', teamID='QMM486NPYC', identifier='com.heyitsmejosh.books.mac', executablePath='<DVTFilePath:0x8926375a0:'/Users/joshua/Documents/Code/books/.asc-artifacts/BooksAppMac3.xcarchive/Products/Applications/BooksAppMac.app/Contents/MacOS/BooksAppMac'>', hardenedRuntime='0'>'> to: /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/entitlements~~~mJs699
+2026-07-08 04:00:05 +0000 [MT] invoking codesign: <NSConcreteTask: 0x892a6fac0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    841ED832F5CB2EA83C5EE8C502992F8B46BBBC32,
+    "--entitlements",
+    "/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/entitlements~~~mJs699",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app"
+)'>
+2026-07-08 04:00:05 +0000 [MT] codesign output: /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app: replacing existing signature
+/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app: signed app bundle with Mach-O universal (x86_64 arm64) [com.heyitsmejosh.books.mac]
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2026-07-08 04:00:05 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCreatePKGStep
+2026-07-08 04:00:05 +0000 [MT] Running /usr/bin/productbuild '--sign' '3rd Party Mac Developer Installer: Joshua Trommel (QMM486NPYC)' '--symbolication' '/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Symbols' '--component' '/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app' '/Applications' '/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Packages/BooksAppMac.pkg'
+2026-07-08 04:00:05 +0000  productbuild: Adding component at /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app
+productbuild: Signing product with identity "3rd Party Mac Developer Installer: Joshua Trommel (QMM486NPYC)" from keychain /Users/joshua/Library/Keychains/login.keychain-db
+productbuild: Adding certificate "Apple Worldwide Developer Relations Certification Authority"
+productbuild: Adding certificate "Apple Root CA"
+productbuild: Wrote product to /var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Packages/BooksAppMac.pkg
+productbuild: Supported OS versions: [Min: 13.0, Before: None]
+2026-07-08 04:00:05 +0000 [MT] /usr/bin/productbuild exited with 0
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2026-07-08 04:00:05 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2026-07-08 04:00:05 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x8928bda40:'/var/folders/vk/dmj39y_n1n7gs0wclbyqkfn40000gn/T/XcodeDistPipeline.~~~b2uFaT/Root/Applications/BooksAppMac.app'>
+2026-07-08 04:00:05 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2026-07-08 04:00:05 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so
