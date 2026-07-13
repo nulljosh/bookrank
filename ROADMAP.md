@@ -1,5 +1,14 @@
 # Books Roadmap
 
+## Pre-Calculus for Dummies — in progress (2026-07-13)
+Photos live in iCloud `Books/PC For dummies/` (misnamed folder; it's Pre-Calculus For Dummies).
+- ch1–13 summarized (summary.md per chapter), raw HEICs deleted
+- Remaining: ch14 (32 imgs), ch15 (9), ch16 (9), `Final /17-18` (7) + loose Final HEICs IMG_2902–2908 (sort by number into a chapter first)
+- Then: merge chapter summaries → `pre-calculus-for-dummies-summary.md`, run `./sync-summaries.sh`, add Summary badge to index.html + book_rankings.md, push
+- Resume with: `/summarize-books "PC For dummies"`
+
+Pending user scans: Jim Simons (The Man Who Solved the Market), Calculus, remaining Dummies books.
+
 ## iCloud summarize pipeline — all caught up (2026-07-04)
 
 **Newton** — all chapters done, PDF merged. Nothing pending.
@@ -44,3 +53,7 @@ Remaining:
 - `summarize.sh`: subprocess was inheriting `CLAUDE_CODE_SESSION_ID` and hallucinating. Fixed with `env -u` to strip session vars before calling `claude -p`.
 - PC for Dummies ch1–7: photos permanently lost (bad summary passed validation, originals deleted). Needs re-photographing.
 - Agentic AI ch12: photos permanently lost same way. Summary was later recovered manually.
+
+## From Icons.pdf / Asc.pdf (imported 2026-07-12)
+- [ ] books-ios: build + screenshots + metadata + submit (icon fixed 2026-07-12 via scripts/make-appicon.sh)
+- [ ] Books Mac: same, after books-ios
