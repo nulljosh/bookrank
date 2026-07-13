@@ -23,3 +23,6 @@ To expose a finished book's summary on the site:
 
 ## Resolved 2026-06-21
 - [x] PC for Dummies summary missing — root cause: `summarize.sh`'s headless `claude -p` call hit a permission prompt instead of reading the images, wrote that prompt text as if it were the summary, and the script's "non-empty = success" check deleted the original chapter photos anyway. Fixed in `summarize.sh` (now uses `--dangerously-skip-permissions` + validates output isn't a permission-request before deleting sources). Garbage summary files and the "Summary" badge for PC for Dummies were removed — chapters 1-7 have no surviving photos and need to be re-photographed from scratch.
+
+## iOS app icon — regeneration rule (2026-07-12)
+The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
