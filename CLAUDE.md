@@ -26,3 +26,6 @@ To expose a finished book's summary on the site:
 
 ## iOS app icon — regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
+
+## Repo separation (2026-07-13)
+Decided: books stays its own repo — do NOT merge into lexly or notes. books/lexly/notes are separate products (own domains/apps); notes is the wiki.
