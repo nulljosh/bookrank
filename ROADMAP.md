@@ -57,3 +57,12 @@ Remaining:
 ## From Icons.pdf / Asc.pdf (imported 2026-07-12)
 - [ ] books-ios: build + screenshots + metadata + submit (icon fixed 2026-07-12 via scripts/make-appicon.sh)
 - [ ] Books Mac: same, after books-ios
+
+## 2026-07-14 dump
+- [ ] Finish processing remaining raw book files
+- [ ] Add Calculus for Dummies
+- [ ] Books skill: treat each raw folder as a chapter (auto-create chapter folders), then normal pipeline
+- [ ] Replace shell-script deps with native implementation where sensible
+- [ ] Delete empty files left after raw removal
+- [ ] Merge ROADMAP.md into CLAUDE.md; refresh CLAUDE.md
+- [ ] Consider moving Books iCloud folder into repo (gitignore raws; commit only summarized pdf/html)
