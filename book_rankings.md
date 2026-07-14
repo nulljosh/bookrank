@@ -310,7 +310,7 @@ Books are scored using a weighted algorithm:
 - French learning books (educational reference)
 - Various For Dummies finance/tax reference books (Trading, Swing Trading, Candlestick Charting, Budgeting, etc.)
 - Programming/tech textbooks (Raspberry Pi Cookbook, C++, Perl, etc.)
-- Physics 12 BC workbook, Pre-Calculus, Calculus, Chemistry (academic)
+- Physics 12 BC workbook, Pre-Calculus [Summary](summary.html?b=pre-calculus-for-dummies), Calculus, Chemistry (academic)
 - Paralegal Career For Dummies (reference)
 - Auto repair manuals
 
