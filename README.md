@@ -25,6 +25,12 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 4. Make It, Don't Fake It (4.34/5)
 5. American Prometheus (4.32/5)
 
+## iOS App
+
+`ios/BooksApp` is a thin WKWebView wrapper around the live site — no separate backend, always in sync with `index.html`.
+
+<img src="ios/screenshots/library.jpg" width="240">
+
 ## Project Map
 
 ![project map](architecture.svg)
