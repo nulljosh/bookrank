@@ -308,7 +308,7 @@ Books are scored using a weighted algorithm:
 - IATSE Constitution and Bylaws (union document)
 - Joy of Cooking (cookbook)
 - French learning books (educational reference)
-- Various For Dummies finance/tax reference books (Trading, Swing Trading, Candlestick Charting, Budgeting, etc.)
+- Various For Dummies finance/tax reference books (Trading, Swing Trading, Candlestick Charting, Budgeting, etc.), Living Well in a Down Economy [Summary](summary.html?b=living-well-in-a-down-economy-for-dummies)
 - Programming/tech textbooks (Raspberry Pi Cookbook, C++, Perl, etc.)
 - Physics 12 BC workbook, Pre-Calculus [Summary](summary.html?b=pre-calculus-for-dummies), Calculus, Chemistry (academic)
 - Paralegal Career For Dummies (reference)
