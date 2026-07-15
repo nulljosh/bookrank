@@ -146,6 +146,24 @@ a.badge:hover { color:var(--accent); border-color:var(--accent); }
 .library .author { font-size:0.8125rem; color:var(--text2); }
 .library .badge { margin-left:8px; }
 
+.books.collapsible { max-height:1400px; overflow:hidden; position:relative; }
+.books.collapsible::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:90px;
+  background:linear-gradient(transparent, var(--bg)); pointer-events:none;
+}
+.books.collapsible.expanded { max-height:none; }
+.books.collapsible.expanded::after { display:none; }
+
+.show-toggle {
+  display:block; margin:1.25rem auto 0; padding:8px 18px;
+  font-family:inherit; font-size:0.8125rem; font-weight:500;
+  color:var(--text2); background:var(--bg2); border:1px solid var(--border); border-radius:8px;
+  cursor:pointer; transition:color 0.25s, border-color 0.25s;
+}
+.show-toggle:hover { color:var(--text); border-color:var(--text3); }
+
+.summaries .book-title { font-size:0.9375rem; }
+
 footer { font-size:0.75rem; color:var(--text3); padding:2rem 0; }
 footer a {
   color:var(--text2); text-decoration:underline;
@@ -228,8 +246,17 @@ footer a:hover { opacity:0.5; }
   </section>
 
   <section class="fade-up">
+    <span class="label">Summaries</span>
+    <ul class="books summaries">
+      <li class="book"><div class="rank">·</div><div class="book-info"><div class="book-title"><a href="summary.html?b=ai-investing-for-dummies">AI Investing for Dummies</a></div><div class="author">Paul Mladjenovic</div></div></li>
+      <li class="book"><div class="rank">·</div><div class="book-info"><div class="book-title"><a href="summary.html?b=apple">Apple: The First 50 Years</a></div><div class="author">Corporate history, 2026</div></div></li>
+      <li class="book"><div class="rank">·</div><div class="book-info"><div class="book-title"><a href="summary.html?b=pre-calculus-for-dummies">Pre-Calculus for Dummies</a></div><div class="author">Mary Jane Sterling</div></div></li>
+    </ul>
+  </section>
+
+  <section class="fade-up">
     <span class="label">All Rankings</span>
-    <ul class="books">
+    <ul class="books collapsible" id="allRankings">
 
 
       <li class="book"><div class="rank">01</div><div class="book-info"><div class="book-title"><a href="https://www.goodreads.com/book/show/17349.The_Demon_Haunted_World" target="_blank">The Demon-Haunted World</a></div><div class="author">Carl Sagan</div><div class="rating"><span class="rating-value">4.38/5</span><span class="reviews">131k+ ratings</span></div><div class="notes">Science as a candle in the dark. Definitive case for skepticism and critical thinking.</div></div></li>
@@ -383,6 +410,7 @@ footer a:hover { opacity:0.5; }
       <li class="book"><div class="rank">71</div><div class="book-info"><div class="book-title"><a href="https://www.goodreads.com/book/show/2085700.Entrepreneurship_for_Dummies" target="_blank">Entrepreneurship for Dummies</a></div><div class="author">Kathleen Allen</div><div class="rating"><span class="rating-value">3.65/5</span><span class="reviews">34 ratings</span><span class="badge">Limited sample</span></div><div class="notes">Basic business startup guide.</div></div></li>
 
     </ul>
+    <button class="show-toggle" id="rankingsToggle" aria-expanded="false">Show all 71</button>
   </section>
 
   <footer>
@@ -392,6 +420,14 @@ footer a:hover { opacity:0.5; }
 </div>
 
 <script>
+var rankingsList = document.getElementById('allRankings');
+var rankingsToggle = document.getElementById('rankingsToggle');
+rankingsToggle.addEventListener('click', function() {
+  var expanded = rankingsList.classList.toggle('expanded');
+  rankingsToggle.setAttribute('aria-expanded', expanded);
+  rankingsToggle.textContent = expanded ? 'Show less' : 'Show all 71';
+});
+
 var obs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
     if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
