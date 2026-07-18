@@ -29,3 +29,6 @@ The recurring TestFlight icon glitch (art rendered small/top-left with white fil
 
 ## Repo separation (2026-07-13)
 Decided: books stays its own repo — do NOT merge into lexly or notes. books/lexly/notes are separate products (own domains/apps); notes is the wiki.
+
+## Roadmap (2026-07-18 nightly wrap)
+- **Spinelist iOS export blocker**: ExportOptions.plist references manual signing profile "Books iOS App Store" which doesn't exist for the renamed bundle (com.heyitsmejosh.spine). Fix: switch to automatic signing in ExportOptions.plist, re-archive+export+upload so ASC icon tile shows instead of blank placeholder.
