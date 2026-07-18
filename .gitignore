@@ -2,3 +2,5 @@
 .asc-artifacts/
 .asc/artifacts/
 .asc/runs/
+**/.asc/artifacts/
+**/.asc/UploadExportOptions.plist
