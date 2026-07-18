@@ -1,38 +1,38 @@
-name: BooksApp
+name: Spine
 options:
   bundleIdPrefix: com.heyitsmejosh
 targets:
-  BooksApp:
+  Spine:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
-    sources: [BooksApp]
+    sources: [Spine]
     info:
-      path: BooksApp/Info.plist
+      path: Spine/Info.plist
       properties:
         UILaunchScreen: {}
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.books
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
-  BooksAppMac:
+  SpineMac:
     type: application
     platform: macOS
     deploymentTarget: "13.0"
-    sources: [BooksApp]
+    sources: [Spine]
     info:
-      path: BooksApp/Info.plist
+      path: Spine/Info.plist
       properties:
         UILaunchScreen: {}
         LSApplicationCategoryType: public.app-category.productivity
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.books
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -40,7 +40,7 @@ targets:
         DEVELOPMENT_TEAM: QMM486NPYC
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
     entitlements:
-      path: BooksApp/BooksAppMac.entitlements
+      path: Spine/SpineMac.entitlements
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.network.client: true

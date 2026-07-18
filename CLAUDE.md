@@ -1,6 +1,6 @@
-# Books Repo
+# Spine (repo still named "books" on GitHub)
 
-`books.heyitsmejosh.com` — Joshua's book rankings/TBR site. Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
+`spine.heyitsmejosh.com` — Joshua's book rankings/TBR site, renamed from "Books" 2026-07-18 (product name only — GitHub repo `nulljosh/books` and folder path unchanged, pending confirmation). Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
 
 ## Files
 - `index.html` — the live site (uses shared `tokens.css` + `fonts/` copied from the portfolio repo for consistent design)
