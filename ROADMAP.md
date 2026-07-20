@@ -66,3 +66,6 @@ Remaining:
 - [ ] Delete empty files left after raw removal
 - [ ] Merge ROADMAP.md into CLAUDE.md; refresh CLAUDE.md
 - [ ] Consider moving Books iCloud folder into repo (gitignore raws; commit only summarized pdf/html)
+
+## From Spine.pdf (imported 2026-07-19)
+- [ ] Goodreads integration — "sign in with Goodreads" style auth/sync, described as making Spine "a Goodreads companion." Sizeable feature: needs Goodreads API/OAuth research (note: Goodreads deprecated its public API in 2020 for new developer keys — confirm current auth options exist before scoping further), a books-read/shelf sync mechanism, and UI for the linked state. No scope/deadline pinned yet.
