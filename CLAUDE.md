@@ -32,3 +32,26 @@ Decided: books stays its own repo — do NOT merge into lexly or notes. books/le
 
 ## Roadmap (2026-07-18 nightly wrap)
 - **Spinelist iOS export blocker**: ExportOptions.plist references manual signing profile "Books iOS App Store" which doesn't exist for the renamed bundle (com.heyitsmejosh.spine). Fix: switch to automatic signing in ExportOptions.plist, re-archive+export+upload so ASC icon tile shows instead of blank placeholder.
+
+## Roadmap (merged from ROADMAP.md, 2026-07-20)
+Note: ROADMAP.md referred to the app as "books-ios"/"Books Mac" — that's stale, this repo's app is **Spine/Spinelist** (see rename note at top); ASC app IDs (`6787499076` iOS, `6787499349` macOS) are unaffected by the display-name rename.
+
+**Chapter summaries in progress:**
+- Pre-Calculus for Dummies: ch1–13 done, ch14–18 + loose Final HEICs remain (resume with `/summarize-books "PC For dummies"`), then merge + `./sync-summaries.sh` + badge.
+- Pending user scans (physical books, blocked on Joshua): Jim Simons (*The Man Who Solved the Market*), Calculus, remaining Dummies books.
+- PC for Dummies ch1–7 and Agentic AI ch12 photos are permanently lost (bad summaries passed validation before the `summarize.sh` fix) — need re-photographing from scratch, not a code fix.
+
+**iOS/Mac Spinelist app — ASC submission in progress:**
+- Icon, signing (`CODE_SIGN_STYLE: Automatic`, team `QMM486NPYC`), and ASC bundle ID registration are done.
+- Remaining: fix the export blocker above, then archive+upload via `~/.claude/skills/icon-audit/ship.sh ~/Documents/Code/books/ios BooksApp` and `... BooksAppMac`; optionally rename the "books-ios" ASC app record to "Spine"/"Spinelist" in App Information; fill minimum ASC metadata (category, privacy) to clear "Prepare for Submission".
+
+**Someday / Explore:**
+- Once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly roadmap) — first step of syncing several repos together.
+- Goodreads integration ("sign in with Goodreads" companion sync) — Goodreads deprecated its public API for new developer keys in 2020, confirm current auth options exist before scoping. No deadline pinned.
+- Landing page split: separate marketing page from the rankings-list homepage.
+- iOS/Mac companion app ("Digest") — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding; no API/data layer exists yet. Multi-session project.
+- Books skill: treat each raw folder as a chapter (auto-create chapter folders) in the summarize pipeline.
+- Replace shell-script deps in the summarize pipeline with native implementation where sensible.
+- Consider moving the Books iCloud folder into this repo (gitignore raws; commit only summarized pdf/html) — undecided.
+
+**Known-done (verified 2026-07-20):** no raw HEICs remain anywhere in the iCloud source folder; no stray empty files in this repo.
