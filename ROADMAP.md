@@ -1,5 +1,11 @@
 # Books Roadmap
 
+## Apple: The First 50 Years — COMPLETE (2026-07-20)
+All 50 chapters (Introduction through Acknowledgments/Sources) photographed, summarized, and merged into `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/Apple/apple-summary.md`. All raw HEICs deleted (0 remain in the Apple folder). Synced to `summaries/apple.md`, badge already present on index.html.
+
+## Someday / Explore
+- [ ] From Books.pdf note (imported 2026-07-19): once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly repo roadmap) — first step of syncing several repos together.
+
 ## Pre-Calculus for Dummies — in progress (2026-07-13)
 Photos live in iCloud `Books/PC For dummies/` (misnamed folder; it's Pre-Calculus For Dummies).
 - ch1–13 summarized (summary.md per chapter), raw HEICs deleted
