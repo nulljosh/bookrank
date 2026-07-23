@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 SRC="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books"
-DEST="$(cd "$(dirname "$0")" && pwd)/summaries"
-mkdir -p "$DEST"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+DEST="$ROOT/summaries"
+APP_DEST="$ROOT/ios/Spine/Resources/summaries"
+mkdir -p "$DEST" "$APP_DEST"
 
 for book_dir in "$SRC"/*/; do
   book="$(basename "$book_dir")"
@@ -11,6 +13,7 @@ for book_dir in "$SRC"/*/; do
   md="$book_dir$slug-summary.md"
   if [[ -f "$md" ]]; then
     cp "$md" "$DEST/$slug.md"
+    cp "$md" "$APP_DEST/$slug.md"
     echo "Synced: $slug.md (markdown)"
     continue
   fi
@@ -18,6 +21,7 @@ for book_dir in "$SRC"/*/; do
   pdf=("$book_dir"*-summary*.pdf)
   if [[ -f "${pdf[0]:-}" ]]; then
     pdftotext -layout "${pdf[0]}" "$DEST/$slug.md"
+    cp "$DEST/$slug.md" "$APP_DEST/$slug.md"
     echo "Synced: $slug.md (pdftotext fallback)"
   fi
 done
