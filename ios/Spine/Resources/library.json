@@ -1,0 +1,13 @@
+{
+  "dueDate": "2026-07-29",
+  "loans": [
+    { "title": "Living Well in a Down Economy", "author": "Barcode 39083109779042", "summarySlug": "living-well-in-a-down-economy-for-dummies" },
+    { "title": "Becoming Steve Jobs", "author": "Brent Schlender & Rick Tetzeli", "summarySlug": "becoming-steve-jobs" },
+    { "title": "Brothers", "author": "Alex Van Halen", "summarySlug": "brothers" },
+    { "title": "AI Investing for Dummies", "author": "Paul Mladjenovic · Barcode 39083109840547", "summarySlug": "ai-investing-for-dummies" },
+    { "title": "Sobriety for Dummies", "author": "Lane Kennedy · Barcode 39083111287620", "summarySlug": null },
+    { "title": "IBS for Dummies", "author": "Kristina Campbell · Barcode 39083110405082", "summarySlug": null },
+    { "title": "Apple: The First 50 Years", "author": "Corporate history, 2026", "summarySlug": "apple" },
+    { "title": "Pre-Calculus for Dummies", "author": "Mary Jane Sterling", "summarySlug": "pre-calculus-for-dummies" }
+  ]
+}

@@ -5,7 +5,7 @@ targets:
   Spine:
     type: application
     platform: iOS
-    deploymentTarget: "16.0"
+    deploymentTarget: "17.0"
     sources: [Spine]
     info:
       path: Spine/Info.plist
@@ -23,7 +23,7 @@ targets:
   SpineMac:
     type: application
     platform: macOS
-    deploymentTarget: "13.0"
+    deploymentTarget: "14.0"
     sources: [Spine]
     info:
       path: Spine/Info.plist
@@ -43,4 +43,3 @@ targets:
       path: Spine/SpineMac.entitlements
       properties:
         com.apple.security.app-sandbox: true
-        com.apple.security.network.client: true

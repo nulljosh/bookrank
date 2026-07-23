@@ -1,0 +1,734 @@
+[
+  {
+    "rank": 1,
+    "title": "The Demon-Haunted World",
+    "goodreadsURL": "https://www.goodreads.com/book/show/17349.The_Demon_Haunted_World",
+    "author": "Carl Sagan",
+    "rating": 4.38,
+    "reviewCount": "131k+ ratings",
+    "badges": [],
+    "notes": "Science as a candle in the dark. Definitive case for skepticism and critical thinking."
+  },
+  {
+    "rank": 2,
+    "title": "Bad Blood",
+    "goodreadsURL": "https://www.goodreads.com/book/show/37976541-bad-blood",
+    "author": "John Carreyrou",
+    "rating": 4.32,
+    "reviewCount": "140k+ ratings",
+    "badges": [
+      "Very popular"
+    ],
+    "notes": "Inside the Theranos fraud. Best investigative nonfiction of the decade."
+  },
+  {
+    "rank": 3,
+    "title": "The New Jim Crow",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6792458-the-new-jim-crow",
+    "author": "Michelle Alexander",
+    "rating": 4.36,
+    "reviewCount": "100k+ ratings",
+    "badges": [],
+    "notes": "Mass incarceration in the age of colorblindness. Landmark social justice work."
+  },
+  {
+    "rank": 4,
+    "title": "The Hard Thing About Hard Things",
+    "goodreadsURL": "https://www.goodreads.com/book/show/18176747-the-hard-thing-about-hard-things",
+    "author": "Ben Horowitz",
+    "rating": 4.2,
+    "reviewCount": "111k+ ratings",
+    "badges": [
+      "Very popular"
+    ],
+    "notes": "Building a business when there are no easy answers. The most honest startup book ever written."
+  },
+  {
+    "rank": 5,
+    "title": "The Black Swan",
+    "goodreadsURL": "https://www.goodreads.com/book/show/242472.The_Black_Swan",
+    "author": "Nassim Nicholas Taleb",
+    "rating": 3.93,
+    "reviewCount": "200k+ ratings",
+    "badges": [],
+    "notes": "The impact of the highly improbable. Changed how people think about risk."
+  },
+  {
+    "rank": 6,
+    "title": "How to Change Your Mind",
+    "goodreadsURL": "https://www.goodreads.com/book/show/36613747-how-to-change-your-mind",
+    "author": "Michael Pollan",
+    "rating": 4.27,
+    "reviewCount": "84,602 ratings",
+    "badges": [
+      "Very popular"
+    ],
+    "notes": "Psychedelics and consciousness exploration."
+  },
+  {
+    "rank": 7,
+    "title": "The Myth of Normal",
+    "goodreadsURL": "https://www.goodreads.com/book/show/58537332-the-myth-of-normal",
+    "author": "Gabor Maté & Daniel Maté",
+    "rating": 4.3,
+    "reviewCount": "37,769 ratings",
+    "badges": [],
+    "notes": "Trauma, illness, and healing in a toxic culture. Maté's most comprehensive work."
+  },
+  {
+    "rank": 8,
+    "title": "Leonardo da Vinci",
+    "goodreadsURL": "https://www.goodreads.com/book/show/34684622-leonardo-da-vinci",
+    "author": "Walter Isaacson",
+    "rating": 4.19,
+    "reviewCount": "55,000 ratings",
+    "badges": [],
+    "notes": "Biography of the ultimate Renaissance man. Isaacson at his best."
+  },
+  {
+    "rank": 9,
+    "title": "The Making of the Atomic Bomb",
+    "goodreadsURL": "https://www.goodreads.com/book/show/16884.The_Making_of_the_Atomic_Bomb",
+    "author": "Richard Rhodes",
+    "rating": 4.38,
+    "reviewCount": "20,258 ratings",
+    "badges": [],
+    "notes": "Comprehensive, authoritative history. Pulitzer Prize winner."
+  },
+  {
+    "rank": 10,
+    "title": "Killing the Rising Sun",
+    "goodreadsURL": "https://www.goodreads.com/book/show/29370481-killing-the-rising-sun",
+    "author": "Bill O'Reilly & Martin Dugard",
+    "rating": 4.35,
+    "reviewCount": "20,658 ratings",
+    "badges": [],
+    "notes": "Popular history of America's victory over Japan in WWII."
+  },
+  {
+    "rank": 11,
+    "title": "Unmasking Autism",
+    "goodreadsURL": "https://www.goodreads.com/book/show/58537365-unmasking-autism",
+    "author": "Devon Price",
+    "rating": 4.31,
+    "reviewCount": "22,428 ratings",
+    "badges": [],
+    "notes": "Discovering the new faces of neurodiversity. Validating and thorough."
+  },
+  {
+    "rank": 12,
+    "title": "God Is Not Great",
+    "goodreadsURL": "https://www.goodreads.com/book/show/43369.God_Is_Not_Great",
+    "author": "Christopher Hitchens",
+    "rating": 3.94,
+    "reviewCount": "101k+ ratings",
+    "badges": [],
+    "notes": "Anti-religion polemic."
+  },
+  {
+    "rank": 13,
+    "title": "The Third Reich at War",
+    "goodreadsURL": "https://www.goodreads.com/book/show/3761596-the-third-reich-at-war",
+    "author": "Richard J. Evans",
+    "rating": 4.4,
+    "reviewCount": "6,420 ratings",
+    "badges": [],
+    "notes": "The final volume of Evans's landmark trilogy. Hailed a masterpiece by the NYT."
+  },
+  {
+    "rank": 14,
+    "title": "Dark Money",
+    "goodreadsURL": "https://www.goodreads.com/book/show/25266049-dark-money",
+    "author": "Jane Mayer",
+    "rating": 4.2,
+    "reviewCount": "15,000 ratings",
+    "badges": [],
+    "notes": "The hidden history of the billionaires behind the radical right."
+  },
+  {
+    "rank": 15,
+    "title": "Basic Economics",
+    "goodreadsURL": "https://www.goodreads.com/book/show/3023.Basic_Economics",
+    "author": "Thomas Sowell",
+    "rating": 4.27,
+    "reviewCount": "10,000 ratings",
+    "badges": [],
+    "notes": "Economics without jargon. The definitive introductory economics text."
+  },
+  {
+    "rank": 16,
+    "title": "Cracking the Coding Interview",
+    "goodreadsURL": "https://www.goodreads.com/book/show/25707092-cracking-the-coding-interview",
+    "author": "Gayle Laakmann McDowell",
+    "rating": 4.33,
+    "reviewCount": "6,919 ratings",
+    "badges": [],
+    "notes": "189 programming questions and solutions. Essential prep for technical interviews."
+  },
+  {
+    "rank": 17,
+    "title": "The Rise and Fall of the Third Reich",
+    "goodreadsURL": "https://www.goodreads.com/book/show/767171.The_Rise_and_Fall_of_the_Third_Reich",
+    "author": "William L. Shirer",
+    "rating": 4.32,
+    "reviewCount": "7,078 ratings",
+    "badges": [],
+    "notes": "Classic comprehensive Nazi Germany history."
+  },
+  {
+    "rank": 18,
+    "title": "The True Believer",
+    "goodreadsURL": "https://www.goodreads.com/book/show/15916.The_True_Believer",
+    "author": "Eric Hoffer",
+    "rating": 4.19,
+    "reviewCount": "11,987 ratings",
+    "badges": [],
+    "notes": "Mass movements and fanaticism analysis."
+  },
+  {
+    "rank": 19,
+    "title": "Too Big to Fail",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6687247-too-big-to-fail",
+    "author": "Andrew Ross Sorkin",
+    "rating": 4.09,
+    "reviewCount": "20,000 ratings",
+    "badges": [],
+    "notes": "Inside the 2008 financial crisis. Best account of how Wall Street nearly collapsed."
+  },
+  {
+    "rank": 20,
+    "title": "AI Superpowers",
+    "goodreadsURL": "https://www.goodreads.com/book/show/38242135-ai-superpowers",
+    "author": "Kai-Fu Lee",
+    "rating": 4.09,
+    "reviewCount": "20,000 ratings",
+    "badges": [],
+    "notes": "China, Silicon Valley, and the new world order. Still relevant."
+  },
+  {
+    "rank": 21,
+    "title": "The Hundred Years' War on Palestine",
+    "goodreadsURL": "https://www.goodreads.com/book/show/44527416-the-hundred-years-war-on-palestine",
+    "author": "Rashid Khalidi",
+    "rating": 4.22,
+    "reviewCount": "10,000 ratings",
+    "badges": [],
+    "notes": "History of settler colonialism and resistance, 1917-2017."
+  },
+  {
+    "rank": 22,
+    "title": "The Battle of Midway",
+    "goodreadsURL": "https://www.goodreads.com/book/show/11472008-the-battle-of-midway",
+    "author": "Craig L. Symonds",
+    "rating": 4.39,
+    "reviewCount": "3,670 ratings",
+    "badges": [],
+    "notes": "Masterful account of the pivotal WWII Pacific battle."
+  },
+  {
+    "rank": 23,
+    "title": "Phenomenology of Spirit",
+    "goodreadsURL": "https://www.goodreads.com/book/show/9454.Phenomenology_of_Spirit",
+    "author": "G.W.F. Hegel",
+    "rating": 3.93,
+    "reviewCount": "37,626 ratings",
+    "badges": [],
+    "notes": "Dense philosophy classic."
+  },
+  {
+    "rank": 24,
+    "title": "American Prometheus",
+    "goodreadsURL": "https://www.goodreads.com/en/book/show/80571",
+    "author": "Kai Bird & Martin Sherwin",
+    "rating": 4.32,
+    "reviewCount": "4,856 ratings",
+    "badges": [],
+    "notes": "Oppenheimer biography. Pulitzer Prize winner."
+  },
+  {
+    "rank": 25,
+    "title": "Empire of AI",
+    "goodreadsURL": "https://www.goodreads.com/book/show/195742995-empire-of-ai",
+    "author": "Karen Hao",
+    "rating": 4.21,
+    "reviewCount": "5,000 ratings",
+    "badges": [],
+    "notes": "Dreams and nightmares inside Sam Altman's OpenAI. NYT Bestseller."
+  },
+  {
+    "rank": 26,
+    "title": "Leviathan",
+    "goodreadsURL": "https://www.goodreads.com/book/show/91953.Leviathan",
+    "author": "Thomas Hobbes",
+    "rating": 3.7,
+    "reviewCount": "53,226 ratings",
+    "badges": [],
+    "notes": "Political philosophy classic (1651)."
+  },
+  {
+    "rank": 27,
+    "title": "The Thinking Machine",
+    "goodreadsURL": "https://www.goodreads.com/en/book/show/211399783-the-thinking-machine",
+    "author": "Stephen Witt",
+    "rating": 4.27,
+    "reviewCount": "2,322 ratings",
+    "badges": [],
+    "notes": "Jensen Huang, NVIDIA, and the world's most coveted microchip. The definitive Huang biography."
+  },
+  {
+    "rank": 28,
+    "title": "The Wright Brothers",
+    "goodreadsURL": "https://www.goodreads.com/book/show/22859145-the-wright-brothers",
+    "author": "David McCullough",
+    "rating": 4.21,
+    "reviewCount": "40,000 ratings",
+    "badges": [],
+    "notes": "The story of Orville and Wilbur Wright. Pulitzer Prize-winning historian."
+  },
+  {
+    "rank": 29,
+    "title": "The Snowball",
+    "goodreadsURL": "https://www.goodreads.com/book/show/2054761.The_Snowball",
+    "author": "Alice Schroeder",
+    "rating": 4.15,
+    "reviewCount": "50,285 ratings",
+    "badges": [],
+    "notes": "Warren Buffett biography."
+  },
+  {
+    "rank": 30,
+    "title": "Breath",
+    "goodreadsURL": "https://www.goodreads.com/book/show/48890486-breath",
+    "author": "James Nestor",
+    "rating": 4.05,
+    "reviewCount": "60,000 ratings",
+    "badges": [],
+    "notes": "The new science of a lost art. Surprisingly compelling."
+  },
+  {
+    "rank": 31,
+    "title": "The Power of Geography",
+    "goodreadsURL": "https://www.goodreads.com/book/show/56696339-the-power-of-geography",
+    "author": "Tim Marshall",
+    "rating": 4.19,
+    "reviewCount": "23,828 ratings",
+    "badges": [],
+    "notes": "How geography shapes nations."
+  },
+  {
+    "rank": 32,
+    "title": "The 33 Strategies of War",
+    "goodreadsURL": "https://www.goodreads.com/book/show/35289.The_33_Strategies_of_War",
+    "author": "Robert Greene",
+    "rating": 4.23,
+    "reviewCount": "19,163 ratings",
+    "badges": [],
+    "notes": "Strategic thinking guide."
+  },
+  {
+    "rank": 33,
+    "title": "The Making of a Manager",
+    "goodreadsURL": "https://www.goodreads.com/book/show/38821039-the-making-of-a-manager",
+    "author": "Julie Zhuo",
+    "rating": 4.1,
+    "reviewCount": "20,000 ratings",
+    "badges": [],
+    "notes": "What to do when everyone looks to you. Practical management guide."
+  },
+  {
+    "rank": 34,
+    "title": "The Infinity Machine",
+    "goodreadsURL": "https://www.goodreads.com/en/book/show/241434373-the-infinity-machine",
+    "author": "Sebastian Mallaby",
+    "rating": 4.47,
+    "reviewCount": "207 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "Demis Hassabis, DeepMind, and the quest for superintelligence. Definitive AI biography."
+  },
+  {
+    "rank": 35,
+    "title": "Subliminal",
+    "goodreadsURL": "https://www.goodreads.com/book/show/13058637-subliminal",
+    "author": "Leonard Mlodinow",
+    "rating": 4.06,
+    "reviewCount": "13,494 ratings",
+    "badges": [],
+    "notes": "Unconscious mind science."
+  },
+  {
+    "rank": 36,
+    "title": "Hidden Potential",
+    "goodreadsURL": "https://www.goodreads.com/book/show/171321843-hidden-potential",
+    "author": "Adam Grant",
+    "rating": 3.9,
+    "reviewCount": "30,000 ratings",
+    "badges": [],
+    "notes": "The science of achieving greater things."
+  },
+  {
+    "rank": 37,
+    "title": "This Is Your Mind on Plants",
+    "goodreadsURL": "https://www.goodreads.com/book/show/56015498-this-is-your-mind-on-plants",
+    "author": "Michael Pollan",
+    "rating": 3.87,
+    "reviewCount": "34,090 ratings",
+    "badges": [],
+    "notes": "Opium, caffeine, mescaline, our relationship with psychoactive plants."
+  },
+  {
+    "rank": 38,
+    "title": "Stop Walking on Eggshells",
+    "goodreadsURL": "https://www.goodreads.com/book/show/188013.Stop_Walking_on_Eggshells",
+    "author": "Paul T. Mason & Randi Kreger",
+    "rating": 4.02,
+    "reviewCount": "13,383 ratings",
+    "badges": [],
+    "notes": "Taking your life back when someone you care about has borderline personality disorder."
+  },
+  {
+    "rank": 39,
+    "title": "The Ascent of Money",
+    "goodreadsURL": "https://www.goodreads.com/book/show/2714607-the-ascent-of-money",
+    "author": "Niall Ferguson",
+    "rating": 3.91,
+    "reviewCount": "20,000 ratings",
+    "badges": [],
+    "notes": "A financial history of the world. 10th anniversary edition."
+  },
+  {
+    "rank": 40,
+    "title": "Million Dollar Weekend",
+    "goodreadsURL": "https://www.goodreads.com/book/show/145624504-million-dollar-weekend",
+    "author": "Noah Kagan",
+    "rating": 4.12,
+    "reviewCount": "5,684 ratings",
+    "badges": [],
+    "notes": "The surprisingly simple way to launch a 7-figure business in 48 hours."
+  },
+  {
+    "rank": 41,
+    "title": "The Holy Grail of Investing",
+    "goodreadsURL": "https://www.goodreads.com/book/show/195847748-the-holy-grail-of-investing",
+    "author": "Tony Robbins & Christopher Zook",
+    "rating": 4.14,
+    "reviewCount": "5,000 ratings",
+    "badges": [],
+    "notes": "The world's greatest investors reveal their ultimate strategies."
+  },
+  {
+    "rank": 42,
+    "title": "The Inevitable",
+    "goodreadsURL": "https://www.goodreads.com/book/show/27209431-the-inevitable",
+    "author": "Kevin Kelly",
+    "rating": 3.89,
+    "reviewCount": "11,967 ratings",
+    "badges": [],
+    "notes": "Technology futures."
+  },
+  {
+    "rank": 43,
+    "title": "Steve Jobs in Exile",
+    "goodreadsURL": "https://www.goodreads.com/book/show/240381395-steve-jobs-in-exile",
+    "author": "Geoffrey Cain",
+    "rating": 4.1,
+    "reviewCount": "300 ratings",
+    "badges": [
+      "New release"
+    ],
+    "notes": "The untold story of NeXT and the remaking of an American visionary."
+  },
+  {
+    "rank": 44,
+    "title": "More Everything Forever",
+    "goodreadsURL": "https://www.goodreads.com/book/show/215894092-more-everything-forever",
+    "author": "Adam Becker",
+    "rating": 4.26,
+    "reviewCount": "1,616 ratings",
+    "badges": [],
+    "notes": "AI optimism and the case for abundance."
+  },
+  {
+    "rank": 45,
+    "title": "Legacy of Ashes",
+    "goodreadsURL": "https://www.goodreads.com/book/show/840.Legacy_of_Ashes",
+    "author": "Tim Weiner",
+    "rating": 4.03,
+    "reviewCount": "5,000 ratings",
+    "badges": [],
+    "notes": "The history of the CIA. Pulitzer Prize winner."
+  },
+  {
+    "rank": 46,
+    "title": "Big Debt Crises",
+    "goodreadsURL": "https://www.goodreads.com/book/show/41217981",
+    "author": "Ray Dalio",
+    "rating": 4.05,
+    "reviewCount": "4,000 ratings",
+    "badges": [],
+    "notes": "Template for understanding debt cycles. Dalio's most rigorous work."
+  },
+  {
+    "rank": 47,
+    "title": "AI 2041",
+    "goodreadsURL": "https://www.goodreads.com/book/show/56377201-ai-2041",
+    "author": "Kai-Fu Lee & Chen Qiufan",
+    "rating": 3.82,
+    "reviewCount": "5,808 ratings",
+    "badges": [],
+    "notes": "Ten visions for our future. Fiction-nonfiction hybrid on how AI will reshape the world."
+  },
+  {
+    "rank": 48,
+    "title": "Palo Alto",
+    "goodreadsURL": "https://www.goodreads.com/book/show/61108472-palo-alto",
+    "author": "Malcolm Harris",
+    "rating": 3.91,
+    "reviewCount": "2,575 ratings",
+    "badges": [],
+    "notes": "Silicon Valley history and critique."
+  },
+  {
+    "rank": 49,
+    "title": "The Contrarian",
+    "goodreadsURL": "https://www.goodreads.com/book/show/59055308-the-contrarian",
+    "author": "Max Chafkin",
+    "rating": 3.88,
+    "reviewCount": "3,000 ratings",
+    "badges": [],
+    "notes": "Peter Thiel and the rise of the Silicon Valley oligarchs."
+  },
+  {
+    "rank": 50,
+    "title": "Supremacy",
+    "goodreadsURL": "https://www.goodreads.com/book/show/127305457-supremacy",
+    "author": "Parmy Olson",
+    "rating": 3.83,
+    "reviewCount": "3,000 ratings",
+    "badges": [],
+    "notes": "AI, ChatGPT, and the race that will change the world."
+  },
+  {
+    "rank": 51,
+    "title": "The Loudest Voice in the Room",
+    "goodreadsURL": "https://www.goodreads.com/book/show/18209517-the-loudest-voice-in-the-room",
+    "author": "Gabriel Sherman",
+    "rating": 3.88,
+    "reviewCount": "1,913 ratings",
+    "badges": [],
+    "notes": "Roger Ailes and the rise of Fox News."
+  },
+  {
+    "rank": 52,
+    "title": "Enshittification",
+    "goodreadsURL": "https://www.goodreads.com/book/show/208227949-enshittification",
+    "author": "Cory Doctorow",
+    "rating": 3.78,
+    "reviewCount": "2,000 ratings",
+    "badges": [],
+    "notes": "Why everything suddenly got worse and what to do about it."
+  },
+  {
+    "rank": 53,
+    "title": "How to Rule the World",
+    "goodreadsURL": "https://www.goodreads.com/en/book/show/244970115-how-to-rule-the-world",
+    "author": "Theo Baker",
+    "rating": 3.81,
+    "reviewCount": "852 ratings",
+    "badges": [],
+    "notes": "An education in power at Stanford University. The culture of ascendancy exposed."
+  },
+  {
+    "rank": 54,
+    "title": "The Philosopher in the Valley",
+    "goodreadsURL": "https://www.goodreads.com/en/book/show/214666632-the-philosopher-in-the-valley",
+    "author": "Michael Steinberger",
+    "rating": 3.69,
+    "reviewCount": "1,107 ratings",
+    "badges": [],
+    "notes": "Alex Karp, Palantir, and the rise of the surveillance state."
+  },
+  {
+    "rank": 55,
+    "title": "The Mind-Gut Connection",
+    "goodreadsURL": "https://www.goodreads.com/book/show/24700355-the-mind-gut-connection",
+    "author": "Emeran Mayer",
+    "rating": 3.76,
+    "reviewCount": "9,092 ratings",
+    "badges": [],
+    "notes": "Digestive health and brain connection."
+  },
+  {
+    "rank": 56,
+    "title": "The LEGO Story",
+    "goodreadsURL": "https://www.goodreads.com/book/show/61886828-the-lego-story",
+    "author": "Jens Andersen",
+    "rating": 3.85,
+    "reviewCount": "3,024 ratings",
+    "badges": [],
+    "notes": "Behind the brick empire. Family drama and business reinvention."
+  },
+  {
+    "rank": 57,
+    "title": "Bonfire of the Murdochs",
+    "goodreadsURL": "https://www.goodreads.com/book/show/241779820-bonfire-of-the-murdochs",
+    "author": "Gabriel Sherman",
+    "rating": 3.8,
+    "reviewCount": "200 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "How the epic fight to control the last great media dynasty broke a family and the world."
+  },
+  {
+    "rank": 58,
+    "title": "Emotional",
+    "goodreadsURL": "https://www.goodreads.com/book/show/58154664-emotional",
+    "author": "Leonard Mlodinow",
+    "rating": 3.8,
+    "reviewCount": "1,340 ratings",
+    "badges": [],
+    "notes": "Neuroscience of emotions."
+  },
+  {
+    "rank": 59,
+    "title": "Sneaker Wars",
+    "goodreadsURL": "https://www.goodreads.com/book/show/1617037.Sneaker_Wars",
+    "author": "Barbara Smit",
+    "rating": 3.86,
+    "reviewCount": "836 ratings",
+    "badges": [],
+    "notes": "Adidas vs Puma family feud."
+  },
+  {
+    "rank": 60,
+    "title": "The Law of Attraction",
+    "goodreadsURL": "https://www.goodreads.com/book/show/343614.The_Law_of_Attraction",
+    "author": "Esther & Jerry Hicks",
+    "rating": 4.13,
+    "reviewCount": "175 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "Foundational LOA text."
+  },
+  {
+    "rank": 61,
+    "title": "The Simulation Hypothesis",
+    "goodreadsURL": "https://www.goodreads.com/book/show/44141381-the-simulation-hypothesis",
+    "author": "Rizwan Virk",
+    "rating": 3.73,
+    "reviewCount": "1,203 ratings",
+    "badges": [],
+    "notes": "An MIT computer scientist shows why AI, quantum physics, and Eastern mystics agree we are in a video game."
+  },
+  {
+    "rank": 62,
+    "title": "What Went Wrong with Capitalism",
+    "goodreadsURL": "https://www.goodreads.com/book/show/199798515-what-went-wrong-with-capitalism",
+    "author": "Ruchir Sharma",
+    "rating": 3.87,
+    "reviewCount": "569 ratings",
+    "badges": [],
+    "notes": "Economic critique. Recent release (2024)."
+  },
+  {
+    "rank": 63,
+    "title": "Life After Google",
+    "goodreadsURL": "https://www.goodreads.com/book/show/32073021-life-after-google",
+    "author": "George Gilder",
+    "rating": 3.55,
+    "reviewCount": "2,361 ratings",
+    "badges": [],
+    "notes": "Cryptocurrency advocacy."
+  },
+  {
+    "rank": 64,
+    "title": "Make It, Don't Fake It",
+    "goodreadsURL": "https://www.goodreads.com/book/show/56298779-make-it-don-t-fake-it",
+    "author": "Sabrina Horn",
+    "rating": 4.34,
+    "reviewCount": "38 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "Business authenticity guide."
+  },
+  {
+    "rank": 65,
+    "title": "The Book of Help",
+    "goodreadsURL": "https://www.goodreads.com/book/show/37901602-the-book-of-help",
+    "author": "Megan Griswold",
+    "rating": 3.62,
+    "reviewCount": "1,377 ratings",
+    "badges": [],
+    "notes": "Self-help memoir."
+  },
+  {
+    "rank": 66,
+    "title": "Epic Disruptions",
+    "goodreadsURL": "https://www.goodreads.com/book/show/213857608-epic-disruptions",
+    "author": "Scott D. Anthony",
+    "rating": 4.05,
+    "reviewCount": "73 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "Lessons from disruption and innovation strategy."
+  },
+  {
+    "rank": 67,
+    "title": "Hell to Pay",
+    "goodreadsURL": "https://www.goodreads.com/book/show/199153553-hell-to-pay",
+    "author": "Michael Lind",
+    "rating": 3.94,
+    "reviewCount": "81 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "How the suppression of wages is destroying America."
+  },
+  {
+    "rank": 68,
+    "title": "Hubris Maximus",
+    "goodreadsURL": "https://www.goodreads.com/book/show/216041530-hubris-maximus",
+    "author": "Faiz Siddiqui",
+    "rating": 3.62,
+    "reviewCount": "374 ratings",
+    "badges": [],
+    "notes": "Elon Musk's quest for power, from Tesla to Twitter to government."
+  },
+  {
+    "rank": 69,
+    "title": "Every Screen on the Planet",
+    "goodreadsURL": "https://www.goodreads.com/book/show/218892633-every-screen-on-the-planet",
+    "author": "Emily Baker-White",
+    "rating": 3.47,
+    "reviewCount": "129 ratings",
+    "badges": [],
+    "notes": "The war over TikTok. Tech, politics, and national security collide."
+  },
+  {
+    "rank": 70,
+    "title": "The Secret History of the World",
+    "goodreadsURL": "https://www.goodreads.com/book/show/7815620-the-secret-history-of-the-world",
+    "author": "Mark Booth",
+    "rating": 3.44,
+    "reviewCount": "617 ratings",
+    "badges": [],
+    "notes": "Occult/esoteric history."
+  },
+  {
+    "rank": 71,
+    "title": "Entrepreneurship for Dummies",
+    "goodreadsURL": "https://www.goodreads.com/book/show/2085700.Entrepreneurship_for_Dummies",
+    "author": "Kathleen Allen",
+    "rating": 3.65,
+    "reviewCount": "34 ratings",
+    "badges": [
+      "Limited sample"
+    ],
+    "notes": "Basic business startup guide."
+  }
+]
