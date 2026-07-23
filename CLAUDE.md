@@ -21,29 +21,17 @@ To expose a finished book's summary on the site:
 - [ ] Project name for planned iOS companion tracker app: "Digest" (decided, not applied — this repo is the separate live books.heyitsmejosh.com rankings site, unrelated to the new app).
 - [ ] Build iOS companion app — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding. No API/data layer exists yet.
 
-## Resolved 2026-06-21
-- [x] PC for Dummies summary missing — root cause: `summarize.sh`'s headless `claude -p` call hit a permission prompt instead of reading the images, wrote that prompt text as if it were the summary, and the script's "non-empty = success" check deleted the original chapter photos anyway. Fixed in `summarize.sh` (now uses `--dangerously-skip-permissions` + validates output isn't a permission-request before deleting sources). Garbage summary files and the "Summary" badge for PC for Dummies were removed — chapters 1-7 have no surviving photos and need to be re-photographed from scratch.
-
 ## iOS app icon — regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
 
 ## Repo separation (2026-07-13)
 Decided: books stays its own repo — do NOT merge into lexly or notes. books/lexly/notes are separate products (own domains/apps); notes is the wiki.
 
-## Roadmap (2026-07-18 nightly wrap)
-- [x] **iOS export blocker FIXED 2026-07-21**: `ExportOptions.plist` referenced a manual signing profile ("Books iOS App Store") that didn't exist for the renamed bundle — switched to `signingStyle: automatic`. Second real bug found in the same pass: `Info.plist` had zero `UISupportedInterfaceOrientations` keys (app has no `TARGETED_DEVICE_FAMILY` override, so it's universal and Apple requires all 4 orientations) — export was failing with error 90474. Added both orientation keys directly to `Spine/Info.plist` (note: `xcodegen generate`'s `info.properties` merge was NOT reliably applying array-valued keys in this project — hand-edit the plist directly and skip `xcodegen generate` for Info.plist changes, since `ship.sh` doesn't call it). Archive → export → upload all succeeded; new build now processing in ASC (should replace the blank icon placeholder once it clears).
-  - 2026-07-22: `xcuserdata/` added to `.gitignore` (commit `38dd0be`) after an accidental Xcode regen locally reverted the `UIInterfaceOrientationPortraitUpsideDown` fix above — the revert was discarded, never committed, so the fix is still intact. Housekeeping only.
-- [x] **ASC display name FIXED 2026-07-21**: was still "Spinelist" (single app record, id 6792376485, one universal record already covering iOS+macOS — no separate Mac merge needed). "Spine", "Spinal", "Colophon", and "Spinewell" were all already taken by other Apple accounts; renamed to "Bindwise" via `asc-name-creator` skill (superseded an earlier same-day fallback to "Spynne").
-- [x] **ASC display name changed again 2026-07-22**: user wanted something closer to "Spine" than "Bindwise" — still unavailable itself, so renamed to **"Spinework"** (also confirmed available: Spinory, Backspine, Spinum, Spinehouse, if a future rename is needed). On-device display name / product name remains "Spine" (no `CFBundleDisplayName` override in project.yml — only the App Store listing name differs).
-
 ## Roadmap (merged from ROADMAP.md, 2026-07-20)
 Note: ROADMAP.md referred to the app as "books-ios"/"Books Mac" — that's stale, this repo's app is **Spine/Spinelist** (see rename note at top); ASC app IDs (`6787499076` iOS, `6787499349` macOS) are unaffected by the display-name rename.
 
 **Chapter summaries in progress:**
 - Pre-Calculus for Dummies: ch1–13 done, ch14–18 + loose Final HEICs remain (resume with `/summarize-books "PC For dummies"`), then merge + `./sync-summaries.sh` + badge.
-- [x] Calculus for Dummies: COMPLETE 2026-07-22 — all 22 chapters summarized, merged, synced, and badge live.
-- Pending user scans (physical books, blocked on Joshua): Jim Simons (*The Man Who Solved the Market*), remaining Dummies books.
-- PC for Dummies ch1–7 and Agentic AI ch12 photos are permanently lost (bad summaries passed validation before the `summarize.sh` fix) — need re-photographing from scratch, not a code fix.
 
 **iOS/Mac Spinelist app — ASC submission in progress:**
 - Icon, signing (`CODE_SIGN_STYLE: Automatic`, team `QMM486NPYC`), and ASC bundle ID registration are done.
