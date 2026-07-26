@@ -6,15 +6,29 @@ DEST="$ROOT/summaries"
 APP_DEST="$ROOT/ios/Spine/Resources/summaries"
 mkdir -p "$DEST" "$APP_DEST"
 
-for book_dir in "$SRC"/*/; do
+# ponytail: book folders can be nested one level (e.g. "for dummies/<book>"), so scan
+# both the top level and one level down instead of assuming a fixed depth.
+for book_dir in "$SRC"/*/ "$SRC"/*/*/; do
+  [[ -d "$book_dir" ]] || continue
   book="$(basename "$book_dir")"
   slug="$(echo "$book" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/^-*//;s/-*$//')"
 
-  md="$book_dir$slug-summary.md"
-  if [[ -f "$md" ]]; then
-    cp "$md" "$DEST/$slug.md"
-    cp "$md" "$APP_DEST/$slug.md"
-    echo "Synced: $slug.md (markdown)"
+  shopt -s nullglob
+  md_matches=("$book_dir"*"$slug-summary.md")
+  shopt -u nullglob
+  md="${md_matches[0]:-}"
+  if [[ -z "$md" ]]; then
+    # slug from folder name may not exactly match the summary's own filename slug
+    shopt -s nullglob
+    md_matches=("$book_dir"*-summary.md)
+    shopt -u nullglob
+    md="${md_matches[0]:-}"
+  fi
+  if [[ -n "$md" && -f "$md" ]]; then
+    out_slug="$(basename "$md" -summary.md)"
+    cp "$md" "$DEST/$out_slug.md"
+    cp "$md" "$APP_DEST/$out_slug.md"
+    echo "Synced: $out_slug.md (markdown)"
     continue
   fi
 
