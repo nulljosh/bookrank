@@ -32,6 +32,7 @@
 		641113973A0E5C3C2572FEF5 /* summaries-index.json in Resources */ = {isa = PBXBuildFile; fileRef = 6076092063F3AC917C8CAD0A /* summaries-index.json */; };
 		65F98C3012413AA0DE62BF22 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */; };
 		70F60054728CD91CD252B2E8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D013E84EC842EECEB1118FF /* DataStore.swift */; };
+		71AC0AF5071DAD02523E89D8 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2589179D36B762838EE209 /* PreviewScreenshot.swift */; };
 		724BC9774ED3F5A74C372D60 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */; };
 		7F5342E3F200C2C55EBDDDD0 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */; };
 		80DAD7BFFF0F2D88693190AF /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */; };
@@ -50,10 +51,21 @@
 		CB8704C3212936FC027EED33 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
 		CCB9749942AFFB58B5FD883E /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
 		D98ACC41C2D4DA374F02416C /* brothers.md in Resources */ = {isa = PBXBuildFile; fileRef = A2080244602A4397AB601356 /* brothers.md */; };
+		D9D99EF6DC5B29D5CF34082E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D7E96836E6F04284421DD /* SnapshotHelper.swift */; };
 		F6EA38ECF4EF338C3E061E11 /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */; };
 		F919D451C299CFC6E471AFE0 /* agentic-ai-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4095B050F59C924E26A80E66 /* agentic-ai-for-dummies.md */; };
 		FC6C28226D2739137801EB28 /* apple.md in Resources */ = {isa = PBXBuildFile; fileRef = 4F0016B1981446559BDEDB43 /* apple.md */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1A8DA596315A2A3557D5695 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E37069113F2618ECF235FC05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 574ED6104FBA683871E6152F;
+			remoteInfo = Spine;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0117CD0057ED9EB8EB352F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +74,7 @@
 		116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
 		1DFFC32D61CAB4E140543B94 /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
 		20824B868FE3F238E566F77A /* SpineMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpineMac.entitlements; sourceTree = "<group>"; };
+		251D7E96836E6F04284421DD /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		28F92217F9DCAD7BBABFA1C3 /* ai-investing-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-investing-for-dummies.md"; sourceTree = "<group>"; };
 		3B25BE1FBE67A9C264B93863 /* becoming-steve-jobs.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "becoming-steve-jobs.md"; sourceTree = "<group>"; };
 		4095B050F59C924E26A80E66 /* agentic-ai-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "agentic-ai-for-dummies.md"; sourceTree = "<group>"; };
@@ -77,10 +90,12 @@
 		863A1186B63EA7CA228FC5DA /* exercise-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "exercise-for-dummies.md"; sourceTree = "<group>"; };
 		8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
 		A2080244602A4397AB601356 /* brothers.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = brothers.md; sourceTree = "<group>"; };
+		A86E8954AB38617A7B062139 /* SpineUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SpineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8634B1CAA697F87F0DDC031 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		DCF87E18CA97A44785CB45CD /* calculus-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "calculus-for-dummies.md"; sourceTree = "<group>"; };
 		DD8F8449C0B3F3DE5384E510 /* pre-calculus-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "pre-calculus-for-dummies.md"; sourceTree = "<group>"; };
 		E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateBadge.swift; sourceTree = "<group>"; };
+		EF2589179D36B762838EE209 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		FB53ECCAC3B97F1FF90EF30B /* newton.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = newton.md; sourceTree = "<group>"; };
 		FE124143658BE453C6EC8C02 /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				8D3A3ED6E62792B59FC29B8E /* Spine */,
+				CF76A58E72F0504FA9B565AC /* UITests */,
 				BF5627688EA8DE034EFBF285 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,6 +167,7 @@
 			children = (
 				4B7F30DE854D05ABA3C6FE23 /* Spine.app */,
 				4F5DB419BD94EBFE5C1B465E /* SpineMac.app */,
+				A86E8954AB38617A7B062139 /* SpineUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,9 +184,36 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CF76A58E72F0504FA9B565AC /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				EF2589179D36B762838EE209 /* PreviewScreenshot.swift */,
+				251D7E96836E6F04284421DD /* SnapshotHelper.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1AC8BC76F74F02491A0ADF92 /* SpineUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "SpineUITests" */;
+			buildPhases = (
+				8A03F23347F8842126C96D3E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */,
+			);
+			name = SpineUITests;
+			packageProductDependencies = (
+			);
+			productName = SpineUITests;
+			productReference = A86E8954AB38617A7B062139 /* SpineUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		574ED6104FBA683871E6152F /* Spine */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Spine" */;
@@ -215,6 +259,11 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					1AC8BC76F74F02491A0ADF92 = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 574ED6104FBA683871E6152F;
+					};
 					574ED6104FBA683871E6152F = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
@@ -240,6 +289,7 @@
 			projectRoot = "";
 			targets = (
 				574ED6104FBA683871E6152F /* Spine */,
+				1AC8BC76F74F02491A0ADF92 /* SpineUITests */,
 				CA022F09A4C66D2C6BAA4505 /* SpineMac */,
 			);
 		};
@@ -295,6 +345,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8A03F23347F8842126C96D3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71AC0AF5071DAD02523E89D8 /* PreviewScreenshot.swift in Sources */,
+				D9D99EF6DC5B29D5CF34082E /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93589D24F8725FCDB3A3159E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +383,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 574ED6104FBA683871E6152F /* Spine */;
+			targetProxy = C1A8DA596315A2A3557D5695 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1BCEF5AD91324CF36A8C68D7 /* Release */ = {
@@ -463,6 +530,26 @@
 			};
 			name = Debug;
 		};
+		C02C324548273E390FC93933 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Spine;
+			};
+			name = Debug;
+		};
 		D1434A7AFA1E89972A0E5FA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -507,6 +594,26 @@
 			};
 			name = Debug;
 		};
+		F77549F4D52B83B0A538CBE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Spine;
+			};
+			name = Release;
+		};
 		FFE802A5F8E7E0A80729C005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -546,6 +653,15 @@
 			buildConfigurations = (
 				FFE802A5F8E7E0A80729C005 /* Debug */,
 				D1434A7AFA1E89972A0E5FA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "SpineUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C02C324548273E390FC93933 /* Debug */,
+				F77549F4D52B83B0A538CBE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

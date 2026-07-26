@@ -20,6 +20,19 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
+  SpineUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources: [UITests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: QMM486NPYC
+    dependencies:
+      - target: Spine
   SpineMac:
     type: application
     platform: macOS
@@ -43,3 +56,12 @@ targets:
       path: Spine/SpineMac.entitlements
       properties:
         com.apple.security.app-sandbox: true
+schemes:
+  Spine:
+    build:
+      targets:
+        Spine: all
+        SpineUITests: [test]
+    test:
+      targets: [SpineUITests]
+    shared: true
