@@ -27,7 +27,7 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 
 ## iOS App
 
-`ios/Spine` is a thin WKWebView wrapper around the live site — no separate backend, always in sync with `index.html`.
+`ios/Spine` (ASC record: **Spinework**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
 
 <img src="ios/screenshots/library.jpg" width="240">
 
@@ -37,8 +37,5 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 
 ## Roadmap
 
-- [x] iOS companion — `ios/Spine` is a thin WKWebView wrapper around the live site (no native rebuild needed)
-- [x] Mac companion — `SpineMac` target added (shares source with iOS via `#if os(macOS)` in `WebView.swift`), builds clean
-- [ ] Supabase/profiles — no backend exists; only worth adding if the app needs per-user state (e.g. personal TBR/read status). Until then the site stays static, no auth needed
-- [ ] Goodreads sync — no API integration; rankings are hand-curated in `book_rankings.md` + `index.html` (kept in parallel, see `CLAUDE.md`). Goodreads' public API has been closed to new keys for years — would need scraping or a manual export, not a live sync
+See `roadmap.md` in this repo root.
 
