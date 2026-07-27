@@ -1,5 +1,5 @@
 /* synced from portfolio's fredrika theme (nulljosh.github.io/tokens-fredrika.css), 2026-07-14 */
-/* Instrument Serif loaded via <link> in each page's <head>, see index.html/summary.html */
+/* display + body both Geist / system sans — no serif */
 
 :root {
   --bg: #fcfcfc;
@@ -13,7 +13,7 @@
   --border: #f0f0f0;
   --border2: #e5e5e5;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-display: 'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-body: 'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font: var(--font-body);
 
