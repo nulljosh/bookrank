@@ -319,3 +319,126 @@ Books are scored using a weighted algorithm:
 - Books with fewer than 100 ratings have unreliable averages
 - Ranking algorithm weights rating (50%), review volume (25%), relevance (25%)
 - Classic works (Hegel, Hobbes) often rate lower due to difficulty
+---
+
+## PROGRAMMING SHELF (Goodreads, ranked by relevance to this codebase's actual stack — JS/Node, Swift/SwiftUI, Python, Git, clean-code/architecture practice)
+
+### 72. [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) by Robert C. Martin
+**Notes:** Direct match for the lint/simplify/ponytail practices already enforced across every repo here.
+
+### 73. [Refactoring](https://www.goodreads.com/book/show/44936.Refactoring) by Martin Fowler
+**Notes:** The exact discipline `/lint` and `/simplify` apply repo-wide.
+
+### 74. [The Pragmatic Programmer](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer) by Andy Hunt
+**Notes:** General practice, broadly applicable to solo full-stack work across ~20 active repos.
+
+### 75. [Clean Architecture](https://www.goodreads.com/book/show/18043011-clean-architecture) by Robert C. Martin
+**Notes:** Relevant to the recurring cross-repo architecture decisions (Supabase vs static JSON, etc.).
+
+### 76. [A Philosophy of Software Design](https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design) by John Ousterhout
+**Notes:** Complexity-management framing, matches the ponytail/YAGNI discipline already in use.
+
+### 77. [Working Effectively with Legacy Code](https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code) by Michael C. Feathers
+**Notes:** Directly useful for the many "resume/merge/consolidate" passes across the app portfolio.
+
+### 78. [JavaScript: The Good Parts](https://www.goodreads.com/book/show/2998152-javascript) by Douglas Crockford
+**Notes:** Core language reference for the Node/Express/Vercel apps (talli, epiphany, spine itself).
+
+### 79. [Eloquent JavaScript](https://www.goodreads.com/book/show/8910666-eloquent-javascript) by Marijn Haverbeke
+**Notes:** Same JS stack as above.
+
+### 80. [JavaScript: The Definitive Guide](https://www.goodreads.com/book/show/148050.JavaScript) by David Flanagan
+**Notes:** Same JS stack, reference depth.
+
+### 81. [Fluent Python](https://www.goodreads.com/book/show/22800567-fluent-python) by Luciano Ramalho
+**Notes:** Matches the Python 3.14 scripts/tools in several repos (i18n, scraping, dtc_apply.py).
+
+### 82. [Automate the Boring Stuff with Python](https://www.goodreads.com/book/show/22514127-automate-the-boring-stuff-with-python) by Al Sweigart
+**Notes:** Matches the shell/Python automation scripts pattern used across repos.
+
+### 83. [Pro Git](https://www.goodreads.com/book/show/6518085-pro-git) by Scott Chacon
+**Notes:** Git is the one tool touched in literally every repo here.
+
+### 84. [Designing Data-Intensive Applications](https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications) by Martin Kleppmann
+**Notes:** Relevant to the shared Supabase/KV backend decisions across apps.
+
+### 85. [Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design) by Eric Evans
+**Notes:** Useful for the larger multi-feature apps (epiphany, talli).
+
+### 86. [Don't Make Me Think, Revisited](https://www.goodreads.com/book/show/18197267-don-t-make-me-think-revisited) by Steve Krug
+**Notes:** Directly applicable — most repos here ship a web UI.
+
+### 87. [Test-Driven Development: By Example](https://www.goodreads.com/book/show/387190.Test_Driven_Development) by Kent Beck
+**Notes:** Ponytail's "leave one runnable check" rule is TDD-adjacent.
+
+### 88. [Code Complete](https://www.goodreads.com/book/show/4845.Code_Complete) by Steve McConnell
+**Notes:** General construction practice, broadly applicable.
+
+### 89. [The Clean Coder](https://www.goodreads.com/book/show/10284614-the-clean-coder) by Robert C. Martin
+**Notes:** Professional practice, general.
+
+### 90. [Design Patterns](https://www.goodreads.com/book/show/85009.Design_Patterns) by Erich Gamma
+**Notes:** Classic OOP patterns, less used in the current mostly-SwiftUI/functional-JS style but foundational.
+
+### 91. [Head First Design Patterns](https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns) by Eric Freeman
+**Notes:** Same as above, friendlier format.
+
+### 92. [Patterns of Enterprise Application Architecture](https://www.goodreads.com/book/show/70156.Patterns_of_Enterprise_Application_Architecture) by Martin Fowler
+**Notes:** Heavier-weight than most of these single-dev apps need, but relevant to epiphany-scale apps.
+
+### 93. [Building Microservices](https://www.goodreads.com/book/show/22512931-building-microservices) by Sam Newman
+**Notes:** Less relevant — this codebase is mostly single-service Vercel/Workers apps, not microservices.
+
+### 94. [The Mythical Man-Month](https://www.goodreads.com/book/show/13629.The_Mythical_Man_Month) by Frederick P. Brooks Jr.
+**Notes:** General software-engineering-management classic, solo-dev context makes it less directly actionable.
+
+### 95. [The Phoenix Project](https://www.goodreads.com/book/show/17255186-the-phoenix-project) by Gene Kim
+**Notes:** DevOps novel, loosely relevant (no ops team here, but CI/CD pipeline parallels).
+
+### 96. [The Passionate Programmer](https://www.goodreads.com/book/show/6399113-the-passionate-programmer) by Chad Fowler
+**Notes:** Career-general, not codebase-specific.
+
+### 97. [Coders at Work](https://www.goodreads.com/book/show/6713575-coders-at-work) by Peter Seibel
+**Notes:** General interviews/craft, not directly applicable.
+
+### 98. [Cracking the Coding Interview](https://www.goodreads.com/book/show/12544648-cracking-the-coding-interview) by Gayle Laakmann McDowell
+**Notes:** Interview prep, tangential to shipping these apps.
+
+### 99. [Grokking Algorithms](https://www.goodreads.com/book/show/22847284-grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curio) by Aditya Y. Bhargava
+**Notes:** Algorithms theory, occasionally useful, not stack-specific.
+
+### 100. [The Algorithm Design Manual](https://www.goodreads.com/book/show/425208.The_Algorithm_Design_Manual) by Steven S. Skiena
+**Notes:** Same — theory over practice for this codebase's needs.
+
+### 101. [Programming Pearls](https://www.goodreads.com/book/show/52084.Programming_Pearls) by Jon L. Bentley
+**Notes:** Algorithms/puzzle classic, low direct applicability.
+
+### 102. [Introduction to Algorithms](https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms) by Thomas H. Cormen
+**Notes:** CS theory reference, low direct applicability to app-shipping work here.
+
+### 103. [Structure and Interpretation of Computer Programs](https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs) by Harold Abelson
+**Notes:** Foundational but Scheme-based, no overlap with this stack.
+
+### 104. [The Art of Computer Programming, Volume 1](https://www.goodreads.com/book/show/112247.The_Art_of_Computer_Programming_Volume_1) by Donald Ervin Knuth
+**Notes:** Canonical but dense theory, lowest practical overlap with day-to-day app work here.
+
+### 105. [Effective Java](https://www.goodreads.com/book/show/34927404-effective-java) by Joshua Bloch
+**Notes:** Java isn't used anywhere in this codebase.
+
+### 106. [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language) by Brian W. Kernighan
+**Notes:** C isn't used anywhere in this codebase.
+
+### 107. [The C++ Programming Language](https://www.goodreads.com/book/show/112251.The_C_Programming_Language) by Bjarne Stroustrup
+**Notes:** C++ isn't used anywhere in this codebase.
+
+### 108. [Learn You a Haskell for Great Good!](https://www.goodreads.com/book/show/6593810-learn-you-a-haskell-for-great-good) by Miran Lipovača
+**Notes:** Haskell isn't used anywhere in this codebase.
+
+### 109. [Python Crash Course](https://www.goodreads.com/book/show/23241059-penguin-random-house-python-crash-course) by Eric Matthes
+**Notes:** Intro-level, redundant with Fluent Python/Automate the Boring Stuff already ranked higher.
+
+### 110. [Learning Python](https://www.goodreads.com/book/show/80435.Learning_Python) by Mark Lutz
+**Notes:** Same redundancy as above, lowest of the Python references.
+
+### 111. [Code: The Hidden Language of Computer Hardware and Software](https://www.goodreads.com/book/show/44882.Code) by Charles Petzold
+**Notes:** Hardware-level general-interest book, least directly applicable to the app-shipping work this codebase does.
