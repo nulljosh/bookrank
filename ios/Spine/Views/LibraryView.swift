@@ -13,6 +13,7 @@ struct LibraryView: View {
                 VStack(alignment: .leading, spacing: 40) {
                     header
                     outFromLibrary
+                    toRead
                     topPicks
                     summaries
                     allRankings
@@ -38,9 +39,7 @@ struct LibraryView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Spine")
-                .font(.custom("Georgia", size: 40))
-                .italic()
-                .fontWeight(.black)
+                .font(.system(size: 40, weight: .black))
             Text("\(store.books.count) books ranked by Goodreads rating, volume & cultural relevance")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -81,6 +80,18 @@ struct LibraryView: View {
         }
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var toRead: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionLabel("To Read")
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(store.library.toRead) { book in
+                    loanRow(book)
+                    if book.id != store.library.toRead.last?.id { Divider() }
+                }
+            }
+        }
     }
 
     private var topPicks: some View {

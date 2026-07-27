@@ -22,6 +22,7 @@ struct LibraryLoan: Codable, Identifiable {
 struct Library: Codable {
     let dueDate: String
     let loans: [LibraryLoan]
+    let toRead: [LibraryLoan]
 }
 
 struct TopPick: Codable, Identifiable {
