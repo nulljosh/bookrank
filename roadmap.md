@@ -10,9 +10,6 @@ Confirmed via `asc apps list` (2026-07-26): the live ASC record is **Spinework**
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
 - [ ] Privacy policy URL (warning, non-blocking) — empty for en-US app-info localization; add a URL if the site gets a privacy policy page
 
-## Done
-- [x] Goodreads programming-shelf scrape (2026-07-26, from Apple Note): fetched the public `shelf/show/programming` page (no auth needed, unrelated to the blocked sign-in item below), extracted 40 books, ranked by relevance to this codebase's actual stack (JS/Node, Python, Git, clean-code/architecture practice ranked highest; Java/C/C++/Haskell lowest since unused here). Appended as ranks 72–111 to `book_rankings.md` and the matching `<li>` entries in `index.html`'s "All Rankings" list (toggle label updated to "Show all 111").
-
 ## Someday / Explore
 - [ ] Once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly roadmap) — first step of syncing several repos together
 - [ ] Goodreads **sign-in/sync** integration (separate from the ranked-shelf-scrape above, which is done and needed no auth) — Goodreads deprecated its public API for new developer keys in 2020; confirm current auth options exist before scoping. No deadline pinned
