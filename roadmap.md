@@ -2,7 +2,9 @@
 
 ## In progress — chapter summaries (2026-07-27)
 Resuming per `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/ROADMAP.md`:
-- [ ] Sobriety For Dummies: 297 HEICs, 18 chapter folders (`intro`, `1`–`17`) — `intro` chapter in progress (2026-07-26)
+- [ ] Sobriety For Dummies: ch. intro,1-11 DONE (2026-07-28, summaries merged + live on site). REMAINING: ch. 12 (11 imgs), 13 (11), 14 (12), 15 (18 — mindfulness chapter, longest), 16 (4), 17 (5) = 61 HEICs in `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/for dummies/sobriety/<N>/`. Process per summarize-books skill: sips -Z 700 q50 → Read → write `<ch>/summary.md` → rm *.HEIC → re-merge sobriety-for-dummies-summary.md → sync-summaries.sh. Badge + book_rankings entry already done.
+- [ ] Statistics For Dummies: NOT STARTED — 245 HEICs across 23 folders (`intro`, `1`–`21`, `Remainder `) in `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/for dummies/statistics/`. Largest remaining book. Per-chapter counts: intro 11, 1:8, 2:6, 3:6, 4:12, 5:13, 6:7, 7:13, 8:7, 9:8, 10:4, 11:9, 12:7, 13:11, 14:13, 15:9, 16:17, 17:18, 18:17, 19:22, 20:13, 21:15, Remainder 6. No repo entry/badge yet.
+- [ ] Stray single-image folders (1 HEIC each, likely just covers — confirm then delete or file): `accounting for canadians/IMG_4795.HEIC`, `physics i/IMG_4842.HEIC`, `trading for canadians/IMG_4796.HEIC`
 - [x] IBS For Dummies: COMPLETE 2026-07-28 — all chapters through ch. 23 summarized, HEICs cleared
 
 ## iOS/Mac app — ASC submission
