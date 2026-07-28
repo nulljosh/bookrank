@@ -8,6 +8,14 @@ Resuming per `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Book
 - [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
 - [x] IBS For Dummies: COMPLETE 2026-07-28 — all chapters through ch. 23 summarized, HEICs cleared
 
+### Remaining-work count (measured 2026-07-28)
+Full recount of `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/`:
+- **304 HEICs remain**, across **27 chapter folders**, in **2 books**. 30 chapters already have `summary.md`. Zero iCloud-evicted placeholders (`.icloud` count = 0), zero stray JPG/PNG — every remaining file is readable.
+- Sobriety For Dummies — **52 imgs / 4 chapters** (12:11, 13:11, 14:12, 15:18).
+- Statistics For Dummies — **252 imgs / 23 chapters** (intro 11, 1:8, 2:6, 3:6, 4:12, 5:13, 6:7, 7:13, 8:7, 9:8, 10:4, 11:9, 12:7, 13:11, 14:13, 15:9, 16:17, 17:18, 18:17, 19:22, 20:13, 21:15, Remainder 6). Corrects the "245 HEICs" figure noted above — actual is 252.
+- IBS and Living In A Down Economy have 0 raws left (done).
+- **Estimate: ~4 sessions.** ~1 for Sobriety (52), ~3 for Statistics (252) at roughly 80–100 images per session run inline. Do NOT parallelize cold subagents — the 2026-07-28 run burned session 47%→93% that way; one agent at a time, or inline.
+
 ## iOS/Mac app — ASC submission
 Confirmed via `asc apps list` (2026-07-26): the live ASC record is **Spinework** (id `6792376485`, bundle `com.heyitsmejosh.spine`) — this supersedes any older "Spinelist"/"BooksApp"/id `6787499076`/`6787499349` references elsewhere in this repo's docs, which are stale. Version `1.0` (version-id `5a7e626c-8a83-4fde-a1fd-6cb9dc4cc3e2`) is in `PREPARE_FOR_SUBMISSION`.
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
