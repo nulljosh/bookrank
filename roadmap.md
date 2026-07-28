@@ -3,7 +3,7 @@
 ## In progress — chapter summaries (2026-07-27)
 Resuming per `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/ROADMAP.md`:
 - [ ] Sobriety For Dummies: 297 HEICs, 18 chapter folders (`intro`, `1`–`17`) — `intro` chapter in progress (2026-07-26)
-- [ ] IBS For Dummies: chapters 1-15 COMPLETE (pp. 1-225), ~51 images remain (ch. 16+); resume at IMG_4618.HEIC per iCloud folder CLAUDE.md (2026-07-27)
+- [x] IBS For Dummies: COMPLETE 2026-07-28 — all chapters through ch. 23 summarized, HEICs cleared
 
 ## iOS/Mac app — ASC submission
 Confirmed via `asc apps list` (2026-07-26): the live ASC record is **Spinework** (id `6792376485`, bundle `com.heyitsmejosh.spine`) — this supersedes any older "Spinelist"/"BooksApp"/id `6787499076`/`6787499349` references elsewhere in this repo's docs, which are stale. Version `1.0` (version-id `5a7e626c-8a83-4fde-a1fd-6cb9dc4cc3e2`) is in `PREPARE_FOR_SUBMISSION`.
