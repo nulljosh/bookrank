@@ -8,7 +8,7 @@ Resuming per `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Book
 ## iOS/Mac app — ASC submission
 Confirmed via `asc apps list` (2026-07-26): the live ASC record is **Spinework** (id `6792376485`, bundle `com.heyitsmejosh.spine`) — this supersedes any older "Spinelist"/"BooksApp"/id `6787499076`/`6787499349` references elsewhere in this repo's docs, which are stale. Version `1.0` (version-id `5a7e626c-8a83-4fde-a1fd-6cb9dc4cc3e2`) is in `PREPARE_FOR_SUBMISSION`.
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
-- [ ] Privacy policy URL (warning, non-blocking) — empty for en-US app-info localization; add a URL if the site gets a privacy policy page
+- [x] Privacy policy URL — privacy.html added, https://spine.heyitsmejosh.com/privacy.html (2026-07-28)
 
 ## Someday / Explore
 - [ ] Once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly roadmap) — first step of syncing several repos together
