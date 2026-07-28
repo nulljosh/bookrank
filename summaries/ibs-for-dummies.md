@@ -706,3 +706,464 @@ Tips for balancing out your own needs with the baby's needs in the first few wee
 - **If possible, ask a partner or someone else you trust to stay with you for the first few days.** You should choose a helpful and nonjudgmental person who's willing to pitch in with whatever you need as you get used to life with a baby. This may help reduce your stress, which can help keep your IBS symptoms under control.
 - **If you're spending time at home alone with the baby, make sure you have a safe place to put your little one for a few minutes while you take care of your own needs, such as when you go to the bathroom.** Don't worry if the baby cries for a few minutes while you do what you need to do; what matters is that the baby is safe. When you've finished taking care of your needs, you can give your full attention to comforting the baby.
 - **Write down five to ten nourishing, easy-to-prepare, portable snacks and put the list in a visible location such as on the fridge.** Not only will the list give you a quick idea of what to eat when you're too exhausted to plan a meal, but it can also serve as a guide for what to buy when you go grocery shopping. Make sure each snack has a source of protein, as well as some fiber that you can tolerate. Some examples for this list are: trail mix and a mandarin orange; yogurt with granola; a cut-up hard-boiled egg with hummus and whole-grain crackers.
+
+## Chapter 16: Dealing with IBS as an Athlete (pp. 227–233)
+
+**In this chapter:** how athletic performance relates to gut functioning; when an athlete should seek an IBS diagnosis; managing IBS while striving for high athletic performance.
+
+### The scale of the problem
+Gut urgency is a common problem at almost every high-level athletic event — among marathoners the affliction is sometimes called "runner's trots." Digestive problems are common in athletes before, during, and after exercise. Depending on the sport, **between one-third and one-half of athletes report gastrointestinal (GI) symptoms during exercise**; the most commonly reported are abdominal pain, bowel urgency, and diarrhea. One large study of a marathon in Seaside, Oregon reported that **18 percent** of marathon runners had interrupted a race for a bowel movement. Women athletes tend to experience these symptoms more often than men, and younger athletes more often than older.
+
+### Athletic performance and gut symptoms
+High athletic performance can strain the body, causing GI symptoms even in people with normal, healthy gut function. Three main mechanisms explain exercise-induced GI symptoms:
+
+- **Physical emptying of the tract** — the speed of high-impact exercise (running, jumping) mechanically jostles the digestive tract and speeds transit.
+- **Reduced blood flow to the intestines during physical activity** — blood is shunted away from the gut to the working muscles. Less blood flow can injure the epithelial (inner) layer of the gut, increasing permeability ("leaky gut") and inflammation of the intestine.
+- **Release of stress hormones** — hormones released during exercise alter nerve endings and gut motility.
+
+Three contributors to exercise-induced symptoms that look very similar to IBS:
+1. **Increased blood flow shifts** away from the digestive tract
+2. **Dehydration**
+3. **Not consuming food or drink** for an extended period of time
+
+### Knowing when to explore an IBS diagnosis
+Exercise-induced GI distress is not the same thing as IBS. The key distinction: **athletes who actually have IBS have symptoms that are present even when they aren't training or competing**. Signs it's worth pursuing a formal diagnosis:
+
+- Symptoms are present even after you finish training or competing.
+- Certain foods or beverages seem to trigger symptoms regardless of exercise (although those trigger foods may not always trigger symptoms at rest).
+- You have existing anxiety or stress that seems to worsen your gut symptoms.
+- You experience high levels of stress, unrelated to sport, that produce symptoms.
+- Symptoms are hard to turn off — they don't resolve once the activity stops.
+
+A diagnosis of IBS in athletes is the same as in the general population: it's based on the influence of extreme reactions during exercise, so your doctor should know your training schedule in order to take your symptoms in context and rule out other causes.
+
+### Considering IBS management in athletes
+IBS in athletes is managed largely the same way as it is in nonathletes, but with adaptations for the athlete's training and competition schedule. Key practical strategies:
+
+- **Develop a routine for bowel movements.** Try to develop a bowel movement habit at a certain time each day. By structuring your training schedule around it, you're more likely to be on-cue for bowel urgency during exercise.
+- **Listen to your gut.** Symptoms that come on suddenly during training may signal a need for a change in routine. Don't push through GI symptoms hoping they'll pass — adjust your plan.
+- **Use yoga as an easy-to-cross-scale.** Take a yoga class when you're not training for your main sport. You'll improve your mind-body communication and reduce stress. The breathing exercise that helps you manage pre-competition stress can also take the place of anxiety-driven symptoms.
+
+### Nourishing your body as an athlete with IBS
+Athletes need a high-nutrient intake for energy, but the same guidelines for good nutrition and hydration still apply. Practical guidance:
+
+- **The diet that works best for you will vary** — factors an athlete with IBS should consider include training session well-hydration; sip on fluids (water as well as sports drinks) throughout the day.
+- **Limit or avoid alcohol**, which can generally irritate the gut and cause appetite symptoms.
+- **Eat plenty of high-fiber foods on a regular basis.** Choose sources carefully.
+- **Consider smaller amounts of food throughout the day**, rather than a few large meals.
+- **Remind what an athlete eats on a regular basis, their pre-sport meal may have some special significance for how they perform.** Athletes typically pay attention to what they eat on two periods of time before training or competing.
+- **Right before exercising**, typically athletes prefer carbo-based foods such as high-carb, low-fat items and simple carbohydrates that finish your workout — avoid high-fat, high-fiber foods that require a long time to digest.
+
+**BARS AND GELS, OH MY** — During long training sessions and endurance events, athletes often reach for energy bars, gels, and chews. However, these products tend to be ingredients that can worsen IBS symptoms: **sugar alcohols are a common ingredient in gels and formulated bars**, and **some products contain caffeine**. Many products such as gels contain concentrated sources of sugars that some people find hard to tolerate. Read labels — some products are formulated with high-FODMAP ingredients. First figure out what works for endurance conditions when the market is well tolerated.
+
+**Additional practical rules:**
+- If you know you're consuming any dairy protein, gluten, and high-FODMAP fuels such as apple juice and pears, expect symptoms and don't experiment with the timing of your competition meal on competition day. Test it during training. Trial new fuels only during training, never on race day.
+- **Experiment with the timing of your competition meal** during training sessions, then keep those rules on competition day so you can predict your results.
+- **With IBS**, in addition to base nutritional advice, the goal is to avoid triggering competition-period anxiety and stress.
+- If you've previously had symptoms in a competition, remember that you may need to change your fuel strategy — try to keep gut-emptying and satiety issues in mind.
+- **Try not to consume foods you've never tried before.**
+- **Don't compete without having water in the last few hours.**
+- **Don't drink or eat a large meal before a competition** — instead, increase your carbohydrate intake in the days leading up to the race with small, frequent meals.
+
+**BREATHING RIGHT FOR A FIGHT** — a sidebar telling the story of an athlete (a competitive fighter) who used breathing exercises to manage pre-competition anxiety-driven GI symptoms, learning to breathe through the stress rather than being derailed by it.
+
+**ELITE ATHLETES WITH IBS** — a sidebar noting that IBS in athletes is managed the same way it is in nonathletes, and that a number of elite athletes have gone public about competing at high levels with IBS. It notes the difficulty athletes face when the reality of an IBS diagnosis meets the demands of a professional schedule, and that many athletes handle symptoms without a public discussion of privacy.
+
+### Key takeaways
+- One-third to one-half of athletes get GI symptoms during exercise; that alone is not IBS.
+- The three mechanisms are mechanical jostling, blood shunted away from the gut, and stress hormones.
+- The diagnostic tell for actual IBS in an athlete: **symptoms persist when you're not training or competing**.
+- Management is standard IBS management adapted to a training calendar — bowel routine, stress work (yoga/breathing), careful hydration, and never trialing new fuel on race day.
+- Energy bars, gels, and chews are a common hidden trigger: sugar alcohols, caffeine, concentrated sugars, and high-FODMAP ingredients.
+
+**Photos in this chapter:** none — text-only chapter with two boxed sidebars ("Elite Athletes with IBS", "Breathing Right for a Fight").
+
+---
+
+## Chapter 17: Setting Yourself Up for Low-FODMAP Success (pp. 237–248)
+
+**In this chapter:** setting yourself up to succeed on a low-FODMAP diet; planning practical tips for meal planning, shopping, and cooking; tracking your progress on your new diet.
+
+### Why preparation matters
+If you're living with irritable bowel syndrome (IBS) and you've decided to make a big dietary switch toward a low-FODMAP diet, **preparation is what determines whether it works**. Most people don't fail the low-FODMAP diet because it doesn't work — they fail because they have difficulty maintaining the diet while managing a busy life. Fatigue can knock you off course when you take a detour. You reduce that burden by putting plans in place ahead of time so you get through the first few weeks, which is a powerful contributor in itself to sticking with the diet for the required six to eight weeks.
+
+**FODMAP** stands for **fermentable oligosaccharides, disaccharides, monosaccharides, and polyols**. (Chapter 8 covers the diet itself in detail; this chapter is about the logistics around it.)
+
+**HOW A REGISTERED DIETITIAN CAN HELP WITH A LOW-FODMAP DIET** (sidebar) — Professional support from a registered dietitian is extremely valuable when embarking on a new diet. A dietitian can help you decide whether a low-FODMAP diet is right for you, individualize the elimination and reintroduction phases, keep the diet nutritionally adequate, and prevent you from restricting more than necessary.
+
+### Preparing to change your diet
+Before jumping in with the low-FODMAP diet, decide how long you plan to be on it — mark the beginning of that time as your start date. Before that date arrives, use these steps to prepare:
+
+- **Go for a pro.** If possible, attend an appointment in advance with a registered dietitian who can give you meal suggestions and advice for your personal situation.
+- **Budget for extra costs if necessary.** Some low-FODMAP specialty items increase your grocery costs. Budgeting for extra cost at least can help you prepare.
+- **Download the Monash University FODMAP app.** This is the gold-standard reference — the app tracks foods by serving size, so it tells you not just whether a food is high-FODMAP but at what portion it becomes one.
+- **Prepare a diet diary.** Start a written record before you begin so you have a baseline to compare against.
+- **Empty your fridge and cupboards.** Go through your refrigerator and cupboards to identify which items are and aren't allowed. Move the high-FODMAP items out of easy reach so you aren't tempted in a weak moment.
+- **Consider batch cooking and freezing meals** so there's always something safe available.
+
+### Getting to know low-FODMAP foods
+The low-FODMAP diet takes planning and grocery shopping. Read ingredients labels on food you're used to eating and check for the specific high-FODMAP ingredients. Watch for these common sweeteners and added sugars that will trigger symptoms:
+
+- Chicory root
+- Fructo-oligosaccharides
+- Fructose or fructose syrup
+- High-fructose corn syrup
+- Inulin
+- Isomalt
+- Lactose
+- Mannitol
+- Sorbitol
+- Xylitol
+
+You may find yourself gravitating toward sweet items with simple ingredient lists to reduce the burden of understanding what you're eating. **Ready-made low-FODMAP foods** are also a good option for simplifying your cooking — several companies make low-FODMAP soups, sauces, and stocks. These products tend to be available online and in some specialty health-food stores.
+
+**COMMON FRIDGE AND PANTRY ITEMS THAT DO — AND DON'T — WORK ON A LOW-FODMAP DIET** (table):
+
+| Work on a low-FODMAP diet | Don't work |
+|---|---|
+| Honey | Pasta sauce made with garlic or onion |
+| Mustard | Fruit juice concentrates |
+| Mayonnaise | High-fructose corn syrup |
+| Rice vinegar | Salad dressings made with garlic or onion |
+| Apple cider vinegar | Stock and stock cubes |
+| Sesame oil | Soy sauce (maximum 2 tablespoons) |
+| Olive oil | Nutritional yeast flakes |
+| Butter and margarine | Vegetable oil |
+| Maple syrup | Worcestershire sauce |
+| Red wine vinegar | |
+
+Companies that don't specialize in low-FODMAP foods may also have individual products that are certified as low-FODMAP — look for the green **FODMAP Friendly** logo or the **Monash University Low FODMAP Certified** logo on the packaging. Products with these certifications have been laboratory-tested and verified to qualify for the low-FODMAP certification at the amount in the serving listed.
+
+**Photo/figure:** the round green "FODMAP Friendly — Approved Food Product" certification logo, shown as an example of what to look for on packaging.
+
+### Planning low-FODMAP meals
+Before you start on a low-FODMAP diet, plan out your meals. Ideas:
+
+- **Be realistic when you create your meal plan**, and have it on hand when doing your weekly grocery run. If you usually cook from scratch, don't suddenly plan to eat elaborate low-FODMAP meals every night; if you usually rely on convenience foods, find the low-FODMAP versions of them.
+- **You don't need to reinvent the wheel** — in the many low-FODMAP recipe blogs and cookbooks now available, take a moment to scan the ingredients and confirm they're low-FODMAP because some recipes are stricter than others.
+- **Good recipe blogs include:** A Little Bit Yummy, FODMAP Everyday, For a Digestive Peace of Mind, Monash University Low FODMAP Recipes, and Vanessa Nusimovich.
+
+**TABLE 17-1: Sample Low-FODMAP Five-Day Meal Plan** — a full Monday-through-Friday grid covering breakfast, snack, lunch, snack, dinner, and snack. Representative entries:
+
+| | Monday | Tuesday | Wednesday | Thursday | Friday |
+|---|---|---|---|---|---|
+| **Breakfast** | ½ cup cooked oatmeal with 1 teaspoon maple syrup and 1 teaspoon cinnamon; ¾ cup blueberries blended into a smoothie with 1 cup lactose-free milk or almond milk | 1-egg omelet with ½ cup spinach and 1 ounce cheddar cheese; 1 slice sourdough bread; 1 clementine orange | Frozen yogurt parfait made with ¾ cup lactose-free yogurt, 10 almonds, crushed, and 4 or 5 fresh strawberries, sliced | 2 Pumpkin Spice Oatmeal Muffins (Chapter 21); 1 banana | Strawberry smoothie bowl made by blending 1 cup strawberries, frozen; ¼ banana, frozen; 1 cup spinach; 1 tablespoon chia seeds; ½ cup almond milk (plus water if needed for thinning) |
+| **Snack** | 1 or 2 hard-boiled eggs; 2 kiwis | 2 rice cakes with 2 tablespoons natural peanut or almond butter | ½ cup wheat pretzels; 1 tablespoon natural peanut butter | 10 rice crackers with 1 ounce of lactose-free cheese (for example, old cheddar or Gouda) | 2 Chocolate Chip Chia Energy Balls (Chapter 21) |
+| **Lunch** | Low-FODMAP veggie pasta salad made by combining 1 cup cooked gluten-free pasta with 3 cherry tomatoes, ¼ cup chopped cucumber, 5 black olives, and 1 tablespoon chopped fresh basil, topped with a low-FODMAP dressing | Grilled chicken salad made with 3 to 4 ounces of grilled chicken breast, up to 1.5 cups mixed greens (lettuce, spinach, and/or arugula), ¼ cup chopped cucumber, 3 tablespoons grated carrot, and 3 medium cherry tomatoes, topped with a low-FODMAP dressing | Tuna salad lettuce wraps made with 3 ounces canned tuna, 1 tablespoon mayonnaise, and 1 cup lettuce on a gluten-free wrap | Nicoise salad made with 1 boiled egg, 2.5 ounces (71 grams) steamed green beans, 3 cherry tomatoes, ¼ cup black olives, and 2 ounces canned tuna, topped with a low-FODMAP vinaigrette | Mediterranean quinoa bowl made by combining 1 cup cooked quinoa, 1 tablespoon hummus, ¼ cup grilled chicken breast, ¼ cup chopped cucumber, 3 cherry tomatoes, 5 black olives, 1 cup baby spinach, 1 tablespoon chopped fresh parsley, 2 tablespoons olive oil, and a squeeze of lemon |
+| **Snack** | ¼ cup chopped bell pepper | 1 square dark chocolate; ½ cup fresh blueberries | ½ cup chopped cucumber; Low-FODMAP ranch dip, made by combining ½ cup lactose-free yogurt, ¼ tablespoon fresh dill, and 1 tablespoon lemon juice | ¾ cup cantaloupe; ¼ cup pecans (about 10 halves) | 1 mozzarella cheese stick; 1 mandarin orange |
+| **Dinner** | Lemony Kale Chicken (Chapter 19); 1 cup white rice | Miso Soba Noodles with Salmon (Chapter 19); 1 cup steamed green beans | Gluten-free pasta with commercial low-FODMAP tomato sauce; up to ⅓ cup mixed greens salad | Chicken and Feta Patties (Chapter 19); 6 roasted baby potatoes; up to ½ cup mixed greens salad | Pork and Cabbage Rice Paper Wraps (Chapter 19) |
+| **Snack** | Popcorn | Tortilla chips with commercial low-FODMAP salsa | ¾ ounce dark chocolate; 10 almonds | Strawberry Chia Pudding (Chapter 19) | Rice puff cereal with lactose-free milk and ½ banana |
+
+**NUTRITIONALLY BALANCED MEALS ON A LOW-FODMAP DIET** (sidebar) — because a low-FODMAP diet cuts out whole categories of foods, it takes deliberate effort to keep meals nutritionally complete. The sidebar covers making sure each meal has adequate protein, fiber from tolerated sources, and enough variety that you don't develop nutritional deficits during the elimination phase.
+
+### Grocery shopping for success
+Armed with a menu plan for your low-FODMAP diet and with the ways to approach it, it's time to shop for all the items you need to implement your plan. Here are some tips to make your low-FODMAP grocery shopping go smoothly:
+
+- **Choose a grocery store that has a good variety of items.** Wholesale stores such as Costco offer bulk options; more mainstream grocery stores in urban areas often carry low-FODMAP specialty items. If your local store isn't well stocked, some low-FODMAP companies also ship direct.
+- **Allow yourself extra time.** The first few times you shop for a low-FODMAP diet, plan to bring an off-peak time and allow yourself extra time to browse and compare options.
+- **Avoid buying large quantities of a product when you first start a low-FODMAP diet.** Finding foods that work for you can take some trial and error. If you're not sure whether you'll like a product or how it will make you feel, buy a small quantity first so you don't waste money and there's less waste if you decide to switch to something else.
+- **Buy fresh produce when you shop.** Stock up on fresh green pepper, carrots, cucumbers, green beans, spinach, and zucchini, and stock up on tomatoes when you find a sale. Look for bananas, blueberries, cantaloupe, grapes, kiwi, lemons, limes, mandarin oranges, and strawberries, and good favorite low-FODMAP fruits.
+
+### Cooking low-FODMAP meals
+When the start date of your low-FODMAP diet arrives, it's time to bring what you've planned into practice. Some tips for actually getting low-FODMAP cooking done:
+
+- **Adhere to the recipes you use.** Straying too far from a recipe on the low-FODMAP diet is riskier than usual, because a substitution can silently reintroduce a high-FODMAP ingredient. If you must swap, check the swap in the Monash app first.
+- **Be generous with your use of low-FODMAP seasonings.** You still get plenty of flavor without garlic and onion by leaning on herbs and spices — basil, oregano, paprika, rosemary, sage, thyme, and turmeric are all low-FODMAP options that you can use in generous quantities. **Garlic-infused oil** gives you garlic flavor without the FODMAPs (the fructans aren't oil-soluble, so they don't transfer to the oil).
+- **Incorporate low-FODMAP onion and garlic flavors.** Chives — or the green tops of scallions/spring onions — give you the allium flavor and are safe in the quantities used for cooking, whereas the white bulb is a high-FODMAP onion flavor.
+- **Don't be afraid to buy frozen.** Real stock, garlic, onions, and fibers can be very simple to keep on hand, and freezes in a recipe-scale portion so you have it on hand.
+- **Use time-saving tools.** Prepare meals using a kitchen tool such as a rice cooker, a slow cooker, or an Instant Pot to save time.
+
+**THE LOW-FODMAP BROTH PROBLEM / DIY BONE BROTH** — commercially prepared broths and stock cubes are nearly always made with onion and garlic, which makes them one of the most common hidden sources of FODMAPs in an otherwise-compliant kitchen. The workaround is to make your own broth: simmer bones and low-FODMAP aromatics (carrot, celery in tolerated amounts, herbs, the green tops of scallions), strain, cool, and freeze in portions. Store the finished broth in the fridge for several days or freeze it for longer keeping.
+
+### Monitoring your progress
+If you've done all the preparations and started on the low-FODMAP diet, congratulations — **you're embarking on the most scientifically backed treatment for getting IBS symptoms under control.** (That's not to say it's the one and only treatment you're likely to need, though — see Chapters 9 through 15 for other effective IBS interventions.)
+
+You may notice a difference in your symptoms right away, or you may not. To ensure you get the most out of your efforts, **keep a record of what you're eating every day, and also keep track of your symptoms.** If you successfully reduce your symptoms, your diet diary will provide a list of foods that are fine for you to continue eating as you work to expand your diet beyond low-FODMAP. And if you're not successful, then you have the option to enlist a professional to go through your food diary and perhaps help you figure out what foods or food components may be triggering your symptoms. If you continue to adjust the diet based on your diet diary and it still isn't working for you, dietary change may not be the ideal treatment option for you — **but you'll have the records to prove it.**
+
+### Key takeaways
+- Most people don't fail the low-FODMAP diet because it doesn't work — they fail on the logistics. Preparation is the intervention.
+- Set a start date, see a dietitian first if possible, budget for extra cost, download the Monash app, and clear high-FODMAP items out of the house before day one.
+- Watch labels for the ten common trigger sweeteners (chicory root, inulin, sorbitol, xylitol, mannitol, isomalt, lactose, fructose/HFCS, FOS).
+- Look for the green **FODMAP Friendly** or **Monash University Low FODMAP Certified** logos — these are lab-verified at the stated serving size.
+- Garlic-infused oil and the green tops of scallions/chives give you allium flavor without the FODMAPs.
+- Commercial stock/broth is the most common hidden FODMAP source; make and freeze your own.
+- Keep a diet diary throughout — it's what makes the result interpretable either way.
+
+---
+
+## Chapter 18: Soups and Salads (pp. 249–261)
+
+**In this chapter:** making low-FODMAP soups that satisfy; preparing hearty salads that are IBS-friendly.
+
+With or without irritable bowel syndrome (IBS), you help support gut health when you eat a diverse array of foods — especially plant foods. Soups and salads make some of the best kinds of meals because they tend to be easy ways to incorporate a wide range of healthy ingredients into a single dish. They're also very versatile, which makes them easy for tailoring to specific dietary needs. All the soups and salads in this chapter are low-FODMAP, but **if you identify an ingredient that's a trigger for you, you can usually leave it out or swap it for a similar ingredient that you tolerate better** — and if you have an extra ingredient that you know you tolerate and that fits with the recipe, feel free to add it (a handful of pumpkin seeds, some shredded fennel, a pinch of chia seeds).
+
+### Concocting soups that nourish the gut
+Soups are excellent nutrient-dense meals, especially during cold weather, and they let you extract the nutrients from a wide range of ingredients into a broth you actually drink. Normally, many soups are built on a base of garlic and onion — but low-FODMAP soups get their flavor from herbs, spices, garlic-infused oil, and the green tops of scallions instead.
+
+**THE LOW-FODMAP BROTH PROBLEM** (sidebar) — Broth is an essential ingredient in most soups, but a commercial broth product is almost always made with onion and garlic, which makes it high-FODMAP. Options: buy a certified low-FODMAP broth, use plain water plus extra herbs and a savory ingredient like miso, or **create your own low-FODMAP broth** using the book's own broth recipe.
+
+**DIY BONE BROTH** (sidebar) — The basic technique for making a homemade bone broth: roast bones, cover with water, add a splash of vinegar to help draw minerals out of the bones, add low-FODMAP aromatics (carrot, celery in tolerated amounts, herbs, the green tops of scallions), and simmer for several hours. Strain, cool, and store — refrigerate for several days or freeze in recipe-sized portions.
+
+**Recipes in this section:**
+
+| Recipe | Notes |
+|---|---|
+| **Creamy Kabocha Soup** | Roast a halved kabocha squash cut side down at 350°F (180°C) until easily pierced with a fork, scoop the flesh from the peel, and blend with coconut milk, water, salt, pepper, curry powder, nutmeg, and Dijon mustard until smooth and creamy. |
+| **Lentil Carrot Soup** | Made with canned lentils, carrot, celery, green pepper, garlic-infused oil, tomato paste, oregano, sage, thyme, bay leaf, and low-FODMAP broth; finished with lemon juice and fresh parsley. Per serving: ~177 calories, sodium ~102mg, carbohydrate ~24g, fiber ~9g. Canned lentils are used because the canning/rinsing process leaches out much of the GOS content. |
+| **Corn and Millet Soup** | Millet plus canned corn, carrot, celery, green pepper, thyme, and miso. Per serving: ~270 calories, cholesterol 0mg, sodium ~427mg, carbohydrate ~55g, protein ~7g. |
+| **Vermicelli Chicken Salad** | Rice vermicelli noodles soaked in boiling water, then tossed with poached shredded chicken breast, lettuce, carrot, cilantro, and cooked shrimp; dressed with apple cider vinegar, olive oil, sugar, and maple syrup. Garnish with sesame seeds. Per serving: ~425 calories, sodium ~350mg, carbohydrate ~64g. |
+| **Soba Salad with Peanut-Lime Dressing** | 100 percent buckwheat soba noodles with red cabbage, carrot, and cilantro; dressing of natural smooth peanut butter, maple syrup, ginger, tamari, lime juice, sesame oil, and water. **Note:** when buying soba, check the package label — many brands are wheat-and-buckwheat blends; look for 100 percent buckwheat. Per serving: ~350 calories, carbohydrate ~54g, protein ~12g. |
+| **Moroccan Roasted Vegetable Salad** | Roasted kabocha squash and canned chickpeas over quinoa, seasoned with cinnamon, cumin, ginger, paprika, and salt; dressed with olive oil and lemon juice, finished with fresh herbs. **Note:** although chickpeas contain galacto-oligosaccharides, canned and well-rinsed chickpeas are considered low-FODMAP at a serving of around ¼ cup. |
+| **Halloumi and Arugula Salad** | Pan-fried halloumi over arugula leaves with canned olives, tomato, cucumber, and plain lactose-free yogurt, dressed with red wine vinegar, olive oil, salt, pepper, and maple syrup. **Tip:** if you don't want to eat the whole salad right away, only grill the halloumi for the serving you'll eat, and keep the rest in the fridge — halloumi is best hot off the pan. |
+| **Potato Bacon Salad** | Boiled potatoes and bacon, dressed with mayonnaise, apple cider vinegar, Dijon mustard, salt, and pepper, finished with fresh parsley. **Tip:** a few potatoes are the best ones to use for this recipe because they hold their shape; save the water used to boil the potatoes to use as a soup broth. |
+
+### Making IBS-friendly salads
+Typically a salad is something that people with IBS avoid, because eating raw vegetables — such as lettuce and raw onion — can cause gas, bloating, more urgency, or diarrhea. But if you have a broad definition of salad, there's plenty of room for salads on the low-FODMAP menu. This section is filled with salads that are hearty and satisfying; they can serve as an entire meal. Each salad here is packed with the macronutrient-rich salad of refined tolerated lettuce, meat or seafood, incorporates diverse ingredients to help you broaden the variety of foods in your diet.
+
+**Salad highlights called out in this chapter:**
+- **Vermicelli Chicken Salad** — the hearty salad that has both flavor and makes a meal.
+- **Soba Salad with Peanut-Lime Dressing** — better than takeout, this salad tastes rich and delicious with its creamy peanut and lime dressing.
+- **Moroccan Roasted Vegetable Salad** — makes a comforting meal with its mixture of roasted vegetables.
+- **Halloumi and Arugula Salad** — this salad is topped with golden-brown fried halloumi cheese, which makes it a quick and satisfying meal.
+- **Potato Bacon Salad** — the tanginess of the dressing and fresh parsley offsets the mellow flavors of potatoes and bacon, perfectly balancing the flavors in this salad.
+
+### Key takeaways
+- Soups and salads are the highest-leverage low-FODMAP formats because they let you get diverse plant foods into one dish and are easy to substitute within.
+- Commercial broth is the hidden FODMAP landmine in soup — buy certified, use water + miso/herbs, or make your own.
+- Canned + well-rinsed legumes (lentils, chickpeas) are low-FODMAP at controlled portions because canning leaches out GOS — this is the trick that puts legumes back on the menu.
+- Salads work for IBS if you redefine "salad" beyond raw lettuce: noodle salads, grain salads, roasted-vegetable salads, and potato salads are all gentler.
+- 100 percent buckwheat soba (not the wheat blend) is the noodle to look for.
+
+---
+
+## Chapter 19: Main Dishes (pp. 263–276)
+
+**In this chapter:** making low-FODMAP light main-meal fare using fish, seafood, and tofu; creating tasty meat-based main dishes.
+
+If you're on the low-FODMAP diet, you may be avoiding certain types of carbohydrates, but luckily you have many choices for high-protein foods that can create hearty, satisfying meals. Typically a cook would kick-start the flavor of a main dish with some garlic or onion frying in a pan, but those foods are not low-FODMAP. Fortunately, **many flavorful ingredients can be used to create tasty dishes in the absence of these staples**. This chapter features recipes for main dishes that are low in FODMAP ingredients and therefore easy on your digestion. The first section offers lighter dishes based on fish, seafood, and tofu; the second section offers meat-based dishes.
+
+**GARLIC AND ONION FLAVORS WITHOUT THE TUMMY TROUBLE** (sidebar) — The standard workarounds for building allium flavor on a low-FODMAP diet: **garlic-infused oil** (the fructans in garlic aren't oil-soluble, so the flavor transfers but the FODMAPs don't — you can buy it or make your own by gently warming crushed garlic cloves in oil and then straining them out completely), the **green tops of scallions/spring onions** (the white bulb is high-FODMAP, the green tops are not), **chives**, and **asafoetida powder** (a pinch gives a pungent onion-like flavor and is low-FODMAP — but check the label, as it's sometimes cut with wheat flour).
+
+### Creating main dishes from fish, seafood, and tofu
+Fish and seafood are superior foods in many healthy diet patterns: they're an excellent source of high-quality protein, and lean fish and seafood are among the lowest-fat sources of protein available. Tofu is another light-tasting protein to use in low-FODMAP dishes. **Traditional silken and soft tofu contain the whole soybean and are therefore high-FODMAP, but firm and extra-firm tofu are made by pressing out the liquid — which removes most of the FODMAPs — so firm/extra-firm tofu is low-FODMAP.**
+
+| Recipe | Notes |
+|---|---|
+| **Tuna Sweet Potato Patties** | Boiled and mashed potatoes mixed with canned tuna, eggs, salt, black pepper, green pepper, green onion tops, mayonnaise, and gluten-free flour, then pan-fried in a large frying pan around 4 minutes on each side until well browned. Served with a dipping sauce of sour cream, mayonnaise, lemon juice, sugar, mustard, and gherkins. Per serving: ~318 calories, sodium ~722mg, carbohydrate ~29g, protein ~19g. These hearty tuna patties have protein and sweet taste. |
+| **Shrimp, Pepper, and Pineapple Skewers with Pesto Rice** | Skewered shrimp, bell pepper, and pineapple, broiled/baked at 375°F; served on jasmine rice tossed with a homemade basil pesto (fresh basil, baby spinach, Parmesan, pine nuts, lemon juice, olive oil, garlic-infused oil, salt, black pepper). This dish showcases what a fresh and tasty meal alongside pesto rice can be. **Note:** if you don't want to use the suggested dipping sauce, turn up the pesto. |
+| **Miso Soba Noodles with Salmon** | Salmon fillets baked at 425°F, served over 100 percent buckwheat soba noodles dressed with a sauce of miso, tamari, sesame oil, maple syrup, ginger, red wine vinegar, and rice vinegar. Per serving: ~561 calories, sodium ~1000mg, carbohydrate ~54g, protein ~39g. This long-standing dish is the ultimate low-FODMAP comfort food. **Note:** this dish provides four servings, which each keep the miso ingredients before choosing a product to use in your recipe. |
+| **Ginger Tofu Noodle Bowls** | Rice noodles soaked in boiling water, then tossed with fried firm tofu, carrot, and green pepper in a sauce of tamari, rice vinegar, garlic-infused oil, ginger, sugar, and sesame oil, finished with bean sprouts and crushed peanuts. Served immediately. This is a great low-FODMAP option for a quick lunch or dinner. **Variation:** if this dish isn't vegetarian for you, substitute tamari for the specified amount of fish sauce. |
+| **Sweet-and-Sour Pineapple Fish** | White fish fillets simmered in a sweet-and-sour sauce made from water, pineapple juice, brown sugar, soy sauce, rice vinegar, cornstarch, and canned pineapple, served over rice. Per serving: ~446 calories, sodium ~688mg, carbohydrate ~63g, protein ~29g. A super easy and tasty sauce that comes together fast. |
+
+### Cooking meat-based dishes with low-FODMAP ingredients
+If you're an omnivore, you may enjoy a hearty dinner that includes some kind of meat. Meat and other seafood are also among the alternatives that are lower in fat and are best matched by suggested amounts of meat and vegetables that can improve health over the long term.
+
+| Recipe | Notes |
+|---|---|
+| **Pork and Cabbage Rice-Paper Wraps** | Ground pork browned with ginger, cabbage, carrot, and softened rice-paper wraps; sauced with tamari, garlic-infused oil, rice vinegar, and grated ginger. Prepare and cook the remaining wraps. Per serving: ~350 calories, sodium ~150mg, carbohydrate ~34g, protein ~7g. **Tip:** if you don't have rice-paper wraps, you can use lettuce as a wrap for a meal in itself; if you're not sure of the wrap's texture, soak it briefly. |
+| **Chicken and Feta Patties** | Ground chicken combined with feta cheese, egg, salt, black pepper, and oregano, shaped into small patties, pan-fried in olive oil, then finished with a splash of water in the covered pan to steam through. Garnish with balsamic vinegar if desired. Per serving: ~342 calories, sodium ~344mg, carbohydrate ~4g, protein ~28g. These patties are tangy and bright, and it takes only a few ingredients. |
+| **Lemony Kale Chicken** | Chicken breasts browned in olive oil with pine nuts, then simmered with kale, lemon zest, lemon juice, paprika, salt, and garlic-infused oil until the kale is softened. Per serving: ~332 calories, sodium ~471mg, carbohydrate ~7g, protein ~29g. Serve over rice or another grain of your choice. |
+| **Chicken and Broccoli in Creamy Peanut Sauce** | 3 cups (750 mL) water, 1½ cups (375 mL) uncooked rice, 1 teaspoon (5 mL) garlic-infused olive oil, 4 chicken breasts cut into bite-size pieces, ¼ cup (60 mL) salted natural peanut butter (smooth), 1 tablespoon (15 mL) brown sugar, 3 tablespoons (45 mL) soy sauce, 1 can (400 mL) coconut milk, 2 cups (500 mL) broccoli florets, destemmed (around 1 medium crown). Cook rice 20 min; fry chicken 8–10 min until browned; stir peanut butter, brown sugar, and soy sauce together; pour coconut milk into the skillet, add the peanut butter mixture, stir 5–6 min to a simmer; add broccoli and simmer 5–6 min until slightly tender. Per serving: ~654 calories, fat 30g (saturated 19g), cholesterol 47mg, sodium 1080mg, carbohydrate 68g, dietary fiber 3g, protein 31g. **Tip:** for a meat-free version, substitute cubes of firm or extra-firm tofu, lightly fried. **Three-quarters of a cup of broccoli per person is considered a low-FODMAP portion.** This dish's creamy peanut sauce is a hit with both kids and adults alike. |
+
+---
+
+## Chapter 20: Sides and Snacks (pp. 277–...)
+
+**In this chapter:** making delicious low-FODMAP side dishes to accompany your main meal fare; whipping up snacks and appetizers that pass the flavor test while going easy on your belly.
+
+The low-FODMAP diet may mean eliminating some of the foods you normally would've eaten, which means **every bite counts as an opportunity for gaining valuable nutrients**. Each side dish and snack is an opportunity to keep your body healthy and strong. Foods such as potato chips and french fries, though technically allowed on a low-FODMAP diet, should be a last resort because you need to fill your belly with a variety of foods that help you meet your daily nutritional needs.
+
+### Enjoying gut-friendly side dishes
+Side dishes aren't just a good part of a dish — they go really well with an entrée. A good side dish elevates a whole meal and even downgrades to one that adds a nutritional punch.
+
+| Recipe | Notes |
+|---|---|
+| **Parmesan Quinoa Patties** | Cooked quinoa combined with grated Parmesan, egg, basil, oregano, salt, and quick oats, shaped into patties and pan-fried in extra-virgin olive oil until browned on both sides. Per serving: ~286 calories, cholesterol ~111mg, carbohydrate ~13g, protein ~13g. **Tip:** if you have some homemade low-FODMAP vegetable broth (or a bit of water), you can use it instead of chicken broth. These pair very nicely with tomato-based dishes or roast chicken. |
+| **Cheesy Waffles** | Gruyère and white cheddar cheese, eggs, lactose-free flour, baking powder, and black pepper combined in a bowl and cooked in a waffle maker. Serve immediately. Per serving: ~355 calories, sodium ~502mg, carbohydrate ~12g. These make a great savory waffle that goes well with fresh, flavorful toppings. **Note:** this savory waffle tastes great with fresh, flavorful toppings — try it with a fried egg and shredded mozzarella cheese on top. |
+| **Dill Zucchini Rounds** | Thinly sliced zucchini baked at 375°F on a parchment-lined baking sheet with olive oil, salt, dried dill, dried basil, and lemon juice; arrange the rounds in single layers so they crisp evenly at the edges, then toss with the reserved dressing. Per serving: ~71 calories, carbohydrate ~3g, protein ~1g. **Tip:** these can be a nice appetizer, or a snack all on their own. |
+| **Savory Green Onion Pancakes** | Gluten-free flour, almond flour, rice flour, baking soda, salt, water, eggs, and melted butter combined into a smooth batter with the green onion tops, then cooked as pancakes in a frying pan over medium-high heat. Served with a dipping sauce of tamari, rice vinegar, sesame oil, sugar, and grated ginger. Per serving: ~382 calories, carbohydrate ~28g, protein ~10g. These pancakes are made with FODMAP-safe ingredients. |
+| **Roasted Carrot Dip** | Roasted carrots blended into a dip — makes a great spread for sandwiches or a dip for crackers. It also makes a great low-FODMAP appetizer. |
+| **Bacon-Wrapped Water Chestnuts** | Water chestnuts wrapped in bacon and baked. Be prepared to let the not-too-easy-to-eat appetizer disappear from the platter — they're the first thing eaten at any party, and are surprisingly simple to make. |
+| **Herb and Tomato Polenta Rounds** | Polenta rounds with herbs and tomato — these rounds make an eye-catching appetizer, or try them for a light lunch. |
+| **Chicken Meatballs with Sweet Orange Sauce** | Chicken meatballs in a sweet orange sauce. These rounds are an alternative appetizer or try them for a light lunch. |
+| **Deluxe Deviled Eggs** | The addition of bacon and a few extra flavors makes these easy and tasty Parmesan variations on the classic deviled egg. |
+
+### Supporting your digestion with tasty snacks and appetizers
+The best approach to snacking, whether at home or not, is the classic: **buy some snacks and prepare simple meals ahead of time so you have something in the pantry**. The period of time between meals and how you eat during that time can be an issue in itself. Building the habit of carrying extra low-FODMAP snacks on you means you're less likely to hit a hunger wall and grab whatever's around.
+
+The same preparedness caution goes for appetizers. If you're preparing a party, the appetizers are one of the first things guests eat, so including the wrong choice can set the tone for the rest of the evening. Whether you're serving a low-FODMAP appetizer to share with others, take care to also serve some of your own foods that will bring you the low-FODMAP starters off your own bounty while eating the low-FODMAP items.
+
+---
+
+### Chapter 20 snack and appetizer recipes (detail)
+
+| Recipe | Notes |
+|---|---|
+| **Roasted Carrot Dip** | Carrots, peeled and cut into approximately ½-inch pieces, tossed with 1 tablespoon (15 mL) extra-virgin olive oil and a pinch of garlic-infused oil, roasted at 425°F on a parchment-lined baking sheet for 20 minutes until tender and slightly browned. Blend with 4 ounces (2.5 mL) plain goat cheese, 1 teaspoon (2.5 mL) salt, 1 tablespoon (15 mL) maple syrup, and black pepper until smooth. Garnish with additional olive oil. Per serving: ~113 calories, sodium ~503mg, carbohydrate ~11g, protein ~3g. **Tip:** serve with veggie sticks or low-FODMAP crackers. |
+| **Bacon-Wrapped Water Chestnuts** | Preheat oven to 400°F. ½ cup (60 mL) soy sauce, one 8-ounce (227 mL) can whole water chestnuts drained, ¼ cup (60 mL) brown sugar, 6 strips uncooked smoked bacon. Marinate the chestnuts in soy sauce in the refrigerator for 1 hour; cut each strip of bacon in half; wrap each chestnut and secure with a toothpick; roll in brown sugar; bake 15 minutes or until the bacon is browned and bubbling. Serve hot or at room temperature. |
+| **Herb and Tomato Polenta Rounds** | 1 tube (18 oz) ready-to-eat polenta, sliced into 1/3-inch rounds; 1 tablespoon (15 mL) olive oil; 1 teaspoon (5 mL) dried rosemary; 1 teaspoon (5 mL) dried basil; salt and black pepper; 1 package (113 g) goat cheese; 2 cherry tomatoes cut into rounds. Heat oil in a large skillet, add a layer of polenta rounds and fry until golden-brown on each side. Combine goat cheese with rosemary, basil, salt, and pepper; spread a layer on each round and top with sliced cherry tomato. Per serving: ~228 calories, sodium ~409mg, carbohydrate ~22g, protein ~5g. Best served warm. |
+| **Chicken Meatballs with Sweet Orange Sauce** | Preheat oven to 400°F. 1 pound (500 g) uncooked ground chicken, ¼ cup (60 mL) breadcrumbs, 1 teaspoon (2.5 mL) salt, black pepper, 1 egg lightly beaten, 1 teaspoon (5 mL) sesame seeds, 2 tablespoons (30 mL) cold water, 1 tablespoon (15 mL) cornstarch, 2 tablespoons (30 mL) soy sauce, 2 tablespoons (30 mL) brown sugar, 1½ teaspoons (7.5 mL) orange zest, and orange juice. Combine the ground chicken with breadcrumbs, salt, pepper, and egg; shape into balls and place on a parchment-lined baking sheet; sprinkle sesame seeds on top; bake at 375°C/375°F for approximately 15 minutes. While the meatballs bake, combine the water and cornstarch in a small saucepan, stir until smooth, then add the remaining sauce ingredients and heat until slightly thickened. When the meatballs are done cooking, transfer them to a serving dish, pour the sauce over the top, and garnish with sesame seeds. Per serving: ~254 calories, sodium ~508mg, carbohydrate ~12g, protein ~24g. |
+| **Deluxe Deviled Eggs** | 6 eggs; 1 tablespoon (15 mL) mayonnaise; 2 tablespoons (30 mL) plain lactose-free yogurt; 1 teaspoon (5 mL) Dijon mustard; ½ teaspoon (2.5 mL) dried dill; ¼ teaspoon salt; black pepper; 2 ounces (30 mL) smoked salmon; 1 tablespoon (15 mL) green onion tops, finely chopped. Place the eggs in a medium pot and cover with water; heat the pot on the stove and boil, then remove from heat and let stand for 15 minutes. Drain the hot water and let cool, then peel. Cut the eggs in half and gently remove the yolks; place the yolks in a medium bowl and mash with a fork, then combine with the mayonnaise, yogurt, mustard, dill, salt, and pepper. Spoon the mixture into the egg halves. Sift in the smoked salmon and green onion tops. Per serving: ~140 calories, sodium ~277mg, carbohydrate ~1g, protein ~11g. **Note:** it's the spread of smoked salmon and green onion tops that gives this classic a different flavor from most deviled-egg recipes. |
+
+**SNACKING WHEN YOU HAVE IBS** (sidebar) — The purpose of snacking is to get you from one meal to the next without becoming so hungry that you overeat, and to add nutrients that your meals didn't cover. Aim for snacks that combine categories rather than a single macronutrient:
+
+- **Protein:** incorporating egg with sea salt, hard cheese, nut butter, hard-boiled eggs, or salt-cured meats
+- **Prebiotic fiber:** low-FODMAP sources including granola and pumpkin seeds, oat cereal
+- **Vegetables:** carrots, red pepper or small portions, kale, orange, pineapple
+- **Grains:** gluten-free or low-FODMAP crackers, popcorn, rice cakes, rice crackers
+
+### Key takeaways
+- Every side and snack on a low-FODMAP diet is an opportunity for nutrients — potato chips and fries are technically allowed but should be a last resort.
+- Roasting concentrates flavor, which is how these recipes compensate for missing garlic and onion.
+- Canned/rinsed water chestnuts, firm tofu, polenta, quinoa, and eggs are the low-FODMAP workhorses in this chapter.
+- Build snacks by combining a protein source with a tolerated fiber source, not by picking one alone.
+
+---
+
+## Chapter 21: Desserts (pp. 291–303)
+
+**In this chapter:** preparing sweet snacks to grab and go; making fruit-focused desserts that are gentle on your digestive system.
+
+Although healthy diet patterns such as the Mediterranean diet incorporate very few sweets, the truth is that sweet foods are almost universally appealing and they can be one of life's simple pleasures. **Rest assured, sweets can definitely be a part of a well-rounded diet that benefits your health.** Consuming sweets in moderation is perfectly fine and may even prevent you from bingeing (for example, eating an entire tub of ice cream) when you let down your guard.
+
+**The sugar used in baked items and desserts is generally not a problem for the low-FODMAP diet used for irritable bowel syndrome (IBS)**, because these simple sugars are absorbed in the digestive tract before reaching the large intestine (which is where the troublesome nonabsorbable sugars can cause symptoms). But many sweets that are common in North America and Europe contain **other gut-irritating ingredients — most commonly, wheat flour.**
+
+The key to incorporating sweets into a healthy diet is choosing the right ones: preferably the sweets you make yourself, rather than the ultra-processed, sugar-loaded sweets that line the grocery store shelves.
+
+**SUCCESSFUL LOW-FODMAP BAKING** (sidebar) — Ingredients in a low-FODMAP diet that work for baking. Many gluten-free flours are also low-FODMAP but not all — check the ingredients list. Flours that work:
+
+- Buckwheat flour
+- Maize or corn flour
+- Millet flour
+- Oat flour
+- Quinoa flour
+- Rice flour
+
+Many sugars are also fine to use in your baking on a low-FODMAP diet, since large amounts of even low-FODMAP sugars can still trigger symptoms. Some sugars that are safe in reasonable amounts, if counted on a low-FODMAP diet, are:
+
+- Brown sugar
+- Icing sugar
+- Maple syrup
+- Palm sugar
+- White sugar
+
+### Baking snacks to grab and go
+Baking is even more attractive when you adopt a low-FODMAP diet: you can't rely on some of the traditional baking ingredients, such as wheat flour and milk, but you can still create delicious treats with a little out-of-the-box thinking.
+
+| Recipe | Notes |
+|---|---|
+| **Carrot Cake Bites** | No-bake. Toast ¼ cup (60 mL) shredded coconut in a microwave for 90 seconds or until light golden. Combine ¾ cup (180 mL) finely shredded carrot, ¼ cup (60 mL) maple syrup, 1 teaspoon (2.5 mL) apple cider vinegar, 1 teaspoon (2.5 mL) vanilla extract, ½ teaspoon (2.5 mL) cinnamon, ¼ teaspoon (1 mL) ground nutmeg, ½ teaspoon (2.5 mL) salt, 1 cup (250 mL) almond flour, ¼ cup (60 mL) pecans finely chopped, 2 tablespoons (30 mL) hemp seeds, and ¼ cup (60 mL) medium shredded coconut (unsweetened). Add the coconut oil to bind the mixture and stir well. Using approximately 1 tablespoon of the mixture at a time, shape into balls; gently roll each ball in the shredded coconut until coated. Chill in the refrigerator for at least 3 hours. Per serving: ~207 calories, sodium ~120mg, carbohydrate ~16g, protein ~4g. Super soft and moist, these delicious morsels taste remarkably similar to carrot cake but require zero baking. |
+| **Chocolate Coconut Power Cookies** | Preheat oven to 350°F. 1 cup (250 mL) rice flour, 1 cup (250 mL) rolled oats, ¼ cup (60 mL) shredded coconut (unsweetened), ½ cup (125 mL) brown sugar, ¼ cup (60 mL) cocoa powder, 1 egg lightly beaten, 2 teaspoons (10 mL) vanilla extract, ¼ cup (60 mL) chocolate chips (unsweetened), ¼ cup (60 mL) butter melted. Combine the dry ingredients in a medium bowl, then add the egg, vanilla, and melted butter; stir to combine. Shape into balls and arrange on a parchment-covered cookie sheet; bake for 10 to 12 minutes. These are a chewy, good cooking treat — a delicious cookie that goes great with a black coffee. |
+| **Chocolate Chip Chia Energy Balls** | 1½ cups (375 mL) quick oats, ½ cup (125 mL) icing sugar, 1 tablespoon (15 mL) chia seeds, 1 cup (250 mL) natural peanut butter, 1 teaspoon (5 mL) vanilla extract, 2 tablespoons (30 mL) water, ¼ cup (60 mL) chocolate chips. In a large bowl, stir the oats, icing sugar, and chia seeds. Add the peanut butter, vanilla, water, and honey and stir well to combine; add the chocolate chips and mix. Shape the mixture into balls and refrigerate for at least 1 hour before serving. Per serving: ~412 calories, sodium ~13mg, carbohydrate ~40g, protein ~11g. **Tip:** if the mixture is slightly crumbly, shaping it into balls works best — try slightly wet hands. |
+| **Pumpkin Spice Oatmeal Muffins** | Preheat oven to 350°F. 2½ cups (375 mL) quick oats, 1 cup (250 mL) canned pumpkin purée, ¾ cup (180 mL) brown sugar, ⅓ cup (80 mL) extra-virgin olive oil, 2 eggs, 1 tablespoon (15 mL) baking powder, ½ teaspoon (2.5 mL) salt, 1 teaspoon (5 mL) ground cinnamon, ½ teaspoon (2.5 mL) ground ginger, ¼ teaspoon (1 mL) ground nutmeg, a pinch of ground cloves, and ½ cup (125 mL) chocolate chips. Combine the oats, sugar, and pumpkin with the olive oil, baking powder, and salt; add the brown sugar, cinnamon, ginger, nutmeg, and cloves. Add the chocolate chips and mix. Pour the batter into muffin tins and bake for 20 minutes, or until a toothpick inserted in the center comes out clean. Serve right away or store in an airtight container in the fridge or freezer. Per serving: ~319 calories, sodium ~105mg, carbohydrate ~53g, protein ~6g. These muffins are more accurately muffin-like, with spices and moist crumb. |
+| **Strawberry Chia Pudding** | 1½ tablespoons (18 mL) chia seeds, 1 cup (250 mL) canned coconut milk, ¼ cup (60 mL) fresh strawberries, and 1 tablespoon (15 mL) whole sugar. In a medium bowl, combine the strawberries with the chia seeds, coconut milk, and sugar. Blend for various lengths using an immersion blender, then place the mixture in the fridge for 15 minutes. Remove from the fridge, stir, and divide into 2 individual serving bowls. Garnish with fresh strawberry if desired and serve. Per serving: ~319 calories, sodium ~11mg, carbohydrate ~15g, protein ~4g. **Tip:** across the bowls in the fridge for at least 15 hours before serving. With no cooking required, this dessert is easy to whip up and it makes a nice, light finish to a meal. |
+| **Pavlovas with Raspberry Sauce** | Preheat oven to 250°F. 6 egg whites at room temperature, ¼ teaspoon cream of tartar, 1 cup (250 mL) white sugar, 4 to 5 drops of vanilla, ¾ cup (180 mL) fresh or frozen raspberries, and coconut-based whipped cream for garnish. Beat the egg whites in a large mixing bowl and add the cream of tartar; using a hand mixer on medium speed, whip the egg whites until stiff peaks form; gradually add the sugar while continuing to beat the mixture. Cover a baking sheet with parchment paper; divide the meringue into four circles on the baking sheet (use a spatula to create a divot in the middle of each circle). Bake the pavlovas for 45 minutes, then turn off the oven but leave the pavlovas in for another hour. While the pavlovas are baking, combine the raspberries, water, and remaining sugar in a small saucepan; over medium heat, bring the raspberry sauce to a simmer while continuing to stir. When the pavlovas are ready, arrange each one on a plate and drizzle the raspberry sauce over top, then garnish with fresh berries and whipped cream if desired. Per serving: ~133 calories, sodium ~38mg, carbohydrate ~30g, protein ~2g. |
+| **Dreamy Banana Cream Dessert** | Preheat oven to 350°F. ¼ cup (125 mL) rice flour, 3 tablespoons (45 mL) coconut flour, 2 egg yolks, 2 cups (500 mL) melted butter, ¾ cup (170 mL) white sugar, 2 teaspoons (10 mL) vanilla extract, 2 bananas peeled and sliced, and 1 tablespoon (15 mL) coconut oil. In a small bowl, combine the rice flour, coconut flour, sugar, and egg yolks. Pour the mixture into a 9-x-9-inch pan and bake for 20 minutes, or until the edges of the crust are golden brown. While the crust is baking, combine the milk and egg yolks in a medium saucepan and stir constantly. Boil the mixture for 1 minute, then remove from heat and add the vanilla. Remove the crust from the oven when done. When cool to the touch, lay the banana pieces in an even layer over the crust and spread the pudding mixture on top of the banana layer, using the remaining ½ cup of coconut on top of the dessert. Refrigerate for at least 1 hour, then spoon into bowls and serve. Per serving: ~171 calories, sodium ~120mg, carbohydrate ~26g, protein ~3g. This dessert gives you the classic taste of banana cream pie without the hassle of making a traditional pie crust. |
+| **Caramelized Bananas** | 1 tablespoon (15 mL) coconut oil, 2 bananas peeled and halved lengthwise, 2 tablespoons (30 mL) brown sugar, 1 tablespoon (15 mL) water, 1 ounce (15 g) dark chocolate finely chopped, and coconut-based whipped cream for garnish (optional). In a small frying pan over medium-high heat, melt the coconut oil. In another frying pan over medium heat, add the bananas and brown sugar; stir until the coconut oil coats and browns, about 1 minute. Add the water to the pan and then place the banana halves in the sauce; cook for 3 to 4 minutes while heating the halves until golden brown. Remove from heat; place each banana half on a plate, drizzle with the remaining liquid in the pan, then sprinkle with the chopped dark chocolate. Serve immediately, with whipped cream if desired. Per serving: ~178 calories, sodium ~7mg, carbohydrate ~35g, protein ~2g. |
+| **Piña Colada Popsicles** | 1 cup (250 mL) coconut-based yogurt, ¾ cup (120 mL) canned crushed pineapple drained, ¼ teaspoon (1 mL) coconut extract, and 2 tablespoons (30 mL) whole sugar. In a blender (or a stand blender), blend all the ingredients until smooth, about 30 seconds. Pour the mixture into popsicle molds and add the sticks. Freeze at least 3 hours or until firm. Per serving: ~102 calories, sodium ~52mg, carbohydrate ~22g, protein ~1g. **Tip:** these popsicles vary in size and shape, so you may need to double the recipe if your popsicle molds are large. |
+
+### Key takeaways
+- Sugar itself is generally fine on a low-FODMAP diet — simple sugars are absorbed before reaching the large intestine. **Wheat flour is the usual culprit in commercial sweets, not the sugar.**
+- Safe baking flours: buckwheat, maize/corn, millet, oat, quinoa, rice.
+- Safe sugars in reasonable amounts: brown, icing, maple syrup, palm, white. Avoid the polyol sweeteners.
+- Homemade beats store-bought here almost every time — you control the flour and the sweetener.
+
+---
+
+## Chapter 22: Ten Items for Your IBS Survival Kit (pp. 307–314)
+
+**In this chapter:** discovering the benefits of being prepared when you have IBS; zeroing in on key items that may make a big difference for IBS management.
+
+**Opening story:** In 2024, the *Taipei Times* featured a news article about a man who allegedly committed a somewhat unusual crime. The accused was a 21-year-old university student who one day rushed into a convenience store, grabbed a small packet of tissues without paying, and ran to the washroom. The store clerk reported the situation to police, and the young man was charged with theft. The store's video surveillance footage was subsequently used as evidence against him. But in court, the judge learned that the accused had irritable bowel syndrome (IBS) and sometimes had the unexpected need for a bowel movement, requiring the urgent use of a toilet. The judge, showing compassion, **issued an acquittal for the man based on his medical condition and the minor nature of the offense.**
+
+Many people with IBS know that emergencies happen — and these situations have the potential to be somewhat messy and embarrassing. But you don't need to risk trouble with the law by grabbing what you need from a store shelf. Instead, you can help prevent emergencies by equipping yourself with some key items that help you succeed throughout your day. Just as a mountain expedition tour guide wouldn't set out on a day's work without all the survival necessities, **an individual with IBS should always keep some trusty supplies at hand.**
+
+### The ten items
+
+1. **Wet Wipes** — Whether you're at a movie theater or at a friend's house, it's a good idea to carry a small resealable plastic bag with you on the go. Make sure to dispose of the used wipes in a receptacle and not in the toilet (only toilet paper and human waste should go there) — they can clog pipes both in your personal and community plumbing.
+
+2. **Before-You-Go Toilet Spray** — A relatively recent innovation, one of the most useful items in the IBS survival kit is a pre-toilet spray with a plant-based, essential-oil formula. The spray forms a barrier on the surface of the water in the toilet bowl, so that when the odor from your bowel movement is trapped beneath the surface, it doesn't escape into the room. This means you can leave the bathroom without the telltale odor announcing your business to everyone else. **The pleasant smell of a before-you-go spray usually contributes to a more effective outcome**, but it's best for those who are sensitive; some sprays are unscented.
+
+3. **Water Bottle** — Hydration is incredibly important for IBS because it's necessary for smooth digestive functioning of your body. To stay well hydrated, aim to sip water throughout the day. A portable and durable water bottle makes this easy. Vessels for holding water are available in a wide range of shapes, materials, and options, so it's worth having one on you at all times. **Don't forget to clean your water bottle at the end of the day, and let it dry out completely before filling it up again.**
+
+4. **Handy Snacks** — People with IBS typically avoid eating when they know they'll cause their symptoms to flare up. But what if there's nothing else to eat at that moment? When you're hungry, you may feel anxious, wrap in without your bowel — your symptoms may worsen. **Pack food precaution: keep healthy snacks on you at all times so you can eat before you get too hungry and start to flare.** Good options for portable, shelf-stable, low-FODMAP snacks: homemade trail mix with almonds (or avoid processing), peanuts, walnuts, pumpkin seeds, and dried cranberries (unsweetened).
+
+5. **Comfortable Clothing** — Along with your snack stash, keep a supply of the necessary comfort and hygiene items you may need. Bloating and abdominal distention (the visible expansion of the abdomen) are common with IBS. A distended belly can make you feel uncomfortable in clothes that fit normally, and the discomfort itself can worsen your symptoms. Tips:
+   - **Choose loose-fitting clothing, with an elastic waistband if possible.** If you find the pants you wear in the morning are too tight for you in the evening, you may need to size up.
+   - **Wear separate tops and bottoms**, rather than a one-piece dress, so that if bloating strikes you can loosen the bottom without changing your whole outfit.
+   - **Choose easy-to-remove layers.** They'll accommodate a distended body without cramping marks on your skin.
+
+6. **Hot Water Bottle or Heating Pad** — When abdominal pain strikes, one of the best ways to find quick relief may be to apply gentle heat to your abdomen. You have several options for applying heat: a hot water bottle, an electric heating pad, or a microwavable heat pack. **You can also purchase heat patches that stick to your skin with adhesive and can be worn discreetly under clothing** while you go about your day. These stick-on options are especially useful when you're at work or otherwise away from home and can't lie down with a bottle or pad.
+
+7. **All Things Peppermint** — Peppermint oil capsules are a proven treatment for IBS, and many people don't know that peppermint tea may be an easy and gentle way to relieve some digestive symptoms as well. Peppermint capsules for IBS are enteric-coated, which means they don't dissolve until they reach the intestine — where the peppermint relaxes the intestinal muscle and helps relieve pain and cramping. **Cautions:** peppermint can irritate the gut in some people, and peppermint tea and chewing peppermint gum because it can cause reflux for people with IBS. If you're taking peppermint oil capsules, make sure to stick to the recommended dose as indicated on the label; if you consume too many capsules, the peppermint may periodically cause the same symptoms you're trying to avoid. Large amounts may relieve some symptoms, intestinal gas, or other symptoms.
+
+8. **A Go-To Breathing Exercise** — IBS isn't just about the gut — it's about the brain, too. Calm breathing is an excellent way to train your body and your brain, helping reduce the impact of your symptoms. Everyone with IBS needs at least one go-to breathing exercise that can serve as a quick tool for calming a stressful moment. Even if you have a regular breathing practice, you can pick one and remember that. **Box breathing** is the simplest example of a suitable breathing exercise:
+   1. Inhale, breathe in deeply through the nose for a count of four seconds, extending your belly as you breathe outward.
+   2. Hold, with your breath at the top of the inhale for four seconds.
+   3. Exhale, slowly exhale through the mouth for four seconds.
+   4. Hold, hold your breath at the bottom of the exhale for four seconds.
+   Repeat this pattern for several cycles.
+
+9. **A Yoga Mat** — Sometimes your IBS symptoms may make you want to stay curled up on the couch — but nearly gently, mild digestion will benefit all of the gentle movement you can do to help regulate the functioning of the digestive system and reducing bloating and distention. **Yoga is particularly helpful for people with IBS** because it combines gentle physical movement with breathing and relaxation. You don't always have to go to a class and get expensive, but if you're not at a gym or a yoga class where you're too shy, you can still get the benefits at home. A yoga mat is a worthy purchase, and it may be a useful reminder that you should be doing some gentle yoga at home. If you're not sure where to start, look for a beginner yoga class or a "yoga for IBS" video — several exist specifically for digestive health.
+
+10. **A Diary** — An IBS diary is another important item on your IBS survival list because it allows you to document both the good days and the bad ones, allowing you to have a broader perspective on your IBS and perhaps gain some insights into what needs to reduce your symptoms. Your IBS diary can be on paper or digital — the act of getting into the habit of writing a few notes each day is important. You should have a way to write down these deeper services, but write observations you may want to write down are:
+   - A simple description of your symptoms that day
+   - How you felt physically
+   - Whether you ate anything unusual
+   - Your state of mind and whether you experienced any significant moments of stress
+   - Setting the record straight on common myths about IBS
+   - Empowering yourself with the most accurate information about the gut-brain connection in IBS
+
+---
+
+## Chapter 23: Ten Myths about IBS (pp. 315–322)
+
+**In this chapter:** setting the record straight on common myths about IBS; empowering yourself with the most accurate information about the gut-brain connection in IBS.
+
+No longer a secret kept behind the bathroom door, irritable bowel syndrome is discussed more widely than ever. IBS is a topic that once came across as taboo, but is now discussed more openly — and with more misinformation circulating along with the good information. Because IBS is so common and so varied in presentation, myths about it are unusually persistent. This chapter debunks the ten most stubborn ones.
+
+### 1. IBS Is All in Your Head
+The idea that the gastrointestinal (GI) symptoms of IBS originate from worry, stress, or psychiatric disorder is a persistent misconception. IBS is a **disorder of gut-brain interaction** — the brain and the gut genuinely do communicate through the nervous system, and stress genuinely can influence symptoms. But that is not the same as symptoms being imaginary. IBS produces real, measurable changes in gut motility, visceral sensitivity, and the gut microbiome. **The involvement of the brain in a physical condition does not make that condition less physical.** Telling someone their symptoms are "all in their head" is both inaccurate and harmful, and it discourages people from seeking treatment that would actually help.
+
+### 2. Nothing's Wrong If All the Tests Come Back Normal
+When seeking a diagnosis, individuals with IBS commonly report that all their tests come back normal — and conclude, or are told, that nothing is wrong. **IBS is not diagnosed by finding an abnormality on a test.** It's diagnosed positively, on the basis of symptom patterns (the Rome criteria) after alarm features have been excluded. So, yes, IBS is a real condition even when the colonoscopy, bloodwork, and imaging are all clean. Normal test results are part of the expected picture, not evidence against the diagnosis. Anyone who is told their symptoms are unfounded because of normal tests should seek a second opinion from a professional familiar with functional GI disorders.
+
+### 3. IBS Diarrhea Is the Same as Infectious Diarrhea
+Another common misconception is that the loose bowel movements that occur when someone has an infection are the same thing as IBS diarrhea. In IBS, the diarrhea is a result of **altered motility and secretion in the GI tract** — the intestines move contents through too quickly for water to be adequately absorbed, without proper hygiene. In infectious diarrhea, the diarrhea is the result of pathogens (bacteria, viruses, parasites) actively causing inflammation in the GI tract. The distinction matters because the treatments differ entirely: an antibiotic that clears an infection will do nothing for IBS, and antidiarrheal management appropriate for IBS won't resolve an infection.
+
+### 4. IBS Can Be Cured
+IBS is not a condition with a cure. Because IBS is a **chronic condition**, which can flip up and down over time, expectations of a permanent cure set people up for disappointment. The realistic goal is **management**: reducing symptom frequency and severity so that IBS interferes as little as possible with daily life. Symptoms can go into long remissions and some people become effectively symptom-free for extended periods — but the underlying susceptibility remains. Anyone promising a permanent cure (particularly one sold as a supplement or a program) is overselling. Lifestyle modification, dietary change, medication, and psychological therapies can all substantially reduce symptoms; that's a genuinely good outcome, and it's the right thing to aim for.
+
+### 5. IBS Is the Same as IBD
+IBS (irritable bowel syndrome) and IBD (inflammatory bowel disease — Crohn's disease and ulcerative colitis) sound similar and are often confused, but they are **two very different kinds of conditions that affect the digestive system**. IBD involves visible, measurable **inflammation and damage to the bowel wall**, is diagnosed by scope and biopsy, carries risk of serious complications (strictures, fistulas, surgery, increased colorectal cancer risk), and is treated with immunosuppressive and anti-inflammatory drugs. IBS involves **no structural damage or inflammation** and does not increase cancer risk. Confusingly, the two can coexist — a person with well-controlled IBD can still have IBS-type symptoms, which is a distinct and important clinical situation.
+
+### 6. One Treatment Fits All
+"My daughter has IBS, and she has no symptoms now that she cut out wheat." Well-meaning friends and family members love to make comments like these. **What worked for one person will very often do nothing for another.** IBS is a heterogeneous condition — subtypes (IBS-D, IBS-C, IBS-M), triggers, and underlying mechanisms differ from person to person. This is exactly why the diagnosis is followed by a period of individualized trial: dietary change, stress management, medication, and psychological therapy all help *some* people. **Lifestyle changes are an important part of the treatment plan**, but which changes matter is a personal question. Don't let a single anecdote set your expectations.
+
+### 7. IBS Is Just Another Name for Food Intolerance
+It's relatively common that someone diagnosed with IBS immediately starts cutting out foods from their diet, on the assumption that food intolerance is the whole story. Food *is* a major trigger for many people with IBS, and low-FODMAP dietary change is the single most evidence-backed intervention — but **IBS is not simply a food intolerance**. A food intolerance is a specific, reproducible reaction to a specific food component. IBS involves altered motility, visceral hypersensitivity, gut-brain signaling, and often stress reactivity, and its symptoms can occur independently of eating altogether. The practical danger of this myth is **over-restriction**: people eliminate more and more foods chasing a trigger that isn't purely dietary, ending up with a narrow, nutritionally inadequate diet and no symptom improvement. Ultimately, if you remove the source of your ideal IBS treatment, it would be different from someone else's — get guidance from a professional before making sweeping eliminations.
+
+### 8. Everyone with IBS Can Benefit from Eating More Fiber
+Fiber is a prescribed, widely touted health benefit and a famously beneficial component of the diet — especially soluble fiber, which is helpful for many people with IBS-C. **But more fiber is not universally good for IBS.** Insoluble fiber in particular can worsen bloating, gas, and pain in people with IBS. Adding a large amount of fiber quickly is a reliable way to make symptoms worse. As is true with diet, the evidence in this is highly personal: some people with IBS respond well to increased soluble fiber (psyllium), others find that fiber makes them dramatically worse. **Increase fiber slowly, favor soluble over insoluble, and track the result.**
+
+### 9. Discomfort Is Inevitable When You Have IBS
+Sometimes when a person with IBS is having a particularly bad day, they may end up believing that discomfort is simply the price of living with the condition — that nothing more can be done. **This is untrue.** IBS is very treatable. With the right combination of dietary, medical, and psychological tools, a large majority of people achieve meaningful symptom control. The truth is, even if you don't manage to get rid of your symptoms altogether, you're likely to be able to reduce them substantially. Resignation is the enemy of treatment: if you accept discomfort as inevitable, you stop looking for the combination that works for you.
+
+### 10. You Don't Need to Take IBS Seriously
+**IBS is a genuine medical condition.** Even though IBS doesn't shorten your life or lead to medical complications such as surgery or colorectal cancer, it's still something you should take seriously and try to treat. Studies show that IBS has an impact on quality of life, causing people to feel it's holding them back from living the life they want to live. This can be true regardless of whether the symptoms are mild or intense.
+
+So, anyone who receives a diagnosis of IBS and tries to brush it off without changing anything may soon find that, unless hanging out near the toilet is among your life goals, **it's better to take IBS seriously and figure out a treatment plan.** Some clinics specialize in treating IBS and have all the relevant professionals and latest tools at hand, helping people implement tailored treatment plans. These centers report **patient satisfaction rates of around 80 to 85 percent** — powerful proof that discomfort doesn't have to be part and parcel of IBS.
+
+### Key takeaways
+- IBS is a disorder of gut-brain interaction — real and physical, even though the brain is involved and even though every test comes back normal.
+- IBS ≠ IBD, IBS ≠ infectious diarrhea, IBS ≠ food intolerance. Each confusion leads to the wrong treatment.
+- There is no cure, but there is very effective management — and specialist clinics report 80–85 percent patient satisfaction.
+- No single treatment works for everyone; more fiber is not universally helpful and insoluble fiber often makes things worse.
+- The most damaging myth is the last one: treating IBS as not worth taking seriously is what keeps people from getting the treatment that would work.
+
+---
+
+*End of IBS For Dummies.*
+
+---
+
