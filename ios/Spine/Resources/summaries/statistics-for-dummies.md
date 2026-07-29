@@ -894,3 +894,68 @@ Covers the most common hypothesis tests (from product claims to medical study re
 
 ---
 
+# Chapter 16: Polls, Polls, and More Polls
+
+## Overview
+Surveys and polls are everywhere and can be powerful because people readily accept reported percentages as truth — but many surveys don't provide correct, complete, or balanced information. This chapter covers how surveys are designed, conducted, and how to spot biased/inaccurate results.
+
+## Recognizing the impact of polls
+- A **survey** collects data through questions and answers to gather info about opinions, behaviors, demographics, etc. of a population of interest. A **poll** is technically a short survey (few questions), though the terms are often used interchangeably.
+- **Getting to the source**: many groups conduct polls/surveys — news organizations, political parties/candidates, professional polling organizations (Gallup, Harris Poll, Zogby, NORC), TV/radio programs, professional research organizations (AMA, Smithsonian, Pew), special-interest groups (NRA, Greenpeace, ACLU), the U.S. government, and even everyday individuals via internet polls.
+- Photo/table: "Ranking the Worst Cars of the Millennium" — a Car Talk radio call-in survey example, showing percentage-of-votes rankings (Yugo 33.7%, Chevy Vega 15.8%, etc.) used to illustrate a non-scientific, self-selected sample (results don't sum to 100% and only reflect people who chose to call in/vote online).
+
+## Surveying what's hot
+- Media surveys often headline sensational statistics (e.g. celebrity activism influencing opinions, dating co-workers, health info from the web) — timeliness and relevance drive what gets covered, not necessarily rigor.
+- Advises checking a survey's credibility: is the source an independent, reputable organization? Has it been peer-reviewed or government-collected (generally more trustworthy)?
+
+## Impacting lives
+- Survey results can directly affect real decisions: politicians changing laws, researchers directing study funding, manufacturers changing products/policies based on poll data.
+- Photo/table: reasons crime victims didn't report violent crimes (personal matter 19.2%, offender unsuccessful 15.9%, reported to another official 14.7%, etc.) — illustrating how definitions of terms in a survey (e.g. what counts as "alcohol use") can change what's reported and how results should be interpreted carefully.
+
+## Behind the scenes: the ins and outs of surveys
+- The survey process breaks into 10 steps: (1) clarify the purpose, (2) define the target population, (3) choose survey type and timing, (4) design the introduction with ethics in mind, (5) formulate the questions, (6) select the sample, (7) carry out the survey, (8) follow up, (9) organize and analyze the data, (10) draw conclusions.
+
+## Planning and designing a survey
+- **Clarifying the purpose**: be as specific as possible about what conclusions you want to draw — vague purposes lead to poorly targeted questions.
+- **Defining the target population**: the population must be clearly and specifically defined (e.g. "all workplace e-mail users" vs. "people with computer access at work") — unclear definitions cause downstream sampling problems.
+- **Choosing the type and timing of the survey**: survey method (phone, mail, door-to-door, internet) should match the target population and budget; timing matters too — major news events or holidays can bias when/how people respond (e.g. election-night political surveys, or people too busy/stressed to answer during work hours).
+
+## Designing the introduction with ethics in mind
+- Surveys done by institutions (universities, hospitals) typically require ethics review by an Institutional Review Board (IRB) or similar (IEC, ERB) — check for such approval if credibility matters to you.
+- The survey cover letter should explain purpose, confidentiality/anonymity, and provide researcher contact info.
+
+## Formulating the questions
+- **Leading/misleading questions** are worded to favor a particular response. Example: two biased ways of phrasing a school-bond tax question are contrasted with a neutral version that states facts plainly and offers balanced response options (strongly favor to strongly oppose).
+- Best practice: word questions neutrally, giving the reader necessary information without pushing a viewpoint; if evaluating someone else's survey, request the actual questions used to check for bias.
+
+## Selecting the sample
+- **A good sample represents the target population**: must be drawn from the whole target population, not a convenient subgroup (e.g. surveying only college dorm students about "how Americans watch TV" fails this).
+- **A good sample is selected randomly**: a random sample gives every member of the target population an equal chance of selection (like drawing names from a hat) — this eliminates selection bias. Internet self-selected surveys are a common culprit of failing this (only motivated/opinionated people respond, e.g. "50,000 people voted" on a website poll).
+- **A good sample is large enough for results to be accurate**: accuracy depends on sample size, not population size — even sampling 1,000 from a population in the millions gives a margin of error around ±3.2%. A "quick and dirty" margin-of-error estimate: 1/√(sample size). Small populations (e.g. ~100) may need more advanced finite-population-correction methods.
+
+## Carrying out a survey
+- **Collecting the data**: potential issues include respondents misunderstanding multiple-choice options, giving inaccurate/false answers (**response bias**, e.g. lying about cheating on taxes), interviewer training/consistency issues, and privacy/comfort concerns affecting truthfulness.
+- **Anonymity versus confidentiality**: these are different — *anonymous* means the researcher never collects/knows respondent identities at all; *confidential* means identities are known but kept private and not disclosed in reporting. Being clear about which applies affects respondent honesty and trust.
+
+## Following up, following up, and following up
+- Non-response is a major bias source: only following up once, twice, or more (via reminder calls, stamped return envelopes, prize incentives) helps reduce non-response bias.
+- Worked example: a park-rule survey where only 200 of 1,000 people responded, with an 80/100 split (in favor/against) among respondents — extrapolating this small skewed sub-sample to represent all 1,000 people would badly misrepresent the true, more balanced (50/50) population opinion, since non-responders had different (unknown) opinions.
+- **Response rate** = number of actual respondents / number of people originally sampled. Statisticians consider ~70%+ a good goal, though real-world surveys often fall in the 20-30% range; low response rates should make you view results skeptically.
+
+## Interpreting results and finding problems
+- **Organizing and analyzing**: after data collection, organize and summarize using appropriate methods for the data type (numerical vs categorical, per Chapters 5-7), then analyze relationships/hypotheses (per Chapters 13-15, 18-19).
+- **Drawing conclusions**: common errors include (1) projecting results onto a larger population than the study represents, (2) claiming a difference between groups exists when it isn't statistically real (see Chapter 15 on margin of error/significance), (3) saying "these results aren't scientific, but..." and then presenting them as if they were.
+- To avoid these errors: check the sample was selected properly and conclusions don't exceed what the sample supports, and look for disclaimers about the survey *before* trusting the results.
+
+## Being on the lookout for statistically incorrect conclusions
+- A reported "difference" between groups should exceed the margin of error to be meaningful — otherwise it could just be due to chance (echoing Chapters 12 and 14).
+- Bottom line: know the limitations of any survey, be skeptical of survey-derived information gathered casually, and investigate design/conduct quality before trusting or citing results — "you get what you pay for," but even expensive surveys can be biased.
+
+## Key takeaways
+- A good survey needs: a clearly defined target population, random sampling, adequate sample size, neutral question wording, and a strong response rate (with follow-up to minimize non-response bias).
+- Self-selected/call-in/internet polls are inherently biased (only motivated people respond) and should not be treated as representative.
+- Distinguish anonymous (no identity collected) from confidential (identity known but protected) — this affects survey design and respondent trust.
+- Before trusting survey conclusions, check whether the reported difference exceeds the margin of error, whether the sample matches the claimed population, and whether disclaimers/limitations are disclosed.
+
+---
+
