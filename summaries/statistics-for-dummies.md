@@ -959,3 +959,94 @@ Surveys and polls are everywhere and can be powerful because people readily acce
 
 ---
 
+# Chapter 17: Experiments: Medical Breakthroughs or Misleading Results?
+
+## Overview
+Medical breakthroughs seem to come and go quickly, often overhyped and later disappointing. This chapter covers the difference between experiments and observational studies, what makes a good experiment, and how to spot misleading results.
+
+## Boiling down the basics of studies
+- **Subjects**: individuals participating in the study.
+- **Observational study**: researcher merely observes and records information; no intervention, changes, or controls imposed.
+- **Experiment**: researcher deliberately applies treatments to subjects in a controlled situation and studies the effects.
+- **Response**: the outcome variable of interest (the "million dollar question").
+- **Factor**: the variable whose effect on the response is being studied (e.g. amount of a drug).
+- **Level**: a possible value/setting of a factor (e.g. specific diet program).
+- **Treatment**: a combination of levels across all factors being studied.
+- **Cause and effect**: exists when a change in the factor directly causes a change in the response.
+
+## Observing observational studies
+- Observational studies (like polls/surveys, Chapter 16) are the right tool when the goal is simply to collect info (demographics, opinions) — no manipulation needed.
+- For cause-and-effect questions, observational studies are NOT optimal — e.g. can't tell if vitamin C or something else (extra sleep, hand-washing) caused you to avoid a cold, since too many variables are uncontrolled.
+
+## Examining experiments
+- An experiment's object is to see if the response changes as a result of the factor being manipulated — looking for cause and effect.
+- A good experiment is conducted in a controlled environment so the researcher can pinpoint whether a factor (or combination of factors) truly causes a change in response.
+
+## Designing a good experiment
+- Criteria for a credible experiment: (1) makes comparisons, (2) includes a large enough sample size for accurate results, (3) chooses subjects that represent the target population, (4) assigns subjects randomly to treatment/control groups, (5) controls for confounding variables, (6) is ethical, (7) collects good data, (8) applies proper data analysis, (9) makes appropriate conclusions.
+
+## Designing the experiment to make comparisons
+- Every experiment needs a **control** — a baseline for comparison — to attribute any differences in response to the factor being tested, not chance or other causes.
+- Three common control methods: (1) fake treatment (placebo), (2) standard/existing treatment, (3) no treatment.
+
+## Fake treatments — the placebo effect
+- A **placebo** is a fake treatment indistinguishable from the real one; the **placebo effect** is real — people can show a response even to an inactive treatment due to expectation/belief.
+- To fairly evaluate a treatment's true effect, you must subtract the placebo group's reported effects from the treatment group's reported effects — the net difference is the actual drug's effect.
+
+## Standard treatments (for ethical reasons)
+- When an existing effective standard treatment exists, using a placebo can be unethical (denying subjects known-effective care) — instead the new treatment is compared against the standard.
+- Example: a landmark 1997 HIV/AZT study was ethically criticized for giving some pregnant women in developing countries a placebo instead of the (partial, but real) protective standard-dose AZT regimen.
+
+## No treatment
+- Sometimes "no treatment" (rather than a fake pill) is the appropriate control when faking the intervention isn't feasible (e.g. can't fake speed-walking) — subjects still provide a baseline for comparison.
+
+## Selecting the sample size
+- Larger samples give more accurate results and more powerful statistical tests (ability to detect real effects) — ties back to Chapter 14's discussion of test power.
+
+## Limiting small samples to small conclusions
+- Media headlines often overstate findings from very small-sample studies; small samples make it hard to distinguish a real effect from noise (especially when using the t-distribution vs Z, per Chapter 10, since small samples have more variability).
+- When evaluating a study, ask about sample size and how many subjects actually completed the study (dropouts can bias results) — example: a marijuana/cancer-therapy news article touting "far more effective" results was actually based on just 29 patients (15 treatment, 14 placebo), and only 12 of 15 in the treatment group actually completed the study.
+
+## Choosing the subjects
+- Randomly selecting subjects for an experiment (not just for a survey) is often harder in practice — e.g. randomly cold-calling people to ask if they want experimental eye surgery won't get many takers.
+
+## Making random assignments
+- After subjects are selected, **random assignment** to treatment vs. control groups is essential to avoid bias — e.g. letting people self-select into a "run 5 miles daily" exercise group versus a couch-potato control group would bias results (health-conscious people would preferentially join the exercise group), confounding the effect of exercise with pre-existing fitness/motivation differences.
+- Random assignment (done by a third party, not the subjects) creates roughly homogeneous, comparable groups.
+
+## Controlling for confounding variables
+- A **confounding variable** is an uncontrolled factor that could also explain the results, undermining a cause-and-effect claim.
+- Worked example: a news headline claiming "older mothers live longer" was based on comparing women who had a first baby before/after age 40, using historical Boston birth records from 1896 — but the study didn't control for other factors like era-specific mortality trends, socioeconomic status, or marital stability, all of which could confound the age-at-first-birth/longevity link.
+- Researchers try to anticipate and control for as many confounding variables as possible, though it's impossible to eliminate all of them, especially in human-subject research.
+
+## Respecting ethical issues
+- Some experiments are unethical to conduct directly (e.g. can't force people to smoke to test lung cancer risk) — such causal claims must instead come from careful observational studies.
+- Human-subject experiments (clinical trials) require regulatory approval (e.g. FDA) and ethics board review (IRB/IEC/ERB, same bodies as for surveys, Chapter 16). ClinicalTrials.gov is cited as a resource for information on registered trials.
+
+## Collecting good data
+- Good data must be: **reliable** (repeatable results — e.g. a bathroom scale giving different readings each time is unreliable; averaging multiple measurements improves reliability), **valid** (actually measuring what you intend to measure — e.g. a student's transcript may not validly measure their potential for college success), and **unbiased** (no systematic errors that consistently push results too high or low — e.g. a scale that always reads "5 lbs over").
+- **Double-blind studies**: neither subjects nor researchers know who's in the treatment vs. control group, minimizing both subject expectation bias and researcher/observer bias (e.g. researchers unconsciously treating groups differently). A third party, uninvolved in the study, typically holds the assignment key.
+- A **blind** study is one where only the subjects don't know their group (weaker than double-blind, but better than nothing).
+
+## Analyzing the data properly
+- The choice of statistical analysis must be planned in advance during experiment design, and should match the actual question being asked (confidence intervals for estimating a value, hypothesis tests for comparing groups/claims, correlation/regression for relationships between variables — Chapters 13, 15, 18 respectively).
+- Make sure the type of data collected actually matches what's needed for the intended analysis (e.g. need weight lost, not just final weight, to compare diet programs).
+
+## Making appropriate conclusions
+- Common researcher mistakes: **overstating results**, **making unsupported connections/explanations**, and **going beyond the scope of the study** (generalizing to a broader population than was actually sampled).
+- Example: a press release overstated Ecstasy-use decline among teens — the actual sample difference wasn't statistically significant when properly tested (Chapter 14), so projecting it onto the full teen population was an overstatement.
+- Example: a study linking later childbirth to longer lifespan speculated (without evidence) that this was due to a "slower biological clock" — an unsupported theoretical leap beyond what the data showed.
+- Media/press releases often push exaggerated headlines and unsupported cause-effect framing because sensational stories sell — read the fine print and primary study, not just the headline.
+- **Generalizing beyond scope**: check (1) what population the researcher claims to generalize to, (2) whether the sample actually represents that population, (3) whether conclusions match the population actually studied (not a broader one).
+
+## Making informed decisions
+- Practical steps for evaluating any study/experiment's credibility: write down the claim/source when you first hear it, track down the original research/report, check it against the 8 criteria for a good experiment (from earlier in the chapter), scrutinize whether the conclusions are supported by the actual statistical evidence, and don't hesitate to ask experts (e.g. your doctor) about a specific study — but also don't become overly skeptical of all research, since many studies are well-conducted and credible.
+
+## Key takeaways
+- Experiments (with controlled manipulation) can establish cause-and-effect; observational studies alone generally cannot, due to uncontrolled confounding variables.
+- A credible experiment needs: comparison groups (placebo/standard/no-treatment control), adequate sample size, random subject selection AND random assignment to groups, confounding-variable control, ethical conduct, reliable/valid/unbiased data, appropriate analysis, and conclusions that don't overstate or over-generalize the results.
+- Double-blind design is the gold standard for minimizing both subject and researcher bias.
+- Always check a study's sample size, completion rate, whether it's observational or experimental, and whether its conclusions match its actual population and statistical evidence before accepting a "breakthrough" headline.
+
+---
+
