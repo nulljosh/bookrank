@@ -539,3 +539,46 @@ Covers the most famous continuous random variable — the **normal distribution*
 
 ---
 
+# Chapter 10: The t-Distribution
+
+## Overview
+A short chapter on the **t-distribution**, the basis of the "t-test" commonly used to compare two groups in medical studies/experiments. Covers its characteristics, its relationship to the Z (standard normal) distribution, and how to use the t-table.
+
+## Comparing the t- and Z-distributions
+- The **normal (Z) distribution** is bell-shaped with mean μ and standard deviation σ; the standard normal has mean 0, SD 1.
+- The **t-distribution** is a "cousin" of the Z-distribution — also centered at zero and bell-shaped, but shorter and wider (flatter, with fatter tails) than the standard normal.
+- Photo/figure: overlaid t-distribution and standard normal curve, showing the t-distribution is shorter/wider with fatter tails.
+- The t-distribution arises when estimating a population mean using a sample, especially with small sample sizes, where the extra uncertainty from estimating the standard deviation (rather than knowing it) is captured by the fatter tails.
+
+## Discovering the effect of variability on t-distributions
+- The t-distribution's exact shape depends on its **degrees of freedom** (df), typically related to sample size (n − 1).
+- Photo/figure: several t-distribution curves for different degrees of freedom overlaid, showing that lower df = wider/flatter curve, higher df = curve gets closer to the standard normal.
+- As sample size (and thus degrees of freedom) increases, the t-distribution converges toward the Z-distribution.
+
+## Using the t-table
+- Because the t-distribution's exact shape changes with degrees of freedom, a single **t-table** provides critical values across a range of df and common right-tail probabilities, rather than one fixed table like the Z-table.
+- Photo/figure: t-table showing degrees of freedom as rows and right-tail probability columns, cross-referenced to get t*-values.
+
+## Figuring percentiles for the t-distribution
+- To find a percentile, use the t-table with the appropriate degrees of freedom and locate the column matching the desired right-tail (or left-tail) probability, then read off the corresponding t-value.
+
+## Finding probabilities with the t-table
+- Because the t-table only lists select probability columns (not every possible probability like some Z-tables), finding an exact probability sometimes requires interpolating between table values or bounding it between two listed values.
+
+## Picking out t*-values for confidence intervals
+- For confidence intervals, use the row of the t-table corresponding to df, and the column matching the desired confidence level's "tail" area (e.g. for 90% confidence, use the 0.05 right-tail column, since 100%−90% = 10%, split into 5% each tail).
+- When looking for t* values for confidence intervals, use the bottom-row-style guide values in the table rather than the top header row (a specific table-reading tip highlighted in the text).
+
+## Studying behavior using the t-table
+- As degrees of freedom increase, t-table values become more concentrated around the mean and converge toward the Z-distribution's values — visible by scanning down any column of the t-table.
+- Even without computer software, scanning the t-table reveals the general shape/behavior of the distribution (e.g. how quickly it approaches normal as df grows).
+- Example: at df=30, the t-value for a right-tail area of 0.05 is 1.697, very close to the Z-distribution's corresponding value of 1.645 — showing the t- and Z-distributions look nearly identical even at moderately large (not super-large) sample sizes.
+
+## Key takeaways
+- The t-distribution is used instead of the Z-distribution when the population standard deviation is unknown and estimated from a (typically small) sample.
+- It's shaped like the standard normal but shorter/wider with fatter tails; the exact shape depends on degrees of freedom (df ≈ n−1).
+- As df increases, the t-distribution approaches the Z-distribution — by df≈30 they're already very close.
+- Use the t-table (not a single fixed table like Z) to find probabilities, percentiles, and critical t*-values for confidence intervals, matching both df and desired tail probability.
+
+---
+
