@@ -582,3 +582,63 @@ A short chapter on the **t-distribution**, the basis of the "t-test" commonly us
 
 ---
 
+# Chapter 11: Sampling Distributions and the Central Limit Theorem
+
+## Overview
+Sample results vary from sample to sample — statistics should include a measure of how much results are expected to vary. This chapter studies the behavior of sample means and sample proportions across all possible samples, to gauge how much a single sample's result might change if a different sample were selected.
+
+## Defining a sampling distribution
+- A **sampling distribution** is the distribution of a statistic (e.g. the mean) computed from all possible samples of a given size from a population.
+- Photo/figure: two histograms — a density plot of average family size across repeated samples, and a percentage-based version — illustrating what a sampling distribution of a sample mean looks like.
+- Even though individual samples vary, the sampling distribution reveals a predictable pattern in how those sample statistics are distributed.
+
+## The mean of a sampling distribution
+- The mean of the sampling distribution of the sample mean equals the population mean (μ) — i.e., averaging over all possible sample means gets you back to the true population mean.
+
+## Measuring standard error
+- The **standard error** is the standard deviation of a sampling distribution (e.g. of the sample mean); it measures how much sample means are expected to vary from sample to sample.
+- Standard error of the mean = population standard deviation (σ) divided by the square root of sample size (n) — larger samples produce smaller standard error (more precision).
+- Photo/figure: sampling distributions for different sample sizes overlaid, showing narrower spread as sample size increases.
+
+## Sample size and standard error
+- As sample size increases, standard error decreases — meaning larger samples give more precise (less variable) estimates of the population mean.
+- Photo/figure: worker length data example — histogram of individual worker measurements versus narrower sampling distribution of the average, demonstrating this shrinking-spread effect.
+
+## Population standard deviation and standard error
+- Distinguishes **population standard deviation** (variability among individuals) from **standard error** (variability among sample means) — these are related but different: individual data points vary much more than sample averages do.
+- Photo/figure: comparing a wide individual-data distribution to a much narrower sampling distribution of the mean for the same population.
+
+## Looking at the shape of a sampling distribution
+- **Case 1: the distribution of X is normal** — if the original population is normally distributed, the sampling distribution of the sample mean is also normal, for any sample size.
+- **Case 2: the distribution of X is not normal — enter the Central Limit Theorem (CLT)** — even if the population isn't normal, for a large enough sample size (commonly n ≥ 30), the sampling distribution of the sample mean is approximately normal regardless of the population's shape.
+- Photo/figure: a non-normal (skewed) population distribution alongside its approximately-normal sampling distribution of sample means, illustrating the CLT.
+
+## Averaging an unfair die is still approximately normal
+- Worked example: rolling an unfair (weighted) die repeatedly and averaging results — even though a single die roll isn't normally distributed, the distribution of the average over many rolls approaches normal, per the CLT.
+
+## Finding probabilities for the sample mean
+- Once you know the sampling distribution is approximately normal (via CLT or Case 1), you can use standard normal (Z) methods from Chapter 9 to find probabilities about the sample mean, by standardizing with z = (x̄ − μ) / (σ/√n).
+
+## Clarifying three major points about the CLT
+1. The CLT applies when sample size is sufficiently large (commonly n ≥ 30, though it depends on how skewed the population is).
+2. The CLT concerns the *distribution of the sample mean*, not the distribution of individual data points.
+3. The approximation improves as sample size increases — larger n means the normal approximation is more accurate.
+
+## The sampling distribution of the sample proportion
+- The **sample proportion** (p̂) is another statistic (proportion of a sample with some characteristic) that also has a sampling distribution.
+- Under the CLT, for a large enough sample, the sampling distribution of the sample proportion is approximately normal, with mean = p (true population proportion) and standard error = √(p(1−p)/n).
+- Photo/figure: bar chart of survey percentages ("Yes"/"No" categorical responses to an ACT-related question) illustrating a sample proportion example.
+
+## Finding probabilities for the sample proportion
+- Photo/figure: sampling distribution curve for a sample proportion with shaded area and z-value markers, illustrating a probability calculation for p̂.
+- Worked example: converting a sample proportion (p̂ = 0.45) versus a claimed population proportion (p = 0.38) into a z-value using z = (p̂ − p) / √(p(1−p)/n), getting z = 1.44, then finding P(Z > 1.44) = 1 − 0.9251 = 0.0749 via the Z-table.
+- Since 0.0749 exceeds the common 0.05 threshold for "surprising" results, the sample result isn't rare enough to dispute the claimed population proportion (38% needing help) — an application of sample proportions to informally check a population claim, foreshadowing formal hypothesis testing in Chapter 15.
+
+## Key takeaways
+- A sampling distribution describes how a sample statistic (mean or proportion) varies across all possible samples of a given size.
+- Standard error = population SD / √n for the mean; it shrinks as sample size grows, meaning larger samples give more precise estimates.
+- The Central Limit Theorem guarantees the sampling distribution of the mean (or proportion) is approximately normal for large enough samples, even if the original population isn't normal.
+- This normality lets you apply Z-score methods to sample means/proportions, which underlies later hypothesis testing and confidence intervals.
+
+---
+
