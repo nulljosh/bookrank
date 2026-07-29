@@ -1,45 +1,30 @@
 {
-  "dueDate": "2026-07-29",
+  "dueDate": "2026-08-18",
   "loans": [
     {
-      "title": "Living Well in a Down Economy",
-      "author": "Barcode 39083109779042",
-      "summarySlug": "living-well-in-a-down-economy-for-dummies"
-    },
-    {
-      "title": "Becoming Steve Jobs",
-      "author": "Brent Schlender & Rick Tetzeli",
-      "summarySlug": "becoming-steve-jobs"
-    },
-    {
-      "title": "Brothers",
-      "author": "Alex Van Halen",
-      "summarySlug": "brothers"
-    },
-    {
-      "title": "AI Investing for Dummies",
-      "author": "Paul Mladjenovic \u00b7 Barcode 39083109840547",
-      "summarySlug": "ai-investing-for-dummies"
-    },
-    {
-      "title": "Sobriety for Dummies",
-      "author": "Lane Kennedy \u00b7 Barcode 39083111287620",
+      "title": "Together: Memorable Meals Made Easy",
+      "author": "Barcode 39083515945880",
       "summarySlug": null
     },
     {
-      "title": "IBS for Dummies",
-      "author": "Kristina Campbell \u00b7 Barcode 39083110405082",
+      "title": "Good Fengshui: A Step-by-Step Guide",
+      "author": "Barcode 39083109264136",
       "summarySlug": null
     },
     {
-      "title": "Apple: The First 50 Years",
-      "author": "Corporate history, 2026",
-      "summarySlug": "apple"
+      "title": "Data Science for Dummies",
+      "author": "Barcode 39083107903016",
+      "summarySlug": null
     },
     {
-      "title": "Pre-Calculus for Dummies",
-      "author": "Mary Jane Sterling",
-      "summarySlug": "pre-calculus-for-dummies"
+      "title": "macOS Tahoe for Dummies",
+      "author": "Barcode 39083111089133",
+      "summarySlug": null
+    },
+    {
+      "title": "AI in Business for Dummies",
+      "author": "Barcode 39083111216702",
+      "summarySlug": null
     }
   ],
   "toRead": [
