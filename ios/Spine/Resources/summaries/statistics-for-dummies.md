@@ -755,3 +755,83 @@ Statistics are often used to estimate a population parameter (average income, pe
 
 ---
 
+# Chapter 14: Claims, Tests, and Conclusions
+
+## Overview
+Media claims involving statistics are everywhere; this chapter covers how to use **hypothesis tests** to investigate whether a claim about a population is valid, and how researchers should validate claims.
+
+## The six main steps of a hypothesis test
+1. Set up the null and alternative hypotheses.
+2. Collect good data using a well-designed study (Chapters 16-17).
+3. Calculate the test statistic based on your data.
+4. Find the p-value for your test statistic.
+5. Decide whether or not to reject H₀ based on your p-value.
+6. Understand that your conclusion may be wrong, just by chance.
+
+## Setting up the hypotheses
+- Every hypothesis test claims something about a population **parameter**.
+- **Defining the null**: the **null hypothesis (H₀)** always states the population parameter equals a specific claimed value (e.g. H₀: μ = 5 minutes for a pie-baking-time claim). Null hypotheses always include an equal sign.
+- **What's the alternative?**: the **alternative hypothesis (Hₐ)** takes one of three forms depending on what you want to test:
+  - Not-equal-to: Hₐ: μ ≠ 5
+  - Greater-than: Hₐ: μ > 5
+  - Less-than: Hₐ: μ < 5
+- Which alternative to use depends on what you have reason/evidence to suspect and want to demonstrate against the null (claimed) value.
+
+## Gathering good evidence (data)
+- Data collection methods boil down to two: surveys (observational studies) and experiments (controlled studies) — covered further in Chapters 16-17.
+- Avoiding bias and selecting a large enough random sample are critical to trustworthy hypothesis test results.
+
+## Compiling the evidence: the test statistic
+- After collecting sample data, the **test statistic** measures how far the sample result is from the claimed population parameter, in standardized units.
+
+## Gathering sample statistics / measuring variability using standard errors
+- Sample results always vary from the true population value just due to random chance — this variability is measured by the **standard error** (Chapter 11).
+- Worked example: claim that 25% of women have varicose veins; a sample of 100 women found 20% — a difference of 5 percentage points. Standard error for this sample ≈ 4%, so the 5% gap is just over 1 standard error, not very convincing evidence against the claim. With a sample of 1,000 instead, standard error shrinks to ~1.3%, making the same 5% gap a much more meaningful ~4 standard errors away — much stronger evidence.
+
+## Understanding standard scores / calculating and interpreting the test statistic
+- The number of standard errors a statistic lies from the claimed value is a **standard score** (like a z-score, but versus H₀'s claimed value rather than a population mean) — this is the **test statistic**.
+- General procedure: (1) take your statistic minus the claimed value in H₀, (2) divide by the standard error of the statistic.
+- Worked varicose-veins example: (0.20 − 0.25) / 0.04 = −1.25 — sample result is 1.25 standard errors below the claim.
+
+## Weighing the evidence and making decisions: p-values
+- The **p-value** measures the probability of getting a test statistic at least as extreme as yours, if H₀ (the claim) were actually true — analogous to how unlikely a jury would find the evidence if a defendant were truly innocent.
+- **Connecting test statistics and p-values**: a test statistic close to 0 means weak evidence against H₀; a test statistic far in the tails means strong evidence against H₀ (assuming a large enough sample for the normal/Z approximation to apply, per the Central Limit Theorem, Chapter 11).
+- Photo/figure: standard normal curve marked with "Reject H₀ / Fail to reject H₀" regions at ±1.64 and ±2 z boundaries, illustrating decision regions for one- and two-sided tests.
+
+## Defining and calculating a p-value
+- To find a p-value: (1) look up your test statistic on the Z-distribution (or appropriate distribution), (2) find the probability that Z is beyond (more extreme than) your test statistic — using a less-than, greater-than, or two-sided (doubled) approach depending on which alternative hypothesis form you're using.
+- For non-equal-to alternatives, the p-value must be doubled (since it accounts for both tails of the symmetric distribution) — worked varicose-veins example: p-value = 2 × 0.1056 = 0.2112 (test statistic −1.25 → one-tail probability 0.1056 → doubled for two-sided test).
+
+## Making conclusions
+- To draw a reject/fail-to-reject conclusion, you compare the p-value to a predetermined cutoff (the **significance level**, α) — commonly 0.05, but sometimes stricter (0.01) or more lenient (0.10).
+- Decision rule: if p-value ≤ significance level, reject H₀ (statistically significant); if p-value > significance level, fail to reject H₀.
+- **Setting boundaries for rejecting H₀** at α=0.05: p<0.01 = highly significant; 0.01<p<0.05 = statistically significant; p≈0.05 (like 0.051 or 0.049) = marginal, could go either way; p notably >0.05 = non-significant.
+- "Fail to reject H₀" is not the same as "accept H₀" — a hypothesis test can show evidence H₀ is false, or fail to find enough evidence, but never definitively proves H₀ true.
+- Warning: the significance level should be decided *before* seeing the data, not adjusted afterward to get a desired conclusion (that would be "p-hacking").
+
+## Testing varicose veins (worked example)
+- Continuing the running example, p-value of 0.1056 is much larger than typical significance levels (0.05 or even 0.10), so the sample fails to reject H₀ (not enough evidence that the true proportion differs from 25%).
+- Illustrates how a different reader's chosen cutoff (e.g. 0.01 vs 0.05) could lead to different conclusions from the same p-value — emphasizing the importance of knowing/asking for the actual p-value and significance level used, not just "statistically significant" claims.
+
+## Assessing the chance of a wrong decision
+- Any hypothesis test decision carries a risk of being wrong, with real-world consequences (unnecessary product changes, lawsuits, missed opportunities to flag a false claim).
+
+## Making a false alarm: Type-1 errors
+- A **Type-1 error** (false alarm) is rejecting H₀ when it's actually true.
+- Worked example: company claims average delivery time is 2 days; a test yields p-value 0.04, leading to rejecting H₀ (concluding the claim is false) — but there's still a chance (4%, per the p-value) this rejection is a false alarm even if the claim is true.
+- To reduce the chance of Type-1 errors, set a low significance level (e.g. 1% instead of 5%).
+
+## Missing out on a detection: Type-2 errors
+- A **Type-2 error** (missed detection) is failing to reject H₀ when it's actually false.
+- The ability to detect a false H₀ (avoid Type-2 errors) is called the **power** of a test — power increases with larger sample size (more information, less variability, better ability to "zoom in" on a real difference).
+- To minimize Type-2 error risk, statisticians recommend selecting a large sample size so real differences aren't missed.
+
+## Key takeaways
+- A hypothesis test evaluates a claim (H₀) against an alternative (Hₐ) using sample data, a test statistic, and a p-value.
+- Small p-value = strong evidence against H₀; the decision to reject depends on comparing the p-value to a pre-set significance level (commonly 0.05).
+- "Fail to reject H₀" ≠ "H₀ is true" — it just means insufficient evidence to say otherwise.
+- Type-1 error = false alarm (rejecting a true H₀); Type-2 error = missed detection (failing to reject a false H₀). Larger sample size reduces Type-2 error risk (increases power); lower significance level reduces Type-1 error risk.
+- Every hypothesis test conclusion carries some risk of being wrong — statistics never gives certainty, only quantified evidence.
+
+---
+
