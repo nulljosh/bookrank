@@ -491,3 +491,51 @@ Scientists build models of random phenomena (hurricane landfall, accident counts
 
 ---
 
+# Chapter 9: The Normal Distribution
+
+## Overview
+Covers the most famous continuous random variable — the **normal distribution** — how to find probabilities and percentiles for it, and how it approximates the binomial distribution under certain conditions.
+
+## Exploring the basics of the normal distribution
+- A continuous random variable X has a normal distribution if its values form the classic symmetric, bell-shaped curve.
+- Every normal distribution is fully described by two parameters: mean (μ) and standard deviation (σ). Changing μ shifts the curve left/right; changing σ widens/narrows it.
+- Photo/figure: three bell curves side by side with different means and standard deviations, illustrating how the shape/position changes with each parameter.
+- The distribution is symmetric about the mean, and its tails extend indefinitely in both directions (never quite touching zero probability).
+
+## Meeting the standard normal distribution (Z)
+- The **standard normal distribution** (Z-distribution) is the special case with mean 0 and standard deviation 1 — used as a universal reference so any normal distribution's probabilities can be looked up via conversion.
+- **Standardizing from X to Z**: convert any value x from a normal distribution to a **z-score** using z = (x − μ) / σ — this tells you how many standard deviations x is from the mean.
+- Photo/figure: standard normal curve with a shaded region illustrating a specific z-value area calculation.
+- **Checking out Z**: z-scores let you compare values from different normal distributions on the same standardized scale.
+
+## Finding probabilities for a normal distribution
+- Steps to find a normal probability: (1) draw a picture of the distribution and shade the area of interest, (2) convert the boundary value(s) to z using the standardization formula, (3) look up the z-value in the Z-table (standard normal table) in the appendix, (4) do any addition/subtraction needed depending on whether you want "less than," "greater than," or "between" probabilities.
+- Photo/figure: two example bell-curve diagrams with shaded regions illustrating "less-than" and "between" probability problems, each with worked z-score calculations.
+- The Z-table gives cumulative probability (area to the left of a given z-value); for "greater than" you subtract from 1, for "between" you subtract two cumulative values.
+
+## Finding X when you know the percent
+- The reverse problem: given a percentile/probability, work backward to find the corresponding X value.
+- Steps: (1) find the z-value corresponding to the given percentile using the Z-table (look up the probability, find the closest z), (2) convert back to X using x = μ + z·σ.
+- Photo/figure: bell curve with a shaded lower-percentile region, illustrating a "doing a low percentile problem" worked example.
+
+## Working with a higher percentile
+- Similar approach as above, but for percentiles above 50% — look up the corresponding upper-tail z-value and convert back to X.
+- Photo/figure: bell curve with shaded region representing a higher percentile, showing the z lookup and conversion.
+
+## Translating tricky wording in percentile problems
+- Common wording traps: "top 10%" means the 90th percentile; "bottom 5%" means the 5th percentile; the chapter gives guidance on translating everyday percentile language ("top," "bottom," "middle X%") into the correct z-value/percentile to look up.
+
+## Normal approximation to the binomial
+- For a binomial distribution with a large number of trials (n large enough that both np and n(1−p) are ≥ some threshold, e.g. 10), the binomial distribution can be approximated by a normal distribution with mean = np and standard deviation = √(np(1−p)).
+- This lets you use normal-distribution methods (z-scores, Z-table) instead of exact binomial calculations when n is large, which is much faster/simpler.
+- A **continuity correction** (±0.5 adjustment) is used to improve the approximation accuracy since the binomial is discrete but the normal is continuous.
+
+## Key takeaways
+- Any normal distribution is defined by its mean and standard deviation; the standard normal (Z) has mean 0, SD 1.
+- Z-scores standardize any normal value so the Z-table can be used to find probabilities/percentiles.
+- Finding a probability = convert to z, look up in Z-table, adjust for less-than/greater-than/between. Finding a value from a percentile is the reverse process.
+- Watch percentile wording carefully ("top 10%" vs "bottom 10%") — a wrong translation flips the answer.
+- The normal distribution can approximate the binomial when n is large enough, simplifying probability calculations (with a continuity correction for accuracy).
+
+---
+
