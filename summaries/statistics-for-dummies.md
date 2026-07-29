@@ -835,3 +835,62 @@ Media claims involving statistics are everywhere; this chapter covers how to use
 
 ---
 
+# Chapter 15: Commonly Used Hypothesis Tests: Formulas and Examples
+
+## Overview
+Covers the most common hypothesis tests (from product claims to medical study results) — how to set up hypotheses, select a sample, collect data, calculate the relevant statistics, and use them to decide whether a claim is true.
+
+## Testing one population mean
+- Steps for testing a single population mean μ against a claimed value:
+  1. Check conditions (population approximately normal, or n large enough for CLT).
+  2. Set up H₀: μ = claimed value, and Hₐ (not-equal, greater-than, or less-than).
+  3. Calculate the standard error: sₓ̄ = s/√n.
+  4. Calculate the test statistic: t = (x̄ − μ₀) / sₓ̄ (or z if σ known).
+  5. Find the p-value using the t-distribution (or Z-distribution) with n−1 degrees of freedom.
+- Worked example with actual sample mean, standard deviation, and sample size plugged into the formula.
+
+## Handling small samples and unknown standard deviations: the t-test
+- When the population standard deviation is unknown (the usual case) and/or sample size is small, use the **t-distribution** (Chapter 10) instead of Z, with n−1 degrees of freedom — this is called a **t-test**.
+- The general formula for the test statistic mirrors the Z-formula but substitutes sample standard deviation and uses the t-distribution for the p-value lookup.
+
+## Relating t to Z
+- As sample size grows, the t-distribution converges to the Z-distribution (as covered in Ch. 10), so for large samples, using either the t-table or Z-table gives nearly identical p-values.
+
+## Putting the t-test to work
+- Full worked example: a delivery company claims a certain average delivery time; sample data collected, test statistic computed, p-value found via t-table, and a conclusion drawn about whether to reject the claim.
+
+## Testing one population proportion
+- For testing a claimed population proportion p₀ (e.g. "25% of all women have varicose veins"):
+  - Formula: z = (p̂ − p₀) / √(p₀(1−p₀)/n) — note the standard error uses the *claimed* p₀, not the sample p̂, since under H₀ you assume the claim is true.
+  - Uses the Z-distribution (not t), since proportions rely on the normal approximation to the binomial (Chapter 9) for large enough n.
+
+## Examining the not-equal-to alternative
+- For a two-sided (not-equal-to) alternative hypothesis, the p-value is doubled (as in Ch. 14) since evidence in either direction counts against H₀.
+
+## Handling negative p-values (a caution)
+- Test statistics can be negative (e.g. sample below claimed value) — this is normal and expected; the sign indicates direction, but the p-value calculation must correctly account for which tail(s) to look up depending on the alternative hypothesis form.
+
+## Comparing two (independent) population averages
+- When comparing means from two independent populations (μ₁ vs μ₂, e.g. two brands, two treatments), the null hypothesis is typically H₀: μ₁ − μ₂ = 0 (no difference).
+- Formula for the test statistic uses the difference of sample means divided by the standard error of that difference, computed from both samples' standard deviations and sizes.
+
+## Testing for an average difference (the paired t-test)
+- When the two samples are **paired** (e.g. before/after measurements on the same subjects), use a **paired t-test**: compute the difference for each pair, then treat those differences as a single sample and test whether the mean difference is zero.
+- Photo/table: reading scores for a computer method versus a phonics method, listed by student, with a "Difference" column — used as the running worked example for the paired t-test.
+- Steps: (1) calculate the difference for each pair, (2) find the mean and standard deviation of the differences, (3) calculate standard error of the mean difference, (4) calculate the test statistic (t = mean difference / standard error), and interpret via the t-table.
+
+## Comparing two population proportions
+- To compare two independent population proportions (p₁ vs p₂), a pooled proportion is calculated combining both samples' successes and sizes, then used to compute the standard error for the test statistic z = (p̂₁ − p̂₂) / SE.
+- Photo/table: worked example computing pairwise differences and standard errors for comparing sample proportions from two independent groups.
+
+## How large that p-value is compared to your significance level
+- Final decision step: compare the calculated p-value to the chosen significance level (α, commonly 0.05) to decide whether to reject H₀, as covered in Chapter 14 — this chapter applies that same decision framework to each of the specific test types (one mean, one proportion, two means independent, paired difference, two proportions).
+
+## Key takeaways
+- The correct test/formula depends on: one sample or two, means or proportions, independent or paired samples, and whether the population standard deviation is known.
+- Use t-tests (t-distribution, n−1 df) for means when σ is unknown/sample small; use Z-tests for proportions (via normal approximation) and for means with large n or known σ.
+- Paired data should use the paired t-test (differences treated as one sample), not the independent two-sample test — using the wrong one gives an incorrect standard error and invalid conclusions.
+- Every test ultimately reduces to: compute a test statistic → find its p-value → compare to a pre-chosen significance level → decide reject/fail-to-reject.
+
+---
+
