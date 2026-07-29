@@ -686,3 +686,72 @@ Good survey/experiment research includes a measure of how accurate results are �
 
 ---
 
+# Chapter 13: Confidence Intervals: Making Your Best Guesstimate
+
+## Overview
+Statistics are often used to estimate a population parameter (average income, percentage buying birthday gifts online, etc.). Rather than a single-number ("point") estimate, statisticians recommend **confidence intervals** — a range that likely contains the true parameter, done correctly.
+
+## Not all estimates are created equal
+- A point estimate alone doesn't say how good it is; a confidence interval adds a margin of error to communicate a plausible range.
+- Larger, well-conducted samples produce more trustworthy/precise confidence intervals than small or biased samples.
+
+## Linking a statistic to a parameter
+- A **parameter** is a fixed (usually unknown) number describing a population; a **statistic** is a number computed from a sample used to estimate it.
+- Confidence intervals bridge the two: they use sample statistics (plus a margin of error, based on variability and sample size) to construct a plausible range for the population parameter.
+
+## Getting with the jargon
+- A **confidence interval** = statistic ± margin of error. Example: "3.1% ± 4%" means the interval spans from -0.9% to 7.1%.
+
+## Interpreting results with confidence
+- Confidence intervals are constructed so that, over many repeated samples, a certain percentage (the confidence level, e.g. 95%) of such intervals would contain the true population parameter.
+- Common misinterpretation warning: a 95% confidence interval does NOT mean "95% probability the true parameter is in this specific interval" — it means the *method* captures the true value 95% of the time across repeated sampling.
+
+## Zooming in on width
+- The width of a confidence interval depends on: the confidence level (higher confidence → wider interval), the sample's variability (standard deviation), and the sample size (larger n → narrower interval).
+- Trade-off: increasing confidence level (e.g. 95% → 99%) widens the interval; increasing sample size narrows it.
+
+## Choosing a confidence level
+- Common confidence levels: 90%, 95%, 98%, 99% — each corresponding to a different z*-value.
+- Photo/table: z*-values for various confidence levels (90% → 1.645, 95% → 1.96, 98% → 2.33, 99% → 2.576).
+- Higher confidence level = larger z* = wider interval, all else equal — a trade-off between certainty and precision.
+
+## Factoring in the sample size
+- The relationship between margin of error and sample size follows the same 1/√n pattern as Chapter 12: quadrupling sample size halves the margin of error (and thus the interval width), holding confidence level constant.
+
+## Counting on population variability
+- More variable populations (larger standard deviation) require larger margins of error / wider intervals to achieve the same confidence level, holding sample size constant.
+
+## Calculating a confidence interval for a population mean
+- **Case 1: population standard deviation is known** — use the Z-distribution: CI = x̄ ± z* × (σ/√n).
+- **Case 2: population standard deviation is unknown and/or sample size is small** — use the t-distribution (Chapter 10): CI = x̄ ± t* × (s/√n), using degrees of freedom = n−1 and the sample standard deviation s.
+
+## Figuring out what sample size you need
+- To achieve a target margin of error, you can algebraically solve the margin-of-error formula for n, giving the minimum required sample size — useful for planning a study before collecting data.
+
+## Determining the confidence interval for one population proportion
+- Formula: CI = p̂ ± z* × √(p̂(1−p̂)/n), analogous to the mean case but using sample proportion instead of sample mean.
+
+## Creating a confidence interval for the difference of two means
+- **Case 1: population standard deviations are known** — CI for (μ1 − μ2) uses a formula combining both populations' standard deviations and sample sizes, with a z*-value.
+- Used to compare two groups (e.g. two treatments) by seeing whether the interval for their mean difference includes zero (no difference) or not.
+
+## Estimating the difference of two proportions
+- **Case 2: population standard deviations are unknown and/or sample sizes are small** — the analogous formula uses sample standard deviations and (commonly) a t*-value with an approximated degrees-of-freedom.
+- Similarly, a confidence interval for the difference of two proportions (p1 − p2) can be constructed using both samples' proportions and sizes with a z*-value, useful for comparing rates between two groups.
+
+## Spotting misleading confidence intervals
+- Checklist for evaluating a reported confidence interval:
+  - Is the margin of error/confidence level actually reported, not just a point estimate?
+  - Is the sample size adequate and the sampling method sound (not just self-selected)?
+  - Was the appropriate distribution (Z vs t) and formula used given whether population variability is known?
+  - Beware of confidence intervals reported without any indication of methodology, which could hide bias unrelated to the sampling error the interval accounts for.
+
+## Key takeaways
+- A confidence interval = point estimate ± margin of error, and communicates uncertainty better than a single number.
+- Interval width depends on confidence level (higher = wider), variability (more = wider), and sample size (larger = narrower, via 1/√n).
+- Use Z-based formulas when population standard deviation is known, t-based formulas when it's unknown/estimated from a small sample.
+- The same logic (point estimate ± margin of error using an appropriate distribution) extends to differences between two means or two proportions.
+- A stated confidence level describes the reliability of the *method* over repeated sampling, not the probability that one specific interval contains the true value.
+
+---
+
