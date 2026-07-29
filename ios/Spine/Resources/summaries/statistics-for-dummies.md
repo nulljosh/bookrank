@@ -1327,3 +1327,65 @@ A "Part of Tens" chapter: ten tips for spotting common statistical mistakes made
 
 ---
 
+# Chapter 21: Ten Surefire Exam Score Boosters
+
+## Overview
+A "Part of Tens" chapter of exam-taking strategies, drawn from the author's experience teaching 40,000+ statistics students. These strategies aren't about knowing more material, but about handling problems more effectively and making fewer careless mistakes.
+
+## Know what you don't know, and then do something about it
+- Being aware of what you know versus don't know is a tough but essential skill — students often only discover gaps in understanding while doing homework, and it's better to find and fix mistakes before the exam than during it.
+- Strategy: go through lecture notes, place stars by items you don't understand ("yeah-yeah trap" candidates), test yourself by writing out problem lists (without solutions) to solve fresh, and bring a targeted list of questions to office hours with your professor rather than leaving them unresolved.
+- All-purpose class advice: attend every class, don't just copy down what the professor writes (also write down verbal explanations/context), do practice problems while material is fresh rather than cramming, get to know your professor (helps with feedback and confidence), and invest in basic supplies (calculator, mechanical pencil, eraser, hole punch) rather than scrambling last-minute.
+
+## Avoid "yeah-yeah" traps
+- A **yeah-yeah trap** is when you read through material and think "yeah, I get this" but haven't actually solved the problems yourself — creating false confidence that fails on the actual exam.
+- **Yeah-yeah trap #1**: passively re-reading notes/solutions repeatedly ("I understand that," "okay, I can do that") without ever solving a problem from scratch — when exam time comes, you find you can't reproduce the steps alone.
+  - Fix: pull out example problems (just the problem, not the solution), shuffle them, and solve each one from scratch under timed conditions, checking answers only after attempting.
+- **Yeah-yeah trap #2**: doing all the homework problems correctly, but only after peeking at the (nearby) solution the moment you get stuck — creating an illusion of mastery since you never fully finished a problem unaided.
+  - Fix: simulate real exam conditions — study until ready, then sit for a self-made practice test using only allowed materials (calculator, pencil, and optionally a review/cheat sheet if your class permits one), time yourself, then grade honestly against solutions afterward. If you couldn't solve something alone, be honest with yourself that you'd have earned zero credit on the real exam, and go figure out the gap before the actual test.
+
+## Make friends with formulas
+- Discomfort with formulas is common but formulas are unavoidable in statistics — better to get comfortable with them from the start.
+- A formula encodes the "big picture" logic of a calculation (e.g. the standard deviation formula shows you're measuring average distance of data points from the mean, using squared differences to avoid positive/negative cancellation, then dividing by n−1 and taking a square root to return to original units).
+- Tips: get into the right mindset (formulas are just shorthand, not scary), understand every symbol/part of each formula, practice using formulas from day one (don't defer), and whenever you use a formula on a practice problem, write it down first, then plug in numbers (build the habit early so it's automatic on the actual exam, since you may get partial credit for showing the correct formula even with an arithmetic slip).
+
+## Make an "if-then-how" chart
+- An **if-then-how chart** organizes problem types for quick reference: the **if** column states in your own words what the problem is asking (e.g. "test a claim about the population mean"); the **then** column states the exact statistical procedure/technique to use (e.g. "hypothesis test for μ"); the **how** column gives the actual formula or example.
+- This chart should be built from your own lecture notes and textbook examples, since problems are worded differently across courses/textbooks even when they reduce to the same underlying technique.
+- Photo/table: worked if-then-how chart entry — If: "Estimate the population mean (also known as range of likely values)"; Then: "CI for μ"; How: the confidence-interval formula x̄ ± z*(σ/√n).
+- Customize the chart to your own class — it should cover every problem type/scenario you're likely to encounter, and only needs to be detailed enough that you (or a study partner) can follow it.
+- Putting your if-then-how chart on one side of an exam review/cheat sheet (if allowed) while writing lecture-specific info you didn't memorize on the other side maximizes its usefulness.
+
+## Figure out what the question is asking
+- Many students struggle simply because they don't understand what a problem is asking for — often the "million dollar question" is embedded in specific wording (e.g. what does "interpret" a statistical result actually mean?).
+- Worked example: given computer output with a correlation of −0.85 between number of police officers and number of crimes, "interpreting" it means translating it into a plain-English statement like "there's a strong negative linear relationship — as police officers increase, crimes decrease."
+- Tips: read the very last sentence of the problem first (often where the actual question is located), practice identifying question patterns from homework/lecture examples ahead of time, ask your professor what clues to look for in framing "big picture" problems, and translate problem wording into the correct statistical statement (labeling not just what's given, but what's being asked for) — e.g. "20 percent of students get an A" translates to "find the cutoff score for the 80th percentile."
+
+## Label what you're given
+- Many students try to solve problems by pushing around given numbers without labeling what each one represents — this works on easy problems but breaks down on harder multi-step ones.
+- Worked example: a house-price prediction problem gives sample size (100), mean/SD of house size, mean/SD of price, and the correlation between them — labeling each value (x̄=1,993 sq ft, ȳ=210.1 thousand, sₓ=349, sy=60.1, r=0.90, n=100) up front makes it clear which regression/correlation formula (Chapter 18) to apply.
+- Benefits of labeling: makes it easier to check your work later, impresses your professor (partial-credit signal that you understand what values represent), saves time by letting you quickly locate exactly the values a formula needs (e.g. plugging x̄, z*, σ, n straight into a confidence-interval formula without re-deriving what each symbol means), keeps you organized under exam anxiety, helps you pick the right formula/technique in the first place, and reduces number-pushing errors.
+
+## Draw a picture
+- "A picture is worth a thousand points" — when a problem gives numerical information (e.g. a normal distribution with mean 75, SD 5), sketching a bell curve marking the mean and standard deviations helps visualize the scenario, figure out what you're solving for (e.g. shading the area representing a probability), and catch errors (e.g. avoid computing P(X<70) when the problem actually needs P(X>70)).
+- Drawing a picture is a small time investment that pays off by keeping you focused on the right question and often lets you visually confirm or catch an error in your final numeric answer. Practice drawing pictures during study sessions so it becomes automatic during the real exam.
+
+## Make the connection and solve the problem
+- Once the question is correctly identified and given values are labeled/drawn, actually solving becomes the easy final step — recalling the specific technique/formula from your if-then-how chart or class examples.
+- Breaking a problem into these smaller labeled steps reduces cognitive load during a stressful exam ("How do you eat an elephant? One bite at a time").
+- Worked example: continuing the house-price regression problem — using the labeled values (x̄, sₓ, ȳ, sy, r) with the slope/intercept formulas from Chapter 18 (b = r·sy/sₓ, a = ȳ − b·x̄) to compute slope 0.155 and intercept −89.82, giving the regression equation ŷ = −89.82 + 0.155x.
+
+## Do the math — twice
+- The author recounts a personal high-school algebra habit of mis-copying "3 times 2" as "5" repeatedly, causing careless point losses — the fix was to redo every problem step-by-step from scratch rather than just scanning back over the same work.
+- This "look with fresh eyes, as if grading someone else's paper" approach catches more mistakes than simply re-checking the same steps, since skipping a step during a re-check often just repeats the original error blind spot. The author cites checking work this way as directly improving exam grades ("measure twice, cut once").
+
+## Analyze your answers
+- Sanity-check your final answer against what's mathematically possible: a probability, or a correlation, must fall between certain bounds (e.g. probabilities between 0 and 1; correlations between −1 and +1) — a nonsensical result (like a "probability" of 10,524.31, an anecdote from the author's teaching, or a correlation of −121.23) signals a clear arithmetic/setup error, not a legitimate answer, even under exam time pressure.
+- If you get a clearly-impossible answer but run out of time to find the error, at minimum write a note in the margin acknowledging the result can't be right — this can earn partial credit and shows self-awareness rather than blind acceptance of a broken answer.
+- A framed exam page hangs in a prominent statistician's office showing a "probability" they once wrote between 0 and 1 that was actually negative — a personal reminder to always step back and ask "does this answer even make sense?" before moving to the next problem.
+
+## Key takeaways
+- Exam success in statistics comes from process discipline more than raw memorization: know your gaps, avoid false-confidence "yeah-yeah" traps by practicing under real exam conditions, get fluent with formulas, build a personal if-then-how reference chart, correctly parse what each question is really asking, label all given values, sketch a picture when helpful, solve methodically, double-check your arithmetic with fresh eyes, and finally sanity-check that your answer falls within the mathematically possible range for that type of statistic.
+
+---
+
