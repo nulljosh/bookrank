@@ -437,3 +437,57 @@ Covers data displays used for **numerical data** (counts and measurements, e.g. 
 
 ---
 
+# Chapter 8: Random Variables and the Binomial Distribution
+
+## Overview
+Scientists build models of random phenomena (hurricane landfall, accident counts, population changes) using **random variables** — characteristics that take on values according to some probabilistic pattern. This chapter covers random variables generally, then focuses on one of the most common types: the binomial.
+
+## Defining a random variable
+- A **random variable** is a characteristic, measurement, or count that changes randomly according to some probability distribution.
+- **Discrete versus continuous**:
+  - **Discrete random variable**: takes on a countable set of values (e.g. 0, 1, 2, 3… number of dogs owned).
+  - **Continuous random variable**: can take any value within a range/interval (e.g. height, weight, time) — infinite possible values.
+
+## Probability distributions
+- A **probability distribution** lists all possible outcomes of a random variable along with each outcome's probability.
+- Photo/table: probability distribution for "number of dogs owned by apartment renters," showing X values (0–4) and their probabilities (e.g. 0.42, 0.31, 0.16, 0.07, 0.03), summing to 1.
+
+## The mean and variance of a discrete random variable
+- The **mean (expected value)** of a random variable is the long-run average value if the random process were repeated many times, calculated as the sum of each value times its probability.
+- The **variance** of a random variable measures the spread of its distribution around the mean, similarly calculated using each value's probability.
+
+## Identifying a binomial random variable
+- A **binomial random variable** counts the number of successes in a fixed number of independent trials, each with the same probability of success.
+- **Checking binomial conditions step-by-step**:
+  1. Is there a fixed number of trials (n)?
+  2. Are the trials independent (outcome of one doesn't affect another)?
+  3. Is the probability of success the same for each trial (p)?
+  4. Does each trial have only two possible outcomes (success/failure)?
+- If any condition fails, the variable isn't truly binomial.
+
+## Trials are not independent (a caution)
+- Example: drawing people without replacement from a small population changes the probability of success on each subsequent draw (unlike a coin flip), so it violates the independence condition unless the population is large relative to the sample or draws are done with replacement.
+
+## Finding binomial probabilities using a formula
+- The **binomial probability formula** computes P(X = x) using the number of trials n, probability of success p, and combinations ("n choose x") to count the ways x successes can occur among n trials.
+- Worked example: calculating the probability of getting a specific number of successes (e.g. lights that are red) out of a set number of independent trials.
+
+## Finding binomial probabilities using the binomial table
+- Rather than calculating by formula each time, a **binomial probability table** provides precomputed probabilities for common combinations of n, p, and x.
+- Photo/table: binomial distribution table for n=3, p=0.30 example ("red traffic lights"), listing probability for each possible x value (0 to 3).
+- **Finding probabilities for specific values of X**: read the table row matching n and p, then the column matching the desired x.
+- **Finding probabilities for X greater-than, less-than, or between two values**: sum (or subtract from 1) the relevant individual probabilities from the table to get cumulative or range probabilities.
+
+## Checking out the mean and standard deviation of the binomial
+- For a binomial distribution, the **mean** = n × p, and the **variance** = n × p × (1 − p); the standard deviation is the square root of the variance.
+- These formulas give quick shortcuts for center and spread without needing the full probability distribution.
+
+## Key takeaways
+- Random variables come in two types: discrete (countable outcomes) and continuous (any value in a range).
+- A probability distribution assigns a probability to every possible value of a random variable, and probabilities must sum to 1.
+- The binomial distribution applies when there's a fixed number of independent trials, each with the same two possible outcomes and constant success probability.
+- Binomial probabilities can be found via formula or lookup table; mean = np and variance = np(1-p) give quick summary stats without full computation.
+- Watch for violated independence (e.g. sampling without replacement from a small population) — this breaks the binomial model's assumptions.
+
+---
+
