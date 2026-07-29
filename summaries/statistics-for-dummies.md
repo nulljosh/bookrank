@@ -1050,3 +1050,85 @@ Medical breakthroughs seem to come and go quickly, often overhyped and later dis
 
 ---
 
+# Chapter 18: Looking for Links: Correlation and Regression
+
+## Overview
+Media constantly report links/correlations between variables — some legitimate, some dubious or conflicting. This chapter covers how to picture and quantify relationships between two numerical variables (correlation and linear regression), make predictions, and understand correlation versus causation.
+
+## Picturing a relationship with a scatterplot
+- Bivariate data pairs two variables measured on each observation (e.g. cricket chirp count and temperature).
+- Photo/table: cricket chirps (per 15 seconds) and corresponding temperature (Fahrenheit) — used as the chapter's running example, based on the real "count chirps + 40 to estimate temperature" folklore.
+- A **scatterplot** plots each (X, Y) pair as a point, X on the horizontal axis and Y on the vertical.
+- Photo/figure: scatterplot of cricket chirps (x-axis) vs. temperature (y-axis), showing an upward/positive trend.
+
+## Interpreting a scatterplot
+- Reading left to right: an uphill pattern indicates a **positive relationship** (X increases, Y increases); a downhill pattern indicates a **negative relationship** (X increases, Y decreases); no discernible pattern means no relationship.
+- This chapter focuses on **linear** relationships (points following a line pattern); other patterns (curves, exponential trends) exist but are out of scope.
+- Warning: a scatterplot showing a pattern doesn't automatically mean cause-and-effect — e.g. vitamin C use and fewer colds could be confounded by "health-conscious people" also doing other healthy things (exercise, hand-washing).
+
+## Quantifying linear relationships using the correlation
+- The **correlation coefficient (r)**, specifically the Pearson correlation, measures the strength and direction of a linear relationship between two numerical variables X and Y.
+- Formula: r = (1/(n−1)) × Σ[(x−x̄)(y−ȳ)] / (sₓsy), where x̄, ȳ are sample means and sₓ, sy are sample standard deviations.
+- Steps to calculate r: (1) find mean of X and Y, (2) find standard deviation of X and Y, (3) for each pair, compute (x−x̄)(y−ȳ), (4) sum those products, (5) divide by sₓ·sy, (6) divide by n−1.
+- Worked example dataset (3,2),(3,3),(6,4) yields r = 0.87.
+
+## Interpreting the correlation
+- r always ranges from −1 to +1. Rough interpretation scale (rule of thumb): exactly −1 = perfect downhill; −0.70 = strong downhill; −0.50 = moderate downhill; −0.30 = weak downhill; 0 = no linear relationship; +0.30 = weak uphill; +0.50 = moderate uphill; +0.70 = strong uphill; +1 = perfect uphill.
+- A correlation near 0 doesn't necessarily mean no relationship at all — it could mean no *linear* relationship exists, while a strong curved (nonlinear) relationship is present; scatterplot inspection is essential since correlation only captures linear association.
+- A correlation of −1 is NOT "bad" — it represents the strongest possible linear relationship, just in the negative/downhill direction; the sign indicates direction, magnitude indicates strength.
+- Most statisticians want correlations beyond about ±0.5 before getting confident about a relationship; real data rarely reaches ±1.
+
+## Examining properties of the correlation
+- Photo/figure: four scatterplots (a, b, c, d) with correlations +1.00, −0.50, +0.85, and +0.15 respectively, illustrating how scatter tightness relates to |r|.
+- Key properties: (1) r is always between −1 and +1; (2) r is unit-independent — changing units (e.g. Fahrenheit to Celsius) doesn't change r; (3) r is symmetric — switching which variable is X vs Y doesn't change r's value.
+
+## Working with linear regression
+- Once a moderate-to-strong linear correlation is established (rule of thumb: |r| ≥ 0.50 or so), you can fit a **regression line** to predict Y from a given X value.
+- Warning: don't run a regression analysis without at least a moderately strong correlation first — a weak/near-zero correlation makes predictions from a fitted line meaningless.
+
+## Figuring out which variable is X and which is Y
+- X is the **explanatory variable** (predictor, independent variable) you plug in; Y is the **response variable** (dependent variable) you're predicting. For correlation the choice doesn't matter, but for regression it does — X should be the variable you can measure/know, Y the one you want to predict.
+
+## Checking the conditions
+- Before making regression predictions, verify: (1) the scatterplot shows a roughly linear pattern, (2) the correlation is at least moderate to strong (typically beyond ±0.50).
+- If the correlation is high but the scatterplot shows an actual curve, predictions using a straight line are invalid — a nonlinear model would be needed instead (out of scope here).
+
+## Calculating the regression line
+- The **best-fitting line** (regression/least-squares line) has the equation y = mx + b, where m is the slope and b is the y-intercept, chosen to minimize the **sum of squares for error (SSE)** — the sum of squared vertical distances from each data point to the line.
+- "Big five" summary statistics needed: mean of X, mean of Y, standard deviation of X, standard deviation of Y, and correlation (r).
+
+## Finding the slope
+- Formula: m = r × (sy/sₓ) — multiply the correlation by the ratio of Y's standard deviation to X's standard deviation.
+- A negative slope means a negative correlation (line goes downhill) — e.g. more police officers correlating with fewer crimes gives a negative slope.
+
+## Finding the y-intercept
+- Formula: b = ȳ − m·x̄ — always calculate the slope first, since the y-intercept formula requires it.
+
+## Interpreting the regression line
+- **Interpreting the slope**: "rise over run" — for slope=2, every 1-unit increase in X corresponds to a 2-unit increase in (predicted) Y. Always attach proper units to slope interpretation (e.g. "systolic blood pressure decreases by 2.5 mmHg per 1 mg increase in drug dosage").
+- **Interpreting the y-intercept**: the predicted Y value when X = 0 — sometimes meaningful (e.g. predicted coffee sales at 0°F), sometimes not interpretable if X=0 is outside the realistic/observed data range (e.g. a negative predicted corn yield, or a not-taken exam implying a meaningless "Midterm 2 score" prediction).
+
+## Putting it all together: the regression line for the crickets
+- Photo/table: "Big Five" statistics for the cricket data (mean chirps x̄=26.5, sₓ=7.4; mean temp ȳ=67, sy=6.8; r=+0.98).
+- Worked calculation: slope m = 0.98×(6.8/7.4) = 0.90 (temperature rises ~0.90°F per additional chirp per 15 sec, or 9°F per 10 more chirps); y-intercept b = 67 − 0.90×26.5 = 43.15, giving regression equation ŷ = 0.90x + 43.15.
+- The y-intercept (43.15°F at zero chirps) isn't interpretable here since no data was collected near x=0 (crickets don't chirp that slowly, if at all, in that range).
+
+## Making proper predictions
+- To predict Y for a given X, plug X into the fitted equation y = mx + b (e.g. counting 35 chirps in 15 seconds predicts a temperature of 74.7°F using the cricket equation).
+- **Extrapolation** — plugging in X values outside the range of the original data — is risky/invalid, since there's no evidence the linear relationship holds outside the observed range (e.g. can't reliably predict temperature from cricket chirps below/above the range actually recorded).
+- **Outliers** are points that fall far from the overall pattern; a **residual** is the numerical difference between a predicted Y and the actual observed Y for a data point — large residuals are worth investigating as possible data errors or points of special interest.
+
+## Explaining the relationship: correlation versus cause and effect
+- A **cause-and-effect relationship** exists only when a change in X actually causes the change in Y (not just correlates with it).
+- Example: a well-controlled drug-dosage experiment (Chapter 17) found a strong, believable downhill correlation between drug dosage and blood pressure — since it was a controlled experiment (ruling out confounders), the cause-and-effect conclusion is valid.
+- Counter-example: ice cream sales and murder rates in NYC show a strong positive correlation, but this is due to a **confounding variable** (temperature) affecting both — no one believes ice cream causes murders.
+- Whether a correlation reflects true causation depends entirely on how the underlying study was conducted (controlled experiment vs. mere observation, per Chapter 17) — a chart or correlation alone never proves causation; always dig into study design before accepting cause-and-effect claims.
+- Example: "doctors who spend more time with patients get fewer lawsuits" is often reported causally, but the direction may be reversed or confounded — doctors who already have fewer malpractice issues may simply have more free time to spend with patients, not the other way around; forcing more patient time onto a "bad" doctor wouldn't necessarily reduce lawsuits.
+
+## Key takeaways
+- Correlation (r) measures strength/direction of a *linear* relationship only, ranges −1 to +1, and is unaffected by units or which variable is X vs Y.
+- Regression (y = mx + b) lets you predict Y from X once a moderate-to-strong linear correlation and roughly linear scatterplot are confirmed — never extrapolate beyond the observed X range.
+- Correlation is not causation — a cause-and-effect claim requires a well-designed controlled experiment (Chapter 17), not just a strong correlation or scatterplot pattern, since confounding variables can produce strong spurious correlations.
+
+---
+
