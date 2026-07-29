@@ -642,3 +642,47 @@ Sample results vary from sample to sample — statistics should include a measur
 
 ---
 
+# Chapter 12: Leaving Room for a Margin of Error
+
+## Overview
+Good survey/experiment research includes a measure of how accurate results are — the **margin of error (MOE)**, which measures how close a sample statistic is expected to be to the true population parameter. This chapter examines what MOE means, doesn't mean, and the surprising effect of sample size.
+
+## Seeing the importance of that plus or minus
+- MOE is a range around a survey result (e.g. "42% ± 3%") that indicates the amount of expected sampling error.
+- Media often report a percentage without acknowledging the MOE, which can mislead readers into treating point estimates as more precise than they are.
+
+## Finding the margin of error: a general formula
+- The general **margin of error formula** for a proportion: MOE = z* × √(p̂(1−p̂)/n), where z* is the critical value for the desired confidence level (e.g. 1.96 for 95% confidence), p̂ is the sample proportion, and n is sample size.
+- Photo/table: z*-values for selected confidence levels (e.g. 90% → 1.645, 95% → 1.96, 98% → 2.33, 99% → 2.576).
+
+## Calculating margin of error for a sample proportion
+- Steps: (1) find the sample size n, (2) find the sample proportion p̂, (3) find the appropriate z* for the desired confidence level, (4) multiply z* by the standard error √(p̂(1−p̂)/n) to get the MOE.
+- Worked example demonstrating the calculation with actual poll numbers, arriving at a specific MOE percentage.
+
+## Reporting results
+- A properly reported survey result states both the point estimate and its margin of error at a stated confidence level (e.g. "38% ± 4%, with 95% confidence") — omitting either piece loses important context.
+- Changing the confidence level changes the MOE: higher confidence (e.g. 99% vs 95%) requires a wider margin of error to maintain that higher confidence.
+
+## Calculating margin of error for a sample mean
+- Similarly, MOE for a sample mean = z* × (σ/√n) [or using t* and sample standard deviation when σ is unknown, per Chapter 10].
+
+## Determining the impact of sample size
+- Sample size and margin of error have an inverse-square-root relationship: to cut the MOE in half, you need roughly 4 times the sample size (since MOE scales with 1/√n).
+- Photo/figure: table/discussion showing how MOE shrinks as sample size grows, with diminishing returns — going from a small to a moderate sample shrinks MOE a lot, but going from a large to a much larger sample only shrinks it a little more.
+
+## Bigger sample size, margin of error, and being confident
+- **Sample size and margin of error**: national polls surveying only ~1,000 people can still achieve a small MOE (around ±3%) due to this square-root relationship — a "surprisingly small" sample can represent a huge population reasonably well if collected correctly.
+- **Bigger isn't always (that much) better**: dramatically increasing sample size beyond a certain point yields only marginal MOE improvements, so there are diminishing returns to over-sampling — cost/effort of a much larger survey often isn't justified by the small MOE gain.
+
+## Keeping margin of error in perspective
+- MOE only accounts for **random sampling error** — it does NOT measure or account for other sources of error like bad question wording, non-response bias, or coverage errors (e.g. missing people without landline/phone access).
+- Even a highly reputable, well-designed poll can have real inaccuracies that the margin of error doesn't capture, because MOE only reflects the mathematical uncertainty from random sampling, not the many other practical/methodological issues that can creep into data collection.
+
+## Key takeaways
+- Margin of error quantifies random sampling uncertainty around a sample statistic, at a stated confidence level — always report both together.
+- MOE shrinks with the square root of sample size: quadrupling sample size only halves the MOE, so oversampling has diminishing returns.
+- A modest, well-designed sample (~1,000 people) can represent a huge population with a small margin of error.
+- MOE does NOT capture non-sampling errors like biased question wording, non-response, or coverage gaps — a small MOE doesn't guarantee an accurate survey overall.
+
+---
+
