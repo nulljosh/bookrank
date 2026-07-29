@@ -27,7 +27,7 @@ Open `index.html` in your browser to view the interactive rankings with a beauti
 
 ## iOS App
 
-`ios/Spine` (ASC record: **Spinework**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
+`ios/Spine` (ASC record: **Uprighty**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
 
 <img src="ios/screenshots/library.jpg" width="240">
 
