@@ -4,12 +4,7 @@
 - [ ] Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned — no photos captured, book no longer in hand. Skip it unless re-borrowed.
 
 ## In progress — chapter summaries (2026-07-28)
-- [x] Sobriety For Dummies: COMPLETE 2026-07-28 — ch. 12-15 (career, long-term sobriety, lifestyle, mindfulness/MBSR) summarized inline, 52 HEICs deleted, book-level summary re-merged, synced to spine repo (web + ios/Spine/Resources/summaries/), committed + pushed (367a67e). All chapters (intro, 1-17) now done.
-- [x] Statistics For Dummies: COMPLETE 2026-07-28 — all chapters (intro, 1-21) + appendix summarized, 254 HEICs deleted, merged into statistics-for-dummies-summary.md, synced web+ios, badge added to index.html, commits through 4285779. Zero raw HEICs remain anywhere in the iCloud Books folder as of this run. in `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/for dummies/statistics/<N>/`. Per-chapter counts: 3:6, 4:12, 5:13, 6:7, 7:13, 8:7, 9:8, 10:4, 11:9, 12:7, 13:11, 14:13, 15:9, 16:17, 17:18, 18:17, 19:22, 20:13, 21:15, Remainder 6. No repo badge yet in index.html — add once all chapters done (matches Sobriety pattern: badge went in after full completion). Stopped this run at session usage 70% (per user: pad to ~75%, don't run to 80%). Resume with next chapter (3), same inline single-pass method (sips -Z700 q50 → Read batches of ~8-9 → write summary.md → rm HEICs → re-merge → sync-summaries.sh → commit).
-- [x] Good Feng Shui by Eva Wong: COMPLETE 2026-07-28 — all seven chapters (Intro, 1, 3–5, 6–8, 9, 10, 11 from hardcover edition) summarized, good-feng-shui-summary.md created, synced web+ios, badge added to index.html, commit 0acfc25. All 62 HEICs from this book deleted. With this book complete, the entire Spine project backlog is now clear: every book photographed is summarized, every chapter condensed, every raw HEIC purged from iCloud, and all content live on web and iOS.
-- [x] Stray single-image folders — RESOLVED 2026-07-28: all three were cover photos only, no pages scanned. Covers deleted; books logged below as not-yet-photographed:
 - [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
-- [x] IBS For Dummies: COMPLETE 2026-07-28 — all chapters through ch. 23 summarized, HEICs cleared
 
 ### Remaining-work count (as of 2026-07-28 night)
 **BACKLOG CLEAR.** All photographed books have been summarized and synced. IBS, Sobriety, Statistics, and Good Feng Shui are complete. Every HEIC has been processed and deleted from iCloud. Next entry will arrive when a new book is photographed and added to the queue.
@@ -17,7 +12,6 @@
 ## iOS/Mac app — ASC submission
 Confirmed via `asc apps list` (2026-07-26): the live ASC record is **Spinework** (id `6792376485`, bundle `com.heyitsmejosh.spine`) — this supersedes any older "Spinelist"/"BooksApp"/id `6787499076`/`6787499349` references elsewhere in this repo's docs, which are stale. Version `1.0` (version-id `5a7e626c-8a83-4fde-a1fd-6cb9dc4cc3e2`) is in `PREPARE_FOR_SUBMISSION`.
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
-- [x] Privacy policy URL — privacy.html added, https://spine.heyitsmejosh.com/privacy.html (2026-07-28)
 
 ## Someday / Explore
 - [ ] Once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly roadmap) — first step of syncing several repos together
