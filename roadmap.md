@@ -1,5 +1,8 @@
 # Spine Roadmap
 
+## From Notes (imported 2026-07-28)
+- [ ] Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned — no photos captured, book no longer in hand. Skip it unless re-borrowed.
+
 ## In progress — chapter summaries (2026-07-28)
 - [x] Sobriety For Dummies: COMPLETE 2026-07-28 — ch. 12-15 (career, long-term sobriety, lifestyle, mindfulness/MBSR) summarized inline, 52 HEICs deleted, book-level summary re-merged, synced to spine repo (web + ios/Spine/Resources/summaries/), committed + pushed (367a67e). All chapters (intro, 1-17) now done.
 - [ ] Statistics For Dummies: IN PROGRESS 2026-07-28 — DONE = intro, ch.1, ch.2 (25 HEICs summarized+deleted, merged into statistics-for-dummies-summary.md, synced to spine repo web+ios). REMAINING = ch.3 (6 imgs) through ch.21 (15) + Remainder (6) = ~227 HEICs across 20 folders in `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/for dummies/statistics/<N>/`. Per-chapter counts: 3:6, 4:12, 5:13, 6:7, 7:13, 8:7, 9:8, 10:4, 11:9, 12:7, 13:11, 14:13, 15:9, 16:17, 17:18, 18:17, 19:22, 20:13, 21:15, Remainder 6. No repo badge yet in index.html — add once all chapters done (matches Sobriety pattern: badge went in after full completion). Stopped this run at session usage 70% (per user: pad to ~75%, don't run to 80%). Resume with next chapter (3), same inline single-pass method (sips -Z700 q50 → Read batches of ~8-9 → write summary.md → rm HEICs → re-merge → sync-summaries.sh → commit).
