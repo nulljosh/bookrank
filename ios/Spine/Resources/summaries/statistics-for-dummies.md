@@ -1389,3 +1389,15 @@ A "Part of Tens" chapter of exam-taking strategies, drawn from the author's expe
 
 ---
 
+# Appendix: Tables for Reference
+
+Reference tables for the three distributions used throughout the book: the Z-distribution (standard normal), the t-distribution, and the binomial distribution.
+
+- **The Z-Table**: gives cumulative (less-than-or-equal-to) probabilities p(Z ≤ z) for the standard normal distribution. Usage: find the z-value's leading digit + first decimal in the row, the second decimal in the column, and read the intersection as p(Z ≤ z). Referenced throughout Chapters 9 and 11.
+- **The t-Table**: gives right-tail critical values for the t-distribution, indexed by degrees of freedom (df, rows) and right-tail probability/confidence level (columns). Usage: find df = n−1 in the row, the desired tail probability or confidence level in the column, intersect to get the t* critical value. Referenced in Chapters 10, 13, and 15.
+- **The Binomial Table**: gives p(X=x) for a binomial distribution with n trials and probability of success p. Usage: find n and x in the row headers, p in the column headers, intersect for the probability. Referenced in Chapter 8.
+
+This is a pure lookup appendix (no new concepts) — followed by the book's index (topic list from ACT scores through sampling, alphabetically).
+
+---
+
