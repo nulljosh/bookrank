@@ -193,3 +193,76 @@ Statistics reach the public through a chain:
 
 ---
 
+# Chapter 4: Tools of the Trade
+
+## Overview
+Statistics is a process, not just numbers — this chapter introduces the core vocabulary/jargon statisticians use, so terms like "margin of error" or "confidence interval" become meaningful rather than buzzwords.
+
+## The process of statistics
+1. Formulate the question(s) to be studied.
+2. Determine the relevant population.
+3. Collect the data (representative sample of the population).
+4. Analyze the data.
+5. Draw conclusions.
+
+## Basic statistical jargon
+
+**Data set / Data** — the actual collection of information gathered (numbers, categories, measurements). Data can be:
+- **Categorical** — labels/categories (e.g. male/female, eye color).
+- **Numerical** — quantities (e.g. weight, height, count).
+
+**Population** — the entire group you want to study/draw conclusions about.
+
+**Variable** — a characteristic being measured that can differ from individual to individual (e.g. age, income).
+
+## Sampling
+- **Sample** — a subset of the population actually collected/measured, used to make inferences about the whole population, since studying an entire population is usually impractical.
+- **Random sample** — one where every member of the population has an equal chance of being selected — key to avoiding bias.
+- Non-random/self-selected samples (e.g. call-in polls, online voluntary surveys) are prone to bias because the people who respond aren't representative of the whole population.
+
+## Key statistical measures
+- **Statistic** — a number computed from sample data (e.g. sample mean).
+- **Parameter** — a number describing an entire population (usually unknown, estimated via a statistic).
+- **Mean (average)** — sum of all values divided by count.
+- **Median** — middle value when data is ordered; more resistant to outliers/skew than the mean.
+- **Standard deviation** — average distance data points are from the mean; measures spread/variability.
+- **Percentile** — the point below which a given percentage of data falls.
+- **Standard score (z-score)** — how many standard deviations a value is from the mean; lets you compare values from different distributions on a common scale.
+
+## Distribution and normal distribution
+- A **distribution** describes how data values are spread out.
+- The **normal distribution** ("bell curve") is symmetric around the mean; described fully by its mean and standard deviation.
+- Photo/figure: standard normal (z) distribution bell curve, labeled with mean 0 and standard deviation 1, showing the symmetric bell shape.
+- **Central Limit Theorem**: for a sufficiently large sample size, the distribution of sample means approaches a normal distribution regardless of the shape of the underlying population distribution — the basis for much of inferential statistics.
+
+## Experiments and comparison
+- **Treatment group vs. control group**: the treatment group receives the intervention being tested; the control group doesn't, so results can be compared.
+- **Placebo** — a fake/inactive treatment given to the control group so the comparison isolates the effect of the actual treatment from psychological/expectation effects.
+- **Blind and double-blind studies**: in a blind study, participants don't know which group (treatment/control) they're in; in double-blind, neither participants nor researchers know, to prevent bias from influencing results or their interpretation.
+
+## Surveys and margin of error
+- **Survey (poll)** — collecting data by asking people questions, often to estimate opinions across a population.
+- **Margin of error** — a range added/subtracted around a survey result to account for sampling variability; smaller sample sizes and higher variability mean a larger margin of error.
+- **Confidence interval** — a range of values, with an associated confidence level (e.g. 95%), believed to contain the true population parameter.
+
+## Hypothesis testing
+- **Hypothesis testing** — a formal statistical procedure to determine whether a claim about a population is supported by sample data.
+- **p-value** — the probability of observing a result as extreme as the sample data, assuming the null hypothesis (no effect/no difference) is true. A small p-value (conventionally <0.05) is taken as evidence against the null hypothesis.
+- **Statistical significance** — when a result's p-value is small enough to reject the null hypothesis; but statistically significant doesn't necessarily mean practically/clinically important.
+
+## Correlation versus causation
+- **Correlation** — a statistical relationship where two variables move together (positively or negatively), measured by a correlation coefficient.
+- Correlation does NOT imply causation — the chapter uses the classic example of ice cream sales and murder rates both correlating with temperature (a confounding variable), not with each other causally.
+- To establish causation, a well-designed controlled experiment is generally needed (referenced as covered in later chapters), and results should be independently replicated before jumping to cause-and-effect conclusions.
+
+## Key takeaways
+- Statistics is a full process (question → population → sample → analysis → conclusion), not just crunching numbers.
+- Random sampling is essential to avoid bias; non-random samples can badly skew results.
+- Mean, median, standard deviation, percentile, and z-score are the basic toolkit for describing data.
+- The normal distribution and Central Limit Theorem underpin most statistical inference.
+- Blind/double-blind designs and control groups guard against bias in experiments.
+- p-values and confidence intervals quantify uncertainty — but statistical significance is not the same as real-world importance.
+- Correlation is not causation; watch for confounding variables and demand replication before accepting causal claims.
+
+---
+
