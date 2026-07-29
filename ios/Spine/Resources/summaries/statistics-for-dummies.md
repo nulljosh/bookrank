@@ -139,3 +139,57 @@ Example: box office statistics (opening weekend gross, per-theater average) illu
 - A statistic reported without context (sample size, denominator, time frame, methodology) can be misleading even if technically accurate.
 - Media often omits key context (this chapter's recurring theme) — readers/statisticians need to actively ask "compared to what?" and "how was this measured?" before accepting a number's implied conclusion.
 - Rates/percentages require appropriate denominators to be meaningful; raw counts alone rarely tell the full story.
+
+---
+
+# Chapter 3: Taking Control: So Many Numbers, So Little Time
+
+## Overview
+This chapter is about developing healthy skepticism toward statistics you encounter in daily life — not radical doubt ("I can't believe anything"), but critical questioning ("I wonder where that number came from?").
+
+## The chain of statistical information
+Statistics reach the public through a chain:
+1. **Original sources** — researchers, pollsters, doctors, marketing researchers, government scientists who generate results.
+2. **Media sources** — journalists/reporters who hunt press releases and journal articles, then report on them (often simplifying or sensationalizing).
+3. **The public** — receives the final, filtered version, often stripped of context, caveats, or methodology.
+
+## Detecting errors, exaggerations, and plain lies
+- Statistics go wrong at every stage: honest error, sloppy research, media exaggeration, or deliberate deception.
+- Media incentives push toward sensational, headline-worthy claims rather than accurate, hedged ones.
+- **Checking the math**: readers should do a plausibility gut-check on numbers before accepting them.
+
+## Breaking down statistical debates
+- Table 3-1 example: crime rate statistics in the U.S. showing estimated population size and crime rate per 100,000 people across a range of years — used to illustrate how the same underlying numbers can be presented differently to support opposing narratives (e.g. "crime is rising" vs "crime is falling") depending on which stats/years are cherry-picked.
+- Debates over crime statistics (or any contested topic) often hinge on which time frame, population subgroup, or rate calculation is chosen.
+
+## Uncovering misleading statistics
+- Media reports frequently omit sample size, margin of error, and methodology.
+- Example: tornado statistics — comparing raw counts of tornadoes across decades can mislead because detection technology (Doppler radar) has improved, so more tornadoes are *counted* now, not necessarily more *occurring*.
+
+## Zeroing in on what the scale tells you
+- **Figure 3-1 / Table 3-2**: Pick 3 lottery numbers-drawn example — a bar chart of "Number of Times Drawn" per digit (0–9) looks dramatically different depending on whether the y-axis starts at zero or is truncated/zoomed in.
+  - Chart with full scale (0 to max): differences look minor/negligible.
+  - Chart with a zoomed/truncated scale: the same data looks like huge disparities exist.
+  - Lesson: always check the axis scale before concluding a "big difference" is meaningful — truncated axes are a classic way charts mislead even with truthful data.
+
+## Checking your sources
+- **Counting on sample size**: small sample sizes make it easy to get a fluke result; always ask how many people/observations a statistic is based on.
+- **Finding what you want to find**: survey question wording and answer options can be designed to nudge respondents toward a desired result (e.g. loaded questions, limited answer choices).
+- **Considering cause and effect**: a correlation reported in media (e.g. a study linking two things) is often mistakenly reported as causation. The text lists checklist-style questions for evaluating a study:
+  - Was the sample randomly selected and reasonably sized?
+  - Were results independently replicated?
+  - Does the study support a causal claim or only a correlational one?
+  - Is the funding source/researcher potentially biased?
+
+## Feeling the impact of misleading statistics
+- Poor understanding of statistics leads to bad decisions in personal life (health, finance, risk assessment) because people over- or under-react to numbers reported out of context.
+- **Looking for lies in all the right places**: chapter closes with a checklist of red flags to watch for when evaluating any statistic reported in media — vague sourcing, no sample size given, alarming language without numbers, cherry-picked timeframes, and truncated/misleading chart scales.
+
+## Key takeaways
+- Every statistic passes through a chain (source → media → reader) where distortion can creep in at each link.
+- Truncated or zoomed axes are one of the most common ways honest data is made to look more dramatic than it is.
+- Always ask: sample size, source, funding, and whether correlation is being sold as causation.
+- Healthy skepticism = verify before believing, not blanket disbelief.
+
+---
+
