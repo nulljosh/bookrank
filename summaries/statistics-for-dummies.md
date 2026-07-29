@@ -331,3 +331,44 @@ Every data set has a story; descriptive statistics summarize and describe a char
 
 ---
 
+# Chapter 6: Getting the Picture: Graphing Categorical Data
+
+## Overview
+Charts and graphs are everywhere (elections, stock market, polls), but not all are accurate or honest — some mislead intentionally or by accident. This chapter covers reading and evaluating graphs for **categorical data** (data placing individuals into groups, e.g. gender, opinion, medication status) — numerical-data graphs are covered in Chapter 7.
+
+## Pie charts
+- A **pie chart** breaks a whole (100%) into wedge-shaped slices representing each category's share.
+- Photo/figure: pie chart of "My Pie Chart" personal expense breakdown (housing, transportation, food, etc. as percentages).
+- Photo/figure: pie chart of Ohio Lottery revenue sources (Instant Games, Scratch-off, Pick 3, Pick 4, Lotto, Keno) with percentage labels.
+- Photo/figure: pie chart of a state lottery's weekly ticket sales percentage by day.
+- **Ordering takeout / evaluating a pie chart** checklist:
+  - Check that percentages sum to 100% (or close, accounting for rounding).
+  - Watch for too many small "other" slices that obscure detail.
+  - Be wary of 3D pie charts, which can distort visual proportions of slices.
+
+## Age trend comparison with pie charts
+- Photo/figure: two pie charts comparing U.S. population age-group breakdown between two different years (e.g. 2000 vs 2010), showing the growing share of the 65-and-over population.
+- Side-by-side pie charts are used to show how a categorical breakdown has shifted over time.
+
+## Bar graphs
+- A **bar graph** uses bars (vertical or horizontal) to represent the frequency or percentage in each category — generally easier to compare exact values than a pie chart.
+- Photo/figure: bar graph of household transportation spending, grouped by income bracket.
+- Photo/figure: bar graph of lotto ticket sales and expenditures (sales, prizes, payroll, administrative, operating costs) in dollar amounts.
+- Photo/figure: horizontal bar graph, "Pondering pet peeves" — ranking workplace pet peeves (poor time management, laziness, gossip, etc.) by percent of respondents who selected each.
+- **Tipping the scales on a bar graph**: warns that truncating or manipulating the bar graph's scale can visually exaggerate small differences, similar to how axis truncation misleads in Chapter 3.
+
+## Evaluating a bar graph — checklist
+- Bars representing a numerical variable should be equal in width for fair comparison.
+- Check the scale used on the axis and whether it's an appropriate representation.
+- Recognize that percentages in a bar graph might not sum to 100% if respondents could select multiple categories (multi-select survey questions) — this is normal and not necessarily misleading.
+- Check whether results are shown as percentages (relative frequency) or raw counts (frequency) — note total sample size for context.
+- Horizontal vs vertical bar graphs are equally valid, but always label axes and use appropriate units.
+
+## Key takeaways
+- Pie charts show parts of a whole (should sum to ~100%); bar graphs compare quantities across categories and don't need to sum to 100%.
+- Always check: does the data actually sum to 100% (pie), is the axis scale honest (bar), and are units/sample size given?
+- Multi-select survey data legitimately produces bar graphs whose percentages exceed 100% in total — this isn't automatically a red flag.
+- 3D pie charts and truncated bar-graph axes are common ways charts distort perception even with truthful underlying data.
+
+---
+
