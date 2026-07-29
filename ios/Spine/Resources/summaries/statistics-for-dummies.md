@@ -1248,3 +1248,82 @@ Categorical variables place individuals into groups (yes/no, party affiliation, 
 
 ---
 
+# Chapter 20: Ten Tips for the Statistically Savvy Sleuth
+
+## Overview
+A "Part of Tens" chapter: ten tips for spotting common statistical mistakes made by researchers and media, and for avoiding them yourself.
+
+## Pinpoint misleading graphs
+- Graphs can mislead by mistake or by design; being able to spot problems before drawing conclusions protects you from being taken in.
+- Photo/figure: "Figure 20-1" — four types of graphs (pie chart, bar graph, time chart, histogram) all showing the same underlying voter-opinion dataset, illustrating how the same data looks different across chart types.
+
+### Pie charts
+- Checklist: percentages should sum to ~100%; watch for an oversized "other" category (hides detail); watch for 3D/"exploded" pie charts that distort slice-size perception; check that a reported total sample size exists so you can judge reliability.
+
+### Bar graphs
+- Checklist: check for sample size (sum frequencies, or find n if relative-frequency); check units shown (raw count vs. rate/per-capita); check the axis starting point (non-zero start exaggerates differences); check the axis range (too-wide range can flatten/hide real differences, too-narrow range exaggerates them).
+
+### Time charts
+- A time chart shows how a numerical variable changes over time (stock prices, sales, temperature). Watch the scale on both axes; check whether dollar amounts are adjusted for inflation for fair comparison over time; watch for uneven/unequally-spaced time jumps on the horizontal axis (can misrepresent when data was actually collected) and be skeptical of unexplained trend explanations offered without supporting data.
+
+### Histograms
+- A histogram breaks a numerical variable into groups and shows frequency/relative frequency per group.
+- Checklist: watch the vertical-axis scale for exaggeration; check whether frequencies or relative frequencies are shown (need sample size to know how much data is behind relative frequencies); check the width of horizontal-axis groupings (bars based on small intervals can look choppy/volatile, while large intervals can smooth over real variability).
+
+## Uncover biased data
+- **Bias** is a systematic error that consistently over- or under-estimates the true value (e.g. a ruler that's ½-inch short makes all measurements systematically low).
+- Common sources of biased data: miscalibrated measurement instruments (e.g. a police radar gun reading high), leading/loaded survey question wording (Chapter 16), non-representative samples (e.g. surveying only campus library users), and non-blinded researchers/subjects inadvertently favoring a result (e.g. a drug study where researchers know who got the real drug vs. placebo and unconsciously treat them differently).
+- To spot biased data: ask how participants were selected, how the study was conducted, what treatments/questions were used, whether people involved knew the treatment assignments, and how measurement instruments were calibrated.
+
+## Search for a margin of error
+- Statistical results always carry a **margin of error** (Chapter 12) — this reflects unavoidable sampling error, not necessarily a mistake. Always look for/ask about it when a number is presented (e.g. what % of Americans approve of a policy).
+- If margin of error isn't reported, you can request it or calculate it yourself (formulas in Chapter 13) if given enough other details (sample size, proportions).
+
+## Identify non-random samples
+- A **random sample** gives every population member an equal chance of selection; results should be treated with caution ("a grain of salt") if the sample wasn't selected randomly.
+- Call-in TV polls and self-selected web surveys are NOT random samples and don't represent the broader population.
+- Ethical constraints often prevent fully random subject selection in medical experiments (can't force random strangers into a sleep lab study) — but even without random *selection*, valid results can still come from randomly *assigning* whichever subjects do volunteer into treatment vs. control groups, since that randomization still supports attributing differences to the treatment.
+
+## Sniff out missing sample sizes
+- Both quality AND quantity of data matter for accuracy; small sample sizes make results less reliable/precise, no matter how good the underlying data collection is.
+- Watch for percentages reported without any sample size given (e.g. "4 out of 5 dentists recommend..." could be based on a tiny sample of 5 dentists, not thousands).
+- Caution: don't over-value precision alone — "4 out of 5" (80%) versus "4,000 out of 5,000" (80%) report the same percentage, but the larger sample gives a far more precise/reliable estimate, even though both fractions reduce to the same ratio.
+- Data quality (how well it was collected, per Chapter 16) still matters alongside sample size — a small well-collected random sample can beat a large poorly-collected non-random one.
+- Always look for the sample size before making decisions based on a statistic; if missing from a media report, seek the original study or contact the researcher/journalist.
+
+## Detect misinterpreted correlations
+- **Correlation** (r) is a precise statistical term for the strength/direction of the *linear* relationship between two *numerical* variables only (Chapter 18) — it should never be used to describe a relationship between two categorical variables (like political party and gender), which should instead be called "associated" or "dependent" (Chapter 19).
+- A strong correlation with a scatterplot showing points closely following a line supports using a straight line (linear regression) for predictions; a weak correlation means a linear relationship likely doesn't hold, even if some other (e.g. exponential) relationship exists.
+- Correlation does NOT automatically mean cause and effect — e.g. diet soda drinkers having more acne than others could be coincidence, or could require a well-designed experiment (Chapter 17) to establish causation, since simple observed correlation isn't sufficient evidence.
+
+## Reveal confounding variables
+- A **confounding variable** is an uncontrolled factor not included in a study that could explain (or contribute to) the results.
+- Worked example: a study linking seaweed consumption to longevity failed to control for other lifestyle factors shared by long-lived seaweed-eaters (better diet, more water, more exercise, better sleep) — any of which could be true confounders.
+- The best defense against confounding variables is a well-designed controlled experiment (Chapter 17) with random assignment to treatment/control groups; observational studies (like the seaweed study) can't control for confounding variables and thus provide weaker evidence for cause-and-effect than experiments.
+- When experiments would be unethical (e.g. forcing people to smoke to test lung cancer risk), you must instead rely on accumulated evidence from many different observational studies pointing to the same conclusion.
+
+## Inspect the numbers
+- Just because a statistic appears in the media doesn't mean it's correct — errors happen by mistake or by design. Tips for spotting botched numbers:
+  - **Make sure everything adds up to what's reported** — e.g. pie chart percentages should sum to 100% (within rounding).
+  - **Double-check even the most basic calculations** — e.g. verifying "83.33% in favor" actually equals 7 out of 8 (87.5%, not 83.33%) exposes an inconsistency between the stated fraction and percentage.
+  - **Look for the response rate of a survey** — a low response rate (much less than 50%) means non-respondents' unknown opinions could bias the reported results (Chapter 16).
+  - **Question the type of statistic used** — e.g. reporting raw crime counts instead of crime rate (adjusted for population size) can be misleading, especially when comparing across differently-sized populations.
+- Bottom line: formulas/statistics don't know whether the underlying numbers are correct — only careful questioning by an informed consumer catches errors.
+
+## Report selective reporting
+- **Data snooping / data fishing**: analyzing data repeatedly, in many different ways, until something "statistically significant" turns up by chance, then only reporting that one finding while ignoring all the non-significant analyses that were also tried.
+- Worked example: "Researcher Bob" studies first-graders' interactions daily for a month, running the same analysis repeatedly (day of week, letter of the alphabet, etc.) until he finds one seemingly notable but likely coincidental pattern (kids fighting more on days ending in "y" during a goldfish incident), then issues a misleading press release based on that one cherry-picked, non-repeatable result.
+- Protect against this by finding out how many total analyses/comparisons were run and how many were non-significant, to get the full picture — put a single "significant" result in proper context rather than taking it at face value.
+
+## Expose the anecdote
+- An **anecdote** is a story/result based on a single person's experience — one of the strongest (and least valid) influences on public opinion, precisely because dramatic, sensational, outlier stories make better news than mundane, typical outcomes.
+- Examples given: a lottery winner twice, a cat that learned to ride a bicycle, dramatic weight loss on a fad diet, celebrity product endorsements — all vivid but statistically meaningless as evidence, since an anecdote is really "a data set with a sample size of one" with no comparison group and no controlled study behind it.
+- Some personal decisions based on anecdotes are fine, but important decisions should rely on real statistics and data from well-designed studies with large random samples, not single stories. When someone tries to persuade you with an anecdote, the right response is "Show me the data!"
+
+## Key takeaways
+- Graphs, sample sizes, correlations, confounding variables, selective reporting, and anecdotes are the most common vectors for statistical mischief (accidental or deliberate).
+- The unifying defense in every case: ask questions — about sample size, sample randomness, margin of error, study design (observational vs. experimental), what alternative analyses were tried, and whether a claim is backed by real data rather than a single story.
+- Being "statistically savvy" means treating every reported number as a claim to verify, not a fact to accept at face value.
+
+---
+
