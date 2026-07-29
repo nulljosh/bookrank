@@ -372,3 +372,68 @@ Charts and graphs are everywhere (elections, stock market, polls), but not all a
 
 ---
 
+# Chapter 7: Going by the Numbers: Graphing Numerical Data
+
+## Overview
+Covers data displays used for **numerical data** (counts and measurements, e.g. pills taken per day, commute time, blood pressure) — time charts, histograms, and boxplots — and how to spot common ways these graphs mislead.
+
+## Handling histograms
+- A **histogram** breaks numerical data into ranges ("bins") and shows the frequency of data falling in each bin as bars — visually similar to a bar chart but for continuous/numerical ranges.
+- Photo/table: ages of Best Actress Oscar winners (1928–2009), used as the running example data set for this chapter.
+- Photo/figure: histogram of percentage of actresses in each age group, based on that Oscar-winner age data.
+
+## Creating appropriate groups
+- Choosing bin width matters: too few/wide bins hide detail, too many/narrow bins create noise; groups should be relevant and consistently sized.
+- **Clarifying the axes**: label clearly whether a histogram shows frequency (count) or percentage/relative frequency.
+- **Handling borderline values**: define clearly whether bin boundaries are inclusive/exclusive to avoid ambiguity about which bin a value falls in.
+
+## Interpreting a histogram
+- **Checking out the shape**: histograms can be symmetric, skewed left, or skewed right.
+- Photo/figure: two histograms — one showing exam scores by number of students, another showing percentage of people by time spent filling out a survey — illustrating shape and skew concepts.
+- **Measuring center: mean versus median**: for skewed histograms, mean and median diverge (as in Ch. 5); for symmetric ones they're close.
+- **Viewing variability: amount of spread**: wider histograms = more variability/spread of data around the mean.
+- **Putting numbers with pictures**: pairs a histogram with its descriptive statistics table (min, Q1, median, Q3, max, mean, standard deviation) for a fuller picture.
+
+## Detecting misleading histograms
+- **Missing the mark with too few groups**: too few bins can hide real patterns or make data look artificially uniform.
+- If a histogram is skewed but the mean and median match closely (or vice versa), that's a red flag the data or bins were manipulated or mislabeled.
+- **Watching the scale and start/end points**: like bar/line charts, an inappropriate y-axis scale or truncated starting point can visually exaggerate or minimize differences between bars.
+- Photo/figure: paired histograms of "time between eruptions of Old Faithful" shown at different scales/orientations to demonstrate how the same data can look different depending on axis choices.
+
+## Examining boxplots
+- A **boxplot** (box-and-whisker plot) is a one-dimensional graphical version of the five-number summary (min, Q1, median, Q3, max).
+- **Making a boxplot**: draw a box from Q1 to Q3 with a line at the median, then "whiskers" extending to the min/max (or to defined outlier boundaries).
+- Photo/figure: boxplot of ages of Best Actress Oscar winners, illustrating the box/whisker/outlier-dot structure.
+- **Interpreting a boxplot**: box width shows the IQR (middle 50% of data); whisker length shows overall range; a long whisker or off-center median indicates skew.
+- **Denoting outliers**: individual points beyond the whiskers (typically beyond 1.5×IQR from Q1/Q3) are marked as outlier dots rather than extending the whisker to them.
+- Photo/figure: boxplot of "time between eruptions of Old Faithful," showing outlier points plotted separately from the main whisker range.
+
+## Measuring variability with IQR
+- Boxplots let you visually compare variability (IQR/box width) and center (median line) across groups at a glance, without needing to read raw histograms.
+- Photo/figure: two boxplots side-by-side comparing group variability/median differences.
+
+## Picking out the center using the median
+- The boxplot's median line, not a computed mean, is the featured measure of center — appropriate because boxplots are often used precisely when data may be skewed.
+
+## Tackling time charts
+- A **time chart** (line chart over time) plots a variable's value against sequential time points to reveal trends.
+- Photo/table: Best Actress Oscar winners' ages by year, tabulated with names/movies.
+- Photo/figure: time chart plotting Best Actress winner age against year (1928–2009), showing scatter/trend over time.
+
+## Interpreting time charts
+- Watch for whether the chart shows raw data points, a trend/smoothed line, or both — misleading charts sometimes cherry-pick smoothing that hides real volatility.
+- Photo/figure: "Old Faithful eruption times in order observed" — a time chart plotting eruption gap time sequentially, and a companion chart plotting the *average* time between eruptions by day, illustrating how averaging by day can smooth out and change the apparent pattern versus raw sequential data.
+
+## Understanding variability: time charts versus histograms
+- Time charts show variability *over time* (trend, cycles); histograms show variability in a static way (spread), losing the sequence/order information.
+- **Simplifying excess data**: when a time chart has too many raw points, summarizing (e.g. averaging by day/week) can clarify a trend but risks hiding real variability if not clearly labeled.
+- **Watching the scale and start/end points**: as with bar/histogram charts, be alert to truncated/manipulated axes distorting apparent trends.
+
+## Key takeaways
+- Histograms show the distribution shape of numerical data; boxplots condense that into a five-number summary visual, best for comparing groups or spotting skew/outliers at a glance.
+- Time charts reveal trends and variability over time that a static histogram or boxplot cannot show.
+- Bin/group choice, axis scale, and start/end points can all be manipulated (intentionally or not) to distort the visual impression of any of these chart types.
+- Outliers in a boxplot are typically defined via the 1.5×IQR rule and shown as separate points, not folded into the whiskers.
+
+---
+
