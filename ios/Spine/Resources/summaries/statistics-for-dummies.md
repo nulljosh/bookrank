@@ -1132,3 +1132,119 @@ Media constantly report links/correlations between variables — some legitimate
 
 ---
 
+# Chapter 19: Two-Way Tables and Independence
+
+## Overview
+Categorical variables place individuals into groups (yes/no, party affiliation, etc.). This chapter covers organizing and analyzing data from two categorical variables using two-way tables, marginal/joint/conditional distributions, and checking for independence between variables.
+
+## Organizing a two-way table
+- A **two-way table** classifies individuals into groups based on two categorical variables simultaneously (rows for one variable, columns for the other).
+- Worked example: a pet-camping survey — 100 campers surveyed on whether they camp with pets (yes/no) and their opinion on a separate pet section at the campground (support/oppose).
+- Photo/table: first 10 rows of raw survey data (pet camper? / opinion), then the full summarized two-way table: Pet Camper × (Support/Oppose) = 20/10/55/15.
+
+## Setting up the cells
+- Each cell of the two-way table represents the intersection of one row category and one column category (e.g. "pet camper AND supports pet section" = 20 people).
+
+## Figuring the totals
+- **Marginal totals**: the row and column totals (sums), placed in an extra column/row at the table's edges.
+- The **grand total** = the total of all cells = sample size (100 in this example); marginal totals must sum to the grand total both by row and by column.
+- Photo/table: two-way table with marginal totals added — row totals (30 pet campers, 70 non-pet campers) and column totals (75 support, 25 oppose), grand total 100.
+
+## Interpreting two-way tables
+- Once set up, you calculate percentages/proportions to answer questions like "What percentage of campers favor a pet section?" This is called finding a **distribution** — the list of all possible outcomes (or combinations) along with their proportions, which must sum to 100% (or 1.00).
+
+## Singling out variables with marginal distributions
+- A **marginal distribution** examines one variable alone, using the marginal totals divided by the grand total.
+- Photo/table: marginal distribution for pet camping variable (Yes: 30/100=0.30, No: 70/100=0.70) and for opinion variable (Support: 75/100=0.75, Oppose: 25/100=0.25).
+
+## Graphing marginal distributions
+- Marginal distributions can be graphed with pie charts or bar graphs — one chart per variable.
+- Photo/figure: two pie charts — "Do You Camp with Pets?" (30% yes/70% no) and "Opinion on a Separate Pet Section" (25% support/75% oppose — note: labels appear swapped from the table but represent the marginal breakdown for each variable individually).
+- Marginal distributions show how each variable breaks down on its own, but don't reveal the connection *between* the two variables.
+
+## Examining all groups — a joint distribution
+- Story example: an auto manufacturer found red was the most popular color for small trucks and four-wheel-drive was the most popular option overall — but combining findings, women (who bought more red trucks) mostly avoided four-wheel drive, while men preferred four-wheel drive and black — showing the most popular value of each variable separately doesn't necessarily match the most popular *combination* of both.
+
+## Calculating joint distributions
+- A **joint distribution** shows the proportion of data in each cell of the two-way table (each row-column combination), calculated as cell count / grand total.
+- Photo/table: joint distribution for pet camping data — Camp+Support 20/100=0.20, Camp+Oppose 10/100=0.10, Don't Camp+Support 55/100=0.55, Don't Camp+Oppose 15/100=0.15; all four proportions sum to 1.00.
+
+## Graphing joint distributions
+- A joint distribution can be graphed as a single pie chart with one slice per cell (row-column combination) — groups with more individuals get bigger slices.
+- Photo/figure: pie chart "All Campers" showing the joint distribution across all four pet-camping/opinion combinations (20%, 10%, 55%, 15%).
+- A limitation of joint distributions: they can't fairly compare two groups against each other (e.g. pet campers vs. non-pet campers) because the joint distribution puts more weight on larger groups — comparing group proportions directly like this can be misleading since the group sizes differ (70% vs 30%).
+
+## Comparing groups with conditional distributions
+- A **conditional distribution** is used to fairly compare two categorical variables by first splitting individuals into groups (e.g. pet campers vs. non-pet campers), then comparing the sub-distribution (e.g. of opinion) within each group.
+- Calculating conditional distributions: for each group, divide each cell count within that group by that group's marginal total (not the grand total) — giving a distribution that sums to 1.00 *within each group* rather than across the whole table.
+- Photo/table: conditional distributions of opinion for pet campers versus non-pet campers — Pet Campers: Support 20/30=0.67, Oppose 10/30=0.33 (sums to 1.00); Non-Pet Campers: Support 55/70=0.79, Oppose 15/70=0.21 (sums to 1.00).
+
+## Graphing conditional distributions
+- Conditional distributions can be graphed as separate pie charts per group, or as a **stacked bar graph** where each bar (one per group) totals 100% and shows the breakdown of the other variable within that group.
+- Photo/figure: stacked bar graph "Campers' Opinions on Having a Pet Section" showing pet campers (67% support/33% oppose) versus non-pet campers (79% support/21% oppose).
+- Comparing the two groups' conditional distributions (67% vs 79% support) suggests non-pet campers are somewhat more supportive of a separate pet section than pet campers — a relationship *appears* to exist based on this sample.
+- Caution: this is a sample-based finding ("a relationship appears to exist"); to generalize to the whole population and confirm the difference isn't just due to chance/sample variation, a formal hypothesis test (Chapter 14) for two proportions or independence is needed.
+
+## Checking independence and describing dependence
+- The main reason to collect two-categorical-variable data is to look for a relationship/association between them.
+- If group proportions differ between groups (like the pet camper example above), the variables are said to be **dependent**. If the proportions are the same across groups, the variables are **independent** (no relationship).
+- To formally test a relationship between two categorical variables: use a test for two proportions (Chapter 15) if each variable has only two categories, or a **Chi-square test** (covered in a companion book, Statistics II For Dummies) if either variable has more than two categories.
+- Caution: beware of misleading graphical presentations (truncated/stretched pie chart or bar graph scales) that make a weak relationship look stronger than it statistically is — always check the actual sample size and consider a formal hypothesis test rather than judging by eye alone.
+
+## Checking for independence
+- Two categorical variables are **independent** if the percentages/proportions for the outcome variable (e.g. support/oppose) do NOT differ across groups of the other variable (e.g. men vs. women, pet campers vs. non-pet campers). If the percentages DO differ meaningfully, the variables are dependent.
+
+## Comparing the results of two conditional distributions
+- Worked example: survey of 200 voters on gender and voting for the incumbent president.
+- Photo/table: election survey results — Males: 44 voted, 66 didn't (row total 110); Females: 36 voted, 54 didn't (row total 90); grand total 200.
+- Converting to conditional distributions (each row divided by its own row total): Males 44/110=0.40 voted, 66/110=0.60 didn't; Females 36/90=0.40 voted, 54/90=0.60 didn't — identical proportions (40%/60%) for both genders, so gender and voting pattern are **independent** in this sample.
+- Photo/figure: stacked bar graph "Voting Patterns for Males versus Females" — bars look visually identical (both ~40% voted-yes), reinforcing the independence conclusion.
+- Note: independence doesn't require the split to be 50/50 within each group — it just requires the *same* percentages across groups being compared (e.g. 60%/40% is fine as long as it matches across both bars).
+- Independence can also be checked by comparing columns instead of rows of a two-way table (comparing the gender breakdown among those who voted for the incumbent versus those who didn't) — the independence conclusion would be the same either way, though the specific percentages differ.
+
+## Comparing marginal and conditional to check for independence
+- Another way to check independence: see whether the marginal distribution of one variable (overall) equals the conditional distribution for each subgroup. If they match, the variables are independent.
+- Worked through the same voting example: overall marginal distribution is 80/200=0.40 yes, 120/200=0.60 no — matching each gender's conditional distribution (40%/60%), confirming independence.
+- Caution: this shortcut (comparing only one conditional distribution to the marginal) only works when there are exactly two rows and two columns; with more than two groups, a formal Chi-square test (from the companion book, Statistics II For Dummies) is needed instead.
+
+## Describing a dependent relationship
+- Two categorical variables are **dependent** if the conditional distributions differ meaningfully across the groups being compared.
+- Dependence means the outcome of one variable does affect the outcome of the other (e.g. if voting patterns had differed by gender, pollsters could use that to steer campaign strategy).
+- Note on terminology: statisticians reserve the word **correlation** specifically for the linear relationship between two *numerical* variables (Chapter 18) — for categorical variables, the correct term is "dependent" or "associated," not "correlated." This distinction is often blurred in media reporting.
+
+## Worked example: aspirin and colon polyps
+- A press release claimed aspirin prevents polyps in colon-cancer patients; researchers studied 635 patients, randomly assigning about half (317) to aspirin and half (318) to a placebo.
+- Photo/table: results — Aspirin group: 54 (17%) developed subsequent polyps, 263 (83%) didn't (317 total); Placebo group: 86 (27%) developed polyps, 232 (73%) didn't (318 total); grand total 635.
+- Comparing conditional distributions (17% vs. 27% developing polyps), a dependent relationship appears to exist between aspirin use and reduced polyp development in this sample.
+
+## Cautiously interpreting results
+- It's easy to get carried away by a reported relationship in the media — e.g. a widely reported egg/cholesterol study was actually conducted on just 20 men on low-fat diets, a narrow context that doesn't necessarily generalize ("the entire population? can't tell").
+- A two-way table only shows what the *sample* data suggests; proper interpretation requires understanding both what conclusions are and aren't supported by the study design.
+
+## Checking for legitimate cause and effect
+- A **cause-and-effect relationship** means changing one variable directly causes a change in the other, with all else held constant — established most convincingly through a well-designed experiment (Chapter 17 criteria): (1) minimizes bias, (2) uses a large enough, repeatable sample, (3) controls for other variables that could affect the outcome.
+- Just because two variables are found to be dependent doesn't mean one causes the other — e.g. living near power lines and cancer risk being related doesn't prove power lines cause it (could be confounded by other factors, like urban/industrial proximity).
+- The aspirin/polyps study met the well-designed-experiment criteria (random assignment to aspirin/placebo, adequate sample size, similar-background subjects, controlled comparison), so a cause-and-effect conclusion is credible pending the hypothesis test confirming the difference isn't due to chance.
+
+## Projecting from sample to population
+- Comparing the aspirin/polyps sample proportions (17% vs. 27%) is a "quite large" difference, prompting cautious optimism that it reflects a real population-level effect — but sample-based percentage differences always carry sampling variability (Chapter 11), so a formal hypothesis test is needed to confirm the difference is statistically significant, not just due to chance.
+- Applying the two-proportion hypothesis test (Chapter 15) to the aspirin/polyps data yields a p-value of 0.0124 — small enough to conclude the difference between aspirin and non-aspirin groups is statistically significant, supporting a real relationship between aspirin use and reduced polyp development.
+- You cannot draw population-level conclusions from a two-way table's raw sample results alone — a hypothesis test is required to account for sample-to-sample variability and determine whether an observed difference generalizes to the population.
+
+## Making prudent predictions
+- A common research goal (especially in medical studies) is to translate a found relationship into predictions/recommendations for the population — but as a consumer of information, you must weigh how well-designed the underlying study was before trusting such recommendations.
+- Because the aspirin/colon-cancer study was well-designed and the hypothesis test confirmed statistical significance, generalizing its findings to the broader population of colon-cancer patients (and issuing headlines like "Aspirin Prevents Polyps in Colon-Cancer Patients") is appropriate.
+
+## Resisting the urge to jump to conclusions
+- Caution against reacting to dramatic-sounding media headlines about two-categorical-variable relationships before examining the details.
+- Example: a report that "men are 40% more likely to die from cancer than women" sounds alarming, but the actual explanation was that men are less likely to visit the doctor and get diagnosed early, meaning their cancer is more advanced/harder to treat when found — not that men are inherently more likely to *get* cancer. The real message (encouraging men to get regular checkups) was obscured by the more dramatic but less accurate framing.
+
+## Key takeaways
+- A two-way table organizes two categorical variables into rows/columns with marginal totals and a grand total.
+- Marginal distributions describe one variable alone; joint distributions describe the whole table's cell proportions (can't fairly compare groups); conditional distributions split by group first, then compare within each group — this is the fair way to compare two categorical variables.
+- Independence means conditional distributions match across groups (or match the marginal distribution, for a 2×2 table); dependence means they differ.
+- Dependence between categorical variables is described as an "association" or "relationship," not "correlation" (that term is reserved for numerical variables, Chapter 18).
+- A well-designed experiment (random assignment, adequate sample size, controlled variables, per Chapter 17) plus a significant hypothesis test result (Chapters 14-15) are both needed before concluding a real, generalizable, and possibly causal relationship exists — raw sample percentages alone are not sufficient.
+
+---
+
