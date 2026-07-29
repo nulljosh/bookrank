@@ -266,3 +266,68 @@ Statistics is a process, not just numbers — this chapter introduces the core v
 
 ---
 
+# Chapter 5: Means, Medians, and More
+
+## Overview
+Every data set has a story; descriptive statistics summarize and describe a characteristic of a data set. This chapter covers how to calculate and interpret common descriptive statistics, and what they do and don't say.
+
+## Crunching categorical data: tables and percents
+- Categorical data (e.g. gender, political party) is summarized with frequency tables and percentages.
+- Photo/table: U.S. population broken down by age group and gender (2009), showing raw counts and percentages per age bracket.
+- Percentages let you compare groups of different sizes fairly (e.g. comparing genders when overall totals differ).
+
+## Measuring the center with mean and median
+- **Mean**: sum of all values divided by number of values. Sensitive to outliers/extreme values (e.g. a few very high-paid NBA players skew the mean salary upward).
+- Photo/table: L.A. Lakers NBA player salaries (2009-2010) used to illustrate a skewed distribution.
+- **Median**: the middle value when data is ordered. Splits data down the middle and is resistant to outliers — better than the mean for skewed data (e.g. salaries, home prices).
+
+## Comparing means and medians: histograms
+- A **histogram** is a bar chart showing how frequently values (or value ranges) occur in a data set.
+- Symmetric data: mean ≈ median, histogram is roughly bell-shaped/balanced.
+- Skewed data: mean and median diverge — mean gets pulled toward the "tail" side. Right-skewed (long tail to the right) means mean > median.
+
+## Accounting for variation
+- **Standard deviation** measures how spread out data is around the mean.
+- Photo/figure: two histograms comparing a "skewed" vs "symmetric" data distribution, each annotated with mean, median, and standard deviation values.
+- **Calculating standard deviation**: (1) find the mean, (2) subtract mean from each data point and square each difference, (3) sum the squared differences, (4) divide by (n-1), (5) take the square root.
+
+## Interpreting standard deviation
+- Small standard deviation = data clustered tightly around the mean; large standard deviation = data spread widely.
+- Standard deviation is in the same units as the original data (unlike variance, its square).
+- Understanding properties of standard deviation: roughly consistent comparisons can be made across data sets when normally distributed.
+
+## Being out of range
+- **Range** = maximum value minus minimum value; simple but very sensitive to outliers since it only uses the two extreme values.
+
+## Examining the Empirical Rule (68-95-99.7)
+- For data that is normally distributed:
+  - ~68% of data falls within 1 standard deviation of the mean.
+  - ~95% falls within 2 standard deviations.
+  - ~99.7% falls within 3 standard deviations.
+- Photo/figure: three bell-curve diagrams, each shaded to show the 68%, 95%, and 99.7% ranges respectively around the mean.
+
+## Measuring relative standing with percentiles
+- A **percentile** indicates the percentage of data points falling below a given value (e.g. 90th percentile = 90% of values are below it).
+- **Calculating percentiles**: order the data, find the position using a percentile formula, then read off (or interpolate between) the corresponding data value.
+- Percentiles are useful for interpreting where an individual score stands relative to a population (e.g. standardized test scores).
+- Photo/table: U.S. household income (2001 vs 2007) shown by percentile, and ACT exam percentiles for math and reading scores — used to illustrate how to interpret a score relative to percentile bands.
+
+## Gathering a five-number summary
+- The **five-number summary**: minimum, first quartile (Q1/25th percentile), median (Q2/50th percentile), third quartile (Q3/75th percentile), maximum.
+- This summary captures center, spread, and shape of a distribution in one shot; often visualized as a boxplot.
+
+## Exploring interquartile range (IQR)
+- **IQR** = Q3 − Q1: the range of the middle 50% of the data, a measure of variation more robust to outliers than the full range.
+- Small IQR = data tightly clustered around the median; large IQR = more spread in the central bulk of the data.
+- Descriptive statistics well-chosen and used correctly tell a lot about a data set (center, variation, standing), but can also mislead if the wrong statistic is used for skewed data (e.g. reporting a mean without acknowledging skew, or a mean without its standard deviation).
+
+## Key takeaways
+- Mean is sensitive to outliers/skew; median is more robust — always check which is more appropriate for the data's shape.
+- Standard deviation and range both measure spread, but standard deviation uses all data points while range only uses the extremes.
+- The Empirical Rule (68-95-99.7) gives a quick way to interpret spread for normally distributed data.
+- Percentiles and the five-number summary (min, Q1, median, Q3, max) describe relative standing and overall shape.
+- IQR is a robust measure of spread for skewed or outlier-heavy data.
+- Descriptive statistics can mislead if reported without context (e.g. omitting standard deviation, or using mean on skewed data) — always consider what's missing.
+
+---
+
