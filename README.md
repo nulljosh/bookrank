@@ -1,8 +1,8 @@
 <img src="icon.svg" width="80">
 
-# Spine
+# Uprighty
 
-![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fspine-black?logo=github)](https://github.com/nulljosh/spine)
+![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fuprighty-black?logo=github)](https://github.com/nulljosh/uprighty)
 
 A curated collection of book rankings based on Goodreads ratings and reviews.
 Live at [spine.heyitsmejosh.com](https://spine.heyitsmejosh.com).
