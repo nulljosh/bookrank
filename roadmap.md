@@ -12,6 +12,14 @@
 ## iOS/Mac app — ASC submission
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
 
+## From Notes (imported 2026-07-29)
+- [x] Web due-date badge was stuck at 2026-07-29 while `library.json`/README already moved to 2026-08-18 (commit e65f291 never touched `index.html`'s hardcoded `data-due`) — fixed 2026-07-29, `index.html` now reads 2026-08-18
+- [ ] App icon needs a refresh to match the style of the other shipped apps
+- [ ] Simplify README.md
+- [ ] Refresh App Store / site screenshots
+- [ ] If renaming Spine → Uprighty (already the ASC record name, see README): rename the repo (`spine` → `uprighty`) and local folder to match
+- [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
+
 ## Someday / Explore
 - [ ] Once all book summaries are finished, integrate as quizzes/masterclasses in Lexly (cross-ref lexly roadmap) — first step of syncing several repos together
 - [ ] Goodreads **sign-in/sync** integration (separate from the ranked-shelf-scrape above, which is done and needed no auth) — Goodreads deprecated its public API for new developer keys in 2020; confirm current auth options exist before scoping. No deadline pinned
