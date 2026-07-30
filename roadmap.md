@@ -10,6 +10,7 @@
 **BACKLOG CLEAR.** All photographed books have been summarized and synced. IBS, Sobriety, Statistics, and Good Feng Shui are complete. Every HEIC has been processed and deleted from iCloud. Next entry will arrive when a new book is photographed and added to the queue.
 
 ## iOS/Mac app — ASC submission
+- [ ] **Submit iOS v1.0 for review** — everything else ready (build VALID, icon/screenshots/README done), blocked only on **app availability** (needs you: dashboard/2FA, no CLI path — confirmed dead end again 2026-07-29) and a minor privacy-policy-URL warning (non-blocking). Once availability is set: `asc review submit --app 6792376485 --version 1.0 --build <BUILD_ID> --confirm`
 - [ ] **App availability** — not automatable, confirmed dead end: both `asc web` and `asc pricing` lack a CLI path for this; must be set in the ASC dashboard (Pricing and Availability) — **needs you**
 
 ## From Notes (imported 2026-07-29)
