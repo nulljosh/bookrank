@@ -9,15 +9,7 @@
 ### Remaining-work count (as of 2026-07-28 night)
 **BACKLOG CLEAR.** All photographed books have been summarized and synced. IBS, Sobriety, Statistics, and Good Feng Shui are complete. Every HEIC has been processed and deleted from iCloud. Next entry will arrive when a new book is photographed and added to the queue.
 
-## iOS/Mac app — ASC submission
-- [x] **Submitted iOS v1.0 for App Store review** — 2026-07-30. User authed Chrome to ASC, so availability + pricing (free, all territories) were set via dashboard; privacy policy URL + App Privacy (no data collected) set via `asc`; iPad screenshot captured (fastlane Snapfile updated to a currently-available sim) and uploaded; `asc review submit` succeeded.
-
 ## From Notes (imported 2026-07-29)
-- [x] Web due-date badge was stuck at 2026-07-29 while `library.json`/README already moved to 2026-08-18 (commit e65f291 never touched `index.html`'s hardcoded `data-due`) — fixed 2026-07-29, `index.html` now reads 2026-08-18
-- [x] App icon needs a refresh to match the style of the other shipped apps — done 2026-07-29, redesigned to bright safety-orange single-accent book-spine motif
-- [x] Simplify README.md — done 2026-07-29, dropped redundant Files/View-Rankings overlap and stale Top-5 list
-- [x] Refresh App Store / site screenshots — done 2026-07-29, fastlane snapshot (both configured devices)
-- [x] Renamed Spine → Uprighty — done 2026-07-29: GitHub repo renamed via `gh repo rename`, local folder `spine` → `uprighty`, remote URL + README badge + CLAUDE.md updated. Domain `spine.heyitsmejosh.com` left as-is (not requested, would need DNS/Vercel work)
 - [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
 
 ## Someday / Explore
@@ -32,3 +24,6 @@
 ## Known-done
 - No raw HEICs remain anywhere in the iCloud source folder as of 2026-07-20 (superseded — new photos added since for Down Economy/Sobriety/IBS)
 - No stray empty files in this repo (verified 2026-07-20)
+
+## From App Store.pdf (imported 2026-07-29)
+- [ ] Icon needs a simpler refresh (currently a yellow/blue two-bar abstract mark) — iOS 1.0 + macOS 1.0 both Prepare for Submission, not yet submitted.
