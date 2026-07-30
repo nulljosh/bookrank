@@ -15,9 +15,10 @@
 ## From Notes (imported 2026-07-29)
 - [x] Web due-date badge was stuck at 2026-07-29 while `library.json`/README already moved to 2026-08-18 (commit e65f291 never touched `index.html`'s hardcoded `data-due`) — fixed 2026-07-29, `index.html` now reads 2026-08-18
 - [ ] App icon needs a refresh to match the style of the other shipped apps
-- [ ] Simplify README.md
-- [ ] Refresh App Store / site screenshots
-- [ ] If renaming Spine → Uprighty (already the ASC record name, see README): rename the repo (`spine` → `uprighty`) and local folder to match
+- [x] Simplify README.md — done 2026-07-29, dropped redundant Files/View-Rankings overlap and stale Top-5 list
+- [ ] Refresh App Store / site screenshots — not done (needs simulator run, deferred given heavy usage this session)
+- [x] Renamed Spine → Uprighty — done 2026-07-29: GitHub repo renamed via `gh repo rename`, local folder `spine` → `uprighty`, remote URL + README badge + CLAUDE.md updated. Domain `spine.heyitsmejosh.com` left as-is (not requested, would need DNS/Vercel work)
+- [ ] Icon refresh to match the style of the other shipped apps — not done, needs visual iteration
 - [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
 
 ## Someday / Explore
