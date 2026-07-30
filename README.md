@@ -9,21 +9,9 @@ Live at [spine.heyitsmejosh.com](https://spine.heyitsmejosh.com).
 
 ## Files
 
-- `index.html` - Interactive book rankings with Apple Liquid design. Top section tracks library checkouts with a live due-date countdown (edit the `data-due` attribute on `#deadline` and the `.library` list to update). Books with chapter summaries get their own "Summaries" section; the full rankings list collapses behind a "Show all" toggle.
+- `index.html` - Interactive rankings (Apple Liquid design). Tracks library checkouts with a live due-date countdown — edit the `data-due` attribute on `#deadline` to update. Summarized books get a "Summaries" section; the rest collapse behind "Show all".
 - `book_rankings.md` - Markdown version of the rankings
 - Images of all books in the collection
-
-## View the Rankings
-
-Open `index.html` in your browser to view the interactive rankings with a beautiful glassmorphic UI.
-
-## Top 5 Books
-
-1. The Demon-Haunted World (4.38/5)
-2. Bad Blood (4.32/5)
-3. The New Jim Crow (4.36/5)
-4. The Hard Thing About Hard Things (4.20/5)
-5. The Black Swan (3.93/5)
 
 ## iOS App
 
