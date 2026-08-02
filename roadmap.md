@@ -1,5 +1,10 @@
 # Spine Roadmap
 
+## From Notes PDF (imported 2026-08-02)
+- [ ] Research history + COVID-event books (e.g. the Fauci book — read, was "ok"; and The Great Reset) and add some of them to the list (from Books.pdf note).
+- [ ] Finish processing raw files in the iCloud Books folder — ongoing, may take a few more sessions since new books get added every few days.
+- [ ] Design inspiration for the "Digest" companion app (see Someday/Explore item above, currently blocked on backend decision): a saved "Reading Tracker App" reference design — discover/organize/track favorite books in one place, "Beginner Friendly" tag, ~4-10 days scope shown in the reference. From Spine inspiration.pdf note: "integrate into our apps and codebase. This one in particular would be like, for spine. Our books app."
+
 ## From Notes (imported 2026-07-28)
 - [ ] Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned — no photos captured, book no longer in hand. Skip it unless re-borrowed.
 
