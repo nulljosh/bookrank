@@ -1,5 +1,9 @@
 # Spine Roadmap
 
+## Shipped 2026-08-03 — iOS 1.0 build 6 RESUBMITTED (TestFlight fix)
+- [x] Fixed **ITMS-90886** at the root: the iOS target had no entitlements file, so builds 1-5 were all TestFlight-ineligible. Added `ios/Spine/Spine.entitlements` + `CODE_SIGN_ENTITLEMENTS` in `project.yml`. Verified on the exported IPA before uploading — distribution signature now carries `application-identifier: QMM486NPYC.com.heyitsmejosh.spine`, `beta-reports-active: true`, `get-task-allow: false`, matching the embedded profile exactly.
+- [x] Build 6 (`b7b56e7b`) uploaded, VALID, attached. Cancelled submission `8895e7cb` (build 5, TestFlight-ineligible) and resubmitted as `01f1f74b` — WAITING_FOR_REVIEW, verified to contain 1 item in `READY_FOR_REVIEW`. Same branding as build 5, so nothing regressed; the swap only bought TestFlight eligibility.
+
 ## Shipped 2026-08-03 — macOS 1.0 SUBMITTED
 - [x] macOS 1.0 submitted for review (submission `bc9a7d5f-e2d1-4456-952f-6b1ab42b977a`, WAITING_FOR_REVIEW 2026-08-03T17:39Z). Cleared all 7 review-doctor gates: description/keywords/supportUrl (copied from iOS, "Spine"→"Uprighty"), copyright, review details (`f1fa5193-…`, demo account not required), macOS screenshot (`APP_DESKTOP` 1440×900, asset `e067f782-…`), and a first-ever Mac build.
 - [x] Fixed the app's own branding, which still said "Spine" everywhere: `LibraryView.swift:41` header text, plus `CFBundleDisplayName`/`CFBundleName` on both iOS and macOS targets (`project.yml`, `Info.plist`). Mac app previously would have installed as "SpineMac".
@@ -21,6 +25,25 @@
 - **ITMS-90474** killed build 4: iPad builds must declare all four orientations or set `UIRequiresFullScreen`. `prepare-plist.py` now writes the orientations. `xcodebuild` warns about this at archive time ("All interface orientations must be supported…") — that warning is a hard upload failure, not cosmetic.
 - **`asc builds upload` reports success on failed uploads.** Always pass `--verify-timeout 120s` and confirm with `asc builds uploads list`.
 - **`asc review submit` is broken** — it creates the submission, adds the version, then fails its own validation claiming the submission "does not contain target version". The version *is* attached. Use `asc review submissions-submit --id <id> --confirm` instead.
+- **ITMS-90886 / TestFlight ineligibility (builds 1-5)** — the iOS `Spine` target had **no entitlements file at all**, so the signed bundle carried no `application-identifier` while the embedded profile did. Apple flags that combination "not required to fix", but it silently makes every build **TestFlight-ineligible**. Fixed 2026-08-03 with `ios/Spine/Spine.entitlements` (just `application-identifier` = `$(AppIdentifierPrefix)$(CFBundleIdentifier)`) wired via `CODE_SIGN_ENTITLEMENTS` in `project.yml` — hand-committed rather than xcodegen-generated, since xcodegen drops keys in this project. Verify any future build before uploading:
+  ```
+  codesign -d --entitlements :- /path/to/Payload/Spine.app
+  ```
+  Distribution signature must show `application-identifier`, `beta-reports-active: true`, and `get-task-allow: false`. Build 6 is the first correct one.
+- **Cancelling a review submission moves the version to `DEVELOPER_REJECTED`**, not back to `PREPARE_FOR_SUBMISSION`. `attach-build` fails while the cancel is still `CANCELING` — wait for `DEVELOPER_REJECTED`, then attach. (Note: `DEVELOPER_REJECTED` is also the state that makes an app record undeletable — see Lexly Mac.)
+- **A freshly uploaded build needs `usesNonExemptEncryption` set before it can be submitted**: `asc builds update --app <id> --build-number <n> --platform IOS --uses-non-exempt-encryption=false`. Without it, submission fails with an "associated errors" blob that doesn't name the field obviously.
+
+## macOS may have the same defect (flagged 2026-08-03, NOT fixed)
+- [ ] The Mac build is manually signed with `--entitlements ios/Spine/SpineMac.entitlements`, which contains **only** `com.apple.security.app-sandbox` — no `application-identifier`. That's the same shape of defect just fixed on iOS, so macOS 1.0 (submission `bc9a7d5f`) is probably TestFlight-ineligible too. Not touched here because the Mac submission is in review and the manual `codesign`/`productbuild` path is fragile. Verify with `codesign -d --entitlements :-` on the signed `.app`; if `application-identifier` is absent, add it to `SpineMac.entitlements` and reship on the next Mac build rather than pulling this one.
+
+## Likely same signing defect in other repos (flagged 2026-08-03, NOT fixed)
+Surveyed `*/ios/project.yml` + `*/project.yml` for iOS targets with zero `CODE_SIGN_ENTITLEMENTS`/`entitlements:` references. These almost certainly ship TestFlight-ineligible builds for the same ITMS-90886 reason Uprighty did, and the fix is the same three-line one above:
+
+- [ ] **curvely** — submitted 2026-08-03, so its in-review build is likely affected
+- [ ] **wiretext** — submitted 2026-08-03, same
+- [ ] **inkpress**, **fengshui**, **quotable**, **nimble**, **nulljosh.github.io** — no entitlements reference either
+
+Check each with `codesign -d --entitlements :-` on its exported IPA before assuming. Repos that already reference entitlements (epiphany, healstack, lexly, litigate, notes, nyc, sparkjar, talli, voxprint) are probably fine but weren't verified.
 
 ## From Notes PDF (imported 2026-08-02)
 - [ ] Research history + COVID-event books (e.g. the Fauci book — read, was "ok"; and The Great Reset) and add some of them to the list (from Books.pdf note).
