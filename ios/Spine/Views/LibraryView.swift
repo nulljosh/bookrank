@@ -38,7 +38,7 @@ struct LibraryView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("Spine")
+            Text("Uprighty")
                 .font(.system(size: 40, weight: .black))
             Text("\(store.books.count) books ranked by Goodreads rating, volume & cultural relevance")
                 .font(.subheadline)

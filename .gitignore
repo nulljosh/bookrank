@@ -5,3 +5,6 @@
 **/.asc/artifacts/
 **/.asc/UploadExportOptions.plist
 xcuserdata/
+
+# ASC metadata working dirs (pulled from App Store Connect, not source of truth)
+metadata-mac/

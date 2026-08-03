@@ -11,6 +11,8 @@ targets:
       path: Spine/Info.plist
       properties:
         UILaunchScreen: {}
+        CFBundleDisplayName: Uprighty
+        CFBundleName: Uprighty
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
@@ -43,6 +45,8 @@ targets:
       properties:
         UILaunchScreen: {}
         LSApplicationCategoryType: public.app-category.productivity
+        CFBundleDisplayName: Uprighty
+        CFBundleName: Uprighty
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
@@ -64,4 +68,9 @@ schemes:
         SpineUITests: [test]
     test:
       targets: [SpineUITests]
+    shared: true
+  SpineMac:
+    build:
+      targets:
+        SpineMac: all
     shared: true

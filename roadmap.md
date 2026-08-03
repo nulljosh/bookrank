@@ -1,5 +1,20 @@
 # Spine Roadmap
 
+## Shipped 2026-08-03 — macOS 1.0 SUBMITTED
+- [x] macOS 1.0 submitted for review (submission `bc9a7d5f-e2d1-4456-952f-6b1ab42b977a`, WAITING_FOR_REVIEW 2026-08-03T17:39Z). Cleared all 7 review-doctor gates: description/keywords/supportUrl (copied from iOS, "Spine"→"Uprighty"), copyright, review details (`f1fa5193-…`, demo account not required), macOS screenshot (`APP_DESKTOP` 1440×900, asset `e067f782-…`), and a first-ever Mac build.
+- [x] Fixed the app's own branding, which still said "Spine" everywhere: `LibraryView.swift:41` header text, plus `CFBundleDisplayName`/`CFBundleName` on both iOS and macOS targets (`project.yml`, `Info.plist`). Mac app previously would have installed as "SpineMac".
+- [x] Added a `SpineMac` scheme to `project.yml` (didn't exist — only the iOS `Spine` scheme was defined, so the Mac target couldn't be archived).
+- [x] Created the missing `MAC_APP_STORE` provisioning profile "Uprighty Mac App Store" (`L6CK4VG2TF`, bundle `DZ68U4M7CX`) — none existed for `com.heyitsmejosh.spine`.
+
+### Mac packaging gotchas (reusable for other apps)
+- `xcodebuild -exportArchive` could NOT export this: it insists the MAS profile contain the *installer* cert, which Apple rejects ("no current certificates ... compatible with MAC_APP_STORE profiles"). Working path is manual: copy `.app` out of the archive → drop the profile in as `Contents/embedded.provisionprofile` → `codesign --force --sign "3rd Party Mac Developer Application: …" --entitlements ios/Spine/SpineMac.entitlements --options runtime --timestamp` → `productbuild --component <app> /Applications --sign "3rd Party Mac Developer Installer: …"` → `asc builds upload --pkg`.
+- A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
+- Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
+
+## Blocked on Joshua
+- [ ] **iOS 1.0 is in review with the old "Spine" branding.** The submitted iOS build predates today's rename fix, so the App Store listing says "Uprighty" while the app's header and Home Screen name say "Spine" — the same mismatch that got flagged on Curvely, and a plausible 2.3.x metadata-mismatch rejection. The iOS *store description* also still opens "Spine is a curated collection…" (macOS was fixed, iOS was left alone because it's mid-review). Fixing means pulling the in-review submission, rebuilding iOS, and resubmitting. Needs your call — not done unilaterally since it would forfeit the current review queue position. Version id `5a7e626c-8a83-4fde-a1fd-6cb9dc4cc3e2`, submission `5e2f9349-6460-4a02-a844-6f85de8d6b91`.
+- [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
+
 ## From Notes PDF (imported 2026-08-02)
 - [ ] Research history + COVID-event books (e.g. the Fauci book — read, was "ok"; and The Great Reset) and add some of them to the list (from Books.pdf note).
 - [ ] Finish processing raw files in the iCloud Books folder — ongoing, may take a few more sessions since new books get added every few days.
@@ -31,4 +46,4 @@
 - No stray empty files in this repo (verified 2026-07-20)
 
 ## From App Store.pdf (imported 2026-07-29)
-- [ ] Icon needs a simpler refresh (currently a yellow/blue two-bar abstract mark) — iOS 1.0 + macOS 1.0 both Prepare for Submission, not yet submitted.
+- [ ] Icon needs a simpler refresh (currently a yellow/blue two-bar abstract mark) — see `## Blocked on Joshua` above. Status corrected 2026-08-03: iOS 1.0 is WAITING_FOR_REVIEW and macOS 1.0 is now submitted, neither is "Prepare for Submission" any more.
