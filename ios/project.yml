@@ -13,11 +13,16 @@ targets:
         UILaunchScreen: {}
         CFBundleDisplayName: Uprighty
         CFBundleName: Uprighty
+        # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
+        # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist
+        # with its own defaults. Those keys are patched by scripts/prepare-plist.py
+        # AFTER `xcodegen generate` and BEFORE archiving.
+        # See "Build gotchas" in ../roadmap.md.
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
         MARKETING_VERSION: "1.0"
-        CURRENT_PROJECT_VERSION: "1"
+        CURRENT_PROJECT_VERSION: "5"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
