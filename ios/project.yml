@@ -67,10 +67,12 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
-    entitlements:
-      path: Spine/SpineMac.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
+        # Hand-committed rather than generated via the xcodegen `entitlements:`
+        # block, for the same reason as the iOS target above: xcodegen silently
+        # drops keys in this project. The generated block only ever emitted
+        # app-sandbox, so the Mac bundle shipped without an application-identifier.
+        # macOS uses the com.apple.-prefixed key; iOS uses the bare one.
+        CODE_SIGN_ENTITLEMENTS: Spine/SpineMac.entitlements
 schemes:
   Spine:
     build:
