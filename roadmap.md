@@ -33,17 +33,23 @@
 - **Cancelling a review submission moves the version to `DEVELOPER_REJECTED`**, not back to `PREPARE_FOR_SUBMISSION`. `attach-build` fails while the cancel is still `CANCELING` — wait for `DEVELOPER_REJECTED`, then attach. (Note: `DEVELOPER_REJECTED` is also the state that makes an app record undeletable — see Lexly Mac.)
 - **A freshly uploaded build needs `usesNonExemptEncryption` set before it can be submitted**: `asc builds update --app <id> --build-number <n> --platform IOS --uses-non-exempt-encryption=false`. Without it, submission fails with an "associated errors" blob that doesn't name the field obviously.
 
-## macOS may have the same defect (flagged 2026-08-03, NOT fixed)
-- [ ] The Mac build is manually signed with `--entitlements ios/Spine/SpineMac.entitlements`, which contains **only** `com.apple.security.app-sandbox` — no `application-identifier`. That's the same shape of defect just fixed on iOS, so macOS 1.0 (submission `bc9a7d5f`) is probably TestFlight-ineligible too. Not touched here because the Mac submission is in review and the manual `codesign`/`productbuild` path is fragile. Verify with `codesign -d --entitlements :-` on the signed `.app`; if `application-identifier` is absent, add it to `SpineMac.entitlements` and reship on the next Mac build rather than pulling this one.
+## macOS same defect — FIXED 2026-08-04
+- [x] The Mac build was signed with `SpineMac.entitlements` containing **only** `com.apple.security.app-sandbox` — no application-identifier. Confirmed and fixed 2026-08-04. Two parts: (1) the file was being *generated* by xcodegen's `entitlements:` block, which only ever emitted app-sandbox, so switched `SpineMac` to hand-committed `CODE_SIGN_ENTITLEMENTS: Spine/SpineMac.entitlements` matching what the iOS target already does; (2) macOS uses the **`com.apple.application-identifier`** key, not iOS's bare `application-identifier`. Verified on a real macOS Release archive: `com.apple.application-identifier => QMM486NPYC.com.heyitsmejosh.spine` with app-sandbox preserved. Ships on the next Mac build; the in-review submission `bc9a7d5f` was left alone.
 
-## Likely same signing defect in other repos (flagged 2026-08-03, NOT fixed)
-Surveyed `*/ios/project.yml` + `*/project.yml` for iOS targets with zero `CODE_SIGN_ENTITLEMENTS`/`entitlements:` references. These almost certainly ship TestFlight-ineligible builds for the same ITMS-90886 reason Uprighty did, and the fix is the same three-line one above:
+## Same signing defect in other repos — SWEEP COMPLETE 2026-08-04
+All seven repos fixed and verified on real Release archives (`codesign -d --entitlements :-`), not simulator builds — with no provisioning profile `AppIdentifierPrefix` resolves empty and the check silently passes on nothing.
 
-- [ ] **curvely** — submitted 2026-08-03, so its in-review build is likely affected
-- [ ] **wiretext** — submitted 2026-08-03, same
-- [ ] **inkpress**, **fengshui**, **quotable**, **nimble**, **nulljosh.github.io** — no entitlements reference either
+- [x] **curvely** — fixed 2026-08-04, `QMM486NPYC.com.nulljosh.grapher` (commit `4c01679`)
+- [x] **inkpress** — fixed 2026-08-04, `QMM486NPYC.com.nulljosh.journal` (commit `418ec0d`)
+- [x] **wiretext** — fixed 2026-08-04, `QMM486NPYC.com.nulljosh.wiretext`
+- [x] **fengshui** — fixed 2026-08-04, `QMM486NPYC.com.heyitsmejosh.fengshui`
+- [x] **quotable** — fixed 2026-08-04, `QMM486NPYC.com.heyitsmejosh.quoteguess`. Also needed `DEVELOPMENT_TEAM`/`CODE_SIGN_STYLE` added — the target had neither, so `$(AppIdentifierPrefix)` had nothing to resolve against.
+- [x] **nimble** — fixed 2026-08-04, `QMM486NPYC.com.nulljosh.nimble.ios`. Two extra findings: `Resources/Nimble.entitlements` was being bundled as a *resource* and never wired to signing at all, and `DEVELOPMENT_TEAM` sat as a sibling of `settings.base` rather than inside it, so xcodegen ignored it and signing failed outright.
+- [x] **nulljosh.github.io** — fixed 2026-08-04, `QMM486NPYC.com.nulljosh.portfolio`
 
-Check each with `codesign -d --entitlements :-` on its exported IPA before assuming. Repos that already reference entitlements (epiphany, healstack, lexly, litigate, notes, nyc, sparkjar, talli, voxprint) are probably fine but weren't verified.
+Repos that already reference entitlements (epiphany, healstack, lexly, litigate, notes, nyc, sparkjar, talli, voxprint) were not re-verified in this sweep.
+
+**Note:** every fixed repo now needs a rebuild + resubmit for the fix to actually reach users — the correction only affects future builds, never the one already in review.
 
 ## From Notes PDF (imported 2026-08-02)
 - [ ] Research history + COVID-event books (e.g. the Fauci book — read, was "ok"; and The Great Reset) and add some of them to the list (from Books.pdf note).
