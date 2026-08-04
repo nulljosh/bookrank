@@ -53,11 +53,11 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 
 ## From Notes PDF (imported 2026-08-02)
 - [ ] Research history + COVID-event books (e.g. the Fauci book — read, was "ok"; and The Great Reset) and add some of them to the list (from Books.pdf note).
-- [ ] Finish processing raw files in the iCloud Books folder — ongoing, may take a few more sessions since new books get added every few days.
+- STANDING (not an open task): process raw files in the iCloud Books folder as new books get photographed. As of the **BACKLOG CLEAR** note below, every HEIC has been processed and deleted from iCloud, so there is nothing outstanding right now — re-open only when new photos land.
 - [ ] Design inspiration for the "Digest" companion app (see Someday/Explore item above, currently blocked on backend decision): a saved "Reading Tracker App" reference design — discover/organize/track favorite books in one place, "Beginner Friendly" tag, ~4-10 days scope shown in the reference. From Spine inspiration.pdf note: "integrate into our apps and codebase. This one in particular would be like, for spine. Our books app."
 
 ## From Notes (imported 2026-07-28)
-- [ ] Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned — no photos captured, book no longer in hand. Skip it unless re-borrowed.
+- NOTE (not a task): Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned. Skip unless re-borrowed.
 
 ## In progress — chapter summaries (2026-07-28)
 - [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
@@ -82,4 +82,3 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 - No stray empty files in this repo (verified 2026-07-20)
 
 ## From App Store.pdf (imported 2026-07-29)
-- [ ] Icon needs a simpler refresh (currently a yellow/blue two-bar abstract mark) — see `## Blocked on Joshua` above. Status corrected 2026-08-03: iOS 1.0 is WAITING_FOR_REVIEW and macOS 1.0 is now submitted, neither is "Prepare for Submission" any more.
