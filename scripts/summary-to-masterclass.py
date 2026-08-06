@@ -73,11 +73,11 @@ def parse_blocks(lines, section):
             i += 1
             continue
 
-        # Subheading → heading block
-        if line.startswith('## '):
+        # Subheading (any level, ## / ### / ####...) → heading block
+        if line.startswith('#'):
             section['blocks'].append({
                 'type': 'heading',
-                'text': line[3:].strip()
+                'text': line.lstrip('#').strip()
             })
             i += 1
             continue
