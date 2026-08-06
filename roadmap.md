@@ -1,6 +1,7 @@
 # Spine Roadmap
 
 ## Recently shipped (2026-08-06)
+- [x] **Backlog complete: 375/375 HEICs processed and shipped.** Data Science For Dummies shipped tonight (214 HEICs: Intro + chapters 1-19, summary merged to uprighty/summaries/data-science-for-dummies.md). Combined with journal's earlier 160/375, all 5 photographed books now fully summarized and synced to web + iOS/macOS apps — Good Feng Shui, macOS Tahoe, Accounting, AI in Business, Data Science For Dummies. Every HEIC file deleted from iCloud.
 - [x] Good Feng Shui chapter summaries completed — finished writing the final eight chapter summaries (chapters 2, 12-19) and deduped a lingering duplicate entry. Uprighty's book summary section now has complete coverage.
 
 ## Shipped 2026-08-03 — iOS 1.0 build 6 RESUBMITTED (TestFlight fix)
@@ -65,8 +66,8 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 ## In progress — chapter summaries (2026-07-28)
 - [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
 
-### Remaining-work count (as of 2026-07-28 night)
-**BACKLOG CLEAR.** All photographed books have been summarized and synced. IBS, Sobriety, Statistics, and Good Feng Shui are complete. Every HEIC has been processed and deleted from iCloud. Next entry will arrive when a new book is photographed and added to the queue.
+### Remaining-work count (as of 2026-08-06 night)
+**BACKLOG FULLY CLEAR (375/375 HEICs).** All 5 photographed books have been summarized and synced: IBS, Sobriety, Statistics, Good Feng Shui, macOS Tahoe, Accounting, AI in Business, Data Science For Dummies. Every HEIC has been processed and deleted from iCloud. Next books will arrive when photographed and added to the queue.
 
 ## From Notes (imported 2026-07-29)
 - [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
