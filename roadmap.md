@@ -47,6 +47,7 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 - [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
 
 ## Someday / Explore
+- [ ] **Integrate as masterclasses in Lexly** — BLOCKED: converter execution times out on full dataset (runtime hang, not logic error). Infrastructure complete (15 book summaries converted, catalog entries added, validator extended); JSON generation deferred pending investigation — see ~/claude/plans/tldr-shorter-and-bang-zippy-cupcake.md for full approach + fallback strategy.
 - [ ] Goodreads **sign-in/sync** integration (separate from the ranked-shelf-scrape above, which is done and needed no auth) — Goodreads deprecated its public API for new developer keys in 2020; confirm current auth options exist before scoping. No deadline pinned
 - [ ] Landing page split: separate marketing page from the rankings-list homepage
 - [ ] iOS/Mac companion app ("Digest") — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding; no API/data layer exists yet. Multi-session project
