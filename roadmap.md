@@ -1,5 +1,8 @@
 # Spine Roadmap
 
+## Recently shipped (2026-08-06)
+- [x] Good Feng Shui chapter summaries completed — finished writing the final eight chapter summaries (chapters 2, 12-19) and deduped a lingering duplicate entry. Uprighty's book summary section now has complete coverage.
+
 ## Shipped 2026-08-03 — iOS 1.0 build 6 RESUBMITTED (TestFlight fix)
 - [x] Fixed **ITMS-90886** at the root: the iOS target had no entitlements file, so builds 1-5 were all TestFlight-ineligible. Added `ios/Spine/Spine.entitlements` + `CODE_SIGN_ENTITLEMENTS` in `project.yml`. Verified on the exported IPA before uploading — distribution signature now carries `application-identifier: QMM486NPYC.com.heyitsmejosh.spine`, `beta-reports-active: true`, `get-task-allow: false`, matching the embedded profile exactly.
 - [x] Build 6 (`b7b56e7b`) uploaded, VALID, attached. Cancelled submission `8895e7cb` (build 5, TestFlight-ineligible) and resubmitted as `01f1f74b` — WAITING_FOR_REVIEW, verified to contain 1 item in `READY_FOR_REVIEW`. Same branding as build 5, so nothing regressed; the swap only bought TestFlight eligibility.
