@@ -1,4 +1,4 @@
-# Uprighty
+# Bookrank
 
 `spine.heyitsmejosh.com` (domain unchanged) — Joshua's book rankings/TBR site, renamed from "Books" 2026-07-18, then repo+folder renamed `spine` → `uprighty` 2026-07-29 (matches the ASC app name). GitHub repo is now `nulljosh/uprighty`; local folder is `~/Documents/Code/uprighty`. Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
 

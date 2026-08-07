@@ -1,6 +1,6 @@
 <img src="icon.svg" width="80">
 
-# Uprighty
+# Bookrank
 
 ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fuprighty-black?logo=github)](https://github.com/nulljosh/uprighty)
 
@@ -15,7 +15,7 @@ Live at [spine.heyitsmejosh.com](https://spine.heyitsmejosh.com).
 
 ## iOS App
 
-`ios/Spine` (ASC record: **Uprighty**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
+`ios/Spine` (ASC record: **Bookrank**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
 
 <img src="ios/screenshots/library.jpg" width="240">
 
