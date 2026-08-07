@@ -7,7 +7,7 @@
 
 ## Blocked on Joshua
 - [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
-- [ ] Marketing/support domain still `spine.heyitsmejosh.com` while the app is Uprighty. `uprighty.heyitsmejosh.com` does not resolve; `spine.` returns 200, so the ASC supportUrl and privacyPolicyUrl were deliberately left pointing at the working domain (a dead support URL is itself a review rejection). Decide whether the domain follows the rename — if yes, add the Cloudflare CNAME first, then update `metadata/app-info/en-US.json` + `metadata/version/1.0/en-US.json`. Same open question as Voxprint's `echo.` domain.
+- [x] Domain moved 2026-08-07: app renamed Uprighty→Bookrank (Uprighty was rejected as ASC duplicate). Added `bookrank.heyitsmejosh.com` CNAME via Cloudflare, updated CNAME file, `metadata/app-info/en-US.json` + `metadata/version/1.0/en-US.json` supportUrl/privacyPolicyUrl, README/CLAUDE.md. Old `spine.heyitsmejosh.com` CNAME left live (redirects to same GitHub Pages target) — delete once confirmed nothing external still links to it.
 
 ## Build gotchas (2026-08-03)
 - **xcodegen silently ignores `CFBundleVersion`, `CFBundleShortVersionString`, and `UISupportedInterfaceOrientations~ipad` in `info.properties`** — it rewrites `Spine/Info.plist` with its own defaults and resets the build number to `1` every run. Run `python3 ios/scripts/prepare-plist.py <build-number>` AFTER `xcodegen generate` and BEFORE archiving.
