@@ -11,8 +11,8 @@ targets:
       path: Spine/Info.plist
       properties:
         UILaunchScreen: {}
-        CFBundleDisplayName: Uprighty
-        CFBundleName: Uprighty
+        CFBundleDisplayName: Bookrank
+        CFBundleName: Bookrank
         # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
         # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist
         # with its own defaults. Those keys are patched by scripts/prepare-plist.py
@@ -56,8 +56,8 @@ targets:
       properties:
         UILaunchScreen: {}
         LSApplicationCategoryType: public.app-category.productivity
-        CFBundleDisplayName: Uprighty
-        CFBundleName: Uprighty
+        CFBundleDisplayName: Bookrank
+        CFBundleName: Bookrank
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
