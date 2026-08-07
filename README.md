@@ -2,10 +2,10 @@
 
 # Bookrank
 
-![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fuprighty-black?logo=github)](https://github.com/nulljosh/uprighty)
+![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbookrank-black?logo=github)](https://github.com/nulljosh/bookrank)
 
 A curated collection of book rankings based on Goodreads ratings and reviews.
-Live at [spine.heyitsmejosh.com](https://spine.heyitsmejosh.com).
+Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
 ## Files
 

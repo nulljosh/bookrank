@@ -1,6 +1,6 @@
 # Bookrank
 
-`spine.heyitsmejosh.com` (domain unchanged) — Joshua's book rankings/TBR site, renamed from "Books" 2026-07-18, then repo+folder renamed `spine` → `uprighty` 2026-07-29 (matches the ASC app name). GitHub repo is now `nulljosh/uprighty`; local folder is `~/Documents/Code/uprighty`. Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
+`bookrank.heyitsmejosh.com` — Joshua's book rankings/TBR site. Renamed from "Books" 2026-07-18, then repo+folder `spine`→`uprighty` 2026-07-29, then ASC app + GitHub repo + domain all renamed `uprighty`→`bookrank` 2026-08-07 (Uprighty was rejected as a duplicate ASC name). GitHub repo is now `nulljosh/bookrank`; local folder stays `~/Documents/Code/uprighty` (not renamed, matches this project's own pattern of folder lagging display name). Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
 
 ## Files
 - `index.html` — the live site (uses shared `tokens.css` + `fonts/` copied from the portfolio repo for consistent design)
