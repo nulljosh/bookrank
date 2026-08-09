@@ -37,10 +37,7 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 - NOTE (not a task): Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned. Skip unless re-borrowed.
 
 ## In progress — chapter summaries (2026-07-28)
-- [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
-
-## New work (2026-08-09)
-- [ ] AI in Business For Dummies — introduction chapter summarized 2026-08-09; remaining chapters pending
+- [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
 
 ### Remaining-work count (as of 2026-08-09 night)
 **Original backlog fully clear (375/375 HEICs completed).** All 5 original photographed books have been summarized and synced: IBS, Sobriety, Statistics, Good Feng Shui, macOS Tahoe, Accounting, AI in Business, Data Science For Dummies. Now actively working on new books: The Optimist (prologue + ch. 1-2 shipped, remaining chapters pending), AI in Business (intro shipped, remaining chapters pending). Next photographed books will be added to the queue as they arrive.
