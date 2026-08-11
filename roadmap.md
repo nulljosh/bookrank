@@ -8,17 +8,17 @@
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
 ## The Optimist (Keach Hagey) — summaries in progress
-- [x] Done: prologue + ch. 1-12 (ch. 11-12 summarized 2026-08-11; raw HEICs deleted after write).
-- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 13 (12 imgs), 14 (7), 15 (11), 16 (10), 17 (9), Epilogue (5)** = 54 images. These finish the book.
+- [x] Done: prologue + ch. 1-14 (ch. 11-12 inline, ch. 13-14 via per-chapter subagents, all 2026-08-11; raw HEICs deleted after write).
+- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 15 (11 imgs), 16 (10), 17 (9), Epilogue (5)** = 35 images. These finish the book.
 - Budget note (measured 2026-08-11): **one chapter of ~11-14 photos costs ~10-11% of a 5-hour session block.** Two chapters per session is the realistic ceiling.
 - Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
 - After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
 
 ## Raw photo backlog — NOT clear (recount 2026-08-11)
-The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount, minus Optimist ch. 11-12) `Documents/Misc/Books/`.
+The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount, minus Optimist ch. 11-14) `Documents/Misc/Books/`.
 - **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
 - **macOS Tahoe For Dummies** — 215 imgs. Also **returned 2026-08-11**, same situation; `summaries/macos-tahoe.md` is partial.
-- **The Optimist** — 54 imgs left (ch. 13-17 + Epilogue), see section above.
+- **The Optimist** — 35 imgs left (ch. 15-17 + Epilogue), see section above.
 Vision cost: ~18-20k tokens per ~11 pages at `-Z 1500`. Full 429 is far more than one session's budget — work a chapter or two at a time.
 
 ## Blocked on Joshua
