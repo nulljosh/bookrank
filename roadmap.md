@@ -7,7 +7,8 @@
 
 ## The Optimist (Keach Hagey) — summaries in progress
 - Done: prologue + ch. 1-10 (ch. 8-10 summarized 2026-08-11; raw HEICs deleted after write).
-- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 11 (11 imgs), 12 (14), 13 (12), 14 (7), 15 (11), 16 (10)** = 65 images.
+- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 11 (11 imgs), 12 (14), 13 (12), 14 (7), 15 (11), 16 (10), 17 (9), Epilogue (5)** = 79 images. Ch. 17 + Epilogue added 2026-08-11 — these finish the book.
+- Budget note: ~11 pages of this book costs roughly 18-20k vision tokens at the -Z 1500 setting. Plan ~2 chapters per session unless starting fresh.
 - Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
 - After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
 
