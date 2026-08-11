@@ -1932,3 +1932,90 @@ Google said reviewers found the paper too critical and asked the co-authors to r
 - **The Altman family fractured during the same period**: Annie was cut off financially despite a will directing Jerry's estate to whoever needed it most — a trust eventually valued around $200,000 cash, a St. Louis building, and a half-percent stake in Hydrazine's third fund, unfunded for more than six years after Jerry's death.
 - **The OpenAI API launched June 11, 2020**, apologetically and gated to a private beta, with a new rationale bolted on: people had to use the tools so OpenAI could learn to make them safe.
 - **The "Stochastic Parrots" paper by Bender and Gebru (late 2020) got Gebru pushed out of Google** and became the field's most-cited critique — validating, from outside, exactly the fears the departing OpenAI safety faction carried into Anthropic.
+
+# Epilogue: "I'm More Excited Than I Have Ever Been About Anything."
+
+*Pages 311-315 — Where the Altman family, OpenAI's rivals, and Altman's own cosmic optimism stand as 2024 closes and Trump returns to power.*
+
+## The Altman family, late 2024
+
+As 2024 wound to a close, **Sam Altman** and **Oliver Mulherin** looked forward to welcoming their first child the following **March**, via surrogate — the beginning of the large family Altman had always said he wanted. His brother **Jack** and sister-in-law **Julia** would have their third child not long before.
+
+Jack had recently stepped down from leading his unicorn startup, **Lattice**, and raised a **$150 million fund** through the brothers' venture firm, **Alt Capital** — the first of the firm's funds Sam would not be part of. Sam was
+
+> "just too high profile now, it's better for lots of reasons to avoid any potential conflicts,"
+
+Jack told **The Information**. "Big fancy pants guy now."
+
+**Max Altman** left Alt Capital to co-found his own venture firm, **Saga Ventures**, with two YC graduates, having moved from San Francisco to Austin the previous year (after a stint in Hawaii) to get some distance from his famous siblings.
+
+## Annie Altman
+
+**Annie** was still not speaking to her family, but over six years after her father died was finally granted access to her father's trust, which the family has assigned lawyers to dole out at **$5,000 a month**, adjusted for inflation. She also received a diagnosis that finally explained the baffling combination of symptoms that had made her so sick over the previous five years: **Ehlers-Danlos syndrome**, a group of rare genetic disorders of the connective tissues. For the first time in years she had stable housing in Hawaii, allowing her to focus on physical therapy.
+
+> "This is my third month at this place," Annie said in October. "Three months is the longest I've had anywhere in two and a half years."
+
+In late 2024 Annie's new lawyer, **Ryan Mahoney**, sent Sam a letter detailing more graphic allegations of childhood sexual abuse, offering him a chance to enter mediation before filing the case in court.
+
+> "While Annie did indeed suffer from trauma, there is no evidence that her own mental health has contributed to her allegations," Sam said in a statement, pledging to "move forward on behalf of our client to ensure that Annie achieves the justice she deserves and that her voice is heard."
+
+On **January 6, 2025** — two days before her thirty-first birthday, the deadline for filing allegations from when she was a minor in Missouri — Annie filed a lawsuit in a **Missouri federal court** alleging that Sam had sexually abused her beginning when she was three years old. In a joint statement, **Connie, Sam, Max, and Jack** said the allegations were "utterly untrue."
+
+## Critics ascendant
+
+**Geoff Hinton**, the "godfather of AI" who had mentored **Ilya Sutskever**, was awarded the **Nobel Prize in Physics** for his work in machine learning. During the press conference arranged by the University of Toronto shortly after the news was announced, Hinton volunteered, unprompted:
+
+> "I'm particularly proud of the fact that one of my students fired Sam Altman."
+
+Hinton had resigned from his job at Google in May 2023 so he could speak critically of the AI arms race that OpenAI had set off, and his employer had then joined. Worried about misinformation, he told **The New York Times** at the time, "I don't think they should scale this up more until they've understood whether they can control it." Now with the Nobel in hand, he was blunter:
+
+> "OpenAI was set up with a big emphasis on safety. Its primary object was to develop artificial general intelligence and ensure that it was safe. And one of my former students, Ilya Sutskever, was the chief scientist and over time, it turned out that emphasis was much less concerned with safety than with profits."
+
+## Trump's return
+
+Altman's fears that **Biden** could not beat Trump proved true, even after Biden was swapped out in the final months for Vice President **Kamala Harris**. Yet no one who was part of the founding of OpenAI could have foreseen the role that their OpenAI co-founder, **Elon Musk**, was going to play in the final thrust of Trump's campaign — and in the weeks after his victory: dancing wildly on stage before the MAGA crowds, pouring more than **$250 million** into backing the man he two years before said should "sail into the sunset," becoming so inseparable from Trump during the transition planning period at **Mar-a-Lago** that he began referring to himself as "First Buddy."
+
+Less than two weeks after Trump's victory, **Musk filed an expanded version of his lawsuit against Altman, OpenAI, and Microsoft** that essentially echoed Hinton's critique. In case anyone wondered if it was personal, Musk told **Tucker Carlson** in an interview a few weeks earlier:
+
+> "I don't trust OpenAI. I don't trust Sam Altman. And I don't think we ought to have the most powerful AI in the world controlled by someone who is not trustworthy."
+
+OpenAI said the suit was as baseless as its predecessors, but something was, indeed, different this time: Altman was now the most prominent enemy of the man with the incoming president's ear.
+
+## Altman keeps his eyes on the horizon
+
+For all this, Altman kept his eyes on the distant horizon. If the US government was too worried about the UAE's ties to China to let his **$7 trillion** microchip, data center, and energy infrastructure project run through the Middle East, then he would lobby to do some version of it in the United States. Ahead of the election, OpenAI's policy team had met with both presidential campaigns to push for the US government to invest in the infrastructure it would take to drive down the cost of AI enough to make it truly useful — from streamlining the permitting process for nuclear reactors to paying for job training in data center management. Executives framed it as a way to beat China to AGI. A company that had set out to prevent an AI arms race was now actively pushing for a not-so-metaphorical one.
+
+> "Technology brought us from the Stone Age to the Agricultural Age and then to the Industrial Age,"
+
+Altman wrote in an essay in **September 2024**, arguing that such investment was necessary for humanity to fulfill its destiny: "From here, the path to the Intelligence Age is paved with compute, energy and human will."
+
+Like his father had done for decades with housing, he argued that public funds and private investment should come together to smooth out capitalism's unfairness, or else "AI will be a very limited resource that wars get fought over and that becomes mostly a tool for rich people." In an interview at OpenAI's headquarters that same month, he could hear echoes of his mother's work ethic as he marveled at the anonymous people who had built the memory in his computer and their role in what he viewed as the ever-rising scaffolding of human civilization:
+
+> "I will never meet these people, but I know how hard they worked, and I know that they poured their life force into this instead of hobbies or anything else, and they made this thing, and it was tremendously important at the time. That's how I think civilizations get built. Not in any one neural network of one of us, but that we can all contribute to and build this crazy infrastructure that makes us wildly more capable than our great, great grandparents, even though biologically, we are very much the same."
+
+## The optimist's creed
+
+Even as liberalism came under attack around the world, Altman remained a true believer in rationality, science, and progress — more than a decade after first reading the 2011 popular science book **The Beginning of Infinity** by the British physicist **David Deutsch**. Deutsch recommends it to almost everyone he meets. In the book, Deutsch argues for the cosmic significance of the Enlightenment, as the moment when humans learned to truly produce knowledge such that there is no good reason to believe they won't eventually conquer and transform every corner of the universe.
+
+> "Everything that is not forbidden by laws of nature is achievable, given the right knowledge," Deutsch writes. "Death is a solvable problem. Even the coldest and darkest corners of the universe can have their energy and knowledge harvested by the technology we will make in the future."
+
+Altman has built a shrine to his faith in human progress at his home on **Russian Hill**. The first objects one encounters upon entering are three hand axes, including one of the oldest ones that has ever been found, the only tool that hominids had for most of the last **1.5 million years** of their existence — a single object for building, killing, and cooking. Among the dozens of other objects are swords from various moments in technological history, a vacuum tube, space program souvenirs, a blade from a **Concorde** engine, an early Apple computer, a replica of his first computer, a **Mac LC II**, and one of the robot hands built by OpenAI.
+
+In his **September 2024** essay, Altman wrote:
+
+> "Here is one narrow way to look at human history: after thousands of years of compounding scientific discovery and technological progress, we have figured out how to melt sand, add some impurities, arrange it with astonishing precision at extraordinary tiny scale into computer chips, run energy through it, and end up with systems capable of creating increasingly capable artificial intelligence."
+
+He continued with a line perhaps only he could've written:
+
+> "This may turn out to be the most consequential fact about all of history so far. It is possible that we will have superintelligence in a few thousand days (!); it may take longer, but I'm confident we'll get there."
+
+## Key takeaways
+
+- Altman and **Oliver Mulherin** were expecting their first child in **March 2025** via surrogate; **Jack Altman** left Lattice and raised a **$150M** Alt Capital fund without Sam ("Big fancy pants guy now"), and **Max** left to co-found **Saga Ventures** in Austin.
+- **Annie Altman** was diagnosed with **Ehlers-Danlos syndrome**, got trust access at **$5,000/month**, and on **January 6, 2025** filed a childhood sexual abuse lawsuit against Sam in Missouri federal court; Connie, Sam, Max, and Jack called the allegations "utterly untrue."
+- **Geoff Hinton** won the **Nobel Prize in Physics** and said publicly he was "particularly proud of the fact that one of my students fired Sam Altman," charging that OpenAI came to care less about safety than profits.
+- **Elon Musk** poured **$250M+** into Trump's campaign, became "First Buddy" at Mar-a-Lago, and expanded his lawsuit against Altman, OpenAI, and Microsoft — leaving Altman as the chief enemy of the incoming president's closest ally.
+- Altman pivoted his **$7 trillion** chip/data-center/energy plan toward the US after Washington balked at UAE-China ties, and OpenAI lobbied both campaigns for infrastructure investment framed as beating China to AGI.
+- The company founded to prevent an AI arms race was now actively pushing for a literal one.
+- Altman's **September 2024** "Intelligence Age" essay argued public and private money must combine so AI doesn't become "a very limited resource that wars get fought over... mostly a tool for rich people."
+- His Russian Hill home is a shrine to progress — 1.5-million-year-old hand axes through a Concorde blade, a Mac LC II, and an OpenAI robot hand — matching his creed, drawn from **David Deutsch's The Beginning of Infinity**, that superintelligence may arrive "in a few thousand days (!)... but I'm confident we'll get there."
