@@ -1,4 +1,6 @@
-# Spine Roadmap
+# Bookrank Roadmap
+
+(The `Spine` names below are Xcode target/path names, not the product name — the app and site are Bookrank.)
 
 ### Mac packaging gotchas (reusable for other apps)
 - `xcodebuild -exportArchive` could NOT export this: it insists the MAS profile contain the *installer* cert, which Apple rejects ("no current certificates ... compatible with MAC_APP_STORE profiles"). Working path is manual: copy `.app` out of the archive → drop the profile in as `Contents/embedded.provisionprofile` → `codesign --force --sign "3rd Party Mac Developer Application: …" --entitlements ios/Spine/SpineMac.entitlements --options runtime --timestamp` → `productbuild --component <app> /Applications --sign "3rd Party Mac Developer Installer: …"` → `asc builds upload --pkg`.
@@ -11,6 +13,13 @@
 - Budget note: ~11 pages of this book costs roughly 18-20k vision tokens at the -Z 1500 setting. Plan ~2 chapters per session unless starting fresh.
 - Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
 - After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
+
+## Raw photo backlog — NOT clear (recount 2026-08-11)
+The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 429 HEICs are still in iCloud `Documents/Misc/Books/`.
+- **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
+- **macOS Tahoe For Dummies** — 215 imgs. Also **returned 2026-08-11**, same situation; `summaries/macos-tahoe.md` is partial.
+- **The Optimist** — 79 imgs (ch. 11-17 + Epilogue), see section above.
+Vision cost: ~18-20k tokens per ~11 pages at `-Z 1500`. Full 429 is far more than one session's budget — work a chapter or two at a time.
 
 ## Blocked on Joshua
 - [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
