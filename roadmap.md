@@ -6,7 +6,7 @@
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
 ## The Optimist (Keach Hagey) — summaries in progress
-- Done: prologue + ch. 1-10 (ch. 8-10 summarized 2026-08-11; raw HEICs deleted after write).
+- [x] Done: prologue + ch. 1-10 (ch. 8-10 summarized 2026-08-11; raw HEICs deleted after write).
 - Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 11 (11 imgs), 12 (14), 13 (12), 14 (7), 15 (11), 16 (10), 17 (9), Epilogue (5)** = 79 images. Ch. 17 + Epilogue added 2026-08-11 — these finish the book.
 - Budget note: ~11 pages of this book costs roughly 18-20k vision tokens at the -Z 1500 setting. Plan ~2 chapters per session unless starting fresh.
 - Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
