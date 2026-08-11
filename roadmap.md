@@ -5,6 +5,12 @@
 - A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
+## The Optimist (Keach Hagey) — summaries in progress
+- Done: prologue + ch. 1-10 (ch. 8-10 summarized 2026-08-11; raw HEICs deleted after write).
+- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 11 (11 imgs), 12 (14), 13 (12), 14 (7), 15 (11), 16 (10)** = 65 images.
+- Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
+- After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
+
 ## Blocked on Joshua
 - [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
 
