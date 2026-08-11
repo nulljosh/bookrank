@@ -55,7 +55,6 @@ Wary of discussing publicly, but sympathetic to the simulation hypothesis — th
 - Altman's philosophy — belief in the simulation, Advaita Vedanta nondualism — colors his public confidence that "anything is possible," tying his metaphysics directly to his AGI optimism.
 - Since his reinstatement (the "blip"), Altman has pushed OpenAI toward a more conventional for-profit structure, potentially holding up to $10 billion in equity, and become the undisputed face of the AI industry — while facing lawsuits from Elon Musk accusing him of betraying OpenAI's original nonprofit mission.
 
-
 ---
 
 # Chapter 1: Chicago
@@ -85,7 +84,6 @@ The Altmans settled in an affluent, historically Jewish-friendly St. Louis subur
 - The family's roots trace to Eastern European Jewish immigrants who built modest wealth in St. Louis over generations.
 - Jerry Altman's affordable-housing finance work (Low-Income Housing Tax Credit) reflects a family pattern of pragmatic, deal-driven approaches to social goals — a dynamic echoed later in Sam's own blend of idealism and dealmaking at OpenAI.
 - Sam was born into a stable, high-achieving Midwest household in Clayton, MO, setting up the chapters that follow on his childhood there before Chicago (revisited) and eventually Silicon Valley.
-
 
 ---
 
@@ -119,7 +117,6 @@ Sam applied and was accepted to Stanford, drawn by its computer science program 
 - John Burroughs School's progressive, independent-thought-driven education directly shaped his confident, unconventional problem-solving style.
 - Coming out as a teenager via AOL Instant Messenger reflects both the era's nascent digital identity exploration and Burroughs' relatively accepting environment.
 - Family support — particularly Connie's choice to let him pursue Stanford CS over a "safer" path — set up the next chapter's transition to Silicon Valley and Loopt.
-
 
 ---
 
@@ -183,7 +180,6 @@ No photographs or figures appear in these pages — body text only, with running
 3. Altman chose the Y Combinator network over a prestigious research internship — an early example of optimizing for access and optionality rather than credentials.
 4. The relationships formed in that summer (Paul Graham, Sequoia, the YC alumni network) are the direct through-line to OpenAI a decade later.
 5. Sivo was both Altman's boyfriend and his technical co-founder — the personal and professional entanglement runs through the entire Loopt story.
-
 
 ---
 
@@ -272,7 +268,6 @@ No photographs or figures — body text only, with running heads ("THE OPTIMIST"
 5. Loopt's dependency on **carrier deals** was both its moat and its cage — it took years of trips to Overland Park to unlock what the iPhone would later make free for everyone.
 6. Graham's favorite of the batch was Altman's **Radiate** — the company that would be renamed Loopt and ultimately return the least of the cohort's headline exits. The model worked because the batch, not the judgment, produced the outliers.
 
-
 ---
 
 # Chapter 5: "Stopping Out"
@@ -356,7 +351,6 @@ No photographs or figures — body text only, with running heads ("THE OPTIMIST"
 4. **Altman's product thesis was social, not technical**: mobile as a cure for loneliness, "enhancing serendipity," phones bringing people together in physical space.
 5. **The privacy playbook — co-opting your critics by putting them in the design room (EFF, ACLU, NCMEC) — is the direct ancestor of Altman's OpenAI strategy.**
 6. Altman was surrounded early by **adult supervision by design** (Mailliard on legal, McAdoo on the board, Jacobstein as the "Sheryl to his Zuck") — a pattern that recurs across his career.
-
 
 ---
 
@@ -445,7 +439,6 @@ No photographs or figures — body text only, with running heads ("THE OPTIMIST"
 5. Loopt built the industry's most careful **privacy regime** (double opt-in, disclosures, advocacy-group outreach, congressional testimony) — and then the smartphone era discarded that standard entirely.
 6. **Growth was real but small**: 35,000 users at launch, 50,000+ within three months — impressive for carrier-gated 2006, invisible next to what was coming.
 7. Even at nineteen, Altman's actual interests were already elsewhere: **a cure for baldness and nuclear fusion** — an early tell that Loopt was never the ceiling of his ambition.
-
 
 ---
 
@@ -553,6 +546,683 @@ No photographs or figures — body text only, with running heads ("THE OPTIMIST"
 6. **Altman turned down a ~$150M Facebook offer** on Moritz's encouragement, believing Loopt could be much bigger. Loopt eventually sold for roughly a third of that — the single most consequential "no" of his early career.
 7. The chapter's arc is the title: Loopt went from **"weak"** to **"cool"** — and then the market closed the window.
 
+---
+
+# Chapter 8: The Douchebag Badge
+
+## "The protection offered by Steve Jobs's reality distortion field did not last a year"
+
+By **March 2009**, when the tech world descended on Austin for **SXSW**, the buzz among influential early adopters had shifted. Something was in the air — music, film, tech, barbecue, beer — and the app everyone was talking about was **not Loopt**. It was **Foursquare**.
+
+Loopt still had the local AT&T network, and its product was arguably better built. But Foursquare was the cool new location-based app.
+
+## Dennis Crowley's second swing
+
+**Foursquare** was co-founded by **Dennis Crowley** — thin, shaggy-haired — on his second attempt at a location-based app. His first, **Dodgeball**, was built while he was a student at **New York University** and sold to **Google in 2005**, where it withered, stymied by the challenge of securing distribution from wireless carriers in the flip-phone era. When Google announced in **January 2009** that it was shutting Dodgeball down, Crowley and co-founder **Alex Rainert** began remaking a version of it for the iPhone age — complete with **game mechanics, badges, and snarky copy**.
+
+At the heart of the new app was the idea of **"checking in"** to a location — restaurants, bars — which created competition to become **"mayor"** of one's favorite dive bar. Foursquare also took a more conservative, **manual** approach to broadcasting one's location than Loopt's **always-on** beam.
+
+> "People don't want always-on tracking." — Crowley. "There's a big distinction between those two."
+
+Foursquare was to Crowley a distinctly East Coast, "unruly" contrast to Silicon Valley polish; his first Foursquare offices resembled Thurston Moore's apartment.
+
+**Photos in this chapter:** none — the pages are body text only.
+
+## Altman's "shiny object syndrome"
+
+One night at SXSW, Crowley found himself packed into a party at the live music venue **Mohawk**, looking over the shoulder of two revelers comparing the Foursquare badges they'd earned for attending SXSW events earlier that day.
+
+> "It was at that moment that I was like, 'We made something awesome,'" Crowley recalled.
+
+The news site **Mashable** named Foursquare the breakout app of the festival.
+
+Inside Loopt, the reaction was bitter:
+
+> "When Foursquare came out, it was definitely a gut punch," recalled a former Loopt employee. "They seemed to catch lightning in a bottle."
+
+Employees debated whether to build a new app that was more like Foursquare, or to stick with **Loopt's core product** of always-on location. Part of the problem: their doubling down on the iPhone had backfired on one level. **The iPhone wouldn't let third-party apps run in the background**, which meant Loopt's always-on service only worked when the app was open. Loopt was charging a few dollars a month for the use of its app on most carriers, which amounted to a few million dollars of revenue — easily eaten into by the enormous infrastructure costs of running location services in the era **before Amazon Web Services** lowered the cost of servers for startups.
+
+> "We had questions about whether or not the core Loopt app could ever generate revenue." — **McAdoo**
+
+Altman had proposed pivoting to a new app called **Loopt Star**, built on the **Facebook Social graph**, that would let users check in like Foursquare but give them discounts at businesses like Groupon. He assigned some of the company's top engineers to begin working on it, to the dismay of his VP of engineering **Steve Lemon**, who had been hired to professionalize the engineering processes and keep partners like **Verizon, Sprint, and AT&T** happy.
+
+> "Sam had a vision for how to catch up, and to the extent that he senses that people are going to slow him down and he can't go into the future, he'll start operating independently," the former Loopt employee said. "He thinks faster than any human being I have ever met, and he doesn't tend to bring people along, especially if he thinks they will slow him down."
+
+There was already another example of this tendency: Altman had pushed a project internally dubbed **Loopt Mix**, which allowed users to meet new people near them. It pulled a number of engineers away from the core product and upset some of the staff. It was later spun off as its own app. One former senior Loopt employee described Altman as having **"shiny object syndrome."**
+
+## The engineers' revolt and the AdWhirl affair
+
+With Foursquare looking dominant, senior management and engineers grew restless and concerned. The only genuinely profitable line of business was what was internally referred to as the **"platform" business** — a service offered to wireless carriers to help them lower the cost of looking up a phone's location, run by **Eric Carr, VP of location technologies**. Loopt had licensed some technology from a **Qualcomm** subsidiary to offer this service, in hopes of making location look-ups cheap enough that carriers could build real location-aware advertising businesses on top of them.
+
+Some senior engineers wanted to build a respectable business on top of the platform, to be able to sell the company for $100 million. But neither Altman nor Loopt's investors saw this as an acceptable outcome.
+
+> "The challenge that Sam had is you could never be a really big company doing that," McAdoo said. "The thing I don't think the team understood is that we were never considered the carrier business to be strategic." The engineers were worried that there was no path to profitability, and even more concerned that Altman didn't seem to care about forging one. "I don't think Sam was viewed as being sympathetic to their concerns," McAdoo said. "They are not interested in base hits," one former Loopt employee said of Sequoia.
+
+The tension came to a head in the **spring of 2009**, when a dozen of the company's senior leaders called what one framed as a **"come-to-Jesus" meeting** with the board in the second-floor conference room of **Sequoia's headquarters**, asking that Altman be replaced as CEO. All of the company's co-founders were there, including **Carr, Tana, Lemon, Knapp, and marketing chief Shari Yoder**.
+
+During the meeting, the engineers said that Altman's "shiny object syndrome" was hurting the company and keeping them from being able to scale the core Loopt app — not to mention pursuing their only profitable line of business.
+
+> "There was a serious strategic disagreement where there were a few people who just really wanted to build a good enterprise business," Altman said.
+
+But the concerns about his leadership went far beyond the question of the enterprise business. In the months leading up to the meeting, two Loopt employees left to start a mobile ad network company called **AdWhirl** that a market-leading, Sequoia-backed mobile and network company, **AdMob**, accused of taking its code in violation of its terms of service by disassembling its public SDK. The allegations were plausible because the employees had used AdMob's SDK while they were at Loopt. AdMob was in the late stages of talks to be acquired by **Google**, which would provide a tidy payday for Sequoia. So, upon hearing AdMob's allegations, Sequoia dispatched some Loopt employees to get to the bottom of what happened and report back. There was what one attendee called a **"big crying meeting"** involving Altman, Yam, and the other AdWhirl co-founder, but AdWhirl never admitted wrongdoing.
+
+In the end, **Sequoia solved the issue by engineering AdMob's purchase of AdWhirl** just before the big fish of Google swallowed them both up. Altman denied knowing anything in advance about how AdWhirl came by the code, but given his closeness to one of AdWhirl's founders, **Sam Yam**, many Loopt employees had trouble believing this. The whole affair eroded the employees' trust in Altman.
+
+Throughout the meeting where top Loopt employees were calling for Altman's replacement as CEO, **McAdoo, Chung, and their fellow board member Mike Ramsay** — the former CEO of TiVo and NEA venture partner, who Chung had recruited to help coach Sam on leadership — listened to the executives' concerns, thanked them for flagging the problem, and then set about trying to solve it in some way other than firing Altman.
+
+> "It was a combination of some serious conversations with Sam about some blind spots that he had, but also some discussions about what we could do to bolster the team," McAdoo said. "There definitely was a concern about Sam's leadership. But the answer was never in my mind to replace him. If you look at the history of the venture business, and the companies post replacing the founder-CEO, particularly at the private stage, it's pretty dismal."
+
+## McAdoo, Y Combinator, and Paul Graham
+
+McAdoo had other reasons to protect Altman. Around this same time, he was negotiating Sequoia's investment into batches of **Y Combinator**, which Altman had introduced him to. McAdoo first learned of the existence of Y Combinator by scanning Loopt's ownership structure when Sequoia was weighing its initial investment.
+
+> "There was this six percent with this special feature of anti-dilution for this organization called Y Combinator," he said. He called **Mailliard** and asked, "Who the heck are these guys?" Mailliard hadn't met them yet, so referred him to Altman, who said, simply, that McAdoo had to meet **Paul Graham**.
+
+McAdoo had previously spoken at MIT and Harvard every year, so the next time he was in Cambridge, he asked Altman for an introduction and went to see Graham and Livingston. He arrived at YC's Cambridge offices and found himself staying for hours answering questions from founders. When YC moved to Mountain View, McAdoo became a guest speaker at Tuesday dinner, and eventually started offering founders advice through office hours and lecturing at the **Startup School** that YC would offer at Stanford and Berkeley. When his Sequoia partners asked him what he was doing, he replied,
+
+> "The touchstone is, this is where Sam came from."
+
+When global markets began to collapse in **late 2008**, McAdoo felt a wave of déjà vu. Remembering the dark days after the dot-com bust and how his investment in the data storage company **Isilon**, once laughed at, had gone on to make billions, he was sure this was a chance to act on Moritz's advice of investing at the bottom. He researched some of Sequoia's greatest investments, such as **Cisco**, made after **Black Monday**, and put together a presentation for **YC's Startup School**:
+
+> "Yes, it's going to be harder to raise money," he said. "That's a big distinction between those two."
+
+## "RIP Good Times" and the case for YC
+
+McAdoo pulled him aside after the presentation.
+
+> "I'm a little surprised by it, but I get the logic. That was really great," Graham said. "I'm a little surprised by it, but I get the logic. But you understand that all the money that goes into YC companies comes out of mine, and Jessica's and Trevor's and RTM's [Robert Tappan Morris's] bank accounts, right? And we don't have any money anymore."
+
+Graham smiled. "You know, at Sequoia, we have money."
+
+YC needed something like **$10 million**, but McAdoo knew that would be hard to get past the Sequoia partners who had just put out the **"RIP Good Times" deck**. So, to shore up that winter's batch of founders, Graham put together a **$2 million** investment round that Sequoia led, joined by a smattering of angel investors including **Ron Conway**, an early investor in Google and Facebook, and **Paul Buchheit, the creator of Gmail**. (That winter class would end up including **Airbnb**, which McAdoo led Sequoia's investment in, one of the biggest wins to ever come out of the accelerator.)
+
+To get the rest, McAdoo needed to subject Y Combinator to the rigor of a true Sequoia investment process, putting together a **portfolio construction model**, including the amount of return expected.
+
+> "We had to get [YC] to a couple of hundred companies a year in order to make that work," he said — a scale that matched Graham's ambition.
+
+With that plan in place, Sequoia was able to lead an **$8 million round into YC**. For a VC firm, it was the ultimate hack: Sequoia would raise money, and ultimately make a mint from both its share of YC's profits and its ability to get in early on direct investments in YC's most successful startups, including **Airbnb, Dropbox, and Stripe**.
+
+## Altman as Sequoia scout
+
+**Altman was also proving useful to Sequoia in other ways.**
+
+> "He was constantly having meetings with startups in the Loopt office," recalled one employee. By **2009**, Sequoia had decided to officially tap Altman's networking talents and recruit him into its secretive **"scout" program**.
+
+> ("I don't like the word 'secret,'" **Roelof Botha**, the head of Sequoia's scout program, told *The Wall Street Journal* in 2015, which disclosed names and details for the program for the first time. "I think we have just been discreet about the program all along.")
+
+Sequoia scouts were usually young founders of Sequoia-funded companies, who were given a pot of money to invest on behalf of the VC firm. If the investment panned out, most of the gains were split by the scout and Sequoia's limited partners, while other scouts and Sequoia partners got a small chunk of the upside. As with its cultivation of startup lawyers at **Wilson Sonsini**, Sequoia was constantly on the lookout for proprietary deal flow. As startups got cheaper to launch and founders got younger, it made sense to have them referred by peers.
+
+## Patrick Collison and the Stripe scout investment
+
+**Altman was instantly a star scout for Sequoia.** A year earlier, Graham had introduced Altman to a red-haired, blue-eyed YC startup founder three years his junior named **Patrick Collison**, thinking Altman could help Collison navigate the strangeness of being so young in the industry. Collison had grown up in **rural Ireland**, where his parents, both engineers, ran a vacation hotel. He learned to code at home, encouraged by parents, who let him take a year off in the middle of high school just to code, and won a **national science competition** at the age of seventeen using the programming language **Lisp**. During the contest, he struck up a correspondence with Graham, whose textbook on Lisp served as a beacon to the most talented minds in technology.
+
+Collison enrolled in **MIT**, where Lisp was first developed, and a year later dropped out with his brother **John** to take their auction tracking software startup through YC. That happened in 2007; in **2008**, it sold for **$5 million**. Collison became a darling of Graham's, who suggested he meet his other favorite student, Altman. Collison and Altman hit it off right away after Altman demonstrated his knowledge of one of Collison's favorite obscure programming topics: **Lisp machines**, a type of computer built in the 1980s designed to run large artificial intelligence programs in the Lisp programming language.
+
+> "He knows a lot about a lot of things, and did then," Collison said. "I was pretty interested in some obscure programming topics at the time — I guess I still am — and he knew a surprising amount about those topics, even though I don't think they were mine."
+
+In **February 2009**, Collison was hanging out in the kitchen of Graham's house in **Palo Alto**, discussing what he'd just been blogging about: how somebody should start a bank on the internet, allowing people to move money without the fees and friction of brick-and-mortar banks, an idea similar to the original vision of **Elon Musk's X.com**, which merged into **PayPal**. Graham reflexively offered to invest. When Altman arrived by coincidence a few minutes later, Graham urged him to do the same, saying he'd split the opportunity with him. They both wrote **$15,000 checks**, leaving the "to" line blank since the company did not yet have a name.
+
+Altman suggested one: **"He made the suggestion that we should give it some very retro-Americana name, like National American Bank Company or something," Collison said.** In the end, like PayPal before them, they abandoned the idea of an internet bank because it was far too difficult, and became a payments company instead — an elegant API that would let websites take credit cards with a mere nine lines of code. A year later, when Collison and his brother officially founded the company, they named it **Stripe**.
+
+**Altman's $15,000 investment in Stripe earned him 2 percent of a company today worth $70 billion**; it is one of the most valuable startups in the United States and the most successful investment of Altman's career. Because Stripe was a Sequoia scout investment, Altman got to keep roughly half the proceeds for himself. Sequoia went on to make a seed investment in Stripe in **2010**, followed by a **Series A investment in 2011**, with investors including **Peter Thiel**.
+
+> "Sam was quite helpful in navigating that," Collison said. "We were these bright-eyed and bushy-tailed naifs from Ireland dealing with Peter Thiel and **Michael Moritz**, who were to us kind of deities. And Sam as usual, was completely unintimidated and uncowed by any of them. And his counsel was really very helpful."
+
+Given the doors that Altman was opening for Sequoia — and the piles of money that lay on the other side of them — **McAdoo was not** about to replace him at Loopt. He met privately with some of the senior leaders that Loopt could not afford to lose, and then gave Altman some feedback, which he felt the young CEO took well. Both Altman and the board were eager to move him away from a day-to-day operational role as CEO. They agreed to begin a search for a more seasoned executive to run the company's daily operations while Altman receded into an **executive-chairman-like role** focused on fundraising.
+
+## Steve Boom, Loopt's decline, and the "douchebag" badge
+
+By the time Sequoia had brought aboard mobile veteran **Steve Boom** to lead Loopt as president in the **fall of 2010**, it was clear to the latter's employees that the company's strategy pivot wasn't working. The company had tried catch up to trends in the industry with **Loopt Star**, the Foursquare-like product that encouraged users to "check in" for a Groupon-like discount, but it wasn't different enough from the many other location-based apps offering goodies to users.
+
+Foursquare got its revenge in a very Foursquare way: by launching a **neon pink and green polo shirt "douchebag" badge** in sly homage to Altman's attire for the Apple conference in 2008, which users could unlock by checking into trendy hotels and restaurants.
+
+## Green Dot and the sale of Loopt
+
+**One day** not long after the prepaid debit card company **Green Dot** went public in 2010, its CEO, a former radio DJ turned venture capitalist named **Steve Streit**, was complaining to his board about the challenges of nudging the engineers at his decade-old company into adopting the latest trends in writing code. Green Dot, a Pasadena-based company that made the refillable cards on sale at Walmart, used the **"waterfall" method**, in which developers each work on their own pieces of code in succession. Streit knew that in order to fulfill his dream of creating technologies that let people bank on their mobile phones, he'd have to mimic the Silicon Valley style of software development known as **"agile,"** which focused more on speed and user feedback, as preached in the doctrine of Graham. **Michael Moritz**, who had led Sequoia's investment into Green Dot and sat on its board, piped up.
+
+> "There's a company that we're invested in that has amazing talent, amazing technology, and some leadership that really knows their stuff, but they are young — really young — so they are going to need mentorship both as human beings and to work at large organizations in financial services," Moritz said. "But Gosh, Steve, you sort of have that personality style, so maybe you can do that."
+
+Of course the merger would help Sequoia, too. "Loopt at that point was really struggling and looking for an acquirer," Moritz said later.
+
+> "That was what made me suggest it to Steve."
+
+He offered to introduce Streit to Altman. What Moritz chose not to mention in his initial pitch was that things were looking pretty desperate at Loopt. By the second half of 2010, **Loopt was bleeding users**.
+
+> "They had beaten that horse pretty hard and it was not going to gallop," Streit said. "By then, Facebook and others had won the race for social media."
+
+With Moritz as matchmaker, Streit visited Loopt's offices in Palo Alto, where Altman peppered him with questions about Green Dot's company culture.
+
+> "He was worried about joining forces with what he thought was a dinosauric technology company," Streit said. For his part, Streit had no such hesitations. "I've always liked young talent and knew that he was a genius, and I had a deep feeling like he could help me." He was equally impressed by **Alok Deshpande**, who, he said, really knew how to "work with people and see the egos and really deliver code."
+
+In **March 2012**, the companies announced that **Green Dot was buying Loopt for $43.4 million in cash**, including **$9.8 million set aside in retention payments for Loopt's thirty employees**.
+
+> "It was an acquihire," Streit said. Loopt's products would be shut down. During the negotiations, Altman's main focus was on keeping his team together. They would remain in the Palo Alto office and rebrand it as **Green Dot**.
+
+> "He had a deep loyalty and sense of right and wrong — a deep moral conviction," Streit said.
+
+## The breakup
+
+The one thing he could not keep together, however, was his relationship. As Loopt was sold, **Altman and Sivo broke up**.
+
+> "I thought I was going to marry him — very in love with him," Altman told *The New Yorker*.
+
+As for Loopt's failure, he chalked it up to his misreading of how people would use digital technology:
+
+> "We had the optimistic view that location would be all-important," he told the magazine. "The pessimistic view was that people would lie on their couches and just consume content — and that is what happened. **I learned you can't make humans do something they don't want to do.**"
+
+## Key takeaways
+
+- **Foursquare beat Loopt on product philosophy, not technology.** Manual check-ins plus game mechanics (badges, "mayor") worked; always-on passive tracking didn't. The iPhone's ban on background execution made Loopt's core premise technically unworkable anyway.
+- **Loopt's only profitable business — carrier location lookups — was the one Altman and Sequoia refused to pursue**, because "base hits" don't return a venture fund. This strategic gap, plus Altman's "shiny object syndrome," triggered a near-mutiny by senior staff in spring 2009.
+- **The board chose to bolster Altman rather than replace him** — partly on principle (founder-replacements historically go badly), partly because Altman had become extraordinarily valuable to Sequoia as the bridge to Y Combinator.
+- **McAdoo's Sequoia–YC deal** ($2M into a batch, then $8M into YC itself) was, in the book's framing, "the ultimate hack" for a VC firm, giving Sequoia early access to Airbnb, Dropbox, and Stripe.
+- **Altman's $15,000 Sequoia scout check into what became Stripe** — written with the payee line blank, at Graham's kitchen table in February 2009 — is the single most successful investment of his career: ~2% of a company later worth $70 billion.
+- **Loopt sold to Green Dot in March 2012 for $43.4 million** — an acquihire, engineered by Moritz. Altman negotiated primarily to keep his team intact. Altman and Sivo broke up in the same period.
+- **Altman's own lesson from Loopt:** "You can't make humans do something they don't want to do."
+
+---
+
+# Chapter 9: "A Ride on a Rocket"
+
+## Thiel's CS183 at Stanford
+
+**A month after Loopt was sold, Peter Thiel strode into a packed Stanford auditorium.** The class he had agreed to teach, **"CS183: Startup,"** had quickly hit its 250-student limit, and those who signed up early were cramming into the aisles and sitting on the floor. As a holder of two Stanford degrees who had gone on to co-found **PayPal** and then use the resulting riches to become one of the first investors in **Facebook**, Thiel was pitched in the course catalog as a successful entrepreneur and investor who would bring in his friends to share their direct experiences of startup glory.
+
+But the class he had in mind was far more provocative. Thiel — a childhood chess prodigy — had majored in philosophy at Stanford, where he studied under the French historian and literary critic **René Girard**, whose **mimetic theory** posited that what we experience as desire is actually just us copying what others desire. Combined with some bullying from his liberal classmates (according to his biographer **Max Chafkin**), studying with Girard helped accelerate Thiel's innate contrarianism. As an undergraduate this manifested in his founding of the conservative **Stanford Review**; at thirty he published a book decrying campus multiculturalism; later, as an investor, his contrary nature helped him correctly predict — if not quite correctly trade on — the financial crisis.
+
+Along the way, Thiel embraced an array of wildly experimental ideas, including funding **libertarian utopias floating in international waters** and trying to hasten the moment when technological progress can propel itself without humans needing to be involved.
+
+He was in the middle of perhaps the most contrarian campaign of all: to convince America's youth to drop out of college. The previous year he had launched the **Thiel Fellowships**, offering **$100,000** to promising young entrepreneurs to forgo elite universities and start companies. And yet here he was, standing before a podium at his alma mater, teaching a class about something seemingly much larger and much weirder than making money.
+
+### The class became a sensation
+
+One student, **Blake Masters**, took notes and posted them online, where they went viral on **Hacker News**, Y Combinator's web forum. Those notes would go on to form the basis for the bestselling **2014 book *Zero to One***, co-authored by Thiel and Masters two years later. **David Brooks of *The New York Times*** devoted a whole column to Masters's summary of the course's lessons.
+
+And yet its main message — that **competition is actually destructive** and companies should strive to create **mini-monopolies in new markets** rather than slog it out in established ones — was not the central disappointment of the class. Rather, the lectures kept coming back to the central disappointment of Thiel's life.
+
+### "The zenith of optimism about the future of technology might have been the 1960s"
+
+Thiel, born in **1967**, told the class in his opening lecture:
+
+> "People *believed* in the future. They *thought* about the future."
+
+Many were supremely confident that the next 50 years would be a half century of unprecedented progress. But with the exception of the computer industry, **"it wasn't."** Instead, he pointed out, real wages had been stagnant his whole life. As he saw it, very little of the cool stuff his parents' generation had dreamed up had come to pass.
+
+> "Forget flying cars," he quipped in a later lecture. "We're still sitting in traffic."
+
+This complaint echoed the manifesto that Thiel's venture firm, **Founders Fund**, had published the previous year, and which bemoaned the venture capital industry's shift away from **"transformational technologies"** like semiconductors and toward companies that solved **"incremental problems or even fake problems"** (e.g., having **Kozmo.com** messenger Kit-Kats to the office). The manifesto's author, **Bruce Gibney**, expressed outrage that NASA had not been to the moon in forty years, that the time it took to cross the Atlantic was actually *growing* (thanks to the retirement of the **Concorde**), while the increase in lifespans was decelerating, and humanity had made little progress in figuring out how to create energy more cheaply.
+
+> "We certainly don't have anything approaching general artificial intelligence, a lack many futurists 30 years ago would have found rather surprising."
+
+### The antidote to tech stagnation
+
+Thiel argued to both investors and undergrads alike: **go against the crowd, stop being such cowering, careerist wussies obsessed with notching incremental gains, and swing for the fences.** In some ways, it was his version of **Paul Graham's essays**. The only means for Thiel to attract mission-driven founders to invest in, he reasoned, was to reveal himself as the ultimate mission-driven investor.
+
+## Altman at YC, and Green Dot
+
+**Less covered** amid all the media hubbub around the Stanford course was that Thiel was engaged in talks at **Y Combinator's offices in Mountain View**, where Altman was spending a lot of time. Altman had officially been named a **part-time partner in June 2011**, well before his exit from Loopt, giving companies like **Rap Genius** — later renamed **Genius** — tips on crafting their pitch to investors at **Demo Day**:
+
+> "When you show this graph, make sure to make the point: 'All right, look — we're going to show you a user graph. Most YC companies get up here and they show you cumulative registered users. Like fuck that! We're going to show you active.' That's unusual. You're counting this the fair way," Altman told the Rap Genius founders, according to **Randall Stross's *The Launch Pad: Inside Y Combinator***.
+
+Altman had walked away from Loopt shaken and sad, but with about **$5 million**. According to the terms of the deal, he would serve on the board of **Green Dot** and help the company develop its mobile banking app. He was there for one particularly disastrous meeting with **Walmart**, which accounted for **70 percent of Green Dot's most important customer's revenue** and was threatening to cancel its contract.
+
+In the **Arkansas parking lot afterwards**, Altman calmly remarked to Streit:
+
+> "Wow, that was a really bad meeting."
+
+## Rethinking his life: travel, meditation, and energy
+
+Altman was, in general, free to rethink his life.
+
+> "I thought about starting companies," Altman said. "I thought about investing."
+
+**Sequoia** tried to pull him further into its venture capital empire, but he turned them down. He backpacked around Europe, went to Southeast Asia multiple times, and visited Japan. He even spent some time in an ashram, which he joked to *New York* magazine was **"like a total tech-bro meme"** — "but which he says changed his life."
+
+> "I'm sure I'm still anxious and stressed in a lot of ways, but my *perception* of it is that I feel very relaxed and happy and calm."
+
+(**Annie Altman** says her brothers made fun of her for being so into meditation that she became the president of the **Tufts Buddhist Mindfulness Sangha**, but a few years later she found out Sam was hosting meditation groups at his home — today, she questions just how much time Sam actually spent in Indian ashrams.)
+
+Perhaps the biggest change came during a weekend-long retreat he spent in Mexico taking **psychedelics** with a guide.
+
+> "It was one of the most transformative things in my life," he told the *San Francisco Standard*'s *Life in Seven Songs* podcast.
+
+Mostly, he spent a lot of time in **Big Sur**, amid the redwoods by the sea, the landscape on the planet that most appealed to him, and read books.
+
+> "I felt like I knew a little bit about everything and felt like everything was possible," he said. "I felt very uncertain, but very good."
+
+## Nuclear energy and Thiel
+
+Altman and Thiel had known each other for a few years. Altman had first approached the older investor over their shared interest in **nuclear energy**.
+
+> "When I was starting to really think about energy, someone told me, 'You know he's the only investor thinking about nuclear right now. So you should go talk to him,'" Altman said.
+
+Altman was interested in all types of nuclear energy, but he was particularly interested in **nuclear fusion**, the powerful reaction that fuels the sun that had been a dream of scientists for nearly a century. Since before Altman was born, governments around the world had been collaborating on the extraordinarily expensive research that sought to heat up hydrogen isotopes enough — and keep them under enough pressure — for their nuclei to fuse into helium, releasing roughly four times as much energy in the process as nuclear fission. If nuclear fusion was achieved, it would provide a cheap, clean source of energy from molecules found in seawater, with no carbon emissions and far less radioactive waste than fission.
+
+### Why Thiel loved nuclear
+
+For Thiel, nuclear energy was the ultimate symbol of America's loss of technological mojo since the 1960s. In his view, America stopped building nuclear power plants in good measure due to **hysteria stemming from the one-two punch of the release of the 1979 Jane Fonda-led thriller *The China Syndrome***, which depicted a fictional nuclear emergency, followed twelve days later by the real-life **partial meltdown at the Three Mile Island** nuclear plant near Harrisburg, Pennsylvania. The accident galvanized the antinuclear movement and, Thiel argued, led to the cancellation of about a hundred proposed reactors.
+
+It also began to take on a mythic quality in Silicon Valley as dark evidence that humans in a democratic society were not capable of assessing risk and making rational choices about their long-term future.
+
+> "Fewer than 50 people were reported to have died at Chernobyl," by contrast, the **American Lung Association** estimates that smoke from coal-fired power plants kills about **13,000 people every year**, Thiel wrote. "The great scar on the minds of all the pro-humanity people in Silicon Valley is what happened to nuclear reactors."
+
+**Eliezer Yudkowsky**, an early acolyte of Thiel's, said: "From their perspective, technologies don't get a fair shake. If you think that something benefits humanity, you have to storm out ahead and develop it yourself before anyone can stop you, not because you'll lose the factional fight, but because you will not be fairly judged." For the idealistic engineers of the tech industry, the fate of nuclear reactors since the late twentieth century "is to them what the Holocaust is to Jews," said Yudkowsky.
+
+## Helion, Hydrazine, and the Stripe/YC round
+
+If government wasn't going to solve this problem, Thiel was determined to do it himself, through **venture capital**. To invest, in a new generation of nuclear technologies was not just to put money down on a moonshot that could make the world a better place — it was to directly fight the creeping forces that threatened progress itself. Later on, after Altman recruited **Helion Energy**, which aimed to crack the code of making nuclear fusion practical, to join Y Combinator, Thiel put money in the company's seed round through his firm **Mithril Capital**, alongside a personal stake from Altman.
+
+Besides a common interest in nuclear energy, Altman and Thiel had both ended up as **seed investors in Stripe**, at the recommendation of Paul Graham, who had thought Thiel's background as a co-founder of a payments company, PayPal, would make him a helpful advisor to the young **Patrick Collison**. Ultimately, when Stripe was raising an **$18 million Series A** funding round — from **Sequoia, Thiel, PayPal co-founder Max Levchin, and solo investor Elad Gil** — it was Altman who played the role of indispensable advisor, talking Collison through the process over dozens of phone calls, often as Collison biked across Palo Alto to the office and back each day. In the end, the round valued the young payments company at **$100 million**.
+
+By the **spring of 2012**, Altman was renowned for his connections to the most exciting startups in the Valley and his closeness to Y Combinator — which increasingly were one and the same thing — and he had his pick of LPs, or limited partners, interested in backing him in his own venture fund. After demurring when Sequoia tried to court him, Altman went with Thiel, who put in most of the **$21 million** to start the fund they would call **Hydrazine Capital**, named for a chemical found in rocket fuel. Altman recruited his younger brother **Jack**, who had been working at a New York investment bank since graduating from Princeton the previous year with a degree in economics, to join the fund. Their middle brother, **Max**, would join a couple of years later, and the brothers would share a San Francisco apartment.
+
+Thiel found Altman to be **"very, very smart," "maybe a little bit too optimistic,"** and "very strict, very balanced," and — as noted in the prologue — Altman was "just at the absolute epicenter of Silicon Valley, but of Silicon Valley zeitgeist." Thiel had long talks with Facebook CEO **Mark Zuckerberg**, who he mentioned after becoming the first outside investor in Facebook, about how Zuckerberg had been cast, for better or worse, as the face of the millennial generation, but in fact it was an imperfect fit.
+
+> "If you had to look for the one person who represented a millennial tech person, it would be Altman," Thiel said.
+
+### Thiel's main draw
+
+**His main draw was not *what* he knew, but *who*.** To Thiel, as noted in the prologue, Altman was the connector. Thiel, who **Gawker Media's Valleywag blog outed against his will in 2007**, was at this point the tech world's most famous openly gay investor. In retrospect, it's not shocking that Altman would gravitate toward Thiel as a mentor while heading on his own path to becoming one of the most famous openly gay CEOs. And yet Thiel's contrarian-by-default worldview is at odds with Altman's tendency to want to make people happy. What Altman seems to admire in Thiel above all else, however, is his penchant for going against the grain to generate novel thought, whether or not Altman agrees with it.
+
+> "He thinks about the world in this sort of like deeply unconstrained way," Altman told a recent podcast. In another interview, Altman suggested that original ideas are among the rarest commodities in the world. And that is one resource Thiel sheds in abundance.
+
+## Oklo, Helion, and "if you are early, you are wrong"
+
+Hydrazine did go on to do some nuclear investing, in a fission microreactor startup named **Oklo** that Altman learned about in 2013 and recruited to Y Combinator the following year. And, as mentioned earlier, Altman and Thiel teamed up to seed Helion. But in general **Hydrazine rode what was turning out to be a historic tech boom** — a strategy quite contrary to Thiel's typical contrarianism.
+
+> "If you are in a really big boom that no one believes in, you just want to invest in things that everybody knows are good. That's pretty consensus," he said. He believed that the volatility signaled by the dot-com bubble and the financial crisis had scared away investors and left the tech industry underinvested. By 2012, "it's now firing on all cylinders, and all these companies are just growing and compounding, but it's like there's nobody left to invest," he said. "If something is that underinvested, you don't need to be a contrarian at all. You just want to be in the zeitgeist. I think Sam did that extremely well."
+
+Hydrazine dropped money into a grab bag of industries, from enterprise software to specialty foods, with no discernable thesis. The one thing connecting the investments was that most of them had gone through **Y Combinator**, including HR startup **Zenefits**, supply chain logistics platform **Flexport**, video chat language learning service **Verbling**, digital construction marketplace **BuildZoom**, meal replacement company **Soylent**, and online divorce service **Wevorce**. One outlier was **Patreon**, the self-streaming monetization platform, which was co-founded by Altman's old friend from Loopt, **Sam Yam**. Hydrazine was essentially a **YC index fund**, the kind of "stupidly simple" play that Thiel defined himself by avoiding.
+
+> "Sometimes you just want to catch a ride on a rocket," Thiel said.
+
+## YC blasting through the stratosphere
+
+**YC was blasting through the stratosphere.** With Sequoia's help, it had expanded to more than **sixty startups for 2011's summer batch**. That year, angel investor **Ron Conway** and Russian-born billionaire **Yuri Milner** approached Graham with an offer that would give them a piece of every YC company. The investors ended up providing every YC startup a **$150,000 convertible note** — essentially a loan that would become equity if the company managed to raise venture funding and get a valuation. The deal was extremely pro-founder: it allowed founders to take the cash without having to worry about what their valuation was at such an early stage, or about paying it back if they failed. **Demo Day** that summer was a carnival: YC had to install two new air-conditioning units on the roof of its hall to deal with the crowd of more than two hundred VCs and other investors, including **Demi Moore and Ashton Kutcher**. They had to order a **Porta-Potty** for outside the hall.
+
+In **2012**, there were **eighty-four startups** in the summer batch and partners could no longer keep track of who was who.
+
+> "That was the famous batch that broke everybody's brains," YC CFO **Kirsty Nathoo** told *Wired*.
+
+After it, Y Combinator decided to split future batches into what were essentially classes, and move Demo Day to the much larger **Computer History Museum**, a sprawling campus in Mountain View that houses such artifacts as a **World War II-era Enigma machine** and the **first-ever computer mouse**, which happens to be located in the heart of redwood. For **2013**, they kept the number of would-be companies at a more reasonable forty-seven, but Demo Day ballooned to **450 guests**, lured by the promise of riches on the scale of **Dropbox (then worth $4 billion), Airbnb ($1.3 billion), and Stripe ($500 million)**.
+
+> "A gold rush-mentality reigns," wrote *The New York Times Magazine* of YC's 2013 Demo Day.
+
+## Founders Fund, Airbnb, and Zenefits
+
+**Hydrazine invested in a handful of YC companies, while Thiel's Founders Fund invested in whatever Altman was the best YC startup that year.** In **2012, it was Airbnb**.
+
+> "In a world where momentum is underrated, maybe the thing you should do is, once a year, just pick the best YC company," said Thiel.
+
+Founders Fund invested in Airbnb at a **$2.5 billion valuation**. It's now worth approximately **$200 billion**. The next year, they invested in **Stripe, at a $1.75 billion valuation**. It's now worth around **$65 billion**.
+
+> "The conversations I had with Sam at that time were around, 'what's the best?'"
+
+**By late 2014, this heuristic started to not work anymore**, because enough people knew to do this, Thiel said. He and Altman had identified **Zenefits** — a health benefits broker that gave away free HR software to small businesses in the hopes of making commissions from going on to sell them insurance — as the new YC darling. **Max Altman** went to work there in product, staying from **2014 to 2016**. Founders Fund put an offer in when it was at a **$2 billion valuation**, but the aggressive co-founder, **Parker Conrad**, negotiated for a valuation above **$4 billion**. That seemed high to Thiel, so Founders put in less. Within a few years, unable to meet the optimistic growth targets required to merit such a valuation, **Zenefits blew up** and the investment went basically to zero. (**David Sacks**, a friend of Thiel's from college and a fellow *Stanford Review* writer and PayPal alumnus, stepped in as interim CEO in 2016.) It seemed like some kind of high-water mark had been reached.
+
+## Eliezer Yudkowsky and the AI-risk world
+
+**Another Thiel investment ended up having the most significant impact on Altman's career and the future of artificial intelligence.** Like Altman, Thiel had long been obsessed with the possibility that one day computers would become smarter than humans and unleash a self-reinforcing cycle of exponential technological progress, an old science fiction trope often referred to as **"the singularity."** The term was first introduced by the mathematician and Manhattan Project advisor **John von Neumann** in the 1950s, and popularized by the acclaimed sci-fi author **Vernor Vinge** in the 1980s. Vinge's friend **Marc Stiegler**, who worked on cybersecurity for the likes of DARPA while drafting futuristic novels, recalled once spending an afternoon with Vinge at a restaurant outside a sci-fi convention **"swapping stories we would never write because they were both horrific and quite possible. We were too afraid some nutjob would pick one of them up and actually do it."**
+
+Among the many other people influenced by Vinge's fiction was **Eliezer Yudkowsky**. Born into an Orthodox Jewish family in **1979** in Chicago, Yudkowsky was son of a psychiatrist mother and a physicist father who went on to work at Bell Labs and Intel on speech recognition, and was himself a devoted sci-fi fan. Yudkowsky began reading science fiction at age seven and writing it at age nine. At eleven, he scored a **1410 on the SAT**. By seventh grade, he told his parents he could no longer tolerate school. He did not attend high school. By the time he was seventeen, he was painfully aware that he was not like other people, posting a web page declaring that he was a **"genius," but "not a Nazi."** He rejected being defined as a "male teenager," instead preferring to classify himself as an **"Algernon,"** a reference to the famous **Daniel Keyes** short story about a lab mouse who gains enhanced intelligence. Thanks to Vinge, he had discovered the meaning of life:
+
+> "The sole purpose of anything I ever do as an Algernon is to accelerate the Singularity," he wrote.
+
+## The Extropians
+
+Around this time, Yudkowsky discovered an obscure mailing list of a society calling itself the **Extropians**, which was the subject of a 1994 article in *Wired* that happened to include their email address at the end. Founded by philosopher **Max More** in the 1980s, Extropianism is a form of **pro-science, super-optimism** that seeks to fight entropy — the universal law that says things fall apart. In practical terms, everything tends toward chaos and death — on all fronts. In practical terms, this meant signing up to have their bodies — or at least heads — **frozen at negative 321 degrees Fahrenheit at the Alcor Life Extension Foundation in Scottsdale, Arizona**, after they died. They would be revived once humanity was technologically advanced enough to do so. More philosophically, Extropians tried to fight entropy by abiding by five principles: **Boundless Expansion, Self-Transformation, Dynamic Optimism, Intelligent Technology, and Spontaneous Order.** (Dynamic Optimism, for example, involved a technique called **selective focus**, in which you'd concentrate on only the positive aspects of a given situation.)
+
+**Robin Hanson**, who joined the movement and later became renowned for creating prediction markets, described attending multilevel Extropian parties at big houses in Palo Alto at the time.
+
+> "And I was energized by them, because they were talking about all these interesting ideas. And my wife was put off because they were not very well presented, and a little weird. We all thought of ourselves as people who were seeing where the future was going to be, and other people didn't get it. Eventually — *eventually* — we'd be right, but who knows exactly when."
+
+More's co-founder of the journal *Extropy*, **Tom Bell, aka T. O. Morrow** (Bell claims that Morrow is a distinct persona and not simply a pen name), wrote about systems of **"polycentric law"** that could arise organically from voluntary transactions between agents free of government interference, and of **"Free Oceana,"** a potential Extropian settlement on a man-made floating island in international waters. (Bell ended up doing pro bono work years later for the **Seasteading Institute**, for which Thiel provided seed funding.) If this all sounds more than a bit libertarian, that's because it was. The *Wired* article opens with one such Extropian gathering during which an attendee shows up dressed like **"State," wearing a vinyl bustier, miniskirt, and chain harness, and carrying a riding crop, dragging another attendee dressed up as "the Taxpayer" on a leash on all fours.**
+
+The mailing list and broader Extropian community had only a few hundred members, but among them were a number of famous names, including **Hanson; Marvin Minsky**, the Turing Award-winning scientist who founded MIT's AI lab in the 1970s; **Ray Kurzweil**, the computer scientist and futurist whose books would turn "the singularity" into a household word; **Nick Bostrom**, the Swedish philosopher whose writing would do the same for the supposed **"existential risk"** posed by AI; **Julian Assange**, a decade before he founded WikiLeaks; and three people — **Nick Szabo, Wei Dai, and Hal Finney** — rumored to either be or be adjacent to the pseudonymous creator of Bitcoin, **Satoshi Nakamoto**.
+
+> "It is clear from even a casual perusal of the Extropians archive (maintained by Wei Dai) that within a few months, teenage Eliezer Yudkowsky became one of this extraordinary cacophony's preeminent voices," wrote the journalist **Jon Evans** in his history of the movement. In **1996, at age seventeen**, Yudkowsky argued that superintelligences would be a great improvement over humans, and could be here by **2020**.
+
+## The Atkinses and the Singularity Institute
+
+Two members of the Extropian community, internet entrepreneurs **Brian and Sabine Atkins** — who met on an Extropian mailing list in 1998 and were married soon after — were so taken by this message that in **2000 they bankrolled a think tank for Yudkowsky, the Singularity Institute for Artificial Intelligence**. At twenty-one, Yudkowsky moved to Atlanta and began drawing a nonprofit salary of around **$20,000** a year to preach his message of benevolent superintelligence.
+
+> "I thought very smart things would automatically be good," he said. Within eight months, however, he began to realize that he was wrong — way wrong. AI, he decided, could be a catastrophe **"if it was because I was taking someone else's money, and I'm a person who feels a pretty deep sense of obligation towards those who help me."**
+
+Yudkowsky explained: "At some point, instead of thinking, 'If superintelligences don't automatically determine what is the right thing and do that thing that means there is no real right or wrong, in which case, who cares?' I was like, 'Well, but Brian Atkins would probably prefer not to be killed by a superintelligence.'" He thought Atkins might like to have a **"fallback plan,"** but when he sat down and tried to work one out, he realized with horror that it was impossible. "That caused me to actually engage with the underlying issues, and then I realized that I had been completely mistaken about everything."
+
+**The Atkinses were understanding, and the institute's mission pivoted from making artificial intelligence to making *friendly* artificial intelligence.**
+
+> "The part where we needed to solve the friendly AI problem did put an obstacle in the path of charging right out to hire AI researchers, but also we just surely didn't have the funding to do that," Yudkowsky said.
+
+Instead, he devised a new intellectual framework he dubbed **"rationalism."** (While on its face, rationalism is the belief that humankind has the power to use reason to come to correct answers, over time it came to describe a movement that, in the words of Yudkowsky's intellectual heir, **Scott Alexander**, includes **"reductionism, materialism, moral non-realism, utilitarianism, anti-deathism and transhumanism,"** though Alexander jokes that the true answer is the belief that "Eliezer Yudkowsky is the rightful caliph.")
+
+In a **2004 paper, "Coherent Extrapolated Volition,"** Yudkowsky argued that friendly AI should be developed based not just on what we think we want AI to do now, but what would actually be in our best interests.
+
+> "The engineering goal is to ask what humankind 'wants,' or rather what we would decide if we knew more, thought faster, were more the people we wished we were, had grown up further together, etc.," he wrote.
+
+In the paper, he also used a memorable metaphor for how AI could go wrong: if your AI is programmed to produce paperclips, if you're not careful, it might end up filling the solar system with **paperclips**. Years later, Bostrom would take this example and hold it up as the ultimate symbol of the need to **"align"** AI with human will.
+
+## Thiel meets Yudkowsky
+
+In **2005, Yudkowsky attended a private dinner at a San Francisco restaurant held by the Foresight Institute**, a technology think tank founded in the 1980s to push forward nanotechnology. (Many of its original members came from the **L5 Society**, which was dedicated to pressing for the creation of a space colony hovering between the Earth and the Moon, and successfully lobbied to keep the United States from signing the **United Nations Moon Agreement of 1979** due to its provision against terraforming celestial bodies.) Thiel was in attendance, regaling fellow guests about a friend who was a market bellwether, because every time he thought some potential investment was hot, it would tank soon after. Yudkowsky, having no idea who Thiel was, walked up to him after dinner:
+
+> "If your friend was a reliable signal about when an asset was going to go down, they would need to be doing some sort of cognition that beat the efficient market in order for them to reliably correlate with the stock going downwards," Yudkowsky said, essentially reminding Thiel about the **Efficient Market Hypothesis**, which posits that all risk factors are already priced into markets, leaving no room to make money from anything besides insider information.
+
+**Thiel was charmed.**
+
+Thiel and Yudkowsky began having occasional dinners together. Yudkowsky came to regard Thiel **"as something of a mentor figure,"** he said. In **2005, Thiel started funding Yudkowsky's Singularity Institute**, and the following year they teamed up with **Ray Kurzweil** — whose book *The Singularity Is Near* had become a bestseller — to create the **Singularity Summit at Stanford University**. Over the next six years, it expanded to become a prominent forum for futurists, transhumanists, Extropians, AI researchers, and science fiction authors, including **Bostrom, More, Hanson, Stanford AI professor Sebastian Thrun, XPRIZE founder Peter Diamandis, and Aubrey de Grey**, a gerontologist who claims humans can eventually defeat aging. **Skype co-founder Jaan Tallinn**, who participated in the summit, was inspired by Yudkowsky to become one of the primary funders of research dedicated to reducing existential risk from AI, including by initially giving money to **OpenAI** and later switching to fund OpenAI's rival, **Anthropic**.
+
+## The 2010 Singularity Summit: Legg, Hassabis, and DeepMind
+
+Another summit participant, physicist **Max Tegmark**, would go on to found the **Future of Life Institute**.
+
+**Vernor Vinge** himself even showed up, looking like a public school chemistry teacher with his Walter White glasses and tidy gray beard, cheerfully reminding the audience that when the singularity comes,
+
+> "We're no longer in the driver's seat."
+
+In **2010, one of the AI researchers who Yudkowsky invited to speak at the summit was Shane Legg**, a **New Zealand-born mathematician, computer scientist, and ballet dancer** who had been obsessed with building superintelligence ever since Yudkowsky had introduced him to the idea a decade before. Legg had been working at **IntelliGenesis**, a New York-based startup founded by the computer scientist **Ben Goertzel** that was trying to develop the world's first AI. Its best-known product was **WebMind**, an ambitious software project that attempted to predict stock market trends. Goertzel, who had a PhD in mathematics, had been an active poster on the Extropians mailing list for years, sparring affectionately with Yudkowsky on transhumanism and libertarianism. (He was in favor of the former but not so much the latter.) Back in **2000, Yudkowsky came to speak at Goertzel's company** (which would go bankrupt within a year). Legg points to the talk as the moment when he started to take the idea of superintelligence seriously, going beyond the caricatures in the movies.
+
+Legg went on to get his own PhD, writing a dissertation on **"Machine Super Intelligence"** that noted the technology could become an existential threat, and then moved into a postdoctoral fellowship at **University College London's Gatsby Computational Neuroscience Unit**, a lab that encompassed neuroscience, machine learning, and AI. There, he met a gaming savant from London named **Demis Hassabis**, the son of a Singaporean mother and Greek Cypriot father. Hassabis had once been the second-ranked chess player in the world under the age of fourteen. Now he was focused on building an AI inspired by the human brain. Legg and Hassabis shared a common, deeply unfashionable vision.
+
+> "It was basically eye-rolling territory," Legg told the journalist **Cade Metz**. "If you talked to anybody about general AI, you would be considered at best eccentric, at worst some kind of delusional, nonscientific character."
+
+Legg thought it could be built in the academy, but Hassabis, who had already tried a startup and failed, knew better. The only way to do it was through industry. And there, Peter Thiel was one investor who would be an obvious place to start.
+
+### The 2010 Singularity Summit meeting
+
+Legg and Hassabis came to the **2010 Singularity Summit** as presenters, yes, but really to meet Thiel, who often invited summit participants to his townhouse in San Francisco. Hassabis spoke on the first day of the summit, which had moved to a hotel in downtown San Francisco, outlining his vision for how an AI that took inspiration from the human brain. Legg followed the next day with a talk on how AI needed to be measurable to move forward. Afterward, they went to see a chessboard out on a table. They wove through the crowd and found Yudkowsky, who led them over to Thiel for an introduction.
+
+Trying to play it cool, Hassabis skipped the hard sell and began with **chess**, a topic he knew was dear to Thiel's heart. The game had stood the test of time, Hassabis said, because the **knight and bishop** had such an interesting tension — equal in value, but profoundly different in strengths and weaknesses. Thiel invited them to return the next day to tell him about their startup.
+
+In the morning, they pitched Thiel, fresh from a workout, across his dining room table. Hassabis said they were building **AGI** inspired by the human brain, would initially measure its progress by training it to play games, and were confident that advances in computing power would drive their breakthroughs. Thiel balked at first, but over the course of weeks agreed to invest **$2.25 million**, becoming the as-yet unnamed company's **first big investor**. A few months later, Hassabis, Legg and their friend, the entrepreneur **Mustafa Suleyman**, officially co-founded **DeepMind**, a reference to the company's plans to combine **"deep learning,"** a type of machine learning that uses layers of neural networks, with actual neuroscience.
+
+From the beginning, they told investors that their goal was to develop AGI, even though they feared it could one day threaten humanity's very existence.
+
+It was through Thiel's network that DeepMind recruited his fellow **PayPal veteran Elon Musk** as an investor. Thiel's Founders Fund, which had invested in Musk's rocket company **SpaceX**, invited Hassabis to speak at a conference in **2012**, and Musk was in attendance. Hassabis laid out his ten-year plan for DeepMind, touting it as a **"Manhattan Project" for AI** years before Altman would use the phrase. Thiel recalled one of his investors joking on the way out that the speech was impressive, but he felt the need to shoot Hassabis to save the human race.
+
+The next year, **Luke Nosek**, a co-founder of both PayPal and Founders Fund who is friends with Musk and sits on the SpaceX board, introduced Hassabis to Musk. Musk took Hassabis on a tour of SpaceX's headquarters in Los Angeles. When the two settled down for lunch in the company cafeteria, they had a cosmic conversation. Hassabis told Musk he was working on the most important thing in the world, a **superintelligent AI**. Musk responded that he, in fact, was working on the most important thing in the world: turning humans into an interplanetary species by colonizing Mars. Hassabis responded that that sounded great, so long as a rogue AI did not follow Musk to Mars and destroy humanity there too. Musk got very quiet. He had never really thought about that. He decided to keep tabs on DeepMind's technology by investing in it.
+
+## December 2013: DeepMind's breakout, and Google
+
+**In December 2013, Hassabis stood on stage at a machine learning conference at Harrah's in Lake Tahoe** and demonstrated DeepMind's first big breakthrough: an **AI agent that could learn to play and then quickly master the classic Atari video game *Breakout*** without any instruction from humans. DeepMind had done this with a combination of **deep neural networks and reinforcement learning**, and the results were so stunning that **Google bought the company for a reported $650 million a month later**.
+
+The implications of DeepMind's achievement — which were a major step toward a general-purpose intelligence that could make sense of a chaotic world around it and work toward a goal — were not widely understood until the company published a paper on their findings in the journal ***Nature*** more than a year later. But Thiel, as a DeepMind investor, understood them well, and discussed them with Altman.
+
+## Altman's "AI" blog post, February 2014
+
+**In February 2014, a month after Google bought DeepMind, Altman wrote a post on his personal blog titled "AI"** that declared the technology the most important tech trend that people were not paying enough attention to.
+
+> "To be clear, AI (under the common scientific definition) likely won't work. You can say that about any new technology, and it's a generally correct statement. But I think most people are far too pessimistic about its chances," he wrote, adding that **"artificial general intelligence might work, and if it does, it will be the biggest development in technology ever."**
+
+## Key takeaways
+
+- **Thiel's CS183 lectures** (which became *Zero to One*) reframed startups around monopoly-building and, more importantly, argued technological progress had stalled since the 1960s outside computing — the intellectual seedbed for the "hard tech" turn.
+- **Altman's post-Loopt year was a deliberate reset:** $5M in hand, travel, ashrams, meditation, and a psychedelic retreat in Mexico he calls one of the most transformative experiences of his life.
+- **Nuclear energy was the bond between Altman and Thiel** — fusion as the symbol of what society stopped daring to build. It later produced Helion and Oklo investments.
+- **Hydrazine Capital ($21M, mostly Thiel money, 2012)** was effectively a YC index fund — the anti-contrarian bet that the tech boom was underinvested. It worked: Stripe, Airbnb, Flexport, Patreon, Soylent, Zenefits (which blew up).
+- **The Extropian/rationalist lineage** — More, Yudkowsky, Bostrom, Hanson, Kurzweil, Tallinn — ran directly through Thiel's funding of the Singularity Institute and Singularity Summit, which is where DeepMind's founders met Thiel.
+- **DeepMind's chain of custody is the chapter's spine:** Yudkowsky → Singularity Summit → Thiel's $2.25M → Founders Fund conference → Musk → Google's ~$650M acquisition (Jan 2014).
+- **Altman's February 2014 "AI" blog post** is the hinge: it is the moment he publicly identifies AGI as the biggest possible development in technology, two years before OpenAI's ambitions became public knowledge.
+
+---
+
+# Chapter 10: "Sam Altman for President"
+
+## Graham hands over Y Combinator
+
+**Murmurs ran through the crowd of startup founders huddled over their bowls of chili** as the skinny young man in a T-shirt and cargo shorts took the stage. It was **late winter of 2014**, and **Paul Graham** had just stunned Silicon Valley by announcing he was stepping down as head of Y Combinator and handing the reins to a **twenty-eight-year-old failed startup founder named Sam Altman**. Graham stood before the latest batch in YC's bright orange-walled Mountain View headquarters, introducing his successor with a combination of glee and reverence. Many of the faces before him — people who had quit jobs and left families for this opportunity — blinked back in polite confusion.
+
+> "Nobody knew who Sam was," said **Doktor Gurson**, whose phone-charging startup **Doblet** was in the batch. "Some people were slightly disappointed because they were looking forward to working with Paul Graham."
+
+As Altman sat down across from Graham for a Q&A about YC's extraordinary success, Gurson was impressed by his combination of short, pithy answers and wide-ranging curiosity — but did not think the leadership change would improve Doblet's chances. He was so panicked at missing the chance to work with Graham that he buttonholed the hacking legend later that night and pitched him on Doblet's progress.
+
+> "I'd never heard of Sam Altman," recalled **Daniel Yanisse**, whose background check automation company **Checkr** was part of YC that year. "I looked him up to see his background and was surprised because he didn't have that much experience. He was pretty young and his company, Loopt, did not get that big before its acquisition."
+
+It took Yanisse a while — just curious, what are his special talents and skills? — **to *see* it.** Altman came across as introverted, technical, and occasionally brusque during office hours, skipping the small talk and going straight to his question of what he could do to help.
+
+Graham, however, never had any doubts about Altman's talent and skills:
+
+> "He's one of those rare people who manage to be both fearsomely *effective* and yet fundamentally *benevolent* — which, though few realize it, is an essential quality in early stage investing," Graham wrote in his announcement blog post, cheekily titled **"Sam Altman for President."** "Sam is one of the smartest people I know, and understands startups better than perhaps anyone I know, including myself." He said he was passing the baton **"because YC needs to grow, and I'm not the best person to grow it."**
+
+During his nine years at the helm, Graham had grown YC by a factor of roughly ten — from eight startups in the first batch to nearly eighty in the current one — minting unicorns like **Stripe, Airbnb, and Dropbox** along the way. More important, he had tilted the balance of power in the Valley away from investors and toward startup founders, and had preached his gospel so widely and effectively that ever-larger hordes of starry-eyed entrepreneurs and investors were beating down YC's door each year. Suddenly, in the wake of the financial crisis, all the people who might have previously gone to work at **Goldman Sachs or McKinsey** now wanted to study computer science and start companies. Graham gazed out at the coming tsunami with awe:
+
+> "I'm convinced there's a fundamental change happening in the way work gets done," he wrote. "It's becoming normal to start a startup. There will be a lot more startups in 10 years than there are now, and if YC is going to find them, we'll have to grow proportionally bigger."
+
+The problem was that Graham's method of working did not, in Valley-speak, **"scale."** As **Paul Buchheit**, the creator of Gmail who became one of YC's earliest and most devoted angel investors and partners, put it:
+
+> "PG's a really great one-man show. He runs everything himself."
+
+He wrote all of YC's software, moderated its increasingly popular message board, **Hacker News**, interviewed candidates and advised them during office hours. It was the equivalent of "four jobs," as Graham and Livingston began having children, he found himself wanting more time to devote to them, as well as to his own projects, including his essays and the dialect of the **Lisp** programming language he had been working on before YC blew up. He had begun trying to woo Altman almost since the moment that Loopt had been sold, and even more urgently since the growing pains of YC's Sequoia-funded expansion.
+
+When one longtime YC hand asked Graham why he picked Altman to succeed him, Graham replied:
+
+> "He's clearly the most ambitious." Graham believed that Altman was going to get what he wanted, no matter what, so the best way to ensure YC's success was to make that success something Altman wanted.
+
+## Altman weighs the job
+
+Altman was flattered to be asked, but initially unsure.
+
+> "It's nice to hear from your mentor that they want you to do it," he said. "But I really didn't want to do it for a while." **Angel investing** — especially with someone else's money — was all fine and good, as was the advice-offering and favor-trading he referred to as **"being useful,"** skills that had helped him build a fiercely loyal network throughout the Valley. But he still imagined that this would all be in the service of doing, not teaching.
+
+> "I wanted to do a company. It turned out I was very well suited to be an investor. But I thought of myself at the time as very much not an investor." In particular, he wanted to do a **nuclear fission startup**.
+
+Altman wrestled with the decision:
+
+> "It was something that required consideration," said tech entrepreneur and investor **Lachy Groom**, whom Altman was dating at the time.
+
+At that stage, Altman saw an investor as someone who was trying to build a venture capital firm, with limited partners they had to answer to and a set of incentives that were not always aligned with those of the companies they invested in.
+
+> "You're trying to find a company that will be successful with or without you, then convince them to take your money instead of somebody else's, and at a lower price," he told *The New Yorker*. "I didn't like being oppositional to the entrepreneur."
+
+Although he was largely inseparable from Thiel's money, Altman preferred to think of himself as an **angel investor** rather than a venture capitalist.
+
+> "Angel investors don't call themselves investors, they call themselves angels," said Groom. "Sam is very much that. He's not looking to build a firm. He doesn't get a kick or rise out of being an investor. **He loves working with founders and he happens to give them money.**"
+
+## The YC juggernaut and the bubble question
+
+In the end, Altman's love of working with founders won out, and he took over the YC juggernaut just as talk of a new tech bubble began to take over the Valley.
+
+> "Prices are high and valuations are high," Graham told a conference soon after the announcement. **It was not just that Dropbox and Airbnb were now valued at more than $10 billion, and Stripe at nearly $2 billion.** The average value of a YC-funded startup was now more than **$22 million**, and one of the graduating companies from the last batch had been valued at **$50 million**.
+
+As startups filled offices in San Francisco, tech workers flooded formerly edgy neighborhoods like **the Mission**, pushing up the city's median home price above **$1 million**. For the first time, there were more **"ultrarich" people, defined as having assets of at least $30 million, in San Francisco than in Los Angeles.**
+
+Despite what felt like very high prices, Altman and Thiel agreed to buy out a portion of Graham's stake in Y Combinator as he departed. (Thiel said it was about a third of Graham's YC holding; Altman said it was more like 7 percent.) Altman had to hold Thiel's hand through the whole thing.
+
+> "Sam was extremely optimistic, which was an important trait to invest in these things because they all looked fully valued," Thiel said, as I noted in the prologue.
+
+## Altman's vision for YC: fighting tech stagnation
+
+Altman's vision for how to expand YC was deeply influenced by Thiel's complaints about tech stagnation. In the year before he moved into the job, Altman had begun publishing personal, philosophical essays on his blog, PG-style. An early essay laid out one of his deepest and most persistent beliefs:
+
+> **"Without economic growth, democracy doesn't work because voters occupy a zero-sum system,"** he wrote. Teaching humans to share was impossible; growth was a kind of spiritual hack that got you out of having to do it. There was some historical evidence to support this claim: **Athenian democracy lasted less than two hundred years, but would probably not have happened at all had it not been for the enormous wealth it extracted, largely via slaves, from its nearby silver mines**; it's probably not a coincidence that the democracy petered out around the same time the silver deposits did. But Altman does not look that far back in history. Instead, he pointed to the two main sources of America's remarkably steady growth over the centuries: **the frontier**, and then, once that was consumed, **technological progress**.
+
+> "The US has been blessed with economic growth for a very long time, first due to natural resources and massive amounts of land in which to expand, and then due to a period of technological progress rarely matched in human history that lasted approximately until we realized just how dangerous nuclear bombs really were and got scared of new technology," he wrote. **"But the frontier is long over, and although technological innovation has continued at a blistering rate for computers and the Internet, it seems to have slowed down in most other industries."**
+
+**Altman's plan was to use YC to help other industries catch up** to software's explosive growth rate by throwing its doors open to a much wider array of startups than Graham had, including the kind of **"hard tech"** that Altman argued the government used to fund but no longer did.
+
+> "We'd like for Y Combinator to fund more breakthrough technology companies — companies that solve an important problem, have a very long time horizon, and are based on an underlying technological or scientific breakthrough," he wrote in a blog post two months after taking over, pointing to two of **Elon Musk's companies, SpaceX and Tesla**, as examples of what is possible. "It used to be the case that government funded a lot of development of breakthrough technologies. The bad news is that they have mostly stopped; the good news is that the leverage of technology is such that now small startups can do what used to take the resources of nations."
+
+## Nuclear energy, AI, and the doomsday-prepper streak
+
+**By this point nuclear energy was one of Altman's main obsessions**, according to friends, and he put energy at the top of his list for what YC would fund under his leadership. He framed his manifesto, noting that **"there is a remarkable correlation between cheap energy and quality of life,"** but tipped his hand a bit in the details:
+
+> **"Nuclear energy can hit the bid, and possibly so can renewables. But pricing is the first order question."**
+
+**AI was second on the list.** In his earlier personal blog post about AI, Altman had intimated that his optimism about the technology came from inside knowledge:
+
+> "There are a number of private (or recently acquired) companies, plus some large public ones, that are making impressive progress towards artificial general intelligence, but the good ones are very secretive about it," he wrote just before taking over YC, alluding to Google's recent purchase of **DeepMind**. His plans for what YC could do on this score were vague when he wrote about them as YC president a few months later. **"Relative to the potential impact, it doesn't seem like enough smart people are working on this."**
+
+Altman's vision for the new YC also included **robotics, biotech, healthcare, education, internet infrastructure, science, "levers" such as new programming languages or powered exoskeletons, transportation and housing, and food and water.** The latter topics he seemed to approach as a doomsday prepper:
+
+> "At some point, we are going to have problems with food and water availability," Altman wrote. "Technology can almost certainly improve this."
+
+A couple years later, he would publicly declare that preparing for the apocalypse, whether it was caused by a synthetic virus or rogue AI, was one of his personal hobbies:
+
+> "I have guns, gold, potassium iodide, antibiotics, batteries, water, gas masks from the Israeli Defense Force [sic], and a big patch of land in Big Sur I can fly to," he told *The New Yorker*.
+
+**Altman's restless attention could not be held by companies trying to offer slightly better airport rideshares or HR software.**
+
+> "He's a high-impact person who wants to do some somewhat crazy things," Groom said. "He's always been a deeply, deeply intellectual person. I think it comes from a pursuit of importance. As a person that smart, it's hard to stay interested in consumer social apps."
+
+Altman was so committed to his hard-tech vision that he went out and proactively recruited aviation and energy startups to join YC, something that the previous regime, already overwhelmed by the pile of applications flooding in, would never have considered doing.
+
+## Scaling YC: the YCVC problem and continuity funding
+
+Like Graham, Altman also wanted to make **YC bigger** — much bigger — expanding from tens to hundreds of startups in each batch. To fund this growth Altman needed to clean up **YC's relationship to the investment community**. For years, YC had jumped into bed with one venture firm or another, allowing the likes of **Sequoia or Andreessen Horowitz** to help fund batches and get their own return. Over the years, this program got a name: **YCVC**. But as YC grew, conflicts of interest arose as these same firms competed for investments at Demo Day. (For example, Sequoia's **Greg McAdoo** had famously swooped in and preemptively offered to lead a **$600,000 seed round into Airbnb** before it had even presented at Demo Day, causing some grumbling among other YC partners and VCs.) So, months before his new role was revealed, Altman began courting institutional investors, such as pension funds and university endowments, which are typically the backers or **"limited partners"** behind venture capital firms like Sequoia. Two such entities — **Stanford's endowment and Willett Advisors, which managed Michael Bloomberg's philanthropic assets** — signed on to jointly invest **$100,000 in every YC startup**, allowing YC to boost its investment in its startups from **$17,000 to $120,000**.
+
+But when Altman delivered this welcome news to the YC community, he skipped over the part about where the money was coming from. (Altman will go to elaborate lengths to avoid discussing even the existence of LPs in the press, let alone drop their names.) Instead, he laid out a head-scratching financial structure. "Although YC itself continues to have no LPs (and that way we have the flexibility to do things like fund non-profits), a portion of the investment is from a fund YC manages that does have LPs," he wrote.
+
+Still, bringing in two institutional investors was a sweeping change for YC. As the batches came to know Altman better, they saw the his true genius lay in such acts of financial ingenuity. As **Checkr** hit the larger Series A — advice that flew in the face of the prevailing wisdom, Altman counseled them to skip the typical seed round and go straight for the larger Series A. He counseled Yanisse to skip the typical Demo Day with strong user growth numbers.
+
+> "That's when I saw the raw talent of Sam, and that companies should 'find product-market fit' before making that kind of commitment, which normally involved giving up the investor a board seat. That's the crazy experience he has on fundraising and startups," Yanisse said. **"We probably saved a few years by doing that." Today, Checkr is worth $4.6 billion.**
+
+## Openness, accessibility, and the Altman brothers
+
+**For all of Altman's terseness and inability to tolerate blather, founders were also surprised by his openness and accessibility.** **Walker Williams**, who had grown up down the street from the Altmans, was working on a T-shirt-making startup called **Teespring**, and had not even considered Y Combinator when his brother connected him to Altman. The company had focused initially on the college market and was growing fast. Even though it was far from the hard tech of his dreams, Altman was interested.
+
+> "One thing that's striking about Sam is, when you're talking to him, you have his full attention," Williams said.
+
+Altman suggested they apply to YC, even though they were a bit past the deadline, and they got into the winter 2013 batch. Once there, Altman, who was still a YC partner at the time, would conduct walking office hours while doing laps up and down the cul-de-sac in front of YC's headquarters. As Teespring's revenue took off, **Altman became its first investor**.
+
+In **November of 2013**, when Altman knew he would be taking over YC but few others did, his younger brother **Jack**, who had spent the prior two years working at Hydrazine, joined Teespring as its **VP of business development**. The following January, their brother **Max joined Zenefits**, which was in that same YC batch, moving from Chicago where he had been working as a trader at the Sequoia-backed high-frequency trading firm **Allston Trading**. The younger brothers initially moved in with Altman on a temporary basis, and ended up living with him in San Francisco for most of the five years that he led YC.
+
+**Altman kept his love life in the YC family as well**, beginning a relationship that year with **Groom**, who was then a nineteen-year-old early Stripe employee. Groom had joined Stripe directly out of high school in 2012, after founding and selling three startups in his native Australia, and seemed to epitomize the thesis that the best founders were often the youngest. The relationship was serious enough that Altman introduced Groom to his family, some of whom expressed concern that, at age twenty-eight, he was dating a teenager.
+
+## The board and "finding your tribe"
+
+Altman's belief that things work best within a **tight, trusted network** — or as he later framed it in a public talk with Jack, the importance of **"finding your tribe"** — was perhaps most clearly revealed by the board of overseers he set up shortly after becoming president of YC. Modeled on such entities at universities including Harvard, which are more advisory and have less governing authority than boards of directors, the group had pretty much one job:
+
+> "The Board will be responsible for hiring and firing the YC President, and occasionally helping with strategic direction," Altman wrote. **"Hopefully it doesn't have to meet very often."**
+
+Many of Altman's friends were named to the board: **Brian Chesky (founder of Airbnb and Altman's fellow Sequoia scout); John Collison; Adora Cheung (the founder of YC graduate Homejoy); Patrick Collison; Drew Houston (founder of YC superstar Dropbox); Jessica Livingston; David Rusenko (founder of YC graduate Weebly); and Emmet Shear (Altman's batchmate and founder of Justin.tv and Twitch).** Nearly all of the others had either taken Altman's money, given him some, or served alongside him in some trench or another. It was, in some ways, the perfect picture of the CEO-friendly board that YC had helped make more common throughout the Valley.
+
+To expand YC in the manner he desired, Altman needed more cash, and to get it he would turn the accelerator into the very thing it was founded to push back on: **a venture capital fund.** He began exploring raising a new fund that would make later stage investments in YC companies, and in the process earn the kind of fees that venture capital funds carried: around **2 percent of the amount managed annually, plus carried interest of around 20 percent of the profits**.
+
+To run the fund, Altman decided to pursue someone from beyond the insular venture capital clique of **Sand Hill Road**.
+
+> "I wanted someone who was a real company operator," Altman said. "Because one of the critiques of YC is you give good advice to early-stage startups, but then you know nothing about how to scale a startup, which is true, but neither do most VCs, in my opinion. So I wanted someone who had done that."
+
+## Ali Rowghani
+
+During the first summer of his tenure as YC president, Altman had dinner with **Ali Rowghani**, a former Pixar executive who had just left his post as **chief operating officer of Twitter** after four years of investor pressure due to Twitter's lack of revenue growth. Over sushi, Altman and Rowghani talked about physics. A few weeks later, Altman texted to ask if he'd be interested in being a YC partner. Rowghani, an Iranian American Stanford grad and McKinsey veteran, wanted to know what restrictions might apply. The only one was that he couldn't join a rival VC firm. Rowghani had no intention of doing so, and was inspired by YC, so he agreed. That winter, as a partner, he mentored companies including **Coinbase and Stripe**. Soon enough Altman came with a bigger ask: **Would Rowghani consider leading a new fund that would invest in YC companies at later stages?**
+
+The idea had been batted around within YC for years, especially as PG and his employees saw venture funds like Sequoia and Andreessen Horowitz profiting handsomely from the winners that YC had cultivated. After Altman became president, one blogger estimated that Sequoia had made more money from YC than YC itself, because it was a Series A investor in YC's three superstars: **Airbnb, Dropbox, and Stripe.** (Series A investors usually get 25 percent equity in a company, compared to YC's typical cut of 7 percent.)
+
+> **"Sequoia can double down on the fastest-growing companies and YC can't,"** wrote **Robin Dahan**.
+
+> "The way YC is currently structured doesn't allow them to make follow-on investments to get larger stakes from the runaway winners like Airbnb and Dropbox (though some of the YC partners do make personal follow-on investments). If YC started doing follow-on investments in the 'winners,' it would send a pretty bad signal about the companies they didn't follow-on invest in, who would be considered 'losers.'"
+
+(Sources familiar with Altman's thinking dispute that Sequoia had profited more from YC companies than YC had.)
+
+## The Continuity Fund
+
+**Altman and Rowghani brainstormed how to get around these limitations.** One idea was to use the fund to invest in **all YC graduates that were valued at more than $300 million.** They then went out on the road recruiting LPs. They expanded the pool beyond Stanford and Willetts to include the endowments of **Yale, Wash U, and Penn**. As he had with the wireless carriers at Loopt, Altman commanded the room at these meetings, tossing out outlandish statements with such authority that the LPs were convinced he could see into the future. Between them, they raised **$700 million** for what would be called the **YC Continuity Fund**. It caused some panic in the Valley, as VC firms assumed that YC would just continue to eat ever larger portions of their lunch.
+
+Even as he prepared a path for YC itself to make follow-on investments, Altman cracked down on the ability of YC partners to do the same, installing a new rule that they had to wait until after Demo Day or be part of a Series A. His goal was to counter the appearance of favoritism. He also created an email list to alert all interested investors when YC companies were raising rounds outside of Demo Day, to avoid accusations that he was leaving anyone out. His emails have the stern tone of a nightclub bouncer, or perhaps the startup investment police:
+
+> "The rules for membership are simple," he wrote. "5 total investments in YC companies of any size or 2 big ones, a positive reputation among our alumni, and no history of bad behavior like breaking term sheets without great cause, pressuring founders into advisor shares in addition to an investment alongside others in a round, etc."
+
+## Enemies, and the Reddit rescue
+
+Altman found it exhausting.
+
+> "You're kind of enemies with two thirds of the Valley at all times," he said. "You end up being like the cop. This investor is treating this founder badly, so you've got to call and yell at them. The jealousy of YC among other investors is super intense. **It's kind of stopped now, but for a long time it was just like, 'How do we take down YC?'"**
+
+Indeed, Altman got involved when a YC company needed it. **Reddit** had always been a kind of YC mascot, birthed in its initial batch, shaped from the start by Graham's hankering for a front page of the internet instead of the food-ordering idea its founders had brought him. Its initial success, launched with a link from Graham's blog, had been Reddit's first set of users. And YC's purchase by **Condé Nast**, the most glamorous media company on earth, while still in its infancy, put it squarely on the mainstream media map (never mind that Condé paid the outrageously cheap price of **$10 million**, which was probably about equivalent to its budget for black cars and fresh flowers). But from the beginning the anarchic Reddit, with its self-organizing communities sharing everything from confusing cookie-cutter shapes to photos of underage girls, had been an odd fit for the owner of *Vogue*, *Vanity Fair*, and *The New Yorker*.
+
+Reddit had kept growing, in spite of what many in the Valley saw as a kind of benign neglect from its parent company, but had never been profitable. Within a few years, all of its co-founders had moved on to other projects.\* Condé decided to move on, too.
+
+> "It just didn't naturally fit within the company, and it was clear that they needed better talent, more capital, and clearly its own platform," said **Bob Sauerberg**, who was CEO at the time. **"The thought of integrating it into the Condé Nast platform made no sense. So we thought that if we spun it out, we could hire a team that was native to the business."**
+
+> \* **Aaron Swartz**, who had joined Reddit as a co-founder in a kind of Graham-officiated shotgun wedding, had been fired in 2007 after struggling to adapt to corporate life. He went on to become an activist for copyright reform and open access to information, and hanged himself in 2013 while facing federal hacking charges and the possibility of decades of jail time for downloading a large trove of academic papers from MIT.
+
+In **2011**, Condé Nast's parent company, **Advance Publications**, turned Reddit into an **independent subsidiary**, and recruited PayPal and Facebook veteran **Yishan Wong** to lead it as CEO. The new structure would allow Wong to raise money for Reddit like it was any other Silicon Valley startup. That prompted him to make a visit to YC.
+
+In the **spring of 2014**, Wong pulled into YC's Mountain View parking lot in a blue Tesla, at the same time Altman was stepping out of his own blue Tesla, according to **Christine Lagorio-Chafkin's book on Reddit, *We Are the Nerds*.** The two men hit it off. Both loved Reddit and understood the Valley. Wong had come looking for insight into the fundraising landscape generally, not knowing that Altman had a fund of his own. Two days later, Altman called Wong to say he wanted **Hydrazine to lead an investment round in Reddit.** He then spent weeks working the phones to woo Hollywood names including **Jared Leto and Snoop Dogg** as well as VC luminaries like **Thiel, Andreessen, Sequoia's Alfred Lin, and Thrive Capital's Josh Kushner.** By September they raised **$50 million — $27.5 million from Hydrazine — and Altman joined the board.**
+
+The announcement said that the investors would **set aside 10 percent of the shares for the community of Reddit users** who generated the site's content.
+
+> "It's always bothered me that users create so much of the value of sites like reddit but don't own any of it," Altman explained on his blog, when he announced the round. "So, the Series B investors are giving 20% of our shares in this round to the people in the reddit community, and I hope we increase community ownership over time. We have some creative thoughts about the mechanics of this, but it'll take us awhile to sort through all the issues."
+
+**Wong**, who came up with the idea, was more direct in an interview with *TechCrunch*:
+
+> "We have a crazy plan and what we're going to do is create a crypto-currency that is backed by those shares. Then we're going to distribute the currency to the community through some reasonably fair way that reflects the contributions of the community."
+
+His own blog post on the matter had an all-caps disclaimer: **"CAVEAT: KEEP IN MIND THAT THIS PLAN COULD TOTALLY FAIL."**
+
+The plan did, in fact, totally fail. Within weeks, **Wong resigned**, in part due to the company's rebellion against his plan to move its offices from San Francisco to the unappealing suburb of **Daly City**, which had inspired the **Malvina Reynolds** song about "little boxes made of ticky-tacky" that **Pete Seeger** made a hit. That left Altman to serve as CEO for **eight days** before handing that title to **Ellen Pao**, an impressively credentialed Reddit executive best known for suing her former employer, the venture firm **Kleiner Perkins**, for gender discrimination.
+
+Amid the chaos, Reddit co-founder **Alexis Ohanian** returned as executive chairman, and Altman began reaching out to his somewhat estranged co-founder, **Steve Huffman**, for advice. Altman and Huffman had formed a friendship that they had never really had during their time as YC batchmates a decade earlier, when Altman was wandering around Cambridge alone with his cargo shorts pockets stuffed with mobile phones and Huffman was making risqué jokes on **AOL Instant Messenger**. As the chaos at Reddit continued — Pao and Ohanian did not get along, and the company was still reeling from its role in sharing a trove of nude celebrity photos leaked by hackers — Sauerberg and Altman lobbied Huffman to return with increasing urgency. (Sauerberg and **Steve Newhouse**, a member of the family that has controlled Condé Nast for generations and a passionate backer of Reddit, had been talking to Huffman for years.)
+
+Huffman was tempted but unable to imagine leaving behind **Hipmunk**, the travel search company he had co-founded after leaving Reddit. At one point, knowing Reddit needed engineering talent as well as new leadership, he suggested Reddit just buy Hipmunk. For weeks, Huffman and Altman discussed the possibility, with the Reddit investors open to the acquihire. In the end, Huffman's co-founder at Hipmunk couldn't bring himself to agree to it. However, the exercise revealed to Huffman just how much he wanted to go back and fix his first company. When **Pao resigned in July 2015** during a mutiny by Reddit users over the firing of a popular employee, Huffman returned to lead Reddit. The entire process was a mess, but Altman never wavered from his belief that Reddit could be one of the great internet sites.
+
+> "He is always thinking 100-times growth, always keeping us focused on, 'it's got to be up and to the right,'" Sauerberg said.
+
+Nearly a decade later, **Reddit went public on the New York Stock Exchange**, and the **8.7 percent that Altman's Hydrazine acquired through the Series B and subsequent purchases became worth more than $600 million.** (The long-delayed IPO happened only after Reddit signed deals to license its data to train AI models like OpenAI's.)
+
+> "One of Sam's qualities is, he gets it done," Huffman said. "He seems to be drawn to the messier, more complex deals. That seems to get him excited. More so than just about anybody I know, he loves being in the shuffle, when things are mixed up, getting deals done, getting relationships made."
+
+## Bostrom's *Superintelligence* and Musk's warning
+
+**While Altman was busy trying to rescue Reddit, a surprise bestseller was helping to transform informed laypeople's perception of AI.** Swedish philosopher **Nick Bostrom's book *Superintelligence: Paths, Dangers, Strategies*** was dense and academic, with long passages filled with mathematical equations and logical proofs. Yet in **August 2014** it landed on *The New York Times* bestseller list, after **Elon Musk** tweeted:
+
+> **"Worth reading *Superintelligence* by Bostrom." Musk told his 10 million followers. "We need to be super careful with AI. Potentially more dangerous than nukes."**
+
+*Superintelligence* begins with a fable about a flock of sparrows who decide that it would be useful to have an owl around to help them build their nests and look out for cats. They begin to plot how to find an owlet that they could raise to do their bidding. One of the sparrows speaks up to ask if they had not perhaps better figure out how to tame an owl before dragging an egg into their nests, but the leaders determine that finding the owl is hard enough. They can worry about taming it later. **The skeptic and a sad handful of followers stay behind**, understanding that learning how to tame an owl without one to practice on would be even harder than they thought. The story ends with their fear that the fellow sparrows might return with an egg before they have figured it out.
+
+In the book, Bostrom argues that humans will likely create what he called **"machine superintelligence"** sometime in the twenty-first century, and thus had better get to work making sure that it does not destroy all of humanity. To illustrate how AI might take over, he borrows Yudkowsky's metaphor of the paperclip, though gives it a twist:
+
+> A superintelligent AI programmed to make paperclips might just keep going until all matter in the universe — including the fleshly bodies of all sentient beings — is turned into paperclips. **"This is quite possibly the most important and most daunting challenge humanity has ever faced,"** he writes. **"And — whether we succeed or fail — it is probably the last challenge we will ever face."**
+
+## Bostrom, Extropians, and the 1996 email
+
+**Bostrom and Yudkowsky emerged from much the same milieu.** Growing up in Sweden, Bostrom was highly intelligent and eager to be done with traditional schooling. By the time he was fifteen, in the late 1980s, he had what he calls **"a general sense that things that could change the world"** — that does the inventing and idea discovery, whether it be through AI or ways of enhancing the human biological condition, could be very important. That led him to explore neural networks, and ultimately to pursue graduate work in the philosophy of science. But it was not until the internet's arrival in the mid-1990s that he found other people "interested in potential future technologies, like AI and nanotech," he said.
+
+> "It was really very niche. No academics were interested in this at all."
+
+He discovered the **Extropians listserv** and became an active participant alongside Yudkowsky.
+
+> "That was really where the action was in terms of the most advanced conversations about some of these ideas," he said.
+
+(In **2023**, his participation in the rollicking conversations on this listserv would come back to haunt him when researcher **Émile Torres** found a **1996 email from Bostrom**, then a twenty-three-year-old grad student at the London School of Economics, to the group:
+
+> **"Blacks are more stupid than whites. I like that sentence and think it is true. But recently I have begun to believe that I wouldn't have much success if I speak like that. They would think that I were [sic] a 'racist'; that I disliked black people and thought that I were if blacks are treated badly; that I think it is probable that black people have a lower IQ than mankind in general, and I think it is highly correlated with what we normally mean by 'smart' and 'stupid.' I may be wrong about the facts, but that is what the sentence means for me. For most people, however, the sentence seems to be synonymous with: I hate those bloody [n-word, not redacted in the email]!!!!" My point is that while speaking with the provocativeness of unabashed objectivity would be appreciated by me and many other persons on this list, it may be a less effective strategy."** Bostrom apologized for the email in 2023.)
+
+The following year, in **1997**, Bostrom co-founded the **World Transhumanist Association**, which would seek to build on the work of Extropy Institute and push transhumanism toward academic respectability.
+
+> "His interest in science was a natural outgrowth of his understanding. His interest in science was a natural outgrowth of his understandable desire to live forever, basically," his friend **Daniel Hill** told *The New Yorker* years later.
+
+In **2005**, it seemed respectability had been achieved, when the futurist and philanthropist **James Martin** put up the money for Bostrom to found the **Future of Humanity Institute at Oxford University**, giving him a full-time staff to study "the big challenges for humanity in the twenty-first century."
+
+Bostrom is careful in *Superintelligence* not to make specific predictions about how soon machine intelligence might surpass humans, but his book appeared at the same time as **DeepMind's Atari experiments**, and many people in the field noticed. One of his central arguments is about importance. His predictions might all be wrong, he suggests, but if there's even a small chance that he's right, there is nothing more important. **A generation of what would become AI safety researchers read the book and found their life's purpose.**
+
+## Scott Alexander's "Meditations on Moloch"
+
+For the AI-obsessed Altman, the long odds and galactic import were too tempting to ignore. One of his favorite essays, **"Meditations on Moloch"** by the blogger **Scott Alexander** on his blog **Slate Star Codex**, is largely a response to Bostrom. In his famous poem *Howl*, **Allen Ginsberg** conjured **Moloch**, the ancient child-eating god, as the freedom and beauty-destroying force of civilization itself. (Many have argued that for Ginsberg, Moloch was capitalism.) For Alexander, Moloch is the **game theory that traps us into self-defeating dynamics like arms races**.
+
+> "From a gods-eye-view, the best solution is world peace and no country having an army at all. From within the system, no country can unilaterally enforce that, so their best option is to keep on throwing their money into missiles that lie in silos unused," he wrote.
+
+Alexander argues that **Bostrom's vision of an AI smarter than humans offered humanity a way to fight back against the forces of Moloch.**
+
+> "The only way to avoid having all human values gradually ground down by optimization-competition is to install a **Gardener** over the entire universe who optimizes for human values," Alexander writes. "And the whole point of Bostrom's *Superintelligence* is that this is within our reach."
+
+Yes, machines smarter than humans being able to design machines smarter than they are could leave us **"super-doomed"** if "multiple, competing entities were likely to do that at once." But if one gets supersmart so fast that **"it can suppress any competition,"** then it has the chance to determine the shape of our future, potentially for the better.
+
+> "In the very near future we are going to lift something to Heaven. It might be Moloch. But it might be something on our side. If it's on our side, it can kill Moloch dead. And if that entity shares human values, it can allow human values to flourish unconstrained by natural law."
+
+At this point in the essay, Alexander realizes that it sounds like he's saying humankind could have the chance to create or replace God. He doesn't deny it:
+
+> **"To expect God to care about you or your personal values or the values of your civilization, that's hubris," he writes. "I am a transhumanist because I do not have enough hubris not to try to kill God."**
+
+## Key takeaways
+
+- **Graham chose Altman not for operating experience but for ambition** — "He's clearly the most ambitious" — and because YC's real bottleneck was that Graham himself didn't scale.
+- **Altman entered essentially unknown to the founders he was to lead**; his reputation was inside the investor network, not the batch.
+- **His YC agenda was Thiel's stagnation thesis in operational form:** open YC to hard tech — nuclear, AI, biotech, robotics, energy — because "small startups can do what used to take the resources of nations."
+- **Growth as political philosophy:** Altman's core belief is that democracy only functions under economic growth, because a zero-sum electorate can't be taught to share.
+- **His real genius at YC was financial engineering:** institutional LPs (Stanford, Willett, Yale, Wash U, Penn), the standard investment raised from $17k to $120k, and the **$700M YC Continuity Fund** that turned the accelerator into a late-stage VC.
+- **Reddit is the case study in Altman's dealmaking:** he led a $50M round ($27.5M from Hydrazine), briefly served as CEO for eight days, navigated the Pao chaos, and got Huffman back — a stake later worth **$600M+** at IPO.
+- **The AI-doom canon (Bostrom's *Superintelligence*, Musk's "more dangerous than nukes" tweet, Alexander's "Meditations on Moloch")** landed in 2014 and gave Altman both the stakes and the framing: a superintelligence aligned to human values as the only escape from Moloch's arms races.
 
 ---
 
