@@ -56,3 +56,6 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 ## Known-done
 - No raw HEICs remain anywhere in the iCloud source folder as of 2026-07-20 (superseded — new photos added since for Down Economy/Sobriety/IBS)
 - No stray empty files in this repo (verified 2026-07-20)
+
+## From Apple Notes (imported 2026-08-11)
+- [ ] Finish the remaining raw book files — last session was cut off halfway (ran out of usage)
