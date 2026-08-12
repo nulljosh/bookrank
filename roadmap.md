@@ -59,3 +59,5 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 
 ## From Apple Notes (imported 2026-08-11)
 - [ ] Finish the remaining raw book files — last session was cut off halfway (ran out of usage)
+
+> Resume note (2026-08-11): a `wip: partial work from /work notes ingest` commit holds unfinished, unverified changes for the items above. Review `git show HEAD` before building on it — it was committed mid-flight, not reviewed, and is unpushed.
