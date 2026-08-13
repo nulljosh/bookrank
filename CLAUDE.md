@@ -26,4 +26,4 @@ The recurring TestFlight icon glitch (art rendered small/top-left with white fil
 Decided: books stays its own repo — do NOT merge into lexly or notes. books/lexly/notes are separate products (own domains/apps); notes is the wiki.
 
 ## Roadmap
-See `roadmap.md` in this repo root — not embedded here anymore. ASC app IDs (`6787499076` iOS, `6787499349` macOS) are unaffected by the display-name rename.
+See `roadmap.md` in this repo root — not embedded here anymore. ASC app ID is **`6792376485`** (bundle `com.heyitsmejosh.spine`) — one record carrying both iOS and macOS, verified via `asc apps list` 2026-08-13. (Earlier notes here listed `6787499076` iOS / `6787499349` macOS; those are wrong and match no live record.)
