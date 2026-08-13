@@ -7,15 +7,6 @@
 - A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
-## The Optimist (Keach Hagey) — summaries in progress
-- [x] Done: prologue + ch. 1-14 **and the Epilogue** (ch. 11-12 inline, ch. 13-14 + Epilogue via per-chapter subagents, all 2026-08-11; raw HEICs deleted after write).
-- **ORDERING GOTCHA:** the Epilogue is already appended at the END of `summaries/the-optimist.md`. Ch. 15-17 must be **inserted before it**, not appended, or the book reads out of order.
-- Method that works (cheapest): one subagent per chapter, told to `Write` its markdown to a scratch file and reply with only the path — never to return the text. The parent then `cat`s it on. Returning the markdown makes the parent re-emit the whole chapter, which is what actually burns the session budget.
-- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 15 (11 imgs), 16 (10), 17 (9)** = 30 images. These finish the book.
-- Budget note (measured 2026-08-11): **one chapter of ~11-14 photos costs ~10-11% of a 5-hour session block.** Two chapters per session is the realistic ceiling.
-- Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
-- After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
-
 ## Raw photo backlog — NOT clear (recount 2026-08-11)
 The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount, minus Optimist ch. 11-14 + Epilogue) — 380 left `Documents/Misc/Books/`.
 - **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
@@ -65,7 +56,6 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 
 ## Someday / Explore
 - [ ] Goodreads **sign-in/sync** integration (separate from the ranked-shelf-scrape above, which is done and needed no auth) — Goodreads deprecated its public API for new developer keys in 2020; confirm current auth options exist before scoping. No deadline pinned
-- [x] Landing page split: separate marketing page from the rankings-list homepage — already done: `index.html` is the marketing landing (hero, "Ranked, read, and summarized", CTA buttons), `rankings.html` holds the actual list (verified 2026-08-13)
 - [ ] iOS/Mac companion app ("Digest") — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding; no API/data layer exists yet. Multi-session project. (Same blocker noted in CLAUDE.md's "Imported from Books (tracker app).pdf" — this is the current, consolidated entry.)
 - [ ] Books skill: treat each raw folder as a chapter (auto-create chapter folders) in the summarize pipeline
 - [ ] Replace shell-script deps in the summarize pipeline with native implementation where sensible
@@ -81,10 +71,6 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 > Resume note (2026-08-11): a `wip: partial work from /work notes ingest` commit holds unfinished, unverified changes for the items above. Review `git show 761ac52` before building on it — it was committed mid-flight and not reviewed. (It is now pushed, as of 2026-08-13.)
 
 ## From Apple Notes (imported 2026-08-13)
-- [x] Bookrank is live on the App Store — App Store badge added to README.md line 5, linking https://apps.apple.com/us/app/bookrank/id6792376485 (app id 6792376485, bundle `com.heyitsmejosh.spine`, verified live via `asc apps public view`)
-- [x] Confirm the site has a proper landing page plus registration and login — landing page YES (`index.html`); registration/login intentionally does not exist, see note below
-- [x] **Stale ASC app IDs in CLAUDE.md** — corrected to the single real record `6792376485` (bundle `com.heyitsmejosh.spine`, one record carrying both platforms), verified via `asc apps list`. The old `6787499076`/`6787499349` match no live record.
-- [x] Landing page (`index.html`) App Store download link — added a "Get the app" button to the hero next to "Browse rankings"/"Source", linking `apps.apple.com/us/app/bookrank/id6792376485` (verified 200). Deploys via GitHub Pages (`.github/workflows/pages.yml`), so the push is the deploy.
 - [ ] **App Store listing metadata is stale and partly broken — BLOCKED on a new version.** Two problems on the live listing, both verified 2026-08-13 via `asc apps info view --app 6792376485`:
   1. `description` still opens "**Uprighty** is a curated collection of book rankings…" — the pre-rename name.
   2. `supportUrl` is **`https://spine.heyitsmejosh.com`, which is DEAD** (curl → connection failure; that CNAME was deleted from Cloudflare during the rename). A live App Store listing pointing at a dead support URL is a Guideline 1.5 risk on its own, and is the more urgent of the two. Correct value: `https://bookrank.heyitsmejosh.com` (200).
