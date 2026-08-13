@@ -87,3 +87,27 @@ password or account handling in any of `index.html`, `rankings.html`, `summary.h
 So "add registration and login" is a product decision, not a missing implementation: it would
 mean introducing a backend (the same Supabase-vs-static-JSON call already blocking the "Digest"
 companion app above) and rewriting the privacy policy. Not built — decide the backend first.
+
+## Summary backlog is NOT complete (audited 2026-08-13)
+
+The 2026-08-06 "backlog 100% complete" claim is wrong. ~465 unprocessed photos remain in
+`~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/`:
+
+| Book | Pending chapter folders | Photos | Site file state |
+|------|------------------------|--------|-----------------|
+| macOS Tahoe For Dummies (`for dummies/mac tahoe`) | 3–20, `21-24` | ~223 | `summaries/macos-tahoe.md` stops after Ch2 |
+| AI in Business For Dummies (`for dummies/ai in business`) | 3–17 | ~150 | `summaries/ai-in-business.md` stops after Ch2 |
+| The Optimist (`The optimist `) | 15, 16, 17 | 30 | `summaries/the-optimist.md` ends Ch14 → Epilogue; insert 15–17 *before* the Epilogue |
+| Trading For Dummies (`for dummies/Trading`) | — | 1 stray `IMG_6096.HEIC`, no chapter structure | no site file |
+
+Process with the `summarize-books` skill. Note for whoever runs it: the photos are rotated 90°
+and `-Z 700` is **not** legible for these pages — use
+`sips -s format jpeg -r 270 -Z 1700 -s formatOptions 45` (≈250–300KB/page). That makes this an
+expensive job (~465 page reads); do it a book at a time, starting with The Optimist (30 photos,
+completes a book).
+
+Detection command:
+```bash
+B=~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Misc/Books
+find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' -print
+```
