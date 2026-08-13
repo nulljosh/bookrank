@@ -65,7 +65,7 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 
 ## Someday / Explore
 - [ ] Goodreads **sign-in/sync** integration (separate from the ranked-shelf-scrape above, which is done and needed no auth) — Goodreads deprecated its public API for new developer keys in 2020; confirm current auth options exist before scoping. No deadline pinned
-- [ ] Landing page split: separate marketing page from the rankings-list homepage
+- [x] Landing page split: separate marketing page from the rankings-list homepage — already done: `index.html` is the marketing landing (hero, "Ranked, read, and summarized", CTA buttons), `rankings.html` holds the actual list (verified 2026-08-13)
 - [ ] iOS/Mac companion app ("Digest") — BLOCKED, needs a backend decision (Supabase vs static JSON) before scaffolding; no API/data layer exists yet. Multi-session project. (Same blocker noted in CLAUDE.md's "Imported from Books (tracker app).pdf" — this is the current, consolidated entry.)
 - [ ] Books skill: treat each raw folder as a chapter (auto-create chapter folders) in the summarize pipeline
 - [ ] Replace shell-script deps in the summarize pipeline with native implementation where sensible
@@ -78,4 +78,23 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 ## From Apple Notes (imported 2026-08-11)
 - [ ] Finish the remaining raw book files — last session was cut off halfway (ran out of usage)
 
-> Resume note (2026-08-11): a `wip: partial work from /work notes ingest` commit holds unfinished, unverified changes for the items above. Review `git show HEAD` before building on it — it was committed mid-flight, not reviewed, and is unpushed.
+> Resume note (2026-08-11): a `wip: partial work from /work notes ingest` commit holds unfinished, unverified changes for the items above. Review `git show 761ac52` before building on it — it was committed mid-flight and not reviewed. (It is now pushed, as of 2026-08-13.)
+
+## From Apple Notes (imported 2026-08-13)
+- [x] Bookrank is live on the App Store — App Store badge added to README.md line 5, linking https://apps.apple.com/us/app/bookrank/id6792376485 (app id 6792376485, bundle `com.heyitsmejosh.spine`, verified live via `asc apps public view`)
+- [x] Confirm the site has a proper landing page plus registration and login — landing page YES (`index.html`); registration/login intentionally does not exist, see note below
+- [ ] **Stale ASC app IDs in CLAUDE.md**: its Roadmap section claims `6787499076` (iOS) / `6787499349` (macOS). The real live record is **6792376485** (verified via `asc apps list` + `asc apps public view`). Correct or delete those two IDs.
+- [ ] App Store listing description is wrong — it still opens "**Uprighty** is a curated collection of book rankings…" under the Bookrank name. Fix via `asc apps info edit --app 6792376485`.
+- [ ] Landing page (`index.html`) has no App Store download link/button even though the app is live — only "Browse rankings" and "Source". Add a download CTA.
+
+### Audit note: no registration/login exists, by design (2026-08-13)
+There is no auth anywhere in this repo — no sign-in/sign-up form, no Supabase client, no
+password or account handling in any of `index.html`, `rankings.html`, `summary.html`,
+`privacy.html`. This is deliberate and stated in two places:
+- `index.html:164` — "The whole shelf is a static site — no tracking, no account."
+- `privacy.html:24` — "It has no accounts, no login, no analytics, no cookies, and no tracking scripts."
+- `privacy.html:27` — the iOS/macOS app "sends no data to us and has no server component."
+
+So "add registration and login" is a product decision, not a missing implementation: it would
+mean introducing a backend (the same Supabase-vs-static-JSON call already blocking the "Digest"
+companion app above) and rewriting the privacy policy. Not built — decide the backend first.
