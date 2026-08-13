@@ -1,9 +1,27 @@
-# Spine Roadmap
+# Bookrank Roadmap
+
+(The `Spine` names below are Xcode target/path names, not the product name — the app and site are Bookrank.)
 
 ### Mac packaging gotchas (reusable for other apps)
 - `xcodebuild -exportArchive` could NOT export this: it insists the MAS profile contain the *installer* cert, which Apple rejects ("no current certificates ... compatible with MAC_APP_STORE profiles"). Working path is manual: copy `.app` out of the archive → drop the profile in as `Contents/embedded.provisionprofile` → `codesign --force --sign "3rd Party Mac Developer Application: …" --entitlements ios/Spine/SpineMac.entitlements --options runtime --timestamp` → `productbuild --component <app> /Applications --sign "3rd Party Mac Developer Installer: …"` → `asc builds upload --pkg`.
 - A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
+
+## The Optimist (Keach Hagey) — summaries in progress
+- [x] Done: prologue + ch. 1-14 **and the Epilogue** (ch. 11-12 inline, ch. 13-14 + Epilogue via per-chapter subagents, all 2026-08-11; raw HEICs deleted after write).
+- **ORDERING GOTCHA:** the Epilogue is already appended at the END of `summaries/the-optimist.md`. Ch. 15-17 must be **inserted before it**, not appended, or the book reads out of order.
+- Method that works (cheapest): one subagent per chapter, told to `Write` its markdown to a scratch file and reply with only the path — never to return the text. The parent then `cat`s it on. Returning the markdown makes the parent re-emit the whole chapter, which is what actually burns the session budget.
+- Remaining raw photos in iCloud `Misc/Books/The optimist /`: **ch. 15 (11 imgs), 16 (10), 17 (9)** = 30 images. These finish the book.
+- Budget note (measured 2026-08-11): **one chapter of ~11-14 photos costs ~10-11% of a 5-hour session block.** Two chapters per session is the realistic ceiling.
+- Process with the `summarize-books` skill. Convert at `sips -Z 1500 -s formatOptions 65` (the skill's default -Z 700 is NOT legible for this book's type size).
+- After finishing, rebuild `the-optimist-summary.md` by concatenating chapter summaries in order, copy to `summaries/the-optimist.md` + `ios/Spine/Resources/summaries/the-optimist.md`, and update the "(partial: prologue, ch. 1-N)" note in `index.html`.
+
+## Raw photo backlog — NOT clear (recount 2026-08-11)
+The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount, minus Optimist ch. 11-14 + Epilogue) — 380 left `Documents/Misc/Books/`.
+- **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
+- **macOS Tahoe For Dummies** — 215 imgs. Also **returned 2026-08-11**, same situation; `summaries/macos-tahoe.md` is partial.
+- **The Optimist** — 30 imgs left (ch. 15-17), see section above.
+Vision cost: ~18-20k tokens per ~11 pages at `-Z 1500`. Full 429 is far more than one session's budget — work a chapter or two at a time.
 
 ## Blocked on Joshua
 - [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
@@ -37,10 +55,10 @@ Repos that already reference entitlements (epiphany, healstack, lexly, litigate,
 - NOTE (not a task): Physics I For Dummies (Surrey Libraries, barcode 3 9090 0472 4516 8) was returned past-due before pages could be scanned. Skip unless re-borrowed.
 
 ## In progress — chapter summaries (2026-07-28)
-- [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Accounting For Canadians For Dummies** 4th ed. (Cecile Laurin CPA CA, Tage C. Tracy) · **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
+- [ ] Books photographed as cover only, no pages captured yet (nothing to summarize until pages are shot): **Physics I For Dummies** 4th ed. (Cynthia B. Phillips PhD, Shana Priwer — Surrey Libraries barcode 3 9090 0472 4516 8) · **Trading For Canadians For Dummies** 2nd ed. (Lita Epstein, Grayson D. Roze)
 
-### Remaining-work count (as of 2026-08-06 night)
-**BACKLOG FULLY CLEAR (375/375 HEICs).** All 5 photographed books have been summarized and synced: IBS, Sobriety, Statistics, Good Feng Shui, macOS Tahoe, Accounting, AI in Business, Data Science For Dummies. Every HEIC has been processed and deleted from iCloud. Next books will arrive when photographed and added to the queue.
+### Remaining-work count (as of 2026-08-10 night)
+**Original backlog fully clear (375/375 HEICs completed).** All 5 original photographed books have been summarized and synced: IBS, Sobriety, Statistics, Good Feng Shui, macOS Tahoe, Accounting, AI in Business, Data Science For Dummies. Now actively working on new books: The Optimist (prologue + ch. 1-7 shipped 2026-08-10, remaining chapters pending), AI in Business (intro shipped, remaining chapters pending). Next photographed books will be added to the queue as they arrive.
 
 ## From Notes (imported 2026-07-29)
 - [ ] Meta: asc-name-creator (or a rename skill) should auto-update repo name, folder name, and README references when a project is renamed, instead of requiring a manual follow-up each time — filed as a process gap, not app-specific
