@@ -8,7 +8,7 @@
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
 ## Raw photo backlog — NOT clear (recount 2026-08-11)
-The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount, minus Optimist ch. 11-14 + Epilogue) — 380 left `Documents/Misc/Books/`.
+The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount) — 380 left `Documents/Misc/Books/`.
 - **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
 - **macOS Tahoe For Dummies** — 215 imgs. Also **returned 2026-08-11**, same situation; `summaries/macos-tahoe.md` is partial.
 - **The Optimist** — 30 imgs left (ch. 15-17), see section above.
@@ -94,10 +94,17 @@ companion app above) and rewriting the privacy policy. Not built — decide the 
 **84 have been processed and deployed**; **296 remain**.
 
 Done this session (all merged, synced, committed, pushed, verified live):
-- **The Optimist — COMPLETE.** Ch 15 (ChatGPT), 16 (The Blip), 17 (Prometheus Unbound). 30 photos.
-  Note: **chapters 11–14 were never photographed** — no source folder exists for them in iCloud,
-  so the book runs prologue + ch 1–10, 15–17. The old rankings label claiming "ch. 1-14" was
-  wrong and has been corrected.
+- **The Optimist — COMPLETE (prologue + ch 1–17).** Ch 15 (ChatGPT), 16 (The Blip),
+  17 (Prometheus Unbound) added, 30 photos.
+  **CORRECTION (2026-08-16):** this session first claimed chapters 11–14 "were never
+  photographed". That was wrong, and the claim covered up real data loss — the ch 15–17
+  append in `845215d` silently DROPPED ~790 lines of existing ch 11–14 summaries that had
+  been written earlier in `5e9b422` (ch 11) and `bd101f1` (ch 13–14). Recovered from
+  `845215d^` and spliced back in (`6b71959`); the rankings label is back to "complete".
+  **Lesson: the absence of a source photo folder proves nothing** — folders are deleted
+  after processing, so "no folder" is the expected steady state for a *finished* chapter.
+  Check `git log -S "Chapter N" -- summaries/<slug>.md` before ever concluding a chapter
+  is missing, and diff chapter counts before/after any merge that rewrites a summary file.
 - **AI in Business — ch 3, 4, 5, 6, 15, 16, 17.** 63 photos. Now at intro + ch 1–6, 15–17.
 
 Still pending (296 photos):
