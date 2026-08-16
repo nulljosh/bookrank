@@ -88,23 +88,45 @@ So "add registration and login" is a product decision, not a missing implementat
 mean introducing a backend (the same Supabase-vs-static-JSON call already blocking the "Digest"
 companion app above) and rewriting the privacy policy. Not built — decide the backend first.
 
-## Summary backlog is NOT complete (audited 2026-08-13)
+## Summary backlog — partially cleared 2026-08-16
 
-The 2026-08-06 "backlog 100% complete" claim is wrong. ~465 unprocessed photos remain in
-`~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/`:
+**Recount:** the "~465 photos" figure was high. The real starting count was **380**. Of those,
+**84 have been processed and deployed**; **296 remain**.
 
-| Book | Pending chapter folders | Photos | Site file state |
-|------|------------------------|--------|-----------------|
-| macOS Tahoe For Dummies (`for dummies/mac tahoe`) | 3–20, `21-24` | ~223 | `summaries/macos-tahoe.md` stops after Ch2 |
-| AI in Business For Dummies (`for dummies/ai in business`) | 3–17 | ~150 | `summaries/ai-in-business.md` stops after Ch2 |
-| The Optimist (`The optimist `) | 15, 16, 17 | 30 | `summaries/the-optimist.md` ends Ch14 → Epilogue; insert 15–17 *before* the Epilogue |
-| Trading For Dummies (`for dummies/Trading`) | — | 1 stray `IMG_6096.HEIC`, no chapter structure | no site file |
+Done this session (all merged, synced, committed, pushed, verified live):
+- **The Optimist — COMPLETE.** Ch 15 (ChatGPT), 16 (The Blip), 17 (Prometheus Unbound). 30 photos.
+  Note: **chapters 11–14 were never photographed** — no source folder exists for them in iCloud,
+  so the book runs prologue + ch 1–10, 15–17. The old rankings label claiming "ch. 1-14" was
+  wrong and has been corrected.
+- **AI in Business — ch 3, 4, 5, 6, 15, 16, 17.** 63 photos. Now at intro + ch 1–6, 15–17.
 
-Process with the `summarize-books` skill. Note for whoever runs it: the photos are rotated 90°
-and `-Z 700` is **not** legible for these pages — use
-`sips -s format jpeg -r 270 -Z 1700 -s formatOptions 45` (≈250–300KB/page). That makes this an
-expensive job (~465 page reads); do it a book at a time, starting with The Optimist (30 photos,
-completes a book).
+Still pending (296 photos):
+
+| Book | Pending chapter folders | Photos |
+|------|------------------------|--------|
+| macOS Tahoe For Dummies (`for dummies/mac tahoe`) | 3–20, `21-24` | 215 |
+| AI in Business For Dummies (`for dummies/ai in business`) | 7–14 | 80 |
+| Trading For Dummies (`for dummies/Trading`) | 1 stray `IMG_6096.HEIC`, no chapter structure | 1 |
+
+### Correct conversion settings (verified 2026-08-16)
+
+The skill's `-Z 700` is unusably illegible for these pages, and the previously recorded
+`-r 270 -Z 1700` is also wrong — **`-r 270` rotates the wrong way**. What actually works:
+
+```bash
+sips -Z 1500 -r -90 -s format jpeg -s formatOptions 45 in.HEIC --out out.jpg
+```
+
+That lands at ~180–245KB/page, safely under the Read tool's 256KB limit, and is fully legible.
+`-Z 1700` produces ~400KB files that the Read tool rejects.
+
+Other notes for whoever resumes:
+- `~/Documents/Code/spine` **does not exist** — the repo is `bookrank`. The `summarize-books`
+  skill still says `spine`; it is stale.
+- `index.html` is a landing page, not the book list. Summary badges live in **`rankings.html`**.
+  The skill's instruction to edit index.html is stale too.
+- `ls` is aliased to eza on this machine and chokes on paths passed positionally — use `/bin/ls`.
+- Cost observed: roughly 3–5% of a session's usage per ~11-photo chapter.
 
 Detection command:
 ```bash
