@@ -14,6 +14,16 @@ The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in 
 - **The Optimist** — 30 imgs left (ch. 15-17), see section above.
 Vision cost: ~18-20k tokens per ~11 pages at `-Z 1500`. Full 429 is far more than one session's budget — work a chapter or two at a time.
 
+### HAZARD: `sync-summaries.sh` overwrites repo copies with iCloud merges
+- [ ] **It is a one-way clobber, not a merge, and iCloud is not always the fuller source.** On 2026-08-17 a routine run silently replaced `summaries/the-optimist.md` (498,993 b, all 17 chapters) with the stale iCloud merge (303,925 b) — The Optimist's ch. 11-14 folders no longer exist in iCloud, so **git is the only copy of those four chapters**. Caught in `git diff` before commit and restored from HEAD; nothing was lost.
+- [ ] Always `git diff --stat` after running the sync and treat any *shrinking* summary file as a regression to investigate, never a change to commit.
+- [ ] Note the iCloud book folder is literally named `The optimist ` **with a trailing space** — `ls`/`find` on the un-spaced name returns "No such file or directory" and looks like the folder is missing entirely.
+
+### DATA LOSS 2026-08-17 — AI in Business ch. 11-14
+- [ ] **AI in Business ch. 11, 12, 13, 14 have only ~700-byte one-paragraph stub summaries, and their source HEICs were deleted.** A summarizing agent running low on token budget degraded to one-paragraph outputs near the end of its run; those stubs cleared the skill's then-current ">300 chars" validation gate, which triggered deletion of the originals. Ch. 7-10 from the same run are fine (3-26KB).
+- [ ] **Unrecoverable without re-borrowing the book** — per the note above, AI in Business was returned to the library 2026-08-11, so the photos were the only source and re-photographing is not currently possible. Either borrow it again to re-shoot ch. 11-14, or accept the stubs and mark the book partial on the site.
+- [ ] Root cause fixed in `~/.claude/skills/summarize-books/SKILL.md` the same day: validation now requires >1500 chars AND >=250 chars per source image, and the skill explicitly forbids shortening a summary to save budget when deletion follows (stop and report instead). Nothing to do here, recorded so the fix isn't re-litigated.
+
 ## Blocked on Joshua
 - [ ] Icon refresh (currently a yellow/blue two-bar abstract mark; roadmap asks for "a simpler refresh") — a design decision, not a code fix. Icon asset itself is technically valid (1024×1024, no alpha) so it is not blocking review.
 
