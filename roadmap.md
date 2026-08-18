@@ -150,3 +150,10 @@ Detection command:
 B=~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Misc/Books
 find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' -print
 ```
+
+## Ingested 2026-08-18
+- [ ] Remove italics from the header.
+- [ ] Move header text to the top-left corner.
+- [ ] All list items should show a book cover thumbnail — currently only the bottom "All Rankings" section does. Apply that same styling to the entire list.
+- [ ] Hook up Goodreads syncing / integration / login.
+- [ ] (Context from note: all library books returned.)
