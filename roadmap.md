@@ -211,3 +211,6 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 - Build 7 uploaded, attached, encryption declared. iOS 1.0.1 WAITING_FOR_REVIEW.
 - TODO: macOS 1.0.1 still PREPARE_FOR_SUBMISSION — needs its own archive/upload
   (SpineMac target, MARKETING_VERSION still "1.0" at project.yml:64).
+
+## Braindump 2026-08-19
+- [ ] Mac is supported now — add the Mac download link to the landing page and any other surfaces still listing iOS only.
