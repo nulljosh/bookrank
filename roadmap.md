@@ -7,6 +7,26 @@
 - A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.
 
+
+## Done 2026-08-18 — stale listing metadata fixed and staged
+
+The live 1.0 listing said **"Uprighty"** in the description and pointed `supportUrl` at
+`spine.heyitsmejosh.com`, which is dead (curl returns 000; `bookrank.heyitsmejosh.com` returns 200).
+ASC locks version metadata on a READY_FOR_SALE version, so the fix needed a new version row.
+
+Created and populated **1.0.1** on both platforms, `PREPARE_FOR_SUBMISSION`:
+- iOS `8df5fc2e-233c-4430-bcd2-da9d938fa698`
+- macOS `7a8c6577-4018-41bf-bfb3-776ad8c08cff`
+
+Applied to both (verified by re-read): corrected description opening with "Bookrank", `supportUrl`
+set to `https://bookrank.heyitsmejosh.com`, and a What's New line.
+
+- [ ] **1.0.1 still needs a build.** `asc validate` reports the one remaining blocking error,
+  `build.required.missing`. Every existing build (highest is `6`, 2026-08-03) was consumed by 1.0 —
+  attaching build `6` fails with "The specified pre-release build could not be added." This needs a
+  fresh archive + upload with a bumped build number. The metadata above is already staged and will
+  carry onto whatever build gets attached, so that work is done and does not need redoing.
+
 ## Raw photo backlog — NOT clear (recount 2026-08-11)
 The "BACKLOG FULLY CLEAR (375/375)" note below is wrong: 404 HEICs are still in iCloud (429 at recount) — 380 left `Documents/Misc/Books/`.
 - **AI in Business For Dummies** — 134 imgs. Book **returned to the library 2026-08-11**; photos are the only remaining source, so these can't be re-shot. Existing `summaries/ai-in-business.md` is partial.
