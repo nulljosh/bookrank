@@ -16,6 +16,7 @@ because plistlib would reorder/normalise the whole file and bloat the git diff.
 Switch to plistlib if this ever needs to set more than a couple of keys.
 """
 import plistlib
+import re
 import sys
 from pathlib import Path
 
@@ -38,12 +39,17 @@ def main() -> int:
         print(f"build number must be numeric, got {build!r}", file=sys.stderr)
         return 2
 
+    # ponytail: parse the one line rather than pull in a YAML dep.
+    yml = (PLIST.parent.parent / "project.yml").read_text()
+    marketing = re.search(r'MARKETING_VERSION:\s*"([^"]+)"', yml).group(1)
+
     data = plistlib.loads(PLIST.read_bytes())
     data["CFBundleVersion"] = build
+    data["CFBundleShortVersionString"] = marketing
     data["UISupportedInterfaceOrientations~ipad"] = IPAD_ORIENTATIONS
     PLIST.write_bytes(plistlib.dumps(data))
 
-    print(f"Info.plist: CFBundleVersion={build}, {len(IPAD_ORIENTATIONS)} iPad orientations")
+    print(f"Info.plist: CFBundleShortVersionString={marketing}, CFBundleVersion={build}, {len(IPAD_ORIENTATIONS)} iPad orientations")
     return 0
 
 
