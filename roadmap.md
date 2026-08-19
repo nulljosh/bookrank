@@ -177,3 +177,13 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 - [ ] All list items should show a book cover thumbnail — currently only the bottom "All Rankings" section does. Apply that same styling to the entire list.
 - [ ] Hook up Goodreads syncing / integration / login.
 - [ ] (Context from note: all library books returned.)
+
+## 2026-08-18 — 1.0.1 iOS submitted
+- Fixed: header said "Uprighty" (bad cross-project rename) -> "Bookrank".
+- Fixed: library.json loans cleared (books returned); section hides when empty.
+- Fixed: prepare-plist.py now writes CFBundleShortVersionString from project.yml
+  MARKETING_VERSION (xcodegen was dropping it — plist said 1.0 vs ASC 1.0.1).
+- Screenshots re-shot (iPhone 11 Pro Max + iPad Pro 13") and replaced on ASC.
+- Build 7 uploaded, attached, encryption declared. iOS 1.0.1 WAITING_FOR_REVIEW.
+- TODO: macOS 1.0.1 still PREPARE_FOR_SUBMISSION — needs its own archive/upload
+  (SpineMac target, MARKETING_VERSION still "1.0" at project.yml:64).
