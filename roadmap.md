@@ -1,3 +1,17 @@
+## Accounts + private summaries (2026-08-19)
+
+Summaries are copyright-risky (photographed library books) and were public in this repo. Now:
+- Supabase (`spark`, project `tjsxsqlxjmanwvmywwvw`) table `bookrank_summaries` with owner-only RLS.
+- `library.html` — email/password sign in, list, markdown editor/preview, create/edit/delete.
+- `summaries/` and `ios/Spine/Resources/summaries/` removed from git and gitignored (still on disk as backup).
+- `summary.html` deleted; all `Summary` badges in `rankings.html` now link to `library.html`.
+
+Remaining:
+- [ ] Sign up on `library.html`, then run `python3 scripts/import-summaries.py <email>` to upload the 20 existing summaries. Only after that is the on-disk `summaries/` safe to remove.
+- [ ] **Git history still contains every summary.** Purge with `git filter-repo --path summaries --path ios/Spine/Resources/summaries --invert-paths` and force-push, or leave the repo private.
+- [ ] iOS app still bundles the local `summaries/` folder at build time — must move to Supabase auth (or drop summaries from the app) before the next App Store build.
+- [ ] AI-generated summaries for books users pick would need a backend (Cloudflare Worker + model key); the editor is manual entry for now.
+
 # Bookrank Roadmap
 
 (The `Spine` names below are Xcode target/path names, not the product name — the app and site are Bookrank.)

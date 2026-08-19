@@ -8,3 +8,6 @@ xcuserdata/
 
 # ASC metadata working dirs (pulled from App Store Connect, not source of truth)
 metadata-mac/
+
+summaries/
+ios/Spine/Resources/summaries/
