@@ -1,32 +1,6 @@
 {
-  "dueDate": "2026-08-18",
-  "loans": [
-    {
-      "title": "Together: Memorable Meals Made Easy",
-      "author": "Barcode 39083515945880",
-      "summarySlug": null
-    },
-    {
-      "title": "Good Fengshui: A Step-by-Step Guide",
-      "author": "Barcode 39083109264136",
-      "summarySlug": null
-    },
-    {
-      "title": "Data Science for Dummies",
-      "author": "Barcode 39083107903016",
-      "summarySlug": null
-    },
-    {
-      "title": "macOS Tahoe for Dummies",
-      "author": "Barcode 39083111089133",
-      "summarySlug": null
-    },
-    {
-      "title": "AI in Business for Dummies",
-      "author": "Barcode 39083111216702",
-      "summarySlug": null
-    }
-  ],
+  "dueDate": null,
+  "loans": [],
   "toRead": [
     {
       "title": "How to Cheat at Everything",

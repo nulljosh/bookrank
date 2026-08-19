@@ -38,7 +38,7 @@ struct LibraryView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("Uprighty")
+            Text("Bookrank")
                 .font(.system(size: 40, weight: .black))
             Text("\(store.books.count) books ranked by Goodreads rating, volume & cultural relevance")
                 .font(.subheadline)
@@ -46,12 +46,17 @@ struct LibraryView: View {
         }
     }
 
+    @ViewBuilder
     private var outFromLibrary: some View {
+        // ponytail: nothing checked out = no section at all, rather than an empty-state row.
+        if !store.library.loans.isEmpty {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 sectionLabel("Out From The Library")
                 Spacer()
-                DueDateBadge(dueDateString: store.library.dueDate)
+                if let due = store.library.dueDate {
+                    DueDateBadge(dueDateString: due)
+                }
             }
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(store.library.loans) { loan in
@@ -59,6 +64,7 @@ struct LibraryView: View {
                     if loan.id != store.library.loans.last?.id { Divider() }
                 }
             }
+        }
         }
     }
 

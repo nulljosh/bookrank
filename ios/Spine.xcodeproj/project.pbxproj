@@ -14,7 +14,10 @@
 		15C67535A3E97DA852E110C5 /* brothers.md in Resources */ = {isa = PBXBuildFile; fileRef = A2080244602A4397AB601356 /* brothers.md */; };
 		1765E56723663C04FA2E858E /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 7C788DD6C765629D5C2781D5 /* sobriety-for-dummies.md */; };
 		1A7861ABE8E867A0772BACAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117CD0057ED9EB8EB352F20 /* Assets.xcassets */; };
+		1A7EE440A63CB4A0A8177718 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = D8388548FBC8FC310D68485A /* ai-in-business.md */; };
 		1E7A7BF61AFAD45853BBF39C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
+		250BC29CBF84C69E2A5A8A72 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 27B774C87738BD912A338C14 /* macos-tahoe.md */; };
+		2C328A9376D1D235A83D4A1A /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 946C550CCB79FA471A3BEAB2 /* data-science.md */; };
 		2E529B50B0AF5A399741E2F5 /* apple.md in Resources */ = {isa = PBXBuildFile; fileRef = 4F0016B1981446559BDEDB43 /* apple.md */; };
 		2FC19F5A565FE6EA547DC621 /* pre-calculus-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = DD8F8449C0B3F3DE5384E510 /* pre-calculus-for-dummies.md */; };
 		331E5AB00041411811599623 /* exercise-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 863A1186B63EA7CA228FC5DA /* exercise-for-dummies.md */; };
@@ -22,12 +25,14 @@
 		3F59BAA35A379317B432A4C2 /* SpineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* SpineApp.swift */; };
 		3F64741AF339C8A2FDD4619D /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 3439DF525A76BE0DC0CDE18F /* ibs-for-dummies.md */; };
 		423009E8C1A337A6B668DEAF /* becoming-steve-jobs.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B25BE1FBE67A9C264B93863 /* becoming-steve-jobs.md */; };
+		42AD57853A47B8B33BA92C7C /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 946C550CCB79FA471A3BEAB2 /* data-science.md */; };
 		449FEB44E9D6EFE6DD73962B /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
 		4555D8A1E149927141818E18 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E47CC7E8FE719D3E61FA75 /* Book.swift */; };
 		4975FF256E39D0ED42655229 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
 		4D1A11B2820617D5D2A70893 /* pre-calculus-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = DD8F8449C0B3F3DE5384E510 /* pre-calculus-for-dummies.md */; };
 		503905FAC10C67B10A215CB8 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
 		53B88DA3C5804EC979C82B4A /* ai-investing-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 28F92217F9DCAD7BBABFA1C3 /* ai-investing-for-dummies.md */; };
+		55138F1BBEAE5EA1DF07F220 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = D8388548FBC8FC310D68485A /* ai-in-business.md */; };
 		5D141C158F48B5E0628FE427 /* newton.md in Resources */ = {isa = PBXBuildFile; fileRef = FB53ECCAC3B97F1FF90EF30B /* newton.md */; };
 		5D7CEC289113D0A6F7D3A347 /* SpineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* SpineApp.swift */; };
 		620790D7D61C15EDD54B4FA8 /* summaries-index.json in Resources */ = {isa = PBXBuildFile; fileRef = 6076092063F3AC917C8CAD0A /* summaries-index.json */; };
@@ -46,6 +51,7 @@
 		96AA5A05442954A8156B1973 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 3439DF525A76BE0DC0CDE18F /* ibs-for-dummies.md */; };
 		9C8ED10445EF9F934094299B /* ai-investing-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 28F92217F9DCAD7BBABFA1C3 /* ai-investing-for-dummies.md */; };
 		9D343BCF66123E74ED836E73 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E47CC7E8FE719D3E61FA75 /* Book.swift */; };
+		A4C56EC6F6C2AB0D5F6688DF /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 27B774C87738BD912A338C14 /* macos-tahoe.md */; };
 		A55E4BCC931C1F97D91E03DB /* newton.md in Resources */ = {isa = PBXBuildFile; fileRef = FB53ECCAC3B97F1FF90EF30B /* newton.md */; };
 		A61FB932F4D220734401DE39 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */; };
 		A6B62CD03877E8084AC7E044 /* machine-learning-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 1058A1D135A4BB80D9A8AF2D /* machine-learning-for-dummies.md */; };
@@ -53,12 +59,16 @@
 		ADEA9DB60F6C48B063B363B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117CD0057ED9EB8EB352F20 /* Assets.xcassets */; };
 		B065220FA019B16192D1D93E /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 5771C95AC5660DD63A93E6CE /* statistics-for-dummies.md */; };
 		B65E8FA49ADF57D4C4B28A89 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */; };
+		B85A39414BC475F355357266 /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 015EDFBA0035514AB7669E57 /* accounting-for-canadians.md */; };
 		B8A4DE34FD1CB33EDA8E6236 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 7C788DD6C765629D5C2781D5 /* sobriety-for-dummies.md */; };
+		C9476CF326F1E3DB1F57DA51 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E7EE31BDD91C0136C48A83F9 /* the-optimist.md */; };
 		CB8704C3212936FC027EED33 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
 		CCB9749942AFFB58B5FD883E /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
 		D98ACC41C2D4DA374F02416C /* brothers.md in Resources */ = {isa = PBXBuildFile; fileRef = A2080244602A4397AB601356 /* brothers.md */; };
 		D9D99EF6DC5B29D5CF34082E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D7E96836E6F04284421DD /* SnapshotHelper.swift */; };
 		E431A78BA282F6F183F232B8 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 5771C95AC5660DD63A93E6CE /* statistics-for-dummies.md */; };
+		E74131F421E978D9500C7F36 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E7EE31BDD91C0136C48A83F9 /* the-optimist.md */; };
+		E80095AFC506079A4693B4B3 /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 015EDFBA0035514AB7669E57 /* accounting-for-canadians.md */; };
 		F6EA38ECF4EF338C3E061E11 /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */; };
 		F919D451C299CFC6E471AFE0 /* agentic-ai-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4095B050F59C924E26A80E66 /* agentic-ai-for-dummies.md */; };
 		FAEDAA0445FE313259A8BE45 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = FC69503FB63459363AD38BBF /* good-feng-shui.md */; };
@@ -77,12 +87,14 @@
 
 /* Begin PBXFileReference section */
 		0117CD0057ED9EB8EB352F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		015EDFBA0035514AB7669E57 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		1058A1D135A4BB80D9A8AF2D /* machine-learning-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "machine-learning-for-dummies.md"; sourceTree = "<group>"; };
 		116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
 		1DFFC32D61CAB4E140543B94 /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
 		20824B868FE3F238E566F77A /* SpineMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpineMac.entitlements; sourceTree = "<group>"; };
 		251D7E96836E6F04284421DD /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		27B774C87738BD912A338C14 /* macos-tahoe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "macos-tahoe.md"; sourceTree = "<group>"; };
 		28F92217F9DCAD7BBABFA1C3 /* ai-investing-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-investing-for-dummies.md"; sourceTree = "<group>"; };
 		3439DF525A76BE0DC0CDE18F /* ibs-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ibs-for-dummies.md"; sourceTree = "<group>"; };
 		3B25BE1FBE67A9C264B93863 /* becoming-steve-jobs.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "becoming-steve-jobs.md"; sourceTree = "<group>"; };
@@ -100,12 +112,15 @@
 		841BE534DC4D85B46879C797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		863A1186B63EA7CA228FC5DA /* exercise-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "exercise-for-dummies.md"; sourceTree = "<group>"; };
 		8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
+		946C550CCB79FA471A3BEAB2 /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		A2080244602A4397AB601356 /* brothers.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = brothers.md; sourceTree = "<group>"; };
 		A86E8954AB38617A7B062139 /* SpineUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SpineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8634B1CAA697F87F0DDC031 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
+		D8388548FBC8FC310D68485A /* ai-in-business.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-in-business.md"; sourceTree = "<group>"; };
 		DCF87E18CA97A44785CB45CD /* calculus-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "calculus-for-dummies.md"; sourceTree = "<group>"; };
 		DD8F8449C0B3F3DE5384E510 /* pre-calculus-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "pre-calculus-for-dummies.md"; sourceTree = "<group>"; };
 		E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateBadge.swift; sourceTree = "<group>"; };
+		E7EE31BDD91C0136C48A83F9 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		E906C01A8A2787E7212E047D /* Spine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spine.entitlements; sourceTree = "<group>"; };
 		EF2589179D36B762838EE209 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		FB53ECCAC3B97F1FF90EF30B /* newton.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = newton.md; sourceTree = "<group>"; };
@@ -126,21 +141,26 @@
 		70FC0D8C0C520655EA93ED28 /* summaries */ = {
 			isa = PBXGroup;
 			children = (
+				015EDFBA0035514AB7669E57 /* accounting-for-canadians.md */,
 				4095B050F59C924E26A80E66 /* agentic-ai-for-dummies.md */,
+				D8388548FBC8FC310D68485A /* ai-in-business.md */,
 				28F92217F9DCAD7BBABFA1C3 /* ai-investing-for-dummies.md */,
 				4F0016B1981446559BDEDB43 /* apple.md */,
 				3B25BE1FBE67A9C264B93863 /* becoming-steve-jobs.md */,
 				A2080244602A4397AB601356 /* brothers.md */,
 				DCF87E18CA97A44785CB45CD /* calculus-for-dummies.md */,
+				946C550CCB79FA471A3BEAB2 /* data-science.md */,
 				863A1186B63EA7CA228FC5DA /* exercise-for-dummies.md */,
 				FC69503FB63459363AD38BBF /* good-feng-shui.md */,
 				3439DF525A76BE0DC0CDE18F /* ibs-for-dummies.md */,
 				116B4A4CF237CA6CD062CA36 /* living-well-in-a-down-economy-for-dummies.md */,
 				1058A1D135A4BB80D9A8AF2D /* machine-learning-for-dummies.md */,
+				27B774C87738BD912A338C14 /* macos-tahoe.md */,
 				FB53ECCAC3B97F1FF90EF30B /* newton.md */,
 				DD8F8449C0B3F3DE5384E510 /* pre-calculus-for-dummies.md */,
 				7C788DD6C765629D5C2781D5 /* sobriety-for-dummies.md */,
 				5771C95AC5660DD63A93E6CE /* statistics-for-dummies.md */,
+				E7EE31BDD91C0136C48A83F9 /* the-optimist.md */,
 			);
 			path = summaries;
 			sourceTree = "<group>";
@@ -319,25 +339,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADEA9DB60F6C48B063B363B9 /* Assets.xcassets in Resources */,
+				B85A39414BC475F355357266 /* accounting-for-canadians.md in Resources */,
 				82D451FED34A1BFCA706E210 /* agentic-ai-for-dummies.md in Resources */,
+				1A7EE440A63CB4A0A8177718 /* ai-in-business.md in Resources */,
 				53B88DA3C5804EC979C82B4A /* ai-investing-for-dummies.md in Resources */,
 				2E529B50B0AF5A399741E2F5 /* apple.md in Resources */,
 				A88427E8295084EC63125EA9 /* becoming-steve-jobs.md in Resources */,
 				449FEB44E9D6EFE6DD73962B /* books.json in Resources */,
 				D98ACC41C2D4DA374F02416C /* brothers.md in Resources */,
 				8C20F78F947F98121DB7483D /* calculus-for-dummies.md in Resources */,
+				2C328A9376D1D235A83D4A1A /* data-science.md in Resources */,
 				82E5E51F502D1AA814284656 /* exercise-for-dummies.md in Resources */,
 				FAEDAA0445FE313259A8BE45 /* good-feng-shui.md in Resources */,
 				3F64741AF339C8A2FDD4619D /* ibs-for-dummies.md in Resources */,
 				4975FF256E39D0ED42655229 /* library.json in Resources */,
 				F6EA38ECF4EF338C3E061E11 /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				04CA25F1C989619184A4DDF7 /* machine-learning-for-dummies.md in Resources */,
+				250BC29CBF84C69E2A5A8A72 /* macos-tahoe.md in Resources */,
 				5D141C158F48B5E0628FE427 /* newton.md in Resources */,
 				8A0716B6EB4F31D4C3F101FB /* picks.json in Resources */,
 				4D1A11B2820617D5D2A70893 /* pre-calculus-for-dummies.md in Resources */,
 				1765E56723663C04FA2E858E /* sobriety-for-dummies.md in Resources */,
 				E431A78BA282F6F183F232B8 /* statistics-for-dummies.md in Resources */,
 				641113973A0E5C3C2572FEF5 /* summaries-index.json in Resources */,
+				E74131F421E978D9500C7F36 /* the-optimist.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,25 +371,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A7861ABE8E867A0772BACAF /* Assets.xcassets in Resources */,
+				E80095AFC506079A4693B4B3 /* accounting-for-canadians.md in Resources */,
 				F919D451C299CFC6E471AFE0 /* agentic-ai-for-dummies.md in Resources */,
+				55138F1BBEAE5EA1DF07F220 /* ai-in-business.md in Resources */,
 				9C8ED10445EF9F934094299B /* ai-investing-for-dummies.md in Resources */,
 				FC6C28226D2739137801EB28 /* apple.md in Resources */,
 				423009E8C1A337A6B668DEAF /* becoming-steve-jobs.md in Resources */,
 				503905FAC10C67B10A215CB8 /* books.json in Resources */,
 				15C67535A3E97DA852E110C5 /* brothers.md in Resources */,
 				05F5F58CD80F2392F88C7D62 /* calculus-for-dummies.md in Resources */,
+				42AD57853A47B8B33BA92C7C /* data-science.md in Resources */,
 				331E5AB00041411811599623 /* exercise-for-dummies.md in Resources */,
 				8C2C7302165668D44690DC90 /* good-feng-shui.md in Resources */,
 				96AA5A05442954A8156B1973 /* ibs-for-dummies.md in Resources */,
 				CCB9749942AFFB58B5FD883E /* library.json in Resources */,
 				80DAD7BFFF0F2D88693190AF /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				A6B62CD03877E8084AC7E044 /* machine-learning-for-dummies.md in Resources */,
+				A4C56EC6F6C2AB0D5F6688DF /* macos-tahoe.md in Resources */,
 				A55E4BCC931C1F97D91E03DB /* newton.md in Resources */,
 				3866181934AD5B4FACE8E86C /* picks.json in Resources */,
 				2FC19F5A565FE6EA547DC621 /* pre-calculus-for-dummies.md in Resources */,
 				B8A4DE34FD1CB33EDA8E6236 /* sobriety-for-dummies.md in Resources */,
 				B065220FA019B16192D1D93E /* statistics-for-dummies.md in Resources */,
 				620790D7D61C15EDD54B4FA8 /* summaries-index.json in Resources */,
+				C9476CF326F1E3DB1F57DA51 /* the-optimist.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
