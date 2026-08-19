@@ -1,22 +1,32 @@
-## Accounts + private summaries (2026-08-19)
+## DONE 2026-08-19 — summaries moved behind per-user accounts
 
-Summaries are copyright-risky (photographed library books) and were public in this repo. Now:
-- Supabase (`spark`, project `tjsxsqlxjmanwvmywwvw`) table `bookrank_summaries` with owner-only RLS.
-- `library.html` — email/password sign in, list, markdown editor/preview, create/edit/delete.
-- `summaries/` and `ios/Spine/Resources/summaries/` removed from git and gitignored (still on disk as backup).
-- `summary.html` deleted; all `Summary` badges in `rankings.html` now link to `library.html`.
+Chapter summaries of purchased/library books were public in this repo and bundled in the
+shipping app. All of that is closed:
 
-Remaining:
-- [ ] Sign up on `library.html`, then run `python3 scripts/import-summaries.py <email>` to upload the 20 existing summaries. Only after that is the on-disk `summaries/` safe to remove.
-- [ ] **Git history still contains every summary.** Purge with `git filter-repo --path summaries --path ios/Spine/Resources/summaries --invert-paths` and force-push, or leave the repo private.
-- [ ] iOS app still bundles the local `summaries/` folder at build time — must move to Supabase auth (or drop summaries from the app) before the next App Store build.
-- [ ] AI-generated summaries for books users pick would need a backend (Cloudflare Worker + model key); the editor is manual entry for now.
+- Supabase `spark` (`tjsxsqlxjmanwvmywwvw`), table `bookrank_summaries`, owner-only RLS
+  (verified: `set local role anon` reads 0 rows).
+- `library.html` — email/password sign-in, list, markdown editor/preview, create/edit/delete.
+  Any visitor can register and write their own summaries; nothing is public.
+- All 20 existing summaries imported into the owner's account (2.54 MB, 20 rows).
+  Re-import tool: `scripts/import-summaries.py`.
+- `summary.html` deleted, the 26 `Summary` badges in `rankings.html` repoint to `library.html`,
+  index copy updated.
+- **Git history purged** (`git filter-repo`, force-pushed). Pre-purge backups kept outside the
+  repo: `~/Documents/Code/.bookrank-prepurge.bundle` and `.bookrank-summaries-backup/`.
+- iOS/macOS app no longer bundles any summary: `Resources/summaries/` and
+  `summaries-index.json` deleted, `DataStore.summaryIndex` is `[]`, the Summaries section is
+  out of `LibraryView`. Builds clean for `generic/platform=iOS Simulator`.
 
-# Bookrank Roadmap
+Open:
+- [ ] iOS/macOS have no way to read summaries now. Needs Supabase auth in the app
+  (`supabase-swift`) fetching `bookrank_summaries`; `SummaryDetailView` and the
+  `LibraryView.summaries` section are still in the tree, ready to be re-wired.
+- [ ] AI-generated summaries for a book a user picks needs a backend (Cloudflare Worker +
+  model key) — cannot live in a static page. The editor is manual entry for now.
+- [ ] App Store listing/screenshots still advertise bundled offline summaries; update before
+  the next submission.
 
-(The `Spine` names below are Xcode target/path names, not the product name — the app and site are Bookrank.)
-
-### Mac packaging gotchas (reusable for other apps)
+## Mac packaging gotchas (reusable for other apps)
 - `xcodebuild -exportArchive` could NOT export this: it insists the MAS profile contain the *installer* cert, which Apple rejects ("no current certificates ... compatible with MAC_APP_STORE profiles"). Working path is manual: copy `.app` out of the archive → drop the profile in as `Contents/embedded.provisionprofile` → `codesign --force --sign "3rd Party Mac Developer Application: …" --entitlements ios/Spine/SpineMac.entitlements --options runtime --timestamp` → `productbuild --component <app> /Applications --sign "3rd Party Mac Developer Installer: …"` → `asc builds upload --pkg`.
 - A MAS-signed `.app` will not launch locally (no receipt), so it can't be screenshotted. For screenshots, take a second copy of the archive's `.app`, `xattr -cr` it, `codesign --force --deep --sign -` (ad-hoc), then `open` it.
 - Build number 2 upload silently **FAILED** (codes 90345 + 90189) with no error surfaced by `asc builds upload` — it reported success. Only `asc builds uploads list` showed the failure. Re-uploading as build 3 went through unchanged. Always verify via `asc builds uploads list` after an upload, not the upload command's own output.

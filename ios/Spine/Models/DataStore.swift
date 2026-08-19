@@ -11,13 +11,15 @@ final class DataStore {
         books = Self.load("books")
         library = Self.load("library")
         picks = Self.load("picks")
-        summaryIndex = Self.load("summaries-index")
+        // ponytail: summaries are private per-account now (see library.html); the app
+        // no longer bundles them. Restore by fetching from Supabase once the app has auth.
+        summaryIndex = []
     }
 
     func summaryMarkdown(for slug: String) -> String {
         guard let url = Bundle.main.url(forResource: slug, withExtension: "md"),
               let text = try? String(contentsOf: url, encoding: .utf8) else {
-            return "Summary not found."
+            return "Sign in at bookrank.heyitsmejosh.com to read your summaries."
         }
         return text
     }

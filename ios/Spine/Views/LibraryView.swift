@@ -15,7 +15,6 @@ struct LibraryView: View {
                     outFromLibrary
                     toRead
                     topPicks
-                    summaries
                     allRankings
                 }
                 .padding(24)
@@ -74,7 +73,7 @@ struct LibraryView: View {
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 8) {
                     Text(loan.title).font(.subheadline.weight(.medium))
-                    if let slug = loan.summarySlug {
+                    if let slug = loan.summarySlug, !store.summaryIndex.isEmpty {
                         NavigationLink { SummaryDetailView(slug: slug, store: store) } label: {
                             BadgeLabel(text: "Summary")
                         }
