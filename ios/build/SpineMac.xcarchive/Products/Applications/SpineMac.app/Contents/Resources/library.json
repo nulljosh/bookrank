@@ -1,0 +1,16 @@
+{
+  "dueDate": null,
+  "loans": [],
+  "toRead": [
+    {
+      "title": "How to Cheat at Everything",
+      "author": "Simon Lovell",
+      "summarySlug": null
+    },
+    {
+      "title": "Hackers & Painters",
+      "author": "Paul Graham",
+      "summarySlug": null
+    }
+  ]
+}

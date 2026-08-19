@@ -1,0 +1,37 @@
+# Brothers
+
+*By Alex Van Halen. A memoir of Alex and Eddie Van Halen, drummer and guitarist of Van Halen, told by the surviving brother.*
+
+## Overture
+
+Opens with Edward Van Halen's own words on brotherhood ("Alex is the rock. I'm the roll") and Alex's grief four years after Eddie's 2020 death. Frames the book's thesis up front: their bond was total — genetic, artistic, financial, emotional, and (per Alex) spiritual — forged specifically through music, not just blood.
+
+## Chapters One–Three: Holland to Pasadena
+
+Their father, Jan Van Halen, was a Dutch professional musician (clarinet, sax, piano) conscripted into playing propaganda music for the occupying Nazis during WWII, then met their Indonesian mother Eugenia ("Ottie") while stationed in Java. The family emigrated to Pasadena, California in 1962 when Alex and Eddie were young boys who spoke no English — music (and each other) became the way they navigated being outsiders. Jan drilled them in classical piano; both won competitions, but Eddie secretly resented the "respectable" classical track and the two eventually abandoned formal training after hearing rock and pivoting hard toward guitar and drums, funding early gear by cleaning houses and doing odd jobs around Pasadena. Both boys started drinking very young — schnapps at six for Alex, a European father's-son norm neither questioned until much later, and a habit that would follow both of them for life. Eddie developed his signature "tapping" technique largely in isolation, practicing obsessively; his reputation among other guitarists grew before the band had any real success.
+
+## Chapters Four–Six: Forming the band, the Strip years
+
+Meeting David Lee Roth (initially through mutual acquaintances, later cemented via Roth's PA system and showmanship) and bassist Michael Anthony rounds out the classic lineup. The band flyered relentlessly around Pasadena high schools ("The People's Choice" campaigns modeled on Ali fight posters) and built a rabid local following before graduating to the Sunset Strip club circuit — Gazzarri's, the Whisky, the Starwood — where they refined a reputation as a can't-miss live act, developing stagecraft, crowd control, and Eddie's guitar innovations (tapping, custom-built "Frankenstrat") in front of packed, increasingly industry-attentive rooms. Encounters with Bonham/Zeppelin, Kiss's Gene Simmons (who discovered them at the Starwood and championed them to Warner Bros., though his own production attempt on their demo didn't stick), and Ted Templeman (the Warner Bros. producer/A&R exec who ultimately signed and produced them) mark the band's transition from bar act to signed act — for what the book candidly describes as a bad, exploitative contract by industry-standard terms of the era.
+
+## Chapters Seven–Nine: Van Halen (1978) and the first tours
+
+Recording their self-titled debut at Sunset Sound with Templeman and engineer Donn Landee was fast and largely live-take, capturing the raw sound Warner Bros. initially found too unpolished on first listen. "Eruption" — Eddie's now-iconic solo instrumental — was nearly left off the record; Templeman insisted on including it. The album's cover art and packaging were choices the band disliked (they felt it made them look like punks rather than musicians) but had no control over. Non-stop touring followed: opening for Journey and Ronnie Montrose, then a breakout tour opening for Black Sabbath, where the brothers — lifelong Sabbath fans — got to watch their idols nightly while also realizing Sabbath's audience skewed heavily male, unlike the mixed crowds Van Halen drew on their own. Life on the road quickly became a blur of hard partying, pranks, groupies, and increasingly heavy drinking and drug use that the book treats candidly as formative and, in hindsight, dangerous.
+
+## Chapters Ten–Twelve: Stardom, Van Halen II, and Eddie's fatherhood
+
+Rapid fame changed daily life overnight — the brothers describe losing the ability to go anywhere unrecognized. Van Halen II and subsequent albums cemented them as an arena headliner; "Dance the Night Away" and other tracks broadened their audience further. Eddie met actress Valerie Bertinelli (of *One Day at a Time*) during a tour stop in Louisiana; they married in 1981. The famous "brown M&M" contract rider clause — often mischaracterized as diva behavior — is explained as it actually functioned: a canary-in-the-coal-mine test buried in their lengthy technical rider, so that if a venue hadn't read the rider carefully (and pulled the brown M&Ms as instructed), the band knew to double-check the venue's staging and safety compliance before the show.
+
+## Chapters Thirteen–Fifteen: Fair Warning, Diver Down, and 1984
+
+Fair Warning (1981) was a darker, harder-edged album reflecting the band's exhaustion and internal friction at the time — commercially tougher than its predecessors but respected by hardcore fans. Diver Down followed under label pressure for something more commercial and included more covers than the band wanted. Eddie's session work on Michael Jackson's "Beat It" (uncredited, done as a favor/for fun, arranged quickly) became one of the most famous guitar solos in pop history and introduced Van Halen's sound to a completely different audience. 1984 (recorded in Eddie's own home studio, 5150, built specifically so he could work without label or outside interference) became the band's commercial peak — multi-platinum, "Jump" a #1 hit, MTV ubiquity — even as tension with Roth over creative direction and Roth's own solo ambitions was building toward a breaking point.
+
+## Coda and Author's Note
+
+The book's final chapter/coda is written in the shadow of Eddie's death (October 2020) and doesn't attempt to cover the band's later lineup changes (Sammy Hagar era, Roth's eventual returns, Wolfgang Van Halen joining on bass) in the same narrative depth as the earlier chapters — it closes as a meditation on brotherhood, addiction, and loss rather than a full band history through to the end. Alex writes about the particular grief of losing a sibling who was also his lifelong artistic and business partner, and the book closes with a personal letter to Eddie. The Author's Note describes the writing process — pulling from Alex's own memories, contemporaneous notes, and callbacks to the brothers' well-known disagreements over facts in other books written about them (naming Ted Templeman's own memoir as one point of friendly dispute) — while affirming that music, more than anything else, was what the two of them always agreed on.
+
+---
+
+## TL;DR
+
+Alex Van Halen's memoir of growing up with his brother Eddie: two Dutch-Indonesian immigrant kids in 1960s Pasadena who turned musical training forced on them by their father into an escape, then an identity, then a reason to survive being outsiders. The band's rise (Sunset Strip clubs → Kiss's Gene Simmons → Ted Templeman/Warner Bros. → arena headliner) is inseparable in the telling from a lifetime of heavy drinking and drug use that started in early childhood and never really let up, and from a brotherly bond the book insists was more fundamental than the band itself — genetic, artistic, and financial all at once. Major beats: the brown M&M contract-rider myth explained, Eddie's "Beat It" solo, the building of 5150 studio and the making of 1984, and finally, briefly, grief — the book doesn't chronicle the band's later decades in detail, closing instead on Alex's reckoning with losing his other half in 2020.
