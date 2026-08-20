@@ -27,3 +27,7 @@ Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
 See `roadmap.md` in this repo root.
 
+
+## Whitepaper
+
+[Technical whitepaper](WHITEPAPER.md)
