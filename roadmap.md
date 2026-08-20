@@ -214,3 +214,10 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 
 ## Braindump 2026-08-19
 - [ ] Mac is supported now — add the Mac download link to the landing page and any other surfaces still listing iOS only.
+
+## Braindump 2026-08-19
+- [ ] Shortcuts for adding summaries to an account
+- [ ] Finish the raw book files sitting in the iCloud folder
+- [ ] API routes covering summary create/read/update
+- [ ] In-app book file upload so a user can generate summaries for a book on their profile
+- [ ] All book summary content is user-specific — store in Supabase
