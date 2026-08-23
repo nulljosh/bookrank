@@ -30,28 +30,53 @@ body {
 
 .container {
   max-width:680px; margin:0 auto;
-  padding:clamp(4rem,10vw,7rem) clamp(1.5rem,5vw,3rem) 4rem;
+  padding:clamp(1.75rem,4vw,2.5rem) clamp(1.5rem,5vw,3rem) 4rem;
 }
 
 .fade-up { opacity:0; transform:translateY(18px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .fade-up.visible { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion:reduce) { .fade-up { opacity:1; transform:none; transition:none; } }
 
-header { margin-bottom:clamp(3.5rem,8vw,5.5rem); }
+header { margin-bottom:clamp(2.5rem,6vw,4rem); }
 
-.ascii-mark {
-  font-family:'Geist',monospace; font-size:0.75rem;
-  color:var(--text3); letter-spacing:0.06em; margin-bottom:1.5rem;
-  white-space:pre; user-select:none;
+.topbar {
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; gap:10px;
+  padding:10px clamp(1rem,5vw,3rem);
+  background:var(--bg); border-bottom:1px solid var(--border);
 }
+@supports (backdrop-filter:blur(12px)) {
+  .topbar { background:transparent; backdrop-filter:blur(14px) saturate(1.6); }
+  .topbar::before { content:''; position:absolute; inset:0; background:var(--bg); opacity:0.82; z-index:-1; }
+}
+.brand {
+  display:flex; align-items:center; gap:9px; flex-shrink:0;
+  color:var(--text); text-decoration:none;
+  font-size:0.9375rem; font-weight:600; letter-spacing:-0.015em;
+}
+.brand img { width:24px; height:24px; border-radius:6px; display:block; }
+.navlinks { display:flex; gap:16px; margin-left:20px; font-size:0.8125rem; }
+.navlinks a { color:var(--text2); text-decoration:none; transition:color 0.2s; }
+.navlinks a:hover { color:var(--text); }
+.topbar .spacer { flex:1; }
 
-h1 {
-  font-family:var(--font-display);
-  font-style:italic;
-  font-size:clamp(2.5rem,8vw,4rem);
-  font-weight:900; letter-spacing:-0.02em; line-height:1.05;
-  margin-bottom:14px; color:var(--text);
+.search {
+  width:clamp(120px,22vw,200px); padding:6px 10px;
+  font-family:inherit; font-size:0.8125rem; color:var(--text);
+  background:var(--bg2); border:1px solid var(--border); border-radius:8px;
+  transition:border-color 0.2s;
 }
+.search::placeholder { color:var(--text2); }
+.search:focus { outline:none; border-color:var(--text3); }
+.book.hidden, .picks li.hidden, section.hidden { display:none; }
+.no-results { font-size:0.875rem; color:var(--text2); padding:2rem 0; display:none; }
+.no-results.visible { display:block; }
+
+.stats {
+  display:flex; flex-wrap:wrap; gap:6px 14px;
+  font-size:0.8125rem; color:var(--text2);
+}
+.stats strong { color:var(--text); font-weight:500; }
 
 .subtitle { font-size:clamp(0.9375rem,1.5vw,1.0625rem); color:var(--text2); line-height:1.8; }
 
@@ -123,14 +148,13 @@ a.badge:hover { color:var(--accent); border-color:var(--accent); }
 .notes { font-size:0.8125rem; color:var(--text3); line-height:1.5; margin-top:5px; }
 
 .toggle {
-  position:fixed; top:20px; right:20px;
-  width:36px; height:36px; border:1px solid var(--border);
+  flex-shrink:0; width:32px; height:32px; border:1px solid var(--border);
   border-radius:8px; background:var(--bg2);
   cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:border-color 0.25s, transform 0.2s var(--spring), background 0.35s var(--ease);
   color:var(--text2);
 }
-.toggle:hover { transform:translateY(-2px); color:var(--text); border-color:var(--text3); }
+.toggle:hover { color:var(--text); border-color:var(--text3); }
 .toggle svg { width:14px; height:14px; }
 
 .icon-sun { display:none; }
@@ -174,8 +198,10 @@ footer a {
 }
 footer a:hover { opacity:0.5; }
 
+@media (max-width:640px) {
+  .navlinks { display:none; }
+}
 @media (max-width:480px) {
-  h1 { font-size:2.25rem; }
   .rank { min-width:22px; }
   .book { gap:12px; }
 }
@@ -197,7 +223,17 @@ footer a:hover { opacity:0.5; }
 })();
 </script>
 
-<button class="toggle" id="themeToggle" aria-label="Toggle theme">
+<header class="topbar">
+  <a class="brand" href="/"><img src="icon.svg" alt="" width="24" height="24">Bookrank</a>
+  <nav class="navlinks">
+    <a href="#library">Library</a>
+    <a href="#picks">Picks</a>
+    <a href="#summaries">Summaries</a>
+    <a href="#all">All</a>
+  </nav>
+  <span class="spacer"></span>
+  <input class="search" id="search" type="search" placeholder="Search books" aria-label="Search books" autocomplete="off">
+  <button class="toggle" id="themeToggle" aria-label="Toggle theme">
   <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </svg>
@@ -212,18 +248,20 @@ footer a:hover { opacity:0.5; }
     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
   </svg>
-</button>
+  </button>
+</header>
 
 <div class="container">
 
   <header class="fade-up">
-    <h1>Bookrank</h1>
-    <p class="subtitle">71 books ranked by Goodreads rating, volume &amp; cultural relevance</p>
+    <p class="subtitle">Books ranked by Goodreads rating, volume &amp; cultural relevance.</p>
+    <p class="stats"><span><strong id="statTotal">71</strong> ranked</span><span><strong id="statSummaries">11</strong> summarized</span><span><strong id="statOut">11</strong> out from the library</span></p>
   </header>
+  <p class="no-results" id="noResults">No books match that search.</p>
 
   <section class="fade-up">
     <div class="library-head">
-      <span class="label">Out From The Library</span>
+      <span class="label" id="library">Out From The Library</span>
       <span class="deadline" id="deadline" data-due="2026-08-18">Due Jul 29</span>
     </div>
     <ul class="books library">
@@ -250,7 +288,7 @@ footer a:hover { opacity:0.5; }
   </section>
 
   <section class="fade-up">
-    <span class="label">Top Picks</span>
+    <span class="label" id="picks">Top Picks</span>
     <ol class="picks">
       <li><span class="pick-num">01</span><span><strong>Zero to One</strong>: Silicon Valley essential, most reviewed in the collection (4.17, 400k ratings)</span></li>
       <li><span class="pick-num">02</span><span><strong>The Demon-Haunted World</strong>: Timeless skepticism classic (4.38, 131k ratings)</span></li>
@@ -261,7 +299,7 @@ footer a:hover { opacity:0.5; }
   </section>
 
   <section class="fade-up">
-    <span class="label">Summaries</span>
+    <span class="label" id="summaries">Summaries</span>
     <ul class="books summaries">
       <li class="book"><div class="rank">·</div><div class="book-info"><div class="book-title">Living Well in a Down Economy <a href="library.html" class="badge">Summary</a></div><div class="author">The Experts at Dummies</div></div></li>
       <li class="book"><div class="rank">·</div><div class="book-info"><div class="book-title"><a href="library.html">Becoming Steve Jobs</a></div><div class="author">Brent Schlender &amp; Rick Tetzeli (partial: ch. 1-4)</div></div></li>
@@ -278,7 +316,7 @@ footer a:hover { opacity:0.5; }
   </section>
 
   <section class="fade-up">
-    <span class="label">All Rankings</span>
+    <span class="label" id="all">All Rankings</span>
     <ul class="books collapsible" id="allRankings">
 
 
@@ -514,7 +552,7 @@ footer a:hover { opacity:0.5; }
 
 
     </ul>
-    <button class="show-toggle" id="rankingsToggle" aria-expanded="false">Show all 111</button>
+    <button class="show-toggle" id="rankingsToggle" aria-expanded="false">Show all</button>
   </section>
 
   <footer>
@@ -526,11 +564,39 @@ footer a:hover { opacity:0.5; }
 <script>
 var rankingsList = document.getElementById('allRankings');
 var rankingsToggle = document.getElementById('rankingsToggle');
+rankingsToggle.textContent = 'Show all ' + rankingsList.querySelectorAll('.book').length;
 rankingsToggle.addEventListener('click', function() {
   var expanded = rankingsList.classList.toggle('expanded');
   rankingsToggle.setAttribute('aria-expanded', expanded);
-  rankingsToggle.textContent = expanded ? 'Show less' : 'Show all 111';
+  rankingsToggle.textContent = expanded ? 'Show less' : 'Show all ' + rankingsList.querySelectorAll('.book').length;
 });
+
+(function() {
+  var input = document.getElementById('search');
+  var none = document.getElementById('noResults');
+  var rows = [].slice.call(document.querySelectorAll('.book, .picks li'));
+  var sections = [].slice.call(document.querySelectorAll('.container section'));
+  input.addEventListener('input', function() {
+    var q = input.value.trim().toLowerCase();
+    var hits = 0;
+    rows.forEach(function(r) {
+      var hit = !q || r.textContent.toLowerCase().indexOf(q) !== -1;
+      r.classList.toggle('hidden', !hit);
+      if (hit) hits++;
+    });
+    sections.forEach(function(sec) {
+      sec.classList.toggle('hidden', !!q && !sec.querySelector('.book:not(.hidden), .picks li:not(.hidden)'));
+    });
+    none.classList.toggle('visible', !!q && hits === 0);
+    if (q) rankingsList.classList.add('expanded');
+    document.getElementById('rankingsToggle').style.display = q ? 'none' : '';
+  });
+})();
+
+// live counts, so the numbers can't drift from the markup
+document.getElementById('statTotal').textContent = rankingsList.querySelectorAll('.book').length;
+document.getElementById('statSummaries').textContent = document.querySelectorAll('.summaries .book').length;
+document.getElementById('statOut').textContent = document.querySelectorAll('.library .book').length;
 
 var obs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
