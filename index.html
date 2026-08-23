@@ -60,7 +60,38 @@ img { max-width: 100%; }
 
 .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
 
-.hero { background: var(--accent-soft); padding: 5.5rem 0 4.5rem; text-align: center; }
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--accent-soft); padding: 5.5rem 0 4.5rem; text-align: center;
+}
+.hero .container { position: relative; z-index: 2; }
+
+/* a slow-drifting wall of every cover in the collection, built from covers.json */
+.hero-wall {
+  position: absolute; inset: -8%; z-index: 0;
+  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 10px;
+  opacity: 0.55; filter: saturate(0.9);
+  pointer-events: none; user-select: none;
+}
+.wall-col { display: flex; min-width: 0; flex-direction: column; gap: 10px; }
+.wall-col img {
+  width: 100%; aspect-ratio: 2/3; object-fit: cover;
+  border-radius: 4px; display: block;
+}
+.wall-col.up   { animation: wall-up   var(--dur) linear infinite; }
+.wall-col.down { animation: wall-down var(--dur) linear infinite; }
+@keyframes wall-up   { from { transform: translateY(0); }    to { transform: translateY(-50%); } }
+@keyframes wall-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }
+
+/* scrim: keeps the headline readable over the covers, in either theme */
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 60% at 50% 45%, var(--bg) 20%, transparent 80%),
+    linear-gradient(var(--bg), transparent 30%, transparent 62%, var(--bg) 96%),
+    color-mix(in srgb, var(--bg) 50%, transparent);
+}
 .hero-icon { width: 88px; height: 88px; margin: 0 auto 1.75rem; display: block; }
 .hero h1 {
   font-size: clamp(2.25rem, 6.5vw, 3.5rem);
@@ -124,6 +155,7 @@ footer p + p { margin-top: 0.35rem; }
 <body>
 
 <section class="hero">
+  <div class="hero-wall" id="heroWall" aria-hidden="true"></div>
   <div class="container">
     <img class="hero-icon" src="icon.svg" alt="Bookrank icon" width="88" height="88">
     <h1>Bookrank</h1>
@@ -185,6 +217,33 @@ footer p + p { margin-top: 0.35rem; }
     <p><a href="https://github.com/nulljosh/bookrank">Source on GitHub</a></p>
   </div>
 </footer>
+
+<script>
+// Wall of every cover we have. No covers.json (or a fetch failure) just leaves the plain hero.
+fetch('scripts/covers.json').then(function(r) { return r.json(); }).then(function(covers) {
+  var urls = Object.values(covers).filter(Boolean).map(function(u) { return u.replace('-M.jpg', '-S.jpg'); });
+  if (urls.length < 8) return;
+  for (var i = urls.length - 1; i > 0; i--) {  // shuffle so the wall differs each visit
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = urls[i]; urls[i] = urls[j]; urls[j] = t;
+  }
+  var wall = document.getElementById('heroWall');
+  var cols = Math.max(4, Math.ceil(window.innerWidth / 100));
+  var per = Math.max(4, Math.min(8, Math.floor(urls.length / cols)));
+  for (var c = 0; c < cols; c++) {
+    var col = document.createElement('div');
+    col.className = 'wall-col ' + (c % 2 ? 'down' : 'up');
+    col.style.setProperty('--dur', (70 + c * 11) + 's');
+    var slice = urls.slice(c * per, (c + 1) * per);
+    slice.concat(slice).forEach(function(u) {  // doubled, so the loop is seamless
+      var img = new Image();
+      img.src = u; img.alt = ''; img.referrerPolicy = 'no-referrer';
+      col.appendChild(img);
+    });
+    wall.appendChild(col);
+  }
+}).catch(function() {});
+</script>
 
 </body>
 </html>

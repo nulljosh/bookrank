@@ -13,13 +13,14 @@ import json, re, sys, time, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-HTML = ROOT / "index.html"
+HTML = ROOT / "rankings.html"
 CACHE = ROOT / "scripts" / "covers.json"  # slug -> cover URL, so re-runs cost no requests
 UA = "bookrank.heyitsmejosh.com cover lookup (trommatic@icloud.com)"
 # ponytail: one regex per <li>, never across them, or a book inherits its neighbour's cover
 ITEM = re.compile(r'<li class="book">.*?</li>', re.S)
 SLUG = re.compile(r'goodreads\.com/book/show/([^"?]+)"')
-TITLE = re.compile(r'<div class="book-title">(?:<a[^>]*>)?(.*?)(?:</a>)?\s*(?:<a [^>]*class="badge".*?)?</div>', re.S)
+TITLE = re.compile(r'<div class="book-title">(.*?)</div>', re.S)
+BADGE = re.compile(r'<a [^>]*class="badge".*?</a>', re.S)
 AUTHOR = re.compile(r'<div class="author">(.*?)</div>', re.S)
 
 
@@ -40,9 +41,21 @@ def text(s):
     return htmlmod.unescape(re.sub(r"<[^>]+>", "", s)).strip()
 
 
+def fields(item):
+    """(cache key, title, author) for one <li class="book">."""
+    t, a = TITLE.search(item), AUTHOR.search(item)
+    title = text(BADGE.sub("", t.group(1))) if t else ""
+    author = text(a.group(1)) if a else ""
+    slug = SLUG.search(item)
+    # ponytail: no Goodreads link (library/summary rows) -> key off the text instead
+    key = slug.group(1) if slug else "t:" + re.sub(r"[^a-z0-9]+", "-", (title + " " + author).lower()).strip("-")
+    return key, title, author
+
+
 def lookup(title, author):
-    author = author.split("&")[0].split("·")[0].strip()
-    queries = [{"title": title, "author": author}, {"q": f"{title} {author}"}]
+    # drop co-authors, barcodes, credentials and "(partial: ch. 1-4)" noise
+    author = re.sub(r"\(.*?\)", "", author).split("&")[0].split("·")[0].split(",")[0].strip()
+    queries = [{"title": title, "author": author}, {"q": f"{title} {author}"}, {"title": title}]
     for params in queries:
         params.update(limit=3, fields="cover_i")
         for doc in get("https://openlibrary.org/search.json?" + urllib.parse.urlencode(params)).get("docs", []):
@@ -57,24 +70,22 @@ def main():
     html = HTML.read_text()
 
     for item in ITEM.findall(html):
-        slug = SLUG.search(item)
-        if not slug or slug.group(1) in cache:
+        key, title, author = fields(item)
+        if not title or key in cache:
             continue
-        slug = slug.group(1)
-        t, a = TITLE.search(item), AUTHOR.search(item)
-        title, author = text(t.group(1)) if t else "", text(a.group(1)) if a else ""
         if dry:
             print("missing:", title, "—", author)
             continue
         try:
             url = lookup(title, author)
         except Exception as e:
-            print("fail:", slug, e); continue
+            print("fail:", key, e); continue
         if not url:
+            cache[key] = None  # remembered miss, so re-runs don't re-query
             print("no cover:", title, "—", author)
         else:
-            cache[slug] = url
-            print("ok:", slug)
+            cache[key] = url
+            print("ok:", key)
         time.sleep(1)  # ponytail: Open Library asks for gentle pacing on bulk reads
 
     if dry:
@@ -83,11 +94,13 @@ def main():
 
     def wire(m):
         item = m.group(0)
-        slug = SLUG.search(item)
-        if not slug or 'class="cover"' in item or slug.group(1) not in cache:
+        if 'class="cover"' in item:
             return item
-        img = (f'<img class="cover" src="{cache[slug.group(1)]}" alt="" loading="lazy" '
-               f'width="44" height="66" referrerpolicy="no-referrer">')
+        url = cache.get(fields(item)[0])
+        # a miss still gets a blank slot, so every row lines up on the same text column
+        img = (f'<img class="cover" src="{url}" alt="" loading="lazy" '
+               f'width="44" height="66" referrerpolicy="no-referrer">') if url else \
+              '<div class="cover cover-empty" aria-hidden="true"></div>'
         return item.replace('<div class="book-info">', img + '<div class="book-info">', 1)
 
     out = ITEM.sub(wire, html)
