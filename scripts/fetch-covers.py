@@ -114,7 +114,7 @@ def main():
             return re.sub(r'<div class="cover cover-empty"[^>]*></div>',
                           f'<img class="cover" src="{url}" alt="" loading="lazy" '
                           f'width="44" height="66" referrerpolicy="no-referrer">', item, count=1)
-        if 'class="cover"' in item:
+        if 'class="cover' in item:  # matches the img and the placeholder both
             return item
         # a miss still gets a blank slot, so every row lines up on the same text column
         img = (f'<img class="cover" src="{url}" alt="" loading="lazy" '
