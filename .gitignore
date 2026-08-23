@@ -11,3 +11,6 @@ metadata-mac/
 
 summaries/
 ios/Spine/Resources/summaries/
+
+# local wrangler cache
+.wrangler/

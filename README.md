@@ -7,15 +7,31 @@
 A curated collection of book rankings based on Goodreads ratings and reviews.
 Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
-## Files
+![landing page](screenshots/landing.jpg)
 
-- `index.html` - Interactive rankings (Apple Liquid design). Tracks library checkouts with a live due-date countdown — edit the `data-due` attribute on `#deadline` to update. Summarized books get a "Summaries" section; the rest collapse behind "Show all".
-- `book_rankings.md` - Markdown version of the rankings
-- Images of all books in the collection
+## Pages
+
+- `index.html` — landing page. The hero is a slow-drifting wall built at runtime from every cover in `scripts/covers.json`, so it stays in sync as books are added.
+- `rankings.html` — the shelf itself: recently read, to-read, top picks, summaries, and the full ranked list. Sticky header with live search (`/` to focus), star ratings, and a sort control. Counts are computed from the markup rather than hardcoded.
+- `library.html` — private chapter-by-chapter summaries.
+- `book_rankings.md` — markdown version of the rankings.
+
+![rankings](screenshots/rankings.jpg)
+
+## Covers
+
+`scripts/fetch-covers.py` resolves a cover for every book against Open Library and wires it into `rankings.html`. Images are hotlinked from Open Library's CDN — nothing is stored here. Lookups are cached in `scripts/covers.json` (keyed by Goodreads slug, falling back to title+author for books with no Goodreads link), so re-runs cost no requests.
+
+```
+python3 scripts/fetch-covers.py            # look up missing covers, patch rankings.html
+python3 scripts/fetch-covers.py --dry-run  # list books with no cover yet
+```
+
+Books with no cover on Open Library get a placeholder slot, so every row stays aligned.
 
 ## iOS App
 
-`ios/Spine` (ASC record: **Bookrank**) is a native SwiftUI app (rewritten from an earlier WKWebView wrapper, 2026-07-22) with a shared `SpineMac` target.
+`ios/Spine` (ASC record: **Bookrank**) is a native SwiftUI app with a shared `SpineMac` target.
 
 <img src="ios/screenshots/library.jpg" width="240">
 
@@ -26,7 +42,6 @@ Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 ## Roadmap
 
 See `roadmap.md` in this repo root.
-
 
 ## Whitepaper
 

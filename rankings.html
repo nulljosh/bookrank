@@ -184,15 +184,6 @@ a.badge:hover { color:var(--accent); border-color:var(--accent); }
 }
 .sort:hover { color:var(--text); border-color:var(--text3); }
 
-.library-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:1.25rem; }
-.library-head .label { margin-bottom:0; }
-.deadline {
-  font-family:'Geist',monospace; font-size:0.75rem; font-weight:500;
-  letter-spacing:0.04em; color:var(--text2);
-  border:1px solid var(--border); border-radius:6px; padding:4px 10px;
-}
-.deadline.due-soon { color:var(--text); border-color:var(--text3); }
-.deadline strong { color:var(--text); font-weight:600; }
 .library .author { font-size:0.8125rem; color:var(--text2); }
 .library .badge { margin-left:8px; }
 
@@ -249,7 +240,7 @@ footer a:hover { opacity:0.5; }
 <header class="topbar">
   <a class="brand" href="/"><img src="icon.svg" alt="" width="24" height="24">Bookrank</a>
   <nav class="navlinks">
-    <a href="#library">Library</a>
+    <a href="#library">Read</a>
     <a href="#picks">Picks</a>
     <a href="#summaries">Summaries</a>
     <a href="#all">All</a>
@@ -278,15 +269,12 @@ footer a:hover { opacity:0.5; }
 
   <header class="fade-up">
     <p class="subtitle">Books ranked by Goodreads rating, volume &amp; cultural relevance.</p>
-    <p class="stats"><span><strong id="statTotal">71</strong> ranked</span><span><strong id="statSummaries">11</strong> summarized</span><span><strong id="statOut">11</strong> out from the library</span></p>
+    <p class="stats"><span><strong id="statTotal">71</strong> ranked</span><span><strong id="statSummaries">11</strong> summarized</span><span><strong id="statOut">11</strong> recently read</span></p>
   </header>
   <p class="no-results" id="noResults">No books match that search.</p>
 
   <section class="fade-up">
-    <div class="library-head">
-      <span class="label" id="library">Out From The Library</span>
-      <span class="deadline" id="deadline" data-due="2026-08-18">Due Jul 29</span>
-    </div>
+    <span class="label" id="library">Recently Read</span>
     <ul class="books library">
       <li class="book"><div class="rank">1</div><img class="cover" src="https://covers.openlibrary.org/b/id/7344198-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><div class="book-info"><div class="book-title">IBS for Dummies <a href="library.html" class="badge">Summary</a></div><div class="author">Kristina Campbell · Barcode 39083110405082</div></div></li>
       <li class="book"><div class="rank">2</div><div class="cover cover-empty" aria-hidden="true"></div><div class="book-info"><div class="book-title">Sobriety for Dummies <a href="library.html" class="badge">Summary</a></div><div class="author">Lane Kennedy · Barcode 39083111287620</div></div></li>
@@ -685,30 +673,6 @@ var obs = new IntersectionObserver(function(entries) {
 }, { threshold: 0.06 });
 document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
 
-(function() {
-  var el = document.getElementById('deadline');
-  if (!el) return;
-  var due = new Date(el.dataset.due + 'T23:59:59');
-  var fmt = due.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  var today = new Date(); today.setHours(0, 0, 0, 0);
-  var days = Math.round((due - today) / 86400000);
-  el.textContent = '';
-  if (days < 0) {
-    el.remove(); // ponytail: past due date = stale data, show nothing
-    return;
-  }
-  if (days === 0) {
-    el.classList.add('due-soon');
-    el.textContent = 'Due today (' + fmt + ')';
-  } else {
-    if (days <= 5) el.classList.add('due-soon');
-    el.appendChild(document.createTextNode('Due ' + fmt + ' · '));
-    var strong = document.createElement('strong');
-    strong.textContent = days + ' day' + (days === 1 ? '' : 's');
-    el.appendChild(strong);
-    el.appendChild(document.createTextNode(' left'));
-  }
-})();
 </script>
 
 </body>
