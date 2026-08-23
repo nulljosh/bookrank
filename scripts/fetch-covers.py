@@ -52,6 +52,17 @@ def fields(item):
     return key, title, author
 
 
+def google(title, author):
+    """Google Books covers what Open Library doesn't — newer and niche titles mostly."""
+    q = urllib.parse.urlencode({"q": f"{title} {author}".strip(), "maxResults": 3})
+    for item in get("https://www.googleapis.com/books/v1/volumes?" + q).get("items", []):
+        link = item.get("volumeInfo", {}).get("imageLinks", {}).get("thumbnail")
+        if link:
+            # served over http with page-curl styling by default; neither is wanted
+            return link.replace("http://", "https://").replace("&edge=curl", "")
+    return None
+
+
 def lookup(title, author):
     # drop co-authors, barcodes, credentials and "(partial: ch. 1-4)" noise
     author = re.sub(r"\(.*?\)", "", author).split("&")[0].split("·")[0].split(",")[0].strip()
@@ -61,17 +72,21 @@ def lookup(title, author):
         for doc in get("https://openlibrary.org/search.json?" + urllib.parse.urlencode(params)).get("docs", []):
             if doc.get("cover_i"):
                 return f"https://covers.openlibrary.org/b/id/{doc['cover_i']}-M.jpg"
-    return None
+    try:
+        return google(title, author)
+    except Exception:
+        return None
 
 
 def main():
     dry = "--dry-run" in sys.argv
+    retry = "--retry-misses" in sys.argv
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     html = HTML.read_text()
 
     for item in ITEM.findall(html):
         key, title, author = fields(item)
-        if not title or key in cache:
+        if not title or (key in cache and not (retry and cache[key] is None)):
             continue
         if dry:
             print("missing:", title, "—", author)
@@ -94,9 +109,13 @@ def main():
 
     def wire(m):
         item = m.group(0)
+        url = cache.get(fields(item)[0])
+        if 'cover-empty' in item and url:
+            return re.sub(r'<div class="cover cover-empty"[^>]*></div>',
+                          f'<img class="cover" src="{url}" alt="" loading="lazy" '
+                          f'width="44" height="66" referrerpolicy="no-referrer">', item, count=1)
         if 'class="cover"' in item:
             return item
-        url = cache.get(fields(item)[0])
         # a miss still gets a blank slot, so every row lines up on the same text column
         img = (f'<img class="cover" src="{url}" alt="" loading="lazy" '
                f'width="44" height="66" referrerpolicy="no-referrer">') if url else \
