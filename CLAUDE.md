@@ -9,8 +9,13 @@
 - `scripts/fetch-covers.py` — resolves an Open Library cover for every book and wires it into `rankings.html`
 - `book_rankings.md` — markdown source of the same ranked list (maintained in parallel, not auto-generated from/to `rankings.html` — both must be edited together)
 
-## Rule: this is an unread-only (TBR) list
-When the user says they've read, finished, or are partway through a book and want it off the list, remove its entry from **both** `book_rankings.md` and `rankings.html`, then renumber remaining entries sequentially in both files. Don't remove a book just because they mention reading it unless they ask for removal.
+## Rule: the ranked list is unread-only (TBR)
+When the user says they've read, finished, or are partway through a book and want it off the ranked list, remove its entry from **both** `book_rankings.md` and `rankings.html`, then renumber remaining entries sequentially in both files. Don't remove a book just because they mention reading it unless they ask for removal.
+
+The "Recently Read" and "Summaries" sections on `rankings.html` are separate from the ranked list and are allowed to hold finished books.
+
+## Rule: no library checkout tracking (2026-08-22)
+Every library book is returned. The old "Out From The Library" section, its `data-due` countdown badge and the matching iOS `DueDateBadge` exist only as history — do not reintroduce a checkout or due-date feature without a real data source. `ios/Spine/Resources/library.json` carries `loans: []`; the iOS view already renders nothing when it is empty, which is why only the web page ever went stale (its list was hardcoded inline).
 
 ## Chapter summaries (photographed books)
 Raw phone photos of physical books, their per-chapter summaries, and merged book-level markdown live in iCloud Drive at `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/` (not in this repo — too large/private). That folder has its own `summarize.sh` and `CLAUDE.md`.
