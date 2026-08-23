@@ -342,7 +342,7 @@ Books are scored using a weighted algorithm:
 **Notes:** Directly useful for the many "resume/merge/consolidate" passes across the app portfolio.
 
 ### 78. [JavaScript: The Good Parts](https://www.goodreads.com/book/show/2998152-javascript) by Douglas Crockford
-**Notes:** Core language reference for the Node/Express/Vercel apps (talli, epiphany, spine itself).
+**Notes:** Core language reference for the Node/Express/Vercel apps (talli, epiphany, bookrank itself).
 
 ### 79. [Eloquent JavaScript](https://www.goodreads.com/book/show/8910666-eloquent-javascript) by Marijn Haverbeke
 **Notes:** Same JS stack as above.

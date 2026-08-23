@@ -12,12 +12,12 @@
 		1A7861ABE8E867A0772BACAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117CD0057ED9EB8EB352F20 /* Assets.xcassets */; };
 		1E7A7BF61AFAD45853BBF39C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
 		3866181934AD5B4FACE8E86C /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DFFC32D61CAB4E140543B94 /* picks.json */; };
-		3F59BAA35A379317B432A4C2 /* SpineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* SpineApp.swift */; };
+		3F59BAA35A379317B432A4C2 /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */; };
 		449FEB44E9D6EFE6DD73962B /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
 		4555D8A1E149927141818E18 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E47CC7E8FE719D3E61FA75 /* Book.swift */; };
 		4975FF256E39D0ED42655229 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
 		503905FAC10C67B10A215CB8 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
-		5D7CEC289113D0A6F7D3A347 /* SpineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* SpineApp.swift */; };
+		5D7CEC289113D0A6F7D3A347 /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */; };
 		65F98C3012413AA0DE62BF22 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */; };
 		70F60054728CD91CD252B2E8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D013E84EC842EECEB1118FF /* DataStore.swift */; };
 		71AC0AF5071DAD02523E89D8 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2589179D36B762838EE209 /* PreviewScreenshot.swift */; };
@@ -39,7 +39,7 @@
 			containerPortal = E37069113F2618ECF235FC05 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 574ED6104FBA683871E6152F;
-			remoteInfo = Spine;
+			remoteInfo = Bookrank;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,20 +47,20 @@
 		0117CD0057ED9EB8EB352F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		1DFFC32D61CAB4E140543B94 /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
-		20824B868FE3F238E566F77A /* SpineMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpineMac.entitlements; sourceTree = "<group>"; };
+		20824B868FE3F238E566F77A /* BookrankMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookrankMac.entitlements; sourceTree = "<group>"; };
 		251D7E96836E6F04284421DD /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		45E47CC7E8FE719D3E61FA75 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		4B7F30DE854D05ABA3C6FE23 /* Spine.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Spine.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F5DB419BD94EBFE5C1B465E /* SpineMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpineMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bookrank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D013E84EC842EECEB1118FF /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		78A6D59B7AE95C056FC70B60 /* SpineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpineApp.swift; sourceTree = "<group>"; };
+		78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
 		7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		841BE534DC4D85B46879C797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
-		A86E8954AB38617A7B062139 /* SpineUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SpineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A86E8954AB38617A7B062139 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8634B1CAA697F87F0DDC031 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateBadge.swift; sourceTree = "<group>"; };
-		E906C01A8A2787E7212E047D /* Spine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spine.entitlements; sourceTree = "<group>"; };
+		E906C01A8A2787E7212E047D /* Bookrank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookrank.entitlements; sourceTree = "<group>"; };
 		EF2589179D36B762838EE209 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		FE124143658BE453C6EC8C02 /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,25 +69,25 @@
 		16B087A4D5A6A37EE54A779D = {
 			isa = PBXGroup;
 			children = (
-				8D3A3ED6E62792B59FC29B8E /* Spine */,
+				8D3A3ED6E62792B59FC29B8E /* Bookrank */,
 				CF76A58E72F0504FA9B565AC /* UITests */,
 				BF5627688EA8DE034EFBF285 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8D3A3ED6E62792B59FC29B8E /* Spine */ = {
+		8D3A3ED6E62792B59FC29B8E /* Bookrank */ = {
 			isa = PBXGroup;
 			children = (
 				0117CD0057ED9EB8EB352F20 /* Assets.xcassets */,
 				841BE534DC4D85B46879C797 /* Info.plist */,
-				E906C01A8A2787E7212E047D /* Spine.entitlements */,
-				78A6D59B7AE95C056FC70B60 /* SpineApp.swift */,
-				20824B868FE3F238E566F77A /* SpineMac.entitlements */,
+				E906C01A8A2787E7212E047D /* Bookrank.entitlements */,
+				78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */,
+				20824B868FE3F238E566F77A /* BookrankMac.entitlements */,
 				A8F085C4392B52E3EF3C1B69 /* Models */,
 				C86B6AED87D2F30A864A8805 /* Resources */,
 				9E0435FDD89584897815E115 /* Views */,
 			);
-			path = Spine;
+			path = Bookrank;
 			sourceTree = "<group>";
 		};
 		9E0435FDD89584897815E115 /* Views */ = {
@@ -113,9 +113,9 @@
 		BF5627688EA8DE034EFBF285 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B7F30DE854D05ABA3C6FE23 /* Spine.app */,
-				4F5DB419BD94EBFE5C1B465E /* SpineMac.app */,
-				A86E8954AB38617A7B062139 /* SpineUITests.xctest */,
+				4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */,
+				4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */,
+				A86E8954AB38617A7B062139 /* BookrankUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1AC8BC76F74F02491A0ADF92 /* SpineUITests */ = {
+		1AC8BC76F74F02491A0ADF92 /* BookrankUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "SpineUITests" */;
+			buildConfigurationList = F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "BookrankUITests" */;
 			buildPhases = (
 				8A03F23347F8842126C96D3E /* Sources */,
 			);
@@ -153,16 +153,16 @@
 			dependencies = (
 				D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */,
 			);
-			name = SpineUITests;
+			name = BookrankUITests;
 			packageProductDependencies = (
 			);
-			productName = SpineUITests;
-			productReference = A86E8954AB38617A7B062139 /* SpineUITests.xctest */;
+			productName = BookrankUITests;
+			productReference = A86E8954AB38617A7B062139 /* BookrankUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		574ED6104FBA683871E6152F /* Spine */ = {
+		574ED6104FBA683871E6152F /* Bookrank */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Spine" */;
+			buildConfigurationList = 390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Bookrank" */;
 			buildPhases = (
 				CE5DC876FAFDF6BC2D81469A /* Sources */,
 				E742BD8F44FB8A9C4A4AAA7D /* Resources */,
@@ -171,16 +171,16 @@
 			);
 			dependencies = (
 			);
-			name = Spine;
+			name = Bookrank;
 			packageProductDependencies = (
 			);
-			productName = Spine;
-			productReference = 4B7F30DE854D05ABA3C6FE23 /* Spine.app */;
+			productName = Bookrank;
+			productReference = 4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CA022F09A4C66D2C6BAA4505 /* SpineMac */ = {
+		CA022F09A4C66D2C6BAA4505 /* BookrankMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "SpineMac" */;
+			buildConfigurationList = 020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "BookrankMac" */;
 			buildPhases = (
 				93589D24F8725FCDB3A3159E /* Sources */,
 				3B6D1BE40C73145F2DD99864 /* Resources */,
@@ -189,11 +189,11 @@
 			);
 			dependencies = (
 			);
-			name = SpineMac;
+			name = BookrankMac;
 			packageProductDependencies = (
 			);
-			productName = SpineMac;
-			productReference = 4F5DB419BD94EBFE5C1B465E /* SpineMac.app */;
+			productName = BookrankMac;
+			productReference = 4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -220,7 +220,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Spine" */;
+			buildConfigurationList = FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Bookrank" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -234,9 +234,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				574ED6104FBA683871E6152F /* Spine */,
-				1AC8BC76F74F02491A0ADF92 /* SpineUITests */,
-				CA022F09A4C66D2C6BAA4505 /* SpineMac */,
+				574ED6104FBA683871E6152F /* Bookrank */,
+				1AC8BC76F74F02491A0ADF92 /* BookrankUITests */,
+				CA022F09A4C66D2C6BAA4505 /* BookrankMac */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +285,7 @@
 				70F60054728CD91CD252B2E8 /* DataStore.swift in Sources */,
 				B65E8FA49ADF57D4C4B28A89 /* DueDateBadge.swift in Sources */,
 				724BC9774ED3F5A74C372D60 /* LibraryView.swift in Sources */,
-				5D7CEC289113D0A6F7D3A347 /* SpineApp.swift in Sources */,
+				5D7CEC289113D0A6F7D3A347 /* BookrankApp.swift in Sources */,
 				CB8704C3212936FC027EED33 /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +299,7 @@
 				135108B0578D3BBF2522FDA2 /* DataStore.swift in Sources */,
 				7F5342E3F200C2C55EBDDDD0 /* DueDateBadge.swift in Sources */,
 				119CEB260893B8540502E04F /* LibraryView.swift in Sources */,
-				3F59BAA35A379317B432A4C2 /* SpineApp.swift in Sources */,
+				3F59BAA35A379317B432A4C2 /* BookrankApp.swift in Sources */,
 				1E7A7BF61AFAD45853BBF39C /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +309,7 @@
 /* Begin PBXTargetDependency section */
 		D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 574ED6104FBA683871E6152F /* Spine */;
+			target = 574ED6104FBA683871E6152F /* Bookrank */;
 			targetProxy = C1A8DA596315A2A3557D5695 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -373,12 +373,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Spine/SpineMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Spine/Info.plist;
+				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,7 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Spine;
+				TEST_TARGET_NAME = Bookrank;
 			};
 			name = Debug;
 		};
@@ -476,12 +476,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Spine/Spine.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Spine/Info.plist;
+				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,12 +499,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Spine/SpineMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Spine/Info.plist;
+				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Spine;
+				TEST_TARGET_NAME = Bookrank;
 			};
 			name = Release;
 		};
@@ -541,12 +541,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Spine/Spine.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Spine/Info.plist;
+				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -563,7 +563,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "SpineMac" */ = {
+		020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "BookrankMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F0906CFC9791837C769A3CA7 /* Debug */,
@@ -572,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Spine" */ = {
+		390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Bookrank" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FFE802A5F8E7E0A80729C005 /* Debug */,
@@ -581,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "SpineUITests" */ = {
+		F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "BookrankUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C02C324548273E390FC93933 /* Debug */,
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Spine" */ = {
+		FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Bookrank" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5BCA58A5921D1586F3F7C2AC /* Debug */,

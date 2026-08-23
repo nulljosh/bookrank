@@ -15,24 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "574ED6104FBA683871E6152F"
-               BuildableName = "Spine.app"
-               BlueprintName = "Spine"
-               ReferencedContainer = "container:Spine.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1AC8BC76F74F02491A0ADF92"
-               BuildableName = "SpineUITests.xctest"
-               BlueprintName = "SpineUITests"
-               ReferencedContainer = "container:Spine.xcodeproj">
+               BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+               BuildableName = "BookrankMac.app"
+               BlueprintName = "BookrankMac"
+               ReferencedContainer = "container:Bookrank.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,27 +32,14 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
-            BuildableName = "Spine.app"
-            BlueprintName = "Spine"
-            ReferencedContainer = "container:Spine.xcodeproj">
+            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BuildableName = "BookrankMac.app"
+            BlueprintName = "BookrankMac"
+            ReferencedContainer = "container:Bookrank.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1AC8BC76F74F02491A0ADF92"
-               BuildableName = "SpineUITests.xctest"
-               BlueprintName = "SpineUITests"
-               ReferencedContainer = "container:Spine.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <CommandLineArguments>
-      </CommandLineArguments>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -82,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
-            BuildableName = "Spine.app"
-            BlueprintName = "Spine"
-            ReferencedContainer = "container:Spine.xcodeproj">
+            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BuildableName = "BookrankMac.app"
+            BlueprintName = "BookrankMac"
+            ReferencedContainer = "container:Bookrank.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -99,10 +72,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
-            BuildableName = "Spine.app"
-            BlueprintName = "Spine"
-            ReferencedContainer = "container:Spine.xcodeproj">
+            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BuildableName = "BookrankMac.app"
+            BlueprintName = "BookrankMac"
+            ReferencedContainer = "container:Bookrank.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

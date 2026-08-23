@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Parse book_rankings.md into ios/Spine/Resources/books.json. Run after editing book_rankings.md."""
+"""Parse book_rankings.md into ios/Bookrank/Resources/books.json. Run after editing book_rankings.md."""
 import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "book_rankings.md"
-DEST = ROOT / "ios/Spine/Resources/books.json"
+DEST = ROOT / "ios/Bookrank/Resources/books.json"
 
 entry_re = re.compile(
     r"^### (\d+)\. \[(.+?)\]\((.+?)\) by (.+?)\n"

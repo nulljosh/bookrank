@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch keys into Spine/Info.plist that xcodegen refuses to honour.
+"""Patch keys into Bookrank/Info.plist that xcodegen refuses to honour.
 
 Run AFTER `xcodegen generate` and BEFORE archiving:
 
@@ -20,7 +20,7 @@ import re
 import sys
 from pathlib import Path
 
-PLIST = Path(__file__).resolve().parent.parent / "Spine" / "Info.plist"
+PLIST = Path(__file__).resolve().parent.parent / "Bookrank" / "Info.plist"
 
 IPAD_ORIENTATIONS = [
     "UIInterfaceOrientationPortrait",

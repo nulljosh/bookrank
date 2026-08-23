@@ -23,7 +23,7 @@
   <text x="435" y="86" text-anchor="middle" font-size="9.5" fill="#6e6e73">chapter summaries</text>
 
   <rect x="530" y="52" width="150" height="42" rx="10" fill="#f5f5f7" stroke="#d1d1d6"/>
-  <text x="605" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#1d1d1f">ios/Spine</text>
+  <text x="605" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#1d1d1f">ios/Bookrank</text>
   <text x="605" y="86" text-anchor="middle" font-size="9.5" fill="#6e6e73">SwiftUI · iOS + Mac</text>
 
   <!-- row 2: pipeline -->
