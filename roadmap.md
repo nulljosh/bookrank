@@ -224,3 +224,8 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 
 ## Ingested 2026-08-22
 - [ ] Finish the raw iCloud books folder. Possible duplicates in the accounting folder — first 3 chapters. Dedupe before summarizing.
+
+## Deferred from 2026-08-22 night (session limit)
+- [ ] Run `python3 scripts/fetch-covers.py --retry-misses` — the Google Books fallback is committed but the run never finished, so 8 rows still show the dashed placeholder instead of art. One command, then commit `rankings.html`.
+- [ ] Delete the dead iOS summaries code — `SummaryDetailView`, the `summaries` section in `LibraryView`, `SummaryEntry`, and the `summarySlug` badge branch all read `store.summaryIndex`, which `DataStore` hardcodes to `[]` since summaries moved behind Supabase on 2026-08-19. None of it can render. Needs one xcodebuild to confirm both targets still compile.
+- [ ] Ship the corrected App Store description — `metadata/version/1.0/en-US.json` was fixed on 2026-08-22 (it had been advertising the bundled summaries the app no longer carries, a 2.3.1 accurate-metadata risk) but a live description change needs a version bump and review cycle to take effect.
