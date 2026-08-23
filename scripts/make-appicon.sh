@@ -6,7 +6,7 @@
 set -e
 cd "$(dirname "$0")/.."
 BG="#0f172a"
-DEST="ios/Spine/Assets.xcassets/AppIcon.appiconset/icon_1024.png"
+DEST="ios/Bookrank/Assets.xcassets/AppIcon.appiconset/icon_1024.png"
 rsvg-convert -w 1024 -h 1024 icon.svg | magick - -background "$BG" -alpha remove -alpha off "$DEST"
 sips -g pixelWidth -g pixelHeight -g hasAlpha "$DEST" | grep -q 'hasAlpha: no'
 sips -g pixelWidth "$DEST" | grep -q 'pixelWidth: 1024'

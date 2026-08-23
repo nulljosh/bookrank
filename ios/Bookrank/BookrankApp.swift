@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SpineApp: App {
+struct BookrankApp: App {
     var body: some Scene {
         WindowGroup {
             LibraryView()

@@ -1,14 +1,14 @@
-name: Spine
+name: Bookrank
 options:
   bundleIdPrefix: com.heyitsmejosh
 targets:
-  Spine:
+  Bookrank:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
-    sources: [Spine]
+    sources: [Bookrank]
     info:
-      path: Spine/Info.plist
+      path: Bookrank/Info.plist
       properties:
         UILaunchScreen: {}
         CFBundleDisplayName: Bookrank
@@ -32,8 +32,8 @@ targets:
         # that combination for TestFlight with ITMS-90886 (builds 1-3 all hit it).
         # Hand-committed rather than generated via xcodegen `entitlements.properties`,
         # since xcodegen already silently drops keys in this project (see prepare-plist.py).
-        CODE_SIGN_ENTITLEMENTS: Spine/Spine.entitlements
-  SpineUITests:
+        CODE_SIGN_ENTITLEMENTS: Bookrank/Bookrank.entitlements
+  BookrankUITests:
     type: bundle.ui-testing
     platform: iOS
     deploymentTarget: "17.0"
@@ -45,14 +45,14 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
     dependencies:
-      - target: Spine
-  SpineMac:
+      - target: Bookrank
+  BookrankMac:
     type: application
     platform: macOS
     deploymentTarget: "14.0"
-    sources: [Spine]
+    sources: [Bookrank]
     info:
-      path: Spine/Info.plist
+      path: Bookrank/Info.plist
       properties:
         UILaunchScreen: {}
         LSApplicationCategoryType: public.app-category.productivity
@@ -72,18 +72,18 @@ targets:
         # drops keys in this project. The generated block only ever emitted
         # app-sandbox, so the Mac bundle shipped without an application-identifier.
         # macOS uses the com.apple.-prefixed key; iOS uses the bare one.
-        CODE_SIGN_ENTITLEMENTS: Spine/SpineMac.entitlements
+        CODE_SIGN_ENTITLEMENTS: Bookrank/BookrankMac.entitlements
 schemes:
-  Spine:
+  Bookrank:
     build:
       targets:
-        Spine: all
-        SpineUITests: [test]
+        Bookrank: all
+        BookrankUITests: [test]
     test:
-      targets: [SpineUITests]
+      targets: [BookrankUITests]
     shared: true
-  SpineMac:
+  BookrankMac:
     build:
       targets:
-        SpineMac: all
+        BookrankMac: all
     shared: true

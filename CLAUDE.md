@@ -15,7 +15,7 @@ When the user says they've read, finished, or are partway through a book and wan
 The "Recently Read" and "Summaries" sections on `rankings.html` are separate from the ranked list and are allowed to hold finished books.
 
 ## Rule: no library checkout tracking (2026-08-22)
-Every library book is returned. The old "Out From The Library" section, its `data-due` countdown badge and the matching iOS `DueDateBadge` exist only as history — do not reintroduce a checkout or due-date feature without a real data source. `ios/Spine/Resources/library.json` carries `loans: []`; the iOS view already renders nothing when it is empty, which is why only the web page ever went stale (its list was hardcoded inline).
+Every library book is returned. The old "Out From The Library" section, its `data-due` countdown badge and the matching iOS `DueDateBadge` exist only as history — do not reintroduce a checkout or due-date feature without a real data source. `ios/Bookrank/Resources/library.json` carries `loans: []`; the iOS view already renders nothing when it is empty, which is why only the web page ever went stale (its list was hardcoded inline).
 
 ## Chapter summaries (photographed books)
 Raw phone photos of physical books, their per-chapter summaries, and merged book-level markdown live in iCloud Drive at `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/` (not in this repo — too large/private). That folder has its own `summarize.sh` and `CLAUDE.md`.
@@ -29,6 +29,15 @@ Planned iOS companion tracker app name: "Digest" (decided, not applied — see r
 
 ## iOS app icon — regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
+
+## Xcode project renamed Spine → Bookrank (2026-08-23)
+The Xcode scaffolding kept the original name long after the product stopped using it. Now: directory `ios/Bookrank`, project `ios/Bookrank.xcodeproj`, targets `Bookrank` / `BookrankMac` / `BookrankUITests`, schemes to match, `BookrankApp.swift`, `Bookrank.entitlements` / `BookrankMac.entitlements`. Built products are `Bookrank.app` / `BookrankMac.app` (`PRODUCT_NAME = $(TARGET_NAME)`).
+
+Two lowercase `spine` strings are deliberate and must NOT be renamed:
+- **`com.heyitsmejosh.spine`** (and `.spine.uitests`) — the bundle identifier, bound to ASC record 6792376485. Changing it means a new app record, not a rename.
+- **`@AppStorage("spine-theme")`** in `LibraryView.swift` — a persisted key on shipped devices. Renaming it silently resets every existing user's theme to system.
+
+`project.pbxproj` is xcodegen output; it was renamed in place to stay in sync with `project.yml`, and regenerating it reproduces the same names.
 
 ## Repo separation (2026-07-13)
 Decided: books stays its own repo — do NOT merge into lexly or notes. books/lexly/notes are separate products (own domains/apps); notes is the wiki.

@@ -31,7 +31,7 @@ Books with no cover on Open Library get a placeholder slot, so every row stays a
 
 ## iOS App
 
-`ios/Spine` (ASC record: **Bookrank**) is a native SwiftUI app with a shared `SpineMac` target.
+`ios/Bookrank` is a native SwiftUI app with a shared `BookrankMac` target, generated from `ios/project.yml` via xcodegen. The bundle identifier is still `com.heyitsmejosh.spine` — it predates the rename and is bound to the App Store Connect record, so it stays.
 
 <img src="ios/screenshots/library.jpg" width="240">
 

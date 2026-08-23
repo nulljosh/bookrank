@@ -3,7 +3,7 @@ set -euo pipefail
 SRC="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books"
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 DEST="$ROOT/summaries"
-APP_DEST="$ROOT/ios/Spine/Resources/summaries"
+APP_DEST="$ROOT/ios/Bookrank/Resources/summaries"
 mkdir -p "$DEST" "$APP_DEST"
 
 # ponytail: book folders can be nested one level (e.g. "for dummies/<book>"), so scan
