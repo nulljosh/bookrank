@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Wire a hotlinked cover image into every book <li> in index.html.
+"""Wire a hotlinked cover image into every book <li> in rankings.html.
 
 Covers are served straight from Open Library's CDN (free, no key, no rate limit on the
 image host) — nothing is downloaded into this repo. Only the lookup hits the search API.
 Goodreads has no free cover API and blocks bulk scraping, so its slug is used only as an id.
 
-    python3 scripts/fetch-covers.py            # look up missing covers, patch index.html
-    python3 scripts/fetch-covers.py --dry-run  # list books with no cover yet
+    python3 scripts/fetch-covers.py                 # look up missing covers, patch rankings.html
+    python3 scripts/fetch-covers.py --dry-run       # list books with no cover yet
+    python3 scripts/fetch-covers.py --retry-misses  # re-query books cached as "no cover"
+
+covers.json caches a null for a book both APIs answered on without a cover, so ordinary
+re-runs skip it. That null is only ever written when the lookup actually completed — a
+network, policy or quota error is reported and left uncached, never remembered as a miss.
 """
 import html as htmlmod
 import json, re, sys, time, urllib.error, urllib.parse, urllib.request
@@ -72,10 +77,12 @@ def lookup(title, author):
         for doc in get("https://openlibrary.org/search.json?" + urllib.parse.urlencode(params)).get("docs", []):
             if doc.get("cover_i"):
                 return f"https://covers.openlibrary.org/b/id/{doc['cover_i']}-M.jpg"
-    try:
-        return google(title, author)
-    except Exception:
-        return None
+    # ponytail: no try/except here on purpose. A network or quota error is NOT a
+    # miss — swallowing it wrote None into the cache, and None is permanent unless
+    # --retry-misses is passed. That is how five real books ended up flagged
+    # "no cover on Open Library" forever. Let it raise; main() logs and moves on
+    # without touching the cache, so the next run tries again.
+    return google(title, author)
 
 
 def main():
@@ -83,6 +90,7 @@ def main():
     retry = "--retry-misses" in sys.argv
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     html = HTML.read_text()
+    failed = []
 
     for item in ITEM.findall(html):
         key, title, author = fields(item)
@@ -94,9 +102,9 @@ def main():
         try:
             url = lookup(title, author)
         except Exception as e:
-            print("fail:", key, e); continue
+            failed.append((title, e)); print("fail:", key, e); continue
         if not url:
-            cache[key] = None  # remembered miss, so re-runs don't re-query
+            cache[key] = None  # a real miss: both APIs answered, neither had a cover
             print("no cover:", title, "—", author)
         else:
             cache[key] = url
@@ -125,7 +133,14 @@ def main():
     out = ITEM.sub(wire, html)
     if out != html:
         HTML.write_text(out)
-    print("covers wired:", out.count('class="cover"'))
+    wired, blank = out.count('<img class="cover"'), out.count('cover-empty" aria-hidden')
+    print(f"covers wired: {wired}, blank slots: {blank}")
+    if failed:
+        # Loud on purpose: "covers wired: 127" on its own reads like success even
+        # when every lookup died, which is how the last round of misses went unnoticed.
+        print(f"\n{len(failed)} lookup(s) FAILED and were not cached — re-run to retry:")
+        for title, e in failed:
+            print(f"  {title}: {e}")
 
 
 if __name__ == "__main__":

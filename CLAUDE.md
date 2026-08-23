@@ -30,6 +30,11 @@ Planned iOS companion tracker app name: "Digest" (decided, not applied — see r
 ## iOS app icon — regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
 
+## Rule: a failed cover lookup is not a miss (2026-08-23)
+`scripts/covers.json` caches `null` to mean "both Open Library and Google Books answered, neither had a cover" — and ordinary re-runs skip those keys forever, so a wrong null is invisible and permanent. `lookup()` therefore must NOT catch exceptions around the Google Books fallback: a 429 (its unauthenticated daily quota is easy to exhaust), a policy block or any network error has to propagate so `main()` records it as `fail:` and leaves the cache alone. Swallowing it is what silently marked five real books "no cover" and made an earlier fix look like it hadn't worked.
+
+Cover images cannot be fetched from a Claude Code web session: `openlibrary.org` is refused by the egress policy (403 on CONNECT) and the Google Books quota is usually spent. Run `python3 scripts/fetch-covers.py` locally instead. Use `--retry-misses` to re-query cached nulls.
+
 ## Xcode project renamed Spine → Bookrank (2026-08-23)
 The Xcode scaffolding kept the original name long after the product stopped using it. Now: directory `ios/Bookrank`, project `ios/Bookrank.xcodeproj`, targets `Bookrank` / `BookrankMac` / `BookrankUITests`, schemes to match, `BookrankApp.swift`, `Bookrank.entitlements` / `BookrankMac.entitlements`. Built products are `Bookrank.app` / `BookrankMac.app` (`PRODUCT_NAME = $(TARGET_NAME)`).
 

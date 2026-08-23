@@ -23,11 +23,12 @@ Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 `scripts/fetch-covers.py` resolves a cover for every book against Open Library and wires it into `rankings.html`. Images are hotlinked from Open Library's CDN — nothing is stored here. Lookups are cached in `scripts/covers.json` (keyed by Goodreads slug, falling back to title+author for books with no Goodreads link), so re-runs cost no requests.
 
 ```
-python3 scripts/fetch-covers.py            # look up missing covers, patch rankings.html
-python3 scripts/fetch-covers.py --dry-run  # list books with no cover yet
+python3 scripts/fetch-covers.py                 # look up missing covers, patch rankings.html
+python3 scripts/fetch-covers.py --dry-run       # list books with no cover yet
+python3 scripts/fetch-covers.py --retry-misses  # re-query books cached as "no cover"
 ```
 
-Books with no cover on Open Library get a placeholder slot, so every row stays aligned.
+Books with no cover on either source get a placeholder slot, so every row stays aligned. A null in `covers.json` means both APIs answered and neither had a cover; lookups that fail outright are reported and left uncached, so the next run retries them.
 
 ## iOS App
 
