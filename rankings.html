@@ -103,11 +103,11 @@ section { margin-bottom:clamp(3rem,6vw,4.5rem); }
 
 .book {
   padding:1.125rem 0; border-bottom:1px solid var(--border);
-  transition:opacity 0.25s; display:flex; gap:18px; align-items:flex-start;
+  display:flex; gap:18px; align-items:flex-start;
 }
 .book:first-child { border-top:1px solid var(--border); }
-.book:hover { opacity:0.6; }
-@media (hover:none) { .book:hover { opacity:1; } }
+.book:hover .cover { transform:translateY(-3px) scale(1.03); box-shadow:0 6px 18px rgba(0,0,0,0.35); }
+@media (hover:none) { .book:hover .cover { transform:none; box-shadow:none; } }
 
 .rank {
   font-family:'Geist',monospace; font-size:0.6875rem; font-weight:500;
@@ -117,6 +117,7 @@ section { margin-bottom:clamp(3rem,6vw,4.5rem); }
 .cover {
   width:44px; height:66px; object-fit:cover; flex-shrink:0;
   border:1px solid var(--border); border-radius:2px; background:var(--border);
+  transition:transform 0.25s var(--spring), box-shadow 0.25s var(--ease);
 }
 
 .cover-empty { background:var(--bg2); border-style:dashed; }
@@ -137,6 +138,17 @@ section { margin-bottom:clamp(3rem,6vw,4.5rem); }
   font-size:0.75rem; margin-top:4px;
 }
 .rating-value { color:var(--text2); font-weight:500; }
+.stars {
+  position:relative; display:inline-block; white-space:nowrap;
+  font-size:0.8125rem; letter-spacing:1px; line-height:1;
+  color:var(--border2); -webkit-user-select:none; user-select:none;
+}
+.stars::before { content:'\2605\2605\2605\2605\2605'; }
+.stars i {
+  position:absolute; left:0; top:0; overflow:hidden;
+  color:var(--cell2); font-style:normal;
+}
+.stars i::before { content:'\2605\2605\2605\2605\2605'; }
 .reviews { color:var(--text3); }
 
 .badge {
@@ -162,6 +174,15 @@ a.badge:hover { color:var(--accent); border-color:var(--accent); }
 .icon-sun { display:none; }
 [data-theme="light"] .icon-moon { display:none; }
 [data-theme="light"] .icon-sun { display:block; }
+
+.section-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:1.25rem; }
+.section-head .label { margin-bottom:0; }
+.sort {
+  font-family:inherit; font-size:0.75rem; color:var(--text2);
+  background:var(--bg2); border:1px solid var(--border); border-radius:6px;
+  padding:4px 8px; cursor:pointer;
+}
+.sort:hover { color:var(--text); border-color:var(--text3); }
 
 .library-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:1.25rem; }
 .library-head .label { margin-bottom:0; }
@@ -318,7 +339,15 @@ footer a:hover { opacity:0.5; }
   </section>
 
   <section class="fade-up">
-    <span class="label" id="all">All Rankings</span>
+    <div class="section-head">
+      <span class="label" id="all">All Rankings</span>
+      <select class="sort" id="sort" aria-label="Sort rankings">
+        <option value="rank">Sort: my ranking</option>
+        <option value="rating">Highest rated</option>
+        <option value="reviews">Most rated</option>
+        <option value="title">Title A&ndash;Z</option>
+      </select>
+    </div>
     <ul class="books collapsible" id="allRankings">
 
 
@@ -599,6 +628,55 @@ rankingsToggle.addEventListener('click', function() {
 document.getElementById('statTotal').textContent = rankingsList.querySelectorAll('.book').length;
 document.getElementById('statSummaries').textContent = document.querySelectorAll('.summaries .book').length;
 document.getElementById('statOut').textContent = document.querySelectorAll('.library .book').length;
+
+// Goodreads-style stars, drawn from the rating already in the markup
+document.querySelectorAll('.rating-value').forEach(function(el) {
+  var score = parseFloat(el.textContent);
+  if (!(score > 0)) return;
+  var stars = document.createElement('span');
+  stars.className = 'stars';
+  stars.title = score.toFixed(2) + ' out of 5';
+  var fill = document.createElement('i');
+  fill.style.width = (score / 5 * 100) + '%';
+  stars.appendChild(fill);
+  el.parentNode.insertBefore(stars, el);
+});
+
+(function() {
+  var sort = document.getElementById('sort');
+  var rows = [].slice.call(rankingsList.children);
+  var num = function(row, sel) {
+    var t = (row.querySelector(sel) || {}).textContent || '';
+    // "131k+ ratings" and "84,602 ratings" both have to land on the same scale
+    var m = t.replace(/,/g, '').match(/([\d.]+)\s*(k|m)?/i);
+    if (!m) return -1;
+    return parseFloat(m[1]) * (m[2] ? ({ k: 1e3, m: 1e6 })[m[2].toLowerCase()] : 1);
+  };
+  var keys = {
+    rank: function(r, i) { return i; },
+    rating: function(r) { return -num(r, '.rating-value'); },
+    reviews: function(r) { return -num(r, '.reviews'); },
+    title: function(r) { return (r.querySelector('.book-title') || {}).textContent.trim().toLowerCase(); }
+  };
+  rows.forEach(function(r, i) { r.dataset.i = i; });
+  sort.addEventListener('change', function() {
+    var key = keys[sort.value];
+    rows.slice().sort(function(a, b) {
+      var x = key(a, +a.dataset.i), y = key(b, +b.dataset.i);
+      return x < y ? -1 : x > y ? 1 : 0;
+    }).forEach(function(r) { rankingsList.appendChild(r); });
+    if (sort.value !== 'rank') rankingsList.classList.add('expanded');
+  });
+})();
+
+// "/" jumps to search, Escape clears it
+document.addEventListener('keydown', function(e) {
+  var box = document.getElementById('search');
+  if (e.key === '/' && document.activeElement !== box) { e.preventDefault(); box.focus(); }
+  if (e.key === 'Escape' && document.activeElement === box) {
+    box.value = ''; box.dispatchEvent(new Event('input')); box.blur();
+  }
+});
 
 var obs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
