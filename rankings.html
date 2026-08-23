@@ -145,7 +145,6 @@ a.badge:hover { color:var(--accent); border-color:var(--accent); }
   border:1px solid var(--border); border-radius:6px; padding:4px 10px;
 }
 .deadline.due-soon { color:var(--text); border-color:var(--text3); }
-.deadline.overdue { color:#e5484d; border-color:#e5484d; }
 .deadline strong { color:var(--text); font-weight:600; }
 .library .author { font-size:0.8125rem; color:var(--text2); }
 .library .badge { margin-left:8px; }
@@ -549,9 +548,10 @@ document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); })
   var days = Math.round((due - today) / 86400000);
   el.textContent = '';
   if (days < 0) {
-    el.classList.add('overdue');
-    el.textContent = 'Overdue · was due ' + fmt;
-  } else if (days === 0) {
+    el.remove(); // ponytail: past due date = stale data, show nothing
+    return;
+  }
+  if (days === 0) {
     el.classList.add('due-soon');
     el.textContent = 'Due today (' + fmt + ')';
   } else {
