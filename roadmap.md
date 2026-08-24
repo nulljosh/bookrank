@@ -240,3 +240,16 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 - [ ] Fix the pointer in `~/Documents/Code/CLAUDE.md`, which still says bookrank's local folder is
       `~/Documents/Code/uprighty`. It is `~/Documents/Code/bookrank`; the stale path cost a wrong
       answer this session (read the old clone's landing page, which predates the hero cover wall).
+
+- [ ] **Port the books-wip content onto main, then retire `uprighty/`.** The folder
+      `~/Documents/Code/uprighty` shares this repo's remote but is NOT a stale clone: verified
+      2026-08-24 it held 175 commits / 138 files / ~33k insertions existing nowhere else (every
+      `covers/*.jpg`, `summaries/the-optimist.md`, `summaries/statistics-for-dummies.md`), while
+      this tree has no `summaries/` directory at all. Rescued to `origin/books-wip`.
+      **Do not merge the branch** — the two diverged 2026-06-18 and `main` is itself 171 commits
+      ahead (Spine->Bookrank rename, cover-fetch pipeline, live site, `scripts/import-summaries.py`,
+      `sync-summaries.sh`), so a merge would drag two months of superseded history over the live
+      repo. Instead: branch off current `main`, copy `summaries/` + `covers/` across, run the
+      existing import scripts, verify the site builds. Careful with covers — b85e7e5 deliberately
+      dropped ~12M of dead ones, so a bulk restore would undo that on purpose-deleted files.
+      Delete `uprighty/` only once the content is on `main`; keep `origin/books-wip` as the archive.
