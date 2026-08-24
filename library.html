@@ -52,6 +52,11 @@ a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
         <button class="primary" type="submit">Sign in</button>
         <button type="button" id="signup">Create account</button>
       </div>
+      <div class="row">
+        <button type="button" class="oauth" data-provider="apple">Apple</button>
+        <button type="button" class="oauth" data-provider="github">GitHub</button>
+        <button type="button" id="forgot">Forgot password</button>
+      </div>
       <p class="msg" id="authMsg"></p>
     </form>
   </section>
@@ -111,6 +116,17 @@ $('signup').onclick = async () => {
   const { error } = await db.auth.signUp({ email: $('email').value, password: $('password').value });
   $('authMsg').textContent = error ? error.message : 'Account created. Check your email if confirmation is required, then sign in.';
 };
+$('forgot').onclick = async () => {
+  const email = $('email').value.trim();
+  if (!email) { $('authMsg').textContent = 'Enter your email first.'; return; }
+  const { error } = await db.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+  $('authMsg').textContent = error ? error.message : 'Reset link sent. Check your email.';
+};
+// OAuth: data-provider is passed straight through; add a button to add a provider.
+document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
+  const { error } = await db.auth.signInWithOAuth({ provider: b.dataset.provider, options: { redirectTo: location.origin + location.pathname } });
+  if (error) $('authMsg').textContent = error.message;
+});
 $('signout').onclick = () => db.auth.signOut();
 
 db.auth.onAuthStateChange((_e, session) => {
