@@ -229,3 +229,14 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 - [ ] Run `python3 scripts/fetch-covers.py --retry-misses` — the Google Books fallback is committed but the run never finished, so 8 rows still show the dashed placeholder instead of art. One command, then commit `rankings.html`.
 - [ ] Delete the dead iOS summaries code — `SummaryDetailView`, the `summaries` section in `LibraryView`, `SummaryEntry`, and the `summarySlug` badge branch all read `store.summaryIndex`, which `DataStore` hardcodes to `[]` since summaries moved behind Supabase on 2026-08-19. None of it can render. Needs one xcodebuild to confirm both targets still compile.
 - [ ] Ship the corrected App Store description — `metadata/version/1.0/en-US.json` was fixed on 2026-08-22 (it had been advertising the bundled summaries the app no longer carries, a 2.3.1 accurate-metadata risk) but a live description change needs a version bump and review cycle to take effect.
+- [ ] **`~/Documents/Code/uprighty/` is a DIVERGED clone of this repo, not just a stale one — do
+      not delete it yet.** Checked 2026-08-24: it sits 171 commits behind origin/main *and* holds
+      commits that exist nowhere else (`af54ff0 docs: whitepaper + README link`, `3e34ca1 Add
+      marketing landing page at /, move rankings app to /rankings.html`, `761ac52 wip: partial
+      work from /work notes ingest`). `af54ff0` is not in this clone's object store at all, so
+      those changes would be lost with the folder. Working tree is clean, so nothing is at risk
+      today. Someone needs to cherry-pick or explicitly discard the unique commits, and only then
+      remove the folder. The prior note that it was merely "155 behind" understated this.
+- [ ] Fix the pointer in `~/Documents/Code/CLAUDE.md`, which still says bookrank's local folder is
+      `~/Documents/Code/uprighty`. It is `~/Documents/Code/bookrank`; the stale path cost a wrong
+      answer this session (read the old clone's landing page, which predates the hero cover wall).
