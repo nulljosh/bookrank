@@ -44,7 +44,7 @@ Created and populated **1.0.1** on both platforms, `PREPARE_FOR_SUBMISSION`:
 Applied to both (verified by re-read): corrected description opening with "Bookrank", `supportUrl`
 set to `https://bookrank.heyitsmejosh.com`, and a What's New line.
 
-- [ ] ~~1.0.1 still needs a build.~~ `asc validate` reports the one remaining blocking error,
+- **CLOSED 2026-08-25** (done — iOS and macOS 1.0.1 are both READY_FOR_SALE). Was: ~~1.0.1 still needs a build.~~ `asc validate` reports the one remaining blocking error,
   `build.required.missing`. Every existing build (highest is `6`, 2026-08-03) was consumed by 1.0 —
   attaching build `6` fails with "The specified pre-release build could not be added." This needs a
   fresh archive + upload with a bumped build number. The metadata above is already staged and will
@@ -221,7 +221,7 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 ## Deferred from 2026-08-22 night (session limit)
 - [ ] Run `python3 scripts/fetch-covers.py --retry-misses` — the Google Books fallback is committed but the run never finished, so 8 rows still show the dashed placeholder instead of art. One command, then commit `rankings.html`.
 - [ ] Delete the dead iOS summaries code — `SummaryDetailView`, the `summaries` section in `LibraryView`, `SummaryEntry`, and the `summarySlug` badge branch all read `store.summaryIndex`, which `DataStore` hardcodes to `[]` since summaries moved behind Supabase on 2026-08-19. None of it can render. Needs one xcodebuild to confirm both targets still compile.
-- [ ] Ship the corrected App Store description — `metadata/version/1.0/en-US.json` was fixed on 2026-08-22 (it had been advertising the bundled summaries the app no longer carries, a 2.3.1 accurate-metadata risk) but a live description change needs a version bump and review cycle to take effect.
+- [ ] **STILL OPEN, re-confirmed 2026-08-25 — the corrected description was never shipped.** The live listing still reads "...ranked by rating with chapter-by-chapter summaries for finished books", advertising bundled summaries the app no longer carries (they moved behind per-user Supabase accounts). `metadata/version/1.0/en-US.json` holds the corrected copy locally but 1.0.1 shipped without it, so this is a live Guideline 2.3.1 accurate-metadata risk. Push it with the next version: `asc metadata push --app 6792376485 --version <v> --platform IOS --dir ./metadata` (the workflow does NOT push metadata on its own). Original note follows:
 - [ ] **`~/Documents/Code/uprighty/` is a DIVERGED clone of this repo, not just a stale one — do
       not delete it yet.** Checked 2026-08-24: it sits 171 commits behind origin/main *and* holds
       commits that exist nowhere else (`af54ff0 docs: whitepaper + README link`, `3e34ca1 Add
