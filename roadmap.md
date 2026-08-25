@@ -221,7 +221,15 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 ## Deferred from 2026-08-22 night (session limit)
 - [ ] Run `python3 scripts/fetch-covers.py --retry-misses` — the Google Books fallback is committed but the run never finished, so 8 rows still show the dashed placeholder instead of art. One command, then commit `rankings.html`.
 - [ ] Delete the dead iOS summaries code — `SummaryDetailView`, the `summaries` section in `LibraryView`, `SummaryEntry`, and the `summarySlug` badge branch all read `store.summaryIndex`, which `DataStore` hardcodes to `[]` since summaries moved behind Supabase on 2026-08-19. None of it can render. Needs one xcodebuild to confirm both targets still compile.
-- [ ] **STILL OPEN, re-confirmed 2026-08-25 — the corrected description was never shipped.** The live listing still reads "...ranked by rating with chapter-by-chapter summaries for finished books", advertising bundled summaries the app no longer carries (they moved behind per-user Supabase accounts). `metadata/version/1.0/en-US.json` holds the corrected copy locally but 1.0.1 shipped without it, so this is a live Guideline 2.3.1 accurate-metadata risk. Push it with the next version: `asc metadata push --app 6792376485 --version <v> --platform IOS --dir ./metadata` (the workflow does NOT push metadata on its own). Original note follows:
+- [ ] **STILL OPEN — CANNOT be fixed without a new version, proven 2026-08-25.** Tried the direct
+      edit: `asc apps info edit --app 6792376485 --platform IOS --version 1.0.1 --description ...`
+      returns *"Attribute 'description' cannot be edited at this time"* because every version row
+      is `READY_FOR_SALE`. Apple only allows description edits on an editable (unreleased) version,
+      so this rides along with the next release — it is not a standalone task and should not
+      trigger a release of its own. **Do not retry the direct edit; it will fail the same way.**
+      The inaccuracy is real though: the live copy says "dive into detailed summaries" as if they
+      ship in the app, while the corrected local copy says they live on the web behind your own
+      account. Original note follows: The live listing still reads "...ranked by rating with chapter-by-chapter summaries for finished books", advertising bundled summaries the app no longer carries (they moved behind per-user Supabase accounts). `metadata/version/1.0/en-US.json` holds the corrected copy locally but 1.0.1 shipped without it, so this is a live Guideline 2.3.1 accurate-metadata risk. Push it with the next version: `asc metadata push --app 6792376485 --version <v> --platform IOS --dir ./metadata` (the workflow does NOT push metadata on its own). Original note follows:
 - [ ] **`~/Documents/Code/uprighty/` is a DIVERGED clone of this repo, not just a stale one — do
       not delete it yet.** Checked 2026-08-24: it sits 171 commits behind origin/main *and* holds
       commits that exist nowhere else (`af54ff0 docs: whitepaper + README link`, `3e34ca1 Add
