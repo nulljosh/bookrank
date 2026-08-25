@@ -45,7 +45,10 @@ Created and populated **1.0.1** on both platforms, `PREPARE_FOR_SUBMISSION`:
 Applied to both (verified by re-read): corrected description opening with "Bookrank", `supportUrl`
 set to `https://bookrank.heyitsmejosh.com`, and a What's New line.
 
-- [ ] **1.0.1 still needs a build.** `asc validate` reports the one remaining blocking error,
+- [x] **STALE — 1.0.1 shipped on both platforms.** Verified 2026-08-24 via
+  `asc versions list --app 6792376485`: IOS 1.0.1 and MAC_OS 1.0.1 are both `READY_FOR_SALE`.
+  The build problem below was solved by build 7 (uploaded 2026-08-18). Original note:
+- [ ] ~~1.0.1 still needs a build.~~ `asc validate` reports the one remaining blocking error,
   `build.required.missing`. Every existing build (highest is `6`, 2026-08-03) was consumed by 1.0 —
   attaching build `6` fails with "The specified pre-release build could not be added." This needs a
   fresh archive + upload with a bumped build number. The metadata above is already staged and will
@@ -196,9 +199,9 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 ```
 
 ## Ingested 2026-08-18
-- [ ] Remove italics from the header.
-- [ ] Move header text to the top-left corner.
-- [ ] All list items should show a book cover thumbnail — currently only the bottom "All Rankings" section does. Apply that same styling to the entire list.
+- [x] Remove italics from the header. Already done in the 2026-08-22 rankings overhaul (the italic display header became the sticky `.topbar`); verified 2026-08-24, no `font-style:italic` anywhere.
+- [x] Move header text to the top-left corner. Same overhaul — `.topbar` carries the brand at top-left, sticky. Verified 2026-08-24.
+- [x] All list items show a book cover thumbnail (2026-08-24). The 2026-08-22 pass had already covered Recently Read / To Read / Summaries / All Rankings; the last list without art was **Top Picks**, which is an `<ol class="picks">` of editorial blurbs. Added `<img class="cover">` to all 5 rows reusing the existing `.cover`/`.book-info` classes (no second thumbnail style), and folded `.picks li:hover` into the existing `.book:hover .cover` lift so the row-dim no longer greys out the art. Covers for Zero to One (9002334) and Adult Children (11301956) came from Open Library search — neither book is in All Rankings or `covers.json`.
 - [ ] Hook up Goodreads syncing / integration / login.
 - [ ] (Context from note: all library books returned.)
 
@@ -209,11 +212,11 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
   MARKETING_VERSION (xcodegen was dropping it — plist said 1.0 vs ASC 1.0.1).
 - Screenshots re-shot (iPhone 11 Pro Max + iPad Pro 13") and replaced on ASC.
 - Build 7 uploaded, attached, encryption declared. iOS 1.0.1 WAITING_FOR_REVIEW.
-- TODO: macOS 1.0.1 still PREPARE_FOR_SUBMISSION — needs its own archive/upload
-  (BookrankMac target, MARKETING_VERSION still "1.0" at project.yml:64).
+- DONE (verified 2026-08-24): macOS 1.0.1 is now READY_FOR_SALE, so the archive/upload
+  described here happened. Both platforms are live at 1.0.1.
 
 ## Braindump 2026-08-19
-- [ ] Mac is supported now — add the Mac download link to the landing page and any other surfaces still listing iOS only.
+- [x] Mac download link added 2026-08-24. `index.html` "Get the app" split into **iPhone & iPad** + **Mac** (`?mt=12`); `README.md` badge row gained a Mac App Store badge. Both URLs curl 200. Those were the only two surfaces linking the store — `rankings.html`/`library.html`/`privacy.html` carry no store link at all.
 
 ## Braindump 2026-08-19
 - [ ] Shortcuts for adding summaries to an account
@@ -237,9 +240,10 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
       those changes would be lost with the folder. Working tree is clean, so nothing is at risk
       today. Someone needs to cherry-pick or explicitly discard the unique commits, and only then
       remove the folder. The prior note that it was merely "155 behind" understated this.
-- [ ] Fix the pointer in `~/Documents/Code/CLAUDE.md`, which still says bookrank's local folder is
-      `~/Documents/Code/uprighty`. It is `~/Documents/Code/bookrank`; the stale path cost a wrong
-      answer this session (read the old clone's landing page, which predates the hero cover wall).
+- [x] Fixed 2026-08-24. `~/Documents/Code/CLAUDE.md` lines 58 and 78 now point at
+      `~/Documents/Code/bookrank` and both say explicitly that `uprighty/` is a *diverged clone*
+      holding unique books work (archived as `origin/books-wip`), not a rename leftover to delete.
+      Also corrected the same file's stale app states: it claimed iOS/macOS 1.0 WAITING_FOR_REVIEW.
 
 - [ ] **Port the books-wip content onto main, then retire `uprighty/`.** The folder
       `~/Documents/Code/uprighty` shares this repo's remote but is NOT a stale clone: verified

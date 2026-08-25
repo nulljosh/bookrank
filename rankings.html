@@ -91,12 +91,10 @@ section { margin-bottom:clamp(3rem,6vw,4.5rem); }
 .picks li {
   padding:0.875rem 0; border-bottom:1px solid var(--border);
   font-size:0.9375rem; color:var(--text2); line-height:1.7;
-  transition:opacity 0.25s; display:flex; gap:12px; align-items:baseline;
+  display:flex; gap:12px; align-items:flex-start;
 }
 .picks li:first-child { border-top:1px solid var(--border); }
-.picks li:hover { opacity:0.55; }
-@media (hover:none) { .picks li:hover { opacity:1; } }
-.pick-num { font-family:'Geist',monospace; font-size:0.6875rem; color:var(--text3); min-width:20px; font-weight:500; flex-shrink:0; }
+.pick-num { font-family:'Geist',monospace; font-size:0.6875rem; color:var(--text3); min-width:20px; font-weight:500; flex-shrink:0; padding-top:3px; }
 .picks strong { color:var(--text); font-weight:500; }
 
 .books { list-style:none; }
@@ -106,8 +104,8 @@ section { margin-bottom:clamp(3rem,6vw,4.5rem); }
   display:flex; gap:18px; align-items:flex-start;
 }
 .book:first-child { border-top:1px solid var(--border); }
-.book:hover .cover { transform:translateY(-3px) scale(1.03); box-shadow:0 6px 18px rgba(0,0,0,0.35); }
-@media (hover:none) { .book:hover .cover { transform:none; box-shadow:none; } }
+.book:hover .cover, .picks li:hover .cover { transform:translateY(-3px) scale(1.03); box-shadow:0 6px 18px rgba(0,0,0,0.35); }
+@media (hover:none) { .book:hover .cover, .picks li:hover .cover { transform:none; box-shadow:none; } }
 
 .rank {
   font-family:'Geist',monospace; font-size:0.6875rem; font-weight:500;
@@ -300,11 +298,11 @@ footer a:hover { opacity:0.5; }
   <section class="fade-up">
     <span class="label" id="picks">Top Picks</span>
     <ol class="picks">
-      <li><span class="pick-num">01</span><span><strong>Zero to One</strong>: Silicon Valley essential, most reviewed in the collection (4.17, 400k ratings)</span></li>
-      <li><span class="pick-num">02</span><span><strong>The Demon-Haunted World</strong>: Timeless skepticism classic (4.38, 131k ratings)</span></li>
-      <li><span class="pick-num">03</span><span><strong>Bad Blood</strong>: Best modern nonfiction (4.32, 140k ratings)</span></li>
-      <li><span class="pick-num">04</span><span><strong>The New Jim Crow</strong>: Landmark social justice work (4.36, 100k ratings)</span></li>
-      <li><span class="pick-num">05</span><span><strong>Adult Children of Emotionally Immature Parents</strong>: New entry, instant essential (4.33, 110k ratings)</span></li>
+      <li><span class="pick-num">01</span><img class="cover" src="https://covers.openlibrary.org/b/id/9002334-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><span class="book-info"><strong>Zero to One</strong>: Silicon Valley essential, most reviewed in the collection (4.17, 400k ratings)</span></li>
+      <li><span class="pick-num">02</span><img class="cover" src="https://covers.openlibrary.org/b/id/13129044-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><span class="book-info"><strong>The Demon-Haunted World</strong>: Timeless skepticism classic (4.38, 131k ratings)</span></li>
+      <li><span class="pick-num">03</span><img class="cover" src="https://covers.openlibrary.org/b/id/12735651-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><span class="book-info"><strong>Bad Blood</strong>: Best modern nonfiction (4.32, 140k ratings)</span></li>
+      <li><span class="pick-num">04</span><img class="cover" src="https://covers.openlibrary.org/b/id/14826736-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><span class="book-info"><strong>The New Jim Crow</strong>: Landmark social justice work (4.36, 100k ratings)</span></li>
+      <li><span class="pick-num">05</span><img class="cover" src="https://covers.openlibrary.org/b/id/11301956-M.jpg" alt="" loading="lazy" width="44" height="66" referrerpolicy="no-referrer"><span class="book-info"><strong>Adult Children of Emotionally Immature Parents</strong>: New entry, instant essential (4.33, 110k ratings)</span></li>
     </ol>
   </section>
 
