@@ -1,3 +1,39 @@
+## 2026-08-27 — one source of truth + web account deletion DONE; iOS auth is next
+
+Shipped today (see git log):
+- `books.json` is the single source of truth. `scripts/build.py` generates rankings.html rows,
+  book_rankings.md and all three iOS JSON resources. **The app went from 71 to 111 ranked books** —
+  the old `export-books.py` regex required a `**Rating:**` line and silently dropped the 40 without
+  one. `Book.swift` rating/reviewCount are now optional; they were non-optional, so shipping those
+  40 would have crashed decoding. `scripts/test-build.py` pins both.
+- Account deletion on the web (`library.html` Profile, typed DELETE confirmation). The shared
+  `delete-account` Edge Function had **no CORS/OPTIONS handler**, so the browser call could never
+  have worked; redeployed as v2, additively. Source now vendored at
+  `supabase/functions/delete-account/index.ts` (it previously existed only as a deployment).
+  Verified with a throwaway account: user gone, summary cascade-deleted, owner's 20 untouched.
+
+### NEXT: Phase C — Supabase auth + account deletion in the iOS/macOS app
+Full plan at `~/.claude/plans/there-should-be-one-serialized-octopus.md`. Deferred on usage budget,
+not on any blocker. Decisions already made: **auth optional** (browse signed-out, sign in only for
+summaries — the Guideline 4.2 answer), **email+password only** (a third-party provider would make
+Sign in with Apple mandatory under 4.8).
+
+Mostly a transplant — lexly, healstack and litigate all already do this against the same project:
+- [ ] `ios/project.yml`: add `packages: Supabase: {url: https://github.com/supabase/supabase-swift.git, from: "2.5.1"}` (healstack's pin, NOT litigate's stale `supabase-community` URL) and wire both targets. This is the repo's first SwiftPM dependency.
+- [ ] **`BookrankMac.entitlements` needs `com.apple.security.network.client`.** It is sandboxed without it today, so Mac auth will fail silently. Edit the committed file by hand — xcodegen drops keys in this project.
+- [ ] `Models/AuthStore.swift`: structural copy of `healstack/ios/Services/AuthService.swift` (`@Observable @MainActor` + one `authStateChanges` loop handling `.initialSession`). Keep the session `signIn` returns rather than re-reading `try? auth.session` — that swallowed refresh failures and caused a macOS 2.1 rejection in lexly. Bypass auth under `UITEST_SNAPSHOT` so screenshot automation still runs.
+- [ ] `Models/SessionKeychainStorage.swift`: copy verbatim from `lexly/ios/Sources/Shared/`. Needed because Bookrank ships a Mac target.
+- [ ] Credentials hardcoded in Swift (lexly style) — `scripts/prepare-plist.py` rewrites Info.plist here, so `$(SUPABASE_URL)` substitution is the fragile choice.
+- [ ] `DataStore.swift`: replace `summaryIndex = []` with a `bookrank_summaries` fetch. `SummaryDetailView` and `LibraryView.summaries` are still in the tree.
+- [ ] `Views/AccountView.swift`: sign in/up/out + Delete account. Reuse the raw-`URLRequest` bearer helper at `healstack/ios/Services/AuthService.swift:103`; the endpoint needs no further work.
+- [ ] Account deletion is a hard Guideline 5.1.1(v) blocker — it ships in the same pass as auth, not after.
+- [ ] Do NOT submit afterwards: listing metadata and screenshots still describe bundled offline summaries.
+
+### Open, small
+- [ ] "Statistics for Dummies" has no author anywhere in the data; `build.py` warns on every run.
+- [ ] Read-aloud (shipped 2026-08-27) only reads the editor textarea — you cannot listen from the summary list without opening the editor.
+- [ ] Auth email deliverability still unverified (shared spark SMTP).
+
 ## Direction settled 2026-08-27 — Bookrank is a personal shelf, not a product
 
 Evidence: `bookrank_summaries` is 20 rows / 1 owner / no edits since the 2026-08-19 import.
