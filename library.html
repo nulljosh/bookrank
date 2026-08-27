@@ -99,6 +99,13 @@ dl.profile dt { color:var(--text3); }
       <button id="pReset">Send password reset</button>
       <button id="signout2">Sign out</button>
     </div>
+    <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
+    <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Delete account</h2>
+    <p class="sub" style="margin-bottom:0.9rem">Deletes your account and every summary in it, immediately and permanently. There is no undo and no export.</p>
+    <form class="auth" id="deleteForm">
+      <input type="text" id="deleteConfirm" placeholder="Type DELETE to confirm" autocomplete="off" aria-label="Type DELETE to confirm">
+      <div class="row"><button type="submit" id="pDelete" disabled>Delete my account</button></div>
+    </form>
     <p class="msg" id="profileMsg"></p>
   </section>
 
@@ -181,6 +188,24 @@ $('profileBtn').onclick = async () => {
   show('profileView');
 };
 $('profileClose').onclick = () => show('listView');
+
+// Deletion is irreversible and cascades to every summary, so it needs a typed
+// confirmation rather than a click-through.
+$('deleteConfirm').oninput = e => { $('pDelete').disabled = e.target.value.trim() !== 'DELETE'; };
+$('deleteForm').onsubmit = async e => {
+  e.preventDefault();
+  $('pDelete').disabled = true;
+  $('profileMsg').textContent = 'Deleting\u2026';
+  // The shared delete-account Edge Function: the anon client cannot delete its
+  // own auth user, so a service-role function does it server-side.
+  const { error } = await db.functions.invoke('delete-account', { method: 'POST' });
+  if (error) {
+    $('profileMsg').textContent = error.message + ' \u2014 your account was not deleted.';
+    $('pDelete').disabled = false;
+    return;
+  }
+  await db.auth.signOut();
+};
 $('pReset').onclick = async () => {
   const { data: { user } } = await db.auth.getUser();
   const { error } = await db.auth.resetPasswordForEmail(user.email, { redirectTo: location.origin + location.pathname });
