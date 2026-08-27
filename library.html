@@ -35,10 +35,18 @@ ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 #preview p, #preview ul, #preview ol { margin-bottom:1rem; color:var(--text2); }
 #preview ul, #preview ol { padding-left:1.4rem; }
 a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
+a.skip { position:absolute; left:-9999px; }
+a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.9rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.speak { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:1rem; }
+.speak select { font:inherit; font-size:0.8125rem; padding:0.4rem 0.5rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); max-width:16rem; }
+dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
+dl.profile dt { color:var(--text3); }
 </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#main">Skip to content</a>
+<main class="wrap" id="main">
   <a class="back" href="/">&larr; Bookrank</a>
 
   <!-- signed out -->
@@ -66,11 +74,32 @@ a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
       <div><h1>My summaries</h1><p class="sub" id="who"></p></div>
       <div class="row">
         <button class="primary" id="new">New summary</button>
+        <button id="profileBtn">Profile</button>
         <button id="signout">Sign out</button>
       </div>
     </div>
     <ul class="list" id="list"></ul>
     <p class="msg" id="listMsg"></p>
+  </section>
+
+  <!-- profile -->
+  <section id="profileView" class="hide">
+    <div class="bar">
+      <div><h1>Profile</h1><p class="sub">Your account</p></div>
+      <button id="profileClose">Back</button>
+    </div>
+    <dl class="profile">
+      <dt>Email</dt><dd id="pEmail"></dd>
+      <dt>Signed in with</dt><dd id="pProvider"></dd>
+      <dt>Member since</dt><dd id="pSince"></dd>
+      <dt>Summaries</dt><dd id="pCount"></dd>
+      <dt>Reading voice</dt><dd id="pVoice"></dd>
+    </dl>
+    <div class="row">
+      <button id="pReset">Send password reset</button>
+      <button id="signout2">Sign out</button>
+    </div>
+    <p class="msg" id="profileMsg"></p>
   </section>
 
   <!-- editor -->
@@ -84,11 +113,17 @@ a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
         <button id="close">Close</button>
       </div>
     </div>
+    <div class="speak">
+      <button id="speak" aria-describedby="voiceHelp">Read aloud</button>
+      <label class="sub" for="voice" style="margin:0">Voice</label>
+      <select id="voice" aria-label="Reading voice and language"></select>
+      <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
+    </div>
     <textarea id="body" placeholder="Chapter summaries, in markdown…"></textarea>
     <div id="preview" class="hide"></div>
     <p class="msg" id="editMsg"></p>
   </section>
-</div>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="module">
@@ -100,7 +135,7 @@ const db = createClient(
 );
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
-const show = (...ids) => ['gate','listView','editView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
+const show = (...ids) => ['gate','listView','profileView','editView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'untitled';
 
 let current = null; // row being edited
@@ -126,12 +161,72 @@ document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
   const { error } = await db.auth.signInWithOAuth({ provider: b.dataset.provider, options: { redirectTo: location.origin + location.pathname } });
   if (error) $('authMsg').textContent = error.message;
 });
-$('signout').onclick = () => db.auth.signOut();
+$('signout').onclick = $('signout2').onclick = () => db.auth.signOut();
 
 db.auth.onAuthStateChange((_e, session) => {
   if (session) { $('who').textContent = session.user.email; show('listView'); load(); }
   else { show('gate'); }
 });
+
+// ---- profile ----
+$('profileBtn').onclick = async () => {
+  const { data: { user } } = await db.auth.getUser();
+  $('pEmail').textContent = user.email;
+  $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
+  $('pSince').textContent = new Date(user.created_at).toLocaleDateString();
+  $('pVoice').textContent = $('voice').selectedOptions[0]?.textContent || 'None installed';
+  const { count } = await db.from(TABLE).select('id', { count: 'exact', head: true });
+  $('pCount').textContent = count ?? '\u2014';
+  $('profileMsg').textContent = '';
+  show('profileView');
+};
+$('profileClose').onclick = () => show('listView');
+$('pReset').onclick = async () => {
+  const { data: { user } } = await db.auth.getUser();
+  const { error } = await db.auth.resetPasswordForEmail(user.email, { redirectTo: location.origin + location.pathname });
+  $('profileMsg').textContent = error ? error.message : 'Reset link sent to ' + user.email + '.';
+};
+
+// ---- read aloud ----
+// ponytail: SpeechSynthesis = every language/voice the device has, no deps, no backend.
+// Translating a summary into another language needs a model; this reads it in its own.
+const synth = window.speechSynthesis;
+let voices = [];
+function loadVoices() {
+  voices = synth.getVoices().sort((a, b) => a.lang.localeCompare(b.lang));
+  const sel = $('voice');
+  const prev = localStorage.getItem('bookrank.voice');
+  sel.innerHTML = '';
+  for (const v of voices) {
+    const o = new Option(`${new Intl.DisplayNames([navigator.language], { type: 'language' }).of(v.lang.split('-')[0])} \u2014 ${v.name}`, v.name);
+    sel.append(o);
+  }
+  if (prev && voices.some(v => v.name === prev)) sel.value = prev;
+  else { const m = voices.find(v => v.lang.startsWith(navigator.language.split('-')[0])); if (m) sel.value = m.name; }
+  $('speak').disabled = !voices.length;
+}
+loadVoices();
+synth.onvoiceschanged = loadVoices;
+$('voice').onchange = () => localStorage.setItem('bookrank.voice', $('voice').value);
+
+$('speak').onclick = () => {
+  if (synth.speaking) { synth.cancel(); $('speak').textContent = 'Read aloud'; return; }
+  const text = $('body').value.replace(/[#*_`>\[\]()]/g, ' ').trim();
+  if (!text) { $('editMsg').textContent = 'Nothing to read yet.'; return; }
+  // ponytail: chunked at sentence bounds \u2014 Chrome silently truncates long utterances.
+  const voice = voices.find(v => v.name === $('voice').value);
+  const chunks = [];
+  for (const part of text.split(/(?<=[.!?])\s+/))
+    for (let i = 0; i < part.length; i += 200) chunks.push(part.slice(i, i + 200));
+  chunks.forEach((c, i) => {
+    const u = new SpeechSynthesisUtterance(c.trim());
+    if (voice) { u.voice = voice; u.lang = voice.lang; }
+    if (i === chunks.length - 1) u.onend = () => { $('speak').textContent = 'Read aloud'; };
+    synth.speak(u);
+  });
+  $('speak').textContent = 'Stop';
+};
+$('close').addEventListener('click', () => synth.cancel());
 
 // ---- list ----
 async function load() {
@@ -168,7 +263,7 @@ function showEditor() {
   $('del').classList.toggle('hide', !current);
   show('editView');
 }
-$('new').onclick = () => { current = null; $('title').value = ''; $('body').value = ''; showEditor(); };
+$('new').onclick = () => { synth.cancel(); current = null; $('title').value = ''; $('body').value = ''; showEditor(); };
 $('close').onclick = () => { show('listView'); load(); };
 $('toggle').onclick = () => {
   const previewing = $('preview').classList.toggle('hide');
