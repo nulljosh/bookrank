@@ -256,7 +256,7 @@ $('close').addEventListener('click', () => synth.cancel());
 // ---- list ----
 async function load() {
   const { data, error } = await db.from(TABLE).select('id,slug,title,updated_at').order('updated_at', { ascending: false });
-  if (error) { $('listMsg').textContent = error.message; return; }
+  if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
   $('listMsg').textContent = data.length ? '' : 'No summaries yet.';
   for (const row of data) {
@@ -269,16 +269,18 @@ async function load() {
     li.append(a);
     $('list').append(li);
   }
+  return data;
 }
 
 // ---- editor ----
 async function open(id) {
   const { data, error } = await db.from(TABLE).select('*').eq('id', id).single();
-  if (error) { $('listMsg').textContent = error.message; return; }
+  if (error) { $('listMsg').textContent = error.message; return null; }
   current = data;
   $('title').value = data.title;
   $('body').value = data.content;
   showEditor();
+  return data;
 }
 function showEditor() {
   $('editMsg').textContent = '';
@@ -296,21 +298,48 @@ $('toggle').onclick = () => {
   $('toggle').textContent = previewing ? 'Preview' : 'Edit';
   if (!previewing) $('preview').innerHTML = marked.parse($('body').value);
 };
+// Shared by the Save button and the WebMCP bridge below — same query either way.
+async function saveCurrent(title, body) {
+  title = (title ?? $('title').value).trim();
+  body = body ?? $('body').value;
+  if (!title) return { error: { message: 'Title required.' } };
+  const row = { slug: current?.slug || slugify(title), title, content: body, updated_at: new Date().toISOString() };
+  const q = current ? db.from(TABLE).update(row).eq('id', current.id) : db.from(TABLE).insert(row).select().single();
+  const { data, error } = await q;
+  if (!error && data && !current) current = data;
+  return { data: current, error };
+}
 $('save').onclick = async () => {
-  const title = $('title').value.trim();
-  if (!title) { $('editMsg').textContent = 'Title required.'; return; }
-  const row = { slug: current?.slug || slugify(title), title, content: $('body').value, updated_at: new Date().toISOString() };
-  const q = current ? db.from(TABLE).update(row).eq('id', current.id) : db.from(TABLE).insert(row);
-  const { error } = await q;
+  const { error } = await saveCurrent();
   $('editMsg').textContent = error ? error.message : 'Saved.';
-  if (!error && !current) { show('listView'); load(); }
+  if (!error) { show('listView'); load(); }
 };
+
+// Shared by the Delete button and the WebMCP bridge below.
+async function deleteRow(id) {
+  const { error } = await db.from(TABLE).delete().eq('id', id);
+  return { error };
+}
 $('del').onclick = async () => {
   if (!current || !confirm('Delete "' + current.title + '"? This cannot be undone.')) return;
-  const { error } = await db.from(TABLE).delete().eq('id', current.id);
+  const { error } = await deleteRow(current.id);
   if (error) { $('editMsg').textContent = error.message; return; }
   show('listView'); load();
 };
+
+// ---- WebMCP bridge ----
+// ponytail: webmcp.js calls straight through to these — same db client, same
+// table, same functions the UI itself uses. No second Supabase client, no
+// re-implemented queries.
+window.__bookrank = {
+  load,
+  open,
+  saveCurrent,
+  deleteRow,
+  newDraft: () => { current = null; },
+  whoami: async () => (await db.auth.getUser()).data.user,
+};
 </script>
+<script type="module" src="webmcp.js"></script>
 </body>
 </html>

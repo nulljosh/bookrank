@@ -47,3 +47,7 @@ See `roadmap.md` in this repo root.
 ## Whitepaper
 
 [Technical whitepaper](WHITEPAPER.md)
+
+## API and agent tools
+
+Bookrank has no HTTP API — `library.html` talks to Supabase directly. It registers WebMCP tools for agents; see [docs/API.md](docs/API.md).
