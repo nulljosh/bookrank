@@ -1,3 +1,38 @@
+## Direction settled 2026-08-27 — Bookrank is a personal shelf, not a product
+
+Evidence: `bookrank_summaries` is 20 rows / 1 owner / no edits since the 2026-08-19 import.
+Nobody but the owner has ever signed up. The content (books read, library loans) is
+inherently personal, and a multi-tenant reading tracker means competing with
+Goodreads/StoryGraph with no distribution. So: **single-user, keep the auth layer only as
+the owner's private sync.** This closes the personal-vs-product question that several items
+below were implicitly blocked on.
+
+Consequences — DO:
+- [ ] **One source of truth for the book list.** Today it is three hand-maintained copies
+  that have already drifted: 134 `li.book` rows in `rankings.html`, 71 books in
+  `ios/Bookrank/Resources/books.json`, 444 lines in `book_rankings.md`. Adding a book means
+  editing all three. Generate the latter two from one JSON. Highest value in the repo, and
+  it was worth doing under either direction. (Related: the 2026-08-17 clobber incident where
+  a 499KB summary was replaced by a 304KB one and only `git diff` caught it.)
+- [ ] **iOS/macOS ships a hollow shell.** `DataStore.summaryIndex = []`, no auth, no search,
+  no way to add a book — a stranger downloading it can do nothing (Guideline 4.2 risk). Fix
+  is Supabase auth in the app so the *owner* can read their own summaries. NOTE: the
+  "Digest companion app — BLOCKED, needs a backend decision (Supabase vs static JSON)" item
+  below is **stale**. Supabase won on 2026-08-19 when summaries moved. Unblock it.
+- [ ] **Account deletion** becomes a hard Guideline 5.1.1(v) submission blocker the moment
+  the app offers accounts, i.e. the moment the item above lands. Build it in the same pass,
+  not after a rejection.
+- [ ] **Verify auth email delivery** before relying on password reset. Signup confirmation and
+  reset both go through the shared `spark` project's SMTP; all 15 users show confirmed, so
+  confirmations may simply be off. A sibling project (Sparkjar) has a dead Resend key.
+  Unverified either way — check, don't assume.
+- [ ] Read-aloud (shipped 2026-08-27) only reads the editor textarea; you cannot listen from
+  the summary list without opening the editor. Small gap in an otherwise-done feature.
+
+Consequences — DROP (do not re-litigate):
+- Per-user shelves / ratings / loans. Single-tenant is the decision.
+- Per-book public pages and SEO/indexable summaries. There is no audience to court.
+
 ## DONE 2026-08-19 — summaries moved behind per-user accounts
 
 Chapter summaries of purchased/library books were public in this repo and bundled in the
