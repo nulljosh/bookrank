@@ -327,26 +327,8 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 
 - [ ] Ship the app. Make sure Goodreads syncing and connection works — login with Goodreads, scan all read books and collections.
 
-## WebMCP + REST API rollout (pending, 2026-08-27)
+## WebMCP + REST API rollout -- shipped 2026-08-27
 
-Add `document.modelContext` tool registration so in-browser agents can drive
-this app, and document any HTTP surface it already has.
+Done. 6 tools on `library.html` only: `list_summaries`, `get_summary`, `whoami`, `create_summary`, `save_summary`, and a gated `delete_summary`. Tools go through the `rows` data layer, never the editor functions, so a tool call cannot disturb what the user has open. `index.html` and `rankings.html` are static and deliberately carry no tools.
 
-Pattern is already shipped in epiphany, healstack, roost, curvely, wiretext,
-litigate, cadence, sparkjar and lexly — copy the closest one:
-
-- React app with hooks → `src/lib/webmcp.js` exporting `useWebMCP(ctx)`, called
-  from `App.jsx` with the hook callbacks it already holds (see epiphany, curvely).
-- React app whose state lives in contexts → a `<WebMCP />` component that reads
-  those contexts (see healstack, roost).
-- Vanilla JS app → a `webmcp.js` IIFE plus `window.*` accessors exported from the
-  existing app script (see litigate, lexly, sparkjar).
-
-Rules the shipped ones follow:
-- Tools call existing functions or existing `/api` routes. Never reimplement logic.
-- Read-only tools first, then reversible writes.
-- `requiresConfirmation: true` only on the genuinely consequential ones —
-  payments, public publishing, deletions. Not on ordinary writes.
-- Bail out quietly when `document.modelContext` is missing.
-- Ship a `docs/API.md` listing REST routes (or stating there are none) plus the
-  tool table split into read-only / reversible / confirmation-gated.
+See `docs/API.md` for the full tool table, linked from the README.
