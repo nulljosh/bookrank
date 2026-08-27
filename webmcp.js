@@ -1,7 +1,12 @@
 // WebMCP tool registration for the library page (bookrank's only real app).
-// Tools call straight through to window.__bookrank, the bridge library.html's
-// own module script exposes — same Supabase client, same bookrank_summaries
-// queries the UI already runs. Nothing here talks to Supabase directly.
+// Tools call window.__bookrank.rows, the data layer library.html's own module
+// script exposes — same Supabase client, same bookrank_summaries queries the UI
+// runs. Nothing here talks to Supabase directly.
+//
+// ponytail: tools use the data layer, never the UI functions. Going through
+// open()/saveCurrent() would let a tool null out the editor's `current` or
+// overwrite the open textareas, so a user mid-edit would silently insert a
+// duplicate on their next Save. Read and write by id; leave the editor alone.
 //
 // ponytail: index.html and rankings.html are static (a marketing hero and
 // hardcoded ranking content) so they get no tools and no bridge — there is
@@ -22,12 +27,9 @@ if (!mc?.registerTool) {
       execute: async () => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          const data = await b.load();
-          return { summaries: data ?? [] };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        const { data, error } = await b.rows.list();
+        if (error) return { error: error.message };
+        return { summaries: data ?? [] };
       },
     },
     {
@@ -41,12 +43,9 @@ if (!mc?.registerTool) {
       execute: async ({ id }) => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          const data = await b.open(id);
-          return data ? { summary: data } : { error: 'Not found, or not signed in.' };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        const { data, error } = await b.rows.get(id);
+        if (error) return { error: error.message };
+        return data ? { summary: data } : { error: 'Not found, or not signed in.' };
       },
     },
     {
@@ -56,12 +55,8 @@ if (!mc?.registerTool) {
       execute: async () => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          const user = await b.whoami();
-          return user ? { email: user.email } : { signedIn: false };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        const user = await b.whoami();
+        return user ? { signedIn: true, email: user.email } : { signedIn: false };
       },
     },
 
@@ -80,14 +75,11 @@ if (!mc?.registerTool) {
       execute: async ({ title, body }) => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          b.newDraft();
-          const { data, error } = await b.saveCurrent(title, body ?? '');
-          if (error) return { error: error.message };
-          return { summary: data };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        if (!title?.trim()) return { error: 'Title required.' };
+        const { data, error } = await b.rows.insert(b.stamp(title.trim(), body ?? ''));
+        if (error) return { error: error.message };
+        b.refreshList();
+        return { summary: data };
       },
     },
     {
@@ -105,15 +97,16 @@ if (!mc?.registerTool) {
       execute: async ({ id, title, body }) => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          const existing = await b.open(id);
-          if (!existing) return { error: 'Not found, or not signed in.' };
-          const { data, error } = await b.saveCurrent(title, body ?? existing.content);
-          if (error) return { error: error.message };
-          return { summary: data };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        if (!title?.trim()) return { error: 'Title required.' };
+        // Read first so an omitted body keeps the existing content and the slug
+        // stays stable -- rows.get, not open(), so the editor is untouched.
+        const { data: existing, error: readErr } = await b.rows.get(id);
+        if (readErr) return { error: readErr.message };
+        if (!existing) return { error: 'Not found, or not signed in.' };
+        const { data, error } = await b.rows.update(id, b.stamp(title.trim(), body ?? existing.content, existing.slug));
+        if (error) return { error: error.message };
+        b.refreshList();
+        return { summary: data };
       },
     },
 
@@ -130,13 +123,10 @@ if (!mc?.registerTool) {
       execute: async ({ id }) => {
         const b = bridge();
         if (!b) return { error: 'App not ready.' };
-        try {
-          const { error } = await b.deleteRow(id);
-          if (error) return { error: error.message };
-          return { deleted: id };
-        } catch (e) {
-          return { error: String(e) };
-        }
+        const { error } = await b.rows.remove(id);
+        if (error) return { error: error.message };
+        b.refreshList();
+        return { deleted: id };
       },
     },
   ];

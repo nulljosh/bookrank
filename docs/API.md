@@ -44,3 +44,13 @@ queries, no reimplementation.
 Sign-in, sign-up, password reset, OAuth, and sign-out are intentionally **not**
 exposed as tools — an agent should never drive someone's auth flow, and
 credentials must never pass through a tool call.
+
+## Why tools use the data layer, not the UI
+
+`webmcp.js` calls `window.__bookrank.rows.*` — the query layer — never the
+editor functions `open()` or `saveCurrent()`. Routing tools through the UI would
+let a tool call reset the editor's `current` record or overwrite the open
+textareas, so a user editing a summary when an agent created another one would
+silently insert a duplicate on their next Save. Tools read and write by id and
+leave the editor alone; `refreshList()` re-renders the list only when the user
+is actually looking at it.

@@ -253,9 +253,29 @@ $('speak').onclick = () => {
 };
 $('close').addEventListener('click', () => synth.cancel());
 
+// ---- data layer ----
+// Every query lives here exactly once. The UI functions below render it; the
+// WebMCP bridge at the bottom calls it directly. That split is deliberate: a
+// tool must be able to read and write summaries WITHOUT disturbing whatever the
+// user has open in the editor, so no tool goes through open()/saveCurrent().
+const rows = {
+  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at').order('updated_at', { ascending: false }),
+  get:    (id)          => db.from(TABLE).select('*').eq('id', id).single(),
+  insert: (row)         => db.from(TABLE).insert(row).select().single(),
+  update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
+  remove: (id)          => db.from(TABLE).delete().eq('id', id),
+};
+
+const stamp = (title, body, slug) => ({
+  slug: slug || slugify(title),
+  title,
+  content: body,
+  updated_at: new Date().toISOString(),
+});
+
 // ---- list ----
 async function load() {
-  const { data, error } = await db.from(TABLE).select('id,slug,title,updated_at').order('updated_at', { ascending: false });
+  const { data, error } = await rows.list();
   if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
   $('listMsg').textContent = data.length ? '' : 'No summaries yet.';
@@ -274,7 +294,7 @@ async function load() {
 
 // ---- editor ----
 async function open(id) {
-  const { data, error } = await db.from(TABLE).select('*').eq('id', id).single();
+  const { data, error } = await rows.get(id);
   if (error) { $('listMsg').textContent = error.message; return null; }
   current = data;
   $('title').value = data.title;
@@ -298,46 +318,42 @@ $('toggle').onclick = () => {
   $('toggle').textContent = previewing ? 'Preview' : 'Edit';
   if (!previewing) $('preview').innerHTML = marked.parse($('body').value);
 };
-// Shared by the Save button and the WebMCP bridge below — same query either way.
-async function saveCurrent(title, body) {
-  title = (title ?? $('title').value).trim();
-  body = body ?? $('body').value;
+// Saves whatever is in the editor. Editor-only -- tools never call this.
+async function saveCurrent() {
+  const title = $('title').value.trim();
   if (!title) return { error: { message: 'Title required.' } };
-  const row = { slug: current?.slug || slugify(title), title, content: body, updated_at: new Date().toISOString() };
-  const q = current ? db.from(TABLE).update(row).eq('id', current.id) : db.from(TABLE).insert(row).select().single();
-  const { data, error } = await q;
-  if (!error && data && !current) current = data;
-  return { data: current, error };
+  const row = stamp(title, $('body').value, current?.slug);
+  const { data, error } = current ? await rows.update(current.id, row) : await rows.insert(row);
+  if (!error && data) current = data;
+  return { data, error };
 }
 $('save').onclick = async () => {
+  // Whether this was a new summary decides if we return to the list, so read it
+  // before saveCurrent() assigns `current` from the inserted row.
+  const isNew = !current;
   const { error } = await saveCurrent();
   $('editMsg').textContent = error ? error.message : 'Saved.';
-  if (!error) { show('listView'); load(); }
+  if (!error && isNew) { show('listView'); load(); }
 };
 
-// Shared by the Delete button and the WebMCP bridge below.
-async function deleteRow(id) {
-  const { error } = await db.from(TABLE).delete().eq('id', id);
-  return { error };
-}
 $('del').onclick = async () => {
   if (!current || !confirm('Delete "' + current.title + '"? This cannot be undone.')) return;
-  const { error } = await deleteRow(current.id);
+  const { error } = await rows.remove(current.id);
   if (error) { $('editMsg').textContent = error.message; return; }
   show('listView'); load();
 };
 
 // ---- WebMCP bridge ----
-// ponytail: webmcp.js calls straight through to these — same db client, same
-// table, same functions the UI itself uses. No second Supabase client, no
-// re-implemented queries.
+// ponytail: exposes the data layer, not the UI functions. Same db client and
+// same table the UI uses, but a tool call cannot null out `current`, overwrite
+// the open textareas, or navigate the user somewhere they did not ask to go.
 window.__bookrank = {
-  load,
-  open,
-  saveCurrent,
-  deleteRow,
-  newDraft: () => { current = null; },
+  rows,
+  stamp,
   whoami: async () => (await db.auth.getUser()).data.user,
+  // Re-render the list only when the user is actually looking at it, so a tool
+  // write shows up without yanking anyone out of the editor.
+  refreshList: () => { if (!$('listView').classList.contains('hide')) load(); },
 };
 </script>
 <script type="module" src="webmcp.js"></script>
