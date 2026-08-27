@@ -730,5 +730,405 @@
       "Limited sample"
     ],
     "notes": "Basic business startup guide."
+  },
+  {
+    "rank": 72,
+    "title": "Clean Code",
+    "goodreadsURL": "https://www.goodreads.com/book/show/3735293-clean-code",
+    "author": "Robert C. Martin",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Direct match for the lint/simplify/ponytail practices already enforced across every repo here."
+  },
+  {
+    "rank": 73,
+    "title": "Refactoring",
+    "goodreadsURL": "https://www.goodreads.com/book/show/44936.Refactoring",
+    "author": "Martin Fowler",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "The exact discipline `/lint` and `/simplify` apply repo-wide."
+  },
+  {
+    "rank": 74,
+    "title": "The Pragmatic Programmer",
+    "goodreadsURL": "https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer",
+    "author": "Andy Hunt",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "General practice, broadly applicable to solo full-stack work across ~20 active repos."
+  },
+  {
+    "rank": 75,
+    "title": "Clean Architecture",
+    "goodreadsURL": "https://www.goodreads.com/book/show/18043011-clean-architecture",
+    "author": "Robert C. Martin",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Relevant to the recurring cross-repo architecture decisions (Supabase vs static JSON, etc.)."
+  },
+  {
+    "rank": 76,
+    "title": "A Philosophy of Software Design",
+    "goodreadsURL": "https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design",
+    "author": "John Ousterhout",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Complexity-management framing, matches the ponytail/YAGNI discipline already in use."
+  },
+  {
+    "rank": 77,
+    "title": "Working Effectively with Legacy Code",
+    "goodreadsURL": "https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code",
+    "author": "Michael C. Feathers",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Directly useful for the many \"resume/merge/consolidate\" passes across the app portfolio."
+  },
+  {
+    "rank": 78,
+    "title": "JavaScript: The Good Parts",
+    "goodreadsURL": "https://www.goodreads.com/book/show/2998152-javascript",
+    "author": "Douglas Crockford",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Core language reference for the Node/Express/Vercel apps (talli, epiphany, bookrank itself)."
+  },
+  {
+    "rank": 79,
+    "title": "Eloquent JavaScript",
+    "goodreadsURL": "https://www.goodreads.com/book/show/8910666-eloquent-javascript",
+    "author": "Marijn Haverbeke",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Same JS stack as above."
+  },
+  {
+    "rank": 80,
+    "title": "JavaScript: The Definitive Guide",
+    "goodreadsURL": "https://www.goodreads.com/book/show/148050.JavaScript",
+    "author": "David Flanagan",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Same JS stack, reference depth."
+  },
+  {
+    "rank": 81,
+    "title": "Fluent Python",
+    "goodreadsURL": "https://www.goodreads.com/book/show/22800567-fluent-python",
+    "author": "Luciano Ramalho",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Matches the Python 3.14 scripts/tools in several repos (i18n, scraping, dtc_apply.py)."
+  },
+  {
+    "rank": 82,
+    "title": "Automate the Boring Stuff with Python",
+    "goodreadsURL": "https://www.goodreads.com/book/show/22514127-automate-the-boring-stuff-with-python",
+    "author": "Al Sweigart",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Matches the shell/Python automation scripts pattern used across repos."
+  },
+  {
+    "rank": 83,
+    "title": "Pro Git",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6518085-pro-git",
+    "author": "Scott Chacon",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Git is the one tool touched in literally every repo here."
+  },
+  {
+    "rank": 84,
+    "title": "Designing Data-Intensive Applications",
+    "goodreadsURL": "https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications",
+    "author": "Martin Kleppmann",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Relevant to the shared Supabase/KV backend decisions across apps."
+  },
+  {
+    "rank": 85,
+    "title": "Domain-Driven Design",
+    "goodreadsURL": "https://www.goodreads.com/book/show/179133.Domain_Driven_Design",
+    "author": "Eric Evans",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Useful for the larger multi-feature apps (epiphany, talli)."
+  },
+  {
+    "rank": 86,
+    "title": "Don't Make Me Think, Revisited",
+    "goodreadsURL": "https://www.goodreads.com/book/show/18197267-don-t-make-me-think-revisited",
+    "author": "Steve Krug",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Directly applicable — most repos here ship a web UI."
+  },
+  {
+    "rank": 87,
+    "title": "Test-Driven Development: By Example",
+    "goodreadsURL": "https://www.goodreads.com/book/show/387190.Test_Driven_Development",
+    "author": "Kent Beck",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Ponytail's \"leave one runnable check\" rule is TDD-adjacent."
+  },
+  {
+    "rank": 88,
+    "title": "Code Complete",
+    "goodreadsURL": "https://www.goodreads.com/book/show/4845.Code_Complete",
+    "author": "Steve McConnell",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "General construction practice, broadly applicable."
+  },
+  {
+    "rank": 89,
+    "title": "The Clean Coder",
+    "goodreadsURL": "https://www.goodreads.com/book/show/10284614-the-clean-coder",
+    "author": "Robert C. Martin",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Professional practice, general."
+  },
+  {
+    "rank": 90,
+    "title": "Design Patterns",
+    "goodreadsURL": "https://www.goodreads.com/book/show/85009.Design_Patterns",
+    "author": "Erich Gamma",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Classic OOP patterns, less used in the current mostly-SwiftUI/functional-JS style but foundational."
+  },
+  {
+    "rank": 91,
+    "title": "Head First Design Patterns",
+    "goodreadsURL": "https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns",
+    "author": "Eric Freeman",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Same as above, friendlier format."
+  },
+  {
+    "rank": 92,
+    "title": "Patterns of Enterprise Application Architecture",
+    "goodreadsURL": "https://www.goodreads.com/book/show/70156.Patterns_of_Enterprise_Application_Architecture",
+    "author": "Martin Fowler",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Heavier-weight than most of these single-dev apps need, but relevant to epiphany-scale apps."
+  },
+  {
+    "rank": 93,
+    "title": "Building Microservices",
+    "goodreadsURL": "https://www.goodreads.com/book/show/22512931-building-microservices",
+    "author": "Sam Newman",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Less relevant — this codebase is mostly single-service Vercel/Workers apps, not microservices."
+  },
+  {
+    "rank": 94,
+    "title": "The Mythical Man-Month",
+    "goodreadsURL": "https://www.goodreads.com/book/show/13629.The_Mythical_Man_Month",
+    "author": "Frederick P. Brooks Jr.",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "General software-engineering-management classic, solo-dev context makes it less directly actionable."
+  },
+  {
+    "rank": 95,
+    "title": "The Phoenix Project",
+    "goodreadsURL": "https://www.goodreads.com/book/show/17255186-the-phoenix-project",
+    "author": "Gene Kim",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "DevOps novel, loosely relevant (no ops team here, but CI/CD pipeline parallels)."
+  },
+  {
+    "rank": 96,
+    "title": "The Passionate Programmer",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6399113-the-passionate-programmer",
+    "author": "Chad Fowler",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Career-general, not codebase-specific."
+  },
+  {
+    "rank": 97,
+    "title": "Coders at Work",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6713575-coders-at-work",
+    "author": "Peter Seibel",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "General interviews/craft, not directly applicable."
+  },
+  {
+    "rank": 98,
+    "title": "Cracking the Coding Interview",
+    "goodreadsURL": "https://www.goodreads.com/book/show/12544648-cracking-the-coding-interview",
+    "author": "Gayle Laakmann McDowell",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Interview prep, tangential to shipping these apps."
+  },
+  {
+    "rank": 99,
+    "title": "Grokking Algorithms",
+    "goodreadsURL": "https://www.goodreads.com/book/show/22847284-grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curio",
+    "author": "Aditya Y. Bhargava",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Algorithms theory, occasionally useful, not stack-specific."
+  },
+  {
+    "rank": 100,
+    "title": "The Algorithm Design Manual",
+    "goodreadsURL": "https://www.goodreads.com/book/show/425208.The_Algorithm_Design_Manual",
+    "author": "Steven S. Skiena",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Same — theory over practice for this codebase's needs."
+  },
+  {
+    "rank": 101,
+    "title": "Programming Pearls",
+    "goodreadsURL": "https://www.goodreads.com/book/show/52084.Programming_Pearls",
+    "author": "Jon L. Bentley",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Algorithms/puzzle classic, low direct applicability."
+  },
+  {
+    "rank": 102,
+    "title": "Introduction to Algorithms",
+    "goodreadsURL": "https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms",
+    "author": "Thomas H. Cormen",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "CS theory reference, low direct applicability to app-shipping work here."
+  },
+  {
+    "rank": 103,
+    "title": "Structure and Interpretation of Computer Programs",
+    "goodreadsURL": "https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs",
+    "author": "Harold Abelson",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Foundational but Scheme-based, no overlap with this stack."
+  },
+  {
+    "rank": 104,
+    "title": "The Art of Computer Programming, Volume 1",
+    "goodreadsURL": "https://www.goodreads.com/book/show/112247.The_Art_of_Computer_Programming_Volume_1",
+    "author": "Donald Ervin Knuth",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Canonical but dense theory, lowest practical overlap with day-to-day app work here."
+  },
+  {
+    "rank": 105,
+    "title": "Effective Java",
+    "goodreadsURL": "https://www.goodreads.com/book/show/34927404-effective-java",
+    "author": "Joshua Bloch",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Java isn't used anywhere in this codebase."
+  },
+  {
+    "rank": 106,
+    "title": "The C Programming Language",
+    "goodreadsURL": "https://www.goodreads.com/book/show/515601.The_C_Programming_Language",
+    "author": "Brian W. Kernighan",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "C isn't used anywhere in this codebase."
+  },
+  {
+    "rank": 107,
+    "title": "The C++ Programming Language",
+    "goodreadsURL": "https://www.goodreads.com/book/show/112251.The_C_Programming_Language",
+    "author": "Bjarne Stroustrup",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "C++ isn't used anywhere in this codebase."
+  },
+  {
+    "rank": 108,
+    "title": "Learn You a Haskell for Great Good!",
+    "goodreadsURL": "https://www.goodreads.com/book/show/6593810-learn-you-a-haskell-for-great-good",
+    "author": "Miran Lipovača",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Haskell isn't used anywhere in this codebase."
+  },
+  {
+    "rank": 109,
+    "title": "Python Crash Course",
+    "goodreadsURL": "https://www.goodreads.com/book/show/23241059-penguin-random-house-python-crash-course",
+    "author": "Eric Matthes",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Intro-level, redundant with Fluent Python/Automate the Boring Stuff already ranked higher."
+  },
+  {
+    "rank": 110,
+    "title": "Learning Python",
+    "goodreadsURL": "https://www.goodreads.com/book/show/80435.Learning_Python",
+    "author": "Mark Lutz",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Same redundancy as above, lowest of the Python references."
+  },
+  {
+    "rank": 111,
+    "title": "Code: The Hidden Language of Computer Hardware and Software",
+    "goodreadsURL": "https://www.goodreads.com/book/show/44882.Code",
+    "author": "Charles Petzold",
+    "rating": null,
+    "reviewCount": null,
+    "badges": [],
+    "notes": "Hardware-level general-interest book, least directly applicable to the app-shipping work this codebase does."
   }
 ]

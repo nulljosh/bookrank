@@ -298,31 +298,6 @@ Books are scored using a weighted algorithm:
 **Rating:** 3.65/5 | **Reviews:** 34 ratings (Limited sample)
 **Notes:** Basic business startup guide.
 
----
-
-## OTHER ITEMS (NOT RANKED)
-- Shadow Work Workbook & Journal (workbook)
-- Weed World Magazine (periodical)
-- MIT Technology Review (periodical)
-- The Economist (periodical)
-- IATSE Constitution and Bylaws (union document)
-- Joy of Cooking (cookbook)
-- French learning books (educational reference)
-- Various For Dummies finance/tax reference books (Trading, Swing Trading, Candlestick Charting, Budgeting, etc.), Living Well in a Down Economy [Summary](summary.html?b=living-well-in-a-down-economy-for-dummies), Becoming Steve Jobs [Summary](summary.html?b=becoming-steve-jobs), Brothers [Summary](summary.html?b=brothers)
-- Programming/tech textbooks (Raspberry Pi Cookbook, C++, Perl, etc.)
-- Physics 12 BC workbook, Pre-Calculus [Summary](summary.html?b=pre-calculus-for-dummies), Calculus [Summary](summary.html?b=calculus-for-dummies), Good Fengshui [Summary](summary.html?b=good-feng-shui), Chemistry (academic)
-- Paralegal Career For Dummies (reference)
-- Auto repair manuals
-
-## NOTES
-- Ratings based on Goodreads as of May 2026
-- Books with fewer than 100 ratings have unreliable averages
-- Ranking algorithm weights rating (50%), review volume (25%), relevance (25%)
-- Classic works (Hegel, Hobbes) often rate lower due to difficulty
----
-
-## PROGRAMMING SHELF (Goodreads, ranked by relevance to this codebase's actual stack — JS/Node, Swift/SwiftUI, Python, Git, clean-code/architecture practice)
-
 ### 72. [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) by Robert C. Martin
 **Notes:** Direct match for the lint/simplify/ponytail practices already enforced across every repo here.
 

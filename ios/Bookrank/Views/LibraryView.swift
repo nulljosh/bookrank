@@ -172,11 +172,15 @@ struct LibraryView: View {
                 Link(book.title, destination: URL(string: book.goodreadsURL) ?? URL(string: "https://goodreads.com")!)
                     .font(.subheadline.weight(.medium))
                 Text(book.author).font(.caption).foregroundStyle(.secondary)
-                HStack(spacing: 6) {
-                    Text(String(format: "%.2f/5", book.rating)).font(.caption2.weight(.medium)).foregroundStyle(.secondary)
-                    Text(book.reviewCount).font(.caption2).foregroundStyle(.tertiary)
-                    ForEach(book.badges, id: \.self) { badge in
-                        BadgeLabel(text: badge)
+                if let rating = book.rating {
+                    HStack(spacing: 6) {
+                        Text(String(format: "%.2f/5", rating)).font(.caption2.weight(.medium)).foregroundStyle(.secondary)
+                        if let reviews = book.reviewCount {
+                            Text(reviews).font(.caption2).foregroundStyle(.tertiary)
+                        }
+                        ForEach(book.badges, id: \.self) { badge in
+                            BadgeLabel(text: badge)
+                        }
                     }
                 }
                 Text(book.notes).font(.caption).foregroundStyle(.tertiary)

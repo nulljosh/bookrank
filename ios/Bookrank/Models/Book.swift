@@ -6,8 +6,10 @@ struct Book: Codable, Identifiable {
     let title: String
     let goodreadsURL: String
     let author: String
-    let rating: Double
-    let reviewCount: String
+    // Optional: 40 of 111 ranked books have no Goodreads rating. They were
+    // silently dropped from the app for months because these were non-optional.
+    let rating: Double?
+    let reviewCount: String?
     let badges: [String]
     let notes: String
 }

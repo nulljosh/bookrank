@@ -3,14 +3,20 @@
 `bookrank.heyitsmejosh.com` — Joshua's book rankings/TBR site. Renamed from "Books" 2026-07-18, then repo+folder `spine`→`uprighty` 2026-07-29, then ASC app + GitHub repo + domain all renamed `uprighty`→`bookrank` 2026-08-07 (Uprighty was rejected as a duplicate ASC name). GitHub repo is now `nulljosh/bookrank`; local folder stays `~/Documents/Code/uprighty` (not renamed, matches this project's own pattern of folder lagging display name). Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense — books and echo are unrelated projects).
 
 ## Files
+- `books.json` — **the single source of truth for every book list.** Edit this, nothing else.
+- `scripts/build.py` — regenerates `rankings.html` (inside `<!-- generated:* -->` markers), `book_rankings.md`, and the three `ios/Bookrank/Resources/*.json` files from `books.json`. Run after every edit.
 - `index.html` — landing page; hero is a cover wall built at runtime from `scripts/covers.json`
-- `rankings.html` — the actual ranked shelf (search, sort, star ratings). This is the page to edit when the list changes.
-- `library.html` — chapter summaries
-- `scripts/fetch-covers.py` — resolves an Open Library cover for every book and wires it into `rankings.html`
-- `book_rankings.md` — markdown source of the same ranked list (maintained in parallel, not auto-generated from/to `rankings.html` — both must be edited together)
+- `rankings.html` — the ranked shelf (search, sort, star ratings). Page chrome is hand-written; the book rows are generated — do not hand-edit inside the markers.
+- `library.html` — private per-account chapter summaries
+- `scripts/fetch-covers.py` — resolves an Open Library cover for every entry and writes it into `books.json` (then run `build.py`)
+
+## Rule: one source of truth (2026-08-27)
+`books.json` is authoritative. `book_rankings.md`, `rankings.html`'s rows and the iOS JSON resources are **generated** — never hand-edit them, the next `build.py` run overwrites the change.
+
+The predecessor `scripts/export-books.py` required a `**Rating:**` line and silently skipped entries without one, so the shipping app carried **71 of 111** ranked books for months. `build.py` fails loudly instead, and `scripts/test-build.py` pins that regression. Rating and reviewCount are nullable in both `books.json` and `Book.swift`; keep them that way.
 
 ## Rule: the ranked list is unread-only (TBR)
-When the user says they've read, finished, or are partway through a book and want it off the ranked list, remove its entry from **both** `book_rankings.md` and `rankings.html`, then renumber remaining entries sequentially in both files. Don't remove a book just because they mention reading it unless they ask for removal.
+When the user says they've read, finished, or are partway through a book and want it off the ranked list, remove its `"section": "ranked"` entry from `books.json`, renumber the remaining ranked entries sequentially, and run `scripts/build.py`. Don't remove a book just because they mention reading it unless they ask for removal.
 
 The "Recently Read" and "Summaries" sections on `rankings.html` are separate from the ranked list and are allowed to hold finished books.
 
