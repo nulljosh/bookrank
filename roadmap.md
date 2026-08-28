@@ -134,8 +134,6 @@ Vision cost: ~18-20k tokens per ~11 pages at `-Z 1500`. Full 429 is far more tha
 - [ ] Note the iCloud book folder is literally named `The optimist ` **with a trailing space** — `ls`/`find` on the un-spaced name returns "No such file or directory" and looks like the folder is missing entirely.
 
 ### DATA LOSS 2026-08-17 — AI in Business ch. 11-14
-- [x] **AI in Business ch. 11-14 are ~700-byte stubs — accepted as permanent, and their source HEICs were deleted.** A summarizing agent running low on token budget degraded to one-paragraph outputs near the end of its run; those stubs cleared the skill's then-current ">300 chars" validation gate, which triggered deletion of the originals. Ch. 7-10 from the same run are fine (3-26KB).
-- [x] **Decision made 2026-08-25: mark the book partial rather than re-borrow.** Joshua's call. `rankings.html` now reads "partial: ch. 1-10; ch. 11-14 unavailable" instead of the misleading "complete; ch. 11-14 abbreviated". The stub summaries stay as-is; if the book is ever re-borrowed, re-shoot ch. 11-14 and flip the label back.
 - [ ] Root cause fixed in `~/.claude/skills/summarize-books/SKILL.md` the same day: validation now requires >1500 chars AND >=250 chars per source image, and the skill explicitly forbids shortening a summary to save budget when deletion follows (stop and report instead). Nothing to do here, recorded so the fix isn't re-litigated.
 
 ## Blocked on Joshua
