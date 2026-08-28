@@ -34,7 +34,9 @@ To expose a finished book's summary on the site:
 Planned iOS companion tracker app name: "Digest" (decided, not applied — see roadmap.md "Someday / Explore" for status, blocked on a backend decision).
 
 ## iOS app icon — regeneration rule (2026-07-12)
-The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG at 1024, flattens rounded corners onto the bg color, and asserts 1024×1024/no-alpha.
+The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh` — it renders the SVG natively at each size, flattens rounded corners onto the bg color, and asserts the expected pixel size/no-alpha.
+
+The script originally rebuilt only the 1024 slot, so the seven macOS sizes in `Contents.json` silently kept art from an older `icon.svg` (2026-08-28). It now regenerates every size in one pass — keep it that way when adding a slot.
 
 ## Rule: a failed cover lookup is not a miss (2026-08-23)
 `scripts/covers.json` caches `null` to mean "both Open Library and Google Books answered, neither had a cover" — and ordinary re-runs skip those keys forever, so a wrong null is invisible and permanent. `lookup()` therefore must NOT catch exceptions around the Google Books fallback: a 429 (its unauthenticated daily quota is easy to exhaust), a policy block or any network error has to propagate so `main()` records it as `fail:` and leaves the cache alone. Swallowing it is what silently marked five real books "no cover" and made an earlier fix look like it hadn't worked.
