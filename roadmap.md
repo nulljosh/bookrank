@@ -53,10 +53,6 @@ Mostly a transplant — lexly, healstack and litigate all already do this agains
 </details>
 
 ### Open, small
-- [x] "Statistics for Dummies" author filled 2026-08-29 (Deborah J. Rumsey); `build.py` no longer warns.
-- [x] Read-aloud from the summary list, 2026-08-29. The editor's speech code became one shared
-  `speakText()` called by both the editor button and a per-row Listen button; the list query
-  omits `content`, so a row fetches its body on first press.
 - [ ] Auth email deliverability still unverified (shared spark SMTP).
 
 ## Direction settled 2026-08-27 — Bookrank is a personal shelf, not a product
