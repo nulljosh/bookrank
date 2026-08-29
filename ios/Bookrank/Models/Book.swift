@@ -33,9 +33,12 @@ struct TopPick: Codable, Identifiable {
     let blurb: String
 }
 
+/// One row of `bookrank_summaries`. The table has no author column — the shelf is
+/// single-user and the author is already on the matching `Book`, so carrying a second
+/// copy would just be another thing to drift.
 struct SummaryEntry: Codable, Identifiable {
     var id: String { slug }
     let slug: String
     let title: String
-    let author: String
+    let content: String
 }

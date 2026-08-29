@@ -1,4 +1,10 @@
 name: Bookrank
+packages:
+  # healstack's pin, not litigate's stale `supabase-community` URL. Resolves to the
+  # same 2.48.0 every sibling app is already on.
+  Supabase:
+    url: https://github.com/supabase/supabase-swift.git
+    from: "2.5.1"
 options:
   bundleIdPrefix: com.heyitsmejosh
 targets:
@@ -7,6 +13,9 @@ targets:
     platform: iOS
     deploymentTarget: "17.0"
     sources: [Bookrank]
+    dependencies:
+      - package: Supabase
+        product: Supabase
     info:
       path: Bookrank/Info.plist
       properties:
@@ -51,6 +60,9 @@ targets:
     platform: macOS
     deploymentTarget: "14.0"
     sources: [Bookrank]
+    dependencies:
+      - package: Supabase
+        product: Supabase
     info:
       path: Bookrank/Info.plist
       properties:

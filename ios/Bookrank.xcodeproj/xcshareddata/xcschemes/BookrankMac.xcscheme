@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+               BlueprintIdentifier = "E8D9FC09FDAD1E548195F2C1"
                BuildableName = "BookrankMac.app"
                BlueprintName = "BookrankMac"
                ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BlueprintIdentifier = "E8D9FC09FDAD1E548195F2C1"
             BuildableName = "BookrankMac.app"
             BlueprintName = "BookrankMac"
             ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BlueprintIdentifier = "E8D9FC09FDAD1E548195F2C1"
             BuildableName = "BookrankMac.app"
             BlueprintName = "BookrankMac"
             ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -72,7 +72,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA022F09A4C66D2C6BAA4505"
+            BlueprintIdentifier = "E8D9FC09FDAD1E548195F2C1"
             BuildableName = "BookrankMac.app"
             BlueprintName = "BookrankMac"
             ReferencedContainer = "container:Bookrank.xcodeproj">

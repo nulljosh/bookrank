@@ -7,165 +7,199 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		119CEB260893B8540502E04F /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */; };
-		135108B0578D3BBF2522FDA2 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D013E84EC842EECEB1118FF /* DataStore.swift */; };
-		1A7861ABE8E867A0772BACAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117CD0057ED9EB8EB352F20 /* Assets.xcassets */; };
-		1E7A7BF61AFAD45853BBF39C /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
-		3866181934AD5B4FACE8E86C /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DFFC32D61CAB4E140543B94 /* picks.json */; };
-		3F59BAA35A379317B432A4C2 /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */; };
-		449FEB44E9D6EFE6DD73962B /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
-		4555D8A1E149927141818E18 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E47CC7E8FE719D3E61FA75 /* Book.swift */; };
-		4975FF256E39D0ED42655229 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
-		503905FAC10C67B10A215CB8 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = C8634B1CAA697F87F0DDC031 /* books.json */; };
-		5D7CEC289113D0A6F7D3A347 /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */; };
-		65F98C3012413AA0DE62BF22 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */; };
-		70F60054728CD91CD252B2E8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D013E84EC842EECEB1118FF /* DataStore.swift */; };
-		71AC0AF5071DAD02523E89D8 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2589179D36B762838EE209 /* PreviewScreenshot.swift */; };
-		724BC9774ED3F5A74C372D60 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */; };
-		7F5342E3F200C2C55EBDDDD0 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */; };
-		8A0716B6EB4F31D4C3F101FB /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DFFC32D61CAB4E140543B94 /* picks.json */; };
-		9D343BCF66123E74ED836E73 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E47CC7E8FE719D3E61FA75 /* Book.swift */; };
-		A61FB932F4D220734401DE39 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */; };
-		ADEA9DB60F6C48B063B363B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117CD0057ED9EB8EB352F20 /* Assets.xcassets */; };
-		B65E8FA49ADF57D4C4B28A89 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */; };
-		CB8704C3212936FC027EED33 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */; };
-		CCB9749942AFFB58B5FD883E /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FE124143658BE453C6EC8C02 /* library.json */; };
-		D9D99EF6DC5B29D5CF34082E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D7E96836E6F04284421DD /* SnapshotHelper.swift */; };
+		0189E4FF4D40BED330BBEDDC /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */; };
+		022A12DAADC02FE0F4355106 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = 907D225777DFE96EE33944BB /* library.json */; };
+		0B0EFD6E00DE0C2AB551AD0D /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
+		1694FE4D4EF60327BDCF2532 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
+		1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */; };
+		27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
+		28949E71322467B2C963F4B9 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
+		2B37C42C0C975CF4D57A321B /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = 907D225777DFE96EE33944BB /* library.json */; };
+		5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
+		6C0D4964B355370E503C779A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
+		706B7481A98A8B4DB603AA74 /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E09CC3B72AF79C7D8189D /* picks.json */; };
+		7BA3791AF897B63AEE9C426B /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */; };
+		8032F9BF89028C9697BE1077 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */; };
+		83A82FC6CBCC3BF4A051FA10 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */; };
+		8BB0A0036A8BA3B915614B37 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2E51FA65956F7781A1864799 /* Supabase */; };
+		8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
+		98277152F4968E0BC6DEEBF3 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
+		9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
+		A2AF2E338D5E92E5E5CEAC59 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053936F7085DA2473CFE71 /* BadgeLabel.swift */; };
+		A4F4BAEDB0EF83F51CC22E45 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
+		A695F79E80FEA72770FD20D8 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */; };
+		A6A974A9F0A21B487F8FE5D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
+		A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
+		AA42FFC73629828A640CE7A1 /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E09CC3B72AF79C7D8189D /* picks.json */; };
+		B7558881537FE7DE4C18E890 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
+		B8C7338BB6E4702339E70210 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053936F7085DA2473CFE71 /* BadgeLabel.swift */; };
+		C67B3C75126526F6C98B2E67 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */; };
+		C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
+		D1047B85C724E29F1BD085E5 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 45E59A3DE15F13B61AE1C3FE /* Supabase */; };
+		DCB91EBE5CB0C7E81EFAEC62 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
+		EA16B9CF96329CC06E8307D1 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */; };
+		FCFA0FF150F7B456962366FA /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C1A8DA596315A2A3557D5695 /* PBXContainerItemProxy */ = {
+		CD6015950E5ED802AB566F94 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E37069113F2618ECF235FC05 /* Project object */;
+			containerPortal = 08DBD8407F299770ED376528 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 574ED6104FBA683871E6152F;
+			remoteGlobalIDString = B0AA3B5A43AF11D0E35F7B30;
 			remoteInfo = Bookrank;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0117CD0057ED9EB8EB352F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
-		1DFFC32D61CAB4E140543B94 /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
-		20824B868FE3F238E566F77A /* BookrankMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookrankMac.entitlements; sourceTree = "<group>"; };
-		251D7E96836E6F04284421DD /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		45E47CC7E8FE719D3E61FA75 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bookrank.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D013E84EC842EECEB1118FF /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
-		7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
-		841BE534DC4D85B46879C797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
-		A86E8954AB38617A7B062139 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8634B1CAA697F87F0DDC031 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
-		E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateBadge.swift; sourceTree = "<group>"; };
-		E906C01A8A2787E7212E047D /* Bookrank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookrank.entitlements; sourceTree = "<group>"; };
-		EF2589179D36B762838EE209 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
-		FE124143658BE453C6EC8C02 /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
+		0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
+		15E4E60649355186A61C354D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		2C6E09CC3B72AF79C7D8189D /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
+		331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40053936F7085DA2473CFE71 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
+		51D3A21CB527B97CD698210F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
+		8F3D58CE8EE8BFD32B40F6B3 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
+		907D225777DFE96EE33944BB /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
+		91DDC65159E61A9272770711 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeychainStorage.swift; sourceTree = "<group>"; };
+		9F17495C3D9F9CDDDB873217 /* BookrankMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A07BFE167C4FA45ADC09E22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		B5B7B0CA14D0E4504F44BAEE /* Bookrank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookrank.entitlements; sourceTree = "<group>"; };
+		B94455A1D83055B6BDCDEA6B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bookrank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0B58BE920B99107273B888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB1D05D7980A2E841F3C8F8D /* BookrankMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookrankMac.entitlements; sourceTree = "<group>"; };
+		ED95CED7FDB22CA4CB0392EC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
+		FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		163D136EB27D43BCA7EC2E35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1047B85C724E29F1BD085E5 /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AFBF0C28920AB986BA5BA3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BB0A0036A8BA3B915614B37 /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
-		16B087A4D5A6A37EE54A779D = {
+		1EC579AC99E071E646724465 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D3A3ED6E62792B59FC29B8E /* Bookrank */,
-				CF76A58E72F0504FA9B565AC /* UITests */,
-				BF5627688EA8DE034EFBF285 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		8D3A3ED6E62792B59FC29B8E /* Bookrank */ = {
-			isa = PBXGroup;
-			children = (
-				0117CD0057ED9EB8EB352F20 /* Assets.xcassets */,
-				841BE534DC4D85B46879C797 /* Info.plist */,
-				E906C01A8A2787E7212E047D /* Bookrank.entitlements */,
-				78A6D59B7AE95C056FC70B60 /* BookrankApp.swift */,
-				20824B868FE3F238E566F77A /* BookrankMac.entitlements */,
-				A8F085C4392B52E3EF3C1B69 /* Models */,
-				C86B6AED87D2F30A864A8805 /* Resources */,
-				9E0435FDD89584897815E115 /* Views */,
-			);
-			path = Bookrank;
-			sourceTree = "<group>";
-		};
-		9E0435FDD89584897815E115 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7E3BC935CBB148D8EA326968 /* BadgeLabel.swift */,
-				E71BD627D95C57FA97EC4830 /* DueDateBadge.swift */,
-				0D6BDA69F9DB8347B184A5CC /* LibraryView.swift */,
-				8FBC26B5806FFE5779F910A7 /* SummaryDetailView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A8F085C4392B52E3EF3C1B69 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				45E47CC7E8FE719D3E61FA75 /* Book.swift */,
-				6D013E84EC842EECEB1118FF /* DataStore.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BF5627688EA8DE034EFBF285 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */,
-				4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */,
-				A86E8954AB38617A7B062139 /* BookrankUITests.xctest */,
+				C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */,
+				9F17495C3D9F9CDDDB873217 /* BookrankMac.app */,
+				331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C86B6AED87D2F30A864A8805 /* Resources */ = {
+		4BAE8E4D4DA5259CBC6EA6E4 /* Bookrank */ = {
 			isa = PBXGroup;
 			children = (
-				C8634B1CAA697F87F0DDC031 /* books.json */,
-				FE124143658BE453C6EC8C02 /* library.json */,
-				1DFFC32D61CAB4E140543B94 /* picks.json */,
+				CA0B58BE920B99107273B888 /* Assets.xcassets */,
+				B5B7B0CA14D0E4504F44BAEE /* Bookrank.entitlements */,
+				0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */,
+				DB1D05D7980A2E841F3C8F8D /* BookrankMac.entitlements */,
+				A07BFE167C4FA45ADC09E22F /* Info.plist */,
+				D191525FEBF292F13ACB954A /* Models */,
+				5103944CCD3C688AE8369CA1 /* Resources */,
+				E69B97CD20D657ECC534D345 /* Views */,
+			);
+			path = Bookrank;
+			sourceTree = "<group>";
+		};
+		5103944CCD3C688AE8369CA1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D58CE8EE8BFD32B40F6B3 /* books.json */,
+				907D225777DFE96EE33944BB /* library.json */,
+				2C6E09CC3B72AF79C7D8189D /* picks.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		CF76A58E72F0504FA9B565AC /* UITests */ = {
+		95469F26B1AAF7D3B77CC9D6 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				EF2589179D36B762838EE209 /* PreviewScreenshot.swift */,
-				251D7E96836E6F04284421DD /* SnapshotHelper.swift */,
+				F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */,
+				AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		CF3295CF2B0C985BEDDCC403 = {
+			isa = PBXGroup;
+			children = (
+				4BAE8E4D4DA5259CBC6EA6E4 /* Bookrank */,
+				95469F26B1AAF7D3B77CC9D6 /* UITests */,
+				1EC579AC99E071E646724465 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D191525FEBF292F13ACB954A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				91DDC65159E61A9272770711 /* AuthStore.swift */,
+				15E4E60649355186A61C354D /* Book.swift */,
+				ED95CED7FDB22CA4CB0392EC /* DataStore.swift */,
+				93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E69B97CD20D657ECC534D345 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51D3A21CB527B97CD698210F /* AccountView.swift */,
+				40053936F7085DA2473CFE71 /* BadgeLabel.swift */,
+				FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */,
+				B94455A1D83055B6BDCDEA6B /* LibraryView.swift */,
+				619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1AC8BC76F74F02491A0ADF92 /* BookrankUITests */ = {
+		A20B3CCDD4D633BE0A24BDE7 /* BookrankUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "BookrankUITests" */;
+			buildConfigurationList = 70767030323A41941BEB4183 /* Build configuration list for PBXNativeTarget "BookrankUITests" */;
 			buildPhases = (
-				8A03F23347F8842126C96D3E /* Sources */,
+				FD0D57CAED461CD442761A98 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */,
+				F59C935653CD4D5E42746989 /* PBXTargetDependency */,
 			);
 			name = BookrankUITests;
 			packageProductDependencies = (
 			);
 			productName = BookrankUITests;
-			productReference = A86E8954AB38617A7B062139 /* BookrankUITests.xctest */;
+			productReference = 331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		574ED6104FBA683871E6152F /* Bookrank */ = {
+		B0AA3B5A43AF11D0E35F7B30 /* Bookrank */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Bookrank" */;
+			buildConfigurationList = D533B6DB24A1D0E082C5BDC2 /* Build configuration list for PBXNativeTarget "Bookrank" */;
 			buildPhases = (
-				CE5DC876FAFDF6BC2D81469A /* Sources */,
-				E742BD8F44FB8A9C4A4AAA7D /* Resources */,
+				BBFBCC0EB811F0CF856C39F8 /* Sources */,
+				3B0131111F086AE4265FF3C2 /* Resources */,
+				163D136EB27D43BCA7EC2E35 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,17 +207,19 @@
 			);
 			name = Bookrank;
 			packageProductDependencies = (
+				45E59A3DE15F13B61AE1C3FE /* Supabase */,
 			);
 			productName = Bookrank;
-			productReference = 4B7F30DE854D05ABA3C6FE23 /* Bookrank.app */;
+			productReference = C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CA022F09A4C66D2C6BAA4505 /* BookrankMac */ = {
+		E8D9FC09FDAD1E548195F2C1 /* BookrankMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "BookrankMac" */;
+			buildConfigurationList = 63A2EEC7A6C142B5E7E1A11F /* Build configuration list for PBXNativeTarget "BookrankMac" */;
 			buildPhases = (
-				93589D24F8725FCDB3A3159E /* Sources */,
-				3B6D1BE40C73145F2DD99864 /* Resources */,
+				65CCCB7464DD985351F0AD97 /* Sources */,
+				19BD0EB69819110A0F937C3D /* Resources */,
+				6AFBF0C28920AB986BA5BA3E /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,131 +227,206 @@
 			);
 			name = BookrankMac;
 			packageProductDependencies = (
+				2E51FA65956F7781A1864799 /* Supabase */,
 			);
 			productName = BookrankMac;
-			productReference = 4F5DB419BD94EBFE5C1B465E /* BookrankMac.app */;
+			productReference = 9F17495C3D9F9CDDDB873217 /* BookrankMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E37069113F2618ECF235FC05 /* Project object */ = {
+		08DBD8407F299770ED376528 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					1AC8BC76F74F02491A0ADF92 = {
+					A20B3CCDD4D633BE0A24BDE7 = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 574ED6104FBA683871E6152F;
+						TestTargetID = B0AA3B5A43AF11D0E35F7B30;
 					};
-					574ED6104FBA683871E6152F = {
+					B0AA3B5A43AF11D0E35F7B30 = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
 					};
-					CA022F09A4C66D2C6BAA4505 = {
+					E8D9FC09FDAD1E548195F2C1 = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Bookrank" */;
+			buildConfigurationList = 04B8EAF36A524C30A826CCCC /* Build configuration list for PBXProject "Bookrank" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
 			);
-			mainGroup = 16B087A4D5A6A37EE54A779D;
+			mainGroup = CF3295CF2B0C985BEDDCC403;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2CF138E5957156EE2CB4A3E0 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = BF5627688EA8DE034EFBF285 /* Products */;
+			productRefGroup = 1EC579AC99E071E646724465 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				574ED6104FBA683871E6152F /* Bookrank */,
-				1AC8BC76F74F02491A0ADF92 /* BookrankUITests */,
-				CA022F09A4C66D2C6BAA4505 /* BookrankMac */,
+				B0AA3B5A43AF11D0E35F7B30 /* Bookrank */,
+				A20B3CCDD4D633BE0A24BDE7 /* BookrankUITests */,
+				E8D9FC09FDAD1E548195F2C1 /* BookrankMac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3B6D1BE40C73145F2DD99864 /* Resources */ = {
+		19BD0EB69819110A0F937C3D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADEA9DB60F6C48B063B363B9 /* Assets.xcassets in Resources */,
-				449FEB44E9D6EFE6DD73962B /* books.json in Resources */,
-				4975FF256E39D0ED42655229 /* library.json in Resources */,
-				8A0716B6EB4F31D4C3F101FB /* picks.json in Resources */,
+				A6A974A9F0A21B487F8FE5D5 /* Assets.xcassets in Resources */,
+				B7558881537FE7DE4C18E890 /* books.json in Resources */,
+				022A12DAADC02FE0F4355106 /* library.json in Resources */,
+				706B7481A98A8B4DB603AA74 /* picks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E742BD8F44FB8A9C4A4AAA7D /* Resources */ = {
+		3B0131111F086AE4265FF3C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A7861ABE8E867A0772BACAF /* Assets.xcassets in Resources */,
-				503905FAC10C67B10A215CB8 /* books.json in Resources */,
-				CCB9749942AFFB58B5FD883E /* library.json in Resources */,
-				3866181934AD5B4FACE8E86C /* picks.json in Resources */,
+				C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */,
+				9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */,
+				2B37C42C0C975CF4D57A321B /* library.json in Resources */,
+				AA42FFC73629828A640CE7A1 /* picks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8A03F23347F8842126C96D3E /* Sources */ = {
+		65CCCB7464DD985351F0AD97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71AC0AF5071DAD02523E89D8 /* PreviewScreenshot.swift in Sources */,
-				D9D99EF6DC5B29D5CF34082E /* SnapshotHelper.swift in Sources */,
+				FCFA0FF150F7B456962366FA /* AccountView.swift in Sources */,
+				A4F4BAEDB0EF83F51CC22E45 /* AuthStore.swift in Sources */,
+				A2AF2E338D5E92E5E5CEAC59 /* BadgeLabel.swift in Sources */,
+				98277152F4968E0BC6DEEBF3 /* Book.swift in Sources */,
+				7BA3791AF897B63AEE9C426B /* BookrankApp.swift in Sources */,
+				1694FE4D4EF60327BDCF2532 /* DataStore.swift in Sources */,
+				83A82FC6CBCC3BF4A051FA10 /* DueDateBadge.swift in Sources */,
+				5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */,
+				A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */,
+				8032F9BF89028C9697BE1077 /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93589D24F8725FCDB3A3159E /* Sources */ = {
+		BBFBCC0EB811F0CF856C39F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A61FB932F4D220734401DE39 /* BadgeLabel.swift in Sources */,
-				9D343BCF66123E74ED836E73 /* Book.swift in Sources */,
-				70F60054728CD91CD252B2E8 /* DataStore.swift in Sources */,
-				B65E8FA49ADF57D4C4B28A89 /* DueDateBadge.swift in Sources */,
-				724BC9774ED3F5A74C372D60 /* LibraryView.swift in Sources */,
-				5D7CEC289113D0A6F7D3A347 /* BookrankApp.swift in Sources */,
-				CB8704C3212936FC027EED33 /* SummaryDetailView.swift in Sources */,
+				28949E71322467B2C963F4B9 /* AccountView.swift in Sources */,
+				DCB91EBE5CB0C7E81EFAEC62 /* AuthStore.swift in Sources */,
+				B8C7338BB6E4702339E70210 /* BadgeLabel.swift in Sources */,
+				0B0EFD6E00DE0C2AB551AD0D /* Book.swift in Sources */,
+				0189E4FF4D40BED330BBEDDC /* BookrankApp.swift in Sources */,
+				6C0D4964B355370E503C779A /* DataStore.swift in Sources */,
+				EA16B9CF96329CC06E8307D1 /* DueDateBadge.swift in Sources */,
+				27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */,
+				8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */,
+				1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE5DC876FAFDF6BC2D81469A /* Sources */ = {
+		FD0D57CAED461CD442761A98 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F98C3012413AA0DE62BF22 /* BadgeLabel.swift in Sources */,
-				4555D8A1E149927141818E18 /* Book.swift in Sources */,
-				135108B0578D3BBF2522FDA2 /* DataStore.swift in Sources */,
-				7F5342E3F200C2C55EBDDDD0 /* DueDateBadge.swift in Sources */,
-				119CEB260893B8540502E04F /* LibraryView.swift in Sources */,
-				3F59BAA35A379317B432A4C2 /* BookrankApp.swift in Sources */,
-				1E7A7BF61AFAD45853BBF39C /* SummaryDetailView.swift in Sources */,
+				C67B3C75126526F6C98B2E67 /* PreviewScreenshot.swift in Sources */,
+				A695F79E80FEA72770FD20D8 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D3D0A8B40E1B6C24C1E8A0D1 /* PBXTargetDependency */ = {
+		F59C935653CD4D5E42746989 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 574ED6104FBA683871E6152F /* Bookrank */;
-			targetProxy = C1A8DA596315A2A3557D5695 /* PBXContainerItemProxy */;
+			target = B0AA3B5A43AF11D0E35F7B30 /* Bookrank */;
+			targetProxy = CD6015950E5ED802AB566F94 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1BCEF5AD91324CF36A8C68D7 /* Release */ = {
+		067AE18D107C8139253CA483 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Bookrank;
+			};
+			name = Release;
+		};
+		292868D2C44468FF7C4F392F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				INFOPLIST_FILE = Bookrank/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8D4C094E03C64D99FF84B853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				INFOPLIST_FILE = Bookrank/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A9C35D79F7E0190FB01D60F6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -369,29 +480,7 @@
 			};
 			name = Release;
 		};
-		343FC9F79D7975EA9F8AAD4B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Bookrank/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		5BCA58A5921D1586F3F7C2AC /* Debug */ = {
+		B1E05A6910803E9D5E313DC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -452,50 +541,7 @@
 			};
 			name = Debug;
 		};
-		C02C324548273E390FC93933 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QMM486NPYC;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Bookrank;
-			};
-			name = Debug;
-		};
-		D1434A7AFA1E89972A0E5FA1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = QMM486NPYC;
-				INFOPLIST_FILE = Bookrank/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		F0906CFC9791837C769A3CA7 /* Debug */ = {
+		DDF9B9E054FEE69D4CE0D98D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -515,29 +561,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
-			name = Debug;
-		};
-		F77549F4D52B83B0A538CBE9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QMM486NPYC;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Bookrank;
-			};
 			name = Release;
 		};
-		FFE802A5F8E7E0A80729C005 /* Debug */ = {
+		E2A8256FC5C857D19269B416 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -560,46 +586,90 @@
 			};
 			name = Debug;
 		};
+		FBC94E60EF385220376ED997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Bookrank;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		020A17C198F80E748F76DD42 /* Build configuration list for PBXNativeTarget "BookrankMac" */ = {
+		04B8EAF36A524C30A826CCCC /* Build configuration list for PBXProject "Bookrank" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0906CFC9791837C769A3CA7 /* Debug */,
-				343FC9F79D7975EA9F8AAD4B /* Release */,
+				B1E05A6910803E9D5E313DC6 /* Debug */,
+				A9C35D79F7E0190FB01D60F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		390DAE5CB5ECE8FE956933E7 /* Build configuration list for PBXNativeTarget "Bookrank" */ = {
+		63A2EEC7A6C142B5E7E1A11F /* Build configuration list for PBXNativeTarget "BookrankMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FFE802A5F8E7E0A80729C005 /* Debug */,
-				D1434A7AFA1E89972A0E5FA1 /* Release */,
+				8D4C094E03C64D99FF84B853 /* Debug */,
+				DDF9B9E054FEE69D4CE0D98D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F9B57B12859D754DB55BFC04 /* Build configuration list for PBXNativeTarget "BookrankUITests" */ = {
+		70767030323A41941BEB4183 /* Build configuration list for PBXNativeTarget "BookrankUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C02C324548273E390FC93933 /* Debug */,
-				F77549F4D52B83B0A538CBE9 /* Release */,
+				FBC94E60EF385220376ED997 /* Debug */,
+				067AE18D107C8139253CA483 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		FA8129396082B348785A09A4 /* Build configuration list for PBXProject "Bookrank" */ = {
+		D533B6DB24A1D0E082C5BDC2 /* Build configuration list for PBXNativeTarget "Bookrank" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5BCA58A5921D1586F3F7C2AC /* Debug */,
-				1BCEF5AD91324CF36A8C68D7 /* Release */,
+				E2A8256FC5C857D19269B416 /* Debug */,
+				292868D2C44468FF7C4F392F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CF138E5957156EE2CB4A3E0 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2E51FA65956F7781A1864799 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF138E5957156EE2CB4A3E0 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		45E59A3DE15F13B61AE1C3FE /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF138E5957156EE2CB4A3E0 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = E37069113F2618ECF235FC05 /* Project object */;
+	rootObject = 08DBD8407F299770ED376528 /* Project object */;
 }

@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "574ED6104FBA683871E6152F"
+               BlueprintIdentifier = "B0AA3B5A43AF11D0E35F7B30"
                BuildableName = "Bookrank.app"
                BlueprintName = "Bookrank"
                ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -29,7 +29,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1AC8BC76F74F02491A0ADF92"
+               BlueprintIdentifier = "A20B3CCDD4D633BE0A24BDE7"
                BuildableName = "BookrankUITests.xctest"
                BlueprintName = "BookrankUITests"
                ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -46,7 +46,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
+            BlueprintIdentifier = "B0AA3B5A43AF11D0E35F7B30"
             BuildableName = "Bookrank.app"
             BlueprintName = "Bookrank"
             ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -58,7 +58,7 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1AC8BC76F74F02491A0ADF92"
+               BlueprintIdentifier = "A20B3CCDD4D633BE0A24BDE7"
                BuildableName = "BookrankUITests.xctest"
                BlueprintName = "BookrankUITests"
                ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -82,7 +82,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
+            BlueprintIdentifier = "B0AA3B5A43AF11D0E35F7B30"
             BuildableName = "Bookrank.app"
             BlueprintName = "Bookrank"
             ReferencedContainer = "container:Bookrank.xcodeproj">
@@ -99,7 +99,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "574ED6104FBA683871E6152F"
+            BlueprintIdentifier = "B0AA3B5A43AF11D0E35F7B30"
             BuildableName = "Bookrank.app"
             BlueprintName = "Bookrank"
             ReferencedContainer = "container:Bookrank.xcodeproj">

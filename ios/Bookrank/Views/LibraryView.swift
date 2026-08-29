@@ -2,8 +2,10 @@ import SwiftUI
 
 struct LibraryView: View {
     @State private var store = DataStore()
+    @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAllRankings = false
+    @State private var showAccount = false
 
     private let visibleRankCount = 20
 
@@ -14,6 +16,7 @@ struct LibraryView: View {
                     header
                     outFromLibrary
                     toRead
+                    summaries
                     topPicks
                     allRankings
                 }
@@ -30,9 +33,23 @@ struct LibraryView: View {
                         Image(systemName: theme == "dark" ? "moon.fill" : "sun.max.fill")
                     }
                 }
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        showAccount = true
+                    } label: {
+                        Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle")
+                    }
+                    .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
+                }
             }
+            .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
         }
         .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
+        // Fires once the stored session has been read back, and again on sign-in or
+        // sign-out, so the shelf follows the account without a manual refresh.
+        .task(id: auth.user?.id) {
+            if auth.isSignedIn { await store.loadSummaries() }
+        }
     }
 
     private var header: some View {
@@ -120,25 +137,33 @@ struct LibraryView: View {
         }
     }
 
+    @ViewBuilder
     private var summaries: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            sectionLabel("Summaries")
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(store.summaryIndex) { entry in
-                    NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
-                        HStack(alignment: .top, spacing: 18) {
-                            Text("·").foregroundStyle(.tertiary)
-                            VStack(alignment: .leading, spacing: 2) {
+        // ponytail: signed out and empty means no section at all, same as the loans
+        // list. The account button in the toolbar is the only prompt to sign in.
+        if auth.isSignedIn {
+            VStack(alignment: .leading, spacing: 12) {
+                sectionLabel("Summaries")
+                if let error = store.summaryError {
+                    Text(error).font(.caption).foregroundStyle(.secondary)
+                } else if store.summaryIndex.isEmpty {
+                    Text("No summaries on this account yet.")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(store.summaryIndex) { entry in
+                        NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
+                            HStack(alignment: .top, spacing: 18) {
+                                Text("·").foregroundStyle(.tertiary)
                                 Text(entry.title).font(.subheadline.weight(.medium))
-                                Text(entry.author).font(.caption).foregroundStyle(.secondary)
+                                Spacer()
                             }
-                            Spacer()
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .padding(.vertical, 10)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .buttonStyle(.plain)
+                        if entry.id != store.summaryIndex.last?.id { Divider() }
                     }
-                    .buttonStyle(.plain)
-                    if entry.id != store.summaryIndex.last?.id { Divider() }
                 }
             }
         }
