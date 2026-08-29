@@ -24,8 +24,9 @@ textarea { min-height:60vh; resize:vertical; line-height:1.6; }
 form.auth { display:grid; gap:0.75rem; max-width:340px; }
 .row { display:flex; gap:0.5rem; }
 ul.list { list-style:none; }
-ul.list li { border-bottom:1px solid var(--border2); }
-ul.list a { display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
+ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
+ul.list a { flex:1; min-width:0; display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
+ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color:var(--accent); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
@@ -235,24 +236,40 @@ loadVoices();
 synth.onvoiceschanged = loadVoices;
 $('voice').onchange = () => localStorage.setItem('bookrank.voice', $('voice').value);
 
-$('speak').onclick = () => {
-  if (synth.speaking) { synth.cancel(); $('speak').textContent = 'Read aloud'; return; }
-  const text = $('body').value.replace(/[#*_`>\[\]()]/g, ' ').trim();
-  if (!text) { $('editMsg').textContent = 'Nothing to read yet.'; return; }
+// One speak routine, two callers: the editor button and each list row. `btn` is
+// flipped to Stop for the duration and restored to `idle` when the queue drains.
+// Returns false when there is nothing to read, so the caller can say so its own way.
+let speaking = null;
+function stopSpeaking() {
+  synth.cancel();
+  if (speaking) { speaking.btn.textContent = speaking.idle; speaking = null; }
+}
+function speakText(markdown, btn, idle) {
+  const wasSame = speaking && speaking.btn === btn;
+  stopSpeaking();
+  if (wasSame) return true;
+  const text = String(markdown || '').replace(/[#*_`>\[\]()]/g, ' ').trim();
+  if (!text) return false;
   // ponytail: chunked at sentence bounds \u2014 Chrome silently truncates long utterances.
   const voice = voices.find(v => v.name === $('voice').value);
   const chunks = [];
   for (const part of text.split(/(?<=[.!?])\s+/))
     for (let i = 0; i < part.length; i += 200) chunks.push(part.slice(i, i + 200));
+  speaking = { btn, idle };
   chunks.forEach((c, i) => {
     const u = new SpeechSynthesisUtterance(c.trim());
     if (voice) { u.voice = voice; u.lang = voice.lang; }
-    if (i === chunks.length - 1) u.onend = () => { $('speak').textContent = 'Read aloud'; };
+    if (i === chunks.length - 1) u.onend = () => { if (speaking && speaking.btn === btn) stopSpeaking(); };
     synth.speak(u);
   });
-  $('speak').textContent = 'Stop';
+  btn.textContent = 'Stop';
+  return true;
+}
+
+$('speak').onclick = () => {
+  if (!speakText($('body').value, $('speak'), 'Read aloud')) $('editMsg').textContent = 'Nothing to read yet.';
 };
-$('close').addEventListener('click', () => synth.cancel());
+$('close').addEventListener('click', stopSpeaking);
 
 // ---- data layer ----
 // Every query lives here exactly once. The UI functions below render it; the
@@ -276,6 +293,7 @@ const stamp = (title, body, slug) => ({
 
 // ---- list ----
 async function load() {
+  stopSpeaking();   // rows are about to be rebuilt; don't leave a detached Stop button
   const { data, error } = await rows.list();
   if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
@@ -287,7 +305,16 @@ async function load() {
     a.onclick = e => { e.preventDefault(); open(row.id); };
     a.append(Object.assign(document.createElement('span'), { textContent: row.title }));
     a.append(Object.assign(document.createElement('time'), { textContent: row.updated_at.slice(0,10) }));
-    li.append(a);
+    // The list query omits `content` to stay cheap, so fetch the body on first press.
+    const listen = Object.assign(document.createElement('button'),
+      { className: 'listen', textContent: 'Listen', title: 'Read ' + row.title + ' aloud' });
+    listen.onclick = async () => {
+      if (speaking && speaking.btn === listen) { stopSpeaking(); return; }
+      const { data: full, error: err } = await rows.get(row.id);
+      if (err) { $('listMsg').textContent = err.message; return; }
+      if (!speakText(full.content, listen, 'Listen')) $('listMsg').textContent = 'Nothing to read in ' + row.title + '.';
+    };
+    li.append(a, listen);
     $('list').append(li);
   }
   return data;
@@ -311,7 +338,7 @@ function showEditor() {
   $('del').classList.toggle('hide', !current);
   show('editView');
 }
-$('new').onclick = () => { synth.cancel(); current = null; $('title').value = ''; $('body').value = ''; showEditor(); };
+$('new').onclick = () => { stopSpeaking(); current = null; $('title').value = ''; $('body').value = ''; showEditor(); };
 $('close').onclick = () => { show('listView'); load(); };
 $('toggle').onclick = () => {
   const previewing = $('preview').classList.toggle('hide');
