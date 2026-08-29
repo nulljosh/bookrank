@@ -12,7 +12,28 @@ Shipped today (see git log):
   `supabase/functions/delete-account/index.ts` (it previously existed only as a deployment).
   Verified with a throwaway account: user gone, summary cascade-deleted, owner's 20 untouched.
 
-### NEXT: Phase C — Supabase auth + account deletion in the iOS/macOS app
+### Phase C DONE 2026-08-29 — Supabase auth + account deletion in the iOS/macOS app
+
+Shipped: `AuthStore.swift` (email+password, no third-party provider — that would make
+Sign in with Apple mandatory under 4.8), `SessionKeychainStorage.swift` copied verbatim
+from lexly, `AccountView.swift` with sign in/up/out, password reset and Delete account
+behind a typed DELETE, `DataStore.loadSummaries()` fetching slug/title/content in one
+query, and the `summaries` section in `LibraryView` that had been written months ago and
+never rendered. `SummaryEntry` now matches the real table, which has no author column.
+`BookrankMac.entitlements` gained `com.apple.security.network.client` (verified present in
+the signed bundle). Both schemes build. supabase-swift resolves to **2.55.1** here, not the
+2.48.0 the siblings pin — `from: "2.5.1"` allows it and it built clean, but that is drift
+worth knowing about if a sibling ever needs to match.
+
+Also removed a stale `ios/Spine.xcodeproj` left over from the rename: two `.xcodeproj` in
+one directory made bare `xcodebuild` refuse to pick one.
+
+**Still not for submission.** The listing copy and screenshots describe bundled offline
+summaries that no longer exist. Left to do before it could ship: refresh the App Store
+description + screenshots, and verify auth email delivery (below).
+
+<details><summary>Original Phase C plan, kept for reference</summary>
+
 Full plan at `~/.claude/plans/there-should-be-one-serialized-octopus.md`. Deferred on usage budget,
 not on any blocker. Decisions already made: **auth optional** (browse signed-out, sign in only for
 summaries — the Guideline 4.2 answer), **email+password only** (a third-party provider would make
@@ -29,9 +50,13 @@ Mostly a transplant — lexly, healstack and litigate all already do this agains
 - [ ] Account deletion is a hard Guideline 5.1.1(v) blocker — it ships in the same pass as auth, not after.
 - [ ] Do NOT submit afterwards: listing metadata and screenshots still describe bundled offline summaries.
 
+</details>
+
 ### Open, small
-- [ ] "Statistics for Dummies" has no author anywhere in the data; `build.py` warns on every run.
-- [ ] Read-aloud (shipped 2026-08-27) only reads the editor textarea — you cannot listen from the summary list without opening the editor.
+- [x] "Statistics for Dummies" author filled 2026-08-29 (Deborah J. Rumsey); `build.py` no longer warns.
+- [x] Read-aloud from the summary list, 2026-08-29. The editor's speech code became one shared
+  `speakText()` called by both the editor button and a per-row Listen button; the list query
+  omits `content`, so a row fetches its body on first press.
 - [ ] Auth email deliverability still unverified (shared spark SMTP).
 
 ## Direction settled 2026-08-27 — Bookrank is a personal shelf, not a product
