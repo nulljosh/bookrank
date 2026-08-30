@@ -1,5 +1,3 @@
-## 2026-08-27 — one source of truth + web account deletion DONE; iOS auth is next
-
 ## Open
 - [ ] App Store privacy policy URL: currently spine.heyitsmejosh.com/privacy.html (dead host, stale from Spine rename). Should be bookrank.heyitsmejosh.com/privacy.html. Frozen until next version ships (app-info only editable during staged versions).
 ## Inbox 2026-08-30 — 15 book masterclasses moved here from Lexly
