@@ -1,5 +1,18 @@
 ## 2026-08-27 — one source of truth + web account deletion DONE; iOS auth is next
 
+## Inbox 2026-08-30 — 15 book masterclasses moved here from Lexly
+
+`content/masterclasses/*.json` arrived from `lexly/content/notes/`. Lexly was shipping a
+`books` category of 15 book summaries, which is Bookrank's product, not a language app's —
+and Apple had already rejected Lexly macOS 1.1.4 under Guideline 2.1 for "book or magazine
+content". Removed there, preserved here.
+
+Nothing renders them yet. They use Lexly's notes schema:
+`{id, name, sections: [{id, title, unitTag, blocks: [...]}]}` with prose, lists, tables and
+`cards: [{q, a}]` flashcards — a different shape from `books.json`, which is a 139-book
+shelf. Decide whether Bookrank surfaces long-form summaries at all before building a reader;
+per the current direction note this is a personal shelf, not a product.
+
 Shipped today (see git log):
 - `books.json` is the single source of truth. `scripts/build.py` generates rankings.html rows,
   book_rankings.md and all three iOS JSON resources. **The app went from 71 to 111 ranked books** —
