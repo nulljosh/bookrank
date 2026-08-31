@@ -364,3 +364,10 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 Done. 6 tools on `library.html` only: `list_summaries`, `get_summary`, `whoami`, `create_summary`, `save_summary`, and a gated `delete_summary`. Tools go through the `rows` data layer, never the editor functions, so a tool call cannot disturb what the user has open. `index.html` and `rankings.html` are static and deliberately carry no tools.
 
 See `docs/API.md` for the full tool table, linked from the README.
+
+## /api + /mcp blocked on hosting
+
+Same blocker as quotestreak: bookrank.heyitsmejosh.com answers `server: cloudflare` but
+that is the orange-cloud proxy in front of GitHub Pages — there is no `bookrank` Cloudflare
+Pages project, so Functions never execute. `list_books` / `get_ranking` over books.json is
+straightforward once the site is on Pages. Template: conway, 2026-08-31.
