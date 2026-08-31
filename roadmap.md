@@ -371,3 +371,6 @@ Same blocker as quotestreak: bookrank.heyitsmejosh.com answers `server: cloudfla
 that is the orange-cloud proxy in front of GitHub Pages — there is no `bookrank` Cloudflare
 Pages project, so Functions never execute. `list_books` / `get_ranking` over books.json is
 straightforward once the site is on Pages. Template: conway, 2026-08-31.
+# Roadmap
+
+- [ ] /api + /mcp endpoints: blocked — hosted on GitHub Pages, no Functions runtime. Move to Cloudflare Pages/Workers first.
