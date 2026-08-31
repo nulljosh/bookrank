@@ -373,6 +373,9 @@ Pages project, so Functions never execute. `list_books` / `get_ranking` over boo
 straightforward once the site is on Pages. Template: conway, 2026-08-31.
 # Roadmap
 
+> Everything above about the API being blocked on hosting is SUPERSEDED by the section
+> below: the move to Cloudflare Pages happened on 2026-08-31 and the endpoints are live.
+
 ## /api + /mcp surface — SHIPPED 2026-08-31
 
 Live at `bookrank.heyitsmejosh.com/api` and `/mcp`. Tools: `list_sections`, `list_books`,
