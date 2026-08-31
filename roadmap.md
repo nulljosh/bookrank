@@ -373,4 +373,16 @@ Pages project, so Functions never execute. `list_books` / `get_ranking` over boo
 straightforward once the site is on Pages. Template: conway, 2026-08-31.
 # Roadmap
 
-- [ ] /api + /mcp endpoints: blocked — hosted on GitHub Pages, no Functions runtime. Move to Cloudflare Pages/Workers first.
+## /api + /mcp surface — SHIPPED 2026-08-31
+
+Live at `bookrank.heyitsmejosh.com/api` and `/mcp`. Tools: `list_sections`, `list_books`,
+`search_books`, `get_book`, all reading `books.json` out of the bundle. Both surfaces call
+`callTool()` in `src/lib/tools.js`. Check: `node src/lib/tools.test.mjs`.
+
+The blocker was the host, not the code: the site was on GitHub Pages, which runs no
+Functions. It now lives on the Cloudflare Pages project `bookrank`,
+bookrank.heyitsmejosh.com repointed, GitHub Pages and its workflow removed. Deploy with
+`sh scripts/build-site.sh && npx wrangler pages deploy` from the repo root.
+
+The API is the public shelf only. Summaries stay in `library.html` against Supabase, where
+RLS can see who is asking — do not move them behind a Function that cannot.
