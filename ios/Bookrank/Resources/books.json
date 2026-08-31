@@ -993,16 +993,6 @@
   },
   {
     "rank": 98,
-    "title": "Cracking the Coding Interview",
-    "goodreadsURL": "https://www.goodreads.com/book/show/12544648-cracking-the-coding-interview",
-    "author": "Gayle Laakmann McDowell",
-    "rating": null,
-    "reviewCount": null,
-    "badges": [],
-    "notes": "Interview prep, tangential to shipping these apps."
-  },
-  {
-    "rank": 99,
     "title": "Grokking Algorithms",
     "goodreadsURL": "https://www.goodreads.com/book/show/22847284-grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curio",
     "author": "Aditya Y. Bhargava",
@@ -1012,7 +1002,7 @@
     "notes": "Algorithms theory, occasionally useful, not stack-specific."
   },
   {
-    "rank": 100,
+    "rank": 99,
     "title": "The Algorithm Design Manual",
     "goodreadsURL": "https://www.goodreads.com/book/show/425208.The_Algorithm_Design_Manual",
     "author": "Steven S. Skiena",
@@ -1022,7 +1012,7 @@
     "notes": "Same — theory over practice for this codebase's needs."
   },
   {
-    "rank": 101,
+    "rank": 100,
     "title": "Programming Pearls",
     "goodreadsURL": "https://www.goodreads.com/book/show/52084.Programming_Pearls",
     "author": "Jon L. Bentley",
@@ -1032,7 +1022,7 @@
     "notes": "Algorithms/puzzle classic, low direct applicability."
   },
   {
-    "rank": 102,
+    "rank": 101,
     "title": "Introduction to Algorithms",
     "goodreadsURL": "https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms",
     "author": "Thomas H. Cormen",
@@ -1042,7 +1032,7 @@
     "notes": "CS theory reference, low direct applicability to app-shipping work here."
   },
   {
-    "rank": 103,
+    "rank": 102,
     "title": "Structure and Interpretation of Computer Programs",
     "goodreadsURL": "https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs",
     "author": "Harold Abelson",
@@ -1052,7 +1042,7 @@
     "notes": "Foundational but Scheme-based, no overlap with this stack."
   },
   {
-    "rank": 104,
+    "rank": 103,
     "title": "The Art of Computer Programming, Volume 1",
     "goodreadsURL": "https://www.goodreads.com/book/show/112247.The_Art_of_Computer_Programming_Volume_1",
     "author": "Donald Ervin Knuth",
@@ -1062,7 +1052,7 @@
     "notes": "Canonical but dense theory, lowest practical overlap with day-to-day app work here."
   },
   {
-    "rank": 105,
+    "rank": 104,
     "title": "Effective Java",
     "goodreadsURL": "https://www.goodreads.com/book/show/34927404-effective-java",
     "author": "Joshua Bloch",
@@ -1072,7 +1062,7 @@
     "notes": "Java isn't used anywhere in this codebase."
   },
   {
-    "rank": 106,
+    "rank": 105,
     "title": "The C Programming Language",
     "goodreadsURL": "https://www.goodreads.com/book/show/515601.The_C_Programming_Language",
     "author": "Brian W. Kernighan",
@@ -1082,7 +1072,7 @@
     "notes": "C isn't used anywhere in this codebase."
   },
   {
-    "rank": 107,
+    "rank": 106,
     "title": "The C++ Programming Language",
     "goodreadsURL": "https://www.goodreads.com/book/show/112251.The_C_Programming_Language",
     "author": "Bjarne Stroustrup",
@@ -1092,7 +1082,7 @@
     "notes": "C++ isn't used anywhere in this codebase."
   },
   {
-    "rank": 108,
+    "rank": 107,
     "title": "Learn You a Haskell for Great Good!",
     "goodreadsURL": "https://www.goodreads.com/book/show/6593810-learn-you-a-haskell-for-great-good",
     "author": "Miran Lipovača",
@@ -1102,7 +1092,7 @@
     "notes": "Haskell isn't used anywhere in this codebase."
   },
   {
-    "rank": 109,
+    "rank": 108,
     "title": "Python Crash Course",
     "goodreadsURL": "https://www.goodreads.com/book/show/23241059-penguin-random-house-python-crash-course",
     "author": "Eric Matthes",
@@ -1112,7 +1102,7 @@
     "notes": "Intro-level, redundant with Fluent Python/Automate the Boring Stuff already ranked higher."
   },
   {
-    "rank": 110,
+    "rank": 109,
     "title": "Learning Python",
     "goodreadsURL": "https://www.goodreads.com/book/show/80435.Learning_Python",
     "author": "Mark Lutz",
@@ -1122,7 +1112,7 @@
     "notes": "Same redundancy as above, lowest of the Python references."
   },
   {
-    "rank": 111,
+    "rank": 110,
     "title": "Code: The Hidden Language of Computer Hardware and Software",
     "goodreadsURL": "https://www.goodreads.com/book/show/44882.Code",
     "author": "Charles Petzold",

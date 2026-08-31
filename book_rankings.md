@@ -376,44 +376,41 @@ Books are scored using a weighted algorithm:
 ### 97. [Coders at Work](https://www.goodreads.com/book/show/6713575-coders-at-work) by Peter Seibel
 **Notes:** General interviews/craft, not directly applicable.
 
-### 98. [Cracking the Coding Interview](https://www.goodreads.com/book/show/12544648-cracking-the-coding-interview) by Gayle Laakmann McDowell
-**Notes:** Interview prep, tangential to shipping these apps.
-
-### 99. [Grokking Algorithms](https://www.goodreads.com/book/show/22847284-grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curio) by Aditya Y. Bhargava
+### 98. [Grokking Algorithms](https://www.goodreads.com/book/show/22847284-grokking-algorithms-an-illustrated-guide-for-programmers-and-other-curio) by Aditya Y. Bhargava
 **Notes:** Algorithms theory, occasionally useful, not stack-specific.
 
-### 100. [The Algorithm Design Manual](https://www.goodreads.com/book/show/425208.The_Algorithm_Design_Manual) by Steven S. Skiena
+### 99. [The Algorithm Design Manual](https://www.goodreads.com/book/show/425208.The_Algorithm_Design_Manual) by Steven S. Skiena
 **Notes:** Same — theory over practice for this codebase's needs.
 
-### 101. [Programming Pearls](https://www.goodreads.com/book/show/52084.Programming_Pearls) by Jon L. Bentley
+### 100. [Programming Pearls](https://www.goodreads.com/book/show/52084.Programming_Pearls) by Jon L. Bentley
 **Notes:** Algorithms/puzzle classic, low direct applicability.
 
-### 102. [Introduction to Algorithms](https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms) by Thomas H. Cormen
+### 101. [Introduction to Algorithms](https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms) by Thomas H. Cormen
 **Notes:** CS theory reference, low direct applicability to app-shipping work here.
 
-### 103. [Structure and Interpretation of Computer Programs](https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs) by Harold Abelson
+### 102. [Structure and Interpretation of Computer Programs](https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs) by Harold Abelson
 **Notes:** Foundational but Scheme-based, no overlap with this stack.
 
-### 104. [The Art of Computer Programming, Volume 1](https://www.goodreads.com/book/show/112247.The_Art_of_Computer_Programming_Volume_1) by Donald Ervin Knuth
+### 103. [The Art of Computer Programming, Volume 1](https://www.goodreads.com/book/show/112247.The_Art_of_Computer_Programming_Volume_1) by Donald Ervin Knuth
 **Notes:** Canonical but dense theory, lowest practical overlap with day-to-day app work here.
 
-### 105. [Effective Java](https://www.goodreads.com/book/show/34927404-effective-java) by Joshua Bloch
+### 104. [Effective Java](https://www.goodreads.com/book/show/34927404-effective-java) by Joshua Bloch
 **Notes:** Java isn't used anywhere in this codebase.
 
-### 106. [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language) by Brian W. Kernighan
+### 105. [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language) by Brian W. Kernighan
 **Notes:** C isn't used anywhere in this codebase.
 
-### 107. [The C++ Programming Language](https://www.goodreads.com/book/show/112251.The_C_Programming_Language) by Bjarne Stroustrup
+### 106. [The C++ Programming Language](https://www.goodreads.com/book/show/112251.The_C_Programming_Language) by Bjarne Stroustrup
 **Notes:** C++ isn't used anywhere in this codebase.
 
-### 108. [Learn You a Haskell for Great Good!](https://www.goodreads.com/book/show/6593810-learn-you-a-haskell-for-great-good) by Miran Lipovača
+### 107. [Learn You a Haskell for Great Good!](https://www.goodreads.com/book/show/6593810-learn-you-a-haskell-for-great-good) by Miran Lipovača
 **Notes:** Haskell isn't used anywhere in this codebase.
 
-### 109. [Python Crash Course](https://www.goodreads.com/book/show/23241059-penguin-random-house-python-crash-course) by Eric Matthes
+### 108. [Python Crash Course](https://www.goodreads.com/book/show/23241059-penguin-random-house-python-crash-course) by Eric Matthes
 **Notes:** Intro-level, redundant with Fluent Python/Automate the Boring Stuff already ranked higher.
 
-### 110. [Learning Python](https://www.goodreads.com/book/show/80435.Learning_Python) by Mark Lutz
+### 109. [Learning Python](https://www.goodreads.com/book/show/80435.Learning_Python) by Mark Lutz
 **Notes:** Same redundancy as above, lowest of the Python references.
 
-### 111. [Code: The Hidden Language of Computer Hardware and Software](https://www.goodreads.com/book/show/44882.Code) by Charles Petzold
+### 110. [Code: The Hidden Language of Computer Hardware and Software](https://www.goodreads.com/book/show/44882.Code) by Charles Petzold
 **Notes:** Hardware-level general-interest book, least directly applicable to the app-shipping work this codebase does.
