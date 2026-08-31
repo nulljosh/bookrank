@@ -44,6 +44,10 @@ a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.
 dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
 dl.profile dt { color:var(--text3); }
 </style>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#5B9BD5">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -385,5 +389,6 @@ window.__bookrank = {
 };
 </script>
 <script type="module" src="webmcp.js"></script>
+  <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));</script>
 </body>
 </html>
