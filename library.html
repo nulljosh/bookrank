@@ -51,6 +51,18 @@ dl.profile dt { color:var(--text3); }
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<!-- app banner -->
+<style>
+.appbar{display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;padding:10px 16px;background:var(--accent-soft);border-bottom:1px solid var(--border);font-size:14px;color:var(--text)}
+.appbar a.get{background:var(--accent);color:#fff;padding:6px 14px;border-radius:999px;font-weight:600}
+.appbar button{background:none;border:0;color:var(--text2);font:inherit;cursor:pointer;padding:4px 8px}
+</style>
+<div class="appbar" id="appbar" hidden>
+  <span>Bookrank for iPhone, iPad and Mac</span>
+  <a class="get" href="https://apps.apple.com/us/app/bookrank/id6792376485">Download on the App Store</a>
+  <button type="button" aria-label="Dismiss" onclick="this.parentNode.hidden=true;try{localStorage.setItem('appbar-off','1')}catch(e){}">&times;</button>
+</div>
+<script>try{if(!localStorage.getItem('appbar-off'))appbar.hidden=false}catch(e){appbar.hidden=false}</script>
 <main class="wrap" id="main">
   <a class="back" href="/">&larr; Bookrank</a>
 
