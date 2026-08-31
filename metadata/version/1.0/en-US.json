@@ -1,5 +1,6 @@
 {
   "description": "Bookrank is a curated collection of book rankings, ordered by Goodreads rating, review volume and cultural relevance rather than personal opinion. Browse the ranked shelf, see the current top picks, and keep track of what's next on your reading list.\n\nChapter-by-chapter summaries live on the web at bookrank.heyitsmejosh.com, where they stay private to your own account.",
   "keywords": "books,reading,rankings,goodreads,recommendations,tbr,nonfiction,book club",
-  "supportUrl": "https://bookrank.heyitsmejosh.com"
+  "supportUrl": "https://bookrank.heyitsmejosh.com",
+  "promotionalText": "A ranked shelf built from Goodreads ratings and review volume, not one person's taste. Find the book worth reading next in about ten seconds."
 }
