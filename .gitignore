@@ -18,3 +18,4 @@ ios/Bookrank/Resources/summaries/
 # xcode build output
 ios/build/
 __pycache__/
+dist/

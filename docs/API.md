@@ -54,3 +54,31 @@ textareas, so a user editing a summary when an agent created another one would
 silently insert a duplicate on their next Save. Tools read and write by id and
 leave the editor alone; `refreshList()` re-renders the list only when the user
 is actually looking at it.
+
+## HTTP API (Cloudflare Pages Functions)
+
+That is still true of `library.html` — summaries remain a signed-in, per-user thing between
+the browser and Supabase, and nothing below touches them. What the site *does* now serve is
+the public shelf: `books.json`, read-only, for anyone who wants the rankings without
+scraping the page.
+
+Both surfaces call the same `callTool()` in `src/lib/tools.js`, so REST and MCP cannot
+describe different behaviour. `books.json` is imported into the bundle — no database.
+
+### REST (read-only, `GET`)
+
+| Endpoint | Returns |
+|---|---|
+| `/api` | The endpoint list and tool names. |
+| `/api/sections` | The shelves (`ranked`, `recent`, `toRead`, `summary`, `pick`) with counts. |
+| `/api/books?section=&limit=&offset=` | Books, paginated, with a `total`. |
+| `/api/search?q=&limit=&section=` | Books whose title, author or notes match. |
+| `/api/book?title=` | One book; an exact title wins over a partial match. |
+
+Every row has the same shape, with `null` for the fields a `pick` row legitimately lacks.
+
+### MCP
+
+`POST /mcp`, JSON-RPC, stateless. Tools: `list_sections`, `list_books`, `search_books`,
+`get_book`. All read-only — writing a summary stays in the page, where RLS can see who is
+asking.
