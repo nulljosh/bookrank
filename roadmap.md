@@ -1,5 +1,5 @@
 ## Open
-- [ ] App Store privacy policy URL: currently spine.heyitsmejosh.com/privacy.html (dead host, stale from Spine rename). Should be bookrank.heyitsmejosh.com/privacy.html. Frozen until next version ships (app-info only editable during staged versions).
+- [ ] App Store privacy policy URL: currently spine.heyitsmejosh.com/privacy.html (dead host, stale from Spine rename). Should be bookrank.heyitsmejosh.com/privacy.html. Frozen until next version ships (app-info only editable during staged versions). (2026-09-02: Apple rejects the PATCH, "privacyPolicyUrl can not be modified in the current state", while the only app-info is READY_FOR_DISTRIBUTION; local metadata is already correct, so it goes through on the next version bump via metadata apply)
 ## Inbox 2026-08-30, 15 book masterclasses moved here from Lexly
 
 `content/masterclasses/*.json` arrived from `lexly/content/notes/`. Lexly was shipping a
