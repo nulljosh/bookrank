@@ -44,6 +44,5 @@ struct ReadAloudButton: View {
     var body: some View {
         let on = speaker.current == id
         Button(on ? "Stop" : "Read aloud", systemImage: on ? "stop.fill" : "speaker.wave.2") { speaker.toggle(id: id, text: text) }
-            { speaker.toggle(id: id, text: text) }
     }
 }
