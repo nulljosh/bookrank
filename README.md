@@ -33,6 +33,10 @@ python3 scripts/fetch-covers.py --retry-misses  # re-query cached misses
 
 <img src="ios/screenshots/library.jpg" width="240">
 
+## Apple Watch App
+
+`watchos/BookrankWatch` is a standalone SwiftUI watch app (`WKWatchOnly`), generated from `watchos/project.yml` by xcodegen. Bundle ID `com.heyitsmejosh.spine.watchos`. It's a full local port, not a network client: the ranked shelf, to-read list and top picks are the same `books.json` / `library.json` / `picks.json` bundled into the iOS app, copied into `watchos/Resources` and read the same way, so it works with no pairing step and nothing goes stale offline. Per-account chapter summaries (Supabase) stay iOS/macOS-only; that needs a sign-in flow that doesn't belong on a watch face.
+
 ## More
 
 [Project map](architecture.svg) · [Roadmap](roadmap.md) · [Whitepaper](WHITEPAPER.md) · [Agent tools](docs/API.md) (WebMCP; no HTTP API)

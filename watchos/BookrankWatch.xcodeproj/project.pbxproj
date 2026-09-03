@@ -1,0 +1,369 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		16E5EAC046E1CF06B8CBF92A /* ToReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A575FD3FD17FE64E402312 /* ToReadView.swift */; };
+		27B918D856703AA1F1CEE7F3 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E03D3379955F24615EDA6E2 /* books.json */; };
+		50DF206E74B0288D90A5C385 /* TopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F895285A401A5E4CDC6305 /* TopPicksView.swift */; };
+		6D27A4F9251CDAB6C2101703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53D7F39C3C85AC690A6206C /* Assets.xcassets */; };
+		86BF5EF94A6DDB0A5CD005D8 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = FCCBCE6FEA89A32AE9E5BE0D /* library.json */; };
+		963D38C3C458FB49CC53C59B /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = A27B73E07E224F25406352BC /* picks.json */; };
+		97C692D0F65A7F864401F8C9 /* BookrankWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11A3276A6C878158AA0291 /* BookrankWatchApp.swift */; };
+		A282536C94C79DBF2C2BFD62 /* ShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0E1250EC772C8E0F30FB6A /* ShelfView.swift */; };
+		A3035A79980774188AB403C5 /* WatchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73430548975DAABA550F33A1 /* WatchModels.swift */; };
+		A3FDC3FA008A069CB538E37C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C6D36D711ED4B6D7EF0B95 /* ContentView.swift */; };
+		BF48FBFD5EA31C8825C8911E /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7949CDA9287759D30FCE1E73 /* BookStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0E03D3379955F24615EDA6E2 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
+		1B0E1250EC772C8E0F30FB6A /* ShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
+		23376BE53690272C90D299AF /* BookrankWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		47A575FD3FD17FE64E402312 /* ToReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToReadView.swift; sourceTree = "<group>"; };
+		6C11A3276A6C878158AA0291 /* BookrankWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankWatchApp.swift; sourceTree = "<group>"; };
+		73430548975DAABA550F33A1 /* WatchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModels.swift; sourceTree = "<group>"; };
+		7949CDA9287759D30FCE1E73 /* BookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
+		A27B73E07E224F25406352BC /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
+		B53D7F39C3C85AC690A6206C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C8F895285A401A5E4CDC6305 /* TopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksView.swift; sourceTree = "<group>"; };
+		D6C6D36D711ED4B6D7EF0B95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FCCBCE6FEA89A32AE9E5BE0D /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0A836FBA6C4948F744705977 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7949CDA9287759D30FCE1E73 /* BookStore.swift */,
+				73430548975DAABA550F33A1 /* WatchModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		26590EBDFD6307AE2869E583 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E1250EC772C8E0F30FB6A /* ShelfView.swift */,
+				C8F895285A401A5E4CDC6305 /* TopPicksView.swift */,
+				47A575FD3FD17FE64E402312 /* ToReadView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		74D7D570A0D12C39350F0ABC /* watchos */ = {
+			isa = PBXGroup;
+			children = (
+				B53D7F39C3C85AC690A6206C /* Assets.xcassets */,
+				6C11A3276A6C878158AA0291 /* BookrankWatchApp.swift */,
+				D6C6D36D711ED4B6D7EF0B95 /* ContentView.swift */,
+				0A836FBA6C4948F744705977 /* Models */,
+				D38DB2450B47BCA3560DBD4F /* Resources */,
+				26590EBDFD6307AE2869E583 /* Views */,
+			);
+			name = watchos;
+			path = .;
+			sourceTree = "<group>";
+		};
+		D38DB2450B47BCA3560DBD4F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E03D3379955F24615EDA6E2 /* books.json */,
+				FCCBCE6FEA89A32AE9E5BE0D /* library.json */,
+				A27B73E07E224F25406352BC /* picks.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E50FB9101AEF9096BCB18EEE = {
+			isa = PBXGroup;
+			children = (
+				0A836FBA6C4948F744705977 /* Models */,
+				D38DB2450B47BCA3560DBD4F /* Resources */,
+				26590EBDFD6307AE2869E583 /* Views */,
+				74D7D570A0D12C39350F0ABC /* watchos */,
+				EE052E37F76F712FBA4ED201 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE052E37F76F712FBA4ED201 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23376BE53690272C90D299AF /* BookrankWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BD19A7CE31AB968F63A26D5D /* BookrankWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4373B9FC2A74BE6F14FC5D34 /* Build configuration list for PBXNativeTarget "BookrankWatch" */;
+			buildPhases = (
+				7EBFEB71B3E72D6107A04F10 /* Sources */,
+				71573FA8FDC01AEFE8F9B761 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookrankWatch;
+			packageProductDependencies = (
+			);
+			productName = BookrankWatch;
+			productReference = 23376BE53690272C90D299AF /* BookrankWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		266CD67EE2DFD6AC8A42F6C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BD19A7CE31AB968F63A26D5D = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 42AC3516095CB339AD05B2A4 /* Build configuration list for PBXProject "BookrankWatch" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E50FB9101AEF9096BCB18EEE;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EE052E37F76F712FBA4ED201 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BD19A7CE31AB968F63A26D5D /* BookrankWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71573FA8FDC01AEFE8F9B761 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D27A4F9251CDAB6C2101703 /* Assets.xcassets in Resources */,
+				27B918D856703AA1F1CEE7F3 /* books.json in Resources */,
+				86BF5EF94A6DDB0A5CD005D8 /* library.json in Resources */,
+				963D38C3C458FB49CC53C59B /* picks.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7EBFEB71B3E72D6107A04F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF48FBFD5EA31C8825C8911E /* BookStore.swift in Sources */,
+				97C692D0F65A7F864401F8C9 /* BookrankWatchApp.swift in Sources */,
+				A3FDC3FA008A069CB538E37C /* ContentView.swift in Sources */,
+				A282536C94C79DBF2C2BFD62 /* ShelfView.swift in Sources */,
+				16E5EAC046E1CF06B8CBF92A /* ToReadView.swift in Sources */,
+				50DF206E74B0288D90A5C385 /* TopPicksView.swift in Sources */,
+				A3035A79980774188AB403C5 /* WatchModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		177F7858362D8CC6ACE94515 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchos;
+				PRODUCT_NAME = Bookrank;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		24D381004EE44B7F8A4EAB73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchos;
+				PRODUCT_NAME = Bookrank;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		DC1E88E74A6D006EF5D5D61C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		F10C9AED7F1434CDA400553D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42AC3516095CB339AD05B2A4 /* Build configuration list for PBXProject "BookrankWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10C9AED7F1434CDA400553D /* Debug */,
+				DC1E88E74A6D006EF5D5D61C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4373B9FC2A74BE6F14FC5D34 /* Build configuration list for PBXNativeTarget "BookrankWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24D381004EE44B7F8A4EAB73 /* Debug */,
+				177F7858362D8CC6ACE94515 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 266CD67EE2DFD6AC8A42F6C9 /* Project object */;
+}
