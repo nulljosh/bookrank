@@ -1,3 +1,7 @@
+## Shipped 2026-09-02, read-aloud across both platforms
+
+iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
+
 ## Open
 - [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
   structural iPad issue: `LibraryView` is a single scrolling dashboard capped at
