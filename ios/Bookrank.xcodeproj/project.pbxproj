@@ -32,11 +32,13 @@
 		A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
 		AA42FFC73629828A640CE7A1 /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E09CC3B72AF79C7D8189D /* picks.json */; };
 		B7558881537FE7DE4C18E890 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
+		B7BB6D8ABA024E8AC48C4D34 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
 		B8C7338BB6E4702339E70210 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053936F7085DA2473CFE71 /* BadgeLabel.swift */; };
 		C67B3C75126526F6C98B2E67 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */; };
 		C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
 		D1047B85C724E29F1BD085E5 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 45E59A3DE15F13B61AE1C3FE /* Supabase */; };
 		DCB91EBE5CB0C7E81EFAEC62 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
+		E50764035DF823B8FC9740D9 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
 		EA16B9CF96329CC06E8307D1 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */; };
 		FCFA0FF150F7B456962366FA /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
+		139694DD4F7D982870A363B8 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		15E4E60649355186A61C354D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		2C6E09CC3B72AF79C7D8189D /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
 		331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,7 @@
 				15E4E60649355186A61C354D /* Book.swift */,
 				ED95CED7FDB22CA4CB0392EC /* DataStore.swift */,
 				93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */,
+				139694DD4F7D982870A363B8 /* Speaker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +324,7 @@
 				83A82FC6CBCC3BF4A051FA10 /* DueDateBadge.swift in Sources */,
 				5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */,
 				A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */,
+				B7BB6D8ABA024E8AC48C4D34 /* Speaker.swift in Sources */,
 				8032F9BF89028C9697BE1077 /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +342,7 @@
 				EA16B9CF96329CC06E8307D1 /* DueDateBadge.swift in Sources */,
 				27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */,
 				8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */,
+				E50764035DF823B8FC9740D9 /* Speaker.swift in Sources */,
 				1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

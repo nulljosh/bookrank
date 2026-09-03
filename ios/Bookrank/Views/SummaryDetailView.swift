@@ -52,6 +52,10 @@ struct SummaryDetailView: View {
             }
         }
         .navigationTitle(data.title)
+        .toolbar {
+            ReadAloudButton(id: slug, text: data.chapters.map { "\($0.heading). \($0.body)" }.joined(separator: "\n"))
+        }
+        .onDisappear { Speaker.shared.stop() }
         .overlay(alignment: .bottom) {
             Text("\(data.chapters.count) chapters · \(readMinutes(data.chapters)) min read")
                 .font(.caption2)
@@ -162,5 +166,7 @@ private struct ChapterView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(chapter.heading)
+        .toolbar { ReadAloudButton(id: chapter.id.uuidString, text: "\(chapter.heading). \(chapter.body)") }
+        .onDisappear { Speaker.shared.stop() }
     }
 }

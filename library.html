@@ -130,6 +130,7 @@ dl.profile dt { color:var(--text3); }
       <button id="speak" aria-describedby="voiceHelp">Read aloud</button>
       <label class="sub" for="voice" style="margin:0">Voice</label>
       <select id="voice" aria-label="Reading voice and language"></select>
+      <select id="chapter" aria-label="Chapter to read"><option value="">Whole book</option></select>
       <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
     </div>
     <textarea id="body" placeholder="Chapter summaries, in markdown…"></textarea>
@@ -270,8 +271,18 @@ function speakText(markdown, btn, idle) {
   return true;
 }
 
+// ponytail: chapters = "## " headings, same split the iOS app uses.
+function chapters(md) {
+  return md.split(/^(?=## )/m).filter(c => c.startsWith('## ')).map(c => ({ title: c.slice(3, c.indexOf('\n') < 0 ? undefined : c.indexOf('\n')).trim(), text: c }));
+}
+function fillChapters() {
+  const sel = $('chapter'); sel.innerHTML = '<option value="">Whole book</option>';
+  chapters($('body').value).forEach((c, i) => sel.append(new Option(c.title, i)));
+}
+$('body').addEventListener('input', fillChapters);
 $('speak').onclick = () => {
-  if (!speakText($('body').value, $('speak'), 'Read aloud')) $('editMsg').textContent = 'Nothing to read yet.';
+  const i = $('chapter').value, md = i === '' ? $('body').value : chapters($('body').value)[i].text;
+  if (!speakText(md, $('speak'), 'Read aloud')) $('editMsg').textContent = 'Nothing to read yet.';
 };
 $('close').addEventListener('click', stopSpeaking);
 
@@ -331,6 +342,7 @@ async function open(id) {
   current = data;
   $('title').value = data.title;
   $('body').value = data.content;
+  fillChapters();
   showEditor();
   return data;
 }
@@ -342,7 +354,7 @@ function showEditor() {
   $('del').classList.toggle('hide', !current);
   show('editView');
 }
-$('new').onclick = () => { stopSpeaking(); current = null; $('title').value = ''; $('body').value = ''; showEditor(); };
+$('new').onclick = () => { stopSpeaking(); current = null; $('title').value = ''; $('body').value = ''; fillChapters(); showEditor(); };
 $('close').onclick = () => { show('listView'); load(); };
 $('toggle').onclick = () => {
   const previewing = $('preview').classList.toggle('hide');
