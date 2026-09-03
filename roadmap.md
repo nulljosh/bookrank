@@ -76,7 +76,11 @@ Mostly a transplant, lexly, healstack and litigate all already do this against t
 ### Open, small
 - [ ] Auth email deliverability still unverified (shared spark SMTP).
 
-## Direction settled 2026-08-27, Bookrank is a personal shelf, not a product
+## Direction reversed 2026-09-02, Bookrank is a product, users own their shelves
+
+Joshua's call, overriding the note below. The 2026-08-27 reasoning stays for context only.
+
+### Superseded note from 2026-08-27
 
 Evidence: `bookrank_summaries` is 20 rows / 1 owner / no edits since the 2026-08-19 import.
 Nobody but the owner has ever signed up. The content (books read, library loans) is
