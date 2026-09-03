@@ -1,4 +1,12 @@
 ## Open
+- [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
+  structural iPad issue: `LibraryView` is a single scrolling dashboard capped at
+  `.frame(maxWidth: 680)` centered (the correct reading-width pattern, same as Apple's
+  Settings/News), not a list-detail app, so `NavigationSplitView` would invent a hierarchy
+  the content doesn't have. `TARGETED_DEVICE_FAMILY = "1,2"` already set. This machine's
+  Xcode only has the iOS 26.5 SDK with the iOS 26.2 runtime downloaded, so `xcodebuild`
+  won't recognize any simulator destination even by explicit UDID -- needs the matching
+  platform component installed, then a screenshot check.
 - [ ] App Store privacy policy URL: currently spine.heyitsmejosh.com/privacy.html (dead host, stale from Spine rename). Should be bookrank.heyitsmejosh.com/privacy.html. Frozen until next version ships (app-info only editable during staged versions). (2026-09-02: Apple rejects the PATCH, "privacyPolicyUrl can not be modified in the current state", while the only app-info is READY_FOR_DISTRIBUTION; local metadata is already correct, so it goes through on the next version bump via metadata apply)
 ## Inbox 2026-08-30, 15 book masterclasses moved here from Lexly
 
