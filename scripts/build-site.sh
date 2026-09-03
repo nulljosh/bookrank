@@ -9,4 +9,5 @@ cp index.html rankings.html library.html privacy.html tokens.css webmcp.js sw.js
    manifest.webmanifest books.json icon.svg icon-192.png icon-512.png \
    icon-512-maskable.png architecture.svg dist/
 cp -R fonts dist/
+mkdir -p dist/scripts && cp scripts/covers.json dist/scripts/
 echo "built dist/"
