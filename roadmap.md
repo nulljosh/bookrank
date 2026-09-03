@@ -19,7 +19,7 @@ Nothing renders them yet. They use Lexly's notes schema:
 `{id, name, sections: [{id, title, unitTag, blocks: [...]}]}` with prose, lists, tables and
 `cards: [{q, a}]` flashcards, a different shape from `books.json`, which is a 139-book
 shelf. Decide whether Bookrank surfaces long-form summaries at all before building a reader;
-per the current direction note this is a personal shelf, not a product.
+this is a product with user accounts, so a reader is on the table.
 
 Shipped today (see git log):
 - `books.json` is the single source of truth. `scripts/build.py` generates rankings.html rows,

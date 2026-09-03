@@ -2,10 +2,11 @@
 
 **v1.0.1** | August 2026
 
-A ranked list of books I mean to read, kept by hand. For the ones I've finished,
-chapter summaries. Live at [books.heyitsmejosh.com](https://books.heyitsmejosh.com).
-It used to live in the portfolio repo. Books and a portfolio have nothing to do
-with each other, so it moved.
+A ranked shelf of books, with private chapter summaries per user. Users sign up
+with email, keep notes only they can read, and can delete the account and all of
+it in one step. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com)
+and on the iOS and Mac App Stores. It used to live in the portfolio repo. Books
+and a portfolio have nothing to do with each other, so it moved.
 
 ## Ranking List
 

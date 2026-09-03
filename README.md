@@ -4,16 +4,16 @@
 
 ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbookrank-black?logo=github)](https://github.com/nulljosh/bookrank) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0D96F6?logo=appstore&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485) [![Mac App Store](https://img.shields.io/badge/Mac%20App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485?mt=12)
 
-Every book I've read, ranked. My shelf, not a product. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
+Rank the books you've read, keep private chapter notes on the ones that mattered. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
 ![landing page](screenshots/landing.jpg)
 
 ## Pages
 
 - `index.html`: the landing page. A wall of covers from `scripts/covers.json`.
-- `rankings.html`: the shelf. Search, stars, sort.
-- `library.html`: private chapter summaries, in Supabase.
-- `book_rankings.md`: the same rankings as plain markdown.
+- `rankings.html`: the shelf. 111 ranked books with search, stars and sort, built from `books.json` by `scripts/build.py`.
+- `library.html`: your account. Sign up with email, keep chapter summaries that only you can read, delete the account and everything with it in one step.
+- `book_rankings.md`: the shelf as plain markdown, generated from the same source.
 
 ![rankings](screenshots/rankings.jpg)
 
@@ -27,9 +27,9 @@ python3 scripts/fetch-covers.py --dry-run       # list books with no cover
 python3 scripts/fetch-covers.py --retry-misses  # re-query cached misses
 ```
 
-## iOS App
+## iOS and macOS apps
 
-`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target, generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
+`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. Same shelf, same account, same private summaries as the web. It is, generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
 
 <img src="ios/screenshots/library.jpg" width="240">
 
