@@ -21,6 +21,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var paused = false
     private(set) var loading = false
     var explain = true { didSet { if playing { Task { await play(from: 0) } } } }
+    var rate: Float = UserDefaults.standard.object(forKey: "bookrank.rate") as? Float ?? 1 {
+        didSet { UserDefaults.standard.set(rate, forKey: "bookrank.rate"); if playing { Task { await play(from: line) } } }
+    }
     var status = ""
     private var scripts: [String: [ListenState.Line]] = [:]
     private var updatedAt = ""
@@ -94,6 +97,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         for (k, l) in lines[line...].enumerated() {
             let u = AVSpeechUtterance(string: l.line)
             u.voice = l.host == "B" ? b : a
+            u.rate = AVSpeechUtteranceDefaultSpeechRate * rate
             lineOf[ObjectIdentifier(u)] = line + k
             if line + k == lines.count - 1 { lastUtterance = u }
             synth.speak(u)
@@ -139,6 +143,9 @@ struct ListenControls: View {
                 Button(speaker.chapters[i].title) { speaker.go(to: i) }
             }
             Divider()
+            Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
+                ForEach([Float(1), 1.25, 1.5, 2], id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
+            }
             Toggle("Explain it (two hosts)", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0 }))
         }
     }

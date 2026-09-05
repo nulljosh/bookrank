@@ -141,6 +141,7 @@ dl.profile dt { color:var(--text3); }
       <label class="sub" for="voice" style="margin:0">Voice</label>
       <select id="voice" aria-label="Reading voice and language"></select>
       <select id="chapter" aria-label="Chapter"></select>
+      <select id="rate" aria-label="Speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
       <select id="mode" aria-label="How to read it"><option value="talk">Explain it (two hosts)</option><option value="read">Read the notes</option></select>
       <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
     </div>
@@ -382,6 +383,7 @@ async function play(fromLine = player.line) {
     parts.forEach((t, j) => {
       const u = new SpeechSynthesisUtterance(t.trim());
       if (voice) { u.voice = voice; u.lang = voice.lang; }
+      u.rate = +$('rate').value;
       if (j === 0) u.onstart = () => { if (play.token === token) { player.line = idx; setStatus(`${chs[player.ch].title} · ${idx + 1}/${script.length} — ${l.line}`); } };
       if (idx === script.length - 1 && j === parts.length - 1) u.onend = () => { if (play.token === token) chapterDone(chs.length); };
       synth.speak(u);
@@ -409,6 +411,8 @@ $('prev').onclick = () => jump(-1);
 $('next').onclick = () => jump(1);
 $('chapter').onchange = () => { player.line = 0; if (player.playing) play(0); };
 $('mode').onchange = () => { if (player.playing) play(0); };
+$('rate').value = localStorage.getItem('bookrank.rate') || '1';
+$('rate').onchange = () => { localStorage.setItem('bookrank.rate', $('rate').value); if (player.playing) play(player.line); };
 // Called by open(): restore where this row left off.
 function restoreProgress() {
   stopSpeaking(false);
