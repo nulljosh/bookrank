@@ -6,6 +6,8 @@
 
 Rank the books you've read, keep private chapter notes on the ones that mattered. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
+**Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"` — see [tui/](tui/)
+
 ![landing page](screenshots/landing.jpg)
 
 ## Pages
