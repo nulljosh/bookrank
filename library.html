@@ -26,6 +26,8 @@ form.auth { display:grid; gap:0.75rem; max-width:340px; }
 ul.list { list-style:none; }
 ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
 ul.list a { flex:1; min-width:0; display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
+ul.list img.thumb, ul.list .thumb-empty { width:2.25rem; height:3.25rem; object-fit:cover; border-radius:3px; background:var(--border2); flex:none; }
+ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
@@ -130,10 +132,13 @@ dl.profile dt { color:var(--text3); }
       </div>
     </div>
     <div class="speak">
-      <button id="speak" aria-describedby="voiceHelp">Read aloud</button>
+      <button id="prev" aria-label="Previous chapter">◀</button>
+      <button id="speak" aria-describedby="voiceHelp">Play</button>
+      <button id="next" aria-label="Next chapter">▶</button>
       <label class="sub" for="voice" style="margin:0">Voice</label>
       <select id="voice" aria-label="Reading voice and language"></select>
-      <select id="chapter" aria-label="Chapter to read"><option value="">Whole book</option></select>
+      <select id="chapter" aria-label="Chapter"></select>
+      <select id="mode" aria-label="How to read it"><option value="talk">Explain it (two hosts)</option><option value="read">Read the notes</option></select>
       <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
     </div>
     <textarea id="body" placeholder="Chapter summaries, in markdown…"></textarea>
@@ -259,8 +264,11 @@ $('photos').onchange = async () => {
 };
 
 // ---- read aloud ----
-// ponytail: SpeechSynthesis = every language/voice the device has, no deps, no backend.
-// Translating a summary into another language needs a model; this reads it in its own.
+// ponytail: SpeechSynthesis = every language/voice the device has, no deps, no audio files.
+// "Explain it" asks /api/narrate for a two-host conversation per chapter; "Read the notes"
+// speaks the markdown. One player, bound to the open row; chapter <select> is the nav.
+// Progress + generated scripts live in the row's `listen` jsonb so every device resumes
+// at the same line. Scripts are dropped when the content changes (`for` != updated_at).
 const synth = window.speechSynthesis;
 let voices = [];
 function loadVoices() {
@@ -269,7 +277,7 @@ function loadVoices() {
   const prev = localStorage.getItem('bookrank.voice');
   sel.innerHTML = '';
   for (const v of voices) {
-    const o = new Option(`${new Intl.DisplayNames([navigator.language], { type: 'language' }).of(v.lang.split('-')[0])} \u2014 ${v.name}`, v.name);
+    const o = new Option(`${new Intl.DisplayNames([navigator.language], { type: 'language' }).of(v.lang.split('-')[0])} — ${v.name}`, v.name);
     sel.append(o);
   }
   if (prev && voices.some(v => v.name === prev)) sel.value = prev;
@@ -280,50 +288,133 @@ loadVoices();
 synth.onvoiceschanged = loadVoices;
 $('voice').onchange = () => localStorage.setItem('bookrank.voice', $('voice').value);
 
-// One speak routine, two callers: the editor button and each list row. `btn` is
-// flipped to Stop for the duration and restored to `idle` when the queue drains.
-// Returns false when there is nothing to read, so the caller can say so its own way.
-let speaking = null;
-function stopSpeaking() {
-  synth.cancel();
-  if (speaking) { speaking.btn.textContent = speaking.idle; speaking = null; }
+// ponytail: chapters = "## " headings, same split the iOS app uses. No headings = one chapter.
+function chapters(md) {
+  const parts = md.split(/^(?=## )/m).filter(c => c.startsWith('## '))
+    .map(c => ({ title: c.slice(3, c.indexOf('\n') < 0 ? undefined : c.indexOf('\n')).trim(), text: c }));
+  return parts.length ? parts : (md.trim() ? [{ title: 'Whole book', text: md }] : []);
 }
-function speakText(markdown, btn, idle) {
-  const wasSame = speaking && speaking.btn === btn;
-  stopSpeaking();
-  if (wasSame) return true;
-  const text = String(markdown || '').replace(/[#*_`>\[\]()]/g, ' ').trim();
-  if (!text) return false;
-  // ponytail: chunked at sentence bounds \u2014 Chrome silently truncates long utterances.
-  const voice = voices.find(v => v.name === $('voice').value);
-  const chunks = [];
-  for (const part of text.split(/(?<=[.!?])\s+/))
-    for (let i = 0; i < part.length; i += 200) chunks.push(part.slice(i, i + 200));
-  speaking = { btn, idle };
-  chunks.forEach((c, i) => {
-    const u = new SpeechSynthesisUtterance(c.trim());
-    if (voice) { u.voice = voice; u.lang = voice.lang; }
-    if (i === chunks.length - 1) u.onend = () => { if (speaking && speaking.btn === btn) stopSpeaking(); };
-    synth.speak(u);
-  });
-  btn.textContent = 'Stop';
-  return true;
+const plain = md => String(md || '').replace(/[#*_`>\[\]()]/g, ' ').trim();
+
+const player = { ch: 0, line: 0, playing: false, scripts: {} };
+// ponytail: thumbnails come from books.json matched by title; no per-summary cover field.
+const covers = fetch('books.json').then(r => r.json()).then(b => new Map(b.filter(x => x.cover).map(x => [x.title.toLowerCase(), x.cover]))).catch(() => new Map());
+function thumb(title) {
+  const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
+  covers.then(m => { const u = m.get(title.toLowerCase()); if (u) img.src = u; else img.className = 'thumb-empty'; });
+  return img;
+}
+function setStatus(t) { $('voiceHelp').textContent = t; }
+function fillChapters() {
+  const sel = $('chapter'), cur = sel.value; sel.innerHTML = '';
+  chapters($('body').value).forEach((c, i) => sel.append(new Option(c.title, i)));
+  sel.value = cur && sel.options[cur] ? cur : 0;
+}
+$('body').addEventListener('input', () => { fillChapters(); player.scripts = {}; });
+
+function listenState() {
+  return current?.listen && current.listen.for === current.updated_at ? current.listen : null;
+}
+async function saveProgress() {
+  if (!current) return;
+  const listen = { for: current.updated_at, chapters: player.scripts, pos: { ch: player.ch, line: player.line } };
+  current.listen = listen;
+  await db.from(TABLE).update({ listen }).eq('id', current.id);
+}
+addEventListener('pagehide', () => { if (player.playing) { player.playing = false; saveProgress(); } });
+
+// Two hosts, two voices: the chosen voice is A; B is another voice in the same language.
+function voicePair() {
+  const a = voices.find(v => v.name === $('voice').value);
+  return [a, voices.find(v => v !== a && a && v.lang === a.lang) || a];
+}
+async function scriptFor(i) {
+  const chs = chapters($('body').value);
+  if ($('mode').value !== 'talk') return [{ host: 'A', line: plain(chs[i].text) }];
+  if (player.scripts[i]) return player.scripts[i];
+  const { data: { session } } = await db.auth.getSession();
+  if (!session) return null;
+  try {
+    const res = await fetch('/api/narrate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
+      body: JSON.stringify({ text: chs[i].text, title: `${$('title').value} — ${chs[i].title}` }),
+    });
+    const out = await res.json();
+    if (out.script) player.scripts[i] = out.script;
+    return out.script || null;
+  } catch { return null; }
 }
 
-// ponytail: chapters = "## " headings, same split the iOS app uses.
-function chapters(md) {
-  return md.split(/^(?=## )/m).filter(c => c.startsWith('## ')).map(c => ({ title: c.slice(3, c.indexOf('\n') < 0 ? undefined : c.indexOf('\n')).trim(), text: c }));
+function stopSpeaking(save = true) {
+  synth.cancel();
+  const was = player.playing;
+  player.playing = false;
+  $('speak').textContent = 'Play';
+  if (was && save) saveProgress();
 }
-function fillChapters() {
-  const sel = $('chapter'); sel.innerHTML = '<option value="">Whole book</option>';
-  chapters($('body').value).forEach((c, i) => sel.append(new Option(c.title, i)));
+async function play(fromLine = player.line) {
+  stopSpeaking(false);
+  const chs = chapters($('body').value);
+  if (!chs.length) { $('editMsg').textContent = 'Nothing to read yet.'; return; }
+  player.ch = Math.min(+$('chapter').value || 0, chs.length - 1);
+  $('speak').textContent = 'Thinking…'; $('speak').disabled = true;
+  let script = await scriptFor(player.ch);
+  $('speak').disabled = false;
+  if (!script) { setStatus('Could not build the conversation; reading the notes instead.'); script = [{ host: 'A', line: plain(chs[player.ch].text) }]; }
+  if (!plain(script.map(l => l.line).join(' '))) { stopSpeaking(false); $('editMsg').textContent = 'Nothing to read in this chapter.'; return; }
+  const [voiceA, voiceB] = voicePair();
+  player.line = Math.min(fromLine, script.length - 1);
+  player.playing = true;
+  $('speak').textContent = 'Pause';
+  if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: chs[player.ch].title, artist: $('title').value });
+  const token = play.token = Symbol();
+  // ponytail: chunked at sentence bounds — Chrome silently truncates long utterances.
+  script.slice(player.line).forEach((l, k) => {
+    const idx = player.line + k, voice = l.host === 'B' ? voiceB : voiceA;
+    const parts = [];
+    for (const p of l.line.split(/(?<=[.!?])\s+/)) for (let i = 0; i < p.length; i += 200) parts.push(p.slice(i, i + 200));
+    parts.forEach((t, j) => {
+      const u = new SpeechSynthesisUtterance(t.trim());
+      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      if (j === 0) u.onstart = () => { if (play.token === token) { player.line = idx; setStatus(`${chs[player.ch].title} · ${idx + 1}/${script.length} — ${l.line}`); } };
+      if (idx === script.length - 1 && j === parts.length - 1) u.onend = () => { if (play.token === token) chapterDone(chs.length); };
+      synth.speak(u);
+    });
+  });
 }
-$('body').addEventListener('input', fillChapters);
-$('speak').onclick = () => {
-  const i = $('chapter').value, md = i === '' ? $('body').value : chapters($('body').value)[i].text;
-  if (!speakText(md, $('speak'), 'Read aloud')) $('editMsg').textContent = 'Nothing to read yet.';
-};
-$('close').addEventListener('click', stopSpeaking);
+function chapterDone(count) {
+  if (player.ch + 1 < count) { $('chapter').value = player.ch + 1; player.line = 0; play(0); }
+  else { player.line = 0; stopSpeaking(); setStatus('Finished.'); }
+}
+function jump(delta) {
+  const n = $('chapter').options.length; if (!n) return;
+  $('chapter').value = Math.max(0, Math.min(n - 1, (+$('chapter').value || 0) + delta));
+  player.line = 0; play(0);
+}
+$('speak').onclick = () => player.playing ? stopSpeaking() : play();
+// Lock screen / media keys / AirPods.
+if ('mediaSession' in navigator) {
+  navigator.mediaSession.setActionHandler('play', () => play());
+  navigator.mediaSession.setActionHandler('pause', () => stopSpeaking());
+  navigator.mediaSession.setActionHandler('nexttrack', () => jump(1));
+  navigator.mediaSession.setActionHandler('previoustrack', () => jump(-1));
+}
+$('prev').onclick = () => jump(-1);
+$('next').onclick = () => jump(1);
+$('chapter').onchange = () => { player.line = 0; if (player.playing) play(0); };
+$('mode').onchange = () => { if (player.playing) play(0); };
+// Called by open(): restore where this row left off.
+function restoreProgress() {
+  stopSpeaking(false);
+  const st = listenState();
+  player.scripts = st?.chapters || {};
+  player.ch = st?.pos?.ch || 0; player.line = st?.pos?.line || 0;
+  fillChapters();
+  $('chapter').value = player.ch;
+  setStatus(st?.pos ? `Resume at ${$('chapter').selectedOptions[0]?.text} · line ${player.line + 1}` : 'Uses your device’s installed voices.');
+}
+$('close').addEventListener('click', () => stopSpeaking());
 
 // ---- data layer ----
 // Every query lives here exactly once. The UI functions below render it; the
@@ -331,7 +422,7 @@ $('close').addEventListener('click', stopSpeaking);
 // tool must be able to read and write summaries WITHOUT disturbing whatever the
 // user has open in the editor, so no tool goes through open()/saveCurrent().
 const rows = {
-  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at').order('updated_at', { ascending: false }),
+  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at,listen').order('updated_at', { ascending: false }),
   get:    (id)          => db.from(TABLE).select('*').eq('id', id).single(),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
@@ -357,18 +448,15 @@ async function load() {
     const a = document.createElement('a');
     a.href = '#';
     a.onclick = e => { e.preventDefault(); open(row.id); };
-    a.append(Object.assign(document.createElement('span'), { textContent: row.title }));
+    const name = Object.assign(document.createElement('span'), { textContent: row.title });
+    const pos = row.listen?.for === row.updated_at && row.listen.pos;
+    if (pos && (pos.ch || pos.line)) name.append(Object.assign(document.createElement('span'), { className: 'resume', textContent: `Ch ${pos.ch + 1}` }));
+    a.append(name);
     a.append(Object.assign(document.createElement('time'), { textContent: row.updated_at.slice(0,10) }));
-    // The list query omits `content` to stay cheap, so fetch the body on first press.
-    const listen = Object.assign(document.createElement('button'),
-      { className: 'listen', textContent: 'Listen', title: 'Read ' + row.title + ' aloud' });
-    listen.onclick = async () => {
-      if (speaking && speaking.btn === listen) { stopSpeaking(); return; }
-      const { data: full, error: err } = await rows.get(row.id);
-      if (err) { $('listMsg').textContent = err.message; return; }
-      if (!speakText(full.content, listen, 'Listen')) $('listMsg').textContent = 'Nothing to read in ' + row.title + '.';
-    };
-    li.append(a, listen);
+    const listenBtn = Object.assign(document.createElement('button'),
+      { className: 'listen', textContent: 'Listen', title: 'Listen to ' + row.title });
+    listenBtn.onclick = async () => { await open(row.id); play(); };
+    li.append(thumb(row.title), a, listenBtn);
     $('list').append(li);
   }
   return data;
@@ -381,7 +469,7 @@ async function open(id) {
   current = data;
   $('title').value = data.title;
   $('body').value = data.content;
-  fillChapters();
+  restoreProgress();
   showEditor();
   return data;
 }
@@ -406,6 +494,8 @@ async function saveCurrent() {
   const title = $('title').value.trim();
   if (!title) return { error: { message: 'Title required.' } };
   const row = stamp(title, $('body').value, current?.slug);
+  // Same content re-saved keeps the scripts and position; the new stamp re-validates them.
+  if (current?.listen && current.content === $('body').value) row.listen = { ...current.listen, for: row.updated_at };
   const { data, error } = current ? await rows.update(current.id, row) : await rows.insert(row);
   if (!error && data) current = data;
   return { data, error };

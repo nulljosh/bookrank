@@ -153,9 +153,14 @@ struct LibraryView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(store.summaryIndex) { entry in
                         NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
-                            HStack(alignment: .top, spacing: 18) {
-                                Text("·").foregroundStyle(.tertiary)
-                                Text(entry.title).font(.subheadline.weight(.medium))
+                            HStack(alignment: .center, spacing: 14) {
+                                Thumb(url: store.cover(for: entry.title))
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(entry.title).font(.subheadline.weight(.medium))
+                                    if let pos = entry.listen?.pos, entry.listen?.for == entry.updatedAt, pos.ch > 0 || pos.line > 0 {
+                                        Text("Resume · Ch \(pos.ch + 1)").font(.caption2).foregroundStyle(.secondary)
+                                    }
+                                }
                                 Spacer()
                             }
                             .padding(.vertical, 10)
@@ -220,5 +225,15 @@ struct LibraryView: View {
             .font(.caption2.weight(.medium))
             .tracking(1.2)
             .foregroundStyle(.primary)
+    }
+}
+
+/// ponytail: 36×52 cover or a flat placeholder; matched by title from the bundled shelf.
+private struct Thumb: View {
+    let url: String?
+    var body: some View {
+        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.15) }
+            .frame(width: 36, height: 52)
+            .clipShape(RoundedRectangle(cornerRadius: 3))
     }
 }

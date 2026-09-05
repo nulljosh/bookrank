@@ -52,12 +52,14 @@ struct SummaryDetailView: View {
             }
         }
         .navigationTitle(data.title)
-        .toolbar {
-            ReadAloudButton(id: slug, text: data.chapters.map { "\($0.heading). \($0.body)" }.joined(separator: "\n"))
+        .toolbar { ListenControls() }
+        .task {
+            Speaker.shared.load(slug: slug,
+                                chapters: data.chapters.map { .init(title: $0.heading, text: "\($0.heading). \($0.body)") },
+                                entry: store.summary(for: slug)) { await store.saveListen($0, for: slug) }
         }
-        .onDisappear { Speaker.shared.stop() }
         .overlay(alignment: .bottom) {
-            Text("\(data.chapters.count) chapters · \(readMinutes(data.chapters)) min read")
+            Text(Speaker.shared.status.isEmpty ? "\(data.chapters.count) chapters · \(readMinutes(data.chapters)) min read" : Speaker.shared.status)
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .padding(.vertical, 6)
@@ -166,7 +168,6 @@ private struct ChapterView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(chapter.heading)
-        .toolbar { ReadAloudButton(id: chapter.id.uuidString, text: "\(chapter.heading). \(chapter.body)") }
-        .onDisappear { Speaker.shared.stop() }
+        .toolbar { ListenControls() }
     }
 }

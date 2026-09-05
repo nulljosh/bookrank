@@ -15,6 +15,10 @@ Rank the books you've read, keep private chapter notes on the ones that mattered
 - `index.html`: the landing page. A wall of covers from `scripts/covers.json`.
 - `rankings.html`: the shelf. 111 ranked books with search, stars and sort, built from `books.json` by `scripts/build.py`.
 - `library.html`: your account. Sign up with email, keep chapter summaries that only you can read, delete the account and everything with it in one step.
+
+## Listen
+
+Every summary can be played, not just read. "Explain it" turns each chapter into a short two-host conversation (Workers AI, `functions/api/narrate.js`) that explains the ideas and why they matter, the way a podcast overview would; "Read the notes" speaks the markdown as written. Voices are the device's own. Pause and resume, skip chapters, or jump to any chapter from the menu. Where you stopped, and the generated scripts, are saved on your account, so the web, iPhone and Mac all pick up at the same line. Summaries in the list show the book's cover.
 - `book_rankings.md`: the shelf as plain markdown, generated from the same source.
 
 ![rankings](screenshots/rankings.jpg)

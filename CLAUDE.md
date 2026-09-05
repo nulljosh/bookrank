@@ -31,7 +31,8 @@ To expose a finished book's summary on the site:
 2. In this repo, run `./sync-summaries.sh`, copies `<slug>-summary.md` into `summaries/<slug>.md` here.
 3. Add a `<a href="summary.html?b=<slug>" class="badge">Summary</a>` link next to the matching book entry in `rankings.html`. `summary.html` renders `summaries/<slug>.md` client-side via `marked`.
 
-Planned iOS companion tracker app name: "Digest" (decided, not applied, see roadmap.md "Someday / Explore" for status, blocked on a backend decision).
+## Listen (2026-09-05)
+`bookrank_summaries.listen` jsonb = `{ for: <updated_at>, chapters: { "<i>": [{host, line}] }, pos: {ch, line} }`. `for` must equal the row's `updated_at` or the scripts and position are discarded (content changed). Web (`library.html` read-aloud section) and iOS (`Speaker.swift`) read and write the same shape; KMP has no auth, so no listen there. Scripts come from `functions/api/narrate.js` (Workers AI llama-3.3-70b, signed-in only), one chapter per call, cached on the row. Thumbnails match summary title to `books.json` cover, case-insensitive; `build.py` now exports `cover` to the iOS JSON.
 
 ## iOS app icon, regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh`, it renders the SVG natively at each size, flattens rounded corners onto the bg color, and asserts the expected pixel size/no-alpha.

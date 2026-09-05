@@ -26,7 +26,7 @@ final class DataStore {
         do {
             summaryIndex = try await supabase
                 .from("bookrank_summaries")
-                .select("slug,title,content")
+                .select("id,slug,title,content,updated_at,listen")
                 .order("title")
                 .execute()
                 .value
@@ -40,6 +40,18 @@ final class DataStore {
     func clearSummaries() {
         summaryIndex = []
         summaryError = nil
+    }
+
+    func cover(for title: String) -> String? { books.first { $0.title.caseInsensitiveCompare(title) == .orderedSame }?.cover }
+
+    func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
+
+    /// Persist listen progress + scripts on the row (same shape the web writes).
+    func saveListen(_ state: ListenState, for slug: String) async {
+        guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }
+        summaryIndex[i].listen = state
+        struct Patch: Encodable { let listen: ListenState }
+        _ = try? await supabase.from("bookrank_summaries").update(Patch(listen: state)).eq("id", value: id).execute()
     }
 
     func summaryMarkdown(for slug: String) -> String {

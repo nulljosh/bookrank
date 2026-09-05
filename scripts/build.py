@@ -167,6 +167,7 @@ def write_ios(books):
         "rating": b.get("rating"),
         "reviewCount": b.get("reviewCount"),
         "badges": b.get("badges", []),
+        "cover": b.get("cover"),
         "notes": b["notes"],
     } for b in by(books, "ranked")]
     picks = [{"title": b["title"], "blurb": b["blurb"]} for b in by(books, "pick")]

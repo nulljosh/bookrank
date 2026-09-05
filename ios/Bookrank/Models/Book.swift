@@ -12,6 +12,7 @@ struct Book: Codable, Identifiable {
     let reviewCount: String?
     let badges: [String]
     let notes: String
+    let cover: String?
 }
 
 struct LibraryLoan: Codable, Identifiable {
@@ -38,7 +39,21 @@ struct TopPick: Codable, Identifiable {
 /// copy would just be another thing to drift.
 struct SummaryEntry: Codable, Identifiable {
     var id: String { slug }
+    let rowID: String?          // Supabase uuid; nil for bundled entries
     let slug: String
     let title: String
     let content: String
+    let updatedAt: String?
+    var listen: ListenState?
+
+    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen }
+}
+
+/// Mirrors the web's `listen` jsonb: generated scripts per chapter plus the resume point.
+struct ListenState: Codable {
+    struct Line: Codable { let host: String; let line: String }
+    struct Pos: Codable { var ch: Int; var line: Int }
+    var `for`: String
+    var chapters: [String: [Line]]
+    var pos: Pos
 }
