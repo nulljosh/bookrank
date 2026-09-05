@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 
 const src = readFileSync(new URL('../library.html', import.meta.url), 'utf8');
-assert.match(src, /part\.slice\(i, i \+ 200\)/, 'chunker missing from library.html');
+assert.match(src, /p\.slice\(i, i \+ 200\)/, 'chunker missing from library.html');
 
 const chunk = t => {
   const out = [];
