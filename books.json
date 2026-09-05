@@ -1559,5 +1559,13 @@
     "title": "Adult Children of Emotionally Immature Parents",
     "blurb": "New entry, instant essential (4.33, 110k ratings)",
     "cover": "https://covers.openlibrary.org/b/id/11301956-M.jpg"
+  },
+  {
+    "title": "Adult Autism Essentials",
+    "author": "Jason Jones",
+    "cover": null,
+    "linked": true,
+    "badge": true,
+    "section": "summary"
   }
 ]
