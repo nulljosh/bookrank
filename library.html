@@ -33,6 +33,9 @@ ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
 .hide { display:none; }
+#toc { display:flex; flex-wrap:wrap; gap:0.4rem 0.9rem; margin:0.75rem 0 0.25rem; padding:0; list-style:none; font-size:0.875rem; }
+#toc a { color:var(--text2); text-decoration:none; } #toc a:hover, #toc a.on { color:var(--text); text-decoration:underline; }
+#preview h2 { scroll-margin-top: 1rem; cursor:pointer; }
 #preview h1, #preview h2, #preview h3 { font-family:var(--font-display); margin:1.75rem 0 0.6rem; line-height:1.25; }
 #preview h1 { font-size:1.5rem; } #preview h2 { font-size:1.2rem; } #preview h3 { font-size:1rem; }
 #preview p, #preview ul, #preview ol { margin-bottom:1rem; color:var(--text2); }
@@ -142,6 +145,7 @@ dl.profile dt { color:var(--text3); }
       <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
     </div>
     <textarea id="body" placeholder="Chapter summaries, in markdown…"></textarea>
+    <ul id="toc" class="hide"></ul>
     <div id="preview" class="hide"></div>
     <p class="msg" id="editMsg"></p>
   </section>
@@ -186,7 +190,7 @@ document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
 $('signout').onclick = $('signout2').onclick = () => db.auth.signOut();
 
 db.auth.onAuthStateChange((_e, session) => {
-  if (session) { $('who').textContent = session.user.email; show('listView'); load(); }
+  if (session) { $('who').textContent = session.user.email; show('listView'); load(); if (location.hash.length > 1) open(location.hash.slice(1)); }
   else { show('gate'); }
 });
 
@@ -367,6 +371,7 @@ async function play(fromLine = player.line) {
   player.line = Math.min(fromLine, script.length - 1);
   player.playing = true;
   $('speak').textContent = 'Pause';
+  markToc(player.ch);
   if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: chs[player.ch].title, artist: $('title').value });
   const token = play.token = Symbol();
   // ponytail: chunked at sentence bounds — Chrome silently truncates long utterances.
@@ -470,25 +475,42 @@ async function open(id) {
   $('title').value = data.title;
   $('body').value = data.content;
   restoreProgress();
-  showEditor();
+  showEditor(true);
+  if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
   return data;
 }
-function showEditor() {
+// ponytail: #<row id> is the route. Back/forward and reloads land on the same summary.
+addEventListener('popstate', () => { const id = location.hash.slice(1); if (id && current?.id !== id) open(id); else if (!id && !$('editView').classList.contains('hide')) { stopSpeaking(); show('listView'); load(); } });
+function showEditor(reading = false) {
   $('editMsg').textContent = '';
-  $('preview').classList.add('hide');
-  $('body').classList.remove('hide');
-  $('toggle').textContent = 'Preview';
   $('del').classList.toggle('hide', !current);
   show('editView');
+  render(reading);
 }
+// Reading view = rendered markdown + chapter list; clicking a chapter scrolls to it and
+// points the player at it, so Play starts there.
+function render(reading) {
+  $('preview').classList.toggle('hide', !reading);
+  $('toc').classList.toggle('hide', !reading);
+  $('body').classList.toggle('hide', reading);
+  $('toggle').textContent = reading ? 'Edit' : 'Preview';
+  if (!reading) return;
+  $('preview').innerHTML = marked.parse($('body').value);
+  $('toc').innerHTML = '';
+  const hs = [...$('preview').querySelectorAll('h2')];
+  hs.forEach((h, i) => {
+    h.id = 'ch' + i;
+    const go = e => { e.preventDefault(); $('chapter').value = i; player.line = 0; h.scrollIntoView({ behavior: 'smooth', block: 'start' }); markToc(i); if (player.playing) play(0); };
+    h.onclick = go;
+    const a = Object.assign(document.createElement('a'), { href: '#ch' + i, textContent: h.textContent, onclick: go });
+    $('toc').append(Object.assign(document.createElement('li'), {})).append(a);
+  });
+  markToc(+$('chapter').value || 0);
+}
+function markToc(i) { [...$('toc').querySelectorAll('a')].forEach((a, k) => a.classList.toggle('on', k === i)); }
 $('new').onclick = () => { stopSpeaking(); current = null; $('title').value = ''; $('body').value = ''; fillChapters(); showEditor(); };
-$('close').onclick = () => { show('listView'); load(); };
-$('toggle').onclick = () => {
-  const previewing = $('preview').classList.toggle('hide');
-  $('body').classList.toggle('hide', !previewing);
-  $('toggle').textContent = previewing ? 'Preview' : 'Edit';
-  if (!previewing) $('preview').innerHTML = marked.parse($('body').value);
-};
+$('close').onclick = () => { if (location.hash) history.pushState(null, '', location.pathname); show('listView'); load(); };
+$('toggle').onclick = () => render($('preview').classList.contains('hide'));
 // Saves whatever is in the editor. Editor-only -- tools never call this.
 async function saveCurrent() {
   const title = $('title').value.trim();
