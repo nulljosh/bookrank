@@ -1,3 +1,7 @@
+## Shipped 2026-09-05, Listen feature: Workers AI narration, pause/resume across devices
+
+Built a "Listen" feature that converts chapter summaries into two-host audio conversations explaining the ideas (NotebookLM-style audio overviews). Cloudflare Pages Function (functions/api/narrate.js) handles AI conversation generation. Web, iOS, and macOS all have play, pause, resume, chapter navigation, and chapter menu. Scripts and resume points save to Supabase's new `listen` JSONB column so every device continues where the last one left off. Summary list rows show book covers with a "Resume · Ch N" tag; web adds lock-screen controls and live captions of the spoken line. Updated README and CLAUDE.md. Deployed to bookrank.heyitsmejosh.com. Not end-to-end verified with real signed-in narration.
+
 ## Shipped 2026-09-02, read-aloud across both platforms
 
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
