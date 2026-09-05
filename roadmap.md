@@ -405,3 +405,6 @@ bookrank.heyitsmejosh.com repointed, GitHub Pages and its workflow removed. Depl
 
 The API is the public shelf only. Summaries stay in `library.html` against Supabase, where
 RLS can see who is asking, do not move them behind a Function that cannot.
+
+## TUI pilot (2026-09-05)
+- `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
