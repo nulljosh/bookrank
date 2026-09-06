@@ -27,6 +27,7 @@ ul.list { list-style:none; }
 ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
 ul.list a { flex:1; min-width:0; display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
 ul.list img.thumb, ul.list .thumb-empty { width:2.25rem; height:3.25rem; object-fit:cover; border-radius:3px; background:var(--border2); flex:none; }
+ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
 ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color: var(--link, var(--accent)); }
@@ -158,7 +159,7 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { mount, matchCover, shareUrl } from './listen.js';
+import { mount, matchCover, shareUrl, coverCandidates } from './listen.js';
 
 const db = createClient(
   'https://tjsxsqlxjmanwvmywwvw.supabase.co',
@@ -310,25 +311,38 @@ function mountListen() {
 }
 
 // ---- thumbnails ----
-// books.json cover by fuzzy title, else the row's saved cover, else one Open Library
-// search whose answer is written back to the row so every device (and the iOS app) has it.
+// Order: the row's saved cover, books.json by fuzzy title, then Open Library: a title
+// search, then a general search, each yielding work/ISBN/edition image candidates that are
+// probed by actually loading them. The first hit is written to the row's `cover` column so
+// it is found once, for every device and the apps. A miss is retried next visit, never cached.
 const books = fetch('books.json').then(r => r.json()).catch(() => []);
+const loads = url => new Promise(res => { const i = new Image(); i.onload = () => res(url); i.onerror = () => res(null); i.src = url; });
+async function firstLoadable(urls) { for (const u of urls) if (await loads(u)) return u; return null; }
+async function olCandidates(title) {
+  const out = [];
+  for (const param of ['title', 'q']) {
+    try {
+      const r = await fetch(`https://openlibrary.org/search.json?${param}=${encodeURIComponent(title)}&limit=2&fields=cover_i,isbn,edition_key`);
+      for (const d of (await r.json()).docs || []) out.push(...coverCandidates(d));
+    } catch {}
+  }
+  // Last resort: Google Books. Its unauthenticated quota is per client, so the browser
+  // usually has it even when a server would not.
+  try {
+    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(title)}&maxResults=3&fields=items(volumeInfo(imageLinks))`);
+    for (const it of (await r.json()).items || []) { const t = it.volumeInfo?.imageLinks?.thumbnail; if (t) out.push(t.replace(/^http:/, 'https:')); }
+  } catch {}
+  return [...new Set(out)];
+}
+async function resolveCover(row) {
+  if (row.cover) return row.cover;
+  const u = matchCover(row.title, await books) || await firstLoadable(await olCandidates(row.title));
+  if (u) { row.cover = u; db.from(TABLE).update({ cover: u }).eq('id', row.id).then(() => {}); }
+  return u;
+}
 function thumb(row) {
   const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
-  const set = u => { if (u) img.src = u; else img.className = 'thumb-empty'; };
-  if (row.cover) { set(row.cover); return img; }
-  books.then(async b => {
-    let u = matchCover(row.title, b);
-    if (!u) {
-      try {
-        const r = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(row.title)}&limit=1&fields=cover_i`);
-        const id = (await r.json()).docs?.[0]?.cover_i;
-        if (id) u = `https://covers.openlibrary.org/b/id/${id}-M.jpg`;
-      } catch {}
-    }
-    set(u);
-    if (u) { row.cover = u; db.from(TABLE).update({ cover: u }).eq('id', row.id).then(() => {}); }
-  });
+  resolveCover(row).then(u => { if (u) img.src = u; else img.className = 'thumb-empty'; });
   return img;
 }
 
@@ -380,7 +394,14 @@ async function load() {
   if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
   $('listMsg').textContent = data.length ? '' : 'No summaries yet.';
-  for (const row of data) {
+  // Rows with a live resume point come first under "Currently playing"; the untouched
+  // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
+  const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
+  const groups = [['Currently playing', data.filter(started)], [data.some(started) ? 'Library' : '', data.filter(r => !started(r))]];
+  for (const [label, rows] of groups) {
+    if (!rows.length) continue;
+    if (label) $('list').append(Object.assign(document.createElement('li'), { className: 'group', textContent: label }));
+    for (const row of rows) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = '#';
@@ -395,6 +416,7 @@ async function load() {
     listenBtn.onclick = async () => { if (await open(row.id)) listen.player.play(); };
     li.append(thumb(row), a, listenBtn);
     $('list').append(li);
+    }
   }
   return data;
 }

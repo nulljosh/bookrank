@@ -150,8 +150,12 @@ struct LibraryView: View {
                     Text("No summaries on this account yet.")
                         .font(.caption).foregroundStyle(.secondary)
                 }
+                let started = { (e: SummaryEntry) in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
+                let groups = [("Currently playing", store.summaryIndex.filter(started)), ("Library", store.summaryIndex.filter { !started($0) })]
+                ForEach(groups.filter { !$0.1.isEmpty }, id: \.0) { label, rows in
+                if groups[0].1.count > 0 { Text(label).font(.caption2).textCase(.uppercase).foregroundStyle(.tertiary).padding(.top, 8) }
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(store.summaryIndex) { entry in
+                    ForEach(rows) { entry in
                         NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
                             HStack(alignment: .center, spacing: 14) {
                                 Thumb(url: store.cover(for: entry))
@@ -167,8 +171,9 @@ struct LibraryView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .buttonStyle(.plain)
-                        if entry.id != store.summaryIndex.last?.id { Divider() }
+                        if entry.id != rows.last?.id { Divider() }
                     }
+                }
                 }
             }
         }

@@ -78,6 +78,18 @@ export function matchCover(title, books) {
   return pick(n => n === t) || pick(n => n.startsWith(t) || t.startsWith(n)) || pick(n => n.includes(t) || t.includes(n));
 }
 
+// Candidate cover URLs from one Open Library search doc: the work cover, then each ISBN
+// and edition, which often carry a cover the work does not. `default=false` makes a miss a
+// 404 the browser can detect instead of a placeholder image.
+export function coverCandidates(doc) {
+  if (!doc) return [];
+  const out = [];
+  if (doc.cover_i) out.push(`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`);
+  for (const i of (doc.isbn || []).slice(0, 4)) out.push(`https://covers.openlibrary.org/b/isbn/${i}-M.jpg?default=false`);
+  for (const k of (doc.edition_key || []).slice(0, 3)) out.push(`https://covers.openlibrary.org/b/olid/${k}-M.jpg?default=false`);
+  return out;
+}
+
 // 0..1 across the whole book. Chapters are weighted equally because unfetched ones have
 // no line count yet.
 export function progress(ch, line, len, count) {

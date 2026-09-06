@@ -3,7 +3,7 @@
 // loading) fail here before they reach a browser.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { chapters, blocks, chunk, pickVoices, voicePair, matchCover, progress, createPlayer, shareUrl } from './listen.js';
+import { coverCandidates, chapters, blocks, chunk, pickVoices, voicePair, matchCover, progress, createPlayer, shareUrl } from './listen.js';
 
 const MD = '# Book\n\n## One\n\nFirst para.\nstill first.\n\n- a\n- b\n\n## Two\n\nSecond.';
 
@@ -137,4 +137,13 @@ test('empty script ends cleanly', async () => {
   await p.play(0, 0);
   assert.deepEqual(done, ['empty']);
   assert.equal(synth.spoken.length, 0);
+});
+
+test('coverCandidates: work cover, then isbn, then edition, none when empty', () => {
+  const c = coverCandidates({ cover_i: 5, isbn: ['1', '2'], edition_key: ['OL1M'] });
+  assert.deepEqual(c, ['https://covers.openlibrary.org/b/id/5-M.jpg',
+    'https://covers.openlibrary.org/b/isbn/1-M.jpg?default=false', 'https://covers.openlibrary.org/b/isbn/2-M.jpg?default=false',
+    'https://covers.openlibrary.org/b/olid/OL1M-M.jpg?default=false']);
+  assert.deepEqual(coverCandidates(null), []);
+  assert.deepEqual(coverCandidates({}), []);
 });

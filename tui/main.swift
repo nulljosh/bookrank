@@ -12,10 +12,35 @@ struct SearchResult: Decodable, Identifiable {
 }
 struct SearchResponse: Decodable { let query: String; let total: Int; let results: [SearchResult] }
 
-let args = CommandLine.arguments.dropFirst()
+let args = Array(CommandLine.arguments.dropFirst())
 guard let query = args.first else {
-    print("usage: bookrank-tui <search query>")
+    print("usage: bookrank-tui <search query> | bookrank-tui share <link or token>")
     exit(1)
+}
+
+// `share <link>`: print a shared summary's chapters. Reads the same public RPC share.html
+// uses; a token is the whole credential, no account.
+struct Shared: Decodable { let title: String; let content: String }
+func shared(_ link: String) async -> Shared? {
+    var token = link
+    if let r = link.range(of: "t=") { token = String(link[r.upperBound...]).components(separatedBy: "&")[0] }
+    var req = URLRequest(url: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co/rest/v1/rpc/shared_summary")!)
+    req.httpMethod = "POST"
+    req.setValue("sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90", forHTTPHeaderField: "apikey")
+    req.setValue("application/json", forHTTPHeaderField: "content-type")
+    req.httpBody = try? JSONSerialization.data(withJSONObject: ["t": token])
+    guard let (data, _) = try? await URLSession.shared.data(for: req) else { return nil }
+    return (try? JSONDecoder().decode([Shared].self, from: data))?.first
+}
+if query == "share" {
+    guard args.count > 1 else { print("usage: bookrank-tui share <link or token>"); exit(1) }
+    let sem = DispatchSemaphore(value: 0)
+    var out: Shared?
+    Task { out = await shared(args[1]); sem.signal() }
+    sem.wait()
+    guard let out else { print("That link is not active."); exit(1) }
+    print(out.title); print(String(repeating: "=", count: out.title.count)); print(out.content)
+    exit(0)
 }
 
 func search(_ q: String) async -> SearchResponse? {

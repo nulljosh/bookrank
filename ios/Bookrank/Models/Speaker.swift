@@ -89,15 +89,15 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     // ponytail: same block rule as listen.js blocks(): paragraphs join, list items and
     // headings stand alone, rules drop. `line` is spoken, `md` is rendered.
     static func blocks(_ md: String) -> [ListenState.Line] {
-        var out: [(md: String)] = []
+        var out: [String] = []
         var open = false
         for raw in md.components(separatedBy: "\n") {
             let t = raw.trimmingCharacters(in: .whitespaces)
             if t.isEmpty || t.allSatisfy({ $0 == "-" }) { open = false; continue }
             let special = t.hasPrefix("- ") || t.hasPrefix("* ") || t.hasPrefix("#") || t.range(of: "^\\d+\\. ", options: .regularExpression) != nil
-            if special || !open { out.append((md: t)); open = !special } else { out[out.count - 1].md += " " + t }
+            if special || !open { out.append(t); open = !special } else { out[out.count - 1] += " " + t }
         }
-        return out.map { .init(host: "A", line: plain($0.md), md: $0.md) }
+        return out.map { .init(host: "A", line: plain($0), md: $0) }
     }
     static func plain(_ md: String) -> String {
         md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "", options: .regularExpression)

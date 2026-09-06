@@ -6,7 +6,7 @@
 
 Rank the books you've read, keep private chapter notes on the ones that mattered. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
-**Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"` — see [tui/](tui/)
+**Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"`, or `bookrank-tui share <link>` to read a shared summary. See [tui/](tui/). The KMP app (`kmp/`, Android and desktop) opens share links too.
 
 ![landing page](screenshots/landing.jpg)
 
@@ -16,10 +16,19 @@ Rank the books you've read, keep private chapter notes on the ones that mattered
 - `rankings.html`: the shelf. 111 ranked books with search, stars and sort, built from `books.json` by `scripts/build.py`.
 - `library.html`: your account. Sign up with email, keep chapter summaries that only you can read, delete the account and everything with it in one step.
 
+- `book_rankings.md`: the shelf as plain markdown, generated from the same source.
+
 ## Listen
 
-Every summary can be played, not just read. "Explain it" turns each chapter into a short two-host conversation (Workers AI, `functions/api/narrate.js`) that explains the ideas and why they matter, the way a podcast overview would; "Read the notes" speaks the markdown as written. Voices are the device's own. Pause and resume, skip chapters, or jump to any chapter from the menu. Where you stopped, and the generated scripts, are saved on your account, so the web, iPhone and Mac all pick up at the same line. Summaries in the list show the book's cover.
-- `book_rankings.md`: the shelf as plain markdown, generated from the same source.
+Every summary can be played, not just read. "Explain it" turns each chapter into a short two-host conversation (Workers AI, `functions/api/narrate.js`) that explains the ideas and why they matter; "Read the notes" speaks the markdown as written. Voices are the device's own, a short list in your language.
+
+The transcript follows the voice: the current line is highlighted, the current word marked, and the page scrolls with it. Chapters sit in a sidebar. A progress bar runs across the top of the window. The next chapter is prepared while the current one plays, so there is no gap at the boundary. Pause always works, even while a chapter is loading. Where you stopped, and the generated scripts, are saved on your account, so the web, iPhone and Mac all pick up at the same line. Summaries you have started sit under "Currently playing" at the top of the list.
+
+## Share
+
+Any summary can be shared with a private link (`share.html?t=…`). The link opens the text and the audio for that one summary, and nothing else: no position, no account, no list. Stop sharing and the link dies. Covers for the list are matched to `books.json`, then looked up on Open Library and saved to the row.
+
+Tests: `node --test` (`listen.test.js`, `narrate.test.js`, `books.test.js`).
 
 ![rankings](screenshots/rankings.jpg)
 
@@ -35,7 +44,7 @@ python3 scripts/fetch-covers.py --retry-misses  # re-query cached misses
 
 ## iOS and macOS apps
 
-`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. Same shelf, same account, same private summaries as the web. It is, generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
+`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. Same shelf, same account, same private summaries, same Listen and Share as the web. Generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
 
 <img src="ios/screenshots/library.jpg" width="240">
 

@@ -32,7 +32,13 @@ To expose a finished book's summary on the site:
 3. Add a `<a href="summary.html?b=<slug>" class="badge">Summary</a>` link next to the matching book entry in `rankings.html`. `summary.html` renders `summaries/<slug>.md` client-side via `marked`.
 
 ## Listen (2026-09-05)
-`bookrank_summaries.listen` jsonb = `{ for: <updated_at>, chapters: { "<i>": [{host, line}] }, pos: {ch, line} }`. `for` must equal the row's `updated_at` or the scripts and position are discarded (content changed). Web (`library.html` read-aloud section) and iOS (`Speaker.swift`) read and write the same shape; KMP has no auth, so no listen there. Scripts come from `functions/api/narrate.js` (Workers AI llama-3.3-70b, signed-in only), one chapter per call, cached on the row. Thumbnails match summary title to `books.json` cover, case-insensitive; `build.py` now exports `cover` to the iOS JSON.
+`bookrank_summaries.listen` jsonb = `{ for: <updated_at>, chapters: { "<i>": [{host, line}] }, pos: {ch, line} }`. `for` must equal the row's `updated_at` (PostgREST ISO form, `to_jsonb(updated_at) #>> '{}'` in SQL) or the scripts and position are discarded. The player is `listen.js` (shared by `library.html` and `share.html`; `listen.test.js` drives it with a fake synth). One utterance in flight at a time, chained; the next chapter's script is prefetched. Chapters = the coarsest heading level yielding two or more, `#` before `##`; `Speaker.swift` / `parseChapters` and the KMP `chapters()` follow the same rule. `functions/api/narrate.js` takes `ch`/`total` so only chapter 1 opens and only the last closes (the repeated-intro bug).
+
+**Auth listener rule:** `onAuthStateChange` fires on every tab focus and hourly refresh. `library.html` only reacts when the signed-in state actually flips; reacting to every event rebuilt the list and killed playback.
+
+**Share:** `share_token` column + `shared_summary(t)` / `cache_shared_script(t, ch, script)` security-definer RPCs (`supabase/migrations/20260905_share_listen.sql`). The RPC returns title/content/cover/scripts only. `/api/narrate` accepts `token` in place of a session and caches the result on the row.
+
+**Covers:** row `cover` column, filled by the web on first sight: `books.json` fuzzy match, then Open Library title/general search probed through work/ISBN/edition image URLs (`coverCandidates`). Misses are never cached.
 
 ## iOS app icon, regeneration rule (2026-07-12)
 The recurring TestFlight icon glitch (art rendered small/top-left with white fill) came from hand-exporting `icon.svg` (intrinsic 200×200, rounded corners) into the 1024 slot. Never export by hand: run `scripts/make-appicon.sh`, it renders the SVG natively at each size, flattens rounded corners onto the bg color, and asserts the expected pixel size/no-alpha.
