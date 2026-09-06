@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Profile — Bookrank</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+@font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'Geist'; src:url('fonts/Geist-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Geist'; src:url('fonts/Geist-SemiBold.woff2') format('woff2'); font-weight:600; font-display:swap; }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:var(--font-body); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:820px; margin:0 auto; padding:clamp(2rem,6vw,4rem) 1.5rem 6rem; }
+h1 { font-family:var(--font-display); font-size:1.75rem; letter-spacing:-0.02em; margin-bottom:0.25rem; }
+.sub { color:var(--text3); font-size:0.875rem; margin-bottom:2rem; }
+.bar { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+button, .btn { font:inherit; font-size:0.875rem; padding:0.5rem 0.9rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); cursor:pointer; text-decoration:none; }
+button.primary { background:var(--accent); border-color: var(--link, var(--accent)); color:var(--bg); font-weight:500; }
+button:disabled { opacity:0.5; cursor:default; }
+input, textarea { font:inherit; width:100%; padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); }
+textarea { min-height:60vh; resize:vertical; line-height:1.6; }
+form.auth { display:grid; gap:0.75rem; max-width:340px; }
+.row { display:flex; gap:0.5rem; }
+ul.list { list-style:none; }
+ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
+ul.list a { flex:1; min-width:0; display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
+ul.list img.thumb, ul.list .thumb-empty { width:2.25rem; height:3.25rem; object-fit:cover; border-radius:3px; background:var(--border2); flex:none; }
+ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
+ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
+ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
+ul.list a:hover { color: var(--link, var(--accent)); }
+ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
+.msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
+.hide { display:none; }
+a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
+a.skip { position:absolute; left:-9999px; }
+a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.9rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+/* listen view (built by listen.js) */
+.lp-bar { position:fixed; top:0; left:0; right:0; height:3px; background:transparent; z-index:5; }
+.lp-fill { height:100%; width:0; background:var(--accent); transition:width 0.4s; }
+.lp-controls { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:1.25rem; }
+.lp-controls select { font:inherit; font-size:0.8125rem; padding:0.4rem 0.5rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); max-width:11rem; }
+.lp-controls .lp-status { flex-basis:100%; }
+.lp-body { display:grid; grid-template-columns:12rem minmax(0,1fr); gap:2rem; align-items:start; }
+.lp-toc { position:sticky; top:1.5rem; max-height:calc(100vh - 3rem); overflow:auto; font-size:0.8125rem; }
+.lp-toc ol { list-style:none; counter-reset:ch; }
+.lp-toc li { counter-increment:ch; }
+.lp-toc a { display:block; padding:0.35rem 0.5rem; border-radius:var(--radius-sm); color:var(--text2); text-decoration:none; }
+.lp-toc a::before { content:counter(ch) "  "; color:var(--text3); }
+.lp-toc a:hover { color:var(--text); background:var(--bg2); }
+.lp-toc a.on { color:var(--text); background:var(--bg2); font-weight:500; }
+.lp-text > div { margin-bottom:0.9rem; padding:0.3rem 0.6rem; margin-left:-0.6rem; margin-right:-0.6rem; border-radius:var(--radius-sm); color:var(--text2); cursor:pointer; scroll-margin:40vh; }
+.lp-text > div b { color:var(--text3); font-weight:500; margin-right:0.25rem; }
+.lp-text > div.on { background:var(--bg2); color:var(--text); }
+.lp-text mark { background:var(--accent); color:var(--bg); border-radius:2px; padding:0 0.1em; }
+.lp-text > div > :last-child, .lp-text > div > ul, .lp-text > div > ol { margin:0; }
+.lp-text > div ul, .lp-text > div ol { padding-left:1.2rem; }
+.lp-text > div h1, .lp-text > div h2, .lp-text > div h3 { font-family:var(--font-display); font-size:1.05rem; color:var(--text); }
+.lp-text .lp-loading { color:var(--text3); cursor:default; }
+@media (max-width:700px) { .lp-body { grid-template-columns:1fr; } .lp-toc { position:static; max-height:none; } .lp-toc ol { display:flex; flex-wrap:wrap; gap:0.25rem; } }
+.avatar { width:72px; height:72px; border-radius:50%; overflow:hidden; border:1px solid var(--border); background:var(--bg2); cursor:pointer; display:grid; place-items:center; font-size:1.5rem; color:var(--text3); flex:none; }
+.avatar img { width:100%; height:100%; display:block; }
+.head { display:flex; gap:1.25rem; align-items:center; margin-bottom:2rem; }
+.head input { max-width:16rem; }
+dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
+dl.profile dt { color:var(--text3); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main class="wrap" id="main">
+  <a class="back" href="library.html">&larr; My summaries</a>
+  <section id="profileView" class="hide">
+    <div class="head">
+      <div class="avatar" id="avatar" role="button" tabindex="0" title="Click to generate a new avatar" aria-label="Generate a new avatar"></div>
+      <div>
+        <h1 id="pName"></h1>
+        <p class="sub" id="pHandle" style="margin-bottom:0.5rem"></p>
+        <p class="msg" id="avatarMsg">Click the avatar to generate a new one.</p>
+      </div>
+    </div>
+    <dl class="profile">
+      <dt>Username</dt><dd><input id="username" maxlength="32" autocomplete="username" aria-label="Username"></dd>
+      <dt>Email</dt><dd id="pEmail"></dd>
+      <dt>Signed in with</dt><dd id="pProvider"></dd>
+      <dt>Member since</dt><dd id="pSince"></dd>
+      <dt>Summaries</dt><dd id="pCount"></dd>
+      <dt>Reading voice</dt><dd id="pVoice"></dd>
+    </dl>
+    <h2 style="font-family:var(--font-display);font-size:1rem;margin:0.5rem 0 0.6rem">Credentials</h2>
+    <form class="auth" id="credForm">
+      <input type="email" id="newEmail" placeholder="New email" autocomplete="email">
+      <input type="password" id="newPassword" placeholder="New password (8+ characters)" autocomplete="new-password" minlength="8">
+      <div class="row">
+        <button type="submit" class="primary">Update</button>
+        <button type="button" id="pReset">Email me a reset link</button>
+        <button type="button" id="signout">Sign out</button>
+      </div>
+    </form>
+    <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
+    <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Delete account</h2>
+    <p class="sub" style="margin-bottom:0.9rem">Deletes your account and every summary in it, immediately and permanently. There is no undo and no export.</p>
+    <form class="auth" id="deleteForm">
+      <input type="text" id="deleteConfirm" placeholder="Type DELETE to confirm" autocomplete="off" aria-label="Type DELETE to confirm">
+      <div class="row"><button type="submit" id="pDelete" disabled>Delete my account</button></div>
+    </form>
+    <p class="msg" id="profileMsg"></p>
+  </section>
+  <p class="msg" id="gateMsg"></p>
+</main>
+<script type="module">
+// Your profile at /profile.html?u=<username>. Username and avatar live in Supabase auth
+// user_metadata: no extra table, and the same fields the iOS app can read.
+// ponytail: own profile only. Viewing someone else's needs a public profiles table; add it
+// when a second person asks.
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const db = createClient('https://tjsxsqlxjmanwvmywwvw.supabase.co', 'sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90');
+const TABLE = 'bookrank_summaries';
+const $ = id => document.getElementById(id);
+// No username field at sign-up, so the email's local part is the default handle.
+export const handleFor = user => (user.user_metadata?.username || user.email.split('@')[0]).toLowerCase().replace(/[^a-z0-9._-]/g, '');
+
+// Pixel-art identicon, same shape as sparkjar/epiphany. House palette: no purple, no teal.
+export function avatarSVG(rand = Math.random) {
+  const palettes = [['#e63946','#f1a7ad','#ffffff'], ['#1d3557','#457b9d','#a8dadc'], ['#d62828','#f77f00','#fcbf49'], ['#2d6a4f','#52b788','#b7e4c7'], ['#222222','#777777','#dddddd']];
+  const palette = palettes[Math.floor(rand() * palettes.length)];
+  const bg = ['#111','#1a1a1a','#0f0f1a','#0a1a0a', '#f4f1ea'][Math.floor(rand() * 5)];
+  const px = 8, size = 8, total = size * px;
+  const grid = Array.from({ length: size }, () => Array.from({ length: size / 2 }, () => rand() > 0.45 ? Math.floor(rand() * 3) : -1));
+  let rects = '';
+  for (let row = 0; row < size; row++) for (let col = 0; col < size; col++) {
+    const ci = grid[row][col < size / 2 ? col : size - 1 - col];
+    if (ci >= 0) rects += `<rect x="${col * px}" y="${row * px}" width="${px}" height="${px}" fill="${palette[ci]}"/>`;
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="crispEdges"><rect width="${total}" height="${total}" fill="${bg}"/>${rects}</svg>`;
+}
+const showAvatar = (user) => {
+  const svg = user.user_metadata?.avatar;
+  $('avatar').innerHTML = svg ? `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">` : `<span>${(user.email[0] || '?').toUpperCase()}</span>`;
+};
+
+const { data: { user } } = await db.auth.getUser();
+if (!user) { $('gateMsg').innerHTML = 'Sign in on <a href="library.html">My summaries</a> to see your profile.'; }
+else {
+  const handle = handleFor(user);
+  if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
+  document.title = `${handle} — Bookrank`;
+  $('pName').textContent = handle; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${handle}`;
+  $('username').value = handle;
+  $('pEmail').textContent = user.email;
+  $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
+  $('pSince').textContent = new Date(user.created_at).toLocaleDateString();
+  $('pVoice').textContent = localStorage.getItem('bookrank.voice') || 'Device default';
+  showAvatar(user);
+  db.from(TABLE).select('id', { count: 'exact', head: true }).then(({ count }) => { $('pCount').textContent = count ?? '\u2014'; });
+  $('profileView').classList.remove('hide');
+
+  const gen = async () => {
+    $('avatarMsg').textContent = 'Generating…';
+    const { data, error } = await db.auth.updateUser({ data: { avatar: avatarSVG() } });
+    if (error) { $('avatarMsg').textContent = error.message; return; }
+    showAvatar(data.user); $('avatarMsg').textContent = 'New avatar saved.';
+  };
+  $('avatar').onclick = gen;
+  $('avatar').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); gen(); } };
+  $('username').onchange = async () => {
+    const u = $('username').value.toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, 32);
+    if (!u) { $('username').value = handle; return; }
+    const { data, error } = await db.auth.updateUser({ data: { username: u } });
+    if (error) { $('profileMsg').textContent = error.message; return; }
+    const h = handleFor(data.user);
+    $('pName').textContent = h; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${h}`; $('username').value = h;
+    history.replaceState(null, '', `?u=${h}`); document.title = `${h} — Bookrank`;
+    $('profileMsg').textContent = 'Username saved.';
+  };
+  // Email change sends a confirmation to both addresses (Supabase default); password
+  // applies at once. Both go through the same updateUser call.
+  $('credForm').onsubmit = async e => {
+    e.preventDefault();
+    const email = $('newEmail').value.trim(), password = $('newPassword').value;
+    if (!email && !password) { $('profileMsg').textContent = 'Enter a new email or password.'; return; }
+    const patch = {}; if (email) patch.email = email; if (password) patch.password = password;
+    const { error } = await db.auth.updateUser(patch);
+    if (error) { $('profileMsg').textContent = error.message; return; }
+    $('profileMsg').textContent = [email && `Confirmation sent to ${email}; the change applies once you click it.`, password && 'Password updated.'].filter(Boolean).join(' ');
+    $('newEmail').value = ''; $('newPassword').value = '';
+  };
+  $('signout').onclick = async () => { await db.auth.signOut(); location.href = 'library.html'; };
+  $('pReset').onclick = async () => {
+    const { error } = await db.auth.resetPasswordForEmail(user.email, { redirectTo: location.origin + '/library.html' });
+    $('profileMsg').textContent = error ? error.message : 'Reset link sent to ' + user.email + '.';
+  };
+  // Deletion is irreversible and cascades to every summary, so it needs a typed confirmation.
+  $('deleteConfirm').oninput = e => { $('pDelete').disabled = e.target.value.trim() !== 'DELETE'; };
+  $('deleteForm').onsubmit = async e => {
+    e.preventDefault();
+    $('pDelete').disabled = true; $('profileMsg').textContent = 'Deleting\u2026';
+    // The shared delete-account Edge Function: the anon client cannot delete its own auth user.
+    const { error } = await db.functions.invoke('delete-account', { method: 'POST' });
+    if (error) { $('profileMsg').textContent = error.message + ' \u2014 your account was not deleted.'; $('pDelete').disabled = false; return; }
+    await db.auth.signOut(); location.href = 'library.html';
+  };
+}
+</script>
+</body>
+</html>

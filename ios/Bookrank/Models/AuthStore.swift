@@ -80,6 +80,18 @@ final class AuthStore {
         user = nil
     }
 
+    /// Username shown on the profile: saved one, else the email's local part (same rule as profile.html).
+    var handle: String {
+        let raw = user?.userMetadata["username"]?.stringValue ?? user?.email?.components(separatedBy: "@").first ?? ""
+        return raw.lowercased().filter { $0.isLetter || $0.isNumber || "._-".contains($0) }
+    }
+    func setMetadata(_ data: [String: AnyJSON]) async throws {
+        user = try await supabase.auth.update(user: UserAttributes(data: data))
+    }
+    func updateCredentials(email: String?, password: String?) async throws {
+        user = try await supabase.auth.update(user: UserAttributes(email: email, password: password))
+    }
+
     func resetPassword(email: String) async throws {
         try await supabase.auth.resetPasswordForEmail(email)
     }

@@ -14,7 +14,8 @@ Rank the books you've read, keep private chapter notes on the ones that mattered
 
 - `index.html`: the landing page. A wall of covers from `scripts/covers.json`.
 - `rankings.html`: the shelf. 111 ranked books with search, stars and sort, built from `books.json` by `scripts/build.py`.
-- `library.html`: your account. Sign up with email, keep chapter summaries that only you can read, delete the account and everything with it in one step.
+- `library.html`: your summaries. Sign up with email, keep chapter summaries that only you can read.
+- `profile.html?u=<username>`: your profile. Username (defaults to the email's local part), a click-to-regenerate pixel avatar, email and password changes, reset link, and account deletion with everything in it in one step. Same on iPhone and Mac.
 
 - `book_rankings.md`: the shelf as plain markdown, generated from the same source.
 
