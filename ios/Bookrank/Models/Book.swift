@@ -45,13 +45,20 @@ struct SummaryEntry: Codable, Identifiable {
     let content: String
     let updatedAt: String?
     var listen: ListenState?
+    var cover: String?
+    var shareToken: String?
 
-    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen }
+    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen, cover, shareToken = "share_token" }
 }
 
 /// Mirrors the web's `listen` jsonb: generated scripts per chapter plus the resume point.
 struct ListenState: Codable {
-    struct Line: Codable { let host: String; let line: String }
+    struct Line: Codable, Hashable {
+        let host: String; let line: String
+        var md: String? = nil   // local only: the markdown behind a "read the notes" line
+        enum CodingKeys: String, CodingKey { case host, line }
+        init(host: String, line: String, md: String? = nil) { self.host = host; self.line = line; self.md = md }
+    }
     struct Pos: Codable { var ch: Int; var line: Int }
     var `for`: String
     var chapters: [String: [Line]]

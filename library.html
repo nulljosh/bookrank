@@ -33,19 +33,33 @@ ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
 .hide { display:none; }
-#toc { display:flex; flex-wrap:wrap; gap:0.4rem 0.9rem; margin:0.75rem 0 0.25rem; padding:0; list-style:none; font-size:0.875rem; }
-#toc a { color:var(--text2); text-decoration:none; } #toc a:hover, #toc a.on { color:var(--text); text-decoration:underline; }
-#preview h2 { scroll-margin-top: 1rem; cursor:pointer; }
-#preview h1, #preview h2, #preview h3 { font-family:var(--font-display); margin:1.75rem 0 0.6rem; line-height:1.25; }
-#preview h1 { font-size:1.5rem; } #preview h2 { font-size:1.2rem; } #preview h3 { font-size:1rem; }
-#preview p, #preview ul, #preview ol { margin-bottom:1rem; color:var(--text2); }
-#preview ul, #preview ol { padding-left:1.4rem; }
 a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
 a.skip { position:absolute; left:-9999px; }
 a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.9rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
 :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-.speak { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:1rem; }
-.speak select { font:inherit; font-size:0.8125rem; padding:0.4rem 0.5rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); max-width:16rem; }
+/* listen view (built by listen.js) */
+.lp-bar { position:fixed; top:0; left:0; right:0; height:3px; background:transparent; z-index:5; }
+.lp-fill { height:100%; width:0; background:var(--accent); transition:width 0.4s; }
+.lp-controls { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:1.25rem; }
+.lp-controls select { font:inherit; font-size:0.8125rem; padding:0.4rem 0.5rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); max-width:11rem; }
+.lp-controls .lp-status { flex-basis:100%; }
+.lp-body { display:grid; grid-template-columns:12rem minmax(0,1fr); gap:2rem; align-items:start; }
+.lp-toc { position:sticky; top:1.5rem; max-height:calc(100vh - 3rem); overflow:auto; font-size:0.8125rem; }
+.lp-toc ol { list-style:none; counter-reset:ch; }
+.lp-toc li { counter-increment:ch; }
+.lp-toc a { display:block; padding:0.35rem 0.5rem; border-radius:var(--radius-sm); color:var(--text2); text-decoration:none; }
+.lp-toc a::before { content:counter(ch) "  "; color:var(--text3); }
+.lp-toc a:hover { color:var(--text); background:var(--bg2); }
+.lp-toc a.on { color:var(--text); background:var(--bg2); font-weight:500; }
+.lp-text > div { margin-bottom:0.9rem; padding:0.3rem 0.6rem; margin-left:-0.6rem; margin-right:-0.6rem; border-radius:var(--radius-sm); color:var(--text2); cursor:pointer; scroll-margin:40vh; }
+.lp-text > div b { color:var(--text3); font-weight:500; margin-right:0.25rem; }
+.lp-text > div.on { background:var(--bg2); color:var(--text); }
+.lp-text mark { background:var(--accent); color:var(--bg); border-radius:2px; padding:0 0.1em; }
+.lp-text > div > :last-child, .lp-text > div > ul, .lp-text > div > ol { margin:0; }
+.lp-text > div ul, .lp-text > div ol { padding-left:1.2rem; }
+.lp-text > div h1, .lp-text > div h2, .lp-text > div h3 { font-family:var(--font-display); font-size:1.05rem; color:var(--text); }
+.lp-text .lp-loading { color:var(--text3); cursor:default; }
+@media (max-width:700px) { .lp-body { grid-template-columns:1fr; } .lp-toc { position:static; max-height:none; } .lp-toc ol { display:flex; flex-wrap:wrap; gap:0.25rem; } }
 dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
 dl.profile dt { color:var(--text3); }
 </style>
@@ -121,33 +135,22 @@ dl.profile dt { color:var(--text3); }
     <p class="msg" id="profileMsg"></p>
   </section>
 
-  <!-- editor -->
+  <!-- editor / listen -->
   <section id="editView" class="hide">
     <div class="bar">
       <input id="title" placeholder="Book title">
       <div class="row">
-        <button id="toggle">Preview</button>
+        <button id="toggle">Edit</button>
         <button id="fromPhotos">From screenshots</button>
         <input type="file" id="photos" accept="image/*" multiple hidden>
+        <button id="share">Share</button>
         <button class="primary" id="save">Save</button>
         <button id="del">Delete</button>
         <button id="close">Close</button>
       </div>
     </div>
-    <div class="speak">
-      <button id="prev" aria-label="Previous chapter">◀</button>
-      <button id="speak" aria-describedby="voiceHelp">Play</button>
-      <button id="next" aria-label="Next chapter">▶</button>
-      <label class="sub" for="voice" style="margin:0">Voice</label>
-      <select id="voice" aria-label="Reading voice and language"></select>
-      <select id="chapter" aria-label="Chapter"></select>
-      <select id="rate" aria-label="Speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
-      <select id="mode" aria-label="How to read it"><option value="talk">Explain it (two hosts)</option><option value="read">Read the notes</option></select>
-      <span class="msg" id="voiceHelp">Uses your device\u2019s installed voices.</span>
-    </div>
-    <textarea id="body" placeholder="Chapter summaries, in markdown…"></textarea>
-    <ul id="toc" class="hide"></ul>
-    <div id="preview" class="hide"></div>
+    <div id="listen"></div>
+    <textarea id="body" class="hide" placeholder="Chapter summaries, in markdown…"></textarea>
     <p class="msg" id="editMsg"></p>
   </section>
 </main>
@@ -155,6 +158,7 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { mount, matchCover, shareUrl } from './listen.js';
 
 const db = createClient(
   'https://tjsxsqlxjmanwvmywwvw.supabase.co',
@@ -190,7 +194,13 @@ document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
 });
 $('signout').onclick = $('signout2').onclick = () => db.auth.signOut();
 
+// Supabase re-fires SIGNED_IN / TOKEN_REFRESHED on every tab focus and hourly token
+// refresh. Rebuilding the list on those is what stopped playback and "clicked back" to the
+// list by itself, so only a real sign-in or sign-out changes the screen.
+let signedIn = null;
 db.auth.onAuthStateChange((_e, session) => {
+  if (!!session === signedIn) return;
+  signedIn = !!session;
   if (session) { $('who').textContent = session.user.email; show('listView'); load(); if (location.hash.length > 1) open(location.hash.slice(1)); }
   else { show('gate'); }
 });
@@ -201,7 +211,7 @@ $('profileBtn').onclick = async () => {
   $('pEmail').textContent = user.email;
   $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
   $('pSince').textContent = new Date(user.created_at).toLocaleDateString();
-  $('pVoice').textContent = $('voice').selectedOptions[0]?.textContent || 'None installed';
+  $('pVoice').textContent = localStorage.getItem('bookrank.voice') || 'Device default';
   const { count } = await db.from(TABLE).select('id', { count: 'exact', head: true });
   $('pCount').textContent = count ?? '\u2014';
   $('profileMsg').textContent = '';
@@ -235,7 +245,7 @@ $('pReset').onclick = async () => {
 // ---- summarize from photos ----
 // Photos never touch Supabase or localStorage: each one is posted straight to the API,
 // the model's summary comes back, and the file is dropped. Only the text is kept.
-$('fromPhotos').onclick = () => $('photos').click();
+$('fromPhotos').onclick = () => { render(false); $('photos').click(); };
 $('photos').onchange = async () => {
   const files = [...$('photos').files];
   $('photos').value = '';
@@ -268,162 +278,80 @@ $('photos').onchange = async () => {
   btn.disabled = false;
 };
 
-// ---- read aloud ----
-// ponytail: SpeechSynthesis = every language/voice the device has, no deps, no audio files.
-// "Explain it" asks /api/narrate for a two-host conversation per chapter; "Read the notes"
-// speaks the markdown. One player, bound to the open row; chapter <select> is the nav.
-// Progress + generated scripts live in the row's `listen` jsonb so every device resumes
-// at the same line. Scripts are dropped when the content changes (`for` != updated_at).
-const synth = window.speechSynthesis;
-let voices = [];
-function loadVoices() {
-  voices = synth.getVoices().sort((a, b) => a.lang.localeCompare(b.lang));
-  const sel = $('voice');
-  const prev = localStorage.getItem('bookrank.voice');
-  sel.innerHTML = '';
-  for (const v of voices) {
-    const o = new Option(`${new Intl.DisplayNames([navigator.language], { type: 'language' }).of(v.lang.split('-')[0])} — ${v.name}`, v.name);
-    sel.append(o);
-  }
-  if (prev && voices.some(v => v.name === prev)) sel.value = prev;
-  else { const m = voices.find(v => v.lang.startsWith(navigator.language.split('-')[0])); if (m) sel.value = m.name; }
-  $('speak').disabled = !voices.length;
-}
-loadVoices();
-synth.onvoiceschanged = loadVoices;
-$('voice').onchange = () => localStorage.setItem('bookrank.voice', $('voice').value);
-
-// ponytail: chapters = "## " headings, same split the iOS app uses. No headings = one chapter.
-function chapters(md) {
-  const parts = md.split(/^(?=## )/m).filter(c => c.startsWith('## '))
-    .map(c => ({ title: c.slice(3, c.indexOf('\n') < 0 ? undefined : c.indexOf('\n')).trim(), text: c }));
-  return parts.length ? parts : (md.trim() ? [{ title: 'Whole book', text: md }] : []);
-}
-const plain = md => String(md || '').replace(/[#*_`>\[\]()]/g, ' ').trim();
-
-const player = { ch: 0, line: 0, playing: false, scripts: {} };
-// ponytail: thumbnails come from books.json matched by title; no per-summary cover field.
-const covers = fetch('books.json').then(r => r.json()).then(b => new Map(b.filter(x => x.cover).map(x => [x.title.toLowerCase(), x.cover]))).catch(() => new Map());
-function thumb(title) {
-  const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
-  covers.then(m => { const u = m.get(title.toLowerCase()); if (u) img.src = u; else img.className = 'thumb-empty'; });
-  return img;
-}
-function setStatus(t) { $('voiceHelp').textContent = t; }
-function fillChapters() {
-  const sel = $('chapter'), cur = sel.value; sel.innerHTML = '';
-  chapters($('body').value).forEach((c, i) => sel.append(new Option(c.title, i)));
-  sel.value = cur && sel.options[cur] ? cur : 0;
-}
-$('body').addEventListener('input', () => { fillChapters(); player.scripts = {}; });
-
-function listenState() {
-  return current?.listen && current.listen.for === current.updated_at ? current.listen : null;
-}
-async function saveProgress() {
-  if (!current) return;
-  const listen = { for: current.updated_at, chapters: player.scripts, pos: { ch: player.ch, line: player.line } };
-  current.listen = listen;
-  await db.from(TABLE).update({ listen }).eq('id', current.id);
-}
-addEventListener('pagehide', () => { if (player.playing) { player.playing = false; saveProgress(); } });
-
-// Two hosts, two voices: the chosen voice is A; B is another voice in the same language.
-function voicePair() {
-  const a = voices.find(v => v.name === $('voice').value);
-  return [a, voices.find(v => v !== a && a && v.lang === a.lang) || a];
-}
-async function scriptFor(i) {
-  const chs = chapters($('body').value);
-  if ($('mode').value !== 'talk') return [{ host: 'A', line: plain(chs[i].text) }];
-  if (player.scripts[i]) return player.scripts[i];
+// ---- listen ----
+// The player lives in listen.js (shared with share.html). This page only supplies the
+// row: content, cached scripts, the resume point, and where to save them.
+let listen = null;
+async function narrate(ch, text, title, total) {
   const { data: { session } } = await db.auth.getSession();
   if (!session) return null;
   try {
     const res = await fetch('/api/narrate', {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ text: chs[i].text, title: `${$('title').value} — ${chs[i].title}` }),
+      body: JSON.stringify({ text, title: `${$('title').value} — ${title}`, ch, total }),
     });
-    const out = await res.json();
-    if (out.script) player.scripts[i] = out.script;
-    return out.script || null;
+    return (await res.json()).script || null;
   } catch { return null; }
 }
-
-function stopSpeaking(save = true) {
-  synth.cancel();
-  const was = player.playing;
-  player.playing = false;
-  $('speak').textContent = 'Play';
-  if (was && save) saveProgress();
-}
-async function play(fromLine = player.line) {
-  stopSpeaking(false);
-  const chs = chapters($('body').value);
-  if (!chs.length) { $('editMsg').textContent = 'Nothing to read yet.'; return; }
-  player.ch = Math.min(+$('chapter').value || 0, chs.length - 1);
-  $('speak').textContent = 'Thinking…'; $('speak').disabled = true;
-  let script = await scriptFor(player.ch);
-  $('speak').disabled = false;
-  if (!script) { setStatus('Could not build the conversation; reading the notes instead.'); script = [{ host: 'A', line: plain(chs[player.ch].text) }]; }
-  if (!plain(script.map(l => l.line).join(' '))) { stopSpeaking(false); $('editMsg').textContent = 'Nothing to read in this chapter.'; return; }
-  const [voiceA, voiceB] = voicePair();
-  player.line = Math.min(fromLine, script.length - 1);
-  player.playing = true;
-  $('speak').textContent = 'Pause';
-  markToc(player.ch);
-  if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: chs[player.ch].title, artist: $('title').value });
-  const token = play.token = Symbol();
-  // ponytail: chunked at sentence bounds — Chrome silently truncates long utterances.
-  script.slice(player.line).forEach((l, k) => {
-    const idx = player.line + k, voice = l.host === 'B' ? voiceB : voiceA;
-    const parts = [];
-    for (const p of l.line.split(/(?<=[.!?])\s+/)) for (let i = 0; i < p.length; i += 200) parts.push(p.slice(i, i + 200));
-    parts.forEach((t, j) => {
-      const u = new SpeechSynthesisUtterance(t.trim());
-      if (voice) { u.voice = voice; u.lang = voice.lang; }
-      u.rate = +$('rate').value;
-      if (j === 0) u.onstart = () => { if (play.token === token) { player.line = idx; setStatus(`${chs[player.ch].title} · ${idx + 1}/${script.length} — ${l.line}`); } };
-      if (idx === script.length - 1 && j === parts.length - 1) u.onend = () => { if (play.token === token) chapterDone(chs.length); };
-      synth.speak(u);
-    });
+function mountListen() {
+  listen?.stop();
+  if (!current) { $('listen').innerHTML = ''; return; }
+  const st = current.listen?.for === current.updated_at ? current.listen : null;
+  listen = mount($('listen'), {
+    title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate,
+    voices: () => speechSynthesis.getVoices(),
+    save: (pos, chapters) => {
+      if (!current) return;
+      current.listen = { for: current.updated_at, chapters, pos };
+      db.from(TABLE).update({ listen: current.listen }).eq('id', current.id).then(() => {});
+    },
   });
 }
-function chapterDone(count) {
-  if (player.ch + 1 < count) { $('chapter').value = player.ch + 1; player.line = 0; play(0); }
-  else { player.line = 0; stopSpeaking(); setStatus('Finished.'); }
+
+// ---- thumbnails ----
+// books.json cover by fuzzy title, else the row's saved cover, else one Open Library
+// search whose answer is written back to the row so every device (and the iOS app) has it.
+const books = fetch('books.json').then(r => r.json()).catch(() => []);
+function thumb(row) {
+  const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
+  const set = u => { if (u) img.src = u; else img.className = 'thumb-empty'; };
+  if (row.cover) { set(row.cover); return img; }
+  books.then(async b => {
+    let u = matchCover(row.title, b);
+    if (!u) {
+      try {
+        const r = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(row.title)}&limit=1&fields=cover_i`);
+        const id = (await r.json()).docs?.[0]?.cover_i;
+        if (id) u = `https://covers.openlibrary.org/b/id/${id}-M.jpg`;
+      } catch {}
+    }
+    set(u);
+    if (u) { row.cover = u; db.from(TABLE).update({ cover: u }).eq('id', row.id).then(() => {}); }
+  });
+  return img;
 }
-function jump(delta) {
-  const n = $('chapter').options.length; if (!n) return;
-  $('chapter').value = Math.max(0, Math.min(n - 1, (+$('chapter').value || 0) + delta));
-  player.line = 0; play(0);
-}
-$('speak').onclick = () => player.playing ? stopSpeaking() : play();
-// Lock screen / media keys / AirPods.
-if ('mediaSession' in navigator) {
-  navigator.mediaSession.setActionHandler('play', () => play());
-  navigator.mediaSession.setActionHandler('pause', () => stopSpeaking());
-  navigator.mediaSession.setActionHandler('nexttrack', () => jump(1));
-  navigator.mediaSession.setActionHandler('previoustrack', () => jump(-1));
-}
-$('prev').onclick = () => jump(-1);
-$('next').onclick = () => jump(1);
-$('chapter').onchange = () => { player.line = 0; if (player.playing) play(0); };
-$('mode').onchange = () => { if (player.playing) play(0); };
-$('rate').value = localStorage.getItem('bookrank.rate') || '1';
-$('rate').onchange = () => { localStorage.setItem('bookrank.rate', $('rate').value); if (player.playing) play(player.line); };
-// Called by open(): restore where this row left off.
-function restoreProgress() {
-  stopSpeaking(false);
-  const st = listenState();
-  player.scripts = st?.chapters || {};
-  player.ch = st?.pos?.ch || 0; player.line = st?.pos?.line || 0;
-  fillChapters();
-  $('chapter').value = player.ch;
-  setStatus(st?.pos ? `Resume at ${$('chapter').selectedOptions[0]?.text} · line ${player.line + 1}` : 'Uses your device’s installed voices.');
-}
-$('close').addEventListener('click', () => stopSpeaking());
+
+// ---- share ----
+// A share token is a public, unguessable URL to this summary's text and audio, nothing
+// else: no position, no account. Stop sharing clears it and the old link dies.
+$('share').onclick = async () => {
+  if (!current) { $('editMsg').textContent = 'Save first.'; return; }
+  if (current.share_token) {
+    if (!confirm('Stop sharing? The link stops working.')) return;
+    const { error } = await rows.update(current.id, { share_token: null });
+    if (error) { $('editMsg').textContent = error.message; return; }
+    current.share_token = null; $('share').textContent = 'Share'; $('editMsg').textContent = 'Link removed.';
+    return;
+  }
+  const { data, error } = await rows.update(current.id, { share_token: crypto.randomUUID().replace(/-/g, '') });
+  if (error) { $('editMsg').textContent = error.message; return; }
+  current.share_token = data.share_token;
+  const url = shareUrl(location.origin, data.share_token);
+  try { await navigator.clipboard.writeText(url); $('editMsg').textContent = 'Link copied: ' + url; }
+  catch { $('editMsg').textContent = url; }
+  $('share').textContent = 'Stop sharing';
+};
 
 // ---- data layer ----
 // Every query lives here exactly once. The UI functions below render it; the
@@ -431,7 +359,7 @@ $('close').addEventListener('click', () => stopSpeaking());
 // tool must be able to read and write summaries WITHOUT disturbing whatever the
 // user has open in the editor, so no tool goes through open()/saveCurrent().
 const rows = {
-  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at,listen').order('updated_at', { ascending: false }),
+  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token').order('updated_at', { ascending: false }),
   get:    (id)          => db.from(TABLE).select('*').eq('id', id).single(),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
@@ -447,7 +375,7 @@ const stamp = (title, body, slug) => ({
 
 // ---- list ----
 async function load() {
-  stopSpeaking();   // rows are about to be rebuilt; don't leave a detached Stop button
+  listen?.stop();
   const { data, error } = await rows.list();
   if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
@@ -464,8 +392,8 @@ async function load() {
     a.append(Object.assign(document.createElement('time'), { textContent: row.updated_at.slice(0,10) }));
     const listenBtn = Object.assign(document.createElement('button'),
       { className: 'listen', textContent: 'Listen', title: 'Listen to ' + row.title });
-    listenBtn.onclick = async () => { await open(row.id); play(); };
-    li.append(thumb(row.title), a, listenBtn);
+    listenBtn.onclick = async () => { if (await open(row.id)) listen.player.play(); };
+    li.append(thumb(row), a, listenBtn);
     $('list').append(li);
   }
   return data;
@@ -478,43 +406,30 @@ async function open(id) {
   current = data;
   $('title').value = data.title;
   $('body').value = data.content;
-  restoreProgress();
+  $('share').textContent = data.share_token ? 'Stop sharing' : 'Share';
   showEditor(true);
   if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
   return data;
 }
 // ponytail: #<row id> is the route. Back/forward and reloads land on the same summary.
-addEventListener('popstate', () => { const id = location.hash.slice(1); if (id && current?.id !== id) open(id); else if (!id && !$('editView').classList.contains('hide')) { stopSpeaking(); show('listView'); load(); } });
+addEventListener('popstate', () => { const id = location.hash.slice(1); if (id && current?.id !== id) open(id); else if (!id && !$('editView').classList.contains('hide')) { show('listView'); load(); } });
 function showEditor(reading = false) {
   $('editMsg').textContent = '';
   $('del').classList.toggle('hide', !current);
   show('editView');
   render(reading);
 }
-// Reading view = rendered markdown + chapter list; clicking a chapter scrolls to it and
-// points the player at it, so Play starts there.
+// Listen view (transcript + chapters) or the raw markdown editor.
 function render(reading) {
-  $('preview').classList.toggle('hide', !reading);
-  $('toc').classList.toggle('hide', !reading);
+  $('listen').classList.toggle('hide', !reading);
   $('body').classList.toggle('hide', reading);
-  $('toggle').textContent = reading ? 'Edit' : 'Preview';
-  if (!reading) return;
-  $('preview').innerHTML = marked.parse($('body').value);
-  $('toc').innerHTML = '';
-  const hs = [...$('preview').querySelectorAll('h2')];
-  hs.forEach((h, i) => {
-    h.id = 'ch' + i;
-    const go = e => { e.preventDefault(); $('chapter').value = i; player.line = 0; h.scrollIntoView({ behavior: 'smooth', block: 'start' }); markToc(i); if (player.playing) play(0); };
-    h.onclick = go;
-    const a = Object.assign(document.createElement('a'), { href: '#ch' + i, textContent: h.textContent, onclick: go });
-    $('toc').append(Object.assign(document.createElement('li'), {})).append(a);
-  });
-  markToc(+$('chapter').value || 0);
+  $('toggle').textContent = reading ? 'Edit' : 'Listen';
+  $('share').classList.toggle('hide', !reading);
+  if (reading) mountListen(); else listen?.stop();
 }
-function markToc(i) { [...$('toc').querySelectorAll('a')].forEach((a, k) => a.classList.toggle('on', k === i)); }
-$('new').onclick = () => { stopSpeaking(); current = null; $('title').value = ''; $('body').value = ''; fillChapters(); showEditor(); };
+$('new').onclick = () => { current = null; $('title').value = ''; $('body').value = ''; showEditor(false); };
 $('close').onclick = () => { if (location.hash) history.pushState(null, '', location.pathname); show('listView'); load(); };
-$('toggle').onclick = () => render($('preview').classList.contains('hide'));
+$('toggle').onclick = () => { if (!current && !$('body').classList.contains('hide')) { $('editMsg').textContent = 'Save first.'; return; } render(!$('body').classList.contains('hide')); };
 // Saves whatever is in the editor. Editor-only -- tools never call this.
 async function saveCurrent() {
   const title = $('title').value.trim();
@@ -523,7 +438,7 @@ async function saveCurrent() {
   // Same content re-saved keeps the scripts and position; the new stamp re-validates them.
   if (current?.listen && current.content === $('body').value) row.listen = { ...current.listen, for: row.updated_at };
   const { data, error } = current ? await rows.update(current.id, row) : await rows.insert(row);
-  if (!error && data) current = data;
+  if (!error && data) { current = data; $('share').textContent = data.share_token ? 'Stop sharing' : 'Share'; }
   return { data, error };
 }
 $('save').onclick = async () => {
@@ -532,7 +447,7 @@ $('save').onclick = async () => {
   const isNew = !current;
   const { error } = await saveCurrent();
   $('editMsg').textContent = error ? error.message : 'Saved.';
-  if (!error && isNew) { show('listView'); load(); }
+  if (!error) render(true);
 };
 
 $('del').onclick = async () => {

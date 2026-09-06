@@ -7,21 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002A71F32C1E13B5F67F19B2 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */; };
 		0189E4FF4D40BED330BBEDDC /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */; };
 		022A12DAADC02FE0F4355106 /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = 907D225777DFE96EE33944BB /* library.json */; };
 		0B0EFD6E00DE0C2AB551AD0D /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
 		1694FE4D4EF60327BDCF2532 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
+		17888729CF61FF239025BADE /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */; };
 		1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */; };
+		216E655B5ABA9093B1EF3FAF /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = C40F428E7B2638F5B0A28407 /* the-optimist.md */; };
 		27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
 		28949E71322467B2C963F4B9 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
+		29E0508420568D6E7080BAE5 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 6166A2F57E2FB18524257B68 /* adult-autism.md */; };
 		2B37C42C0C975CF4D57A321B /* library.json in Resources */ = {isa = PBXBuildFile; fileRef = 907D225777DFE96EE33944BB /* library.json */; };
+		2BF804FB6372846B1BC65716 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */; };
+		2F12A0E273524C820BC753B2 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */; };
+		30981EBF8CC9CAB41337F5A7 /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */; };
+		35F8DEC8D645CC264EC28853 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */; };
+		5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */; };
+		55582AC68081F6A8CCA10CA3 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */; };
 		5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
+		649730D02B3481F8505CA549 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C3A1353D313534351117C8B /* data-science.md */; };
 		6C0D4964B355370E503C779A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
+		6C8D0BD9900B902574D25C3B /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 9299A40128056C29A36B39FF /* accounting-for-canadians.md */; };
+		6E183A454AFE9EF97C41F1F3 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */; };
+		703EB4CD22235893DA9D139D /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 9299A40128056C29A36B39FF /* accounting-for-canadians.md */; };
 		706B7481A98A8B4DB603AA74 /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E09CC3B72AF79C7D8189D /* picks.json */; };
+		7618B67750CFC43E376C4B3B /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = C40F428E7B2638F5B0A28407 /* the-optimist.md */; };
+		7A25671191DF1EC112961C12 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */; };
 		7BA3791AF897B63AEE9C426B /* BookrankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */; };
 		8032F9BF89028C9697BE1077 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */; };
 		83A82FC6CBCC3BF4A051FA10 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */; };
 		8BB0A0036A8BA3B915614B37 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2E51FA65956F7781A1864799 /* Supabase */; };
+		8C89E5673A4F728973FF29E3 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */; };
 		8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
 		98277152F4968E0BC6DEEBF3 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
 		9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
@@ -31,14 +48,19 @@
 		A6A974A9F0A21B487F8FE5D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
 		A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
 		AA42FFC73629828A640CE7A1 /* picks.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E09CC3B72AF79C7D8189D /* picks.json */; };
+		AABDF0698D27BB2C2BE30BE8 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */; };
+		B59B73484AECECA003841617 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 6166A2F57E2FB18524257B68 /* adult-autism.md */; };
+		B64FCDC29B6F708C408D96DA /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */; };
 		B7558881537FE7DE4C18E890 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
 		B7BB6D8ABA024E8AC48C4D34 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
 		B8C7338BB6E4702339E70210 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053936F7085DA2473CFE71 /* BadgeLabel.swift */; };
 		C67B3C75126526F6C98B2E67 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */; };
+		C8015463E3FE532E8695683D /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */; };
 		C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
 		D1047B85C724E29F1BD085E5 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 45E59A3DE15F13B61AE1C3FE /* Supabase */; };
 		DCB91EBE5CB0C7E81EFAEC62 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
 		E50764035DF823B8FC9740D9 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
+		E7D47BF064A2A4010903F1EC /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C3A1353D313534351117C8B /* data-science.md */; };
 		EA16B9CF96329CC06E8307D1 /* DueDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F21003C2D6DF7C3349EBD /* DueDateBadge.swift */; };
 		FCFA0FF150F7B456962366FA /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
 /* End PBXBuildFile section */
@@ -55,23 +77,34 @@
 
 /* Begin PBXFileReference section */
 		0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
+		0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "sobriety-for-dummies.md"; sourceTree = "<group>"; };
 		139694DD4F7D982870A363B8 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		15E4E60649355186A61C354D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-in-business.md"; sourceTree = "<group>"; };
+		2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
+		2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ibs-for-dummies.md"; sourceTree = "<group>"; };
 		2C6E09CC3B72AF79C7D8189D /* picks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = picks.json; sourceTree = "<group>"; };
 		331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C3A1353D313534351117C8B /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		40053936F7085DA2473CFE71 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
+		4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "good-feng-shui.md"; sourceTree = "<group>"; };
 		51D3A21CB527B97CD698210F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		6166A2F57E2FB18524257B68 /* adult-autism.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "adult-autism.md"; sourceTree = "<group>"; };
 		619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
+		61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "macos-tahoe.md"; sourceTree = "<group>"; };
 		8F3D58CE8EE8BFD32B40F6B3 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		907D225777DFE96EE33944BB /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
 		91DDC65159E61A9272770711 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		9299A40128056C29A36B39FF /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeychainStorage.swift; sourceTree = "<group>"; };
 		9F17495C3D9F9CDDDB873217 /* BookrankMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07BFE167C4FA45ADC09E22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
 		AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		B5B7B0CA14D0E4504F44BAEE /* Bookrank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookrank.entitlements; sourceTree = "<group>"; };
 		B94455A1D83055B6BDCDEA6B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bookrank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40F428E7B2638F5B0A28407 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		CA0B58BE920B99107273B888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB1D05D7980A2E841F3C8F8D /* BookrankMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookrankMac.entitlements; sourceTree = "<group>"; };
 		ED95CED7FDB22CA4CB0392EC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -109,6 +142,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3A3F89579A7BB5822D7092A8 /* summaries */ = {
+			isa = PBXGroup;
+			children = (
+				9299A40128056C29A36B39FF /* accounting-for-canadians.md */,
+				6166A2F57E2FB18524257B68 /* adult-autism.md */,
+				22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */,
+				3C3A1353D313534351117C8B /* data-science.md */,
+				4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */,
+				2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */,
+				A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */,
+				61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */,
+				0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */,
+				2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */,
+				C40F428E7B2638F5B0A28407 /* the-optimist.md */,
+			);
+			path = summaries;
+			sourceTree = "<group>";
+		};
 		4BAE8E4D4DA5259CBC6EA6E4 /* Bookrank */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +181,7 @@
 				8F3D58CE8EE8BFD32B40F6B3 /* books.json */,
 				907D225777DFE96EE33944BB /* library.json */,
 				2C6E09CC3B72AF79C7D8189D /* picks.json */,
+				3A3F89579A7BB5822D7092A8 /* summaries */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -291,9 +343,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6A974A9F0A21B487F8FE5D5 /* Assets.xcassets in Resources */,
+				6C8D0BD9900B902574D25C3B /* accounting-for-canadians.md in Resources */,
+				29E0508420568D6E7080BAE5 /* adult-autism.md in Resources */,
+				2F12A0E273524C820BC753B2 /* ai-in-business.md in Resources */,
 				B7558881537FE7DE4C18E890 /* books.json in Resources */,
+				649730D02B3481F8505CA549 /* data-science.md in Resources */,
+				6E183A454AFE9EF97C41F1F3 /* good-feng-shui.md in Resources */,
+				7A25671191DF1EC112961C12 /* ibs-for-dummies.md in Resources */,
 				022A12DAADC02FE0F4355106 /* library.json in Resources */,
+				30981EBF8CC9CAB41337F5A7 /* living-well-in-a-down-economy-for-dummies.md in Resources */,
+				2BF804FB6372846B1BC65716 /* macos-tahoe.md in Resources */,
 				706B7481A98A8B4DB603AA74 /* picks.json in Resources */,
+				35F8DEC8D645CC264EC28853 /* sobriety-for-dummies.md in Resources */,
+				C8015463E3FE532E8695683D /* statistics-for-dummies.md in Resources */,
+				7618B67750CFC43E376C4B3B /* the-optimist.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,9 +365,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */,
+				703EB4CD22235893DA9D139D /* accounting-for-canadians.md in Resources */,
+				B59B73484AECECA003841617 /* adult-autism.md in Resources */,
+				17888729CF61FF239025BADE /* ai-in-business.md in Resources */,
 				9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */,
+				E7D47BF064A2A4010903F1EC /* data-science.md in Resources */,
+				002A71F32C1E13B5F67F19B2 /* good-feng-shui.md in Resources */,
+				AABDF0698D27BB2C2BE30BE8 /* ibs-for-dummies.md in Resources */,
 				2B37C42C0C975CF4D57A321B /* library.json in Resources */,
+				5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */,
+				8C89E5673A4F728973FF29E3 /* macos-tahoe.md in Resources */,
 				AA42FFC73629828A640CE7A1 /* picks.json in Resources */,
+				55582AC68081F6A8CCA10CA3 /* sobriety-for-dummies.md in Resources */,
+				B64FCDC29B6F708C408D96DA /* statistics-for-dummies.md in Resources */,
+				216E655B5ABA9093B1EF3FAF /* the-optimist.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

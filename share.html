@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Shared summary — Bookrank</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+@font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'Geist'; src:url('fonts/Geist-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Geist'; src:url('fonts/Geist-SemiBold.woff2') format('woff2'); font-weight:600; font-display:swap; }
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:var(--font-body); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:820px; margin:0 auto; padding:clamp(2rem,6vw,4rem) 1.5rem 6rem; }
+h1 { font-family:var(--font-display); font-size:1.75rem; letter-spacing:-0.02em; margin-bottom:0.25rem; }
+.sub { color:var(--text3); font-size:0.875rem; margin-bottom:2rem; }
+.bar { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+button, .btn { font:inherit; font-size:0.875rem; padding:0.5rem 0.9rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); cursor:pointer; text-decoration:none; }
+button.primary { background:var(--accent); border-color: var(--link, var(--accent)); color:var(--bg); font-weight:500; }
+button:disabled { opacity:0.5; cursor:default; }
+input, textarea { font:inherit; width:100%; padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); }
+textarea { min-height:60vh; resize:vertical; line-height:1.6; }
+form.auth { display:grid; gap:0.75rem; max-width:340px; }
+.row { display:flex; gap:0.5rem; }
+ul.list { list-style:none; }
+ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
+ul.list a { flex:1; min-width:0; display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; color:var(--text); text-decoration:none; font-size:0.9375rem; }
+ul.list img.thumb, ul.list .thumb-empty { width:2.25rem; height:3.25rem; object-fit:cover; border-radius:3px; background:var(--border2); flex:none; }
+ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
+ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
+ul.list a:hover { color: var(--link, var(--accent)); }
+ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
+.msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
+.hide { display:none; }
+a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
+a.skip { position:absolute; left:-9999px; }
+a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.9rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+/* listen view (built by listen.js) */
+.lp-bar { position:fixed; top:0; left:0; right:0; height:3px; background:transparent; z-index:5; }
+.lp-fill { height:100%; width:0; background:var(--accent); transition:width 0.4s; }
+.lp-controls { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:1.25rem; }
+.lp-controls select { font:inherit; font-size:0.8125rem; padding:0.4rem 0.5rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); max-width:11rem; }
+.lp-controls .lp-status { flex-basis:100%; }
+.lp-body { display:grid; grid-template-columns:12rem minmax(0,1fr); gap:2rem; align-items:start; }
+.lp-toc { position:sticky; top:1.5rem; max-height:calc(100vh - 3rem); overflow:auto; font-size:0.8125rem; }
+.lp-toc ol { list-style:none; counter-reset:ch; }
+.lp-toc li { counter-increment:ch; }
+.lp-toc a { display:block; padding:0.35rem 0.5rem; border-radius:var(--radius-sm); color:var(--text2); text-decoration:none; }
+.lp-toc a::before { content:counter(ch) "  "; color:var(--text3); }
+.lp-toc a:hover { color:var(--text); background:var(--bg2); }
+.lp-toc a.on { color:var(--text); background:var(--bg2); font-weight:500; }
+.lp-text > div { margin-bottom:0.9rem; padding:0.3rem 0.6rem; margin-left:-0.6rem; margin-right:-0.6rem; border-radius:var(--radius-sm); color:var(--text2); cursor:pointer; scroll-margin:40vh; }
+.lp-text > div b { color:var(--text3); font-weight:500; margin-right:0.25rem; }
+.lp-text > div.on { background:var(--bg2); color:var(--text); }
+.lp-text mark { background:var(--accent); color:var(--bg); border-radius:2px; padding:0 0.1em; }
+.lp-text > div > :last-child, .lp-text > div > ul, .lp-text > div > ol { margin:0; }
+.lp-text > div ul, .lp-text > div ol { padding-left:1.2rem; }
+.lp-text > div h1, .lp-text > div h2, .lp-text > div h3 { font-family:var(--font-display); font-size:1.05rem; color:var(--text); }
+.lp-text .lp-loading { color:var(--text3); cursor:default; }
+@media (max-width:700px) { .lp-body { grid-template-columns:1fr; } .lp-toc { position:static; max-height:none; } .lp-toc ol { display:flex; flex-wrap:wrap; gap:0.25rem; } }
+dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
+dl.profile dt { color:var(--text3); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main class="wrap" id="main">
+  <a class="back" href="/">&larr; Bookrank</a>
+  <div class="bar" style="margin-top:0.75rem">
+    <div><h1 id="title">Loading…</h1><p class="sub">Shared with you. Listen or read; nothing else on this account is visible.</p></div>
+  </div>
+  <div id="listen"></div>
+  <p class="msg" id="msg"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="module">
+// Public listen page for one share token. The RPC returns title, content, cover and the
+// cached narration only; narration for uncached chapters goes through /api/narrate with
+// the token instead of a session, and the result is cached back on the row server-side.
+import { mount } from './listen.js';
+const SUPABASE = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
+const ANON = 'sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90';
+const $ = id => document.getElementById(id);
+const token = new URLSearchParams(location.search).get('t') || '';
+
+const res = await fetch(`${SUPABASE}/rest/v1/rpc/shared_summary`, {
+  method: 'POST', headers: { apikey: ANON, 'content-type': 'application/json' }, body: JSON.stringify({ t: token }),
+}).catch(() => null);
+const row = res?.ok ? (await res.json())[0] : null;
+if (!row) {
+  $('title').textContent = 'This link is not active';
+  $('msg').textContent = 'The owner may have stopped sharing it.';
+} else {
+  document.title = `${row.title} — Bookrank`;
+  $('title').textContent = row.title;
+  mount($('listen'), {
+    title: row.title, content: row.content, scripts: row.scripts || {},
+    voices: () => speechSynthesis.getVoices(),
+    narrate: async (ch, text, title, total) => {
+      try {
+        const r = await fetch('/api/narrate', { method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ token, text, title: `${row.title} — ${title}`, ch, total }) });
+        return (await r.json()).script || null;
+      } catch { return null; }
+    },
+  });
+}
+</script>
+</body>
+</html>

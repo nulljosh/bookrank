@@ -154,7 +154,7 @@ struct LibraryView: View {
                     ForEach(store.summaryIndex) { entry in
                         NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
                             HStack(alignment: .center, spacing: 14) {
-                                Thumb(url: store.cover(for: entry.title))
+                                Thumb(url: store.cover(for: entry))
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(entry.title).font(.subheadline.weight(.medium))
                                     if let pos = entry.listen?.pos, entry.listen?.for == entry.updatedAt, pos.ch > 0 || pos.line > 0 {
