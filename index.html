@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bookrank — curated book rankings and summaries</title>
@@ -91,6 +92,12 @@ img { max-width: 100%; }
 @keyframes wall-up   { from { transform: translateY(0); }    to { transform: translateY(-50%); } }
 @keyframes wall-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }
+@media (prefers-reduced-motion: no-preference) { .hero-wall { will-change: transform; } }
+
+/* Scroll-triggered reveal for feature cards, progressively enhanced */
+html.js .reveal { opacity: 0; transform: translateY(20px); }
+html.js .reveal.in-view { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+@media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; } }
 
 /* scrim: keeps the headline readable over the covers, in either theme */
 .hero::after {
@@ -215,23 +222,23 @@ function fit(){i.style.transform='scale('+(i.parentNode.clientWidth/i.offsetWidt
   <div class="container">
     <h2>Ranked, read, and summarized</h2>
     <div class="grid">
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Ranked by real ratings</h3>
         <p>Ordering comes from Goodreads ratings and review counts, not a personal hot take.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Private chapter summaries</h3>
         <p>Write chapter-by-chapter summaries of your own books. They stay in your account &mdash; never public.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Covers for everything</h3>
         <p>Every book on the list carries its real cover art.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Native iOS and Mac app</h3>
         <p>A SwiftUI app reads the same shelf.</p>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Free and open source</h3>
         <p>MIT licensed. The rankings are public and static; summaries live behind your own account.</p>
       </div>
@@ -239,7 +246,7 @@ function fit(){i.style.transform='scale('+(i.parentNode.clientWidth/i.offsetWidt
   </div>
 </section>
 
-<section class="closing">
+<section class="closing reveal">
   <div class="container">
     <h2>Browse the shelf</h2>
     <p>The full ranked list, with summaries where they exist.</p>
@@ -338,6 +345,26 @@ fetch('scripts/covers.json').then(function(r) { return r.json(); }).then(functio
 </script>
 
   <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));</script>
+
+<script>
+// Scroll-triggered reveal for feature/closing cards
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+// Subtle parallax on the hero cover wall, off under reduced motion
+(function () {
+  var wall = document.getElementById('heroWall');
+  if (!wall || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ticking = false;
+  function apply() { wall.style.transform = 'translateY(' + (window.scrollY * 0.08) + 'px)'; ticking = false; }
+  window.addEventListener('scroll', function () { if (!ticking) { requestAnimationFrame(apply); ticking = true; } }, { passive: true });
+})();
+</script>
 
 <!-- share -->
 <style>
