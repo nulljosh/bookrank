@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Sign in faster with Touch ID.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>

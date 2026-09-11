@@ -22,6 +22,7 @@ targets:
         UILaunchScreen: {}
         CFBundleDisplayName: Bookrank
         CFBundleName: Bookrank
+        NSFaceIDUsageDescription: Sign in faster with Face ID.
         # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
         # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist
         # with its own defaults. Those keys are patched by scripts/prepare-plist.py
@@ -70,6 +71,7 @@ targets:
         LSApplicationCategoryType: public.app-category.productivity
         CFBundleDisplayName: Bookrank
         CFBundleName: Bookrank
+        NSFaceIDUsageDescription: Sign in faster with Touch ID.
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine

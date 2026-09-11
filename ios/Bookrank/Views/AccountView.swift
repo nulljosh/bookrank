@@ -53,6 +53,15 @@ struct AccountView: View {
 
     @ViewBuilder
     private var signedOut: some View {
+        if !isSigningUp && auth.hasSavedBiometricCredentials() {
+            Section {
+                Button {
+                    run { try await auth.biometricLogin(); return nil }
+                } label: {
+                    Label("Sign in with Face ID", systemImage: "faceid")
+                }
+            }
+        }
         Section {
             TextField("Email", text: $email)
                 .textContentType(.emailAddress)

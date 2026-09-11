@@ -1,4 +1,5 @@
 import Foundation
+import LocalAuthentication
 import Supabase
 
 // Credentials are hardcoded rather than read from Info.plist via $(SUPABASE_URL).
@@ -65,6 +66,41 @@ final class AuthStore {
         // got Lexly's Mac build rejected under 2.1(a).
         let session = try await supabase.auth.signIn(email: email, password: password)
         user = session.user
+        saveBiometricCredentials(email: email, password: password)
+    }
+
+    // MARK: Face ID convenience sign-in
+    // Optional shortcut for a returning user, not a new provider -- doesn't trigger the
+    // Guideline 4.8 mandatory-Apple-sign-in rule this file's email-only design avoids.
+    private static let savedEmailKey = "bookrank.biometric.email"
+
+    func hasSavedBiometricCredentials() -> Bool {
+        guard let email = UserDefaults.standard.string(forKey: Self.savedEmailKey) else { return false }
+        return KeychainHelper.load(key: email) != nil
+    }
+
+    func biometricLogin() async throws {
+        let context = LAContext()
+        try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Sign in to Bookrank")
+        guard let email = UserDefaults.standard.string(forKey: Self.savedEmailKey),
+              let data = KeychainHelper.load(key: email),
+              let password = String(data: data, encoding: .utf8) else {
+            throw NSError(domain: "AuthStore", code: -1, userInfo: [NSLocalizedDescriptionKey: "No saved sign-in found."])
+        }
+        try await signIn(email: email, password: password)
+    }
+
+    private func saveBiometricCredentials(email: String, password: String) {
+        guard let data = password.data(using: .utf8) else { return }
+        UserDefaults.standard.set(email, forKey: Self.savedEmailKey)
+        KeychainHelper.save(key: email, data: data)
+    }
+
+    private func clearBiometricCredentials() {
+        if let email = UserDefaults.standard.string(forKey: Self.savedEmailKey) {
+            KeychainHelper.delete(key: email)
+        }
+        UserDefaults.standard.removeObject(forKey: Self.savedEmailKey)
     }
 
     func signUp(email: String, password: String) async throws -> Bool {
@@ -78,6 +114,7 @@ final class AuthStore {
     func signOut() async throws {
         try await supabase.auth.signOut()
         user = nil
+        clearBiometricCredentials()
     }
 
     /// Username shown on the profile: saved one, else the email's local part (same rule as profile.html).
