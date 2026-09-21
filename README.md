@@ -10,6 +10,8 @@ Rank the books you've read, keep private chapter notes on the ones that mattered
 
 ![landing page](screenshots/landing.jpg)
 
+<img src="progress.svg" width="460">
+
 ## Pages
 
 - `index.html`: the landing page. A wall of covers from `scripts/covers.json`.
