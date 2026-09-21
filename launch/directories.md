@@ -1,6 +1,6 @@
 # Directory listings
 
-Reuse this for AlternativeTo, Indie Hackers products, Uneed, SaaSHub and dev.to.
+Reuse this for AlternativeTo, Indie Hackers products, Uneed and SaaSHub.
 
 Name: Bookrank
 
@@ -22,4 +22,4 @@ GitHub: https://github.com/nulljosh/bookrank
 - BetaList: skip, Bookrank is already live, BetaList is pre-launch only.
 - Uneed: standard listing above.
 - SaaSHub: standard listing above, note it is free with no paid tier.
-- dev.to: build-story post. Bookrank has a real technical hook worth writing up: books.json is the single generated source of truth for the site, the markdown export and the iOS resource JSON, rebuilt by scripts/build.py after every edit instead of hand-kept in sync. Chapter summary playback generates a two-host conversation through Workers AI, with the transcript following the audio line by line and the next chapter prepared ahead of time so there's no gap between chapters.
+- dev.to: skip. No real technical hook, same call as hn.md.
