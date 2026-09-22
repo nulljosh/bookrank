@@ -20,10 +20,6 @@ build = importlib.import_module("build")
 books = build.load()
 ranked = build.by(books, "ranked")
 
-# 1. Nothing is dropped: every ### entry in the markdown is a ranked entry.
-md_headings = len(re.findall(r"^### \d+\. ", (ROOT / "book_rankings.md").read_text(), re.M))
-assert len(ranked) == md_headings, f"{len(ranked)} ranked vs {md_headings} md headings"
-
 # 2. The actual regression: unrated books exist and are still exported.
 unrated = [b for b in ranked if b.get("rating") is None]
 assert unrated, "expected unrated books; if this fires the fixture changed, not the bug"
@@ -44,10 +40,10 @@ for b in ios:
     assert isinstance(b["badges"], list)
 
 # 5. The generator is idempotent — running it twice changes nothing.
-before = (ROOT / "rankings.html").read_bytes()
+before = (ROOT / "ios/Bookrank/Resources/books.json").read_bytes()
 subprocess.run([sys.executable, str(ROOT / "scripts/build.py")], check=True,
                capture_output=True)
-assert (ROOT / "rankings.html").read_bytes() == before, "build.py is not idempotent"
+assert (ROOT / "ios/Bookrank/Resources/books.json").read_bytes() == before, "build.py is not idempotent"
 
 print(f"ok: {len(ranked)} ranked ({len(unrated)} unrated) all reach the app; "
       f"{len(books)} entries total")

@@ -186,9 +186,7 @@ def write_ios(books):
 
 if __name__ == "__main__":
     books = load()
-    write_html(books)
-    write_md(books)
     n = write_ios(books)
     unrated = sum(1 for b in by(books, "ranked") if b.get("rating") is None)
-    print(f"OK: {len(books)} entries -> rankings.html, book_rankings.md, ios resources")
+    print(f"OK: {len(books)} entries -> ios resources (web shelf retired 2026-09-21)")
     print(f"  ranked {n} ({unrated} with no Goodreads rating, all still shipped)")

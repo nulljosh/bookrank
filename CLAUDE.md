@@ -2,6 +2,9 @@
 
 `bookrank.heyitsmejosh.com`, Joshua's book rankings/TBR site. Renamed from "Books" 2026-07-18, then repo+folder `spine`→`uprighty` 2026-07-29, then ASC app + GitHub repo + domain all renamed `uprighty`→`bookrank` 2026-08-07 (Uprighty was rejected as a duplicate ASC name). GitHub repo is now `nulljosh/bookrank`; local folder stays `~/Documents/Code/uprighty` (not renamed, matches this project's own pattern of folder lagging display name). Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense, books and echo are unrelated projects).
 
+## Pivot: summaries only (2026-09-21)
+The product is chapter summaries. No rankings, no recommendations, no lists on the web. `rankings.html` and `book_rankings.md` are deleted; `/rankings.html` 301s to `library.html` via `_redirects`. `books.json` stays only because the iOS/macOS shelf and cover matching still read it. Next: strip the shelf from iOS/macOS, KMP and TUI too, then `build.py` can go.
+
 ## Files
 - `books.json`: **the single source of truth for every book list.** Edit this, nothing else.
 - `scripts/build.py`: regenerates `rankings.html` (inside `<!-- generated:* -->` markers), `book_rankings.md`, and the three `ios/Bookrank/Resources/*.json` files from `books.json`. Run after every edit.

@@ -7,6 +7,7 @@ Listen feature complete. Refactored narration player into a shared module (liste
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
 ## Open
+- [ ] Finish the summaries-only pivot on native: remove the ranked shelf, picks and to-read from iOS/macOS (`LibraryView`), KMP and TUI, then delete `books.json`, `scripts/build.py` and `covers.json`. Web done 2026-09-21.
 - [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
   structural iPad issue: `LibraryView` is a single scrolling dashboard capped at
   `.frame(maxWidth: 680)` centered (the correct reading-width pattern, same as Apple's

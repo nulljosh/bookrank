@@ -14,12 +14,9 @@ Rank the books you've read, keep private chapter notes on the ones that mattered
 
 ## Pages
 
-- `index.html`: the landing page. A wall of covers from `scripts/covers.json`.
-- `rankings.html`: the shelf. 111 ranked books with search, stars and sort, built from `books.json` by `scripts/build.py`.
+- `index.html`: the landing page.
 - `library.html`: your summaries. Sign up with email, keep chapter summaries that only you can read.
 - `profile.html?u=<username>`: your profile. Username (defaults to the email's local part), a click-to-regenerate pixel avatar, email and password changes, reset link, and account deletion with everything in it in one step. Same on iPhone and Mac.
-
-- `book_rankings.md`: the shelf as plain markdown, generated from the same source.
 
 ## Listen
 
@@ -33,11 +30,9 @@ Any summary can be shared with a private link (`share.html?t=…`). The link ope
 
 Tests: `node --test` (`listen.test.js`, `narrate.test.js`, `books.test.js`).
 
-![rankings](screenshots/rankings.jpg)
-
 ## Covers
 
-`scripts/fetch-covers.py` finds covers on Open Library and patches them into `rankings.html`. Images are hotlinked. Lookups are cached in `scripts/covers.json`.
+`scripts/fetch-covers.py` finds covers on Open Library and writes them into `books.json` (used by the iOS shelf and for summary cover matching). Images are hotlinked. Lookups are cached in `scripts/covers.json`.
 
 ```
 python3 scripts/fetch-covers.py                 # fetch missing covers
