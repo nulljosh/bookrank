@@ -3,9 +3,8 @@ import Foundation
 @Observable
 @MainActor
 final class DataStore {
+    /// ponytail: the shelf is gone from the UI (2026-09-21); books.json stays only for cover matching.
     let books: [Book]
-    let library: Library
-    let picks: [TopPick]
 
     /// Summaries are private per-account (see library.html), so they are fetched rather
     /// than bundled. Empty until `loadSummaries()` runs, and empty again after sign-out.
@@ -14,8 +13,6 @@ final class DataStore {
 
     init() {
         books = Self.load("books")
-        library = Self.load("library")
-        picks = Self.load("picks")
     }
 
     /// One fetch for the whole shelf. Twenty rows for one owner is small enough that

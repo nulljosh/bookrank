@@ -179,7 +179,7 @@ def write_ios(books):
         "toRead": [{"title": b["title"], "author": b["author"], "summarySlug": None}
                    for b in by(books, "toRead")],
     }
-    for name, data in (("books", ranked), ("picks", picks), ("library", library)):
+    for name, data in (("books", ranked),):
         (res / f"{name}.json").write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
     return len(ranked)
 
