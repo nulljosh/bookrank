@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Profile — Bookrank</title>
+<title>Profile, Bookrank</title>
 <link rel="stylesheet" href="tokens.css">
 <style>
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
@@ -147,7 +147,7 @@ if (!user) { $('gateMsg').innerHTML = 'Sign in on <a href="library.html">My summ
 else {
   const handle = handleFor(user);
   if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
-  document.title = `${handle} — Bookrank`;
+  document.title = `${handle}, Bookrank`;
   $('pName').textContent = handle; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${handle}`;
   $('username').value = handle;
   $('pEmail').textContent = user.email;
@@ -173,7 +173,7 @@ else {
     if (error) { $('profileMsg').textContent = error.message; return; }
     const h = handleFor(data.user);
     $('pName').textContent = h; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${h}`; $('username').value = h;
-    history.replaceState(null, '', `?u=${h}`); document.title = `${h} — Bookrank`;
+    history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Bookrank`;
     $('profileMsg').textContent = 'Username saved.';
   };
   // Email change sends a confirmation to both addresses (Supabase default); password

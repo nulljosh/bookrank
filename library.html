@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>My summaries — Bookrank</title>
+<title>My summaries, Bookrank</title>
 <link rel="stylesheet" href="tokens.css">
 <style>
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
@@ -226,7 +226,7 @@ async function narrate(ch, text, title, total) {
     const res = await fetch('/api/narrate', {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ text, title: `${$('title').value} — ${title}`, ch, total }),
+      body: JSON.stringify({ text, title: `${$('title').value}, ${title}`, ch, total }),
     });
     return (await res.json()).script || null;
   } catch { return null; }
