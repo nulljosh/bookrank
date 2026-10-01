@@ -409,4 +409,4 @@ RLS can see who is asking, do not move them behind a Function that cannot.
 - `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
 
 ## Ingested 2026-10-01
-- [ ] Tests failing on main (40fb90d): Tests / test failed in 8s with 3 annotations. Fix. (screenshot: notes/attachments/2026-10-01/bookrank-1.png)
+- [x] Tests failing on main (40fb90d): Tests / test failed in 8s with 3 annotations. Fix. (screenshot: notes/attachments/2026-10-01/bookrank-1.png) Already fixed in 45ef3c5, CI green since 2026-09-26.
