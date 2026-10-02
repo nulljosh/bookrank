@@ -107,8 +107,12 @@ dl.profile dt { color:var(--text3); }
       </div>
     </form>
     <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
+    <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Your data</h2>
+    <p class="sub" style="margin-bottom:0.9rem">Every summary as markdown, one file per book, plus a JSON copy with your listening positions. Yours to keep.</p>
+    <div class="row" style="margin-bottom:0.5rem"><button type="button" id="export">Export everything</button></div>
+    <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
     <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Delete account</h2>
-    <p class="sub" style="margin-bottom:0.9rem">Deletes your account and every summary in it, immediately and permanently. There is no undo and no export.</p>
+    <p class="sub" style="margin-bottom:0.9rem">Deletes your account and every summary in it, immediately and permanently. There is no undo. Export first if you want a copy.</p>
     <form class="auth" id="deleteForm">
       <input type="text" id="deleteConfirm" placeholder="Type DELETE to confirm" autocomplete="off" aria-label="Type DELETE to confirm">
       <div class="row"><button type="submit" id="pDelete" disabled>Delete my account</button></div>
@@ -241,6 +245,33 @@ else {
     const { data, error } = await db.auth.updateUser({ data: { goodreads: id || null, goodreads_avatar: p.avatar || null, goodreads_profile: id ? { about: p.about || null, interests: p.interests || null, genres: p.genres || [], quote: p.quote || null } : null } });
     if (error) $('grMsg').textContent = ' ' + error.message; else { showAvatar(data.user); showGoodreads(data.user); }
   };
+  // Export: no server, no library. One markdown file per summary and the raw rows as JSON,
+  // zipped in the browser with the store format (no compression), so it is a few lines of code.
+  $('export').onclick = async () => {
+    $('profileMsg').textContent = 'Preparing your export\u2026';
+    const { data, error } = await db.from(TABLE).select('slug,title,content,updated_at,listen,cover').order('title');
+    if (error) { $('profileMsg').textContent = error.message; return; }
+    const files = data.map(r => [`${r.slug}.md`, `# ${r.title}\n\n${r.content}\n`]);
+    files.push(['bookrank.json', JSON.stringify(data, null, 2)]);
+    const blob = zip(files);
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `bookrank-${new Date().toISOString().slice(0, 10)}.zip` });
+    a.click(); URL.revokeObjectURL(a.href);
+    $('profileMsg').textContent = `Exported ${data.length} summaries.`;
+  };
+  function zip(files) {
+    const enc = new TextEncoder(), parts = [], central = []; let offset = 0;
+    const crc = (b) => { let c = ~0; for (const x of b) { c ^= x; for (let k = 0; k < 8; k++) c = (c >>> 1) ^ (0xEDB88320 & -(c & 1)); } return ~c >>> 0; };
+    const u16 = n => [n & 255, n >> 8 & 255], u32 = n => [...u16(n & 65535), ...u16(n >>> 16)];
+    for (const [name, text] of files) {
+      const nm = enc.encode(name), body = enc.encode(text), c = crc(body);
+      const head = [80, 75, 3, 4, 20, 0, 0, 8, 0, 0, 0, 0, 0, 0, ...u32(c), ...u32(body.length), ...u32(body.length), ...u16(nm.length), 0, 0];
+      central.push(...[80, 75, 1, 2, 20, 0, 20, 0, 0, 8, 0, 0, 0, 0, 0, 0, ...u32(c), ...u32(body.length), ...u32(body.length), ...u16(nm.length), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...u32(offset)], ...nm);
+      parts.push(new Uint8Array(head), nm, body); offset += head.length + nm.length + body.length;
+    }
+    const cd = new Uint8Array(central);
+    const end = [80, 75, 5, 6, 0, 0, 0, 0, ...u16(files.length), ...u16(files.length), ...u32(cd.length), ...u32(offset), 0, 0];
+    return new Blob([...parts, cd, new Uint8Array(end)], { type: 'application/zip' });
+  }
   $('signout').onclick = async () => { await db.auth.signOut(); location.href = 'library.html'; };
   $('pReset').onclick = async () => {
     const { error } = await db.auth.resetPasswordForEmail(user.email, { redirectTo: location.origin + '/library.html' });

@@ -30,6 +30,7 @@ ul.list img.thumb, ul.list .thumb-empty { width:2.25rem; height:3.25rem; object-
 details#grQueue { margin-top:2rem; }
 details#grQueue summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
+#find { width:100%; margin:0.25rem 0 0.75rem; padding:0.7rem 0.9rem; border:1px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); font:inherit; }
 ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
 ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
@@ -108,6 +109,7 @@ dl.profile dt { color:var(--text3); }
         <button id="signout">Sign out</button>
       </div>
     </div>
+    <input type="search" id="find" class="hide" placeholder="Search your summaries" aria-label="Search your summaries" autocomplete="off">
     <ul class="list" id="list"></ul>
     <p class="msg" id="listMsg"></p>
   </section>
@@ -350,6 +352,7 @@ async function load() {
     if (label) $('list').append(Object.assign(document.createElement('li'), { className: 'group', textContent: label }));
     for (const row of rows) {
     const li = document.createElement('li');
+    li.dataset.id = row.id;
     const a = document.createElement('a');
     a.href = '#';
     a.onclick = e => { e.preventDefault(); open(row.id); };
@@ -365,6 +368,20 @@ async function load() {
     $('list').append(li);
     }
   }
+  // Search by title or by anything in the text. Appears once the list is long enough to need it.
+  $('find').classList.toggle('hide', data.length < 6);
+  $('find').oninput = () => {
+    const q = $('find').value.trim().toLowerCase();
+    const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || r.content.toLowerCase().includes(q)).map(r => r.id));
+    let shown = 0;
+    for (const li of $('list').children) {
+      if (li.classList.contains('group')) continue;
+      const on = !q || hit.has(li.dataset.id); li.classList.toggle('hide', !on); shown += on;
+    }
+    for (const g of $('list').querySelectorAll('li.group')) g.classList.toggle('hide', !!q);
+    $('listMsg').textContent = q && !shown ? `Nothing matches "${$('find').value.trim()}".` : (data.length ? '' : 'No summaries yet.');
+  };
+  if ($('find').value) $('find').oninput();
   goodreadsQueue(data);
   return data;
 }
