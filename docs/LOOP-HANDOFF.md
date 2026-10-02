@@ -16,7 +16,6 @@ iOS 1.0.5 rejected on audio guideline 2.5.4 (review notes were stale), fixed wit
 - iOS VoiceOver labels (chapter reader and sign-in, Dynamic Type check)
 - Daily nudge (one local notification with random chapter line)
 - Landing and app screenshots refresh after iOS approved (bump version, ship both platforms)
-- Watch app (port summaries list read-only, or retire the watchOS target)
 - Cleanup (delete books.json, scripts/build.py, covers.json once nothing reads them)
 
 ## Restart prompt

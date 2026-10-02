@@ -12,8 +12,6 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 **Terminal**: `bookrank-tui <query>` searches summaries through `/api/search`; `bookrank-tui share <link>` reads one.
 
-**Watch**: a standalone port of the old ranked shelf, read from bundled JSON. It predates the summaries pivot and has not moved yet (see roadmap).
-
 ## Web
 
 | File | What it owns |
@@ -68,20 +66,6 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `ios/UITests/PreviewScreenshot.swift` | App Store screenshots: list, chapters, chapter text, on the sample shelf |
 | `ios/UITests/SnapshotHelper.swift` | fastlane snapshot helper |
 
-## Watch
-
-| File | What it owns |
-|---|---|
-| `watchos/BookrankWatchApp.swift` | Watch app entry |
-| `watchos/ContentView.swift` | Tab view over the three lists |
-| `watchos/Models/BookStore.swift` | Reads the bundled JSON off disk, no network |
-| `watchos/Models/WatchModels.swift` | Same models as iOS, same three JSON files |
-| `watchos/Views/ShelfView.swift` | Top of the old ranked shelf |
-| `watchos/Views/ToReadView.swift` | Books flagged for later |
-| `watchos/Views/TopPicksView.swift` | The curated picks list |
-| `watchos/Resources/*.json` | `books.json`, `library.json`, `picks.json` copied from the iOS bundle |
-| `watchos/project.yml` | xcodegen spec |
-
 ## KMP
 
 | File | What it owns |
@@ -119,10 +103,10 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 | File | What it owns |
 |---|---|
-| `books.json` | The old book list. Kept for cover matching and the watch app; nothing on the web reads it for display |
+| `books.json` | The old book list. Kept for cover matching and the public /api and MCP tools; nothing on the web reads it for display |
 | `summaries/` | Summary markdown, one file per book, synced from iCloud Drive |
 | `scripts/covers.json` | Cover lookup cache. `null` means both sources answered with nothing |
-| `scripts/build.py` | Regenerates the iOS and watch JSON from `books.json`, fails loudly on bad rows |
+| `scripts/build.py` | Regenerates the iOS copy of `books.json`, fails loudly on bad rows |
 | `scripts/fetch-covers.py` | Finds covers on Open Library and Google Books, writes them into `books.json` |
 | `scripts/import-summaries.py` | Uploads `summaries/*.md` into the owner's private rows |
 | `scripts/summary-to-masterclass.py` | Converts a summary into Lexly masterclass JSON |

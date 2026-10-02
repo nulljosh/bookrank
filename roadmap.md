@@ -12,8 +12,8 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] Mac: add the signed-out sample chapter (iOS has it) with the 1.1 Mac build. (Orange Sign in tint done 2026-10-02, ships with 1.1.)
 - [ ] Background audio: kept. App Review (2.5.4) rejected iOS 1.0.5 once because the review notes said no login and the reviewer never reached Listen; fixed with a sample chapter and honest notes. KEEP REVIEW NOTES TRUE every release. If Apple still asks, record 20 seconds on a physical phone (Listen, lock screen, audio continues) and put it in the notes.
 - [x] Native sign-in and create-account restyled to match the web (built on iOS and Mac 2026-10-02, not yet seen on a device; eyeball it in the 1.1 screenshot run).
-- [ ] Watch app: replace the old ranked shelf with the summaries list (read-only), or drop the watch target.
-- [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
+- [x] Watch app retired 2026-10-02: it was never shipped (no watchOS version in App Store Connect) and only showed the old ranked shelf. `watchos/` deleted.
+- [ ] `books.json` cannot go yet: it is the data behind the public /api and MCP tools (`list_books`, `search_books`) and the cover fallback on web and iOS. Decide first: retire those tools, or point them at something else. Then delete `books.json`, `scripts/build.py`, `covers.json`.
 - [x] Web offline: every list and opened summary is cached per account and served when the network fails (2026-10-02).
 - [x] Accessibility pass: web (labels, reduced motion) and iOS (auth title scales with Dynamic Type, covers hidden from VoiceOver) done 2026-10-02.
 - [x] Daily review nudge: Account toggle, 9:00 local notification with a line from one of your summaries, seven days queued and re-queued on launch (2026-10-02, built iOS and Mac, permission flow to be eyeballed on a phone).
@@ -21,11 +21,9 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] 1.0.5 is in App Store review. Its listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
-- [ ] Watch app still shows the old ranked shelf (`watchos/`, bundled JSON). Either port it to summaries or retire the target.
 - [ ] Web offline mode: the iOS app keeps the shelf offline, the web does not.
 - [ ] Web accessibility labels and languages beyond English.
 - [ ] A daily review nudge (one old idea, resurfaced), highlights you can save, offline audio downloads.
-- [ ] `books.json`, `scripts/build.py` and `covers.json` go once nothing reads them (cover matching, the watch app).
 - [ ] The Man Who Solved the Market has only a cover photo in iCloud; photograph its chapters to summarize it. Fiend's 151 photos can be deleted once the notes are read.
 
 ## Open
