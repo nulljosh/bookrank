@@ -9,6 +9,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 ## Next (2026-10-02)
 - [x] macOS 1.0.5 submitted 2026-10-02 (build 202610020301, voices, header). Mac ship gotcha: sign with an entitlements copy where `$(AppIdentifierPrefix)$(CFBundleIdentifier)` is replaced by `QMM486NPYC.com.heyitsmejosh.spine`, else error 90288, and set `--uses-non-exempt-encryption=false` on the build before submit.
 ## v1.1 (the loop runs to here)
+- [ ] Watch companion (Joshua asked for it 2026-10-02): a small watchOS app embedded in the iOS app. Shows a line from one of your summaries (the same picker as the daily nudge, `Nudge.line`), tap for another, with the book title. The iPhone pushes ~30 lines over WatchConnectivity applicationContext after each load, so the watch needs no login. Ships with 1.1 iOS. Then it can also carry the nudge.
 - [ ] Mac: add the signed-out sample chapter (iOS has it) with the 1.1 Mac build. (Orange Sign in tint done 2026-10-02, ships with 1.1.)
 - [ ] Background audio: kept. App Review (2.5.4) rejected iOS 1.0.5 once because the review notes said no login and the reviewer never reached Listen; fixed with a sample chapter and honest notes. KEEP REVIEW NOTES TRUE every release. If Apple still asks, record 20 seconds on a physical phone (Listen, lock screen, audio continues) and put it in the notes.
 - [x] Native sign-in and create-account restyled to match the web (built on iOS and Mac 2026-10-02, not yet seen on a device; eyeball it in the 1.1 screenshot run).
