@@ -63,17 +63,22 @@ struct AccountView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            Group {
                 if auth.isSignedIn {
-                    signedIn
+                    Form {
+                        signedIn
+                        if let message {
+                            Section { Text(message).font(.footnote).foregroundStyle(.secondary) }
+                        }
+                    }
+                    .navigationTitle("Account")
                 } else {
-                    signedOut
-                }
-                if let message {
-                    Section { Text(message).font(.footnote).foregroundStyle(.secondary) }
+                    authScreen
+                        #if os(iOS)
+                        .navigationBarTitleDisplayMode(.inline)
+                        #endif
                 }
             }
-            .navigationTitle(auth.isSignedIn ? "Account" : (isSigningUp ? "Create account" : "Sign in"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") { dismiss() }
@@ -85,71 +90,114 @@ struct AccountView: View {
 
     // MARK: - Signed out
 
-    @ViewBuilder
-    private var signedOut: some View {
-        if !isSigningUp && auth.hasSavedBiometricCredentials() {
-            Section {
-                Button {
-                    run { try await auth.biometricLogin(); return nil }
-                } label: {
-                    Label("Sign in with Face ID", systemImage: "faceid")
-                }
-            }
-        }
-        Section {
-            SignInWithAppleButton(.signIn) { auth.prepareApple($0) } onCompletion: { result in
-                run {
-                    guard try await auth.signInWithApple(result) else { return nil }
-                    await store.loadSummaries()
-                    return nil
-                }
-            }
-            .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-            .frame(height: 44)
-        }
-        Section {
-            TextField("Email", text: $email)
-                .textContentType(.emailAddress)
-                #if os(iOS)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-                #endif
-                .autocorrectionDisabled()
-            SecureField("Password", text: $password)
-                .textContentType(isSigningUp ? .newPassword : .password)
-        } footer: {
-            Text("Your summaries live in your account. Everything else in the app works signed out.")
-        }
+    /// Matches the web sign-in: icon, bold title, Apple first, then email and password, one orange pill.
+    private static let orange = Color(red: 239 / 255, green: 160 / 255, blue: 72 / 255)
 
-        Section {
-            Button(isSigningUp ? "Create account" : "Sign in") {
-                run {
-                    if isSigningUp {
-                        let live = try await auth.signUp(email: email, password: password)
-                        if !live { return "Check your email to confirm the account, then sign in." }
-                    } else {
-                        try await auth.signIn(email: email, password: password)
+    private var authScreen: some View {
+        ScrollView {
+            VStack(spacing: 14) {
+                Image(systemName: "books.vertical.fill")
+                    .font(.system(size: 34, weight: .semibold))
+                    .foregroundStyle(Self.orange)
+                    .frame(width: 72, height: 72)
+                    .background(Color(red: 0.07, green: 0.09, blue: 0.18), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .accessibilityHidden(true)
+                    .padding(.top, 12)
+                Text(isSigningUp ? "Create your account" : "Sign in to Bookrank")
+                    .font(.system(size: 28, weight: .semibold)).tracking(-0.8)
+                    .multilineTextAlignment(.center)
+                Text(isSigningUp ? "Chapter summaries of the books you read, in one private place." : "Your chapter summaries. Private to your account.")
+                    .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    .padding(.bottom, 8)
+
+                if !isSigningUp && auth.hasSavedBiometricCredentials() {
+                    Button {
+                        run { try await auth.biometricLogin(); return nil }
+                    } label: {
+                        Label("Sign in with Face ID", systemImage: "faceid").frame(maxWidth: .infinity, minHeight: 44)
                     }
-                    await store.loadSummaries()
-                    return nil
+                    .buttonStyle(.bordered).clipShape(Capsule())
                 }
-            }
-            .disabled(email.isEmpty || password.isEmpty)
 
-            Button(isSigningUp ? "I already have an account" : "Create an account") {
-                isSigningUp.toggle()
-                message = nil
-            }
-
-            if !isSigningUp {
-                Button("Send password reset") {
+                SignInWithAppleButton(isSigningUp ? .signUp : .signIn) { auth.prepareApple($0) } onCompletion: { result in
                     run {
-                        try await auth.resetPassword(email: email)
-                        return "Reset link sent to \(email)."
+                        guard try await auth.signInWithApple(result) else { return nil }
+                        await store.loadSummaries()
+                        return nil
                     }
                 }
-                .disabled(email.isEmpty)
+                .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                .frame(height: 46)
+                .clipShape(Capsule())
+
+                HStack(spacing: 10) {
+                    Rectangle().fill(.quaternary).frame(height: 1)
+                    Text("or").font(.footnote).foregroundStyle(.secondary)
+                    Rectangle().fill(.quaternary).frame(height: 1)
+                }
+                .padding(.vertical, 4)
+
+                TextField("Email", text: $email)
+                    .textContentType(.emailAddress)
+                    #if os(iOS)
+                    .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
+                    #endif
+                    .autocorrectionDisabled()
+                    .textFieldStyle(.plain).padding(12)
+                    .background(.fill.tertiary, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                SecureField(isSigningUp ? "Password, 8 characters or more" : "Password", text: $password)
+                    .textContentType(isSigningUp ? .newPassword : .password)
+                    .textFieldStyle(.plain).padding(12)
+                    .background(.fill.tertiary, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+
+                Button {
+                    run {
+                        if isSigningUp {
+                            let live = try await auth.signUp(email: email, password: password)
+                            if !live { return "Check your email to confirm the account, then sign in." }
+                        } else {
+                            try await auth.signIn(email: email, password: password)
+                        }
+                        await store.loadSummaries()
+                        return nil
+                    }
+                } label: {
+                    Text(isSigningUp ? "Create account" : "Sign in")
+                        .font(.body.weight(.medium)).foregroundStyle(Color(red: 0.10, green: 0.07, blue: 0.03))
+                        .frame(maxWidth: .infinity, minHeight: 46)
+                        .background(Self.orange, in: Capsule())
+                }
+                .buttonStyle(.plain)
+                .opacity(email.isEmpty || password.isEmpty ? 0.5 : 1)
+                .disabled(email.isEmpty || password.isEmpty)
+
+                if let message {
+                    Text(message).font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                }
+
+                HStack {
+                    if !isSigningUp {
+                        Button("Forgot password?") {
+                            run {
+                                try await auth.resetPassword(email: email)
+                                return "Reset link sent to \(email)."
+                            }
+                        }
+                        .disabled(email.isEmpty)
+                    }
+                    Spacer()
+                    Button(isSigningUp ? "Have an account? Sign in" : "New here? Create an account") {
+                        isSigningUp.toggle()
+                        message = nil
+                    }
+                }
+                .font(.footnote).foregroundStyle(.secondary)
+                .buttonStyle(.plain)
             }
+            .frame(maxWidth: 380)
+            .padding(.horizontal, 24).padding(.bottom, 24)
+            .frame(maxWidth: .infinity)
         }
     }
 

@@ -9,6 +9,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 ## Next (2026-10-02)
 - [x] macOS 1.0.5 submitted 2026-10-02 (build 202610020301, voices, header). Mac ship gotcha: sign with an entitlements copy where `$(AppIdentifierPrefix)$(CFBundleIdentifier)` is replaced by `QMM486NPYC.com.heyitsmejosh.spine`, else error 90288, and set `--uses-non-exempt-encryption=false` on the build before submit.
 ## v1.1 (the loop runs to here)
+- [x] Native sign-in and create-account restyled to match the web (built on iOS and Mac 2026-10-02, not yet seen on a device; eyeball it in the 1.1 screenshot run).
 - [ ] Watch app: replace the old ranked shelf with the summaries list (read-only), or drop the watch target.
 - [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
 - [ ] Web offline: service worker keeps the last opened summaries readable.
