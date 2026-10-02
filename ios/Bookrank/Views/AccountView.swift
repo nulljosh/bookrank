@@ -22,6 +22,7 @@ struct AccountView: View {
     @State private var showDelete = false
     @State private var username = ""
     @State private var goodreads = ""
+    @State private var exportURLs: [URL] = []
     @State private var newEmail = ""
     @State private var newPassword = ""
 
@@ -211,6 +212,17 @@ struct AccountView: View {
             if !meta.isEmpty { try? await auth.setMetadata(meta) }
         }
 
+        Section {
+            if !exportURLs.isEmpty {
+                ShareLink(items: exportURLs) { Label("Export everything (\(exportURLs.count) files)", systemImage: "square.and.arrow.up") }
+            }
+        } header: {
+            Text("Your data")
+        } footer: {
+            Text("Every summary as a markdown file. Yours to keep.")
+        }
+        .task(id: store.summaryIndex.count) { exportURLs = store.writeExport() }
+
         Section("Credentials") {
             TextField("New email", text: $newEmail).textContentType(.emailAddress).autocorrectionDisabled()
             SecureField("New password (8+ characters)", text: $newPassword).textContentType(.newPassword)
@@ -255,7 +267,7 @@ struct AccountView: View {
                 Button("Delete account", role: .destructive) { showDelete = true }
             }
         } footer: {
-            Text("Deletes your account and every summary in it, immediately and permanently. There is no undo and no export.")
+            Text("Deletes your account and every summary in it, immediately and permanently. There is no undo. Export first if you want a copy.")
         }
     }
 

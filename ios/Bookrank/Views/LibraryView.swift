@@ -5,6 +5,7 @@ struct LibraryView: View {
     @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAccount = false
+    @State private var query = ""
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
@@ -61,8 +62,10 @@ struct LibraryView: View {
             // Books you are partway through come first; no group headers.
             let started = { (e: SummaryEntry) in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
             let rows = store.summaryIndex.filter(started) + store.summaryIndex.filter { !started($0) }
+            let q = query.trimmingCharacters(in: .whitespaces).lowercased()
+            let shown = q.isEmpty ? rows : rows.filter { $0.title.lowercased().contains(q) || $0.content.lowercased().contains(q) }
             List {
-                ForEach(rows) { entry in
+                ForEach(shown) { entry in
                 NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
                     HStack(spacing: 14) {
                         Thumb(url: store.cover(for: entry))
@@ -92,6 +95,8 @@ struct LibraryView: View {
                 }
             }
             .listStyle(.plain)
+            .searchable(text: $query, prompt: "Search your summaries")
+            .overlay { if shown.isEmpty && !q.isEmpty { ContentUnavailableView.search(text: query) } }
             .task(id: store.summaryIndex.count) { await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
             .frame(maxWidth: 680)
             .frame(maxWidth: .infinity)

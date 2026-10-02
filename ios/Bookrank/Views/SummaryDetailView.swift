@@ -99,6 +99,15 @@ private struct ChapterView: View {
                 .frame(maxWidth: .infinity)
             }
             .onChange(of: speaker.line) { _, l in withAnimation { proxy.scrollTo(l, anchor: .center) } }
+            // A long paragraph is taller than the screen, so centring the line is not enough: slide the
+            // anchor down the line as the word moves through it, so the spoken word stays on screen.
+            .onChange(of: speaker.word) { _, w in
+                guard let w, speaker.lines.indices.contains(speaker.line) else { return }
+                let len = max(1, speaker.lines[speaker.line].line.count)
+                guard len > 320 else { return }
+                let f = min(max(Double(w.lowerBound) / Double(len), 0.12), 0.8)
+                withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(speaker.line, anchor: UnitPoint(x: 0.5, y: f)) }
+            }
         }
         .navigationTitle(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "")
         #if os(iOS)
