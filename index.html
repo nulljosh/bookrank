@@ -132,16 +132,80 @@ a.skip:focus { position:fixed; left:1rem; top:1rem; z-index:99; padding:0.5rem 0
 </script>
 <style>
 </style>
+<style id="v2">
+/* Goodreads for the shelf, OpenAI for the calm: ink black like the film, one big sentence, covers drifting behind it. */
+:root, :root[data-theme="light"] { --bg:#0a0a0a; --bg2:#121212; --text:#fafafa; --text2:rgba(250,250,250,.62); --text3:rgba(250,250,250,.5); --border:#262626; --border2:#262626; --accent:#F2A541; --link:#F2A541; --accent-soft:#0a0a0a; }
+body { background:#0a0a0a; color:#fafafa; }
+::selection { background:#F2A541; color:#0a0a0a; }
+.container.wide { max-width:1040px; }
+.hero { min-height:92vh; display:flex; align-items:center; background:#0a0a0a; padding:6rem 0 5rem; }
+.hero .container { max-width:860px; }
+.hero-icon { width:72px; height:72px; border-radius:18px; margin-bottom:2rem; }
+.kicker { font-size:clamp(1rem,2.2vw,1.2rem); color:var(--text2); margin-bottom:1.1rem; }
+.hero h1 { font-size:clamp(2.8rem,8vw,5.6rem); line-height:1.02; letter-spacing:-.035em; font-weight:600; margin-bottom:1.4rem; }
+.lede { font-size:clamp(1.05rem,2.4vw,1.35rem); color:var(--text2); max-width:34rem; margin:0 auto 2.4rem; }
+.buttons { display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; }
+.btn { border-radius:999px; padding:.8rem 1.5rem; font-weight:500; }
+.btn-primary { background:#F2A541; color:#0a0a0a; }
+.btn-outline { background:transparent; border:1px solid #333; color:#fafafa; }
+.btn-outline:hover { border-color:#F2A541; color:#F2A541; }
+/* the wall */
+.wall { position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; justify-content:center; gap:14px; opacity:.5; overflow:hidden;
+  -webkit-mask-image:radial-gradient(ellipse 70% 62% at 50% 50%, transparent 0%, transparent 28%, #000 85%); mask-image:radial-gradient(ellipse 70% 62% at 50% 50%, transparent 0%, transparent 28%, #000 85%); }
+.wall .row { display:flex; gap:14px; width:max-content; animation:drift 140s linear infinite; }
+.wall .row.r2 { animation-direction:reverse; animation-duration:170s; }
+.wall img { width:96px; height:144px; object-fit:cover; border-radius:6px; flex:none; filter:saturate(.85); }
+@keyframes drift { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .wall .row { animation:none; } }
+/* the film */
+.film { padding:1rem 0 5rem; background:#0a0a0a; }
+.adwrap { margin:0 auto; max-width:1040px; }
+.ad { border-radius:20px; border:1px solid #1d1d1d; }
+/* the rest */
+.features, .closing { background:#0a0a0a; border:0; }
+.features h2, .closing h2 { font-size:clamp(1.8rem,4.5vw,3rem); letter-spacing:-.03em; font-weight:600; }
+.feature { background:transparent; border:0; border-top:1px solid #262626; border-radius:0; padding:1.4rem 0 0; box-shadow:none; }
+.feature h3 { font-size:1rem; font-weight:600; color:#fafafa; }
+.feature p { color:var(--text2); }
+footer, .closing { color:var(--text2); }
+
+/* readability: the wall sits under a dark veil, darkest where the words are */
+.wall { opacity:.42; -webkit-mask-image:none; mask-image:none; }
+.hero::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 62% 48% at 50% 50%, rgba(10,10,10,.92) 0%, rgba(10,10,10,.78) 45%, rgba(10,10,10,.35) 80%, rgba(10,10,10,.2) 100%),
+              linear-gradient(#0a0a0a 0%, transparent 18%, transparent 82%, #0a0a0a 100%); }
+.hero h1, .kicker, .lede { text-shadow: 0 2px 24px rgba(0,0,0,.85); }
+.kicker, .lede { color: rgba(250,250,250,.78); }
+@media (max-width: 600px) { .hero::after { background: rgba(10,10,10,.8); } .wall { opacity:.5; } }
+/* full screen, one panel at a time */
+html { scroll-snap-type: y mandatory; }
+.hero, .film, .features, .closing { min-height: 100svh; scroll-snap-align: start; display: flex; align-items: center; }
+.hero { min-height: 100svh; padding: 4rem 0; }
+.film .container, .features .container, .closing .container { width: 100%; }
+footer { scroll-snap-align: end; }
+@media (prefers-reduced-motion: reduce) { html { scroll-snap-type: none; } }
+
+/* Liquid Glass: translucent pills that pick up the wall behind them, a hairline edge and a top highlight */
+.btn-outline, .adsound { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 8px 24px rgba(0,0,0,.35); color:#fafafa; }
+.btn-outline:hover { background: rgba(255,255,255,.14); border-color: rgba(242,165,65,.6); color:#fafafa; }
+.btn-primary { background: linear-gradient(#F5B35E, #E8963A); color:#1a1208; border: 1px solid rgba(255,255,255,.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 10px 28px rgba(232,150,58,.28); }
+.feature { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 1.3rem 1.2rem;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
 <section class="hero">
+  <div class="wall" aria-hidden="true"><div class="row" id="rowA"></div><div class="row r2" id="rowB"></div><div class="row" id="rowC"></div></div>
   <div class="container">
-    <img class="hero-icon" src="icon.svg" alt="Bookrank icon" width="88" height="88">
-    <h1>Your books, summarized chapter by chapter.</h1>
-    <p>Photograph the pages of a book you own. Bookrank writes the summary, keeps it private, and reads it back to you.</p>
-
+    <img class="hero-icon" src="icon.svg" alt="Bookrank icon" width="72" height="72">
+    <p class="kicker">You finish a book. A month later you remember one idea.</p>
+    <h1>Bookrank keeps the rest.</h1>
+    <p class="lede">Every chapter in plain words. Read it, or listen to two voices talk it through.</p>
 
     <div class="buttons">
       <a href="/library.html" class="btn btn-primary">Open my summaries</a>
@@ -149,13 +213,16 @@ a.skip:focus { position:fixed; left:1rem; top:1rem; z-index:99; padding:0.5rem 0
       <a href="https://apps.apple.com/us/app/bookrank/id6792376485?mt=12" class="btn btn-outline">Mac</a>
       <a href="https://github.com/nulljosh/bookrank" class="btn btn-outline">Source</a>
     </div>
+  </div>
+</section>
+
+<section class="film"><div class="container wide">
     <div class="adwrap"><video class="ad" id="ad" src="ad.mp4" poster="ad-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Bookrank, 32 second film"></video><button type="button" class="adsound" id="adsound">Sound on</button></div>
     <script>
     // Browsers only autoplay muted. One tap turns the film's own music and voice on, from the start.
     (function(){var v=document.getElementById('ad'),b=document.getElementById('adsound');b.onclick=function(){v.muted=false;v.currentTime=0;v.play();b.hidden=true;};v.addEventListener('volumechange',function(){if(!v.muted)b.hidden=true;});})();
     </script>
-  </div>
-</section>
+</div></section>
 
 <section class="features">
   <div class="container">
@@ -281,6 +348,17 @@ a.skip:focus { position:fixed; left:1rem; top:1rem; z-index:99; padding:0.5rem 0
                   art: "<svg width=\"120\" height=\"120\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 3 2.7 5.6 6.3.9-4.5 4.4 1 6.1-5.5-2.9L6.5 20l1-6.1L3 9.5l6.3-.9z\"/></svg>" }
         ]
     });
+</script>
+<script>
+// The wall: three rows of covers drifting in opposite directions behind the hero. Still when motion is reduced.
+fetch('scripts/covers.json').then(function(r){return r.json()}).then(function(d){
+  // 42 covers, each row twice for the seamless loop: the second copy is the browser cache, so 42 requests, not 246.
+  var u=Object.keys(d).map(function(k){return d[k]}).filter(Boolean).slice(0,42), n=14;
+  ['rowA','rowB','rowC'].forEach(function(id,i){
+    var el=document.getElementById(id), set=u.slice(i*n,(i+1)*n);
+    el.innerHTML=set.concat(set).map(function(src){return '<img src="'+src+'" alt="" width="96" height="144" onerror="this.style.visibility=\'hidden\'">'}).join('');
+  });
+}).catch(function(){});
 </script>
 </body>
 </html>

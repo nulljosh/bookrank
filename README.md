@@ -4,52 +4,25 @@
 
 ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbookrank-black?logo=github)](https://github.com/nulljosh/bookrank) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0D96F6?logo=appstore&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485) [![Mac App Store](https://img.shields.io/badge/Mac%20App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485?mt=12)
 
-Chapter summaries of the books you read. Open a book, pick a chapter, read it or listen to it. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
+You finish a book. A month later you remember one idea. Bookrank keeps the rest: every chapter in plain words, read it or listen to it.
 
-[![Bookrank ad, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4)
+[![Bookrank, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4)
 
-**Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"`, or `bookrank-tui share <link>` to read a shared summary. See [tui/](tui/). The KMP app (`kmp/`, Android and desktop) opens share links too.
+Free on the [web](https://bookrank.heyitsmejosh.com), iPhone, iPad and Mac.
 
-<img src="progress.svg" width="460">
+- **Chapters.** A list of your books. Open one, pick a chapter, read it.
+- **Listen.** Two voices talk the chapter through. The word being read lights up and the page follows.
+- **Private.** Your summaries sit behind your account. Share one with a link if you want.
+- **Goodreads.** Paste your profile and the books you have read but not summarized show up.
+- **Offline.** The app keeps your books and covers on the device.
 
-## Pages
-
-- `index.html`: the landing page.
-- `library.html`: your summaries. Sign up with email, keep chapter summaries that only you can read.
-- `profile.html?u=<username>`: your profile. Username (defaults to the email's local part), a click-to-regenerate pixel avatar, email and password changes, reset link, and account deletion with everything in it in one step. Same on iPhone and Mac.
-
-## Listen
-
-Every summary can be played, not just read. "Explain it" turns each chapter into a short two-host conversation (Workers AI, `functions/api/narrate.js`) that explains the ideas and why they matter; "Read the notes" speaks the markdown as written. Voices are the device's own, a short list in your language.
-
-The transcript follows the voice: the current line is highlighted, the current word marked, and the page scrolls with it. Chapters sit in a sidebar. A progress bar runs across the top of the window. The next chapter is prepared while the current one plays, so there is no gap at the boundary. Pause always works, even while a chapter is loading. Where you stopped, and the generated scripts, are saved on your account, so the web, iPhone and Mac all pick up at the same line. Summaries you have started sit under "Currently playing" at the top of the list.
-
-## Share
-
-Any summary can be shared with a private link (`share.html?t=…`). The link opens the text and the audio for that one summary, and nothing else: no position, no account, no list. Stop sharing and the link dies. Covers for the list are matched to `books.json`, then looked up on Open Library and saved to the row.
-
-Tests: `node --test` (`listen.test.js`, `narrate.test.js`, `books.test.js`).
-
-## Covers
-
-`scripts/fetch-covers.py` finds covers on Open Library and writes them into `books.json` (used for summary cover matching). Images are hotlinked. Lookups are cached in `scripts/covers.json`.
+## Run it
 
 ```
-python3 scripts/fetch-covers.py                 # fetch missing covers
-python3 scripts/fetch-covers.py --dry-run       # list books with no cover
-python3 scripts/fetch-covers.py --retry-misses  # re-query cached misses
+node --test              # the tests
+sh scripts/build-site.sh # builds dist/
 ```
 
-## iOS and macOS apps
+Deploys with `wrangler pages deploy dist`. The iOS and Mac apps are generated from `ios/project.yml` with xcodegen; the bundle ID stays `com.heyitsmejosh.spine`.
 
-`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. A list of your books that opens into chapters, then the text, with one Listen button. Same account, same private summaries, same Share as the web. Generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
-
-<img src="ios/screenshots/library.jpg" width="240">
-
-## Apple Watch App
-
-`watchos/BookrankWatch` is a standalone SwiftUI watch app (`WKWatchOnly`), generated from `watchos/project.yml` by xcodegen. Bundle ID `com.heyitsmejosh.spine.watchos`. It's a full local port, not a network client: the ranked shelf, to-read list and top picks are the same `books.json` / `library.json` / `picks.json` bundled into the iOS app, copied into `watchos/Resources` and read the same way, so it works with no pairing step and nothing goes stale offline. Per-account chapter summaries (Supabase) stay iOS/macOS-only; that needs a sign-in flow that doesn't belong on a watch face.
-
-## More
-
-[Project map](architecture.svg) · [Roadmap](roadmap.md) · [Whitepaper](WHITEPAPER.md) · [Agent tools](docs/API.md) (WebMCP; no HTTP API)
+[Project map](architecture.svg) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](roadmap.md) · [Whitepaper](WHITEPAPER.md) · [Agent tools](docs/API.md)
