@@ -11,6 +11,22 @@ final class DataStore {
     private(set) var summaryIndex: [SummaryEntry] = []
     private(set) var summaryError: String?
 
+    /// Books on the linked Goodreads "read" shelf with no summary here yet (title match, same rule as the web).
+    struct GoodreadsBook: Identifiable, Decodable { let title: String; let author: String; let cover: String?; let url: String?; var id: String { title + author } }
+    private(set) var goodreadsQueue: [GoodreadsBook] = []
+    func loadGoodreads(_ id: String?) async {
+        guard let id, let url = URL(string: "https://bookrank.heyitsmejosh.com/api/goodreads?user=\(id)&shelf=read"),
+              let (data, _) = try? await URLSession.shared.data(from: url) else { goodreadsQueue = []; return }
+        struct Out: Decodable { let books: [GoodreadsBook]? }
+        let all = (try? JSONDecoder().decode(Out.self, from: data))?.books ?? []
+        let norm = { (s: String) in s.lowercased().replacingOccurrences(of: "[^a-z0-9]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespaces) }
+        let have = summaryIndex.map { norm($0.title) }.filter { !$0.isEmpty }
+        goodreadsQueue = all.filter { b in
+            let t = norm(b.title), words = Set(t.split(separator: " "))
+            return !have.contains { h in h.split(separator: " ").allSatisfy(words.contains) || t.replacingOccurrences(of: " ", with: "").contains(h.replacingOccurrences(of: " ", with: "")) }
+        }
+    }
+
     init() {
         books = Self.load("books")
         summaryIndex = Self.readCache()

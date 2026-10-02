@@ -61,7 +61,8 @@ struct LibraryView: View {
             // Books you are partway through come first; no group headers.
             let started = { (e: SummaryEntry) in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
             let rows = store.summaryIndex.filter(started) + store.summaryIndex.filter { !started($0) }
-            List(rows) { entry in
+            List {
+                ForEach(rows) { entry in
                 NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
                     HStack(spacing: 14) {
                         Thumb(url: store.cover(for: entry))
@@ -73,8 +74,25 @@ struct LibraryView: View {
                         }
                     }
                 }
+                }
+                if !store.goodreadsQueue.isEmpty {
+                    Section {
+                        ForEach(store.goodreadsQueue) { b in
+                            HStack(spacing: 14) {
+                                Thumb(url: b.cover)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(b.title).font(.body).lineLimit(2)
+                                    Text(b.author).font(.footnote).foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Read on Goodreads, no summary yet (\(store.goodreadsQueue.count))")
+                    }
+                }
             }
             .listStyle(.plain)
+            .task(id: store.summaryIndex.count) { await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
             .frame(maxWidth: 680)
             .frame(maxWidth: .infinity)
         }

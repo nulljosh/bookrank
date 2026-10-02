@@ -20,8 +20,19 @@ struct AccountView: View {
     @State private var confirmDelete = ""
     @State private var showDelete = false
     @State private var username = ""
+    @State private var goodreads = ""
     @State private var newEmail = ""
     @State private var newPassword = ""
+
+    private func saveGoodreads() {
+        let id = goodreads.firstMatch(of: /(\d{3,})/).map { String($0.1) }
+        run {
+            if !goodreads.trimmingCharacters(in: .whitespaces).isEmpty && id == nil { return "That does not look like a Goodreads profile link." }
+            try await auth.setMetadata(["goodreads": id.map { .string($0) } ?? .null])
+            await store.loadGoodreads(id)
+            return id == nil ? "Unlinked." : "Linked. \(store.goodreadsQueue.count) books read, no summary yet."
+        }
+    }
 
     private func saveUsername() {
         let u = username.lowercased().filter { $0.isLetter || $0.isNumber || "._-".contains($0) }.prefix(32)
@@ -150,6 +161,20 @@ struct AccountView: View {
             LabeledContent("Email", value: auth.user?.email ?? "—")
             LabeledContent("Summaries", value: "\(store.summaryIndex.count)")
         }
+
+        Section {
+            TextField("Goodreads profile link", text: $goodreads, onCommit: saveGoodreads)
+                .autocorrectionDisabled()
+                #if os(iOS)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.URL)
+                #endif
+        } header: {
+            Text("Goodreads")
+        } footer: {
+            Text("Paste your profile link. Books you have read but not summarized show up under your list.")
+        }
+        .onAppear { goodreads = auth.user?.userMetadata["goodreads"]?.stringValue.map { "goodreads.com/user/show/\($0)" } ?? "" }
 
         Section("Credentials") {
             TextField("New email", text: $newEmail).textContentType(.emailAddress).autocorrectionDisabled()
