@@ -35,7 +35,14 @@ struct LibraryView: View {
         // Fires once the stored session has been read back, and again on sign-in or
         // sign-out, so the shelf follows the account without a manual refresh.
         .task(id: auth.user?.id) {
-            if auth.isSignedIn { await store.loadSummaries(); await Nudge.schedule(store.summaryIndex) }
+            if auth.isSignedIn {
+                await store.loadSummaries()
+                await Nudge.schedule(store.summaryIndex)
+                #if os(iOS)
+                WatchSync.shared.activate()
+                WatchSync.shared.push(store.summaryIndex)
+                #endif
+            }
         }
     }
 

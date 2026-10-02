@@ -12,8 +12,11 @@
 		0B0EFD6E00DE0C2AB551AD0D /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
 		1694FE4D4EF60327BDCF2532 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
 		17888729CF61FF239025BADE /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */; };
+		1CD52914B85B54F45A727C4D /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = FB40C73D2E6AB630EB181B27 /* fiend.md */; };
+		1E23CF58D272066F806B4D54 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB45E0037C003E325ADC42 /* Lines.swift */; };
 		1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E9A61C2621F9DEC651784 /* SummaryDetailView.swift */; };
 		216E655B5ABA9093B1EF3FAF /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = C40F428E7B2638F5B0A28407 /* the-optimist.md */; };
+		21F71B90E710765C5473A568 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C9B67D19532416222DAD6A /* ContentView.swift */; };
 		25B218B12C54C72B5DA67953 /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = C18473EA4F1187D598930E43 /* the-contrarian.md */; };
 		27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
 		28949E71322467B2C963F4B9 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
@@ -21,11 +24,15 @@
 		2BF804FB6372846B1BC65716 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */; };
 		2F12A0E273524C820BC753B2 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */; };
 		30981EBF8CC9CAB41337F5A7 /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */; };
+		32B91615408A16DEC7E54139 /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367E334777880D13034D343 /* Nudge.swift */; };
 		35F8DEC8D645CC264EC28853 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */; };
 		3B67AE1BC21823F7ACB26012 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF13D1710F7C1F5A078C6DFE /* KeychainHelper.swift */; };
+		4D2482A7BBC95BAA98D7DD6F /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9EA31865801340B0F2B9C /* WatchSync.swift */; };
 		5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */; };
 		55582AC68081F6A8CCA10CA3 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */; };
 		5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
+		61844E872C58C71D585B3D08 /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367E334777880D13034D343 /* Nudge.swift */; };
+		61D6262F84FDA807D5117C90 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9EA31865801340B0F2B9C /* WatchSync.swift */; };
 		649730D02B3481F8505CA549 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C3A1353D313534351117C8B /* data-science.md */; };
 		6C0D4964B355370E503C779A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95CED7FDB22CA4CB0392EC /* DataStore.swift */; };
 		6C8D0BD9900B902574D25C3B /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 9299A40128056C29A36B39FF /* accounting-for-canadians.md */; };
@@ -41,15 +48,19 @@
 		8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
 		98277152F4968E0BC6DEEBF3 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
 		9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
+		9CD5FFEFDDBA03ED3740BA84 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = C002724A560D4513FDCC35AA /* sample.md */; };
 		A4F4BAEDB0EF83F51CC22E45 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
 		A695F79E80FEA72770FD20D8 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */; };
 		A6A974A9F0A21B487F8FE5D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
 		A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
+		A99308074D71072282416B28 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = FB40C73D2E6AB630EB181B27 /* fiend.md */; };
 		AABDF0698D27BB2C2BE30BE8 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */; };
+		ACC9A797C946ABC82A7223A1 /* BookrankWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74E972224BB26EBCDD8553 /* BookrankWatchApp.swift */; };
 		B59B73484AECECA003841617 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 6166A2F57E2FB18524257B68 /* adult-autism.md */; };
 		B64FCDC29B6F708C408D96DA /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */; };
 		B7558881537FE7DE4C18E890 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
 		B7BB6D8ABA024E8AC48C4D34 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
+		C36330F0ED58F099AD4560FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E38B1F98C2D12A40201026FD /* Assets.xcassets */; };
 		C67B3C75126526F6C98B2E67 /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */; };
 		C8015463E3FE532E8695683D /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */; };
 		C99984E7BF14362BE46E4FF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0B58BE920B99107273B888 /* Assets.xcassets */; };
@@ -62,6 +73,7 @@
 		DCB91EBE5CB0C7E81EFAEC62 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDC65159E61A9272770711 /* AuthStore.swift */; };
 		E50764035DF823B8FC9740D9 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139694DD4F7D982870A363B8 /* Speaker.swift */; };
 		E7D47BF064A2A4010903F1EC /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C3A1353D313534351117C8B /* data-science.md */; };
+		E93B16FAE7C677BB23CAC903 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = C002724A560D4513FDCC35AA /* sample.md */; };
 		FCFA0FF150F7B456962366FA /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3A21CB527B97CD698210F /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +88,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01FB45E0037C003E325ADC42 /* Lines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lines.swift; sourceTree = "<group>"; };
 		021540537B917A67C5B0DF44 /* accounting-for-canadians-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians-for-dummies.md"; sourceTree = "<group>"; };
 		0340F2AEE2D9B6E76E1524C4 /* BookrankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankApp.swift; sourceTree = "<group>"; };
+		0367E334777880D13034D343 /* Nudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
+		04C9B67D19532416222DAD6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "sobriety-for-dummies.md"; sourceTree = "<group>"; };
 		139694DD4F7D982870A363B8 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		15E4E60649355186A61C354D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -96,20 +111,26 @@
 		91DDC65159E61A9272770711 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		9299A40128056C29A36B39FF /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeychainStorage.swift; sourceTree = "<group>"; };
+		962EDC3A7DFAAAE764E29CAD /* BookrankWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F17495C3D9F9CDDDB873217 /* BookrankMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookrankMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07BFE167C4FA45ADC09E22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
+		AA74E972224BB26EBCDD8553 /* BookrankWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrankWatchApp.swift; sourceTree = "<group>"; };
 		AAE08A505074EDAFB225DA9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		B5B7B0CA14D0E4504F44BAEE /* Bookrank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookrank.entitlements; sourceTree = "<group>"; };
 		B94455A1D83055B6BDCDEA6B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		BBE9EA31865801340B0F2B9C /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		BF13D1710F7C1F5A078C6DFE /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		C002724A560D4513FDCC35AA /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
 		C18473EA4F1187D598930E43 /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Bookrank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40F428E7B2638F5B0A28407 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		CA0B58BE920B99107273B888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB1D05D7980A2E841F3C8F8D /* BookrankMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookrankMac.entitlements; sourceTree = "<group>"; };
+		E38B1F98C2D12A40201026FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED95CED7FDB22CA4CB0392EC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F294EFCEDCEAA79979D54E18 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
+		FB40C73D2E6AB630EB181B27 /* fiend.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = fiend.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +159,7 @@
 				C27F4A495E69D4E2FB08ADB9 /* Bookrank.app */,
 				9F17495C3D9F9CDDDB873217 /* BookrankMac.app */,
 				331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */,
+				962EDC3A7DFAAAE764E29CAD /* BookrankWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,10 +172,12 @@
 				6166A2F57E2FB18524257B68 /* adult-autism.md */,
 				22C7429B60A878E2FA7BD4C8 /* ai-in-business.md */,
 				3C3A1353D313534351117C8B /* data-science.md */,
+				FB40C73D2E6AB630EB181B27 /* fiend.md */,
 				4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */,
 				2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */,
 				A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */,
 				61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */,
+				C002724A560D4513FDCC35AA /* sample.md */,
 				0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */,
 				2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */,
 				C18473EA4F1187D598930E43 /* the-contrarian.md */,
@@ -196,10 +220,22 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
+		B3CF141C2ADF419935643C9E /* BookrankWatch */ = {
+			isa = PBXGroup;
+			children = (
+				E38B1F98C2D12A40201026FD /* Assets.xcassets */,
+				AA74E972224BB26EBCDD8553 /* BookrankWatchApp.swift */,
+				04C9B67D19532416222DAD6A /* ContentView.swift */,
+				01FB45E0037C003E325ADC42 /* Lines.swift */,
+			);
+			path = BookrankWatch;
+			sourceTree = "<group>";
+		};
 		CF3295CF2B0C985BEDDCC403 = {
 			isa = PBXGroup;
 			children = (
 				4BAE8E4D4DA5259CBC6EA6E4 /* Bookrank */,
+				B3CF141C2ADF419935643C9E /* BookrankWatch */,
 				95469F26B1AAF7D3B77CC9D6 /* UITests */,
 				1EC579AC99E071E646724465 /* Products */,
 			);
@@ -212,8 +248,10 @@
 				15E4E60649355186A61C354D /* Book.swift */,
 				ED95CED7FDB22CA4CB0392EC /* DataStore.swift */,
 				BF13D1710F7C1F5A078C6DFE /* KeychainHelper.swift */,
+				0367E334777880D13034D343 /* Nudge.swift */,
 				93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */,
 				139694DD4F7D982870A363B8 /* Speaker.swift */,
+				BBE9EA31865801340B0F2B9C /* WatchSync.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +269,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		050CEFFBFC08DE01D0A076AC /* BookrankWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4678A077A0EF285723B9FF08 /* Build configuration list for PBXNativeTarget "BookrankWatch" */;
+			buildPhases = (
+				645EBE63DE530C6C937597C9 /* Sources */,
+				5F1F68705862552CA5272688 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookrankWatch;
+			packageProductDependencies = (
+			);
+			productName = BookrankWatch;
+			productReference = 962EDC3A7DFAAAE764E29CAD /* BookrankWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A20B3CCDD4D633BE0A24BDE7 /* BookrankUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70767030323A41941BEB4183 /* Build configuration list for PBXNativeTarget "BookrankUITests" */;
@@ -298,6 +354,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					050CEFFBFC08DE01D0A076AC = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
 					A20B3CCDD4D633BE0A24BDE7 = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
@@ -333,6 +393,7 @@
 				B0AA3B5A43AF11D0E35F7B30 /* Bookrank */,
 				A20B3CCDD4D633BE0A24BDE7 /* BookrankUITests */,
 				E8D9FC09FDAD1E548195F2C1 /* BookrankMac */,
+				050CEFFBFC08DE01D0A076AC /* BookrankWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -349,10 +410,12 @@
 				2F12A0E273524C820BC753B2 /* ai-in-business.md in Resources */,
 				B7558881537FE7DE4C18E890 /* books.json in Resources */,
 				649730D02B3481F8505CA549 /* data-science.md in Resources */,
+				1CD52914B85B54F45A727C4D /* fiend.md in Resources */,
 				6E183A454AFE9EF97C41F1F3 /* good-feng-shui.md in Resources */,
 				7A25671191DF1EC112961C12 /* ibs-for-dummies.md in Resources */,
 				30981EBF8CC9CAB41337F5A7 /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				2BF804FB6372846B1BC65716 /* macos-tahoe.md in Resources */,
+				E93B16FAE7C677BB23CAC903 /* sample.md in Resources */,
 				35F8DEC8D645CC264EC28853 /* sobriety-for-dummies.md in Resources */,
 				C8015463E3FE532E8695683D /* statistics-for-dummies.md in Resources */,
 				25B218B12C54C72B5DA67953 /* the-contrarian.md in Resources */,
@@ -372,10 +435,12 @@
 				17888729CF61FF239025BADE /* ai-in-business.md in Resources */,
 				9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */,
 				E7D47BF064A2A4010903F1EC /* data-science.md in Resources */,
+				A99308074D71072282416B28 /* fiend.md in Resources */,
 				002A71F32C1E13B5F67F19B2 /* good-feng-shui.md in Resources */,
 				AABDF0698D27BB2C2BE30BE8 /* ibs-for-dummies.md in Resources */,
 				5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				8C89E5673A4F728973FF29E3 /* macos-tahoe.md in Resources */,
+				9CD5FFEFDDBA03ED3740BA84 /* sample.md in Resources */,
 				55582AC68081F6A8CCA10CA3 /* sobriety-for-dummies.md in Resources */,
 				B64FCDC29B6F708C408D96DA /* statistics-for-dummies.md in Resources */,
 				855B9030877151E1004CDD81 /* the-contrarian.md in Resources */,
@@ -384,9 +449,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5F1F68705862552CA5272688 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C36330F0ED58F099AD4560FE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		645EBE63DE530C6C937597C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACC9A797C946ABC82A7223A1 /* BookrankWatchApp.swift in Sources */,
+				21F71B90E710765C5473A568 /* ContentView.swift in Sources */,
+				1E23CF58D272066F806B4D54 /* Lines.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65CCCB7464DD985351F0AD97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,9 +481,11 @@
 				1694FE4D4EF60327BDCF2532 /* DataStore.swift in Sources */,
 				3B67AE1BC21823F7ACB26012 /* KeychainHelper.swift in Sources */,
 				5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */,
+				32B91615408A16DEC7E54139 /* Nudge.swift in Sources */,
 				A94877D8D41DD83131300033 /* SessionKeychainStorage.swift in Sources */,
 				B7BB6D8ABA024E8AC48C4D34 /* Speaker.swift in Sources */,
 				8032F9BF89028C9697BE1077 /* SummaryDetailView.swift in Sources */,
+				4D2482A7BBC95BAA98D7DD6F /* WatchSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,9 +500,11 @@
 				6C0D4964B355370E503C779A /* DataStore.swift in Sources */,
 				DC0D59BC8A08FF091C2AA723 /* KeychainHelper.swift in Sources */,
 				27803BB5EE84A1F96E8CB4BA /* LibraryView.swift in Sources */,
+				61844E872C58C71D585B3D08 /* Nudge.swift in Sources */,
 				8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */,
 				E50764035DF823B8FC9740D9 /* Speaker.swift in Sources */,
 				1F5762C6E830188990D58F6D /* SummaryDetailView.swift in Sources */,
+				61D6262F84FDA807D5117C90 /* WatchSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +571,26 @@
 			};
 			name = Release;
 		};
+		45BB95FD0935E2FAB4F4E619 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202610020500;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Bookrank;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
 		8D4C094E03C64D99FF84B853 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -491,7 +598,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 202610020300;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -500,11 +607,31 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
 			name = Debug;
+		};
+		9A38EBD9695A5AB8581B8F2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202610020500;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Bookrank;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
 		};
 		A9C35D79F7E0190FB01D60F6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -628,7 +755,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 202610020300;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -637,7 +764,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -694,6 +821,15 @@
 			buildConfigurations = (
 				B1E05A6910803E9D5E313DC6 /* Debug */,
 				A9C35D79F7E0190FB01D60F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4678A077A0EF285723B9FF08 /* Build configuration list for PBXNativeTarget "BookrankWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45BB95FD0935E2FAB4F4E619 /* Debug */,
+				9A38EBD9695A5AB8581B8F2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

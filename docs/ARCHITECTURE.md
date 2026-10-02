@@ -54,7 +54,8 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `ios/Bookrank/Views/AccountView.swift` | Sign in with Apple or email, the Goodreads link with photo, quote and genres, export everything as markdown, password reset, sign out, delete account |
 | `ios/Bookrank/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
 | `ios/Bookrank/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
-| `ios/Bookrank/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch |
+| `ios/Bookrank/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch; also `lines(from:)` for watch sync |
+| `ios/Bookrank/Models/WatchSync.swift` | WCSessionDelegate singleton that syncs up to 30 lines from summaries to the paired watch app over applicationContext |
 | `ios/Bookrank/Models/AuthStore.swift` | Supabase email and password auth, session restore |
 | `ios/Bookrank/Models/Book.swift` | `Book` (for cover matching), `SummaryEntry`, `ListenState` |
 | `ios/Bookrank/Models/KeychainHelper.swift` | Small keychain read and write helper |
@@ -75,6 +76,15 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/bookrank/MainActivity.kt` | Android entry |
 | `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/bookrank/Main.kt` | Desktop window |
 | `kmp/settings.gradle.kts`, `kmp/composeApp/build.gradle.kts`, `kmp/shared/build.gradle.kts`, `kmp/gradle/libs.versions.toml` | Gradle build and pinned versions |
+
+## watchOS
+
+| File | What it owns |
+|---|---|
+| `ios/BookrankWatch/BookrankWatchApp.swift` | Watch app entry, observes Lines instance |
+| `ios/BookrankWatch/ContentView.swift` | One line at a time with book title, tap to advance to a random line, empty state text |
+| `ios/BookrankWatch/Lines.swift` | WCSessionDelegate that receives lines from iPhone over applicationContext and stores in UserDefaults |
+| `ios/BookrankWatch/Assets.xcassets/` | Watch app icon and orange accent color |
 
 ## Terminal
 

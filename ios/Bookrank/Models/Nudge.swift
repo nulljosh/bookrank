@@ -36,6 +36,20 @@ enum Nudge {
         return on
     }
 
+    /// Extract random lines from entries for watch sync. Returns up to `count` dicts with "title" and "text" keys.
+    static func lines(from entries: [SummaryEntry], count: Int = 30) -> [[String: String]] {
+        var result: [[String: String]] = []
+        var tried = Set<Int>()
+        while result.count < count && tried.count < entries.count {
+            guard let index = (0..<entries.count).randomElement(), !tried.contains(index) else { continue }
+            tried.insert(index)
+            let entry = entries[index]
+            guard let text = line(from: entry.content) else { continue }
+            result.append(["title": entry.title, "text": text])
+        }
+        return result
+    }
+
     /// Re-queue the next seven mornings. Safe to call on every launch.
     static func schedule(_ entries: [SummaryEntry]) async {
         guard enabled, !entries.isEmpty else { return }
