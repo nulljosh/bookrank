@@ -10,8 +10,6 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 **Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"`, or `bookrank-tui share <link>` to read a shared summary. See [tui/](tui/). The KMP app (`kmp/`, Android and desktop) opens share links too.
 
-![landing page](screenshots/landing.jpg)
-
 <img src="progress.svg" width="460">
 
 ## Pages
