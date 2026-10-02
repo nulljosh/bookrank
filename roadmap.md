@@ -14,7 +14,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [x] Native sign-in and create-account restyled to match the web (built on iOS and Mac 2026-10-02, not yet seen on a device; eyeball it in the 1.1 screenshot run).
 - [ ] Watch app: replace the old ranked shelf with the summaries list (read-only), or drop the watch target.
 - [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
-- [ ] Web offline: service worker keeps the last opened summaries readable.
+- [x] Web offline: every list and opened summary is cached per account and served when the network fails (2026-10-02).
 - [x] Accessibility pass: web (labels, reduced motion) and iOS (auth title scales with Dynamic Type, covers hidden from VoiceOver) done 2026-10-02.
 - [ ] Daily review nudge: one local notification with a line from a random chapter.
 - [ ] Landing and app screenshots refreshed after 1.0.5 is approved; bump to 1.1.0 and ship both platforms.

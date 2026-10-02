@@ -40,6 +40,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `profile.test.js` | Avatar generation and username defaults |
 | `books.test.js` | `books.json` integrity: no duplicate titles, required fields present |
 | `goodreads.test.js` | Goodreads feed and profile parsing: titles, entities, pages, best-quote pick |
+| `offline.test.js` | The web library's offline cache: remembers lists and summaries, serves them when the network fails, never leaks across accounts |
 | `speak.test.js` | ElevenLabs character timings turned into word timings |
 | `src/lib/tools.test.mjs` | Tool filtering, pagination and title resolution |
 | `scripts/test-build.py` | `build.py` fails loudly on bad rows instead of silently dropping them |

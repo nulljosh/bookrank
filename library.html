@@ -207,7 +207,7 @@ document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
   const { error } = await db.auth.signInWithOAuth({ provider: b.dataset.provider, options: { redirectTo: location.origin + location.pathname } });
   if (error) $('authMsg').textContent = error.message;
 });
-$('signout').onclick = () => db.auth.signOut();
+$('signout').onclick = async () => { try { await caches.delete('bookrank-data'); } catch {} db.auth.signOut(); };
 
 // Supabase re-fires SIGNED_IN / TOKEN_REFRESHED on every tab focus and hourly token
 // refresh. Rebuilding the list on those is what stopped playback and "clicked back" to the
@@ -363,9 +363,22 @@ $('share').onclick = async () => {
 // WebMCP bridge at the bottom calls it directly. That split is deliberate: a
 // tool must be able to read and write summaries WITHOUT disturbing whatever the
 // user has open in the editor, so no tool goes through open()/saveCurrent().
+// Read-through cache in Cache Storage, keyed by account: every list and every summary you open is kept, so
+// they stay readable offline (a flaky train is the point). Cleared on sign-out so the next account never sees it.
+const offline = {
+  key: async k => `/_rows/${(await db.auth.getSession()).data.session?.user.id || 'anon'}/${k}`,
+  put: async (k, v) => { try { (await caches.open('bookrank-data')).put(await offline.key(k), new Response(JSON.stringify(v))); } catch {} },
+  get: async k => { try { const r = await (await caches.open('bookrank-data')).match(await offline.key(k)); return r ? r.json() : null; } catch { return null; } },
+};
+const cached = async (k, q) => {
+  const res = await q();
+  if (!res.error) { offline.put(k, res.data); return res; }
+  const hit = await offline.get(k);
+  return hit ? { data: hit, error: null, offline: true } : res;
+};
 const rows = {
-  list:   ()            => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token').order('updated_at', { ascending: false }),
-  get:    (id)          => db.from(TABLE).select('*').eq('id', id).single(),
+  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token').order('updated_at', { ascending: false })),
+  get:    (id)          => cached(id, () => db.from(TABLE).select('*').eq('id', id).single()),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
   remove: (id)          => db.from(TABLE).delete().eq('id', id),
@@ -381,10 +394,10 @@ const stamp = (title, body, slug) => ({
 // ---- list ----
 async function load() {
   listen?.stop();
-  const { data, error } = await rows.list();
+  const { data, error, offline: off } = await rows.list();
   if (error) { $('listMsg').textContent = error.message; return []; }
   $('list').innerHTML = '';
-  $('listMsg').textContent = data.length ? '' : 'No summaries yet.';
+  $('listMsg').textContent = off ? 'Offline. Showing your last copy.' : data.length ? '' : 'No summaries yet.';
   // Rows with a live resume point come first under "Currently playing"; the untouched
   // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
   const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
