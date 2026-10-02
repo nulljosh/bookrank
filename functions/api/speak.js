@@ -5,7 +5,7 @@
 // ponytail: per-colo Cache API, not a global store; move to R2 if a popular book re-bills per region.
 import { isSignedIn, isShared } from "./narrate.js";
 
-const VOICES = { A: "21m00Tcm4TlvDq8ikWAM", B: "pNInz6obpgDQGcFmaJgB" }; // Rachel, Adam (ElevenLabs premade)
+const VOICES = { A: "Xb7hH8MSUJpSbSDYk0k2", B: "JBFqnCBsd6RMkjVDRZzb" }; // Alice (clear educator), George (warm storyteller): default voices a free plan can use
 const MODEL = "eleven_flash_v2_5";
 const MAX = 600;
 
