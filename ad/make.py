@@ -98,7 +98,10 @@ for i, ((kind, a), dur) in enumerate(zip(PLAN, durs)):
     if kind == "card": card(a[0], dur, out)
     elif kind == "phone": screen(a[0], dur, a[1], out)
     elif kind == "clip":  # live footage from the simulator walk, cut first so the seek is exact
-        run(["-i", "shots/walk.mov", "-ss", str(a[0]), "-t", str(dur), "-an", "-c:v", "libx264", "-crf", "14", f"cut/clip{i}.mp4"])
+        # simctl records only when pixels change, so still moments have no frames; make it constant rate first
+        if not os.path.exists("cut/walk24.mp4"):
+            run(["-i", "shots/walk.mov", "-vf", f"fps={FPS}", "-fps_mode", "cfr", "-an", "-c:v", "libx264", "-crf", "14", "-pix_fmt", "yuv420p", "cut/walk24.mp4"])
+        run(["-ss", str(a[0]), "-t", str(dur), "-i", "cut/walk24.mp4", "-an", "-c:v", "libx264", "-crf", "14", f"cut/clip{i}.mp4"])
         screen(f"cut/clip{i}.mp4", dur, a[1], out, start=0)
     else: end(dur, out)
     parts.append(out)
