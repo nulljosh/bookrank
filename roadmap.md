@@ -7,7 +7,6 @@ Listen feature complete. Refactored narration player into a shared module (liste
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
 ## Open
-- [ ] Summaries-only pivot, remaining: KMP and TUI still show the shelf; then `books.json`/`build.py`/`covers.json` can go once cover matching stops using them. Web + iOS/macOS done 2026-09-21.
 - [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
   structural iPad issue: `LibraryView` is a single scrolling dashboard capped at
   `.frame(maxWidth: 680)` centered (the correct reading-width pattern, same as Apple's
@@ -409,4 +408,3 @@ RLS can see who is asking, do not move them behind a Function that cannot.
 - `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
 
 ## Ingested 2026-10-01
-- [ ] Simplify the UI to just summaries. (Web/iOS/macOS were pivoted to summaries-only 2026-09-21; verify nothing else is left on screen, source note had attachment notes/attachments/2026-10-01/bookrank-1.png.)

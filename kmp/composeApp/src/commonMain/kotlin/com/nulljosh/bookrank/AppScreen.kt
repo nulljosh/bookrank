@@ -1,6 +1,5 @@
 package com.nulljosh.bookrank
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.rememberCoroutineScope
@@ -22,7 +20,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,15 +33,7 @@ fun BookrankTheme(content: @Composable () -> Unit) =
 
 @Composable
 fun AppScreen(client: BookrankClient = BookrankClient()) {
-    var books by remember { mutableStateOf<List<Book>>(emptyList()) }
-    var loading by remember { mutableStateOf(true) }
-    var error by remember { mutableStateOf<String?>(null) }
     var shared by remember { mutableStateOf<SharedSummary?>(null) }
-
-    LaunchedEffect(Unit) {
-        runCatching { books = client.books() }.onFailure { error = it.message ?: "failed to load" }
-        loading = false
-    }
 
     shared?.let { SharedScreen(it) { shared = null } ; return }
 
@@ -52,21 +41,6 @@ fun AppScreen(client: BookrankClient = BookrankClient()) {
         Column(Modifier.fillMaxSize().padding(24.dp)) {
             Text("Bookrank", style = MaterialTheme.typography.headlineMedium)
             ShareLinkBox(client) { shared = it }
-            when {
-                loading -> CircularProgressIndicator(Modifier.padding(top = 24.dp))
-                error != null -> Text(error!!, modifier = Modifier.padding(top = 16.dp))
-                else -> LazyColumn(
-                    modifier = Modifier.padding(top = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    items(books.sortedBy { it.rank }) { b ->
-                        Column {
-                            Text("${b.rank}. ${b.title}", style = MaterialTheme.typography.titleMedium)
-                            Text("${b.author} - ${b.rating}★ (${b.reviewCount})")
-                        }
-                    }
-                }
-            }
         }
     }
 }

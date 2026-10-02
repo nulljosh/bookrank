@@ -13,20 +13,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
-@Serializable
-data class Book(
-    val section: String,
-    val rank: Int,
-    val title: String,
-    val author: String,
-    val goodreadsURL: String,
-    val rating: Double,
-    val reviewCount: String,
-    val badges: List<String> = emptyList(),
-    val notes: String = "",
-    val cover: String = "",
-)
-
 /** One summary behind a share link: title, text, cover and the cached narration only. */
 @Serializable
 data class SharedSummary(val title: String, val content: String, val cover: String? = null)
@@ -52,14 +38,12 @@ fun chapters(md: String): List<Pair<String, String>> {
     return parts.map { it.first to it.second }
 }
 
-// Reads the same static books.json the web app serves, plus shared summaries via the
-// public RPC (no account needed, a token is the whole credential).
+// Reads shared summaries via the public RPC (no account needed, a token is the whole credential).
 class BookrankClient(private val baseUrl: String = "https://bookrank.heyitsmejosh.com") {
     private val http = HttpClient {
         install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
     }
 
-    suspend fun books(): List<Book> = http.get("$baseUrl/books.json").body()
 
     /** Accepts a share URL or a bare token. Null when the link is not active. */
     suspend fun shared(linkOrToken: String): SharedSummary? {
