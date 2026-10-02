@@ -113,6 +113,7 @@ private struct ChapterView: View {
 /// line is being spoken the current word is marked, plain text only, formatting returns
 /// when the line is done.
 private struct LineView: View {
+    @Environment(\.colorScheme) private var colorScheme
     let line: ListenState.Line
     let on: Bool
     let dim: Bool   // only dim the other lines while something is being read
@@ -131,7 +132,13 @@ private struct LineView: View {
 
     private var text: Text {
         if on, let w = word, let r = Range(NSRange(location: w.lowerBound, length: w.count), in: line.line) {
-            return Text(line.line[..<r.lowerBound]).foregroundStyle(.secondary) + Text(line.line[r]).foregroundStyle(.primary).bold() + Text(line.line[r.upperBound...]).foregroundStyle(.secondary)
+            // Highlighter pass over the word being read: the app's accent (navy, yellow in dark) behind
+            // it, with the text flipped to read on top. The rest of the line stays dim.
+            var word = AttributedString(String(line.line[r]))
+            word.backgroundColor = Color.accentColor
+            word.foregroundColor = colorScheme == .dark ? .black : .white  // navy takes white, yellow takes black
+            word.inlinePresentationIntent = .stronglyEmphasized
+            return Text(line.line[..<r.lowerBound]).foregroundStyle(.secondary) + Text(word) + Text(line.line[r.upperBound...]).foregroundStyle(.secondary)
         }
         if let md = line.md, let a = try? AttributedString(markdown: md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "• ", options: .regularExpression)
             .replacingOccurrences(of: "^#+ ", with: "", options: .regularExpression)) {
