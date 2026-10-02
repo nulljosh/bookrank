@@ -11,7 +11,7 @@
 // Natural voices are what the $1 buys. The App Store apps are paid upfront, so they say so with an
 // X-Bookrank-App header; on the web a signed-in account needs a paid flag in KV (set by the Stripe
 // webhook). Unpaid gets 402 and the player uses the device voice. Share links stay open. The header is
-// not proof, only the cheap check; the gate stays off until STRIPE_PRICE_ID is set, so nothing breaks before checkout exists; the character caps below bound the cost either way.
+// not proof, only the cheap check; the gate stays off until STRIPE_PRICE_ID and STRIPE_SECRET_KEY are both set, so nothing breaks before checkout exists; the character caps below bound the cost either way.
 // Env (all optional): ELEVENLABS_API_KEY, TTS_KV (binding), TTS_MODEL, TTS_MODEL_BEST, TTS_VOICE_A,
 // TTS_VOICE_B, TTS_MONTHLY_CHARS (default 25000), TTS_DAILY_CHARS (default 6000).
 import { isSignedIn, isShared } from "./narrate.js";
@@ -33,7 +33,7 @@ export async function onRequest({ request, env }) {
   if (!(token ? await isShared(token) : await isSignedIn(auth))) return json({ error: "Sign in required." }, 401);
 
   const uid = token ? null : await userOf(auth);
-  if (env.STRIPE_PRICE_ID && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
+  if (env.STRIPE_PRICE_ID && env.STRIPE_SECRET_KEY && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
     return json({ error: "Natural voices are $1.", pay: true }, 402);
   }
 
