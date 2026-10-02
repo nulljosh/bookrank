@@ -39,6 +39,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `narrate.test.js` | `/api/narrate` script parsing, intro only on chapter one, outro only on the last |
 | `profile.test.js` | Avatar generation and username defaults |
 | `books.test.js` | `books.json` integrity: no duplicate titles, required fields present |
+| `goodreads.test.js` | Goodreads feed and profile parsing: titles, entities, pages, best-quote pick |
 | `src/lib/tools.test.mjs` | Tool filtering, pagination and title resolution |
 | `scripts/test-build.py` | `build.py` fails loudly on bad rows instead of silently dropping them |
 | `scripts/test-speech-chunks.mjs` | Read-aloud chunks stay under 200 characters, nothing dropped, offsets map back |
@@ -101,6 +102,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `functions/api/[[route]].js` | REST router over `src/lib/tools.js` (`/api/search` and friends) |
 | `functions/mcp.js` | MCP over HTTP, JSON-RPC |
 | `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a two-host script, caches it on the row |
+| `functions/api/goodreads.js` | `/api/goodreads`: reads a public Goodreads profile's shelf RSS (read, currently reading, to read) and, with `profile=1`, its photo, genres, about, interests and best quote. No credentials; Goodreads has no app sign-in |
 | `functions/api/summarize-photo.js` | `/api/summarize-photo`: reads a book page photo with Workers AI, signed-in users only, nothing stored |
 | `src/lib/tools.js` | The tool layer both the REST and MCP routes call |
 | `supabase/functions/delete-account/index.ts` | Shared delete-account endpoint for every app on the spark project |
@@ -131,6 +133,8 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 **Claude** (through `/api/narrate`): writes the two-host scripts, cached on the row.
 
 **Workers AI**: page photo reading in `/api/summarize-photo`.
+
+**Goodreads**: public shelf RSS and profile page, read by `/api/goodreads` and linked from the profile page.
 
 **Open Library, Amazon covers**: cover images, stored on each row's `cover` column.
 
