@@ -1,4 +1,4 @@
-import { parseFeed, userId, cleanTitle } from './functions/api/goodreads.js';
+import { parseFeed, userId, cleanTitle, parseProfile } from './functions/api/goodreads.js';
 import assert from 'node:assert/strict';
 assert.equal(userId('https://www.goodreads.com/user/show/62164337-josh'), '62164337');
 assert.equal(userId('62164337'), '62164337');
@@ -16,4 +16,6 @@ assert.equal(b.length, 2);
 assert.deepEqual(b[0], { title: 'macOS Tahoe For Dummies', author: 'Guy Hart-Davis', isbn: '1394373988', cover: 'https://i.gr-assets.com/x.jpg', readAt: '2026-08-11', rating: 4, url: 'https://www.goodreads.com/review/show/1' });
 assert.equal(b[1].title, 'Brothers & Sisters'); assert.equal(b[1].isbn, null); assert.equal(b[1].readAt, null); assert.equal(b[1].rating, null);
 assert.equal(parseFeed('<item><title>Man&amp;apos;s Search &#8212; &#x41;</title></item>')[0].title, "Man's Search \u2014 A");
+assert.deepEqual(parseProfile('<meta property="og:title" content="Joshua Trommel"><meta property="og:image" content="https://images.gr-assets.com/users/1/62164337.jpg">'), { name: 'Joshua Trommel', avatar: 'https://images.gr-assets.com/users/1/62164337.jpg' });
+assert.equal(parseProfile('<meta property="og:image" content="https://s.gr-assets.com/assets/nophoto/user/u_200x266.png">').avatar, null);
 console.log('goodreads ok');

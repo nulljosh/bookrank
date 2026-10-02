@@ -13,6 +13,7 @@ export async function onRequest({ request }) {
   const user = userId(url.searchParams.get("user") || "");
   const shelf = url.searchParams.get("shelf") || "read";
   if (!user) return json({ error: "Paste your Goodreads profile link." }, 400);
+  if (url.searchParams.get("profile")) return profile(user);
   if (!SHELVES.has(shelf)) return json({ error: "Unknown shelf." }, 400);
 
   const cache = caches.default;
@@ -33,6 +34,19 @@ export async function onRequest({ request }) {
   res.headers.set("Cache-Control", "public, max-age=3600");
   await cache.put(key, res.clone());
   return res;
+}
+
+/** ?profile=1 -> { name, avatar } from the public profile page's Open Graph tags. */
+async function profile(user) {
+  const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": "Mozilla/5.0 (Bookrank)" } });
+  if (!r.ok) return json({ error: "No Goodreads profile with that link." }, 404);
+  return json(parseProfile(await r.text()));
+}
+
+export function parseProfile(html) {
+  const og = (p) => decode((html.match(new RegExp(`<meta property="og:${p}" content="([^"]*)"`)) || [])[1] || "");
+  const avatar = og("image");
+  return { name: og("title") || null, avatar: /gr-assets\.com\/users\//.test(avatar) ? avatar : null };
 }
 
 /** A profile URL (goodreads.com/user/show/62164337-josh) or a bare id -> "62164337". */
