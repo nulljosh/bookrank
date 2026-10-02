@@ -1,6 +1,6 @@
-# Original bed: upbeat but clean, Apple-ad style. Claps, round bass, plucked piano hook. 120 BPM. numpy only.
+# Bookrank's own bed: slower and warmer than Joshua Tree's. C major, soft claps, round bass, a plucked piano hook that leans on the third. 96 BPM. numpy only.
 import numpy as np, wave
-SR, BPM, DUR = 44100, 120, 37.0
+SR, BPM, DUR = 44100, 96, 37.0
 B = 60 / BPM; BAR = 4 * B
 N = int(SR * DUR); t_all = np.arange(N) / SR
 mix = np.zeros(N)
@@ -28,7 +28,7 @@ def pluck(notes, d):
     tt = np.arange(int(d * SR)) / SR
     return sum(np.sin(2 * np.pi * hz(n) * tt) + 0.35 * np.sin(4 * np.pi * hz(n) * tt) * np.exp(-tt * 6)
                + 0.12 * np.sin(6 * np.pi * hz(n) * tt) * np.exp(-tt * 10) for n in notes) / len(notes) * np.exp(-tt * 5) * np.minimum(1, tt / 0.004)
-HOOK = [[64, 67, 69, 72], [72, 71, 67, 64]]
+HOOK = [[67, 71, 72, 76], [76, 74, 71, 67]]
 def epiano(notes, d):
     # warm Rhodes-ish chord: sine + soft bell partial, slow tremolo, fills the 300-1500 Hz middle
     tt = np.arange(int(d * SR)) / SR
@@ -36,7 +36,7 @@ def epiano(notes, d):
     s = sum(np.sin(2 * np.pi * hz(n) * tt) + 0.18 * np.sin(2 * np.pi * hz(n) * 7.0 * tt) * np.exp(-tt * 8) for n in notes) / len(notes)
     return s * trem * np.exp(-tt * 1.1) * np.minimum(1, tt / 0.01)
 SHAKE = lp(np.diff(rng.standard_normal(int(0.05 * SR) + 1)), 0.6) * np.hanning(int(0.05 * SR))
-prog = [(57, [57, 60, 64, 67]), (53, [53, 57, 60, 64]), (48, [55, 60, 64, 67]), (55, [55, 59, 62, 67])]  # Am7 Fmaj7 C G
+prog = [(48, [60, 64, 67, 71]), (45, [57, 60, 64, 67]), (41, [53, 57, 60, 64]), (43, [55, 59, 62, 65])]  # Cmaj7 Am7 Fmaj7 G7
 OFF = DROP % BAR - BAR  # grid origin: downbeats at ..., DROP - BAR, DROP, DROP + BAR, ...
 bars = int((DUR - OFF) / BAR) + 1
 for b in range(bars):

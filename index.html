@@ -86,6 +86,9 @@ html.js .reveal.in-view { opacity: 1; transform: translateY(0); transition: opac
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { opacity: 0.9; }
+.adwrap { position:relative; max-width:960px; margin:2.5rem auto 0; }
+.adsound { position:absolute; right:1rem; bottom:3.6rem; padding:0.5rem 0.9rem; border-radius:999px; border:1px solid rgba(255,255,255,.35); background:rgba(10,10,10,.65); color:#fafafa; font:inherit; font-size:.875rem; cursor:pointer; backdrop-filter:blur(8px); }
+.ad { display:block; margin:0; width:100%; max-width:960px; border-radius:var(--radius-md); background:#0a0a0a; aspect-ratio:16/9; }
 .btn-outline { border-color: var(--border); color: var(--text); background: var(--bg); }
 .btn-outline:hover { border-color: var(--link, var(--accent)); color: var(--link, var(--accent)); }
 
@@ -145,8 +148,12 @@ a.skip:focus { position:fixed; left:1rem; top:1rem; z-index:99; padding:0.5rem 0
       <a href="https://apps.apple.com/us/app/bookrank/id6792376485" class="btn btn-outline">iPhone &amp; iPad</a>
       <a href="https://apps.apple.com/us/app/bookrank/id6792376485?mt=12" class="btn btn-outline">Mac</a>
       <a href="https://github.com/nulljosh/bookrank" class="btn btn-outline">Source</a>
-      <a href="https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4" class="btn btn-outline">Watch the 32 second ad</a>
     </div>
+    <div class="adwrap"><video class="ad" id="ad" src="ad.mp4" poster="ad-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Bookrank, 32 second film"></video><button type="button" class="adsound" id="adsound">Sound on</button></div>
+    <script>
+    // Browsers only autoplay muted. One tap turns the film's own music and voice on, from the start.
+    (function(){var v=document.getElementById('ad'),b=document.getElementById('adsound');b.onclick=function(){v.muted=false;v.currentTime=0;v.play();b.hidden=true;};v.addEventListener('volumechange',function(){if(!v.muted)b.hidden=true;});})();
+    </script>
   </div>
 </section>
 
