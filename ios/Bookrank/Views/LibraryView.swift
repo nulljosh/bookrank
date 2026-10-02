@@ -5,11 +5,17 @@ struct LibraryView: View {
     @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAccount = false
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    #endif
 
     var body: some View {
         NavigationStack {
             list
                 .navigationTitle("Summaries")
+                #if os(iOS)
+                .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
+                #endif
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         Button {
@@ -69,6 +75,8 @@ struct LibraryView: View {
                 }
             }
             .listStyle(.plain)
+            .frame(maxWidth: 680)
+            .frame(maxWidth: .infinity)
         }
     }
 }

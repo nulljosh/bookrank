@@ -33,6 +33,9 @@ struct SummaryDetailView: View {
     let store: DataStore
     var speaker = Speaker.shared
     @State private var shareURL: URL?
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    #endif
 
     var body: some View {
         let entry = store.summary(for: slug)
@@ -50,7 +53,12 @@ struct SummaryDetailView: View {
             }
         }
         .listStyle(.plain)
+        .frame(maxWidth: 680)
+        .frame(maxWidth: .infinity)
         .navigationTitle(entry?.title ?? "Summary")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
+        #endif
         .toolbar {
             if let url = shareURL {
                 ShareLink(item: url) { Label("Share", systemImage: "square.and.arrow.up") }
