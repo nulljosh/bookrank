@@ -22,13 +22,6 @@ struct LibraryView: View {
                 .toolbar {
                     ToolbarItem(placement: .automatic) {
                         Button {
-                            theme = (theme == "dark") ? "light" : "dark"
-                        } label: {
-                            Image(systemName: theme == "dark" ? "moon.fill" : "sun.max.fill")
-                        }
-                    }
-                    ToolbarItem(placement: .automatic) {
-                        Button {
                             showAccount = true
                         } label: {
                             Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle")

@@ -24,6 +24,7 @@ struct AccountView: View {
     @State private var goodreads = ""
     @State private var exportURLs: [URL] = []
     @State private var nudge = Nudge.enabled
+    @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
     @State private var newPassword = ""
 
@@ -86,6 +87,16 @@ struct AccountView: View {
                 }
             }
             .disabled(busy)
+        }
+        .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
+    }
+
+    /// Light, dark or follow the device. Lives here, not in the toolbar; the key is the same one the shelf reads.
+    private var appearancePicker: some View {
+        Picker("Appearance", selection: $theme) {
+            Text("Match device").tag("system")
+            Text("Light").tag("light")
+            Text("Dark").tag("dark")
         }
     }
 
@@ -195,6 +206,8 @@ struct AccountView: View {
                 }
                 .font(.footnote).foregroundStyle(.secondary)
                 .buttonStyle(.plain)
+
+                appearancePicker.pickerStyle(.menu).font(.footnote).padding(.top, 6)
             }
             .frame(maxWidth: 380)
             .padding(.horizontal, 24).padding(.bottom, 24)
@@ -260,6 +273,8 @@ struct AccountView: View {
             let meta = await goodreadsMeta(id)
             if !meta.isEmpty { try? await auth.setMetadata(meta) }
         }
+
+        Section { appearancePicker }
 
         Section {
             Toggle("Daily review nudge", isOn: Binding(get: { nudge }, set: { on in
