@@ -21,7 +21,22 @@ button.primary { background:var(--accent); border-color: var(--link, var(--accen
 button:disabled { opacity:0.5; cursor:default; }
 input, textarea { font:inherit; width:100%; padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); }
 textarea { min-height:60vh; resize:vertical; line-height:1.6; }
-form.auth { display:grid; gap:0.75rem; max-width:340px; }
+.gate { max-width:360px; margin:clamp(1rem,7vh,4rem) auto 0; text-align:center; }
+.gate-icon { width:72px; height:72px; border-radius:18px; margin:0 auto 1.5rem; display:block; }
+.gate h1 { font-size:clamp(1.75rem,6vw,2.25rem); font-weight:600; letter-spacing:-0.035em; line-height:1.1; margin-bottom:0.5rem; }
+.gate .sub { margin-bottom:1.75rem; }
+form.auth { display:grid; gap:0.65rem; text-align:left; }
+form.auth input { padding:0.7rem 0.9rem; font-size:1rem; border-radius:12px; }
+form.auth button.oauth { width:100%; padding:0.7rem 1rem; font-size:0.9375rem; border-radius:999px; text-align:center; }
+form.auth button.oauth.apple { background:#fafafa; color:#0a0a0a; border-color:#fafafa; font-weight:500; }
+button.pill { background:#efa048; color:#1a1208; border:0; border-radius:999px; padding:0.75rem 1.5rem; font-size:1rem; font-weight:500; margin-top:0.25rem; transition:transform .15s ease, opacity .15s ease; }
+button.pill:hover { transform:translateY(-1px); opacity:.92; }
+.or { display:flex; align-items:center; gap:0.75rem; color:var(--text3); font-size:0.8125rem; margin:0.35rem 0; }
+.or::before,.or::after { content:""; flex:1; height:1px; background:var(--border2); }
+.links { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-top:0.25rem; }
+button.link { background:none; border:0; padding:0.25rem 0; color:var(--text3); font-size:0.8125rem; text-decoration:underline; text-underline-offset:3px; }
+button.link:hover { color:var(--text); }
+.gate .msg { text-align:center; }
 .row { display:flex; gap:0.5rem; }
 ul.list { list-style:none; }
 ul.list li { border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:0.75rem; }
@@ -79,23 +94,23 @@ dl.profile dt { color:var(--text3); }
   <a class="back" href="/">&larr; Bookrank</a>
 
   <!-- signed out -->
-  <section id="gate" class="hide">
-    <h1>My summaries</h1>
-    <p class="sub">Private to your account. Nothing here is public.</p>
+  <section id="gate" class="hide gate">
+    <img class="gate-icon" src="icon.svg" width="72" height="72" alt="">
+    <h1 id="gateTitle">Sign in to Bookrank</h1>
+    <p class="sub" id="gateSub">Your chapter summaries. Private to your account.</p>
     <form class="auth" id="authForm">
+      <button type="button" class="oauth apple" data-provider="apple">Continue with Apple</button>
+      <button type="button" class="oauth" data-provider="google">Continue with Google</button>
+      <button type="button" class="oauth" data-provider="github">Continue with GitHub</button>
+      <div class="or"><span>or</span></div>
       <input type="email" id="email" placeholder="Email" autocomplete="email" required>
       <input type="password" id="password" placeholder="Password" autocomplete="current-password" minlength="8" required>
-      <div class="row">
-        <button class="primary" type="submit">Sign in</button>
-        <button type="button" id="signup">Create account</button>
+      <button class="pill" type="submit" id="submitBtn">Sign in</button>
+      <p class="msg" id="authMsg" role="status" aria-live="polite"></p>
+      <div class="links">
+        <button type="button" class="link" id="forgot">Forgot password?</button>
+        <button type="button" class="link" id="authToggle">New here? Create an account</button>
       </div>
-      <div class="row">
-        <button type="button" class="oauth" data-provider="apple">Sign in with Apple</button>
-        <button type="button" class="oauth" data-provider="google">Google</button>
-        <button type="button" class="oauth" data-provider="github">GitHub</button>
-        <button type="button" id="forgot">Forgot password</button>
-      </div>
-      <p class="msg" id="authMsg"></p>
     </form>
   </section>
 
@@ -153,14 +168,31 @@ const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g
 let current = null; // row being edited
 
 // ---- auth ----
+let signingUp = false;
+function setMode(up) {
+  signingUp = up;
+  $('gateTitle').textContent = up ? 'Create your account' : 'Sign in to Bookrank';
+  $('gateSub').textContent = up ? 'Chapter summaries of the books you read, in one private place.' : 'Your chapter summaries. Private to your account.';
+  $('submitBtn').textContent = up ? 'Create account' : 'Sign in';
+  $("authToggle").textContent = up ? 'Have an account? Sign in' : 'New here? Create an account';
+  $('password').autocomplete = up ? 'new-password' : 'current-password';
+  $('password').placeholder = up ? 'Password, 8 characters or more' : 'Password';
+  $('authMsg').textContent = '';
+}
+$("authToggle").onclick = () => setMode(!signingUp);
 $('authForm').onsubmit = async e => {
   e.preventDefault();
-  const { error } = await db.auth.signInWithPassword({ email: $('email').value, password: $('password').value });
-  if (error) $('authMsg').textContent = error.message;
-};
-$('signup').onclick = async () => {
-  const { error } = await db.auth.signUp({ email: $('email').value, password: $('password').value });
-  $('authMsg').textContent = error ? error.message : 'Account created. Check your email if confirmation is required, then sign in.';
+  const creds = { email: $('email').value, password: $('password').value };
+  if (!signingUp) {
+    const { error } = await db.auth.signInWithPassword(creds);
+    if (error) $('authMsg').textContent = error.message;
+    return;
+  }
+  const { data, error } = await db.auth.signUp(creds);
+  // Supabase answers a repeat sign-up with a user that has no identities, not an error.
+  $('authMsg').textContent = error ? error.message
+    : data.user && data.user.identities && data.user.identities.length === 0 ? 'That email already has an account. Sign in instead.'
+    : 'Check your email to confirm your account, then sign in.';
 };
 $('forgot').onclick = async () => {
   const email = $('email').value.trim();
