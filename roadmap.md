@@ -407,3 +407,6 @@ RLS can see who is asking, do not move them behind a Function that cannot.
 
 ## TUI pilot (2026-09-05)
 - `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
+
+## Ingested 2026-10-01
+- [ ] Simplify the UI to just summaries. (Web/iOS/macOS were pivoted to summaries-only 2026-09-21; verify nothing else is left on screen, source note had attachment notes/attachments/2026-10-01/bookrank-1.png.)
