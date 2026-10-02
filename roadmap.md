@@ -7,7 +7,14 @@ Listen feature complete. Refactored narration player into a shared module (liste
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
 ## Next (2026-10-02)
-- [ ] Ship macOS 1.0.5: the Mac app is $0.99 now but still 1.0.1 with no natural voices. Send `X-Bookrank-App: mac` from `Speaker.swift`, archive `BookrankMac`, submit.
+- [x] macOS 1.0.5 submitted 2026-10-02 (build 202610020301, voices, header). Mac ship gotcha: sign with an entitlements copy where `$(AppIdentifierPrefix)$(CFBundleIdentifier)` is replaced by `QMM486NPYC.com.heyitsmejosh.spine`, else error 90288, and set `--uses-non-exempt-encryption=false` on the build before submit.
+## v1.1 (the loop runs to here)
+- [ ] Watch app: replace the old ranked shelf with the summaries list (read-only), or drop the watch target.
+- [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
+- [ ] Web offline: service worker keeps the last opened summaries readable.
+- [ ] Accessibility pass: VoiceOver labels on the player and the new sign-in, Dynamic Type, contrast.
+- [ ] Daily review nudge: one local notification with a line from a random chapter.
+- [ ] Landing and app screenshots refreshed after 1.0.5 is approved; bump to 1.1.0 and ship both platforms.
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] 1.0.5 is in App Store review. Its listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
