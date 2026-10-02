@@ -50,7 +50,6 @@ struct LibraryView: View {
                 Button("Sign in") { showAccount = true }.buttonStyle(.borderedProminent).tint(Color(red: 239 / 255, green: 160 / 255, blue: 72 / 255)).foregroundStyle(Color(red: 0.10, green: 0.07, blue: 0.03))
                 Button("Try a sample chapter") {
                     store.loadSample()
-                    Speaker.shared.explain = false   // signed out there is no two-host script, so it reads the notes aloud
                     showSample = true
                 }
             }

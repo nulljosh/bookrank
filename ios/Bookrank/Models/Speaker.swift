@@ -23,7 +23,11 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var playing = false
     private(set) var paused = false
     private(set) var loading = false
-    var explain = true { didSet { if playing { Task { await play(from: 0) } } else { Task { await showChapter() } } } }
+    /// Two hosts talk the chapter through; on by default and remembered. The signed-out sample has no script to build, so it reads the notes.
+    var explain: Bool = UserDefaults.standard.object(forKey: "bookrank.explain") as? Bool ?? true {
+        didSet { UserDefaults.standard.set(explain, forKey: "bookrank.explain"); if playing { Task { await play(from: 0) } } else { Task { await showChapter() } } }
+    }
+    private var talks: Bool { explain && slug != "sample" }
     /// Steps people actually use, from a slow read to a fast skim. 2x is the ceiling both the device voice and the player allow.
     /// AVSpeech's scale is not linear: the raw max (1.0) is about three times normal speech. This maps 1x to the default and 2x
     /// to a brisk 0.65, so a 2x on the device voice sounds like 2x.
@@ -129,9 +133,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     private func script(for i: Int) -> Task<[ListenState.Line]?, Never> {
         if let t = prefetch[i] { return t }
-        let t = Task<[ListenState.Line]?, Never> { [explain, chapters] in
+        let t = Task<[ListenState.Line]?, Never> { [talks = talks, chapters] in
             guard i < chapters.count else { return nil }
-            if !explain { return Self.blocks(chapters[i].text) }
+            if !talks { return Self.blocks(chapters[i].text) }
             if let s = scripts["\(i)"] { return s }
             if let s = await Narrator.narrate(text: chapters[i].text, title: chapters[i].title, ch: i, total: chapters.count) {
                 scripts["\(i)"] = s; return s
@@ -147,7 +151,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     @MainActor
     private func showChapter() async {
         guard ch < chapters.count else { lines = []; return }
-        lines = (explain ? scripts["\(ch)"] : nil) ?? Self.blocks(chapters[ch].text)
+        lines = (talks ? scripts["\(ch)"] : nil) ?? Self.blocks(chapters[ch].text)
     }
 
     @MainActor
