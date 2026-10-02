@@ -15,4 +15,5 @@ const b = parseFeed(xml);
 assert.equal(b.length, 2);
 assert.deepEqual(b[0], { title: 'macOS Tahoe For Dummies', author: 'Guy Hart-Davis', isbn: '1394373988', cover: 'https://i.gr-assets.com/x.jpg', readAt: '2026-08-11', rating: 4, url: 'https://www.goodreads.com/review/show/1' });
 assert.equal(b[1].title, 'Brothers & Sisters'); assert.equal(b[1].isbn, null); assert.equal(b[1].readAt, null); assert.equal(b[1].rating, null);
+assert.equal(parseFeed('<item><title>Man&amp;apos;s Search &#8212; &#x41;</title></item>')[0].title, "Man's Search \u2014 A");
 console.log('goodreads ok');

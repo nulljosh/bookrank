@@ -383,9 +383,12 @@ async function goodreadsQueue(data) {
   if (!gr) return;
   const r = await fetch(`/api/goodreads?user=${encodeURIComponent(gr)}&shelf=read`).then(r => r.json()).catch(() => null);
   if (!r?.books?.length) return;
+  // A summary matches when its words all appear in the Goodreads title, or when the two match
+  // with spaces removed ("Feng Shui" vs "Fengshui"). Extra words like "Science" or a subtitle are fine.
   const norm = s => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
   const have = data.map(d => norm(d.title)).filter(Boolean);
-  const todo = r.books.filter(b => { const t = norm(b.title.split(':')[0]); return !have.some(h => t.startsWith(h) || h.startsWith(t) || t.includes(h)); });
+  const same = (h, t) => { const tw = new Set(t.split(' ')); return h.split(' ').every(w => tw.has(w)) || t.replace(/ /g, '').includes(h.replace(/ /g, '')); };
+  const todo = r.books.filter(b => { const t = norm(b.title); return !have.some(h => same(h, t)); });
   if (!todo.length) return;
   const d = Object.assign(document.createElement('details'), { id: 'grQueue' });
   d.append(Object.assign(document.createElement('summary'), { textContent: `Read on Goodreads, no summary yet (${todo.length})` }));
