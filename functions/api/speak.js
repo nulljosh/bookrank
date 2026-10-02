@@ -8,6 +8,10 @@
 //  - a monthly character budget for the whole app and a daily one per account; over either, the
 //    answer is 429 and the player drops to the device voice, so Listen never breaks
 //  - chapter one of a book gets the better model (TTS_MODEL_BEST); the rest use the cheap one
+// Natural voices are what the $1 buys. The App Store apps are paid upfront, so they say so with an
+// X-Bookrank-App header; on the web a signed-in account needs a paid flag in KV (set by the Stripe
+// webhook). Unpaid gets 402 and the player uses the device voice. Share links stay open. The header is
+// not proof, only the cheap check; the gate stays off until STRIPE_PRICE_ID is set, so nothing breaks before checkout exists; the character caps below bound the cost either way.
 // Env (all optional): ELEVENLABS_API_KEY, TTS_KV (binding), TTS_MODEL, TTS_MODEL_BEST, TTS_VOICE_A,
 // TTS_VOICE_B, TTS_MONTHLY_CHARS (default 25000), TTS_DAILY_CHARS (default 6000).
 import { isSignedIn, isShared } from "./narrate.js";
@@ -28,6 +32,11 @@ export async function onRequest({ request, env }) {
   const auth = request.headers.get("authorization") || "";
   if (!(token ? await isShared(token) : await isSignedIn(auth))) return json({ error: "Sign in required." }, 401);
 
+  const uid = token ? null : await userOf(auth);
+  if (env.STRIPE_PRICE_ID && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
+    return json({ error: "Natural voices are $1.", pay: true }, 402);
+  }
+
   const voice = (host === "B" ? env.TTS_VOICE_B : env.TTS_VOICE_A) || DEFAULTS[host];
   const model = pickModel(env, +body.ch);
   const key = `a:${await sha(`${model}|${voice}|${text}`)}`;
@@ -38,7 +47,7 @@ export async function onRequest({ request, env }) {
     if (hit) return new Response(hit, { headers: { ...hdr, "X-Tts-Cache": "hit" } });
   }
 
-  const who = token ? `t:${token.slice(0, 12)}` : `u:${(await userOf(auth)) || "x"}`;
+  const who = token ? `t:${token.slice(0, 12)}` : `u:${uid || "x"}`;
   const caps = { month: +env.TTS_MONTHLY_CHARS || 25000, day: +env.TTS_DAILY_CHARS || 6000 };
   const over = await spend(env.TTS_KV, who, text.length, caps, new Date());
   if (over) return json({ error: `Voice limit reached (${over}). Using the device voice.` }, 429);
@@ -86,7 +95,7 @@ export function words(text, al) {
   return list;
 }
 
-async function userOf(auth) {
+export async function userOf(auth) {
   if (!auth.startsWith("Bearer ")) return null;
   const r = await fetch(`${SUPABASE_URL}/auth/v1/user`, { headers: { authorization: auth, apikey: SUPABASE_ANON } });
   return r.ok ? (await r.json()).id || null : null;

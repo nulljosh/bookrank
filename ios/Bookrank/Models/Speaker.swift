@@ -237,6 +237,7 @@ extension Narrator {
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        req.setValue("ios", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
         req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host, "ch": ch])
         struct Out: Decodable { let audio: String; let words: [WordTime] }
         guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200,

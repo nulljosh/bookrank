@@ -129,6 +129,7 @@ dl.profile dt { color:var(--text3); }
       </div>
     </div>
     <div id="listen"></div>
+    <p id="unlock" hidden style="font-size:14px;color:var(--muted,#8a8a8a);margin:12px 0">Natural voices are $1 on the web. Your device voice is playing. <button type="button" onclick="unlockVoices()">Unlock for $1</button></p>
     <textarea id="body" class="hide" placeholder="Chapter summaries, in markdown…"></textarea>
     <p class="msg" id="editMsg"></p>
   </section>
@@ -230,7 +231,14 @@ async function speak(text, host, ch) {
   const { data: { session } } = await db.auth.getSession();
   if (!session) return null;
   const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host, ch }) });
+  if (res.status === 402) $('unlock').hidden = false;   // not paid: device voice plays, offer the $1
   return res.ok ? res.json() : null;
+}
+async function unlockVoices() {
+  const { data: { session } } = await db.auth.getSession();
+  const res = await fetch('/api/pay', { method: 'POST', headers: { authorization: `Bearer ${session.access_token}` } });
+  const out = await res.json().catch(() => ({}));
+  if (out.url) location.href = out.url; else $('unlock').textContent = out.error || 'Checkout did not open.';
 }
 async function narrate(ch, text, title, total) {
   const { data: { session } } = await db.auth.getSession();
