@@ -1,5 +1,6 @@
 import AuthenticationServices
 import SwiftUI
+import Supabase
 
 /// Sign in, sign up, and account deletion.
 ///
@@ -24,11 +25,30 @@ struct AccountView: View {
     @State private var newEmail = ""
     @State private var newPassword = ""
 
+    private var generated: Bool { auth.user?.userMetadata["avatar_source"]?.stringValue == "generated" }
+    private var linkedPhoto: String? {
+        auth.user?.userMetadata["goodreads_avatar"]?.stringValue
+            ?? auth.user?.identities?.first { $0.provider == "github" }?.identityData?["avatar_url"]?.stringValue
+    }
+    private var goodreadsProfile: [String: AnyJSON]? { auth.user?.userMetadata["goodreads_profile"]?.objectValue }
+
+    /// Photo, genres, about, interests and best quote from the public profile, saved with the link.
+    private func goodreadsMeta(_ id: String) async -> [String: AnyJSON] {
+        guard let url = URL(string: "https://bookrank.heyitsmejosh.com/api/goodreads?user=\(id)&profile=1"),
+              let (data, resp) = try? await URLSession.shared.data(from: url), (resp as? HTTPURLResponse)?.statusCode == 200,
+              let json = try? JSONDecoder().decode(AnyJSON.self, from: data), let o = json.objectValue, o["name"]?.stringValue != nil else { return [:] }
+        var profile: [String: AnyJSON] = [:]
+        for k in ["about", "interests", "genres", "quote"] { profile[k] = o[k] ?? .null }
+        return ["goodreads_avatar": o["avatar"] ?? .null, "goodreads_profile": .object(profile)]
+    }
+
     private func saveGoodreads() {
         let id = goodreads.firstMatch(of: /(\d{3,})/).map { String($0.1) }
         run {
             if !goodreads.trimmingCharacters(in: .whitespaces).isEmpty && id == nil { return "That does not look like a Goodreads profile link." }
-            try await auth.setMetadata(["goodreads": id.map { .string($0) } ?? .null])
+            var meta: [String: AnyJSON] = ["goodreads": id.map { .string($0) } ?? .null]
+            if let id { meta.merge(await goodreadsMeta(id)) { _, new in new } } else { meta["goodreads_avatar"] = .null; meta["goodreads_profile"] = .null }
+            try await auth.setMetadata(meta)
             await store.loadGoodreads(id)
             return id == nil ? "Unlinked." : "Linked. \(store.goodreadsQueue.count) books read, no summary yet."
         }
@@ -140,8 +160,9 @@ struct AccountView: View {
         // auth user_metadata, so both read and write the same fields.
         Section {
             HStack(spacing: 14) {
-                Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg())]); return "New avatar saved." } } label: {
-                    AvatarView(svg: auth.user?.userMetadata["avatar"]?.stringValue, initial: String(auth.user?.email?.first ?? "?"))
+                Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg()), "avatar_source": .string("generated")]); return "New avatar saved." } } label: {
+                    AvatarView(svg: generated ? auth.user?.userMetadata["avatar"]?.stringValue : nil,
+                               initial: String(auth.user?.email?.first ?? "?"), photo: generated ? nil : linkedPhoto)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Generate a new avatar")
@@ -160,6 +181,15 @@ struct AccountView: View {
             .onAppear { username = auth.handle }
             LabeledContent("Email", value: auth.user?.email ?? "—")
             LabeledContent("Summaries", value: "\(store.summaryIndex.count)")
+            if let q = goodreadsProfile?["quote"]?.objectValue, let text = q["text"]?.stringValue {
+                Text("\u{201C}\(text)\u{201D}" + (q["author"]?.stringValue.map { " \($0)" } ?? ""))
+                    .font(.footnote.italic()).foregroundStyle(.secondary)
+            }
+            if let about = goodreadsProfile?["about"]?.stringValue { LabeledContent("About", value: about) }
+            if let interests = goodreadsProfile?["interests"]?.stringValue { LabeledContent("Interests", value: interests) }
+            if let genres = goodreadsProfile?["genres"]?.arrayValue?.compactMap(\.stringValue), !genres.isEmpty {
+                LabeledContent("Favorite genres", value: genres.joined(separator: ", "))
+            }
         }
 
         Section {
@@ -175,6 +205,11 @@ struct AccountView: View {
             Text("Paste your profile link. Books you have read but not summarized show up under your list.")
         }
         .onAppear { goodreads = auth.user?.userMetadata["goodreads"]?.stringValue.map { "goodreads.com/user/show/\($0)" } ?? "" }
+        .task {
+            guard let id = auth.user?.userMetadata["goodreads"]?.stringValue, goodreadsProfile == nil else { return }
+            let meta = await goodreadsMeta(id)
+            if !meta.isEmpty { try? await auth.setMetadata(meta) }
+        }
 
         Section("Credentials") {
             TextField("New email", text: $newEmail).textContentType(.emailAddress).autocorrectionDisabled()
@@ -264,6 +299,7 @@ enum AvatarArt {
 struct AvatarView: View {
     let svg: String?
     let initial: String
+    var photo: String? = nil   // linked Goodreads photo, then GitHub's; shown unless generated art was chosen
 
     var body: some View {
         ZStack {
@@ -273,6 +309,8 @@ struct AvatarView: View {
                     ctx.fill(Path(CGRect(origin: .zero, size: size)), with: .color(art.bg))
                     for r in art.rects { ctx.fill(Path(CGRect(x: r.x * s, y: r.y * s, width: 8 * s, height: 8 * s)), with: .color(r.color)) }
                 }
+            } else if let photo, let url = URL(string: photo) {
+                AsyncImage(url: url) { $0.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.15) }
             } else {
                 Color.secondary.opacity(0.15)
                 Text(initial.uppercased()).font(.title2).foregroundStyle(.secondary)
