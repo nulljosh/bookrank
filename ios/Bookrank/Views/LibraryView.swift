@@ -6,6 +6,7 @@ struct LibraryView: View {
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAccount = false
     @State private var query = ""
+    @State private var showSample = false
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
@@ -13,6 +14,7 @@ struct LibraryView: View {
     var body: some View {
         NavigationStack {
             list
+                .navigationDestination(isPresented: $showSample) { SummaryDetailView(slug: "sample", store: store) }
                 .navigationTitle("Summaries")
                 #if os(iOS)
                 .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
@@ -53,6 +55,11 @@ struct LibraryView: View {
                 Text("Sign in to read them chapter by chapter.")
             } actions: {
                 Button("Sign in") { showAccount = true }.buttonStyle(.borderedProminent)
+                Button("Try a sample chapter") {
+                    store.loadSample()
+                    Speaker.shared.explain = false   // signed out there is no two-host script, so it reads the notes aloud
+                    showSample = true
+                }
             }
         } else if let error = store.summaryError {
             ContentUnavailableView("Could not load", systemImage: "exclamationmark.triangle", description: Text(error))

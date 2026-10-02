@@ -41,6 +41,24 @@ final class PreviewScreenshot: XCTestCase {
         save("create", XCUIScreen.main.screenshot())
     }
 
+    /// What App Review does: signed out, open the sample chapter and press Listen.
+    func testSampleListen() {
+        let app = XCUIApplication()
+        app.launch()
+        let sample = app.buttons["Try a sample chapter"]
+        XCTAssertTrue(sample.waitForExistence(timeout: 10))
+        save("sample-0", XCUIScreen.main.screenshot())
+        sample.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Know the ground'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10))
+        chapter.tap()
+        let listen = app.buttons["Listen"].firstMatch
+        XCTAssertTrue(listen.waitForExistence(timeout: 10))
+        listen.tap()
+        sleep(4)
+        save("sample-1", XCUIScreen.main.screenshot())
+    }
+
     private func save(_ name: String, _ shot: XCUIScreenshot) {
         let host = ProcessInfo.processInfo.environment["SIMULATOR_HOST_HOME"] ?? NSHomeDirectory()
         let dir = ProcessInfo.processInfo.environment["SIMCTL_CHILD_SHOTS_DIR"] ?? "\(host)/.claude/jobs/c303a72f/tmp/shots"

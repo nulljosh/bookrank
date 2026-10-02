@@ -86,6 +86,13 @@ final class DataStore {
         }.sorted { $0.title < $1.title }
     }
 
+    /// Signed-out preview: one short original summary so anyone, including App Review, can press Listen without an account.
+    func loadSample() {
+        guard let url = Bundle.main.url(forResource: "sample", withExtension: "md") ?? Bundle.main.url(forResource: "sample", withExtension: "md", subdirectory: "summaries"),
+              let text = try? String(contentsOf: url, encoding: .utf8) else { return }
+        summaryIndex = [SummaryEntry(rowID: nil, slug: "sample", title: "The Art of War, a sample", content: text, updatedAt: nil, listen: nil, cover: nil, shareToken: nil)]
+    }
+
     func clearSummaries() {
         summaryIndex = []
         summaryError = nil
