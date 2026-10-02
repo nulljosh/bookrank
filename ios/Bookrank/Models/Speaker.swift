@@ -196,6 +196,8 @@ struct ListenControls: View {
     var body: some View {
         Button(speaker.playing && !speaker.paused ? "Pause" : "Listen",
                systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
+            .contentTransition(.symbolEffect(.replace))
+            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: speaker.playing)
         Menu("More", systemImage: "ellipsis.circle") {
             Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }
             Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
