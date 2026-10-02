@@ -8,7 +8,7 @@ $0.99 upfront on iOS and Mac, since 2026-10-02.
 
 ## Rail
 
-App Store, paid upfront. No in-app purchase.
+App Store, paid upfront, no in-app purchase. Web: Stripe $1 Payment Link.
 
 ## Why
 
@@ -20,7 +20,7 @@ We sell the voices, not the summaries. The summaries are Joshua's own notes on b
 
 ## Next
 
-Gate the natural voices on the web behind the Stripe $1 rail, so web matches the apps.
+Done 2026-10-02: web natural voices are a Stripe $1 Payment Link. The webhook marks the account paid in KV and `/api/speak` checks it. The apps send `X-Bookrank-App`; the App Store price is their payment. Left: one real $1 test purchase, then refund it.
 
 ## Change it
 
