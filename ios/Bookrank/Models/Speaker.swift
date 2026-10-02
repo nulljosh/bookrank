@@ -25,7 +25,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var loading = false
     /// Two hosts talk the chapter through; on by default and remembered. The signed-out sample has no script to build, so it reads the notes.
     var explain: Bool = UserDefaults.standard.object(forKey: "bookrank.explain") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(explain, forKey: "bookrank.explain"); if playing { Task { await play(from: 0) } } else { Task { await showChapter() } } }
+        didSet {
+            UserDefaults.standard.set(explain, forKey: "bookrank.explain")
+            // The two-host script and the plain notes have different line counts, so keep the same place by fraction, not by index.
+            let spot = lines.isEmpty ? 0 : Double(line) / Double(lines.count)
+            if playing { Task { await play(from: 0, fraction: spot) } } else { Task { await showChapter() } }
+        }
     }
     private var talks: Bool { explain && slug != "sample" }
     /// Steps people actually use, from a slow read to a fast skim. 2x is the ceiling both the device voice and the player allow.
@@ -155,7 +160,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     @MainActor
-    private func play(from: Int) async {
+    private func play(from: Int, fraction: Double? = nil) async {
         token += 1; let tok = token
         synth.stopSpeaking(at: .immediate); player?.stop(); player = nil; lineOf = [:]; paused = false; word = nil
         guard ch < chapters.count else { return }
@@ -173,7 +178,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         #endif
         let a = AVSpeechSynthesisVoice(language: Locale.current.identifier) ?? AVSpeechSynthesisVoice(language: "en-US")
         let b = AVSpeechSynthesisVoice.speechVoices().first { $0.language == a?.language && $0.identifier != a?.identifier } ?? a
-        line = min(from, script.count - 1)
+        line = min(fraction.map { Int($0 * Double(script.count)) } ?? from, script.count - 1)
         if natural {
             if await playNatural(script, from: line, tok: tok) { return }
             guard tok == token else { return }   // a line failed: keep going on the device voice from there

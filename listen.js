@@ -118,7 +118,8 @@ export function createPlayer(o) {
 
   p.stop = () => { p.token++; o.synth.cancel(); p.playing = false; p.loading = false; emit(); };
 
-  p.play = async (ch = p.ch, line = p.line) => {
+  // `fraction` (0..1) resumes at the same relative place in a different script, e.g. after switching explain/read mode.
+  p.play = async (ch = p.ch, line = p.line, fraction = null) => {
     const tok = ++p.token;
     o.synth.cancel();
     p.ch = ch; p.line = line; p.playing = true; p.loading = true; p.script = null; emit();
@@ -126,7 +127,7 @@ export function createPlayer(o) {
     if (tok !== p.token) return;
     p.loading = false;
     if (!script || !script.length || !plain(script.map(l => l.line).join(' '))) { p.playing = false; emit(); o.onDone?.('empty'); return; }
-    p.script = script; p.line = Math.min(line, script.length - 1); emit();
+    p.script = script; p.line = Math.min(fraction == null ? line : Math.floor(fraction * script.length), script.length - 1); emit();
     if (ch + 1 < o.count()) scriptFor(ch + 1); // next chapter warms while this one plays
     speakLine(tok);
   };
@@ -316,7 +317,7 @@ export function mount(root, api) {
   q('.lp-next').onclick = () => player.play(Math.min(chs.length - 1, player.ch + 1), 0);
   voiceSel.onchange = () => { localStorage.setItem('bookrank.voice', voiceSel.value); if (player.playing) player.play(player.ch, player.line); };
   rateSel.onchange = () => { localStorage.setItem('bookrank.rate', rateSel.value); localStorage.setItem(rateKey(), rateSel.value); if (player.playing) player.play(player.ch, player.line); };
-  modeSel.onchange = () => { localStorage.setItem('bookrank.mode', modeSel.value); player.invalidate(); if (player.playing) player.play(player.ch, 0); else showChapter(); };
+  modeSel.onchange = () => { localStorage.setItem('bookrank.mode', modeSel.value); const spot = player.script?.length ? player.line / player.script.length : 0; player.invalidate(); if (player.playing) player.play(player.ch, 0, spot); else showChapter(); };
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({ title: api.title });
     navigator.mediaSession.setActionHandler('play', () => player.play());
