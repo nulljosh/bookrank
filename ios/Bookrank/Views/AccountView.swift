@@ -104,7 +104,7 @@ struct AccountView: View {
                     .accessibilityHidden(true)
                     .padding(.top, 12)
                 Text(isSigningUp ? "Create your account" : "Sign in to Bookrank")
-                    .font(.system(size: 28, weight: .semibold)).tracking(-0.8)
+                    .font(.title.weight(.semibold)).tracking(-0.8)
                     .multilineTextAlignment(.center)
                 Text(isSigningUp ? "Chapter summaries of the books you read, in one private place." : "Your chapter summaries. Private to your account.")
                     .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)

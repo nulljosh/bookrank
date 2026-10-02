@@ -118,5 +118,6 @@ private struct Thumb: View {
         AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.footnote).foregroundStyle(.tertiary)) }
             .frame(width: 36, height: 52)
             .clipShape(RoundedRectangle(cornerRadius: 3))
+            .accessibilityHidden(true)   // the title beside it says everything; VoiceOver would read "image" first
     }
 }
