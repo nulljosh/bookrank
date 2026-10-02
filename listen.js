@@ -231,7 +231,7 @@ export function mount(root, api) {
     async speak(u) {
       if (!natural()) return synth.speak(toReal(u));
       const my = gen;
-      const r = await api.speak(u.text, u.voice?.host || 'A').catch(() => null);
+      const r = await api.speak(u.text, u.voice?.host || 'A', player.ch).catch(() => null);
       if (my !== gen) return;
       if (!r?.audio) return synth.speak(toReal(u));
       const a = audio = new Audio('data:audio/mpeg;base64,' + r.audio);

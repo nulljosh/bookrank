@@ -226,10 +226,10 @@ $('photos').onchange = async () => {
 // row: content, cached scripts, the resume point, and where to save them.
 let listen = null;
 // Natural voice for one line through /api/speak (ElevenLabs, cached per line on the server).
-async function speak(text, host) {
+async function speak(text, host, ch) {
   const { data: { session } } = await db.auth.getSession();
   if (!session) return null;
-  const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host }) });
+  const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host, ch }) });
   return res.ok ? res.json() : null;
 }
 async function narrate(ch, text, title, total) {

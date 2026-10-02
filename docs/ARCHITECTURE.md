@@ -104,12 +104,12 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `functions/mcp.js` | MCP over HTTP, JSON-RPC |
 | `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a two-host script, caches it on the row |
 | `functions/api/goodreads.js` | `/api/goodreads`: reads a public Goodreads profile's shelf RSS (read, currently reading, to read) and, with `profile=1`, its photo, genres, about, interests and best quote. No credentials; Goodreads has no app sign-in |
-| `functions/api/speak.js` | `/api/speak`: one line in a natural ElevenLabs voice (host A or B) with per-word start times, cached at the edge so each line is paid for once; signed-in or share-token only; off until `ELEVENLABS_API_KEY` is set |
+| `functions/api/speak.js` | `/api/speak`: one line in a natural ElevenLabs voice (host A or B) with per-word start times. Each line is stored for good in KV (`TTS_KV`), so it is paid for once; a monthly character budget for the app and a daily one per account, over either it answers 429 and the player uses the device voice; chapter one uses the better model (`TTS_MODEL_BEST`), the rest the cheap one; voices and caps come from env. Signed-in or share-token only |
 | `functions/api/summarize-photo.js` | `/api/summarize-photo`: reads a book page photo with Workers AI, signed-in users only, nothing stored |
 | `src/lib/tools.js` | The tool layer both the REST and MCP routes call |
 | `supabase/functions/delete-account/index.ts` | Shared delete-account endpoint for every app on the spark project |
 | `supabase/migrations/20260905_share_listen.sql` | `share_token` column plus the `shared_summary` and `cache_shared_script` RPCs |
-| `wrangler.toml` | Pages config that makes `functions/` ship with the site |
+| `wrangler.toml` | Pages config that makes `functions/` ship with the site, and binds the `TTS_KV` line store |
 
 ## Data and scripts
 

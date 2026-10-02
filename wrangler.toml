@@ -6,3 +6,8 @@ pages_build_output_dir = "dist"
 
 [ai]
 binding = "AI"
+
+# Natural voices: every line stored for good, plus the monthly and daily character budgets.
+[[kv_namespaces]]
+binding = "TTS_KV"
+id = "07d17f54a3b74fe7a1de4ceb68fe8c00"

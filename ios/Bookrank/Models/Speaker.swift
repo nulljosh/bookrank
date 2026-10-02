@@ -175,13 +175,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// false = a line could not be fetched or played, `line` is where the device voice should pick up.
     @MainActor
     private func playNatural(_ script: [ListenState.Line], from start: Int, tok: Int) async -> Bool {
-        var next = Task { await Narrator.speak(script[start].line, host: script[start].host) }
+        var next = Task { await Narrator.speak(script[start].line, host: script[start].host, ch: ch) }
         for i in start..<script.count {
             guard tok == token else { return true }
             let clip = await next.value
             guard tok == token else { return true }
             guard let clip, let p = try? AVAudioPlayer(data: clip.audio) else { line = i; return false }
-            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host) } }
+            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host, ch: ch) } }
             line = i; word = nil
             status = "\(chapters[ch].title) · \(i + 1)/\(lines.count)"
             player = p; p.enableRate = true; p.rate = rate; p.play()
@@ -231,13 +231,13 @@ struct WordTime: Decodable { let i: Int; let n: Int; let t: Double }
 
 extension Narrator {
     /// One line in a natural voice: mp3 plus the second each word starts. Nil on any failure, so the caller can fall back.
-    static func speak(_ text: String, host: String) async -> (audio: Data, words: [WordTime])? {
+    static func speak(_ text: String, host: String, ch: Int) async -> (audio: Data, words: [WordTime])? {
         guard let token = try? await supabase.auth.session.accessToken else { return nil }
         var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/speak")!)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
-        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host])
+        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host, "ch": ch])
         struct Out: Decodable { let audio: String; let words: [WordTime] }
         guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200,
               let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) else { return nil }
