@@ -70,3 +70,6 @@ See `roadmap.md` in this repo root, not embedded here anymore. ASC app ID is **`
 
 ## Screenshots, every time the UI changes (2026-10-02)
 Joshua's rule: fresh screenshots on every minor or major bump AND every UI fix or glitch patch, without being asked. Run `sh ios/scripts/shots.sh` from the repo root (store set via fastlane snapshot into `ios/fastlane/screenshots/en-US`, plus the signed-out sign-in and create screens as QA PNGs), read the PNGs and fix what looks wrong before shipping, then refresh the README and landing images and attach the new set to the next App Store version. Headless simulators only, shut them down after.
+
+## The loop
+v1.1 loop handoff at `docs/LOOP-HANDOFF.md`: what the loop is, where things stand, next in order, restart prompt in a code fence. Wakes every 25 minutes. App Review lesson: keep review notes true every release; if Apple asks for proof, Joshua records 20 seconds on a real phone showing the feature working.
