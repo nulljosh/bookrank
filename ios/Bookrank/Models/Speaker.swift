@@ -28,6 +28,11 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         didSet { UserDefaults.standard.set(rate, forKey: "bookrank.rate"); if playing { Task { await play(from: line) } } }
     }
     var status = ""
+    /// Natural voices (ElevenLabs through /api/speak). Off, or any failed line, falls back to the device voice.
+    var natural: Bool = UserDefaults.standard.object(forKey: "bookrank.natural") as? Bool ?? true {
+        didSet { UserDefaults.standard.set(natural, forKey: "bookrank.natural"); if playing { Task { await play(from: line) } } }
+    }
+    private var player: AVAudioPlayer?
     /// 0...1 across the book; chapters weigh the same because unfetched ones have no line count.
     var progress: Double {
         guard !chapters.isEmpty else { return 0 }
@@ -61,8 +66,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// Play / pause. Pausing while a script is still loading cancels the load.
     func toggle() {
         if loading { stop(); return }
-        if playing && !paused { synth.pauseSpeaking(at: .word); paused = true; persist(); return }
-        if paused { synth.continueSpeaking(); paused = false; return }
+        if playing && !paused { if let p = player { p.pause() } else { synth.pauseSpeaking(at: .word) }; paused = true; persist(); return }
+        if paused { if let p = player { p.play() } else { synth.continueSpeaking() }; paused = false; return }
         Task { await play(from: line) }
     }
     func skip(_ delta: Int) {
@@ -77,7 +82,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     func stop() {
         token += 1
         let was = playing || loading
-        synth.stopSpeaking(at: .immediate)
+        synth.stopSpeaking(at: .immediate); player?.stop(); player = nil
         playing = false; paused = false; loading = false; lineOf = [:]; word = nil
         if was { persist() }
     }
@@ -134,7 +139,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     @MainActor
     private func play(from: Int) async {
         token += 1; let tok = token
-        synth.stopSpeaking(at: .immediate); lineOf = [:]; paused = false; word = nil
+        synth.stopSpeaking(at: .immediate); player?.stop(); player = nil; lineOf = [:]; paused = false; word = nil
         guard ch < chapters.count else { return }
         playing = true; loading = true
         var got = await script(for: ch).value
@@ -151,6 +156,10 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         let a = AVSpeechSynthesisVoice(language: Locale.current.identifier) ?? AVSpeechSynthesisVoice(language: "en-US")
         let b = AVSpeechSynthesisVoice.speechVoices().first { $0.language == a?.language && $0.identifier != a?.identifier } ?? a
         line = min(from, script.count - 1)
+        if natural {
+            if await playNatural(script, from: line, tok: tok) { return }
+            guard tok == token else { return }   // a line failed: keep going on the device voice from there
+        }
         for (k, l) in script[line...].enumerated() {
             let u = AVSpeechUtterance(string: l.line)
             u.voice = l.host == "B" ? b : a
@@ -159,6 +168,35 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             if line + k == script.count - 1 { lastUtterance = u }
             synth.speak(u)
         }
+    }
+
+    /// One line at a time: fetch the clip (the next one downloads while this one plays), play it, and
+    /// light each word at the moment the server says it is spoken. True = handled to the end or stopped;
+    /// false = a line could not be fetched or played, `line` is where the device voice should pick up.
+    @MainActor
+    private func playNatural(_ script: [ListenState.Line], from start: Int, tok: Int) async -> Bool {
+        var next = Task { await Narrator.speak(script[start].line, host: script[start].host) }
+        for i in start..<script.count {
+            guard tok == token else { return true }
+            let clip = await next.value
+            guard tok == token else { return true }
+            guard let clip, let p = try? AVAudioPlayer(data: clip.audio) else { line = i; return false }
+            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host) } }
+            line = i; word = nil
+            status = "\(chapters[ch].title) · \(i + 1)/\(lines.count)"
+            player = p; p.enableRate = true; p.rate = rate; p.play()
+            var w = 0
+            while p.isPlaying || paused {
+                guard tok == token else { p.stop(); return true }
+                while w < clip.words.count, clip.words[w].t <= p.currentTime { let x = clip.words[w]; word = x.i ..< (x.i + x.n); w += 1 }
+                try? await Task.sleep(for: .milliseconds(30))
+            }
+        }
+        guard tok == token else { return true }
+        player = nil
+        if ch + 1 < chapters.count { ch += 1; line = 0; Task { await play(from: 0) } }
+        else { line = 0; playing = false; word = nil; status = "Finished."; persist() }
+        return true
     }
 
     func speechSynthesizer(_ s: AVSpeechSynthesizer, didStart u: AVSpeechUtterance) {
@@ -189,6 +227,24 @@ enum Narrator {
     }
 }
 
+struct WordTime: Decodable { let i: Int; let n: Int; let t: Double }
+
+extension Narrator {
+    /// One line in a natural voice: mp3 plus the second each word starts. Nil on any failure, so the caller can fall back.
+    static func speak(_ text: String, host: String) async -> (audio: Data, words: [WordTime])? {
+        guard let token = try? await supabase.auth.session.accessToken else { return nil }
+        var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/speak")!)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "content-type")
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host])
+        struct Out: Decodable { let audio: String; let words: [WordTime] }
+        guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200,
+              let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) else { return nil }
+        return (audio, out.words)
+    }
+}
+
 /// Listen button plus one menu for the rest. Drop it in a toolbar.
 struct ListenControls: View {
     var speaker = Speaker.shared
@@ -205,6 +261,7 @@ struct ListenControls: View {
             Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
                 ForEach([Float(1), 1.25, 1.5, 2], id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
             }
+            Toggle("Natural voices", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
             Toggle("Explain it (two hosts)", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))
         }
     }
