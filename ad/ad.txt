@@ -1,0 +1,8 @@
+You finish a book. <break time="0.5s" />
+A month later, you remember one idea. <break time="0.9s" />
+Bookrank keeps the rest. <break time="0.7s" />
+Every chapter, in plain words. <break time="0.7s" />
+Open a book. Pick a chapter. Read it, or listen. <break time="0.8s" />
+Two voices talk it through, and the words light up as they go. <break time="0.9s" />
+Your books. Your notes. Yours to keep. <break time="1.0s" />
+Bookrank.

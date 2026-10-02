@@ -6,6 +6,8 @@
 
 Chapter summaries of the books you read. Open a book, pick a chapter, read it or listen to it. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
+[![Bookrank ad, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4)
+
 **Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"`, or `bookrank-tui share <link>` to read a shared summary. See [tui/](tui/). The KMP app (`kmp/`, Android and desktop) opens share links too.
 
 ![landing page](screenshots/landing.jpg)

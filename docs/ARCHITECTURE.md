@@ -126,6 +126,16 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `scripts/build-site.sh` | Builds `dist/`: landing at `/`, app beside it |
 | `sync-summaries.sh` | Copies finished summaries from iCloud Drive into `summaries/` |
 
+## The ad
+
+| File | What it owns |
+|---|---|
+| `ad/ad.txt` | The script. Eight sentences, one visual each, no version number |
+| `ad/make.py` | Builds the ad: ElevenLabs reads the script with per-character timings, every cut lands on a sentence, real screenshots sit in an ink bezel on the paper, type cards, end on the mark, voice ducked over the music |
+| `ad/music.py` | The Joshua Tree music bed (numpy only), cut to the ad's length by `make.py` |
+| `ad/shots/` | The screenshots the ad uses, copied from the fastlane run |
+| `ad/ad-poster.jpg` | The frame the README and landing show before play |
+
 ## External services
 
 **Supabase (spark project)**: auth (email, Apple, Google, GitHub, X), the `bookrank_summaries` table with per-account RLS, the `listen` jsonb (scripts and position), the `cover` column, share RPCs.
