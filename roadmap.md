@@ -9,6 +9,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 ## Next (2026-10-02)
 - [x] macOS 1.0.5 submitted 2026-10-02 (build 202610020301, voices, header). Mac ship gotcha: sign with an entitlements copy where `$(AppIdentifierPrefix)$(CFBundleIdentifier)` is replaced by `QMM486NPYC.com.heyitsmejosh.spine`, else error 90288, and set `--uses-non-exempt-encryption=false` on the build before submit.
 ## v1.1 (the loop runs to here)
+- [ ] Watch companion ships with 1.1, so App Store Connect needs Apple Watch screenshots for the version (take them on a watch simulator with the shots routine) and the review notes should mention the watch app. Install on a real watch to confirm lines arrive.
 - [x] Voice usage meter: iOS/Mac Account shows 'About N chapters of natural voice left' from `/api/usage` (2026-10-02). Web profile.html done too.
 - [x] Voice fallback says so, with the server's reason, and retries once first (iOS, Mac, web). Device-voice speed remapped so 2x sounds like 2x.
 - [x] Watch companion (built 2026-10-02): a small watchOS app embedded in the iOS app. Shows a line from one of your summaries (the same picker as the daily nudge, `Nudge.line`), tap for another, with the book title. The iPhone pushes ~30 lines over WatchConnectivity applicationContext after each load, so the watch needs no login. Ships with 1.1 iOS. Install on a real watch to confirm.
