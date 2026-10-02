@@ -194,6 +194,8 @@ footer { scroll-snap-align: end; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 18px rgba(0,0,0,.3); }
 .feature { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 1.3rem 1.2rem;
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.also { margin-top:1.1rem; font-size:.9rem; color:rgba(250,250,250,.6); text-shadow:0 2px 16px rgba(0,0,0,.8); }
+.also a { color:rgba(250,250,250,.85); text-decoration:underline; text-underline-offset:3px; }
 </style>
 </head>
 <body>
@@ -209,10 +211,9 @@ footer { scroll-snap-align: end; }
 
     <div class="buttons">
       <a href="/library.html" class="btn btn-primary">Open my summaries</a>
-      <a href="https://apps.apple.com/us/app/bookrank/id6792376485" class="btn btn-outline">iPhone &amp; iPad</a>
-      <a href="https://apps.apple.com/us/app/bookrank/id6792376485?mt=12" class="btn btn-outline">Mac</a>
-      <a href="https://github.com/nulljosh/bookrank" class="btn btn-outline">Source</a>
+      <a href="https://apps.apple.com/us/app/bookrank/id6792376485" class="btn btn-outline">Get the app</a>
     </div>
+    <p class="also">iPhone, iPad and Mac. Free. <a href="https://github.com/nulljosh/bookrank">Source</a></p>
   </div>
 </section>
 
@@ -351,9 +352,9 @@ footer { scroll-snap-align: end; }
 </script>
 <script>
 // The wall: three rows of covers drifting in opposite directions behind the hero. Still when motion is reduced.
-fetch('scripts/covers.json').then(function(r){return r.json()}).then(function(d){
-  // 42 covers, each row twice for the seamless loop: the second copy is the browser cache, so 42 requests, not 246.
-  var u=Object.keys(d).map(function(k){return d[k]}).filter(Boolean).slice(0,42), n=14;
+fetch('/api/goodreads?user=62164337&shelf=read').then(function(r){return r.json()}).then(function(d){
+  // Real books people actually read: the public Goodreads read shelf. 42 covers, each row twice for the loop.
+  var u=(d.books||[]).map(function(b){return b.cover}).filter(function(c){return c&&!/nophoto/.test(c)}).slice(0,42), n=14;
   ['rowA','rowB','rowC'].forEach(function(id,i){
     var el=document.getElementById(id), set=u.slice(i*n,(i+1)*n);
     el.innerHTML=set.concat(set).map(function(src){return '<img src="'+src+'" alt="" width="96" height="144" onerror="this.style.visibility=\'hidden\'">'}).join('');
