@@ -1,0 +1,18 @@
+import { parseFeed, userId, cleanTitle } from './functions/api/goodreads.js';
+import assert from 'node:assert/strict';
+assert.equal(userId('https://www.goodreads.com/user/show/62164337-josh'), '62164337');
+assert.equal(userId('62164337'), '62164337');
+assert.equal(userId('not a link'), '');
+assert.equal(cleanTitle('AI in Business For Dummies (For Dummies (Business & Personal Finance))'), 'AI in Business For Dummies');
+assert.equal(cleanTitle('Data Science For Dummies, 3rd Edition (For Dummies (Computer/Tech))'), 'Data Science For Dummies, 3rd Edition');
+assert.equal(cleanTitle('The Optimist: Sam Altman, OpenAI, and the Race to Invent the Future'), 'The Optimist: Sam Altman, OpenAI, and the Race to Invent the Future');
+assert.equal(cleanTitle('Isaac Newton (Penguin Lives)'), 'Isaac Newton (Penguin Lives)');
+const xml = `<rss><channel><item><title><![CDATA[macOS Tahoe For Dummies (For Dummies (Computer/Tech))]]></title><link><![CDATA[https://www.goodreads.com/review/show/1]]></link>
+<book_large_image_url><![CDATA[https://i.gr-assets.com/x.jpg]]></book_large_image_url><author_name>Guy Hart-Davis</author_name><isbn>1394373988</isbn>
+<user_rating>4</user_rating><user_read_at><![CDATA[Tue, 11 Aug 2026 00:00:00 +0000]]></user_read_at></item>
+<item><title>Brothers &amp; Sisters</title><author_name>A</author_name><isbn></isbn><user_rating>0</user_rating><user_read_at></user_read_at></item></channel></rss>`;
+const b = parseFeed(xml);
+assert.equal(b.length, 2);
+assert.deepEqual(b[0], { title: 'macOS Tahoe For Dummies', author: 'Guy Hart-Davis', isbn: '1394373988', cover: 'https://i.gr-assets.com/x.jpg', readAt: '2026-08-11', rating: 4, url: 'https://www.goodreads.com/review/show/1' });
+assert.equal(b[1].title, 'Brothers & Sisters'); assert.equal(b[1].isbn, null); assert.equal(b[1].readAt, null); assert.equal(b[1].rating, null);
+console.log('goodreads ok');

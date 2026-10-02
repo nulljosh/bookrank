@@ -89,6 +89,7 @@ dl.profile dt { color:var(--text3); }
       <dt>Member since</dt><dd id="pSince"></dd>
       <dt>Summaries</dt><dd id="pCount"></dd>
       <dt>Reading voice</dt><dd id="pVoice"></dd>
+      <dt>Goodreads</dt><dd><input id="goodreads" placeholder="Paste your Goodreads profile link" autocomplete="off" aria-label="Goodreads profile link"><span class="sub" id="grMsg"></span></dd>
     </dl>
     <h2 style="font-family:var(--font-display);font-size:1rem;margin:0.5rem 0 0.6rem">Credentials</h2>
     <form class="auth" id="credForm">
@@ -187,6 +188,22 @@ else {
     if (error) { $('profileMsg').textContent = error.message; return; }
     $('profileMsg').textContent = [email && `Confirmation sent to ${email}; the change applies once you click it.`, password && 'Password updated.'].filter(Boolean).join(' ');
     $('newEmail').value = ''; $('newPassword').value = '';
+  };
+  // Goodreads has no sign-in for apps, so linking is a profile link: we read the public
+  // "read" shelf and My summaries lists what is read but not summarized yet.
+  const grId = s => (String(s).match(/(?:user\/show\/)?(\d{3,})/) || [])[1] || '';
+  $('goodreads').value = user.user_metadata?.goodreads ? `goodreads.com/user/show/${user.user_metadata.goodreads}` : '';
+  $('goodreads').onchange = async () => {
+    const id = grId($('goodreads').value);
+    if ($('goodreads').value.trim() && !id) { $('grMsg').textContent = ' That does not look like a Goodreads profile link.'; return; }
+    if (id) {
+      $('grMsg').textContent = ' Checking…';
+      const r = await fetch(`/api/goodreads?user=${id}&shelf=read`).then(r => r.json()).catch(() => ({ error: 'Could not reach Goodreads.' }));
+      if (r.error) { $('grMsg').textContent = ' ' + r.error; return; }
+      $('grMsg').textContent = ` Linked. ${r.books.length} books read.`;
+    } else $('grMsg').textContent = ' Unlinked.';
+    const { error } = await db.auth.updateUser({ data: { goodreads: id || null } });
+    if (error) $('grMsg').textContent = ' ' + error.message;
   };
   $('signout').onclick = async () => { await db.auth.signOut(); location.href = 'library.html'; };
   $('pReset').onclick = async () => {
