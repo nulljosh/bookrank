@@ -91,6 +91,7 @@ dl.profile dt { color:var(--text3); }
       <dt>Member since</dt><dd id="pSince"></dd>
       <dt>Summaries</dt><dd id="pCount"></dd>
       <dt>Reading voice</dt><dd id="pVoice"></dd>
+      <dt>Natural voices</dt><dd id="pUsage">Checking</dd>
       <dt class="hide" id="grAboutT">About</dt><dd class="hide" id="grAbout" style="white-space:pre-line"></dd>
       <dt class="hide" id="grIntT">Interests</dt><dd class="hide" id="grInt"></dd>
       <dt class="hide" id="grGenT">Favorite genres</dt><dd class="hide" id="grGen"></dd>
@@ -181,6 +182,14 @@ else {
   $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
   $('pSince').textContent = new Date(user.created_at).toLocaleDateString();
   $('pVoice').textContent = localStorage.getItem('bookrank.voice') || 'Device default';
+  // How much natural voice is left: about 2,500 characters is a chapter; the month is shared, the day is yours.
+  db.auth.getSession().then(({ data: { session } }) => session && fetch('/api/usage', { headers: { authorization: `Bearer ${session.access_token}` } }))
+    .then(r => r && r.ok ? r.json() : null)
+    .then(u => {
+      if (!u) { $('pUsage').textContent = '\u2014'; return; }
+      const left = Math.max(0, Math.min(u.caps.month - u.app.month, u.caps.day - u.you.day));
+      $('pUsage').textContent = left < u.chapter ? 'Used up for now. The device voice takes over.' : `About ${Math.floor(left / u.chapter)} chapters left`;
+    }).catch(() => { $('pUsage').textContent = '\u2014'; });
   showAvatar(user); showGoodreads(user);
   db.from(TABLE).select('id', { count: 'exact', head: true }).then(({ count }) => { $('pCount').textContent = count ?? '\u2014'; });
   $('profileView').classList.remove('hide');
