@@ -3,8 +3,8 @@
 # the few words, and it ends on the mark. No version number, ever. Run: python3 make.py
 import base64, json, os, re, subprocess, urllib.request
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-FONT = "/System/Library/Fonts/SFNS.ttf"
-BG, INK, SOFT = "0xF4EEE3", "0x1A1814", "0x8A8378"
+FONT = '' or "/System/Library/Fonts/SFNS.ttf"  # Bookrank sets type in Geist, like the app and the landing
+BG, INK, SOFT = "0x0A0A0A", "0xFAFAFA", "0x8A8A8A"
 FPS, W, H = 24, 1920, 1080
 VO_AT = 0.8      # the picture starts, the voice comes in after a breath
 VOICE = "Xb7hH8MSUJpSbSDYk0k2"  # Alice, host A in the app
@@ -40,10 +40,10 @@ sentences = [s.strip() for s in re.sub(r"<break[^>]*>", "", script).split("\n") 
 PLAN = [
     ("card",  ("You finish a book.",)),
     ("card",  ("A month later you remember one idea.",)),
-    ("phone", ("shots/library.png", "Every book you have read, with its cover.")),
-    ("phone", ("shots/chapters.png", "Every chapter, in plain words.")),
-    ("phone", ("shots/chapter.png", "Read it. Or press Listen.")),
-    ("pad",   ("shots/pad.png", "Two voices talk it through. The words light up as they go.")),
+    ("clip", (9.4, "Every book you have read, with its cover.")),
+    ("clip", (15.3, "Every chapter, in plain words.")),
+    ("clip", (21.9, "Read it. Or press Listen.")),
+    ("clip", (27.4, "Two voices talk it through. The words light up as they go.")),
     ("card",  ("Yours to keep.",)),
     ("end",   ()),
 ]
@@ -57,10 +57,10 @@ def card(text, dur, out, size=108):
     run(["-f", "lavfi", "-i", f"color=c={BG}:s={W}x{H}:r={FPS}", "-i", png, "-filter_complex",
          f"[0:v][1:v]overlay=(W-w)/2:(H-h)/2,fade=t=in:st=0:d=0.3,fade=t=out:st={dur - 0.3}:d=0.3,format=yuv420p", "-t", str(dur), "-c:v", "libx264", "-crf", "16", out])
 
-def screen(shot, dur, cap, out, height=860, radius=54):
+def screen(shot, dur, cap, out, height=860, radius=54, start=None):
     # a real screenshot, rounded, on the paper, with a small caption low left; it rises 14px over the slot
-    w = int(subprocess.run(["magick", "identify", "-format", "%w", shot], capture_output=True, text=True).stdout)
-    h = int(subprocess.run(["magick", "identify", "-format", "%h", shot], capture_output=True, text=True).stdout)
+    w, h = map(int, subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", shot],
+                                   capture_output=True, text=True).stdout.strip().split(",")[:2])  # works for a still or the walk footage
     sw = round(w * height / h)
     mask = f"cut/mask-{sw}x{height}.png"
     subprocess.run(["magick", "-size", f"{sw}x{height}", "xc:black", "-fill", "white", "-draw", f"roundrectangle 0,0 {sw - 1},{height - 1} {radius},{radius}", mask], check=True)
@@ -71,10 +71,10 @@ def screen(shot, dur, cap, out, height=860, radius=54):
     bz, pad = 14, 90
     body = f"cut/body-{sw}x{height}.png"
     subprocess.run(["magick", "-size", f"{sw + 2 * pad}x{height + 2 * pad}", "xc:none",
-                    "-fill", "#1A1814", "-draw", f"roundrectangle {pad - bz},{pad - bz} {pad + sw + bz},{pad + height + bz} {radius + bz},{radius + bz}",
-                    "(", "+clone", "-background", "#1A1814", "-shadow", "28x22+0+18", ")", "+swap", "-background", "none", "-layers", "merge", "+repage",
-                    "-gravity", "center", "-extent", f"{sw + 2 * pad}x{height + 2 * pad}", body], check=True)
-    run(["-loop", "1", "-framerate", str(FPS), "-i", shot, "-loop", "1", "-framerate", str(FPS), "-i", mask,
+                    "-fill", "#262626", "-draw", f"roundrectangle {pad - bz - 1},{pad - bz - 1} {pad + sw + bz + 1},{pad + height + bz + 1} {radius + bz},{radius + bz}",
+                    "-fill", "#121212", "-draw", f"roundrectangle {pad - bz},{pad - bz} {pad + sw + bz},{pad + height + bz} {radius + bz},{radius + bz}", body], check=True)
+    src = ["-ss", str(start), "-t", str(dur), "-i", shot] if start is not None else ["-loop", "1", "-framerate", str(FPS), "-i", shot]
+    run([*src, "-loop", "1", "-framerate", str(FPS), "-i", mask,
          "-f", "lavfi", "-i", f"color=c={BG}:s={W}x{H}:r={FPS}", "-loop", "1", "-framerate", str(FPS), "-i", capp,
          "-loop", "1", "-framerate", str(FPS), "-i", body, "-filter_complex",
          f"[0:v]scale={sw}:{height}:flags=lanczos,format=rgba[v];[1:v]format=gray[m];[v][m]alphamerge[r];"
@@ -97,7 +97,9 @@ for i, ((kind, a), dur) in enumerate(zip(PLAN, durs)):
     out = f"cut/{i:02d}.mp4"
     if kind == "card": card(a[0], dur, out)
     elif kind == "phone": screen(a[0], dur, a[1], out)
-    elif kind == "pad": screen(a[0], dur, a[1], out, height=860, radius=40)
+    elif kind == "clip":  # live footage from the simulator walk, cut first so the seek is exact
+        run(["-i", "shots/walk.mov", "-ss", str(a[0]), "-t", str(dur), "-an", "-c:v", "libx264", "-crf", "14", f"cut/clip{i}.mp4"])
+        screen(f"cut/clip{i}.mp4", dur, a[1], out, start=0)
     else: end(dur, out)
     parts.append(out)
 open("cut/list.txt", "w").write("".join(f"file '{os.path.basename(p)}'\n" for p in parts))
@@ -120,5 +122,5 @@ run(["-i", "cut/picture.mp4", "-i", "ad.mp3", "-i", "cut/music2.wav", "-filter_c
      f"[m][vo]sidechaincompress=threshold=0.1:ratio=1.6:attack=40:release=600[duck];"
      f"[duck][vo2]amix=inputs=2:normalize=0,loudnorm=I=-16:TP=-1.5[a]",
      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", str(total), "-movflags", "+faststart", "bookrank-ad.mp4"])
-run(["-ss", str(t[2] + 1.0), "-i", "bookrank-ad.mp4", "-frames:v", "1", "-q:v", "3", "ad-poster.jpg"])
+run(["-ss", str(t[5] + 2.0), "-i", "bookrank-ad.mp4", "-frames:v", "1", "-q:v", "3", "ad-poster.jpg"])
 print("AD", round(total, 1), "s; cuts at", [round(x, 1) for x in t])
