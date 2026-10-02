@@ -56,6 +56,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `ios/Bookrank/Views/AccountView.swift` | Sign in with Apple or email, the Goodreads link with photo, quote and genres, export everything as markdown, password reset, sign out, delete account |
 | `ios/Bookrank/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
 | `ios/Bookrank/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
+| `ios/Bookrank/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch |
 | `ios/Bookrank/Models/AuthStore.swift` | Supabase email and password auth, session restore |
 | `ios/Bookrank/Models/Book.swift` | `Book` (for cover matching), `SummaryEntry`, `ListenState` |
 | `ios/Bookrank/Models/KeychainHelper.swift` | Small keychain read and write helper |

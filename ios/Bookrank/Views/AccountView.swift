@@ -23,6 +23,7 @@ struct AccountView: View {
     @State private var username = ""
     @State private var goodreads = ""
     @State private var exportURLs: [URL] = []
+    @State private var nudge = Nudge.enabled
     @State private var newEmail = ""
     @State private var newPassword = ""
 
@@ -258,6 +259,14 @@ struct AccountView: View {
             guard let id = auth.user?.userMetadata["goodreads"]?.stringValue, goodreadsProfile == nil else { return }
             let meta = await goodreadsMeta(id)
             if !meta.isEmpty { try? await auth.setMetadata(meta) }
+        }
+
+        Section {
+            Toggle("Daily review nudge", isOn: Binding(get: { nudge }, set: { on in
+                Task { nudge = await Nudge.enable(on, entries: store.summaryIndex) }
+            }))
+        } footer: {
+            Text("At 9:00 each morning, one line from a book you summarized. Nothing leaves your phone.")
         }
 
         Section {

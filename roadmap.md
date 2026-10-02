@@ -16,7 +16,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
 - [x] Web offline: every list and opened summary is cached per account and served when the network fails (2026-10-02).
 - [x] Accessibility pass: web (labels, reduced motion) and iOS (auth title scales with Dynamic Type, covers hidden from VoiceOver) done 2026-10-02.
-- [ ] Daily review nudge: one local notification with a line from a random chapter.
+- [x] Daily review nudge: Account toggle, 9:00 local notification with a line from one of your summaries, seven days queued and re-queued on launch (2026-10-02, built iOS and Mac, permission flow to be eyeballed on a phone).
 - [ ] Landing and app screenshots refreshed after 1.0.5 is approved; bump to 1.1.0 and ship both platforms.
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] 1.0.5 is in App Store review. Its listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
