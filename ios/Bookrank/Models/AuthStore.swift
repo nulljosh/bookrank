@@ -1,3 +1,5 @@
+import AuthenticationServices
+import CryptoKit
 import Foundation
 import LocalAuthentication
 import Supabase
@@ -69,9 +71,38 @@ final class AuthStore {
         saveBiometricCredentials(email: email, password: password)
     }
 
+    // MARK: Sign in with Apple
+    // Apple returns an identity token bound to a nonce we hash into the request; Supabase checks
+    // the token against Apple's public keys and the bundle ID in the project's Apple client list.
+    // No client secret is involved on native.
+    private var appleNonce = ""
+
+    func prepareApple(_ request: ASAuthorizationAppleIDRequest) {
+        appleNonce = UUID().uuidString + UUID().uuidString
+        request.requestedScopes = [.email, .fullName]
+        request.nonce = SHA256.hash(data: Data(appleNonce.utf8)).map { String(format: "%02x", $0) }.joined()
+    }
+
+    /// Returns false when the person backed out of the Apple sheet, which is not an error.
+    func signInWithApple(_ result: Result<ASAuthorization, Error>) async throws -> Bool {
+        switch result {
+        case .failure(let e as ASAuthorizationError) where e.code == .canceled:
+            return false
+        case .failure(let e):
+            throw e
+        case .success(let a):
+            guard let cred = a.credential as? ASAuthorizationAppleIDCredential,
+                  let data = cred.identityToken, let token = String(data: data, encoding: .utf8) else {
+                throw NSError(domain: "AuthStore", code: -2, userInfo: [NSLocalizedDescriptionKey: "Apple did not return a sign-in token."])
+            }
+            let session = try await supabase.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: token, nonce: appleNonce))
+            user = session.user
+            return true
+        }
+    }
+
     // MARK: Face ID convenience sign-in
-    // Optional shortcut for a returning user, not a new provider -- doesn't trigger the
-    // Guideline 4.8 mandatory-Apple-sign-in rule this file's email-only design avoids.
+    // Optional shortcut for a returning user, not a new provider.
     private static let savedEmailKey = "bookrank.biometric.email"
 
     func hasSavedBiometricCredentials() -> Bool {

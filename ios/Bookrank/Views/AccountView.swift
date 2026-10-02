@@ -1,3 +1,4 @@
+import AuthenticationServices
 import SwiftUI
 
 /// Sign in, sign up, and account deletion.
@@ -6,6 +7,7 @@ import SwiftUI
 /// readable signed-out. Signing in only adds your own summaries. An app that shows a
 /// stranger nothing but a login wall is the Guideline 4.2 risk this avoids.
 struct AccountView: View {
+    @Environment(\.colorScheme) private var colorScheme
     let auth: AuthStore
     let store: DataStore
     @Environment(\.dismiss) private var dismiss
@@ -61,6 +63,17 @@ struct AccountView: View {
                     Label("Sign in with Face ID", systemImage: "faceid")
                 }
             }
+        }
+        Section {
+            SignInWithAppleButton(.signIn) { auth.prepareApple($0) } onCompletion: { result in
+                run {
+                    guard try await auth.signInWithApple(result) else { return nil }
+                    await store.loadSummaries()
+                    return nil
+                }
+            }
+            .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+            .frame(height: 44)
         }
         Section {
             TextField("Email", text: $email)
