@@ -70,6 +70,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         ch = max(0, min(chapters.count - 1, ch + delta)); line = 0
         Task { await play(from: 0) }
     }
+    /// Show a chapter without speaking it.
+    func open(_ chapter: Int) { stop(); ch = chapter; line = 0; Task { await showChapter() } }
     func go(to chapter: Int, line l: Int = 0) { ch = chapter; line = l; Task { await play(from: l) } }
 
     func stop() {
@@ -187,19 +189,16 @@ enum Narrator {
     }
 }
 
-/// Play/pause, prev/next, chapter menu, mode. Drop it in a toolbar.
+/// Listen button plus one menu for the rest. Drop it in a toolbar.
 struct ListenControls: View {
     var speaker = Speaker.shared
 
     var body: some View {
-        Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }
         Button(speaker.playing && !speaker.paused ? "Pause" : "Listen",
                systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
-        Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
-        Menu("Chapters", systemImage: "list.bullet") {
-            ForEach(speaker.chapters.indices, id: \.self) { i in
-                Button(speaker.chapters[i].title) { speaker.go(to: i) }
-            }
+        Menu("More", systemImage: "ellipsis.circle") {
+            Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }
+            Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
             Divider()
             Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
                 ForEach([Float(1), 1.25, 1.5, 2], id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }

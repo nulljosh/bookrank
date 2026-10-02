@@ -20,6 +20,7 @@ final class DataStore {
     /// it keeps `summaryMarkdown(for:)` synchronous so the reader view stays unchanged.
     /// ponytail: fetch-everything; page it if a shelf ever runs to hundreds of rows.
     func loadSummaries() async {
+        if CommandLine.arguments.contains("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
             summaryIndex = try await supabase
                 .from("bookrank_summaries")
@@ -32,6 +33,25 @@ final class DataStore {
             summaryIndex = []
             summaryError = error.localizedDescription
         }
+    }
+
+    /// Screenshot automation only: a believable shelf from the bundled sample summaries.
+    private static func sampleShelf() -> [SummaryEntry] {
+        let picks = ["the-optimist", "the-contrarian", "ai-in-business", "data-science", "statistics-for-dummies", "good-feng-shui"]
+        let titles = ["the-optimist": "The Optimist", "the-contrarian": "The Contrarian", "ai-in-business": "AI in Business For Dummies",
+                      "data-science": "Data Science For Dummies", "statistics-for-dummies": "Statistics For Dummies", "good-feng-shui": "Good Feng Shui"]
+        // Verified by eye against the real editions (2026-10-02); the real shelf reads covers from its rows.
+        let covers = ["the-optimist": "https://covers.openlibrary.org/b/id/15154965-M.jpg",
+                      "the-contrarian": "https://covers.openlibrary.org/b/id/11433880-M.jpg",
+                      "ai-in-business": "https://images-na.ssl-images-amazon.com/images/P/1394377347.01.L.jpg",
+                      "data-science": "https://covers.openlibrary.org/b/id/13285377-M.jpg",
+                      "statistics-for-dummies": "https://covers.openlibrary.org/b/id/9700982-M.jpg",
+                      "good-feng-shui": "https://covers.openlibrary.org/b/id/14016705-M.jpg"]
+        return picks.compactMap { slug in
+            guard let url = Bundle.main.url(forResource: slug, withExtension: "md") ?? Bundle.main.url(forResource: slug, withExtension: "md", subdirectory: "summaries"),
+                  let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
+            return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: nil, listen: nil, cover: covers[slug], shareToken: nil)
+        }.sorted { $0.title < $1.title }
     }
 
     func clearSummaries() {

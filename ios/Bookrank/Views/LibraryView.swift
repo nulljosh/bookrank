@@ -8,34 +8,26 @@ struct LibraryView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 40) {
-                    header
-                    summaries
-                }
-                .padding(24)
-                .frame(maxWidth: 680, alignment: .leading)
-                .frame(maxWidth: .infinity)
-            }
-            .navigationTitle("")
-            .toolbar {
-                ToolbarItem(placement: .automatic) {
-                    Button {
-                        theme = (theme == "dark") ? "light" : "dark"
-                    } label: {
-                        Image(systemName: theme == "dark" ? "moon.fill" : "sun.max.fill")
+            list
+                .navigationTitle("Summaries")
+                .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        Button {
+                            theme = (theme == "dark") ? "light" : "dark"
+                        } label: {
+                            Image(systemName: theme == "dark" ? "moon.fill" : "sun.max.fill")
+                        }
+                    }
+                    ToolbarItem(placement: .automatic) {
+                        Button {
+                            showAccount = true
+                        } label: {
+                            Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle")
+                        }
+                        .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
                     }
                 }
-                ToolbarItem(placement: .automatic) {
-                    Button {
-                        showAccount = true
-                    } label: {
-                        Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle")
-                    }
-                    .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
-                }
-            }
-            .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
+                .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
         }
         .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
         // Fires once the stored session has been read back, and again on sign-in or
@@ -45,64 +37,39 @@ struct LibraryView: View {
         }
     }
 
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("Bookrank")
-                .font(.system(size: 40, weight: .black))
-            Text("Your books, summarized chapter by chapter.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-    }
-
     @ViewBuilder
-    private var summaries: some View {
+    private var list: some View {
         if !auth.isSignedIn {
-            Button("Sign in to see your summaries") { showAccount = true }
-                .buttonStyle(.bordered)
+            ContentUnavailableView {
+                Label("Your summaries", systemImage: "books.vertical")
+            } description: {
+                Text("Sign in to read them chapter by chapter.")
+            } actions: {
+                Button("Sign in") { showAccount = true }.buttonStyle(.borderedProminent)
+            }
+        } else if let error = store.summaryError {
+            ContentUnavailableView("Could not load", systemImage: "exclamationmark.triangle", description: Text(error))
+        } else if store.summaryIndex.isEmpty {
+            ContentUnavailableView("No summaries yet", systemImage: "books.vertical", description: Text("Summaries on this account show up here."))
         } else {
-            VStack(alignment: .leading, spacing: 12) {
-                sectionLabel("Summaries")
-                if let error = store.summaryError {
-                    Text(error).font(.caption).foregroundStyle(.secondary)
-                } else if store.summaryIndex.isEmpty {
-                    Text("No summaries on this account yet.")
-                        .font(.caption).foregroundStyle(.secondary)
-                }
-                let started = { (e: SummaryEntry) in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
-                let groups = [("Currently playing", store.summaryIndex.filter(started)), ("Library", store.summaryIndex.filter { !started($0) })]
-                ForEach(groups.filter { !$0.1.isEmpty }, id: \.0) { label, rows in
-                if groups[0].1.count > 0 { Text(label).font(.caption2).textCase(.uppercase).foregroundStyle(.tertiary).padding(.top, 8) }
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(rows) { entry in
-                        NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
-                            HStack(alignment: .center, spacing: 14) {
-                                Thumb(url: store.cover(for: entry))
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(entry.title).font(.subheadline.weight(.medium))
-                                    if let pos = entry.listen?.pos, entry.listen?.for == entry.updatedAt, pos.ch > 0 || pos.line > 0 {
-                                        Text("Resume · Ch \(pos.ch + 1)").font(.caption2).foregroundStyle(.secondary)
-                                    }
-                                }
-                                Spacer()
+            // Books you are partway through come first; no group headers.
+            let started = { (e: SummaryEntry) in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
+            let rows = store.summaryIndex.filter(started) + store.summaryIndex.filter { !started($0) }
+            List(rows) { entry in
+                NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: {
+                    HStack(spacing: 14) {
+                        Thumb(url: store.cover(for: entry))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(entry.title).font(.body)
+                            if let pos = entry.listen?.pos, started(entry) {
+                                Text("Resume · Ch \(pos.ch + 1)").font(.footnote).foregroundStyle(.secondary)
                             }
-                            .padding(.vertical, 10)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .buttonStyle(.plain)
-                        if entry.id != rows.last?.id { Divider() }
                     }
                 }
-                }
             }
+            .listStyle(.plain)
         }
-    }
-
-    private func sectionLabel(_ text: String) -> some View {
-        Text(text.uppercased())
-            .font(.caption2.weight(.medium))
-            .tracking(1.2)
-            .foregroundStyle(.primary)
     }
 }
 
@@ -110,7 +77,7 @@ struct LibraryView: View {
 private struct Thumb: View {
     let url: String?
     var body: some View {
-        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.15) }
+        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.footnote).foregroundStyle(.tertiary)) }
             .frame(width: 36, height: 52)
             .clipShape(RoundedRectangle(cornerRadius: 3))
     }

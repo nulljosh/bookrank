@@ -27,8 +27,7 @@ func parseChapters(_ markdown: String) -> [Speaker.Chapter] {
     return parts.map { .init(title: $0.title, text: $0.text) }
 }
 
-/// The listen view: progress bar, transcript with the spoken line and word highlighted,
-/// auto-scroll, chapter menu and share link. Mirrors listen.js mount().
+/// A book: just its chapters. Tap one to read or listen to it.
 struct SummaryDetailView: View {
     let slug: String
     let store: DataStore
@@ -37,29 +36,22 @@ struct SummaryDetailView: View {
 
     var body: some View {
         let entry = store.summary(for: slug)
-        VStack(spacing: 0) {
-            ProgressView(value: speaker.progress).progressViewStyle(.linear).tint(.accentColor)
-            ScrollViewReader { proxy in
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 10) {
-                        if speaker.loading { Text("Preparing this chapter…").foregroundStyle(.secondary) }
-                        ForEach(speaker.lines.indices, id: \.self) { i in
-                            LineView(line: speaker.lines[i], on: i == speaker.line && (speaker.playing || speaker.paused),
-                                     word: i == speaker.line ? speaker.word : nil)
-                                .id(i)
-                                .onTapGesture { speaker.go(to: speaker.ch, line: i) }
+        List {
+            ForEach(speaker.chapters.indices, id: \.self) { i in
+                NavigationLink { ChapterView(index: i) } label: {
+                    HStack {
+                        Text(speaker.chapters[i].title)
+                        Spacer()
+                        if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
+                            Text("Resume").font(.footnote).foregroundStyle(.secondary)
                         }
                     }
-                    .padding(24)
-                    .frame(maxWidth: 680, alignment: .leading)
-                    .frame(maxWidth: .infinity)
                 }
-                .onChange(of: speaker.line) { _, l in withAnimation { proxy.scrollTo(l, anchor: .center) } }
             }
         }
+        .listStyle(.plain)
         .navigationTitle(entry?.title ?? "Summary")
         .toolbar {
-            ListenControls()
             if let url = shareURL {
                 ShareLink(item: url) { Label("Share", systemImage: "square.and.arrow.up") }
                     .contextMenu { Button("Stop sharing", role: .destructive) { Task { await store.stopSharing(slug); shareURL = nil } } }
@@ -72,14 +64,40 @@ struct SummaryDetailView: View {
             speaker.load(slug: slug, chapters: parseChapters(store.summaryMarkdown(for: slug)),
                          entry: entry) { await store.saveListen($0, for: slug) }
         }
-        .overlay(alignment: .bottom) {
-            Text(speaker.status.isEmpty ? "\(speaker.chapters.count) chapters" : speaker.status)
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-                .padding(.vertical, 6)
+    }
+}
+
+/// One chapter: the text, one Listen button. The spoken line and word are highlighted
+/// and followed. Mirrors listen.js mount().
+private struct ChapterView: View {
+    let index: Int
+    var speaker = Speaker.shared
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 10) {
+                    if speaker.loading { Text("Preparing this chapter…").foregroundStyle(.secondary) }
+                    ForEach(speaker.lines.indices, id: \.self) { i in
+                        LineView(line: speaker.lines[i], on: i == speaker.line && (speaker.playing || speaker.paused),
+                                 dim: speaker.playing || speaker.paused,
+                                 word: i == speaker.line ? speaker.word : nil)
+                            .id(i)
+                            .onTapGesture { speaker.go(to: speaker.ch, line: i) }
+                    }
+                }
+                .padding(24)
+                .frame(maxWidth: 680, alignment: .leading)
                 .frame(maxWidth: .infinity)
-                .background(.bar)
+            }
+            .onChange(of: speaker.line) { _, l in withAnimation { proxy.scrollTo(l, anchor: .center) } }
         }
+        .navigationTitle(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
+        .toolbar { ListenControls() }
+        .task { if speaker.ch != index { speaker.open(index) } }
     }
 }
 
@@ -89,6 +107,7 @@ struct SummaryDetailView: View {
 private struct LineView: View {
     let line: ListenState.Line
     let on: Bool
+    let dim: Bool   // only dim the other lines while something is being read
     let word: Range<Int>?
 
     var body: some View {
@@ -99,12 +118,12 @@ private struct LineView: View {
         .padding(.horizontal, 10).padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 6))
-        .foregroundStyle(on ? .primary : .secondary)
+        .foregroundStyle(on || !dim ? .primary : .secondary)
     }
 
     private var text: Text {
         if on, let w = word, let r = Range(NSRange(location: w.lowerBound, length: w.count), in: line.line) {
-            return Text(line.line[..<r.lowerBound]) + Text(line.line[r]).foregroundStyle(Color.accentColor).bold() + Text(line.line[r.upperBound...])
+            return Text(line.line[..<r.lowerBound]).foregroundStyle(.secondary) + Text(line.line[r]).foregroundStyle(.primary).bold() + Text(line.line[r.upperBound...]).foregroundStyle(.secondary)
         }
         if let md = line.md, let a = try? AttributedString(markdown: md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "• ", options: .regularExpression)
             .replacingOccurrences(of: "^#+ ", with: "", options: .regularExpression)) {
