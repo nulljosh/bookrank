@@ -23,6 +23,32 @@ final class PreviewScreenshot: XCTestCase {
         }
     }
 
+    /// Signed-out sign-in and create-account screens, saved as PNGs under the host's SHOTS_DIR
+    /// (QA, not the store set): `SHOTS_DIR=/tmp/x xcodebuild test -only-testing:BookrankUITests/PreviewScreenshot/testSignInScreens`.
+    func testSignInScreens() {
+        let app = XCUIApplication()
+        app.launch()
+        sleep(3)
+        let open = app.buttons["Sign in"].firstMatch
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        open.tap()
+        sleep(2)
+        save("signin", XCUIScreen.main.screenshot())
+        let toggle = app.buttons["New here? Create an account"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 5))
+        toggle.tap()
+        sleep(1)
+        save("create", XCUIScreen.main.screenshot())
+    }
+
+    private func save(_ name: String, _ shot: XCUIScreenshot) {
+        let host = ProcessInfo.processInfo.environment["SIMULATOR_HOST_HOME"] ?? NSHomeDirectory()
+        let dir = ProcessInfo.processInfo.environment["SIMCTL_CHILD_SHOTS_DIR"] ?? "\(host)/.claude/jobs/c303a72f/tmp/shots"
+        try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
+        let device = UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "phone"
+        try? shot.pngRepresentation.write(to: URL(fileURLWithPath: "\(dir)/\(device)-\(name).png"))
+    }
+
     /// Footage for the ad: a slow walk from the list into a chapter, then Listen, so the
     /// highlight moves with real speech. Recorded with `xcrun simctl io <udid> recordVideo`.
     func testAdWalk() {

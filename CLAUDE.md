@@ -67,3 +67,6 @@ Decided: books stays its own repo, do NOT merge into lexly or notes. books/lexly
 
 ## Roadmap
 See `roadmap.md` in this repo root, not embedded here anymore. ASC app ID is **`6792376485`** (bundle `com.heyitsmejosh.spine`), one record carrying both iOS and macOS, verified via `asc apps list` 2026-08-13. (Earlier notes here listed `6787499076` iOS / `6787499349` macOS; those are wrong and match no live record.)
+
+## Screenshots, every time the UI changes (2026-10-02)
+Joshua's rule: fresh screenshots on every minor or major bump AND every UI fix or glitch patch, without being asked. Run `sh ios/scripts/shots.sh` from the repo root (store set via fastlane snapshot into `ios/fastlane/screenshots/en-US`, plus the signed-out sign-in and create screens as QA PNGs), read the PNGs and fix what looks wrong before shipping, then refresh the README and landing images and attach the new set to the next App Store version. Headless simulators only, shut them down after.

@@ -119,7 +119,7 @@ struct AccountView: View {
                     .buttonStyle(.bordered).clipShape(Capsule())
                 }
 
-                SignInWithAppleButton(isSigningUp ? .signUp : .signIn) { auth.prepareApple($0) } onCompletion: { result in
+                SignInWithAppleButton(.continue) { auth.prepareApple($0) } onCompletion: { result in
                     run {
                         guard try await auth.signInWithApple(result) else { return nil }
                         await store.loadSummaries()
