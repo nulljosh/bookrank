@@ -21,3 +21,5 @@ ios/build/
 __pycache__/
 dist/
 .build/
+
+.env
