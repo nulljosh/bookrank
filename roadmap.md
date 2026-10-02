@@ -12,7 +12,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] Watch app: replace the old ranked shelf with the summaries list (read-only), or drop the watch target.
 - [ ] Delete `books.json`, `scripts/build.py`, `covers.json` once nothing reads them.
 - [ ] Web offline: service worker keeps the last opened summaries readable.
-- [ ] Accessibility pass: VoiceOver labels on the player and the new sign-in, Dynamic Type, contrast.
+- [ ] Accessibility pass: web done 2026-10-02 (player was labelled, sign-in inputs labelled, reduced motion). Left: iOS VoiceOver labels on the chapter reader and sign-in, Dynamic Type check.
 - [ ] Daily review nudge: one local notification with a line from a random chapter.
 - [ ] Landing and app screenshots refreshed after 1.0.5 is approved; bump to 1.1.0 and ship both platforms.
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.

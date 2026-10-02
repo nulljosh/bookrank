@@ -31,6 +31,7 @@ form.auth button.oauth { width:100%; padding:0.7rem 1rem; font-size:0.9375rem; b
 form.auth button.oauth.apple { background:#fafafa; color:#0a0a0a; border-color:#fafafa; font-weight:500; }
 button.pill { background:#efa048; color:#1a1208; border:0; border-radius:999px; padding:0.75rem 1.5rem; font-size:1rem; font-weight:500; margin-top:0.25rem; transition:transform .15s ease, opacity .15s ease; }
 button.pill:hover { transform:translateY(-1px); opacity:.92; }
+@media (prefers-reduced-motion:reduce) { button.pill { transition:none; } button.pill:hover { transform:none; } }
 .or { display:flex; align-items:center; gap:0.75rem; color:var(--text3); font-size:0.8125rem; margin:0.35rem 0; }
 .or::before,.or::after { content:""; flex:1; height:1px; background:var(--border2); }
 .links { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-top:0.25rem; }
@@ -103,8 +104,8 @@ dl.profile dt { color:var(--text3); }
       <button type="button" class="oauth" data-provider="google">Continue with Google</button>
       <button type="button" class="oauth" data-provider="github">Continue with GitHub</button>
       <div class="or"><span>or</span></div>
-      <input type="email" id="email" placeholder="Email" autocomplete="email" required>
-      <input type="password" id="password" placeholder="Password" autocomplete="current-password" minlength="8" required>
+      <input type="email" id="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
+      <input type="password" id="password" placeholder="Password" aria-label="Password" autocomplete="current-password" minlength="8" required>
       <button class="pill" type="submit" id="submitBtn">Sign in</button>
       <p class="msg" id="authMsg" role="status" aria-live="polite"></p>
       <div class="links">
@@ -176,6 +177,7 @@ function setMode(up) {
   $('submitBtn').textContent = up ? 'Create account' : 'Sign in';
   $("authToggle").textContent = up ? 'Have an account? Sign in' : 'New here? Create an account';
   $('password').autocomplete = up ? 'new-password' : 'current-password';
+  $('password').setAttribute('aria-label', up ? 'New password, 8 characters or more' : 'Password');
   $('password').placeholder = up ? 'Password, 8 characters or more' : 'Password';
   $('authMsg').textContent = '';
 }
