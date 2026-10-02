@@ -20,7 +20,7 @@ We sell the voices, not the summaries. The summaries are Joshua's own notes on b
 
 ## Next
 
-Done 2026-10-02: web natural voices are a Stripe $1 Payment Link. The webhook marks the account paid in KV and `/api/speak` checks it. The apps send `X-Bookrank-App`; the App Store price is their payment. Left: one real $1 test purchase, then refund it.
+Done 2026-10-02: web natural voices are a Stripe $1 Payment Link. The webhook marks the account paid in KV and `/api/speak` checks it. The apps send `X-Bookrank-App`; the App Store price is their payment. Tested live with a one-use 100% promo code: a real Stripe checkout flipped the account to paid through the webhook in about 25 seconds. Promo codes unlock too, so a 100% code is a free pass for a friend.
 
 ## Change it
 
