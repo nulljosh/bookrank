@@ -1,4 +1,4 @@
-// Stripe tells us a $1 checkout finished; flag that account as paid in KV so /api/speak opens up.
+// Stripe tells us a $1 checkout finished (or a 100% promo code, which Stripe calls no_payment_required); flag that account as paid in KV so /api/speak opens up.
 // Env: STRIPE_WEBHOOK_SECRET, TTS_KV (binding). Signature is checked with WebCrypto (no SDK on Workers).
 export async function onRequest({ request, env }) {
   if (request.method !== "POST") return new Response("POST only", { status: 405 });
@@ -8,7 +8,7 @@ export async function onRequest({ request, env }) {
   }
   const ev = JSON.parse(body);
   const s = ev.data?.object;
-  if (ev.type === "checkout.session.completed" && s?.payment_status === "paid" && s.client_reference_id && env.TTS_KV) {
+  if (ev.type === "checkout.session.completed" && ["paid", "no_payment_required"].includes(s?.payment_status) && s.client_reference_id && env.TTS_KV) {
     await env.TTS_KV.put(`paid:${s.client_reference_id}`, "1");
   }
   return new Response("ok");
