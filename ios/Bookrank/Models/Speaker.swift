@@ -25,6 +25,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var loading = false
     var explain = true { didSet { if playing { Task { await play(from: 0) } } else { Task { await showChapter() } } } }
     /// Steps people actually use, from a slow read to a fast skim. 2x is the ceiling both the device voice and the player allow.
+    /// AVSpeech's scale is not linear: the raw max (1.0) is about three times normal speech. This maps 1x to the default and 2x
+    /// to a brisk 0.65, so a 2x on the device voice sounds like 2x.
+    static func deviceRate(_ r: Float) -> Float {
+        let d = AVSpeechUtteranceDefaultSpeechRate
+        return r <= 1 ? d * r : min(AVSpeechUtteranceMaximumSpeechRate, d + (r - 1) * 0.15)
+    }
     static let speeds: [Float] = [0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.75, 2]
     /// Remembered per book (a dense text slows down, a story speeds up), falling back to the last speed you picked anywhere.
     var rate: Float = UserDefaults.standard.object(forKey: "bookrank.rate") as? Float ?? 1 {
@@ -167,11 +173,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if natural {
             if await playNatural(script, from: line, tok: tok) { return }
             guard tok == token else { return }   // a line failed: keep going on the device voice from there
+            status = "Natural voice unavailable (\(Narrator.lastFailure ?? "unknown")). Using the device voice."
         }
         for (k, l) in script[line...].enumerated() {
             let u = AVSpeechUtterance(string: l.line)
             u.voice = l.host == "B" ? b : a
-            u.rate = AVSpeechUtteranceDefaultSpeechRate * rate
+            u.rate = Self.deviceRate(rate)
             lineOf[ObjectIdentifier(u)] = (line + k, 0)
             if line + k == script.count - 1 { lastUtterance = u }
             synth.speak(u)
@@ -237,24 +244,61 @@ enum Narrator {
 
 struct WordTime: Decodable { let i: Int; let n: Int; let t: Double }
 
+/// What the natural voices have used, from /api/usage. About 2,500 characters is a chapter.
+struct VoiceUsage: Decodable {
+    struct You: Decodable { let day: Int; let month: Int }
+    struct App: Decodable { let month: Int }
+    struct Caps: Decodable { let day: Int; let month: Int }
+    let you: You, app: App, caps: Caps, chapter: Int
+    /// The month is shared by the whole app, the day is yours; the smaller room is the one that bites first.
+    var chaptersLeft: Int { max(0, min(caps.month - app.month, caps.day - you.day)) / max(chapter, 1) }
+    var monthFraction: Double { min(1, Double(app.month) / Double(max(caps.month, 1))) }
+}
+
+extension Narrator {
+    static func usage() async -> VoiceUsage? {
+        guard let token = try? await supabase.auth.session.accessToken else { return nil }
+        var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/usage")!)
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200 else { return nil }
+        return try? JSONDecoder().decode(VoiceUsage.self, from: data)
+    }
+}
+
 extension Narrator {
     /// One line in a natural voice: mp3 plus the second each word starts. Nil on any failure, so the caller can fall back.
+    /// Why the last natural line failed, in the server's own words when it gave any, so the player can say so.
+    nonisolated(unsafe) static var lastFailure: String?
+
     static func speak(_ text: String, host: String, ch: Int) async -> (audio: Data, words: [WordTime])? {
-        guard let token = try? await supabase.auth.session.accessToken else { return nil }
-        var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/speak")!)
-        req.httpMethod = "POST"
-        req.setValue("application/json", forHTTPHeaderField: "content-type")
-        req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
-        #if os(macOS)
-        req.setValue("mac", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
-        #else
-        req.setValue("ios", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
-        #endif
-        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host, "ch": ch])
-        struct Out: Decodable { let audio: String; let words: [WordTime] }
-        guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200,
-              let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) else { return nil }
-        return (audio, out.words)
+        // One retry: a dropped connection or a 5xx from the voice service is usually gone a second later.
+        for attempt in 0..<2 {
+            if attempt > 0 { try? await Task.sleep(for: .milliseconds(700)) }
+            guard let token = try? await supabase.auth.session.accessToken else { lastFailure = "not signed in"; return nil }
+            var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/speak")!)
+            req.httpMethod = "POST"
+            req.timeoutInterval = 25
+            req.setValue("application/json", forHTTPHeaderField: "content-type")
+            req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+            #if os(macOS)
+            req.setValue("mac", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
+            #else
+            req.setValue("ios", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
+            #endif
+            req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host, "ch": ch])
+            struct Out: Decodable { let audio: String; let words: [WordTime] }
+            struct Err: Decodable { let error: String? }
+            guard let (data, resp) = try? await URLSession.shared.data(for: req), let code = (resp as? HTTPURLResponse)?.statusCode else {
+                lastFailure = "no connection"; continue
+            }
+            if code == 200, let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) {
+                lastFailure = nil
+                return (audio, out.words)
+            }
+            lastFailure = (try? JSONDecoder().decode(Err.self, from: data))?.error ?? "server answered \(code)"
+            if code < 500 { return nil }   // 4xx will not change on a retry
+        }
+        return nil
     }
 }
 

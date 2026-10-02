@@ -24,6 +24,7 @@ struct AccountView: View {
     @State private var goodreads = ""
     @State private var exportURLs: [URL] = []
     @State private var nudge = Nudge.enabled
+    @State private var usage: VoiceUsage?
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
     @State private var newPassword = ""
@@ -273,6 +274,23 @@ struct AccountView: View {
             let meta = await goodreadsMeta(id)
             if !meta.isEmpty { try? await auth.setMetadata(meta) }
         }
+
+        Section {
+            if let usage {
+                VStack(alignment: .leading, spacing: 6) {
+                    ProgressView(value: usage.monthFraction)
+                    Text(usage.chaptersLeft == 0 ? "Natural voices are used up for now. The device voice takes over."
+                         : "About \(usage.chaptersLeft) chapters of natural voice left").font(.subheadline)
+                }
+            } else {
+                Text("Checking natural voice usage").foregroundStyle(.secondary)
+            }
+        } header: {
+            Text("Natural voices")
+        } footer: {
+            Text("A chapter is about 2,500 characters. The month resets on the 1st. Chapters you already played are free to replay.")
+        }
+        .task { usage = await Narrator.usage() }
 
         Section { appearancePicker }
 

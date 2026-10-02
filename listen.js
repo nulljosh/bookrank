@@ -235,7 +235,7 @@ export function mount(root, api) {
       const my = gen;
       const r = await api.speak(u.text, u.voice?.host || 'A', player.ch).catch(() => null);
       if (my !== gen) return;
-      if (!r?.audio) return synth.speak(toReal(u));
+      if (!r?.audio) { status.textContent = 'Natural voice unavailable. Using the device voice.'; return synth.speak(toReal(u)); }
       const a = audio = new Audio('data:audio/mpeg;base64,' + r.audio);
       a.playbackRate = u.rate || 1;
       let w = 0;
