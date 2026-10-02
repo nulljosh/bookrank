@@ -19,7 +19,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | File | What it owns |
 |---|---|
 | `index.html` | Landing page: hero, cover wall built at runtime from `scripts/covers.json`, store links |
-| `library.html` | The app: sign in (email, Apple, Google, GitHub), summary list, reader, editor, share button |
+| `library.html` | The app: sign in (email, Google, GitHub; Apple is in the iPhone, iPad and Mac app only, because the shared web Apple sign-in ID shows another app's name and icon), summary list, reader, editor, share button |
 | `share.html` | Read-only player for a shared summary, keyed by `share_token`, no account needed |
 | `profile.html` | Profile page: username, generated avatar, email and password changes, account deletion |
 | `privacy.html` | Privacy policy |
