@@ -255,10 +255,10 @@ export function mount(root, api) {
   function renderScript(script, ch) {
     text.innerHTML = '';
     for (const l of script) {
-      const host = modeSel.value === 'talk' && script.some(x => x.host === 'B') ? `<b>${l.host}</b> ` : '';
+      const host = modeSel.value === 'talk' && script.some(x => x.host === 'B') ? `<b>${esc(l.host)}</b> ` : '';
       const p = document.createElement('div');
       p.dataset.line = l.line; p.dataset.host = host;
-      p.innerHTML = host + (l.md ? (globalThis.marked?.parse?.(l.md) ?? esc(l.line)) : esc(l.line));
+      p.innerHTML = host + (l.md ? md(l.md, l.line) : esc(l.line));
       p.dataset.raw = p.innerHTML;
       p.onclick = () => player.play(ch, [...text.children].indexOf(p));
       text.append(p);
@@ -293,5 +293,11 @@ export function mount(root, api) {
   if (!chs.length) { text.innerHTML = '<p class="msg">Nothing to read yet.</p>'; play.disabled = true; }
   else showChapter();
   return { player, stop: () => player.stop(), scripts };
+}
+// Markdown from a summary (possibly someone else's, via a share link) is untrusted: render it
+// through DOMPurify, and fall back to plain escaped text if either library failed to load.
+function md(src, plain) {
+  const html = globalThis.marked?.parse?.(src);
+  return html != null && globalThis.DOMPurify ? globalThis.DOMPurify.sanitize(html) : esc(plain);
 }
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));

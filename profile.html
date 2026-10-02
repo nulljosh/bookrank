@@ -160,7 +160,7 @@ const showAvatar = (user) => {
   const gh = githubPhoto(user), picked = user.user_metadata?.avatar_source === 'generated';
   $('ghPhoto').textContent = user.user_metadata?.goodreads_avatar ? 'Use Goodreads photo' : 'Use GitHub photo';
   $('ghPhoto').classList.toggle('hide', !gh || !picked);
-  if (gh && !picked) { $('avatar').innerHTML = `<img alt="" src="${gh}">`; return; }
+  if (gh && !picked) { $('avatar').replaceChildren(Object.assign(document.createElement('img'), { alt: '', src: gh })); return; }
   const svg = user.user_metadata?.avatar;
   $('avatar').innerHTML = svg ? `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">` : `<span>${(user.email[0] || '?').toUpperCase()}</span>`;
 };
@@ -222,7 +222,7 @@ else {
   $('goodreads').value = user.user_metadata?.goodreads ? `goodreads.com/user/show/${user.user_metadata.goodreads}` : '';
   if (user.user_metadata?.goodreads && (!user.user_metadata?.goodreads_avatar || !user.user_metadata?.goodreads_profile || !('quote' in user.user_metadata.goodreads_profile))) {
     fetch(`/api/goodreads?user=${user.user_metadata.goodreads}&profile=1`).then(r => r.json()).then(async p => {
-      if (p.error || !('genres' in p)) return; // a failed lookup never wipes what is saved
+      if (p.error || !p.name) return; // a failed lookup never wipes what is saved
       const { data } = await db.auth.updateUser({ data: { goodreads_avatar: p.avatar || null, goodreads_profile: { about: p.about || null, interests: p.interests || null, genres: p.genres || [], quote: p.quote || null } } });
       if (data?.user) { showAvatar(data.user); showGoodreads(data.user); }
     }).catch(() => {});
@@ -237,6 +237,7 @@ else {
       $('grMsg').textContent = ` Linked. ${r.books.length} books read.`;
     } else $('grMsg').textContent = ' Unlinked.';
     const p = id ? await fetch(`/api/goodreads?user=${id}&profile=1`).then(r => r.json()).catch(() => ({})) : {};
+    if (id && (p.error || !p.name)) { $('grMsg').textContent += ' Photo and profile will sync on your next visit.'; await db.auth.updateUser({ data: { goodreads: id } }); return; }
     const { data, error } = await db.auth.updateUser({ data: { goodreads: id || null, goodreads_avatar: p.avatar || null, goodreads_profile: id ? { about: p.about || null, interests: p.interests || null, genres: p.genres || [], quote: p.quote || null } : null } });
     if (error) $('grMsg').textContent = ' ' + error.message; else { showAvatar(data.user); showGoodreads(data.user); }
   };

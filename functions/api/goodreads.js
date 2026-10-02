@@ -40,7 +40,10 @@ export async function onRequest({ request }) {
 async function profile(user) {
   const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": "Mozilla/5.0 (Bookrank)" } });
   if (!r.ok) return json({ error: "No Goodreads profile with that link." }, 404);
-  return json(parseProfile(await r.text()));
+  const p = parseProfile(await r.text());
+  // Goodreads sometimes serves bots a stripped page; no name means we did not get the real profile.
+  if (!p.name) return json({ error: "Goodreads did not answer. Try again in a minute." }, 502);
+  return json(p);
 }
 
 export function parseProfile(html) {
