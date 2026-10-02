@@ -207,7 +207,7 @@ else {
   // "read" shelf and My summaries lists what is read but not summarized yet.
   const grId = s => (String(s).match(/(?:user\/show\/)?(\d{3,})/) || [])[1] || '';
   $('goodreads').value = user.user_metadata?.goodreads ? `goodreads.com/user/show/${user.user_metadata.goodreads}` : '';
-  if (user.user_metadata?.goodreads && user.user_metadata?.goodreads_avatar === undefined) {
+  if (user.user_metadata?.goodreads && !user.user_metadata?.goodreads_avatar) {
     fetch(`/api/goodreads?user=${user.user_metadata.goodreads}&profile=1`).then(r => r.json()).then(async p => {
       const { data } = await db.auth.updateUser({ data: { goodreads_avatar: p.avatar || null } });
       if (data?.user) showAvatar(data.user);
