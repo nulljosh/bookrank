@@ -46,7 +46,11 @@ async function profile(user) {
 export function parseProfile(html) {
   const og = (p) => decode((html.match(new RegExp(`<meta property="og:${p}" content="([^"]*)"`)) || [])[1] || "");
   const avatar = og("image");
-  return { name: og("title") || null, avatar: /gr-assets\.com\/users\//.test(avatar) ? avatar : null };
+  // Profile rows render as <div class="infoBoxRowTitle">About Me</div><div class="infoBoxRowItem">...</div>.
+  const row = (t) => { const m = html.match(new RegExp(`infoBoxRowTitle">\\s*${t}\\s*</div>\\s*<div class="infoBoxRowItem"[^>]*>([\\s\\S]*?)</div>`)); return m ? decode(m[1].replace(/<br\s*\/?>/g, "\n").replace(/<[^>]+>/g, "")).replace(/\s*\.\.\.more$/, "").trim() || null : null; };
+  const g = html.match(/Favorite Genres<\/h2>[\s\S]*?<div class="bigBoxContent[^"]*">([\s\S]*?)<\/div>/);
+  const genres = g ? [...g[1].matchAll(/<a href="\/genres\/[^"]+">([^<]+)<\/a>/g)].map(m => decode(m[1])) : [];
+  return { name: og("title") || null, avatar: /gr-assets\.com\/users\//.test(avatar) ? avatar : null, about: row("About Me"), interests: row("Interests"), genres };
 }
 
 /** A profile URL (goodreads.com/user/show/62164337-josh) or a bare id -> "62164337". */
