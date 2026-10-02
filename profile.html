@@ -79,6 +79,7 @@ dl.profile dt { color:var(--text3); }
       <div>
         <h1 id="pName"></h1>
         <p class="sub" id="pHandle" style="margin-bottom:0.5rem"></p>
+        <p class="sub hide" id="grQuote" style="font-style:italic;margin:0.25rem 0 0.4rem"></p>
         <p class="msg" id="avatarMsg">Click the avatar to generate a new one.</p>
         <button type="button" id="ghPhoto" class="hide">Use GitHub photo</button>
       </div>
@@ -149,6 +150,8 @@ const githubPhoto = (user) => user.user_metadata?.goodreads_avatar || user.ident
 // About, interests and favorite genres come from the linked Goodreads profile; rows hide when empty.
 const showGoodreads = (user) => {
   const g = user.user_metadata?.goodreads_profile || {};
+  $('grQuote').textContent = g.quote ? `\u201c${g.quote.text}\u201d${g.quote.author ? ' ' + g.quote.author : ''}` : '';
+  $('grQuote').classList.toggle('hide', !g.quote);
   for (const [id, v] of [['grAbout', g.about], ['grInt', g.interests], ['grGen', (g.genres || []).join(', ')]]) {
     $(id).textContent = v || ''; $(id).classList.toggle('hide', !v); $(id + 'T').classList.toggle('hide', !v);
   }
@@ -217,9 +220,10 @@ else {
   // "read" shelf and My summaries lists what is read but not summarized yet.
   const grId = s => (String(s).match(/(?:user\/show\/)?(\d{3,})/) || [])[1] || '';
   $('goodreads').value = user.user_metadata?.goodreads ? `goodreads.com/user/show/${user.user_metadata.goodreads}` : '';
-  if (user.user_metadata?.goodreads && (!user.user_metadata?.goodreads_avatar || !user.user_metadata?.goodreads_profile)) {
+  if (user.user_metadata?.goodreads && (!user.user_metadata?.goodreads_avatar || !user.user_metadata?.goodreads_profile || !('quote' in user.user_metadata.goodreads_profile))) {
     fetch(`/api/goodreads?user=${user.user_metadata.goodreads}&profile=1`).then(r => r.json()).then(async p => {
-      const { data } = await db.auth.updateUser({ data: { goodreads_avatar: p.avatar || null, goodreads_profile: { about: p.about || null, interests: p.interests || null, genres: p.genres || [] } } });
+      if (p.error || !('genres' in p)) return; // a failed lookup never wipes what is saved
+      const { data } = await db.auth.updateUser({ data: { goodreads_avatar: p.avatar || null, goodreads_profile: { about: p.about || null, interests: p.interests || null, genres: p.genres || [], quote: p.quote || null } } });
       if (data?.user) { showAvatar(data.user); showGoodreads(data.user); }
     }).catch(() => {});
   }
@@ -233,7 +237,7 @@ else {
       $('grMsg').textContent = ` Linked. ${r.books.length} books read.`;
     } else $('grMsg').textContent = ' Unlinked.';
     const p = id ? await fetch(`/api/goodreads?user=${id}&profile=1`).then(r => r.json()).catch(() => ({})) : {};
-    const { data, error } = await db.auth.updateUser({ data: { goodreads: id || null, goodreads_avatar: p.avatar || null, goodreads_profile: id ? { about: p.about || null, interests: p.interests || null, genres: p.genres || [] } : null } });
+    const { data, error } = await db.auth.updateUser({ data: { goodreads: id || null, goodreads_avatar: p.avatar || null, goodreads_profile: id ? { about: p.about || null, interests: p.interests || null, genres: p.genres || [], quote: p.quote || null } : null } });
     if (error) $('grMsg').textContent = ' ' + error.message; else { showAvatar(data.user); showGoodreads(data.user); }
   };
   $('signout').onclick = async () => { await db.auth.signOut(); location.href = 'library.html'; };

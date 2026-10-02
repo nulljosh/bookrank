@@ -50,7 +50,22 @@ export function parseProfile(html) {
   const row = (t) => { const m = html.match(new RegExp(`infoBoxRowTitle">\\s*${t}\\s*</div>\\s*<div class="infoBoxRowItem"[^>]*>([\\s\\S]*?)</div>`)); return m ? decode(m[1].replace(/<br\s*\/?>/g, "\n").replace(/<[^>]+>/g, "")).replace(/\s*\.\.\.more$/, "").trim() || null : null; };
   const g = html.match(/Favorite Genres<\/h2>[\s\S]*?<div class="bigBoxContent[^"]*">([\s\S]*?)<\/div>/);
   const genres = g ? [...g[1].matchAll(/<a href="\/genres\/[^"]+">([^<]+)<\/a>/g)].map(m => decode(m[1])) : [];
-  return { name: og("title") || null, avatar: /gr-assets\.com\/users\//.test(avatar) ? avatar : null, about: row("About Me"), interests: row("Interests"), genres };
+  return { name: og("title") || null, avatar: /gr-assets\.com\/users\//.test(avatar) ? avatar : null, about: row("About Me"), interests: row("Interests"), genres, quote: bestQuote(html) };
+}
+
+/** The profile's liked quotes -> the one to show: most liked among those short enough to read at a
+ *  glance (220 chars), else the most recent. ponytail: likes are the only quality signal on the page. */
+export function bestQuote(html) {
+  const qs = html.split('<div class="quote mediumText').slice(1).map(b => {
+    const raw = (b.match(/<div class="quoteText">([\s\S]*?)<\/div>/) || [])[1] || "";
+    const flat = decode(raw.replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+    const [text, author] = flat.split(/\s*\u2015\s*/);
+    const likes = +((b.match(/>(\d[\d,]*) likes</) || [])[1] || "0").replace(/,/g, "");
+    return { text: (text || "").replace(/^[\u201c"]|[\u201d"]$/g, "").trim(), author: (author || "").split(",")[0].trim() || null, likes };
+  }).filter(q => q.text);
+  const short = qs.filter(q => q.text.length <= 220).sort((a, b) => b.likes - a.likes);
+  const q = short[0] || qs[0];
+  return q ? { text: q.text, author: q.author } : null;
 }
 
 /** A profile URL (goodreads.com/user/show/62164337-josh) or a bare id -> "62164337". */
@@ -85,8 +100,9 @@ export function cleanTitle(t) {
   return s;
 }
 
+const NAMED = { ldquo: "\u201c", rdquo: "\u201d", lsquo: "\u2018", rsquo: "\u2019", mdash: "\u2014", ndash: "\u2013", hellip: "\u2026", nbsp: " " };
 function decode(s) {
-  return s.replace(/^<!\[CDATA\[|\]\]>$/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;|&#39;/g, "'").replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d)).trim();
+  return s.replace(/^<!\[CDATA\[|\]\]>$/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;|&#39;/g, "'").replace(/&(ldquo|rdquo|lsquo|rsquo|mdash|ndash|hellip|nbsp);/g, (_, n) => NAMED[n]).replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d)).trim();
 }
 
 function json(body, status = 200) {

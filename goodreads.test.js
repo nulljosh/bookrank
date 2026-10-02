@@ -1,4 +1,4 @@
-import { parseFeed, userId, cleanTitle, parseProfile } from './functions/api/goodreads.js';
+import { parseFeed, userId, cleanTitle, parseProfile, bestQuote } from './functions/api/goodreads.js';
 import assert from 'node:assert/strict';
 assert.equal(userId('https://www.goodreads.com/user/show/62164337-josh'), '62164337');
 assert.equal(userId('62164337'), '62164337');
@@ -16,8 +16,11 @@ assert.equal(b.length, 2);
 assert.deepEqual(b[0], { title: 'macOS Tahoe For Dummies', author: 'Guy Hart-Davis', isbn: '1394373988', cover: 'https://i.gr-assets.com/x.jpg', readAt: '2026-08-11', rating: 4, url: 'https://www.goodreads.com/review/show/1' });
 assert.equal(b[1].title, 'Brothers & Sisters'); assert.equal(b[1].isbn, null); assert.equal(b[1].readAt, null); assert.equal(b[1].rating, null);
 assert.equal(parseFeed('<item><title>Man&amp;apos;s Search &#8212; &#x41;</title></item>')[0].title, "Man's Search \u2014 A");
-assert.deepEqual(parseProfile('<meta property="og:title" content="Joshua Trommel"><meta property="og:image" content="https://images.gr-assets.com/users/1/62164337.jpg">'), { name: 'Joshua Trommel', avatar: 'https://images.gr-assets.com/users/1/62164337.jpg', about: null, interests: null, genres: [] });
+assert.deepEqual(parseProfile('<meta property="og:title" content="Joshua Trommel"><meta property="og:image" content="https://images.gr-assets.com/users/1/62164337.jpg">'), { name: 'Joshua Trommel', avatar: 'https://images.gr-assets.com/users/1/62164337.jpg', about: null, interests: null, genres: [], quote: null });
 const prof = parseProfile('<div class="infoBoxRowTitle">About Me</div>\n<div class="infoBoxRowItem">I read <b>a lot</b>.<br/>Mostly at night.</div><div class="infoBoxRowTitle">Interests</div><div class="infoBoxRowItem">chess, running</div><h2 class="x"><div></div>Favorite Genres</h2></div><div class="bigBoxBody"><div class="bigBoxContent containerWithHeaderContent"><a href="/genres/biography">Biography</a>, <a href="/genres/humor-and-comedy">Humor and Comedy</a></div>');
 assert.equal(prof.about, 'I read a lot.\nMostly at night.'); assert.equal(prof.interests, 'chess, running'); assert.deepEqual(prof.genres, ['Biography', 'Humor and Comedy']);
 assert.equal(parseProfile('<meta property="og:image" content="https://s.gr-assets.com/assets/nophoto/user/u_200x266.png">').avatar, null);
+const q = (t, l) => `<div class="quote mediumText "><div class="quoteText">&ldquo;${t}&rdquo; &#8213; <a>Some Author</a>, <a>Book</a></div><a>${l} likes</a></div>`;
+assert.deepEqual(bestQuote(q('x'.repeat(300), '9,999') + q('Short and loved.', '50') + q('Short.', '5')), { text: 'Short and loved.', author: 'Some Author' });
+assert.equal(bestQuote(''), null);
 console.log('goodreads ok');
