@@ -8,8 +8,9 @@ cd "$(dirname "$0")/.."
 fastlane snapshot --only_testing BookrankUITests/PreviewScreenshot/testTakeScreenshots --skip_open_summary
 export SIMCTL_CHILD_SHOTS_DIR="${SHOTS_DIR:-/tmp/bookrank-shots}"
 mkdir -p "$SIMCTL_CHILD_SHOTS_DIR"
-for id in $(xcrun simctl list devices booted | grep -E "iPhone|iPad" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/'); do
-  xcodebuild test -project Bookrank.xcodeproj -scheme Bookrank -destination "platform=iOS Simulator,id=$id" \
-    -only-testing:BookrankUITests/PreviewScreenshot/testSignInScreens CODE_SIGNING_ALLOWED=NO >/dev/null 2>&1 && echo "signin shots ok $id"
+for name in "iPhone 11 Pro Max" "iPad Pro 13-inch (M5)"; do
+  xcodebuild test -project Bookrank.xcodeproj -scheme Bookrank -destination "platform=iOS Simulator,name=$name" \
+    -only-testing:BookrankUITests/PreviewScreenshot/testSignInScreens CODE_SIGNING_ALLOWED=NO >/dev/null 2>&1 && echo "signin shots ok $name"
 done
+xcrun simctl shutdown all
 echo "shots in fastlane/screenshots/en-US and $SIMCTL_CHILD_SHOTS_DIR"
