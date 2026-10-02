@@ -7,6 +7,8 @@ Listen feature complete. Refactored narration player into a shared module (liste
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
 ## Next (2026-10-02)
+- [ ] Ship macOS 1.0.5: the Mac app is $0.99 now but still 1.0.1 with no natural voices. Send `X-Bookrank-App: mac` from `Speaker.swift`, archive `BookrankMac`, submit.
+- [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] 1.0.5 is in App Store review. Its listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
 - [ ] Watch app still shows the old ranked shelf (`watchos/`, bundled JSON). Either port it to summaries or retire the target.
