@@ -6,6 +6,16 @@ Listen feature complete. Refactored narration player into a shared module (liste
 
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
+## Next (2026-10-02)
+- [ ] 1.0.5 is in App Store review. Its listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
+- [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
+- [ ] Watch app still shows the old ranked shelf (`watchos/`, bundled JSON). Either port it to summaries or retire the target.
+- [ ] Web offline mode: the iOS app keeps the shelf offline, the web does not.
+- [ ] Web accessibility labels and languages beyond English.
+- [ ] A daily review nudge (one old idea, resurfaced), highlights you can save, offline audio downloads.
+- [ ] `books.json`, `scripts/build.py` and `covers.json` go once nothing reads them (cover matching, the watch app).
+- [ ] The Man Who Solved the Market has only a cover photo in iCloud; photograph its chapters to summarize it. Fiend's 151 photos can be deleted once the notes are read.
+
 ## Open
 - [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
   structural iPad issue: `LibraryView` is a single scrolling dashboard capped at
