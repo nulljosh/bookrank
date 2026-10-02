@@ -24,8 +24,15 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var paused = false
     private(set) var loading = false
     var explain = true { didSet { if playing { Task { await play(from: 0) } } else { Task { await showChapter() } } } }
+    /// Steps people actually use, from a slow read to a fast skim. 2x is the ceiling both the device voice and the player allow.
+    static let speeds: [Float] = [0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.75, 2]
+    /// Remembered per book (a dense text slows down, a story speeds up), falling back to the last speed you picked anywhere.
     var rate: Float = UserDefaults.standard.object(forKey: "bookrank.rate") as? Float ?? 1 {
-        didSet { UserDefaults.standard.set(rate, forKey: "bookrank.rate"); if playing { Task { await play(from: line) } } }
+        didSet {
+            UserDefaults.standard.set(rate, forKey: "bookrank.rate")
+            if let slug { UserDefaults.standard.set(rate, forKey: "bookrank.rate.\(slug)") }
+            if playing { Task { await play(from: line) } }
+        }
     }
     var status = ""
     /// Natural voices (ElevenLabs through /api/speak). Off, or any failed line, falls back to the device voice.
@@ -55,6 +62,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if self.slug == slug { return }
         stop()
         self.slug = slug; self.chapters = chapters; self.save = save
+        if let r = UserDefaults.standard.object(forKey: "bookrank.rate.\(slug)") as? Float { rate = r }
         updatedAt = entry?.updatedAt ?? ""
         let st = entry?.listen.flatMap { $0.for == updatedAt ? $0 : nil }
         scripts = st?.chapters ?? [:]; prefetch = [:]
@@ -264,7 +272,7 @@ struct ListenControls: View {
             Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
             Divider()
             Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
-                ForEach([Float(1), 1.25, 1.5, 2], id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
+                ForEach(Speaker.speeds, id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
             }
             Toggle("Natural voices", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
             Toggle("Explain it (two hosts)", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))

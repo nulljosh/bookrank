@@ -13,7 +13,7 @@
 // webhook). Unpaid gets 402 and the player uses the device voice. Share links stay open. The header is
 // not proof, only the cheap check; the gate stays off until STRIPE_PAYMENT_LINK is set, so nothing breaks before checkout exists; the character caps below bound the cost either way.
 // Env (all optional): ELEVENLABS_API_KEY, TTS_KV (binding), TTS_MODEL, TTS_MODEL_BEST, TTS_VOICE_A,
-// TTS_VOICE_B, TTS_MONTHLY_CHARS (default 25000), TTS_DAILY_CHARS (default 6000).
+// TTS_VOICE_B, TTS_MONTHLY_CHARS (default 50000), TTS_DAILY_CHARS (default 8000).
 import { isSignedIn, isShared } from "./narrate.js";
 
 const SUPABASE_URL = "https://tjsxsqlxjmanwvmywwvw.supabase.co";
@@ -48,7 +48,7 @@ export async function onRequest({ request, env }) {
   }
 
   const who = token ? `t:${token.slice(0, 12)}` : `u:${uid || "x"}`;
-  const caps = { month: +env.TTS_MONTHLY_CHARS || 25000, day: +env.TTS_DAILY_CHARS || 6000 };
+  const caps = capsOf(env);
   const over = await spend(env.TTS_KV, who, text.length, caps, new Date());
   if (over) return json({ error: `Voice limit reached (${over}). Using the device voice.` }, 429);
 
@@ -70,16 +70,20 @@ export function pickModel(env, ch) {
   return ch === 0 && env.TTS_MODEL_BEST ? env.TTS_MODEL_BEST : cheap;
 }
 
+/** One place for the budget. ~2,500 characters is a chapter; 50,000 a month fits the $5 ElevenLabs plan, 8,000 a day is about three chapters. */
+export const capsOf = env => ({ month: +env.TTS_MONTHLY_CHARS || 50000, day: +env.TTS_DAILY_CHARS || 8000 });
+
 /** Charge `chars` against the month and the day. Returns "month" or "day" when a cap is hit, else null.
  *  Without a KV binding there is nothing to count against, so it does not block (the plan itself still caps). */
 export async function spend(kv, who, chars, caps, now) {
   if (!kv) return null;
   const day = now.toISOString().slice(0, 10), month = day.slice(0, 7);
-  const mk = `m:${month}`, dk = `d:${who}:${day}`;
+  const mk = `m:${month}`, dk = `d:${who}:${day}`, uk = `um:${who}:${month}`;
   const [m, d] = await Promise.all([kv.get(mk), kv.get(dk)]).then(r => r.map(v => +v || 0));
   if (m + chars > caps.month) return "month";
   if (d + chars > caps.day) return "day";
-  await Promise.all([kv.put(mk, String(m + chars)), kv.put(dk, String(d + chars), { expirationTtl: 172800 })]);
+  const u = +(await kv.get(uk)) || 0;   // what this account spent this month, for the usage readout
+  await Promise.all([kv.put(mk, String(m + chars)), kv.put(dk, String(d + chars), { expirationTtl: 172800 }), kv.put(uk, String(u + chars), { expirationTtl: 3456000 })]);
   return null;
 }
 

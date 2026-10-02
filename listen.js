@@ -182,7 +182,7 @@ export function mount(root, api) {
       <button class="lp-play primary">Play</button>
       <button class="lp-next" aria-label="Next chapter">▶</button>
       <select class="lp-voice" aria-label="Voice"></select>
-      <select class="lp-rate" aria-label="Speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+      <select class="lp-rate" aria-label="Speed">${[0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.75, 2].map(r => `<option value="${r}">${r}×</option>`).join('')}</select>
       <select class="lp-mode" aria-label="How to read it"><option value="talk">Explain it</option><option value="read">Read the notes</option></select>
       <span class="lp-status msg" aria-live="polite"></span>
     </div>
@@ -193,7 +193,9 @@ export function mount(root, api) {
   const q = s => root.querySelector(s);
   const toc = q('.lp-toc ol'), text = q('.lp-text'), fill = q('.lp-fill'), play = q('.lp-play'), status = q('.lp-status');
   const voiceSel = q('.lp-voice'), rateSel = q('.lp-rate'), modeSel = q('.lp-mode');
-  rateSel.value = localStorage.getItem('bookrank.rate') || '1';
+  // Remembered per book (a dense text slows down, a story speeds up); the last speed you picked anywhere is the fallback.
+  const rateKey = () => `bookrank.rate.${api.title || ''}`;
+  rateSel.value = localStorage.getItem(rateKey()) || localStorage.getItem('bookrank.rate') || '1';
   modeSel.value = localStorage.getItem('bookrank.mode') || 'talk';
 
   let list = [];
@@ -313,7 +315,7 @@ export function mount(root, api) {
   q('.lp-prev').onclick = () => player.play(Math.max(0, player.ch - 1), 0);
   q('.lp-next').onclick = () => player.play(Math.min(chs.length - 1, player.ch + 1), 0);
   voiceSel.onchange = () => { localStorage.setItem('bookrank.voice', voiceSel.value); if (player.playing) player.play(player.ch, player.line); };
-  rateSel.onchange = () => { localStorage.setItem('bookrank.rate', rateSel.value); if (player.playing) player.play(player.ch, player.line); };
+  rateSel.onchange = () => { localStorage.setItem('bookrank.rate', rateSel.value); localStorage.setItem(rateKey(), rateSel.value); if (player.playing) player.play(player.ch, player.line); };
   modeSel.onchange = () => { localStorage.setItem('bookrank.mode', modeSel.value); player.invalidate(); if (player.playing) player.play(player.ch, 0); else showChapter(); };
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({ title: api.title });

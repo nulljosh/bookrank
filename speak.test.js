@@ -1,4 +1,4 @@
-import { words, spend, pickModel } from './functions/api/speak.js';
+import { words, spend, pickModel, capsOf } from './functions/api/speak.js';
 import { sigOk } from './functions/api/stripe-webhook.js';
 import assert from 'node:assert/strict';
 const text = 'Hi there you';
@@ -23,4 +23,7 @@ assert.equal(await sigOk('{"a":1}', `t=1000,v1=${mac}`, 'whsec_x', 1100), false)
 assert.equal(await sigOk('{}', `t=1000,v1=${mac}`, 'whsec_y', 1100), false);  // wrong secret
 assert.equal(await sigOk('{}', `t=1000,v1=${mac}`, 'whsec_x', 2000), false);  // stale
 assert.equal(await sigOk('{}', '', 'whsec_x', 1100), false);                  // no header
+assert.deepEqual(capsOf({}), { month: 50000, day: 8000 });
+assert.deepEqual(capsOf({ TTS_MONTHLY_CHARS: '100', TTS_DAILY_CHARS: '10' }), { month: 100, day: 10 });
+assert.equal(await kv.get('um:u:a:2026-10'), '60');                    // the account's month: 30 + 30 across day1 and day2
 console.log('speak ok');
