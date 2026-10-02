@@ -223,6 +223,13 @@ $('photos').onchange = async () => {
 // The player lives in listen.js (shared with share.html). This page only supplies the
 // row: content, cached scripts, the resume point, and where to save them.
 let listen = null;
+// Natural voice for one line through /api/speak (ElevenLabs, cached per line on the server).
+async function speak(text, host) {
+  const { data: { session } } = await db.auth.getSession();
+  if (!session) return null;
+  const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host }) });
+  return res.ok ? res.json() : null;
+}
 async function narrate(ch, text, title, total) {
   const { data: { session } } = await db.auth.getSession();
   if (!session) return null;
@@ -240,7 +247,7 @@ function mountListen() {
   if (!current) { $('listen').innerHTML = ''; return; }
   const st = current.listen?.for === current.updated_at ? current.listen : null;
   listen = mount($('listen'), {
-    title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate,
+    title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate, speak,
     voices: () => speechSynthesis.getVoices(),
     save: (pos, chapters) => {
       if (!current) return;

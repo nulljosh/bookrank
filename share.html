@@ -99,6 +99,10 @@ if (!row) {
   mount($('listen'), {
     title: row.title, content: row.content, scripts: row.scripts || {},
     voices: () => speechSynthesis.getVoices(),
+    speak: async (text, host) => {
+      const r = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token, text, host }) });
+      return r.ok ? r.json() : null;
+    },
     narrate: async (ch, text, title, total) => {
       try {
         const r = await fetch('/api/narrate', { method: 'POST', headers: { 'content-type': 'application/json' },

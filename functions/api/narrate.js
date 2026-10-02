@@ -60,13 +60,13 @@ export function parseScript(raw) {
     .map(m => ({ host: m[1], line: m[2].trim() }));
 }
 
-async function isSignedIn(authHeader) {
+export async function isSignedIn(authHeader) {
   if (!authHeader.startsWith("Bearer ")) return false;
   const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, { headers: { authorization: authHeader, apikey: SUPABASE_ANON } });
   return res.ok;
 }
 
-async function isShared(token) {
+export async function isShared(token) {
   const rows = await rpc("shared_summary", { t: token }).catch(() => []);
   return Array.isArray(rows) && rows.length > 0;
 }

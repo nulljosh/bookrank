@@ -40,6 +40,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `profile.test.js` | Avatar generation and username defaults |
 | `books.test.js` | `books.json` integrity: no duplicate titles, required fields present |
 | `goodreads.test.js` | Goodreads feed and profile parsing: titles, entities, pages, best-quote pick |
+| `speak.test.js` | ElevenLabs character timings turned into word timings |
 | `src/lib/tools.test.mjs` | Tool filtering, pagination and title resolution |
 | `scripts/test-build.py` | `build.py` fails loudly on bad rows instead of silently dropping them |
 | `scripts/test-speech-chunks.mjs` | Read-aloud chunks stay under 200 characters, nothing dropped, offsets map back |
@@ -103,6 +104,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `functions/mcp.js` | MCP over HTTP, JSON-RPC |
 | `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a two-host script, caches it on the row |
 | `functions/api/goodreads.js` | `/api/goodreads`: reads a public Goodreads profile's shelf RSS (read, currently reading, to read) and, with `profile=1`, its photo, genres, about, interests and best quote. No credentials; Goodreads has no app sign-in |
+| `functions/api/speak.js` | `/api/speak`: one line in a natural ElevenLabs voice (host A or B) with per-word start times, cached at the edge so each line is paid for once; signed-in or share-token only; off until `ELEVENLABS_API_KEY` is set |
 | `functions/api/summarize-photo.js` | `/api/summarize-photo`: reads a book page photo with Workers AI, signed-in users only, nothing stored |
 | `src/lib/tools.js` | The tool layer both the REST and MCP routes call |
 | `supabase/functions/delete-account/index.ts` | Shared delete-account endpoint for every app on the spark project |

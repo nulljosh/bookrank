@@ -170,6 +170,7 @@ const wordLen = (t, i) => (t.slice(i).match(/^\S+/) || [''])[0].length;
 // transcript with line + word highlighting. `api`:
 //   { title, content, scripts, narrate(i, text, title, total) -> Promise<lines|null>,
 //     save(pos, scripts) (optional), voices() -> SpeechSynthesisVoice[], pos: {ch, line} }
+const NATURAL = '__natural';
 export function mount(root, api) {
   const synth = globalThis.speechSynthesis;
   const chs = chapters(api.content);
@@ -199,10 +200,11 @@ export function mount(root, api) {
   function fillVoices() {
     list = pickVoices(api.voices(), navigator.language, localStorage.getItem('bookrank.voice') || '');
     voiceSel.innerHTML = '';
+    if (api.speak) voiceSel.append(new Option('Natural voices', NATURAL));
     for (const v of list) voiceSel.append(new Option(v.name, v.name));
     const prev = localStorage.getItem('bookrank.voice');
-    if (prev && list.some(v => v.name === prev)) voiceSel.value = prev;
-    voiceSel.hidden = list.length < 2;
+    if (prev && (prev === NATURAL ? api.speak : list.some(v => v.name === prev))) voiceSel.value = prev;
+    voiceSel.hidden = voiceSel.options.length < 2;
   }
   fillVoices();
   synth.addEventListener?.('voiceschanged', fillVoices);
@@ -213,10 +215,44 @@ export function mount(root, api) {
     const li = document.createElement('li'); li.append(a); toc.append(li);
   });
 
+  // Natural voices: ElevenLabs audio per line, played behind a speechSynthesis-shaped object so the
+  // same player drives both. Word timestamps from the server light each word as it is spoken. Any
+  // line it cannot fetch or play falls back to the device voice, so Listen never stalls.
+  const natural = () => voiceSel.value === NATURAL && !!api.speak;
+  const toReal = u => {
+    const r = new globalThis.SpeechSynthesisUtterance(u.text);
+    if (u.voice?.voiceURI) { r.voice = u.voice; r.lang = u.voice.lang; }
+    r.rate = u.rate || 1; r.onboundary = u.onboundary; r.onend = u.onend; r.onerror = u.onerror;
+    return r;
+  };
+  let audio = null, gen = 0;
+  const voice = {
+    cancel() { gen++; if (audio) { audio.pause(); audio = null; } synth.cancel(); },
+    async speak(u) {
+      if (!natural()) return synth.speak(toReal(u));
+      const my = gen;
+      const r = await api.speak(u.text, u.voice?.host || 'A').catch(() => null);
+      if (my !== gen) return;
+      if (!r?.audio) return synth.speak(toReal(u));
+      const a = audio = new Audio('data:audio/mpeg;base64,' + r.audio);
+      a.playbackRate = u.rate || 1;
+      let w = 0;
+      const tick = () => {
+        if (audio !== a) return;
+        while (w < r.words.length && r.words[w].t <= a.currentTime) { const x = r.words[w++]; u.onboundary?.({ name: 'word', charIndex: x.i, charLength: x.n }); }
+        if (!a.paused && !a.ended) requestAnimationFrame(tick);
+      };
+      const fallback = () => { if (audio === a) { audio = null; synth.speak(toReal(u)); } };
+      a.onplay = () => requestAnimationFrame(tick);
+      a.onended = () => { if (audio === a) { audio = null; u.onend?.(); } };
+      a.onerror = fallback;
+      a.play().catch(fallback);
+    },
+  };
   const player = createPlayer({
-    synth, Utterance: globalThis.SpeechSynthesisUtterance,
+    synth: voice, Utterance: class { constructor(t) { this.text = t; } },
     count: () => chs.length,
-    voices: () => voicePair(list, voiceSel.value),
+    voices: () => natural() ? [{ host: 'A' }, { host: 'B' }] : voicePair(list, voiceSel.value),
     rate: () => +rateSel.value,
     scriptFor: async i => {
       if (modeSel.value !== 'talk') return blocks(chs[i].text);
