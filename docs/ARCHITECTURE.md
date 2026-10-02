@@ -1,122 +1,149 @@
 # Architecture
 
-A book ranking and summary site where users browse ranked books, write chapter-by-chapter summaries, and listen to summaries narrated as dialogue. The app ships on web (PWA), iOS, and Android (Kotlin Multiplatform).
+Chapter summaries of the books you read. Open a book, pick a chapter, read it or listen to it. Web, iPhone, iPad, Mac, Android and desktop share one account and one table. There are no rankings anymore; the product went summaries-only on 2026-09-21.
 
 ## How it runs
 
-**Web**: `index.html` is the landing page (hero, cover wall, app links). `rankings.html` displays the public ranked shelf (search, sort by rating, genre). `library.html` is the private per-account workspace: logged-in users see their own summaries, edit them, and listen to chapters read aloud. `listen.js` is the shared player (also used by `share.html` for shared links). Auth state is tracked via Supabase, session stored in browser localStorage.
+**Web**: `index.html` is the landing page. `library.html` is the app: sign in, see your summaries, open one, read or listen chapter by chapter. `listen.js` is the player, shared with `share.html` so anyone with a link can listen without an account. Supabase holds auth and the `bookrank_summaries` table.
 
-**iOS**: `ios/Bookrank/BookrankApp.swift` is the entry point, renders `LibraryView`. Users sign in via `AccountView`, then browse the bundled rankings (from `books.json`), read/listen to their Supabase summaries, and manage account settings. `Speaker.swift` is the chapter player (mirrors `listen.js`), using AVSpeechSynthesizer. All summaries are fetched on sign-in and cached.
+**iOS and macOS**: one SwiftUI codebase, two targets. `LibraryView` is a plain list of covers and titles, books you are partway through first. A book opens to its chapters (`SummaryDetailView`). A chapter opens to its text with one Listen button; the word being read is bold and dark and the rest of the line dims. `Speaker.swift` mirrors `listen.js` on AVSpeechSynthesizer.
 
-**Android/Desktop (KMP)**: `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/bookrank/AppScreen.kt` is the shared entry point. Platform-specific `MainActivity.kt` (Android) and `Main.kt` (Desktop) initialize the Compose runtime.
+**Android and desktop (KMP)**: a share-link reader. Paste a link, read that summary. No account, no list.
+
+**Terminal**: `bookrank-tui <query>` searches summaries through `/api/search`; `bookrank-tui share <link>` reads one.
+
+**Watch**: a standalone port of the old ranked shelf, read from bundled JSON. It predates the summaries pivot and has not moved yet (see roadmap).
 
 ## Web
 
 | File | What it owns |
 |---|---|
-| `index.html` | Landing page, hero, cover wall (fetched from `scripts/covers.json` at runtime), app store links, feature callouts |
-| `rankings.html` | Public ranked book list with search/sort/star ratings, pages generated from `books.json` by `scripts/build.py` |
-| `library.html` | Private per-account summaries (Supabase bookrank_summaries table), full Markdown editor, share button, WebMCP bridge for Claude tools |
-| `share.html` | Public view of a shared summary (via `share_token`), read-only player for anyone with the link |
-| `profile.html` | User profile page (username, avatar generation), stats (books read, summaries written), account links |
+| `index.html` | Landing page: hero, cover wall built at runtime from `scripts/covers.json`, store links |
+| `library.html` | The app: sign in (email, Apple, Google, GitHub), summary list, reader, editor, share button |
+| `share.html` | Read-only player for a shared summary, keyed by `share_token`, no account needed |
+| `profile.html` | Profile page: username, generated avatar, email and password changes, account deletion |
 | `privacy.html` | Privacy policy |
-| `listen.js` | Shared chapter player (used by `library.html`, `share.html`), AVSpeechSynthesis polyfill for speaking summaries, chapter parsing from Markdown |
-| `listen.test.js` | Unit tests for listen.js player with a fake speech synthesizer |
-| `narrate.test.js` | Unit tests for API narration script parsing |
-| `profile.test.js` | Unit tests for profile avatar SVG generation |
-| `onboarding.js` | Reusable first-run onboarding modal (used by all Bookrank products) |
-| `sw.js` | Service worker, network-first for pages, cache-first for hashed assets, v6 cache strategy |
-| `books.test.js` | Unit tests for `books.json` data integrity (no duplicate ranks, no missing titles) |
-| `tokens.css` | Design tokens (colors, fonts, spacing), synced from portfolio theme |
-| `devices.css` | Responsive device frame CSS for landing page screenshots (iPhone, iPad, Mac frames) |
-| `webmcp.js` | WebMCP tool registration for Claude integration in library.html |
+| `listen.js` | The player: chapter parsing, one utterance at a time, next chapter prefetched, word and line highlight |
+| `onboarding.js` | First-run onboarding modal |
+| `webmcp.js` | Registers the WebMCP tools so an agent in the browser can search and read summaries |
+| `sw.js` | Service worker: network first for pages, cache first for hashed assets |
+| `tokens.css` | Design tokens shared with the portfolio |
+| `devices.css` | Device frames for the landing page demo |
+| `manifest.webmanifest`, `robots.txt`, `sitemap.xml`, `_redirects` | PWA manifest, crawler files, and the `/rankings.html` to `library.html` redirect |
 
-## iOS
+## Tests
+
+| File | What it checks |
+|---|---|
+| `listen.test.js` | The player against a fake speech synth: chaining, prefetch, resume, highlight |
+| `narrate.test.js` | `/api/narrate` script parsing, intro only on chapter one, outro only on the last |
+| `profile.test.js` | Avatar generation and username defaults |
+| `books.test.js` | `books.json` integrity: no duplicate titles, required fields present |
+| `src/lib/tools.test.mjs` | Tool filtering, pagination and title resolution |
+| `scripts/test-build.py` | `build.py` fails loudly on bad rows instead of silently dropping them |
+| `scripts/test-speech-chunks.mjs` | Read-aloud chunks stay under 200 characters, nothing dropped, offsets map back |
+
+## iOS and macOS
 
 | File | What it owns |
 |---|---|
-| `ios/Bookrank/BookrankApp.swift` | App entry point, root scene, navigation setup, share overlay |
-| `ios/Bookrank/Views/LibraryView.swift` | Main tab view: sections (Ranked, Summaries, Picks, Loans), search toggle, account sheet |
-| `ios/Bookrank/Views/SummaryDetailView.swift` | Summary reader, chapter parsing from Markdown, chapter list navigation, Listen tab |
-| `ios/Bookrank/Views/AccountView.swift` | Sign in, sign up, account deletion, username/avatar setup |
-| `ios/Bookrank/Views/BadgeLabel.swift` | Small uppercase badge component |
-| `ios/Bookrank/Views/DueDateBadge.swift` | Loan due-date countdown badge (historical, unused when loans array is empty) |
-| `ios/Bookrank/Models/AuthStore.swift` | Supabase auth (email+password, biometric login), session management, metadata persistence |
-| `ios/Bookrank/Models/DataStore.swift` | @Observable store, bundles `books.json`/`library.json`/`picks.json` at init, fetches `bookrank_summaries` table, coverage matching for book covers |
-| `ios/Bookrank/Models/Book.swift` | Book struct (title, author, rank, Goodreads URL, optional rating), Library/TopPick containers, SummaryEntry for Supabase rows |
-| `ios/Bookrank/Models/Speaker.swift` | Chapter player over AVSpeechSynthesizer, mirrors `listen.js` (fetches scripts via `/api/narrate`, reads Markdown blocks), chapter parsing |
-| `ios/Bookrank/Models/KeychainHelper.swift` | macOS/iOS keychain storage for credentials |
-| `ios/Bookrank/Models/SessionKeychainStorage.swift` | Supabase session storage in macOS data-protection keychain |
-| `ios/UITests/PreviewScreenshot.swift` | Screenshot capture for App Store (via fastlane snapshot helper) |
+| `ios/Bookrank/BookrankApp.swift` | App entry, root scene |
+| `ios/Bookrank/Views/LibraryView.swift` | The list: covers and titles, resume line, empty and signed-out states, theme and account buttons |
+| `ios/Bookrank/Views/SummaryDetailView.swift` | Chapter parsing, the chapter list for a book, and the chapter reader with live word highlight |
+| `ios/Bookrank/Views/AccountView.swift` | Sign in, sign up, password reset, sign out, delete account |
+| `ios/Bookrank/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
+| `ios/Bookrank/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
+| `ios/Bookrank/Models/AuthStore.swift` | Supabase email and password auth, session restore |
+| `ios/Bookrank/Models/Book.swift` | `Book` (for cover matching), `SummaryEntry`, `ListenState` |
+| `ios/Bookrank/Models/KeychainHelper.swift` | Small keychain read and write helper |
+| `ios/Bookrank/Models/SessionKeychainStorage.swift` | Supabase session storage in the data-protection keychain |
+| `ios/Bookrank/Resources/books.json` | Bundled copy of `books.json`, used only to match covers by title |
+| `ios/Bookrank/Resources/summaries/` | Sample summaries for screenshot mode |
+| `ios/project.yml` | xcodegen spec for the `Bookrank` and `BookrankMac` targets |
+| `ios/scripts/prepare-plist.py` | Patches the plist keys xcodegen drops |
+| `ios/UITests/PreviewScreenshot.swift` | App Store screenshots: list, chapters, chapter text, on the sample shelf |
+| `ios/UITests/SnapshotHelper.swift` | fastlane snapshot helper |
 
-## Cloudflare Functions (/api)
-
-| File | What it owns |
-|---|---|
-| `functions/api/[[route]].js` | REST router, dispatches to `callTool()` in `src/lib/tools.js`, error handling |
-| `functions/mcp.js` | WebMCP over HTTP, JSON-RPC transport for Claude integration |
-| `functions/api/narrate.js` | POST `/api/narrate`: takes chapter text + number, calls Claude to generate dialogue script (two hosts A/B), caches result on `bookrank_summaries.listen` |
-| `functions/api/summarize-photo.js` | POST `/api/summarize-photo`: multipart upload, reads image with Workers AI Vision, returns text summary, auth-gated to signed-in users |
-
-## Data and models
+## Watch
 
 | File | What it owns |
 |---|---|
-| `books.json` | Single source of truth: ranked books (title, author, Goodreads URL, rating, rank), sections (ranked, picks, recently read, summaries), generated to `rankings.html` and iOS JSON resources |
-| `summaries/` | User-written chapter summaries, one `.md` file per book (copied from iCloud Drive via `sync-summaries.sh`) |
-| `scripts/covers.json` | Cache of book cover URLs, fetched from Open Library / Google Books by `scripts/fetch-covers.py`, nullable entries for books with no cover |
-| `iOS/Bookrank/Resources/books.json` | Generated from `books.json` by `build.py`, bundled into app (curated ranked list) |
-| `iOS/Bookrank/Resources/library.json` | Generated from `books.json` by `build.py`, bundled into app (loan/checkout metadata, empty loans array) |
-| `iOS/Bookrank/Resources/picks.json` | Generated from `books.json` by `build.py`, bundled into app (recommended picks) |
-| `iOS/Bookrank/Resources/summaries/` | Pre-packaged summaries in app bundle |
+| `watchos/BookrankWatchApp.swift` | Watch app entry |
+| `watchos/ContentView.swift` | Tab view over the three lists |
+| `watchos/Models/BookStore.swift` | Reads the bundled JSON off disk, no network |
+| `watchos/Models/WatchModels.swift` | Same models as iOS, same three JSON files |
+| `watchos/Views/ShelfView.swift` | Top of the old ranked shelf |
+| `watchos/Views/ToReadView.swift` | Books flagged for later |
+| `watchos/Views/TopPicksView.swift` | The curated picks list |
+| `watchos/Resources/*.json` | `books.json`, `library.json`, `picks.json` copied from the iOS bundle |
+| `watchos/project.yml` | xcodegen spec |
 
-## Build and generation
-
-| File | What it owns |
-|---|---|
-| `scripts/build.py` | Regenerates `rankings.html` rows and iOS JSON resources from `books.json`, fails loudly on invalid data (duplicates, missing ratings) |
-| `scripts/test-build.py` | Unit tests for `build.py`, ensures no regression on the "71 of 111" bug |
-| `scripts/fetch-covers.py` | Queries Open Library and Google Books for cover URLs, caches results in `scripts/covers.json` |
-| `scripts/make-appicon.sh` | Renders `icon.svg` to all iOS app icon sizes, asserts correct dimensions and no alpha channel |
-| `scripts/build-site.sh` | Composes final site: landing at `/`, web app at `/app/` |
-| `sync-summaries.sh` | Syncs chapter summaries from iCloud Drive into `summaries/` (read-only in this repo) |
-| `scripts/prepare-plist.py` | Post-xcodegen plist patch: injects keys xcodegen drops (CFBundleVersion, CFBundleShortVersion) |
-| `iOS/UITests/SnapshotHelper.swift` | Fastlane snapshot library for App Store screenshot capture |
-
-## KMP (Kotlin Multiplatform)
+## KMP
 
 | File | What it owns |
 |---|---|
-| `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/bookrank/AppScreen.kt` | Shared Compose UI, library list, ranking view |
-| `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/bookrank/MainActivity.kt` | Android activity entry |
-| `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/bookrank/Main.kt` | Desktop window setup |
+| `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/bookrank/AppScreen.kt` | Share-link box and the shared summary reader with chapters |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/bookrank/BookrankClient.kt` | Calls the public `shared_summary` RPC, parses chapters with the same rule as web and iOS |
+| `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/bookrank/MainActivity.kt` | Android entry |
+| `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/bookrank/Main.kt` | Desktop window |
+| `kmp/settings.gradle.kts`, `kmp/composeApp/build.gradle.kts`, `kmp/shared/build.gradle.kts`, `kmp/gradle/libs.versions.toml` | Gradle build and pinned versions |
 
-## TUI (Terminal)
+## Terminal
 
 | File | What it owns |
 |---|---|
-| `tui/main.swift` + `Package.swift` | Quick-reference card: ranked books with ratings and Goodreads links (NOT a live mirror, static data from `books.json`) |
+| `tui/main.swift` + `Package.swift` | SwiftTUI one-shot card: live search through `/api/search`, or read a share link |
+
+## Server
+
+| File | What it owns |
+|---|---|
+| `functions/api/[[route]].js` | REST router over `src/lib/tools.js` (`/api/search` and friends) |
+| `functions/mcp.js` | MCP over HTTP, JSON-RPC |
+| `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a two-host script, caches it on the row |
+| `functions/api/summarize-photo.js` | `/api/summarize-photo`: reads a book page photo with Workers AI, signed-in users only, nothing stored |
+| `src/lib/tools.js` | The tool layer both the REST and MCP routes call |
+| `supabase/functions/delete-account/index.ts` | Shared delete-account endpoint for every app on the spark project |
+| `supabase/migrations/20260905_share_listen.sql` | `share_token` column plus the `shared_summary` and `cache_shared_script` RPCs |
+| `wrangler.toml` | Pages config that makes `functions/` ship with the site |
+
+## Data and scripts
+
+| File | What it owns |
+|---|---|
+| `books.json` | The old book list. Kept for cover matching and the watch app; nothing on the web reads it for display |
+| `summaries/` | Summary markdown, one file per book, synced from iCloud Drive |
+| `scripts/covers.json` | Cover lookup cache. `null` means both sources answered with nothing |
+| `scripts/build.py` | Regenerates the iOS and watch JSON from `books.json`, fails loudly on bad rows |
+| `scripts/fetch-covers.py` | Finds covers on Open Library and Google Books, writes them into `books.json` |
+| `scripts/import-summaries.py` | Uploads `summaries/*.md` into the owner's private rows |
+| `scripts/summary-to-masterclass.py` | Converts a summary into Lexly masterclass JSON |
+| `scripts/make-appicon.sh` | Renders `icon.svg` to every app icon size and checks the pixels |
+| `scripts/build-site.sh` | Builds `dist/`: landing at `/`, app beside it |
+| `sync-summaries.sh` | Copies finished summaries from iCloud Drive into `summaries/` |
 
 ## External services
 
-**Supabase (spark project)**: auth (email+password), `bookrank_summaries` table (user summaries), `bookrank_summaries.listen` JSONB (narration scripts and playback position), per-account RLS.
+**Supabase (spark project)**: auth (email, Apple, Google, GitHub, X), the `bookrank_summaries` table with per-account RLS, the `listen` jsonb (scripts and position), the `cover` column, share RPCs.
 
-**Claude API** (via `/api/narrate`): generates two-host dialogue scripts for chapters, called during summary reading on iOS/web, results cached in the database.
+**authmail**: a Cloudflare Worker that brands every auth email per app and sends it through Resend.
 
-**Workers AI Vision**: photo OCR via `/api/summarize-photo`, requires signed-in user, no persistence (photo never written to disk/R2/Supabase).
+**Claude** (through `/api/narrate`): writes the two-host scripts, cached on the row.
 
-**Open Library + Google Books**: book cover lookups, results cached in `scripts/covers.json`.
+**Workers AI**: page photo reading in `/api/summarize-photo`.
+
+**Open Library, Amazon covers**: cover images, stored on each row's `cover` column.
 
 ## Gotchas
 
-**Data integrity**: `books.json` is the canonical source. Generated files (`rankings.html`, iOS resources) must be regenerated by `build.py` after any edit, never hand-edited.
+**Covers live on the row.** Every summary row carries its own `cover`. Title search alone picks the wrong book (it once gave The Optimist a Matt Ridley cover and AI in Business a Hamlet title page), so covers are checked by title and author before they are saved.
 
-**Cover caching**: `null` entries in `scripts/covers.json` mean "both APIs returned nothing", persisting forever. Never swallow exceptions; let network errors propagate so failed lookups are not cached as misses.
+**Bundle ID stays.** `com.heyitsmejosh.spine` is bound to ASC record 6792376485. `@AppStorage("spine-theme")` is a persisted key on shipped devices; renaming it resets every user's theme.
 
-**Single-source bundle IDs**: `com.heyitsmejosh.spine` is bound to ASC record 6792376485, do not rename without recreating the app record. `@AppStorage("spine-theme")` is a persisted key on shipped devices, renaming it silently resets every user's theme.
+**One chapter rule everywhere.** iOS `parseChapters`, web `listen.js chapters()` and KMP `chapters()` use the coarsest heading level that yields two or more. If they disagree, playback lands in the wrong chapter.
 
-**Chapter parsing**: iOS `Speaker.parseChapters()`, web `listen.js chapters()`, and KMP `chapters()` all follow the same rule: coarsest heading level yielding two or more (e.g., `#` before `##`). Mismatch between platforms causes playback issues.
+**Listen position is tied to content.** `listen.for` must equal the row's `updated_at` or the saved scripts and position are thrown away.
 
-**Listen auth**: `onAuthStateChange` fires on every tab focus. `library.html` only reacts when sign-in state *flips*, not on every event, to avoid killing playback during rebuild.
+**Auth events.** `onAuthStateChange` fires on every tab focus. `library.html` only reacts when the signed-in state flips, or it rebuilds the list and kills playback.
 
-**Summaries are private**: `library.html` shows only the logged-in user's summaries (RLS enforced). No bundled content contains user data.
+**Summaries are private.** RLS keeps each account to its own rows. Nothing bundled contains user data.

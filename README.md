@@ -4,7 +4,7 @@
 
 ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbookrank-black?logo=github)](https://github.com/nulljosh/bookrank) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0D96F6?logo=appstore&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485) [![Mac App Store](https://img.shields.io/badge/Mac%20App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485?mt=12)
 
-Rank the books you've read, keep private chapter notes on the ones that mattered. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
+Chapter summaries of the books you read. Open a book, pick a chapter, read it or listen to it. Free on the web, iPhone, iPad and Mac. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com).
 
 **Terminal:** `swift build && ./.build/debug/bookrank-tui "the optimist"`, or `bookrank-tui share <link>` to read a shared summary. See [tui/](tui/). The KMP app (`kmp/`, Android and desktop) opens share links too.
 
@@ -32,7 +32,7 @@ Tests: `node --test` (`listen.test.js`, `narrate.test.js`, `books.test.js`).
 
 ## Covers
 
-`scripts/fetch-covers.py` finds covers on Open Library and writes them into `books.json` (used by the iOS shelf and for summary cover matching). Images are hotlinked. Lookups are cached in `scripts/covers.json`.
+`scripts/fetch-covers.py` finds covers on Open Library and writes them into `books.json` (used for summary cover matching). Images are hotlinked. Lookups are cached in `scripts/covers.json`.
 
 ```
 python3 scripts/fetch-covers.py                 # fetch missing covers
@@ -42,7 +42,7 @@ python3 scripts/fetch-covers.py --retry-misses  # re-query cached misses
 
 ## iOS and macOS apps
 
-`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. Same shelf, same account, same private summaries, same Listen and Share as the web. Generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
+`ios/Bookrank` is SwiftUI with a shared `BookrankMac` target. A list of your books that opens into chapters, then the text, with one Listen button. Same account, same private summaries, same Share as the web. Generated from `ios/project.yml` by xcodegen. The bundle ID is still `com.heyitsmejosh.spine`. It predates the rename and is bound to the App Store record, so it stays.
 
 <img src="ios/screenshots/library.jpg" width="240">
 

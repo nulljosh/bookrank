@@ -1,59 +1,40 @@
 # Bookrank Technical Whitepaper
 
-**v1.0.1** | August 2026
+**v1.0.1** | October 2026
 
-A ranked shelf of books, with private chapter summaries per user. It exists
-because a to-be-read list scattered across notes apps and memory is useless
-the moment you're standing in a bookstore; a public rank forces the honesty
-a private list doesn't. Users sign up
-with email, keep notes only they can read, and can delete the account and all of
-it in one step, because chapter summaries are personal reading notes, not
-content anyone else should see by default. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com)
-and on the iOS and Mac App Stores. It used to live in the portfolio repo. Books
-and a portfolio have nothing to do with each other, so it moved.
+Chapter summaries of the books you actually read. You finish a book and a month later you remember one idea. Bookrank keeps the rest: every chapter, in plain words, readable in a minute or played aloud as two people talking it through. Your summaries are yours. They sit behind your account, and deleting the account deletes all of it. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com) and on the iOS and Mac App Stores.
 
-## Ranking List
+## The shape
 
-`books.json` is the single source of truth; `index.html`, `book_rankings.md`, and the iOS
-resource JSON are all generated from it by `scripts/build.py`, run after
-every edit, rather than hand-kept in sync, because a prior generator that
-silently skipped malformed entries shipped an app carrying 71 of 111 ranked
-books for months without anyone noticing. The list is TBR-only: a book is removed only
-when the user says they've finished it or explicitly asks it removed, not
-merely because they mention reading it, because "mentioned reading it" and "actually done" are
-different facts and conflating them would wrongly empty the shelf. On removal, remaining entries are
-renumbered sequentially.
+A list of books. Tap one, see its chapters. Tap a chapter, read it or press Listen. That is the whole app. It used to rank books too; on 2026-09-21 that went away. The summaries are the product.
 
-## Chapter Summary Pipeline
+## Chapters
 
-Physical books are photographed page-by-page into a private iCloud folder
-(outside this repo, too large/private for git). The `summarize-books` skill reads those photos
-directly rather than shelling out, because the old `summarize.sh` ran headless
-`claude -p` as a subprocess, which both fought iCloud eviction and once let a
-permission-prompt string get saved as a "summary" and delete the source
-photos. It produces per-chapter `summary.md` files, then merges them into one
-`<slug>-summary.md`. This repo's `sync-summaries.sh` copies that merged file
-into `summaries/<slug>.md`, and a link is added next to the matching book
-entry in `index.html` pointing at `summary.html?b=<slug>`, which renders the
-markdown client-side via `marked`, no server-side rendering needed for text
-that's already just markdown.
+A summary is one markdown file. Chapters are the coarsest heading level that gives two or more sections, `#` before `##`. A lone heading with nothing under it is the book title, not a chapter. The web player, the iOS reader and the Android reader all use this one rule, so a saved position means the same chapter everywhere.
 
-## Design
+## Listen
 
-Shares the portfolio's `tokens.css` and `fonts/` for visual consistency with
-the rest of heyitsmejosh.com, since a second design system for one more app
-in the same portfolio would be needless upkeep.
+Each chapter becomes a short script for two hosts, written by `/api/narrate` and cached on the row. Only the first chapter opens with an intro and only the last closes, so a book plays as one conversation instead of twenty. The player speaks one line at a time and prefetches the next chapter so there is no gap. The word being read is bold and dark, the rest of the line dims, and the screen follows along. The saved position is tied to the row's `updated_at`: edit the summary and the old scripts are thrown away instead of reading stale text.
 
-## Security / Privacy
+## Covers
 
-The list tracks what is worth reading, not what is checked out. There is no
-checkout, due-date, or library-loan tracking, and none is planned, because
-every library book eventually comes back and a due-date feature was found
-tracking nothing real.
+Every row carries its own cover. Searching by title alone picks the wrong book often enough to matter (one search gave The Optimist a different author's book and AI in Business a Hamlet title page), so a cover is matched on title and author and checked before it is saved.
 
-Static site, no backend, no accounts. Raw book photos never enter this repo
-,  they stay in a private iCloud folder and only the derived text summaries
-are published.
+## Getting summaries in
+
+Pages are photographed into a private iCloud folder that never touches this repo. The `summarize-books` skill reads the photos directly and writes one summary per chapter, then merges them into one file. `sync-summaries.sh` copies it into `summaries/`, and `scripts/import-summaries.py` uploads it to the owner's private rows.
+
+## Sharing
+
+A summary can be shared with a link. The link carries a random token; a security-definer RPC returns only the title, text, cover and cached scripts for that token. Stop sharing and the token is gone.
+
+## Platforms
+
+Web and PWA, iPhone, iPad and Mac from one SwiftUI codebase, Android and desktop through Kotlin Multiplatform as a share-link reader, a terminal card, and a watch app that still shows the old shelf. All of them talk to one Supabase table.
+
+## Security and privacy
+
+Row-level security keeps each account to its own rows. Auth emails come from our own branded sender. Raw page photos stay in iCloud; only the text summaries are stored. Account deletion goes through one shared endpoint and removes everything.
 
 ## License
 
