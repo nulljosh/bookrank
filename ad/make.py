@@ -111,7 +111,7 @@ total = sum(durs)
 
 # 3. Music: the Joshua Tree bed, cut to this length; groove in on the first screenshot, out on the end card.
 m = open("music.py").read()
-m = re.sub(r"SR, BPM, DUR = 44100, \d+, [\d.]+", f"SR, BPM, DUR = 44100, 96, {total + 0.5:.2f}", m)
+m = re.sub(r"SR, BPM, DUR = 44100, \d+, [\d.]+", f"SR, BPM, DUR = 44100, 132, {total + 0.5:.2f}", m)
 m = re.sub(r"^DROP = [\d.]+", f"DROP = {t[2]:.2f}", m, flags=re.M)
 m = re.sub(r"^END = [\d.]+", f"END = {t[-1]:.2f}", m, flags=re.M)
 open("cut/music.py", "w").write(m)

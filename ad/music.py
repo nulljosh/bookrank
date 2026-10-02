@@ -1,84 +1,66 @@
-# Bookrank's own bed: slower and warmer than Joshua Tree's. C major, soft claps, round bass, a plucked piano hook that leans on the third. 96 BPM. numpy only.
+# Bookrank's own bed, Tchaikovsky-inspired: a waltz in D major in the spirit of the Sleeping Beauty and
+# Flowers waltzes. Pizzicato bass on one, soft plucked chords on two and three, a harp rolling underneath,
+# a string pad that swells under it, a celesta carrying the tune. 3/4 at 132 BPM. numpy only.
 import numpy as np, wave
-SR, BPM, DUR = 44100, 96, 37.0
-B = 60 / BPM; BAR = 4 * B
-N = int(SR * DUR); t_all = np.arange(N) / SR
-mix = np.zeros(N)
-DROP = 3.1          # groove starts on the first OS shot
-END = 30.9          # end card: drums out, chord rings
+SR, BPM, DUR = 44100, 132, 37.0
+B = 60 / BPM; BAR = 3 * B
+N = int(SR * DUR); mix = np.zeros(N)
+DROP = 3.1   # the waltz steps in on the first screen
+END = 30.9   # end card: the pulse drops out and the last chord rings
 def hz(n): return 440 * 2 ** ((n - 69) / 12)
 def add(start, sig, gain):
     i = int(round(start * SR))
     if i < 0: sig, i = sig[-i:], 0
     j = min(N, i + len(sig))
     if i < N and j > i: mix[i:j] += gain * sig[:j - i]
-def saw(f, d, det=0.0):
-    t = np.arange(int(d * SR)) / SR
-    return sum(2 * ((t * f * 2 ** (k / 1200) + 0.3 * k) % 1) - 1 for k in (-det, det)) / 2
-def lp(x, a):  # one-pole lowpass, a in (0,1): smaller = darker
-    y = np.empty_like(x); acc = 0.0
-    for i, v in enumerate(x): acc += a * (v - acc); y[i] = acc
-    return y
-rng = np.random.default_rng(3)
-kick_t = np.arange(int(0.35 * SR)) / SR
-KICK = np.sin(2 * np.pi * (50 * kick_t + 90 * (1 - np.exp(-kick_t * 30)) / 30)) * np.exp(-kick_t * 9)
-CLAP = lp(lp(rng.standard_normal(int(0.18 * SR)), 0.3), 0.3) * np.exp(-np.arange(int(0.18 * SR)) / SR * 22)
-HAT = np.diff(rng.standard_normal(int(0.06 * SR) + 1)) * np.exp(-np.arange(int(0.06 * SR)) / SR * 70)
-def pluck(notes, d):
-    tt = np.arange(int(d * SR)) / SR
-    return sum(np.sin(2 * np.pi * hz(n) * tt) + 0.35 * np.sin(4 * np.pi * hz(n) * tt) * np.exp(-tt * 6)
-               + 0.12 * np.sin(6 * np.pi * hz(n) * tt) * np.exp(-tt * 10) for n in notes) / len(notes) * np.exp(-tt * 5) * np.minimum(1, tt / 0.004)
-HOOK = [[67, 71, 72, 76], [76, 74, 71, 67]]
-def epiano(notes, d):
-    # warm Rhodes-ish chord: sine + soft bell partial, slow tremolo, fills the 300-1500 Hz middle
-    tt = np.arange(int(d * SR)) / SR
-    trem = 1 + 0.12 * np.sin(2 * np.pi * 4.5 * tt)
-    s = sum(np.sin(2 * np.pi * hz(n) * tt) + 0.18 * np.sin(2 * np.pi * hz(n) * 7.0 * tt) * np.exp(-tt * 8) for n in notes) / len(notes)
-    return s * trem * np.exp(-tt * 1.1) * np.minimum(1, tt / 0.01)
-SHAKE = lp(np.diff(rng.standard_normal(int(0.05 * SR) + 1)), 0.6) * np.hanning(int(0.05 * SR))
-prog = [(48, [60, 64, 67, 71]), (45, [57, 60, 64, 67]), (41, [53, 57, 60, 64]), (43, [55, 59, 62, 65])]  # Cmaj7 Am7 Fmaj7 G7
-OFF = DROP % BAR - BAR  # grid origin: downbeats at ..., DROP - BAR, DROP, DROP + BAR, ...
+def tt(d): return np.arange(int(d * SR)) / SR
+def harp(n, d=1.4):
+    t = tt(d); f = hz(n)
+    return (np.sin(2 * np.pi * f * t) + 0.32 * np.sin(4 * np.pi * f * t) * np.exp(-t * 6) + 0.1 * np.sin(6 * np.pi * f * t) * np.exp(-t * 9)) * np.exp(-t * 3.2) * np.minimum(1, t / 0.003)
+def celesta(n, d=1.2):
+    t = tt(d); f = hz(n)
+    return (np.sin(2 * np.pi * f * t) + 0.45 * np.sin(2 * np.pi * f * 4 * t) * np.exp(-t * 10) + 0.18 * np.sin(2 * np.pi * f * 5.4 * t) * np.exp(-t * 14)) * np.exp(-t * 3.6) * np.minimum(1, t / 0.002)
+def pizz(n, d=0.5):
+    t = tt(d); f = hz(n)
+    return (np.sin(2 * np.pi * f * t) + 0.4 * np.sin(4 * np.pi * f * t) * np.exp(-t * 14)) * np.exp(-t * 8) * np.minimum(1, t / 0.002)
+def pad(notes, d):
+    t = tt(d)
+    env = np.minimum(1, t / 0.9) * np.minimum(1, np.maximum(0, d - t) / 1.1)
+    vib = 1 + 0.004 * np.sin(2 * np.pi * 5.2 * t)
+    s = sum(np.sin(2 * np.pi * hz(n) * vib * t + p) + 0.5 * np.sin(2 * np.pi * hz(n) * 2 * vib * t) * 0.3
+            for n in notes for p in (0.0, 1.7, 3.1)) / (3 * len(notes))
+    return s * env
+# one 8-bar round of the waltz: chord (voicing), bass root, three melody notes
+D, A, Bm, G = [62, 66, 69], [61, 64, 69], [62, 66, 71], [59, 62, 67]
+ROUND = [
+    (D, 50, [78, 76, 74]), (A, 45, [73, 76, 81]), (Bm, 47, [79, 78, 74]), (G, 43, [71, 74, 79]),
+    (D, 50, [78, 76, 74]), (A, 45, [81, 78, 76]), (Bm, 47, [74, 78, 83]), (A, 45, [81, 79, 76]),
+]
+OFF = DROP % BAR - BAR
 bars = int((DUR - OFF) / BAR) + 1
 for b in range(bars):
-    t0 = OFF + b * BAR; root, ch = prog[b % 4]
+    t0 = OFF + b * BAR
+    chord, root, mel = ROUND[b % len(ROUND)]
     groove = DROP - 0.01 <= t0 < END - 0.3
-    # pad under everything, filtered darker before the drop
-    pad = sum(saw(hz(n), BAR + 0.3, 9) for n in ch) / 4
-    env = np.minimum(1, np.arange(len(pad)) / SR / 0.25) * np.minimum(1, (len(pad) / SR - np.arange(len(pad)) / SR) / 0.3)
-    add(t0, lp(pad * env, 0.04 if not groove else 0.06), 0.12)
-    if not groove and t0 >= END - 0.01:
-        add(t0, lp(sum(saw(hz(n + 12), 5.5, 7) for n in ch) / 4 * np.exp(-np.arange(int(5.5 * SR)) / SR * 0.8), 0.15), 0.25)
+    ringing = t0 >= END - 0.3
+    add(t0, pad([root + 12] + chord, BAR + 0.5), 0.16 if groove or ringing else 0.10)   # the strings underneath, always
+    if ringing:
+        if t0 < END + 0.01:
+            for k, n in enumerate([50, 57, 62, 66, 69, 74]): add(t0 + k * 0.09, harp(n, 3.0), 0.22)   # one last rolled D chord
         continue
-    if not groove:
-        for j, n in enumerate(HOOK[b % 2]):
-            add(t0 + j * B * 0.75 + (B if j > 1 else 0), pluck([n + 12], 0.9), 0.20)
-        continue
-    add(t0, epiano([n + 12 for n in ch], 2 * B), 0.30)
-    add(t0 + 2 * B + B / 2, epiano([n + 12 for n in ch], 1.5 * B), 0.20)
-    for k in range(4):
-        bt = t0 + k * B
-        for q in range(4): add(bt + q * B / 4, SHAKE, 0.05 if q % 2 else 0.03)
-        add(bt, KICK, 0.9)
-        if k in (1, 3): add(bt, CLAP, 0.35)
-        add(bt + B / 2, lp(HAT, 0.5), 0.07)
-        # octave-bounce bass on eighths
-        for e in range(2):
-            n = root - 24 + (12 if e else 0)
-            tt = np.arange(int(B / 2 * 0.9 * SR)) / SR; s = np.sin(2 * np.pi * hz(n) * tt) + 0.2 * np.sin(4 * np.pi * hz(n) * tt)
-            add(bt + e * B / 2, s * np.exp(-tt * 5), 0.45)
-        # offbeat chord stabs, bright
-        if k in (0, 2):
-            add(bt + B / 2, pluck(ch, 0.5), 0.22)
-        # handclap layer: two quick bursts, the Apple-ad clap
-        if k in (1, 3): add(bt + 0.012, CLAP, 0.25)
-    # hook: a four-note plucked motif each bar, up an octave
-    for j, n in enumerate(HOOK[b % 2]):
-        add(t0 + j * B * 0.75 + (B if j > 1 else 0), pluck([n + 12], 0.6), 0.30)
-# gentle master: soft clip + fade tail
-mix = mix - np.convolve(mix, np.ones(2205) / 2205, mode='same')  # ~20 Hz highpass, kills DC
-mix = np.tanh(mix * 1.1)
-mix[-int(2.5 * SR):] *= np.linspace(1, 0, int(2.5 * SR))
-mix /= np.max(np.abs(mix)); mix *= 0.85
+    for beat in range(3):
+        tb = t0 + beat * B
+        arp = [n - 12 for n in chord] + [chord[0], chord[1] + 0.0]
+        add(tb, harp(arp[beat] + 12 * (beat == 2), 1.4), 0.20 if groove else 0.14)         # the harp rolls up the chord
+        if groove:
+            if beat == 0: add(tb, pizz(root), 0.42)                                        # pizzicato bass on one
+            else:
+                for n in chord: add(tb, pizz(n - 12, 0.4), 0.10)                           # soft off-beat chord on two and three
+            add(tb, celesta(mel[beat], 1.2), 0.20)                                         # the tune
+peak = np.abs(mix).max()
+mix = mix / peak * 0.8
+fade = int(SR * 0.4)
+mix[:fade] *= np.linspace(0, 1, fade)
 with wave.open("music2.wav", "w") as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((mix * 32767).astype("<i2").tobytes())
