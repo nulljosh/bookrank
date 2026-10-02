@@ -47,6 +47,8 @@ def main() -> int:
     data["CFBundleVersion"] = build
     data["CFBundleShortVersionString"] = marketing
     data["UISupportedInterfaceOrientations~ipad"] = IPAD_ORIENTATIONS
+    # Listen keeps playing with the screen locked or the app in the background.
+    data["UIBackgroundModes"] = ["audio"]
     PLIST.write_bytes(plistlib.dumps(data))
 
     print(f"Info.plist: CFBundleShortVersionString={marketing}, CFBundleVersion={build}, {len(IPAD_ORIENTATIONS)} iPad orientations")
