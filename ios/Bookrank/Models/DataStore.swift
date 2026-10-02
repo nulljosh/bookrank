@@ -13,6 +13,20 @@ final class DataStore {
 
     init() {
         books = Self.load("books")
+        summaryIndex = Self.readCache()
+    }
+
+    // MARK: Offline copy
+    // The last good fetch is kept on disk so the list, the text and any already-made Listen
+    // scripts work with no connection. Sign-out and account deletion remove it.
+    private static let cacheURL = URL.applicationSupportDirectory.appending(path: "summaries.json")
+    private static func readCache() -> [SummaryEntry] {
+        guard !CommandLine.arguments.contains("UITEST_SNAPSHOT"), let d = try? Data(contentsOf: cacheURL) else { return [] }
+        return (try? JSONDecoder().decode([SummaryEntry].self, from: d)) ?? []
+    }
+    private func writeCache() {
+        try? FileManager.default.createDirectory(at: Self.cacheURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try? JSONEncoder().encode(summaryIndex).write(to: Self.cacheURL, options: [.atomic, .completeFileProtection])
     }
 
     /// One fetch for the whole shelf. Twenty rows for one owner is small enough that
@@ -29,9 +43,11 @@ final class DataStore {
                 .execute()
                 .value
             summaryError = nil
+            writeCache()
         } catch {
-            summaryIndex = []
-            summaryError = error.localizedDescription
+            // Offline or the server failed: keep whatever is on disk and only show the error if there is nothing.
+            if summaryIndex.isEmpty { summaryIndex = Self.readCache() }
+            summaryError = summaryIndex.isEmpty ? error.localizedDescription : nil
         }
     }
 
@@ -57,6 +73,7 @@ final class DataStore {
     func clearSummaries() {
         summaryIndex = []
         summaryError = nil
+        try? FileManager.default.removeItem(at: Self.cacheURL)
     }
 
     /// Same rule as listen.js matchCover(): the row's own cover, else books.json by exact
@@ -94,6 +111,7 @@ final class DataStore {
     func saveListen(_ state: ListenState, for slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }
         summaryIndex[i].listen = state
+        writeCache()
         struct Patch: Encodable { let listen: ListenState }
         _ = try? await supabase.from("bookrank_summaries").update(Patch(listen: state)).eq("id", value: id).execute()
     }
