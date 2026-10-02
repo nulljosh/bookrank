@@ -369,10 +369,18 @@ async function load() {
     }
   }
   // Search by title or by anything in the text. Appears once the list is long enough to need it.
+  // The list rows skip the text to stay light; the first keystroke fetches it once, then search is local.
   $('find').classList.toggle('hide', data.length < 6);
-  $('find').oninput = () => {
+  let texts = null;
+  $('find').oninput = async () => {
     const q = $('find').value.trim().toLowerCase();
-    const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || r.content.toLowerCase().includes(q)).map(r => r.id));
+    if (q && !texts) {
+      texts = {};
+      const { data: full } = await db.from(TABLE).select('id,content');
+      for (const r of full || []) texts[r.id] = (r.content || '').toLowerCase();
+      if ($('find').value.trim().toLowerCase() !== q) return; // a newer keystroke took over
+    }
+    const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || (texts?.[r.id] || '').includes(q)).map(r => r.id));
     let shown = 0;
     for (const li of $('list').children) {
       if (li.classList.contains('group')) continue;
