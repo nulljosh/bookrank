@@ -16,7 +16,7 @@ export async function onRequest({ request }) {
   if (!SHELVES.has(shelf)) return json({ error: "Unknown shelf." }, 400);
 
   const cache = caches.default;
-  const key = new Request(`https://goodreads.cache/${user}/${shelf}`);
+  const key = new Request(`https://goodreads.cache/v2/${user}/${shelf}`) // bump vN when the parse changes;
   const hit = await cache.match(key);
   if (hit) return hit;
 

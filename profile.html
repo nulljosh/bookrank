@@ -80,6 +80,7 @@ dl.profile dt { color:var(--text3); }
         <h1 id="pName"></h1>
         <p class="sub" id="pHandle" style="margin-bottom:0.5rem"></p>
         <p class="msg" id="avatarMsg">Click the avatar to generate a new one.</p>
+        <button type="button" id="ghPhoto" class="hide">Use GitHub photo</button>
       </div>
     </div>
     <dl class="profile">
@@ -138,7 +139,13 @@ export function avatarSVG(rand = Math.random) {
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="crispEdges"><rect width="${total}" height="${total}" fill="${bg}"/>${rects}</svg>`;
 }
+// A linked GitHub account's photo is the avatar unless you generated one on purpose
+// (avatar_source "generated"). Clicking the avatar generates; "Use GitHub photo" goes back.
+const githubPhoto = (user) => user.identities?.find(i => i.provider === 'github')?.identity_data?.avatar_url || null;
 const showAvatar = (user) => {
+  const gh = githubPhoto(user), picked = user.user_metadata?.avatar_source === 'generated';
+  $('ghPhoto').classList.toggle('hide', !gh || !picked);
+  if (gh && !picked) { $('avatar').innerHTML = `<img alt="" src="${gh}">`; return; }
   const svg = user.user_metadata?.avatar;
   $('avatar').innerHTML = svg ? `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">` : `<span>${(user.email[0] || '?').toUpperCase()}</span>`;
 };
@@ -161,9 +168,14 @@ else {
 
   const gen = async () => {
     $('avatarMsg').textContent = 'Generating…';
-    const { data, error } = await db.auth.updateUser({ data: { avatar: avatarSVG() } });
+    const { data, error } = await db.auth.updateUser({ data: { avatar: avatarSVG(), avatar_source: 'generated' } });
     if (error) { $('avatarMsg').textContent = error.message; return; }
     showAvatar(data.user); $('avatarMsg').textContent = 'New avatar saved.';
+  };
+  $('ghPhoto').onclick = async () => {
+    const { data, error } = await db.auth.updateUser({ data: { avatar_source: 'github' } });
+    if (error) { $('avatarMsg').textContent = error.message; return; }
+    showAvatar(data.user); $('avatarMsg').textContent = 'Using your GitHub photo.';
   };
   $('avatar').onclick = gen;
   $('avatar').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); gen(); } };
