@@ -26,5 +26,7 @@
 	<string>Sign in faster with Touch ID.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
