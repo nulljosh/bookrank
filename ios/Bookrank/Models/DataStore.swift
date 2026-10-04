@@ -60,6 +60,7 @@ final class DataStore {
                 .value
             summaryError = nil
             writeCache()
+            Task { await fillCovers() }
         } catch {
             // Offline or the server failed: keep whatever is on disk and only show the error if there is nothing.
             if summaryIndex.isEmpty { summaryIndex = Self.readCache() }
@@ -108,6 +109,38 @@ final class DataStore {
         let withCover = books.filter { $0.cover != nil }
         func pick(_ f: (String) -> Bool) -> String? { withCover.first { f(norm($0.title)) }?.cover }
         return pick { $0 == t } ?? pick { $0.hasPrefix(t) || t.hasPrefix($0) } ?? pick { $0.contains(t) || t.contains($0) }
+    }
+
+    /// Same as the web's resolveCover(): rows with no saved cover and no books.json match get an
+    /// Open Library lookup (work cover, then ISBN/edition images, each probed), saved to the row so
+    /// every device finds it. A miss is retried next load, never cached.
+    private func fillCovers() async {
+        for e in summaryIndex where cover(for: e) == nil {
+            guard let url = await lookupCover(e.title), let i = summaryIndex.firstIndex(where: { $0.slug == e.slug }) else { continue }
+            summaryIndex[i].cover = url
+            if let id = e.rowID { _ = try? await supabase.from("bookrank_summaries").update(["cover": url]).eq("id", value: id).execute() }
+        }
+        writeCache()
+    }
+    private func lookupCover(_ title: String) async -> String? {
+        struct Doc: Decodable { let cover_i: Int?; let isbn: [String]?; let edition_key: [String]? }
+        struct Out: Decodable { let docs: [Doc] }
+        for param in ["title", "q"] {
+            var c = URLComponents(string: "https://openlibrary.org/search.json")!
+            c.queryItems = [.init(name: param, value: title), .init(name: "limit", value: "2"), .init(name: "fields", value: "cover_i,isbn,edition_key")]
+            guard let (data, _) = try? await URLSession.shared.data(from: c.url!), let out = try? JSONDecoder().decode(Out.self, from: data) else { continue }
+            for d in out.docs {
+                let urls = (d.cover_i.map { ["https://covers.openlibrary.org/b/id/\($0)-M.jpg"] } ?? [])
+                    + (d.isbn ?? []).prefix(4).map { "https://covers.openlibrary.org/b/isbn/\($0)-M.jpg?default=false" }
+                    + (d.edition_key ?? []).prefix(3).map { "https://covers.openlibrary.org/b/olid/\($0)-M.jpg?default=false" }
+                for u in urls where await loads(u) { return u }
+            }
+        }
+        return nil
+    }
+    private func loads(_ u: String) async -> Bool {
+        guard let url = URL(string: u), let (_, r) = try? await URLSession.shared.data(from: url) else { return false }
+        return (r as? HTTPURLResponse)?.statusCode == 200
     }
 
     /// Share link for a summary: mints a token on first use. Nil while signed out.
