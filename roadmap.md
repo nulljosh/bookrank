@@ -420,3 +420,11 @@ RLS can see who is asking, do not move them behind a Function that cannot.
 
 ## TUI pilot (2026-09-05)
 - `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
+
+## Ingested 2026-10-03
+- [ ] Confirm we didn't ship our credentials accidentally. (Account screen screenshot shows the signed-in email, Goodreads profile link and a "Credentials" section; check the repo and built bundle for keys.)
+- [ ] Main home screen (Summaries) is an enormous list and needs better organization (UI/UX). It shows 25 own summaries alphabetically, then a "Read on Goodreads, no summary yet (394)" section below.
+- [ ] Figure out how to get full summaries for the remaining Goodreads books. The ones we uploaded ourselves will have much more detail, obviously.
+- [ ] Account sheet shows a "New avatar saved." message pinned at the bottom after tapping the avatar. Remove or make it transient. Related: avatar is the small icon top right of Summaries; make that top right button the user's actual avatar.
+- [ ] Layout idea: move the search field to the top, and use the bottom for nav tabs (Settings etc.). Currently the search pill floats at the bottom.
+- Screenshots (Oct 3): Account screen with Natural voices bar (about 3 chapters left), Daily review nudge, Export everything (25 files), Sign out, Delete account.
