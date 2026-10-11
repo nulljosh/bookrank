@@ -1,5 +1,7 @@
 1/ Bookrank is live. Find the book worth reading next in ten seconds. https://bookrank.jaybulb.com
 
-2/ A ranked shelf built from Goodreads ratings and review volume, not one person's taste, plus chapter summaries and your own shelves. Free on web, iPhone and Mac.
+2/ A ranked shelf built from Goodreads ratings and review volume, not one person's taste, plus chapter summaries and your own shelves. Free on the web, $0.99 once on iPhone and Mac.
 
-3/ Native on Apple platforms, web build for everything else. Product Hunt link in the next post.
+3/ Native on Apple platforms, web build for everything else. On Product Hunt: producthunt.com/products/bookrank
+
+Post: https://x.com/nulljosh1/status/2109406480676139479 (2026-10-11)
