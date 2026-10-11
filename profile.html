@@ -128,7 +128,7 @@ dl.profile dt { color:var(--text3); }
 // ponytail: own profile only. Viewing someone else's needs a public profiles table; add it
 // when a second person asks.
 import { createClient } from './spark.js';
-const db = createClient('https://api.heyitsmejosh.com');
+const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
 // No username field at sign-up, so the email's local part is the default handle.
@@ -177,7 +177,7 @@ else {
   const handle = handleFor(user);
   if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
   document.title = `${handle}, Bookrank`;
-  $('pName').textContent = handle; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${handle}`;
+  $('pName').textContent = handle; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${handle}`;
   $('username').value = handle;
   $('pEmail').textContent = user.email;
   $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
@@ -214,7 +214,7 @@ else {
     const { data, error } = await db.auth.updateUser({ data: { username: u } });
     if (error) { $('profileMsg').textContent = error.message; return; }
     const h = handleFor(data.user);
-    $('pName').textContent = h; $('pHandle').textContent = `bookrank.heyitsmejosh.com/profile?u=${h}`; $('username').value = h;
+    $('pName').textContent = h; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${h}`; $('username').value = h;
     history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Bookrank`;
     $('profileMsg').textContent = 'Username saved.';
   };

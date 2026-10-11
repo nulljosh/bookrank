@@ -16,7 +16,7 @@
 // TTS_VOICE_B, TTS_MONTHLY_CHARS (default 50000), TTS_DAILY_CHARS (default 8000).
 import { isSignedIn, isShared } from "./narrate.js";
 
-const API = "https://api.heyitsmejosh.com";
+const API = "https://api.jaybulb.com";
 const DEFAULTS = { A: "Xb7hH8MSUJpSbSDYk0k2", B: "JBFqnCBsd6RMkjVDRZzb" }; // Alice, George: voices the free plan can use
 const MAX = 600;
 

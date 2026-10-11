@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BOOKS = ROOT / "books.json"
 CACHE = ROOT / "scripts" / "covers.json"  # slug -> cover URL, so re-runs cost no requests
-UA = "bookrank.heyitsmejosh.com cover lookup (trommatic@icloud.com)"
+UA = "bookrank.jaybulb.com cover lookup (trommatic@icloud.com)"
 SLUG = re.compile(r"goodreads\.com/book/show/([^\"?]+)")
 
 

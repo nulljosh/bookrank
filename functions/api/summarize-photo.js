@@ -4,7 +4,7 @@
 // disk, R2, or a database. Requires a signed-in Bookrank account (checked against spark-api
 // auth) so this can't become a free public OCR endpoint.
 const VISION_MODEL = "@cf/llava-hf/llava-1.5-7b-hf";
-const API = "https://api.heyitsmejosh.com";
+const API = "https://api.jaybulb.com";
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function onRequest({ request, env }) {

@@ -85,7 +85,7 @@ def screen(shot, dur, cap, out, height=860, radius=54, start=None):
 def end(dur, out):
     subprocess.run(["rsvg-convert", "-w", "240", "-h", "240", "../icon.svg", "-o", "cut/mark.png"], check=True)
     title = text_png("Bookrank", 104, INK, "cut/title.png")
-    sub = text_png("Chapter summaries of the books you read.   bookrank.heyitsmejosh.com", 32, SOFT, "cut/sub.png")
+    sub = text_png("Chapter summaries of the books you read.   bookrank.jaybulb.com", 32, SOFT, "cut/sub.png")
     run(["-f", "lavfi", "-i", f"color=c={BG}:s={W}x{H}:r={FPS}", "-loop", "1", "-framerate", str(FPS), "-i", "cut/mark.png",
          "-loop", "1", "-framerate", str(FPS), "-i", title, "-loop", "1", "-framerate", str(FPS), "-i", sub, "-filter_complex",
          "[1:v]format=rgba,fade=t=in:st=0.2:d=0.6:alpha=1[k];[2:v]format=rgba,fade=t=in:st=0.9:d=0.6:alpha=1[t];[3:v]format=rgba,fade=t=in:st=1.9:d=0.6:alpha=1[s];"

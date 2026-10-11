@@ -81,7 +81,7 @@ dl.profile dt { color:var(--text3); }
 // cached narration only; narration for uncached chapters goes through /api/narrate with
 // the token instead of a session, and the result is cached back on the row server-side.
 import { mount } from './listen.js';
-const API = 'https://api.heyitsmejosh.com';
+const API = 'https://api.jaybulb.com';
 const $ = id => document.getElementById(id);
 const token = new URLSearchParams(location.search).get('t') || '';
 

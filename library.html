@@ -154,7 +154,7 @@ dl.profile dt { color:var(--text3); }
 import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates } from './listen.js';
 
-const db = createClient('https://api.heyitsmejosh.com');
+const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
 const show = (...ids) => ['gate','listView','editView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));

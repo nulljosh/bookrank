@@ -8,7 +8,7 @@
 // of the page reading its own markdown aloud. Text only; the browser does the voices.
 // Signed-in accounts only, same gate as summarize-photo.
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
-const API = "https://api.heyitsmejosh.com";
+const API = "https://api.jaybulb.com";
 const MAX_CHARS = 24000; // ponytail: ~6k tokens fits the context; longer books are truncated, chunk+merge if it matters
 
 export async function onRequest({ request, env }) {
