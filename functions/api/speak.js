@@ -16,8 +16,7 @@
 // TTS_VOICE_B, TTS_MONTHLY_CHARS (default 50000), TTS_DAILY_CHARS (default 8000).
 import { isSignedIn, isShared } from "./narrate.js";
 
-const SUPABASE_URL = "https://tjsxsqlxjmanwvmywwvw.supabase.co";
-const SUPABASE_ANON = "sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90";
+const API = "https://api.heyitsmejosh.com";
 const DEFAULTS = { A: "Xb7hH8MSUJpSbSDYk0k2", B: "JBFqnCBsd6RMkjVDRZzb" }; // Alice, George: voices the free plan can use
 const MAX = 600;
 
@@ -101,7 +100,7 @@ export function words(text, al) {
 
 export async function userOf(auth) {
   if (!auth.startsWith("Bearer ")) return null;
-  const r = await fetch(`${SUPABASE_URL}/auth/v1/user`, { headers: { authorization: auth, apikey: SUPABASE_ANON } });
+  const r = await fetch(`${API}/auth/user`, { headers: { authorization: auth } });
   return r.ok ? (await r.json()).id || null : null;
 }
 

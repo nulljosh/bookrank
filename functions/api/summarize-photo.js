@@ -1,11 +1,10 @@
 // POST multipart/form-data { image } -> { text }
 // Reads a photographed book page with Workers AI vision and returns the text/summary
 // of that page. The image lives only in this request's memory: it is never written to
-// disk, R2, or Supabase. Requires a signed-in Bookrank account (checked against Supabase
+// disk, R2, or a database. Requires a signed-in Bookrank account (checked against spark-api
 // auth) so this can't become a free public OCR endpoint.
 const VISION_MODEL = "@cf/llava-hf/llava-1.5-7b-hf";
-const SUPABASE_URL = "https://tjsxsqlxjmanwvmywwvw.supabase.co";
-const SUPABASE_ANON = "sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90";
+const API = "https://api.heyitsmejosh.com";
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function onRequest({ request, env }) {
@@ -42,8 +41,8 @@ export async function onRequest({ request, env }) {
 
 async function isSignedIn(authHeader) {
   if (!authHeader.startsWith("Bearer ")) return false;
-  const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-    headers: { authorization: authHeader, apikey: SUPABASE_ANON },
+  const res = await fetch(`${API}/auth/user`, {
+    headers: { authorization: authHeader },
   });
   return res.ok;
 }

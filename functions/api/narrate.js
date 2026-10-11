@@ -8,8 +8,7 @@
 // of the page reading its own markdown aloud. Text only; the browser does the voices.
 // Signed-in accounts only, same gate as summarize-photo.
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
-const SUPABASE_URL = "https://tjsxsqlxjmanwvmywwvw.supabase.co";
-const SUPABASE_ANON = "sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90";
+const API = "https://api.heyitsmejosh.com";
 const MAX_CHARS = 24000; // ponytail: ~6k tokens fits the context; longer books are truncated, chunk+merge if it matters
 
 export async function onRequest({ request, env }) {
@@ -62,7 +61,7 @@ export function parseScript(raw) {
 
 export async function isSignedIn(authHeader) {
   if (!authHeader.startsWith("Bearer ")) return false;
-  const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, { headers: { authorization: authHeader, apikey: SUPABASE_ANON } });
+  const res = await fetch(`${API}/auth/user`, { headers: { authorization: authHeader } });
   return res.ok;
 }
 
@@ -71,8 +70,8 @@ export async function isShared(token) {
   return Array.isArray(rows) && rows.length > 0;
 }
 async function rpc(fn, args) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
-    method: "POST", headers: { apikey: SUPABASE_ANON, "content-type": "application/json" }, body: JSON.stringify(args),
+  const res = await fetch(`${API}/rpc/${fn}`, {
+    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(args),
   });
   if (!res.ok) throw new Error(fn);
   return res.status === 204 ? null : res.json();

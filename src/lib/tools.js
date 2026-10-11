@@ -3,7 +3,7 @@
 // here, so they cannot drift apart.
 //
 // Deliberately different from webmcp.js: those tools are STATEFUL and per-user — they read
-// and write the signed-in reader's summaries in Supabase. These read the public shelf,
+// and write the signed-in reader's summaries on the server. These read the public shelf,
 // which is `books.json` and nothing else. That is what keeps this free of a database
 // binding, an auth check and a session.
 //

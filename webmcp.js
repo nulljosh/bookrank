@@ -1,7 +1,7 @@
 // WebMCP tool registration for the library page (bookrank's only real app).
 // Tools call window.__bookrank.rows, the data layer library.html's own module
-// script exposes — same Supabase client, same bookrank_summaries queries the UI
-// runs. Nothing here talks to Supabase directly.
+// script exposes — same spark-api client, same bookrank_summaries queries the UI
+// runs. Nothing here talks to the API directly.
 //
 // ponytail: tools use the data layer, never the UI functions. Going through
 // open()/saveCurrent() would let a tool null out the editor's `current` or
