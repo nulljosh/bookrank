@@ -430,7 +430,6 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 
 ## Ingested 2026-10-11 (voice note)
 - [ ] A /themes skill: loop every summarized book on the account (the iCloud `<book>-summary.md` files are the same content), pull the main themes of each and explain them the way the app does. Output one markdown digest, no new UI.
-- [x] No bottom navigation while something plays (mini player shipped 2026-10-11 on iOS/Mac). Web still has the gap in library.html.
 - [ ] ElevenLabs grants a few minutes of natural voice, then falls back to the system voice and sounds rough. Show the remaining minutes in Account, and make the fallback a clear switch rather than a silent downgrade. Premium ($1) could be more natural minutes.
 - [ ] No premium features yet. The app is stable; the $1 tier needs something worth paying for (natural voice minutes above, offline audio downloads).
 
@@ -440,7 +439,6 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 
 ## Ingested 2026-10-03
 - [ ] Confirm we didn't ship our credentials accidentally. (Account screen screenshot shows the signed-in email, Goodreads profile link and a "Credentials" section; check the repo and built bundle for keys.)
-- [x] Main home screen (Summaries) is an enormous list and needs better organization (UI/UX). It shows 25 own summaries alphabetically, then a "Read on Goodreads, no summary yet (394)" section below. (2026-10-11: the Goodreads shelves fold. Currently reading opens, the read list and Want to read stay closed, read books sort newest first with rating and month, and search covers all of it. Web live; iOS/Mac ship with 1.2.)
 - [ ] Figure out how to get full summaries for the remaining Goodreads books. The ones we uploaded ourselves will have much more detail, obviously.
 - [ ] Account sheet shows a "New avatar saved." message pinned at the bottom after tapping the avatar. Remove or make it transient. Related: avatar is the small icon top right of Summaries; make that top right button the user's actual avatar.
 - [ ] Layout idea: move the search field to the top, and use the bottom for nav tabs (Settings etc.). Currently the search pill floats at the bottom.
