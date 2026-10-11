@@ -11,20 +11,47 @@ final class DataStore {
     private(set) var summaryIndex: [SummaryEntry] = []
     private(set) var summaryError: String?
 
-    /// Books on the linked Goodreads "read" shelf with no summary here yet (title match, same rule as the web).
-    struct GoodreadsBook: Identifiable, Decodable { let title: String; let author: String; let cover: String?; let url: String?; var id: String { title + author } }
+    /// The linked Goodreads shelves: currently reading, want to read, and read books with no
+    /// summary here yet (title match, same rule as the web), newest read first.
+    struct GoodreadsBook: Identifiable, Decodable {
+        let title: String; let author: String; let cover: String?; let url: String?; let readAt: String?; let rating: Int?
+        var id: String { title + author }
+        /// "4/5 · Aug 2026", or whichever half the shelf knows.
+        var meta: String? {
+            let when = readAt.flatMap { try? Date($0, strategy: .iso8601.year().month().day()) }?.formatted(.dateTime.month(.abbreviated).year())
+            let s = [rating.map { "\($0)/5" }, when].compactMap { $0 }.joined(separator: " · ")
+            return s.isEmpty ? nil : s
+        }
+    }
+    private(set) var goodreadsReading: [GoodreadsBook] = []
+    private(set) var goodreadsToRead: [GoodreadsBook] = []
     private(set) var goodreadsQueue: [GoodreadsBook] = []
     func loadGoodreads(_ id: String?) async {
-        guard let id, let url = URL(string: "https://bookrank.heyitsmejosh.com/api/goodreads?user=\(id)&shelf=read"),
-              let (data, _) = try? await URLSession.shared.data(from: url) else { goodreadsQueue = []; return }
-        struct Out: Decodable { let books: [GoodreadsBook]? }
-        let all = (try? JSONDecoder().decode(Out.self, from: data))?.books ?? []
+        if CommandLine.arguments.contains("UITEST_SNAPSHOT") {   // screenshots: the shelves without a linked account
+            let b = { (t: String, a: String, r: Int?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
+            goodreadsReading = [b("The Man Who Solved the Market", "Gregory Zuckerman", nil, nil)]
+            goodreadsQueue = [b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"), b("Fiend", "Peter Stenson", 3, "2026-08-11")]
+            goodreadsToRead = [b("System Design Interview", "Alex Xu", nil, nil)]
+            return
+        }
+        guard let id else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; return }
+        @Sendable func shelf(_ s: String) async -> [GoodreadsBook] {
+            struct Out: Decodable { let books: [GoodreadsBook]? }
+            guard let url = URL(string: "https://bookrank.heyitsmejosh.com/api/goodreads?user=\(id)&shelf=\(s)"),
+                  let (data, _) = try? await URLSession.shared.data(from: url) else { return [] }
+            return (try? JSONDecoder().decode(Out.self, from: data))?.books ?? []
+        }
+        async let reading = shelf("currently-reading")
+        async let read = shelf("read")
+        async let toRead = shelf("to-read")
         let norm = { (s: String) in s.lowercased().replacingOccurrences(of: "[^a-z0-9]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespaces) }
         let have = summaryIndex.map { norm($0.title) }.filter { !$0.isEmpty }
-        goodreadsQueue = all.filter { b in
+        goodreadsReading = await reading
+        goodreadsToRead = await toRead
+        goodreadsQueue = await read.filter { b in
             let t = norm(b.title), words = Set(t.split(separator: " "))
             return !have.contains { h in h.split(separator: " ").allSatisfy(words.contains) || t.replacingOccurrences(of: " ", with: "").contains(h.replacingOccurrences(of: " ", with: "")) }
-        }
+        }.sorted { ($0.readAt ?? "") > ($1.readAt ?? "") }
     }
 
     init() {
