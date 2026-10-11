@@ -91,6 +91,11 @@ struct AccountView: View {
                             Section { Text(message).font(.footnote).foregroundStyle(.secondary) }
                         }
                     }
+                    #if os(macOS)
+                    // The default Mac form style is a fixed grid: no scrolling, headers and footers
+                    // as single truncated lines. Grouped scrolls and wraps, the way iOS already does.
+                    .formStyle(.grouped)
+                    #endif
                     .navigationTitle("Account")
                 } else {
                     authScreen
@@ -251,6 +256,7 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     TextField("Username", text: $username, onCommit: saveUsername)
                         .font(.headline)
+                        .labelsHidden().textFieldStyle(.plain)   // the Mac grouped form would split it into label and field
                         .autocorrectionDisabled()
                         #if os(iOS)
                         .textInputAutocapitalization(.never)
@@ -317,7 +323,7 @@ struct AccountView: View {
                 Task { nudge = await Nudge.enable(on, entries: store.summaryIndex) }
             }))
         } footer: {
-            Text("At 9:00 each morning, one line from a book you summarized. Nothing leaves your phone.")
+            Text("At 9:00 each morning, one line from a book you summarized. Nothing leaves this device.")
         }
 
         Section {

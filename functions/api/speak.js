@@ -31,7 +31,7 @@ export async function onRequest({ request, env }) {
   const auth = request.headers.get("authorization") || "";
   if (!(token ? await isShared(token) : await isSignedIn(auth, request.headers.get("apikey")))) return json({ error: "Sign in required." }, 401);
 
-  const uid = token ? null : await userOf(auth);
+  const uid = token ? null : await userOf(auth, request.headers.get("apikey"));
   if (env.STRIPE_PAYMENT_LINK && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
     return json({ error: "Natural voices are $1.", pay: true }, 402);
   }
@@ -98,10 +98,15 @@ export function words(text, al) {
   return list;
 }
 
-export async function userOf(auth) {
+// The installed apps still sign in through Supabase and send its anon key as `apikey`; a token
+// spark-api does not know is looked up there so their daily cap and usage meter work. Drop when they move over.
+export async function userOf(auth, apikey = null) {
   if (!auth.startsWith("Bearer ")) return null;
   const r = await fetch(`${API}/auth/user`, { headers: { authorization: auth } });
-  return r.ok ? (await r.json()).id || null : null;
+  if (r.ok) return (await r.json()).id || null;
+  if (!apikey) return null;
+  const sb = await fetch("https://tjsxsqlxjmanwvmywwvw.supabase.co/auth/v1/user", { headers: { authorization: auth, apikey } });
+  return sb.ok ? (await sb.json()).id || null : null;
 }
 
 async function sha(s) {

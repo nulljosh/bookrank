@@ -23,7 +23,7 @@ final class DataStore {
     private(set) var goodreadsToRead: [GoodreadsBook] = []
     private(set) var goodreadsQueue: [GoodreadsBook] = []
     func loadGoodreads(_ id: String?) async {
-        if CommandLine.arguments.contains("UITEST_SNAPSHOT") {   // screenshots: the shelves without a linked account
+        if CommandLine.flag("UITEST_SNAPSHOT") {   // screenshots: the shelves without a linked account
             let b = { (t: String, a: String, r: Double?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
             goodreadsReading = [b("The Man Who Solved the Market", "Gregory Zuckerman", nil, nil)]
             goodreadsQueue = [b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"), b("Fiend", "Peter Stenson", 3.5, "2026-08-11")]
@@ -60,7 +60,7 @@ final class DataStore {
     // scripts work with no connection. Sign-out and account deletion remove it.
     private static let cacheURL = URL.applicationSupportDirectory.appending(path: "summaries.json")
     private static func readCache() -> [SummaryEntry] {
-        guard !CommandLine.arguments.contains("UITEST_SNAPSHOT"), let d = try? Data(contentsOf: cacheURL) else { return [] }
+        guard !CommandLine.flag("UITEST_SNAPSHOT"), let d = try? Data(contentsOf: cacheURL) else { return [] }
         return (try? JSONDecoder().decode([SummaryEntry].self, from: d)) ?? []
     }
     private func writeCache() {
@@ -73,7 +73,7 @@ final class DataStore {
     /// it keeps `summaryMarkdown(for:)` synchronous so the reader view stays unchanged.
     /// ponytail: fetch-everything; page it if a shelf ever runs to hundreds of rows.
     func loadSummaries() async {
-        if CommandLine.arguments.contains("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
+        if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
             summaryIndex = try await supabase
                 .from("bookrank_summaries")

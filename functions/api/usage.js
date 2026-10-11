@@ -3,7 +3,7 @@
 import { userOf, capsOf } from "./speak.js";
 
 export async function onRequest({ request, env }) {
-  const uid = await userOf(request.headers.get("authorization") || "");
+  const uid = await userOf(request.headers.get("authorization") || "", request.headers.get("apikey"));
   if (!uid) return json({ error: "Sign in required." }, 401);
   const now = new Date(), day = now.toISOString().slice(0, 10), month = day.slice(0, 7), kv = env.TTS_KV;
   const n = async k => (kv ? +(await kv.get(k)) || 0 : 0);

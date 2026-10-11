@@ -52,7 +52,7 @@ struct LibraryView: View {
             #endif
         }
         .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
-        .onAppear { if CommandLine.arguments.contains("UITEST_ACCOUNT") { showAccount = true } }   // screenshots of the Account sheet
+        .onAppear { if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true } }   // screenshots of the Account sheet
         // Playback follows you off the chapter: a bar along the bottom with pause and stop,
         // on every screen, for as long as something is playing or paused.
         .safeAreaInset(edge: .bottom) { if speaker.playing || speaker.paused || speaker.loading { MiniPlayer(store: store) } }

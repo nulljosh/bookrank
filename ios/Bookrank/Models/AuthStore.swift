@@ -35,7 +35,7 @@ final class AuthStore {
     /// Screenshot automation must not sit at a sign-in wall. It reports signed-in with
     /// no session, which is safe because every summary read goes through Supabase and
     /// simply returns nothing.
-    private let mockSignedIn = CommandLine.arguments.contains("UITEST_SNAPSHOT")
+    private let mockSignedIn = CommandLine.flag("UITEST_SNAPSHOT")
 
     var isSignedIn: Bool { mockSignedIn || user != nil }
 
