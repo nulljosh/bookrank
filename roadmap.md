@@ -421,9 +421,13 @@ RLS can see who is asking, do not move them behind a Function that cannot.
 ## TUI pilot (2026-09-05)
 - `bookrank-tui` SwiftPM target (SwiftTUI). `swift build && ./.build/debug/bookrank-tui "the optimist"` searches /api/search and lists matches. Needs a real TTY.
 
+## Shipped 2026-10-11, Goodreads shelves, the Mac layout, a mini player, natural voice back on the apps
+
+Goodreads: three folded shelves under the summaries (Currently reading, Read on Goodreads with no summary yet, Want to read), newest read first, stars with halves, the month finished, searchable, on web, iPhone and Mac. Mac: a three-column window like Mail (books, chapters with the cover up top, text), sidebar list style, a window minimum, the Account sheet fixed at 520x600 with Done in its own bar and Escape to close. A mini player along the bottom on every screen: progress line, previous, play/pause, next, speed menu, which voice is speaking, stop; Mac shortcuts ⌘⇧P, ⌘., ⌘[ and ⌘]. Fixed: web search never hid non-matching rows (`.hide` lost to the row's `display:flex`); summary titles were `str.title()` of the slug ("Ai In Business"), now `title()` in import-summaries.py, and the 15 wrong rows were repaired in both stores; the installed apps lost natural voices when the API moved to spark-api (their Supabase token got a 401 and the player fell back to the device voice without saying so), so the apps now send `apikey` and `isSignedIn` checks Supabase second. Security sweep: no critical or high; marked and DOMPurify pinned with integrity hashes, avatar initial built as text. Web live; iOS and Mac ship as 1.2.0.
+
 ## Ingested 2026-10-11 (voice note)
 - [ ] A /themes skill: loop every summarized book on the account (the iCloud `<book>-summary.md` files are the same content), pull the main themes of each and explain them the way the app does. Output one markdown digest, no new UI.
-- [ ] No bottom navigation while something plays: leave the chapter screen and there is no way to pause. Add a mini player bar above the tab area on iOS/Mac (title, play/pause, stop) that shows whenever the Speaker is active. Web has the same gap in library.html.
+- [x] No bottom navigation while something plays (mini player shipped 2026-10-11 on iOS/Mac). Web still has the gap in library.html.
 - [ ] ElevenLabs grants a few minutes of natural voice, then falls back to the system voice and sounds rough. Show the remaining minutes in Account, and make the fallback a clear switch rather than a silent downgrade. Premium ($1) could be more natural minutes.
 - [ ] No premium features yet. The app is stable; the $1 tier needs something worth paying for (natural voice minutes above, offline audio downloads).
 

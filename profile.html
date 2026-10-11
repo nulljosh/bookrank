@@ -167,7 +167,8 @@ const showAvatar = (user) => {
   $('ghPhoto').classList.toggle('hide', !gh || !picked);
   if (gh && !picked) { $('avatar').replaceChildren(Object.assign(document.createElement('img'), { alt: '', src: gh })); return; }
   const svg = user.user_metadata?.avatar;
-  $('avatar').innerHTML = svg ? `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">` : `<span>${(user.email[0] || '?').toUpperCase()}</span>`;
+  if (svg) $('avatar').innerHTML = `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">`;
+  else $('avatar').replaceChildren(Object.assign(document.createElement('span'), { textContent: (user.email[0] || '?').toUpperCase() }));
 };
 
 const { data: { user } } = await db.auth.getUser();

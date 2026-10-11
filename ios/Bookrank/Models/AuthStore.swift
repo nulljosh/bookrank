@@ -10,9 +10,11 @@ import Supabase
 // build-setting substitution has two places to go wrong before anyone notices. The
 // anon key is a public client credential — it is in library.html too — and every
 // table it can reach is behind RLS.
+/// The project's public anon key. Also sent to the Bookrank API as `apikey` so it can check this session.
+let supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68"
 let supabase = SupabaseClient(
     supabaseURL: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co")!,
-    supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68",
+    supabaseKey: supabaseAnonKey,
     options: SupabaseClientOptions(
         auth: SupabaseClientOptions.AuthOptions(storage: SessionKeychainStorage())
     )

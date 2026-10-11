@@ -23,4 +23,5 @@ assert.equal(parseProfile('<meta property="og:image" content="https://s.gr-asset
 const q = (t, l) => `<div class="quote mediumText "><div class="quoteText">&ldquo;${t}&rdquo; &#8213; <a>Some Author</a>, <a>Book</a></div><a>${l} likes</a></div>`;
 assert.deepEqual(bestQuote(q('x'.repeat(300), '9,999') + q('Short and loved.', '50') + q('Short.', '5')), { text: 'Short and loved.', author: 'Some Author' });
 assert.equal(bestQuote(''), null);
+assert.equal(parseFeed('<item><title>Half</title><user_rating>3.5</user_rating></item>')[0].rating, 3.5);   // Goodreads allows half stars now
 console.log('goodreads ok');

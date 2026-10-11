@@ -73,3 +73,9 @@ Joshua's rule: fresh screenshots on every minor or major bump AND every UI fix o
 
 ## The loop
 v1.1 loop handoff at `docs/LOOP-HANDOFF.md`: what the loop is, where things stand, next in order, restart prompt in a code fence. Wakes every 25 minutes. App Review lesson: keep review notes true every release; if Apple asks for proof, Joshua records 20 seconds on a real phone showing the feature working.
+
+## Native auth vs the API (2026-10-11)
+The web and `functions/api/*` check sign-in against spark-api. The installed iOS/Mac apps still sign in through Supabase, so they send the project anon key as an `apikey` header and `isSignedIn` in `functions/api/narrate.js` checks Supabase when spark-api says no. Without that the apps get 401 on /api/speak and /api/narrate and the player drops to the device voice while the mini player says "Device voice". Remove the fallback when the apps move to spark-api.
+
+## Mac layout (2026-10-11)
+`LibraryView` is a `NavigationSplitView` on macOS: books (sidebar list style), chapters with the cover up top (`SummaryDetailView` with a `chapter` binding), then `ChapterView`. iOS keeps the `NavigationStack`. `UITEST_ACCOUNT` opens the Account sheet at launch for screenshots; `UITEST_SNAPSHOT` also fills the Goodreads shelves with sample rows.

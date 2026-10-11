@@ -29,7 +29,7 @@ export async function onRequest({ request, env }) {
   if (!text) return json({ error: "Nothing to say." }, 400);
   const token = typeof body.token === "string" && body.token.length > 8 ? body.token : "";
   const auth = request.headers.get("authorization") || "";
-  if (!(token ? await isShared(token) : await isSignedIn(auth))) return json({ error: "Sign in required." }, 401);
+  if (!(token ? await isShared(token) : await isSignedIn(auth, request.headers.get("apikey")))) return json({ error: "Sign in required." }, 401);
 
   const uid = token ? null : await userOf(auth);
   if (env.STRIPE_PAYMENT_LINK && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {

@@ -20,11 +20,23 @@ SHRINK = int(os.environ.get("SHRINK_PCT", "80"))
 FORCE = os.environ.get("FORCE") == "1"
 
 
+SMALL = {"a", "an", "and", "for", "in", "of", "on", "the", "to", "vs"}
+CASED = {"ai": "AI", "ibs": "IBS", "ios": "iOS", "macos": "macOS", "llm": "LLM", "gpt": "GPT", "api": "API", "ml": "ML", "ux": "UX"}
+
+
+def title(slug):
+    """ai-in-business -> AI in Business. str.title() gave "Ai In Business"."""
+    return " ".join(CASED.get(w) or (w if i and w in SMALL else w.capitalize()) for i, w in enumerate(slug.split("-")))
+
+
+assert title("ai-in-business") == "AI in Business" and title("ibs-for-dummies") == "IBS for Dummies" and title("the-optimist") == "The Optimist"
+
+
 def rows(slugs=()):
     files = sorted(SUMMARIES.glob("*.md"))
     if slugs:
         files = [f for f in files if f.stem in slugs]
-    return [{"slug": f.stem, "title": f.stem.replace("-", " ").title(), "content": f.read_text()} for f in files]
+    return [{"slug": f.stem, "title": title(f.stem), "content": f.read_text()} for f in files]
 
 
 def call(method, path, headers, body=None):

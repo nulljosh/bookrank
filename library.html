@@ -148,8 +148,8 @@ dl.profile dt { color:var(--text3); }
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js" integrity="sha384-XQqX/4yiUGu+oyr87jvWzRuqBUK/adrY0DunhL+tID9m/9dwSpV8h9Fk/Sg6ifVQ" crossorigin="anonymous"></script>
 <script type="module">
 import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates } from './listen.js';
@@ -499,8 +499,9 @@ async function goodreadsQueue(data) {
       const name = Object.assign(document.createElement('span'), { textContent: b.title });
       name.append(Object.assign(document.createElement('span'), { className: 'by', textContent: b.author }));
       a.append(name);
-      const meta = [b.rating && `${b.rating}/5`, month(b.readAt)].filter(Boolean).join(' · ');
-      if (meta) a.append(Object.assign(document.createElement('time'), { textContent: meta }));
+      const stars = r => '\u2605'.repeat(Math.floor(r)) + (r % 1 ? '\u00bd' : '') + '\u2606'.repeat(5 - Math.ceil(r));   // halves as ½
+      const meta = [b.rating && stars(b.rating), month(b.readAt)].filter(Boolean).join(' · ');
+      if (meta) a.append(Object.assign(document.createElement('time'), { textContent: meta, ariaLabel: [b.rating && `${b.rating} of 5 stars`, month(b.readAt)].filter(Boolean).join(', ') }));
       li.append(img, a); ul.append(li);
     }
     d.append(ul); anchor.after(d); anchor = d;

@@ -15,7 +15,7 @@ export async function onRequest({ request, env }) {
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
   const body = await request.json().catch(() => ({}));
   const token = typeof body.token === "string" && body.token.length > 8 ? body.token : "";
-  const ok = token ? await isShared(token) : await isSignedIn(request.headers.get("authorization") || "");
+  const ok = token ? await isShared(token) : await isSignedIn(request.headers.get("authorization") || "", request.headers.get("apikey"));
   if (!ok) return json({ error: "Sign in required." }, 401);
   const text = String(body.text || "").trim().slice(0, MAX_CHARS);
   const title = String(body.title || "this book").slice(0, 200);
@@ -59,10 +59,14 @@ export function parseScript(raw) {
     .map(m => ({ host: m[1], line: m[2].trim() }));
 }
 
-export async function isSignedIn(authHeader) {
+// The installed iOS and Mac apps still sign in through Supabase. They send their project key as
+// `apikey`, and a token spark-api does not know is checked there. Drop that once the apps move over.
+export async function isSignedIn(authHeader, apikey = null) {
   if (!authHeader.startsWith("Bearer ")) return false;
   const res = await fetch(`${API}/auth/user`, { headers: { authorization: authHeader } });
-  return res.ok;
+  if (res.ok || !apikey) return res.ok;
+  const sb = await fetch("https://tjsxsqlxjmanwvmywwvw.supabase.co/auth/v1/user", { headers: { authorization: authHeader, apikey } });
+  return sb.ok;
 }
 
 export async function isShared(token) {

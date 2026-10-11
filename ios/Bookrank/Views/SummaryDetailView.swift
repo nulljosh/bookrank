@@ -31,6 +31,7 @@ func parseChapters(_ markdown: String) -> [Speaker.Chapter] {
 struct SummaryDetailView: View {
     let slug: String
     let store: DataStore
+    var chapter: Binding<Int?>? = nil   // Mac: this column picks the chapter the text column shows
     var speaker = Speaker.shared
     @State private var shareURL: URL?
     #if os(iOS)
@@ -39,22 +40,13 @@ struct SummaryDetailView: View {
 
     var body: some View {
         let entry = store.summary(for: slug)
-        List {
-            ForEach(speaker.chapters.indices, id: \.self) { i in
-                NavigationLink { ChapterView(index: i) } label: {
-                    HStack {
-                        Text(speaker.chapters[i].title)
-                        Spacer()
-                        if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
-                            Text("Resume").font(.footnote).foregroundStyle(.secondary)
-                        }
-                    }
-                }
-            }
+        Group {
+            #if os(macOS)
+            List(selection: chapter ?? .constant(nil)) { rows(entry) }.listStyle(.inset)
+            #else
+            List { rows(entry) }.frame(maxWidth: 680).frame(maxWidth: .infinity).listStyle(.plain)
+            #endif
         }
-        .listStyle(.plain)
-        .frame(maxWidth: 680)
-        .frame(maxWidth: .infinity)
         .navigationTitle(entry?.title ?? "Summary")
         #if os(iOS)
         .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
@@ -73,11 +65,45 @@ struct SummaryDetailView: View {
                          entry: entry) { await store.saveListen($0, for: slug) }
         }
     }
+
+    /// The book up top (cover, title, how many chapters), then one row per chapter.
+    @ViewBuilder
+    private func rows(_ entry: SummaryEntry?) -> some View {
+        HStack(spacing: 16) {
+            Thumb(url: entry.flatMap { store.cover(for: $0) }, width: 64)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(entry?.title ?? "Summary").font(.title3.weight(.semibold)).lineLimit(3)
+                Text("\(speaker.chapters.count) chapters").font(.footnote).foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, 10)
+        .listRowSeparator(.hidden)
+        .selectionDisabled()
+        .accessibilityElement(children: .combine)
+        ForEach(speaker.chapters.indices, id: \.self) { i in
+            #if os(macOS)
+            chapterRow(i).tag(i)
+            #else
+            NavigationLink { ChapterView(index: i) } label: { chapterRow(i) }
+            #endif
+        }
+    }
+
+    private func chapterRow(_ i: Int) -> some View {
+        HStack(spacing: 10) {
+            Text(speaker.chapters[i].title).lineLimit(2)
+            Spacer(minLength: 8)
+            if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
+                Label("Resume", systemImage: "play.circle").font(.footnote).foregroundStyle(.secondary).labelStyle(.titleAndIcon)
+            }
+        }
+        .padding(.vertical, 3)
+    }
 }
 
 /// One chapter: the text, one Listen button. The spoken line and word are highlighted
 /// and followed. Mirrors listen.js mount().
-private struct ChapterView: View {
+struct ChapterView: View {
     let index: Int
     var speaker = Speaker.shared
 

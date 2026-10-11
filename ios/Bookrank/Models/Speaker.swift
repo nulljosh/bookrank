@@ -50,6 +50,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         }
     }
     var status = ""
+    /// Which voice is speaking right now, so the player can say so instead of quietly switching.
+    private(set) var voice = ""
     /// Natural voices (ElevenLabs through /api/speak). Off, or any failed line, falls back to the device voice.
     var natural: Bool = UserDefaults.standard.object(forKey: "bookrank.natural") as? Bool ?? true {
         didSet { UserDefaults.standard.set(natural, forKey: "bookrank.natural"); if playing { Task { await play(from: line) } } }
@@ -180,10 +182,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         let b = AVSpeechSynthesisVoice.speechVoices().first { $0.language == a?.language && $0.identifier != a?.identifier } ?? a
         line = min(fraction.map { Int($0 * Double(script.count)) } ?? from, script.count - 1)
         if natural {
+            voice = "Natural voice"
             if await playNatural(script, from: line, tok: tok) { return }
             guard tok == token else { return }   // a line failed: keep going on the device voice from there
             status = "Natural voice unavailable (\(Narrator.lastFailure ?? "unknown")). Using the device voice."
         }
+        voice = "Device voice"
         for (k, l) in script[line...].enumerated() {
             let u = AVSpeechUtterance(string: l.line)
             u.voice = l.host == "B" ? b : a
@@ -244,6 +248,7 @@ enum Narrator {
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        req.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")   // lets the API check this Supabase session
         req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "title": title, "ch": ch, "total": total])
         struct Out: Decodable { let script: [ListenState.Line]? }
         guard let (data, _) = try? await URLSession.shared.data(for: req) else { return nil }
@@ -269,6 +274,7 @@ extension Narrator {
         guard let token = try? await supabase.auth.session.accessToken else { return nil }
         var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/usage")!)
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        req.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")   // lets the API check this Supabase session
         guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200 else { return nil }
         return try? JSONDecoder().decode(VoiceUsage.self, from: data)
     }
@@ -289,6 +295,8 @@ extension Narrator {
             req.timeoutInterval = 25
             req.setValue("application/json", forHTTPHeaderField: "content-type")
             req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+            req.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")
+        req.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")   // lets the API check this Supabase session
             #if os(macOS)
             req.setValue("mac", forHTTPHeaderField: "x-bookrank-app")  // the App Store price is what pays for the voices
             #else
@@ -321,8 +329,8 @@ struct ListenControls: View {
             .contentTransition(.symbolEffect(.replace))
             .animation(.spring(response: 0.35, dampingFraction: 0.8), value: speaker.playing)
         Menu("More", systemImage: "ellipsis.circle") {
-            Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }
-            Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
+            Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }.keyboardShortcut("[", modifiers: .command)
+            Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }.keyboardShortcut("]", modifiers: .command)
             Divider()
             Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
                 ForEach(Speaker.speeds, id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }

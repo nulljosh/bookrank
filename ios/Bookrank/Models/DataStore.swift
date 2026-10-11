@@ -14,23 +14,19 @@ final class DataStore {
     /// The linked Goodreads shelves: currently reading, want to read, and read books with no
     /// summary here yet (title match, same rule as the web), newest read first.
     struct GoodreadsBook: Identifiable, Decodable {
-        let title: String; let author: String; let cover: String?; let url: String?; let readAt: String?; let rating: Int?
+        let title: String; let author: String; let cover: String?; let url: String?; let readAt: String?; let rating: Double?   // Goodreads allows halves now
         var id: String { title + author }
-        /// "4/5 · Aug 2026", or whichever half the shelf knows.
-        var meta: String? {
-            let when = readAt.flatMap { try? Date($0, strategy: .iso8601.year().month().day()) }?.formatted(.dateTime.month(.abbreviated).year())
-            let s = [rating.map { "\($0)/5" }, when].compactMap { $0 }.joined(separator: " · ")
-            return s.isEmpty ? nil : s
-        }
+        /// "Aug 2026": the month the shelf says it was finished.
+        var when: String? { readAt.flatMap { try? Date($0, strategy: .iso8601.year().month().day()) }?.formatted(.dateTime.month(.abbreviated).year()) }
     }
     private(set) var goodreadsReading: [GoodreadsBook] = []
     private(set) var goodreadsToRead: [GoodreadsBook] = []
     private(set) var goodreadsQueue: [GoodreadsBook] = []
     func loadGoodreads(_ id: String?) async {
         if CommandLine.arguments.contains("UITEST_SNAPSHOT") {   // screenshots: the shelves without a linked account
-            let b = { (t: String, a: String, r: Int?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
+            let b = { (t: String, a: String, r: Double?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
             goodreadsReading = [b("The Man Who Solved the Market", "Gregory Zuckerman", nil, nil)]
-            goodreadsQueue = [b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"), b("Fiend", "Peter Stenson", 3, "2026-08-11")]
+            goodreadsQueue = [b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"), b("Fiend", "Peter Stenson", 3.5, "2026-08-11")]
             goodreadsToRead = [b("System Design Interview", "Alex Xu", nil, nil)]
             return
         }

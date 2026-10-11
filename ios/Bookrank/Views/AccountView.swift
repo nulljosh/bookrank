@@ -65,6 +65,23 @@ struct AccountView: View {
     }
 
     var body: some View {
+        #if os(macOS)
+        // A Mac sheet grows to its content; this one is taller than most windows, so the form
+        // scrolls inside a fixed frame with Done in its own bar along the bottom. Escape closes it.
+        VStack(spacing: 0) {
+            content
+            Divider()
+            HStack { Spacer(); Button("Done") { dismiss() }.keyboardShortcut(.cancelAction) }
+                .padding(.horizontal, 20).padding(.vertical, 12)
+        }
+        .frame(width: 520, height: 600)
+        .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
+        #else
+        content.preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
+        #endif
+    }
+
+    private var content: some View {
         NavigationStack {
             Group {
                 if auth.isSignedIn {
@@ -82,14 +99,15 @@ struct AccountView: View {
                         #endif
                 }
             }
+            #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") { dismiss() }
                 }
             }
+            #endif
             .disabled(busy)
         }
-        .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
     }
 
     /// Light, dark or follow the device. Lives here, not in the toolbar; the key is the same one the shelf reads.
@@ -315,7 +333,7 @@ struct AccountView: View {
 
         Section("Credentials") {
             TextField("New email", text: $newEmail).textContentType(.emailAddress).autocorrectionDisabled()
-            SecureField("New password (8+ characters)", text: $newPassword).textContentType(.newPassword)
+            SecureField("New password", text: $newPassword, prompt: Text("8+ characters")).textContentType(.newPassword)
             Button("Update") {
                 run {
                     try await auth.updateCredentials(email: newEmail.isEmpty ? nil : newEmail, password: newPassword.isEmpty ? nil : newPassword)
