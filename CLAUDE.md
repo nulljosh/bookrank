@@ -72,7 +72,7 @@ See `roadmap.md` in this repo root, not embedded here anymore. ASC app ID is **`
 Joshua's rule: fresh screenshots on every minor or major bump AND every UI fix or glitch patch, without being asked. Run `sh ios/scripts/shots.sh` from the repo root (store set via fastlane snapshot into `ios/fastlane/screenshots/en-US`, plus the signed-out sign-in and create screens as QA PNGs), read the PNGs and fix what looks wrong before shipping, then refresh the README and landing images and attach the new set to the next App Store version. Headless simulators only, shut them down after.
 
 ## The loop
-v1.1 loop handoff at `docs/LOOP-HANDOFF.md`: what the loop is, where things stand, next in order, restart prompt in a code fence. Wakes every 25 minutes. App Review lesson: keep review notes true every release; if Apple asks for proof, Joshua records 20 seconds on a real phone showing the feature working.
+Parity and ship loop (iOS and Mac catch up to the web, then ship). Handoff at `docs/LOOP-HANDOFF.md`: what the loop is, where things stand, next in order, restart prompt in a code fence. App Review lesson: keep review notes true every release; if Apple asks for proof, Joshua records 20 seconds on a real phone showing the feature working.
 
 ## Native auth vs the API (2026-10-11)
 The web and `functions/api/*` check sign-in against spark-api. The installed iOS/Mac apps still sign in through Supabase, so they send the project anon key as an `apikey` header and `isSignedIn` in `functions/api/narrate.js` checks Supabase when spark-api says no. Without that the apps get 401 on /api/speak and /api/narrate and the player drops to the device voice while the mini player says "Device voice". Remove the fallback when the apps move to spark-api.
