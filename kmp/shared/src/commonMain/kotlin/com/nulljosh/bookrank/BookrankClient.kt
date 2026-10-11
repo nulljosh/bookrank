@@ -39,7 +39,7 @@ fun chapters(md: String): List<Pair<String, String>> {
 }
 
 // Reads shared summaries via the public RPC (no account needed, a token is the whole credential).
-class BookrankClient(private val baseUrl: String = "https://bookrank.heyitsmejosh.com") {
+class BookrankClient(private val baseUrl: String = "https://bookrank.jaybulb.com") {
     private val http = HttpClient {
         install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
     }

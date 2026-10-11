@@ -244,7 +244,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 enum Narrator {
     static func narrate(text: String, title: String, ch: Int, total: Int) async -> [ListenState.Line]? {
         guard let token = try? await supabase.auth.session.accessToken else { return nil }
-        var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/narrate")!)
+        var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/narrate")!)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
@@ -272,7 +272,7 @@ struct VoiceUsage: Decodable {
 extension Narrator {
     static func usage() async -> VoiceUsage? {
         guard let token = try? await supabase.auth.session.accessToken else { return nil }
-        var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/usage")!)
+        var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/usage")!)
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         req.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")   // lets the API check this Supabase session
         guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200 else { return nil }
@@ -290,7 +290,7 @@ extension Narrator {
         for attempt in 0..<2 {
             if attempt > 0 { try? await Task.sleep(for: .milliseconds(700)) }
             guard let token = try? await supabase.auth.session.accessToken else { lastFailure = "not signed in"; return nil }
-            var req = URLRequest(url: URL(string: "https://bookrank.heyitsmejosh.com/api/speak")!)
+            var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/speak")!)
             req.httpMethod = "POST"
             req.timeoutInterval = 25
             req.setValue("application/json", forHTTPHeaderField: "content-type")

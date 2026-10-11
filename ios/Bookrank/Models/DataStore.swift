@@ -33,7 +33,7 @@ final class DataStore {
         guard let id else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; return }
         @Sendable func shelf(_ s: String) async -> [GoodreadsBook] {
             struct Out: Decodable { let books: [GoodreadsBook]? }
-            guard let url = URL(string: "https://bookrank.heyitsmejosh.com/api/goodreads?user=\(id)&shelf=\(s)"),
+            guard let url = URL(string: "https://bookrank.jaybulb.com/api/goodreads?user=\(id)&shelf=\(s)"),
                   let (data, _) = try? await URLSession.shared.data(from: url) else { return [] }
             return (try? JSONDecoder().decode(Out.self, from: data))?.books ?? []
         }
@@ -175,7 +175,7 @@ final class DataStore {
             guard (try? await supabase.from("bookrank_summaries").update(Patch(share_token: token)).eq("id", value: id).execute()) != nil else { return nil }
             summaryIndex[i].shareToken = token
         }
-        return URL(string: "https://bookrank.heyitsmejosh.com/share.html?t=\(summaryIndex[i].shareToken!)")
+        return URL(string: "https://bookrank.jaybulb.com/share.html?t=\(summaryIndex[i].shareToken!)")
     }
     func stopSharing(_ slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }

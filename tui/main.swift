@@ -45,7 +45,7 @@ if query == "share" {
 
 func search(_ q: String) async -> SearchResponse? {
     guard let encoded = q.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let url = URL(string: "https://bookrank.heyitsmejosh.com/api/search?q=\(encoded)&limit=5") else { return nil }
+          let url = URL(string: "https://bookrank.jaybulb.com/api/search?q=\(encoded)&limit=5") else { return nil }
     guard let (data, _) = try? await URLSession.shared.data(from: url) else { return nil }
     return try? JSONDecoder().decode(SearchResponse.self, from: data)
 }
@@ -63,7 +63,7 @@ struct ResultsCard: View {
                     Text("\(r.title) — \(r.author ?? "unknown")")
                 }
             } else {
-                Text("Could not reach bookrank.heyitsmejosh.com")
+                Text("Could not reach bookrank.jaybulb.com")
             }
         }
         .padding()
