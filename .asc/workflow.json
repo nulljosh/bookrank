@@ -12,7 +12,7 @@
       "steps": [
         {
           "name": "bump",
-          "run": "cd ios && asc xcode version edit --version \"$VERSION\" --build-number \"$(date +%Y%m%d%H%M)\""
+          "run": "cd ios && B=$(date +%Y%m%d%H%M) && sed -i '' -e \"s/MARKETING_VERSION: \\\"[^\\\"]*\\\"/MARKETING_VERSION: \\\"$VERSION\\\"/g\" -e \"s/CURRENT_PROJECT_VERSION: \\\"[^\\\"]*\\\"/CURRENT_PROJECT_VERSION: \\\"$B\\\"/g\" project.yml && xcodegen generate && python3 scripts/prepare-plist.py \"$B\""
         },
         {
           "name": "archive",

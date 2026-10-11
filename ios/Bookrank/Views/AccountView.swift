@@ -69,10 +69,10 @@ struct AccountView: View {
         // A Mac sheet grows to its content; this one is taller than most windows, so the form
         // scrolls inside a fixed frame with Done in its own bar along the bottom. Escape closes it.
         VStack(spacing: 0) {
-            content
+            content.frame(height: 552)   // the stack is greedy; pin it so the Done row stays inside the 600
             Divider()
             HStack { Spacer(); Button("Done") { dismiss() }.keyboardShortcut(.cancelAction) }
-                .padding(.horizontal, 20).padding(.vertical, 12)
+                .padding(.horizontal, 20).frame(height: 47)
         }
         .frame(width: 520, height: 600)
         .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
