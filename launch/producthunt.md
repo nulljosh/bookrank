@@ -11,7 +11,7 @@ Topics: Books, Productivity, Education
 Pricing: Free.
 
 Links
-Web: https://bookrank.heyitsmejosh.com
+Web: https://bookrank.jaybulb.com
 App Store: https://apps.apple.com/app/id6792376485
 GitHub: https://github.com/nulljosh/bookrank
 
