@@ -81,13 +81,12 @@ dl.profile dt { color:var(--text3); }
 // cached narration only; narration for uncached chapters goes through /api/narrate with
 // the token instead of a session, and the result is cached back on the row server-side.
 import { mount } from './listen.js';
-const SUPABASE = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
-const ANON = 'sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90';
+const API = 'https://api.heyitsmejosh.com';
 const $ = id => document.getElementById(id);
 const token = new URLSearchParams(location.search).get('t') || '';
 
-const res = await fetch(`${SUPABASE}/rest/v1/rpc/shared_summary`, {
-  method: 'POST', headers: { apikey: ANON, 'content-type': 'application/json' }, body: JSON.stringify({ t: token }),
+const res = await fetch(`${API}/rpc/shared_summary`, {
+  method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ t: token }),
 }).catch(() => null);
 const row = res?.ok ? (await res.json())[0] : null;
 if (!row) {

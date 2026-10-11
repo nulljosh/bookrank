@@ -33,7 +33,7 @@ const ROUTES = {
 export async function onRequest({ request }) {
   if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
   // The shelf is read-only from outside; writing summaries is a signed-in, per-user action
-  // and stays in library.html against Supabase, where RLS can see who is asking.
+  // and stays in library.html against spark-api, where RLS can see who is asking.
   if (request.method !== 'GET') return json({ error: 'This API is read-only; use GET.' }, 405);
 
   const url = new URL(request.url);

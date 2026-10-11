@@ -100,10 +100,6 @@ dl.profile dt { color:var(--text3); }
     <h1 id="gateTitle">Sign in to Bookrank</h1>
     <p class="sub" id="gateSub">Your chapter summaries. Private to your account.</p>
     <form class="auth" id="authForm">
-      <button type="button" class="oauth apple" data-provider="apple">Continue with Apple</button>
-      <button type="button" class="oauth" data-provider="google">Continue with Google</button>
-      <button type="button" class="oauth" data-provider="github">Continue with GitHub</button>
-      <div class="or"><span>or</span></div>
       <input type="email" id="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
       <input type="password" id="password" placeholder="Password" aria-label="Password" autocomplete="current-password" minlength="8" required>
       <button class="pill" type="submit" id="submitBtn">Sign in</button>
@@ -154,13 +150,10 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"></script>
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates } from './listen.js';
 
-const db = createClient(
-  'https://tjsxsqlxjmanwvmywwvw.supabase.co',
-  'sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90'
-);
+const db = createClient('https://api.heyitsmejosh.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
 const show = (...ids) => ['gate','listView','editView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
@@ -191,9 +184,7 @@ $('authForm').onsubmit = async e => {
     return;
   }
   const { data, error } = await db.auth.signUp(creds);
-  // Supabase answers a repeat sign-up with a user that has no identities, not an error.
   $('authMsg').textContent = error ? error.message
-    : data.user && data.user.identities && data.user.identities.length === 0 ? 'That email already has an account. Sign in instead.'
     : 'Check your email to confirm your account, then sign in.';
 };
 $('forgot').onclick = async () => {
@@ -202,18 +193,27 @@ $('forgot').onclick = async () => {
   const { error } = await db.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
   $('authMsg').textContent = error ? error.message : 'Reset link sent. Check your email.';
 };
-// OAuth: data-provider is passed straight through; add a button to add a provider.
-document.querySelectorAll('.oauth').forEach(b => b.onclick = async () => {
-  const { error } = await db.auth.signInWithOAuth({ provider: b.dataset.provider, options: { redirectTo: location.origin + location.pathname } });
-  if (error) $('authMsg').textContent = error.message;
-});
 $('signout').onclick = async () => { try { await caches.delete('bookrank-data'); } catch {} db.auth.signOut(); };
 
-// Supabase re-fires SIGNED_IN / TOKEN_REFRESHED on every tab focus and hourly token
+// The client re-fires SIGNED_IN / TOKEN_REFRESHED on every tab focus and hourly token
 // refresh. Rebuilding the list on those is what stopped playback and "clicked back" to the
 // list by itself, so only a real sign-in or sign-out changes the screen.
+// A reset link lands here with ?recovery_token=...; the client announces it and we ask for the new password.
+function showRecovery() {
+  const o = document.createElement('div');
+  o.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:99';
+  o.innerHTML = '<form class="auth" style="background:Canvas;color:CanvasText;padding:1.5rem;border-radius:16px;display:grid;gap:.75rem;width:min(92vw,340px)"><strong>Choose a new password</strong><input type="password" minlength="8" required placeholder="New password, 8 characters or more" aria-label="New password" autocomplete="new-password"><button class="pill" type="submit">Save password</button><p class="msg" role="status" aria-live="polite"></p></form>';
+  o.querySelector('form').onsubmit = async e => {
+    e.preventDefault();
+    const { error } = await db.auth.updateUser({ password: e.target.querySelector('input').value });
+    if (error) { e.target.querySelector('.msg').textContent = error.message; return; }
+    o.remove(); location.reload();
+  };
+  document.body.appendChild(o);
+}
 let signedIn = null;
 db.auth.onAuthStateChange((_e, session) => {
+  if (_e === 'PASSWORD_RECOVERY') { showRecovery(); return; }
   if (!!session === signedIn) return;
   signedIn = !!session;
   if (session) { $('who').textContent = session.user.email; show('listView'); load(); if (location.hash.length > 1) open(location.hash.slice(1)); }
@@ -221,7 +221,7 @@ db.auth.onAuthStateChange((_e, session) => {
 });
 
 // ---- summarize from photos ----
-// Photos never touch Supabase or localStorage: each one is posted straight to the API,
+// Photos never touch the database or localStorage: each one is posted straight to the API,
 // the model's summary comes back, and the file is dropped. Only the text is kept.
 $('fromPhotos').onclick = () => { render(false); $('photos').click(); };
 $('photos').onchange = async () => {

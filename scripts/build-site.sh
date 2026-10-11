@@ -5,7 +5,7 @@
 set -e
 cd "$(dirname "$0")/.."
 rm -rf dist && mkdir -p dist
-cp index.html _redirects library.html share.html profile.html listen.js privacy.html tokens.css webmcp.js sw.js onboarding.js \
+cp index.html spark.js _redirects library.html share.html profile.html listen.js privacy.html tokens.css webmcp.js sw.js onboarding.js \
    manifest.webmanifest books.json icon.svg icon-192.png icon-512.png \
    icon-512-maskable.png architecture.svg ad.mp4 ad-poster.jpg og.png dist/
 cp -R fonts dist/

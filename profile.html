@@ -123,12 +123,12 @@ dl.profile dt { color:var(--text3); }
   <p class="msg" id="gateMsg"></p>
 </main>
 <script type="module">
-// Your profile at /profile.html?u=<username>. Username and avatar live in Supabase auth
+// Your profile at /profile.html?u=<username>. Username and avatar live in the account
 // user_metadata: no extra table, and the same fields the iOS app can read.
 // ponytail: own profile only. Viewing someone else's needs a public profiles table; add it
 // when a second person asks.
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-const db = createClient('https://tjsxsqlxjmanwvmywwvw.supabase.co', 'sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90');
+import { createClient } from './spark.js';
+const db = createClient('https://api.heyitsmejosh.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
 // No username field at sign-up, so the email's local part is the default handle.
@@ -217,7 +217,7 @@ else {
     history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Bookrank`;
     $('profileMsg').textContent = 'Username saved.';
   };
-  // Email change sends a confirmation to both addresses (Supabase default); password
+  // Email change sends a confirmation to both addresses ; password
   // applies at once. Both go through the same updateUser call.
   $('credForm').onsubmit = async e => {
     e.preventDefault();
