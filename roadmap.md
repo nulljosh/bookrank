@@ -443,3 +443,11 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 - [ ] Account sheet shows a "New avatar saved." message pinned at the bottom after tapping the avatar. Remove or make it transient. Related: avatar is the small icon top right of Summaries; make that top right button the user's actual avatar.
 - [ ] Layout idea: move the search field to the top, and use the bottom for nav tabs (Settings etc.). Currently the search pill floats at the bottom.
 - Screenshots (Oct 3): Account screen with Natural voices bar (about 3 chapters left), Daily review nudge, Export everything (25 files), Sign out, Delete account.
+
+## Ingested 2026-10-16
+- [ ] Bug: chapters from different books get mixed up. The Optimist, chapter 2, shows Autism for Dummies. Chapters 1 and 3 are fine.
+- [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
+- [ ] 1.2.0 Mac upload (build 202610110356) bounced: ITMS-90287/90288/90286 invalid code signing entitlements on BookrankMac (com.apple.developer.applesignin and application-identifier not in the provisioning profile). Fix the profile or entitlements and re-upload. (screenshots: notes/attachments/2026-10-16/bookrank-2.png, notes/attachments/2026-10-16/app-store-administration-1.png)
+- [ ] Bug: chapters from different books get mixed up. The Optimist, chapter 2, shows Autism for Dummies. Chapters 1 and 3 are fine.
+- [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
+- [ ] 1.2.0 Mac upload (build 202610110356) bounced: ITMS-90287/90288/90286 invalid code signing entitlements on BookrankMac (com.apple.developer.applesignin and application-identifier not in the provisioning profile). Fix the profile or entitlements and re-upload. (screenshots: notes/attachments/2026-10-16/bookrank-2.png, notes/attachments/2026-10-16/app-store-administration-1.png)
