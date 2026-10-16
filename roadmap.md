@@ -448,6 +448,3 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 - [ ] Bug: chapters from different books get mixed up. The Optimist, chapter 2, shows Autism for Dummies. Chapters 1 and 3 are fine.
 - [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
 - [ ] 1.2.0 Mac upload (build 202610110356) bounced: ITMS-90287/90288/90286 invalid code signing entitlements on BookrankMac (com.apple.developer.applesignin and application-identifier not in the provisioning profile). Fix the profile or entitlements and re-upload. (screenshots: notes/attachments/2026-10-16/bookrank-2.png, notes/attachments/2026-10-16/app-store-administration-1.png)
-- [ ] Bug: chapters from different books get mixed up. The Optimist, chapter 2, shows Autism for Dummies. Chapters 1 and 3 are fine.
-- [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
-- [ ] 1.2.0 Mac upload (build 202610110356) bounced: ITMS-90287/90288/90286 invalid code signing entitlements on BookrankMac (com.apple.developer.applesignin and application-identifier not in the provisioning profile). Fix the profile or entitlements and re-upload. (screenshots: notes/attachments/2026-10-16/bookrank-2.png, notes/attachments/2026-10-16/app-store-administration-1.png)
