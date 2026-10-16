@@ -8,7 +8,7 @@ You finish a book. A month later you remember one idea. Bookrank keeps the rest:
 
 [![Bookrank, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4)
 
-Free on the [web](https://bookrank.heyitsmejosh.com), iPhone, iPad and Mac.
+Free on the [web](https://bookrank.jaybulb.com), iPhone, iPad and Mac.
 
 - **Chapters.** A list of your books. Open one, pick a chapter, read it.
 - **Listen.** Two voices talk the chapter through. The word being read lights up and the page follows.
