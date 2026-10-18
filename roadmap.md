@@ -404,6 +404,8 @@ Pages project, so Functions never execute. `list_books` / `get_ranking` over boo
 straightforward once the site is on Pages. Template: conway, 2026-08-31.
 # Roadmap
 
+> Priority tier 2 (2026-10-17): ship push, this week. Order: live blockers, ship pushes, active features, portfolio, exploratory. See ~/Documents/Code/LOOP-HANDOFF.md.
+
 > Everything above about the API being blocked on hosting is SUPERSEDED by the section
 > below: the move to Cloudflare Pages happened on 2026-08-31 and the endpoints are live.
 
