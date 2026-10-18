@@ -1,0 +1,7 @@
+/* Bookrank brand tokens. The accent is the only colour this app owns; spacing, radii and type come from the shared system. */
+:root {
+  --accent: #1634b8;
+  --accent-light: #3f7bff;
+  --accent-deep: #1634b8;
+  --accent-ring: color-mix(in srgb, #1634b8 30%, transparent);
+}
