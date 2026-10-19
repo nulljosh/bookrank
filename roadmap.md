@@ -18,7 +18,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] Web offline mode: the iOS app keeps the shelf offline, the web does not.
 - [ ] Web accessibility labels and languages beyond English.
 - [ ] A daily review nudge (one old idea, resurfaced), highlights you can save, offline audio downloads.
-- [ ] The Man Who Solved the Market has only a cover photo in iCloud; photograph its chapters to summarize it. Fiend's 151 photos can be deleted once the notes are read.
+- [ ] The Man Who Solved the Market has only a cover photo in iCloud; photograph its chapters to summarize it.
 
 ## Open
 - [ ] Verify iPad layout visually on simulator -- 2026-09-02. Code review found no
