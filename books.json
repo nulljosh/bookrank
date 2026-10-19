@@ -1503,8 +1503,24 @@
   },
   {
     "title": "The Contrarian",
-    "author": "Max Chafkin (Intro-4)",
+    "author": "Max Chafkin (complete: intro, ch. 1-13)",
     "cover": "https://covers.openlibrary.org/b/id/11433880-M.jpg",
+    "linked": true,
+    "badge": true,
+    "section": "summary"
+  },
+  {
+    "title": "How AI Thinks",
+    "author": "Nigel Toon (complete: intro, ch. 1-19)",
+    "cover": "https://covers.openlibrary.org/b/id/14857421-M.jpg",
+    "linked": true,
+    "badge": true,
+    "section": "summary"
+  },
+  {
+    "title": "Fiend",
+    "author": "Peter Stenson (complete)",
+    "cover": "https://covers.openlibrary.org/b/id/10317414-M.jpg",
     "linked": true,
     "badge": true,
     "section": "summary"
