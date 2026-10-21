@@ -247,7 +247,7 @@ struct AccountView: View {
         // auth user_metadata, so both read and write the same fields.
         Section {
             HStack(spacing: 14) {
-                Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg()), "avatar_source": .string("generated")]); return "New avatar saved." } } label: {
+                Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg()), "avatar_source": .string("generated")]); return nil } } label: {
                     AvatarView(svg: generated ? auth.user?.userMetadata["avatar"]?.stringValue : nil,
                                initial: String(auth.user?.email?.first ?? "?"), photo: generated ? nil : linkedPhoto)
                 }
