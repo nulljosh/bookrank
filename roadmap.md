@@ -7,11 +7,8 @@ Listen feature complete. Refactored narration player into a shared module (liste
 iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) for per-chapter or whole-book reading with rate/volume controls. Web version gained a chapter picker for the existing read-aloud functionality. Both deployed live. Goodreads sign-in was requested but is impossible since their API and OAuth shut down in December 2020.
 
 ## v1.1 (the loop runs to here)
-- [x] Watch companion ships with 1.1, so App Store Connect needs Apple Watch screenshots for the version (take them on a watch simulator with the shots routine) and the review notes should mention the watch app. Install on a real watch to confirm lines arrive. Done: 1.1.0 shipped with the watch app (iOS READY_FOR_DISTRIBUTION). Real-watch check rides with the real-phone line below.
-- [x] Mac: add the signed-out sample chapter (iOS has it) with the 1.1 Mac build. (Orange Sign in tint done 2026-10-02, ships with 1.1.) Done: LibraryView's "Try a sample chapter" works on Mac too (verified 2026-10-21).
 - [ ] Background audio: kept. App Review (2.5.4) rejected iOS 1.0.5 once because the review notes said no login and the reviewer never reached Listen; fixed with a sample chapter and honest notes. KEEP REVIEW NOTES TRUE every release. If Apple still asks, record 20 seconds on a physical phone (Listen, lock screen, audio continues) and put it in the notes.
 - [ ] `books.json` cannot go yet: it is the data behind the public /api and MCP tools (`list_books`, `search_books`) and the cover fallback on web and iOS. Decide first: retire those tools, or point them at something else. Then delete `books.json`, `scripts/build.py`, `covers.json`.
-- [x] Landing and app screenshots refreshed after 1.0.5 is approved; bump to 1.1.0 and ship both platforms. Done: iOS 1.1.0 and Mac 1.2.0 shipped; the screenshot refresh stays open below.
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] The listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
@@ -29,7 +26,6 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
   Xcode only has the iOS 26.5 SDK with the iOS 26.2 runtime downloaded, so `xcodebuild`
   won't recognize any simulator destination even by explicit UDID -- needs the matching
   platform component installed, then a screenshot check.
-- [x] App Store privacy policy URL: currently spine.heyitsmejosh.com/privacy.html (dead host, stale from Spine rename). Should be bookrank.heyitsmejosh.com/privacy.html. Frozen until next version ships (app-info only editable during staged versions). (2026-09-02: Apple rejects the PATCH, "privacyPolicyUrl can not be modified in the current state", while the only app-info is READY_FOR_DISTRIBUTION; local metadata is already correct, so it goes through on the next version bump via metadata apply) Done 2026-10-21 on the 1.2.1 app-info: https://bookrank.jaybulb.com/privacy (200). Support and marketing URLs on 1.2.1 moved to bookrank.jaybulb.com too.
 ## Inbox 2026-08-30, 15 book masterclasses moved here from Lexly
 
 `content/masterclasses/*.json` arrived from `lexly/content/notes/`. Lexly was shipping a
@@ -83,15 +79,7 @@ summaries, the Guideline 4.2 answer), **email+password only** (a third-party pro
 Sign in with Apple mandatory under 4.8).
 
 Mostly a transplant, lexly, healstack and litigate all already do this against the same project:
-- [x] `ios/project.yml`: add `packages: Supabase: {url: https://github.com/supabase/supabase-swift.git, from: "2.5.1"}` (healstack's pin, NOT litigate's stale `supabase-community` URL) and wire both targets. This is the repo's first SwiftPM dependency. Done: supabase-swift is in project.yml.
-- [x] **`BookrankMac.entitlements` needs `com.apple.security.network.client`.** It is sandboxed without it today, so Mac auth will fail silently. Edit the committed file by hand, xcodegen drops keys in this project. Done: network.client is in BookrankMac.entitlements.
-- [x] `Models/AuthStore.swift`: structural copy of `healstack/ios/Services/AuthService.swift` (`@Observable @MainActor` + one `authStateChanges` loop handling `.initialSession`). Keep the session `signIn` returns rather than re-reading `try? auth.session`, that swallowed refresh failures and caused a macOS 2.1 rejection in lexly. Bypass auth under `UITEST_SNAPSHOT` so screenshot automation still runs. Done: Models/AuthStore.swift exists.
-- [x] `Models/SessionKeychainStorage.swift`: copy verbatim from `lexly/ios/Sources/Shared/`. Needed because Bookrank ships a Mac target. Done: Models/SessionKeychainStorage.swift exists.
 - [ ] Credentials hardcoded in Swift (lexly style), `scripts/prepare-plist.py` rewrites Info.plist here, so `$(SUPABASE_URL)` substitution is the fragile choice.
-- [x] `DataStore.swift`: replace `summaryIndex = []` with a `bookrank_summaries` fetch. `SummaryDetailView` and `LibraryView.summaries` are still in the tree. Done: DataStore fetches bookrank_summaries.
-- [x] `Views/AccountView.swift`: sign in/up/out + Delete account. Reuse the raw-`URLRequest` bearer helper at `healstack/ios/Services/AuthService.swift:103`; the endpoint needs no further work. Done: AccountView has sign in/out and Delete account.
-- [x] Account deletion is a hard Guideline 5.1.1(v) blocker, it ships in the same pass as auth, not after. Done: account deletion shipped.
-- [x] Do NOT submit afterwards: listing metadata and screenshots still describe bundled offline summaries. Done: stale, 1.0.5 through 1.2.0 shipped.
 
 </details>
 
@@ -112,12 +100,10 @@ the owner's private sync.** This closes the personal-vs-product question that se
 below were implicitly blocked on.
 
 Consequences, DO:
-- [x] **iOS/macOS ships a hollow shell.** `DataStore.summaryIndex = []`, no auth, no search, Done: auth and summaries ship in the app (verified 2026-10-21).
   no way to add a book, a stranger downloading it can do nothing (Guideline 4.2 risk). Fix
   is Supabase auth in the app so the *owner* can read their own summaries. NOTE: the
   "Digest companion app, BLOCKED, needs a backend decision (Supabase vs static JSON)" item
   below is **stale**. Supabase won on 2026-08-19 when summaries moved. Unblock it.
-- [x] **Account deletion** becomes a hard Guideline 5.1.1(v) submission blocker the moment Done: Delete account is in AccountView.
   the app offers accounts, i.e. the moment the item above lands. Build it in the same pass,
   not after a rejection.
 - [ ] **Verify auth email delivery** before relying on password reset. Signup confirmation and
@@ -151,7 +137,6 @@ shipping app. All of that is closed:
   out of `LibraryView`. Builds clean for `generic/platform=iOS Simulator`.
 
 Open:
-- [x] iOS/macOS have no way to read summaries now. Needs Supabase auth in the app Done: DataStore fetches bookrank_summaries and SummaryDetailView renders them.
   (`supabase-swift`) fetching `bookrank_summaries`; `SummaryDetailView` and the
   `LibraryView.summaries` section are still in the tree, ready to be re-wired.
 - [ ] AI-generated summaries for a book a user picks needs a backend (Cloudflare Worker +
@@ -354,7 +339,6 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
 
 ## Deferred from 2026-08-22 night (session limit)
 - [ ] Run `python3 scripts/fetch-covers.py --retry-misses`, the Google Books fallback is committed but the run never finished, so 8 rows still show the dashed placeholder instead of art. One command, then commit `rankings.html`.
-- [x] Delete the dead iOS summaries code, `SummaryDetailView`, the `summaries` section in `LibraryView`, `SummaryEntry`, and the `summarySlug` badge branch all read `store.summaryIndex`, which `DataStore` hardcodes to `[]` since summaries moved behind Supabase on 2026-08-19. None of it can render. Needs one xcodebuild to confirm both targets still compile. Obsolete 2026-10-21: summaryIndex is fetched again, so this code is live, not dead.
 - [ ] **STILL OPEN, CANNOT be fixed without a new version, proven 2026-08-25.** Tried the direct
       edit: `asc apps info edit --app 6792376485 --platform IOS --version 1.0.1 --description ...`
       returns *"Attribute 'description' cannot be edited at this time"* because every version row
@@ -364,7 +348,6 @@ find "$B" -mindepth 3 -maxdepth 3 -type d '!' -exec test -e "{}/summary.md" ';' 
       The inaccuracy is real though: the live copy says "dive into detailed summaries" as if they
       ship in the app, while the corrected local copy says they live on the web behind your own
       account. Original note follows: The live listing still reads "...ranked by rating with chapter-by-chapter summaries for finished books", advertising bundled summaries the app no longer carries (they moved behind per-user Supabase accounts). `metadata/version/1.0/en-US.json` holds the corrected copy locally but 1.0.1 shipped without it, so this is a live Guideline 2.3.1 accurate-metadata risk. Push it with the next version: `asc metadata push --app 6792376485 --version <v> --platform IOS --dir ./metadata` (the workflow does NOT push metadata on its own). Original note follows:
-- [x] **`~/Documents/Code/uprighty/` is a DIVERGED clone of this repo, not just a stale one, do Done: uprighty/ is gone (2026-10-21); its unique work was rescued to origin/books-wip.
       not delete it yet.** Checked 2026-08-24: it sits 171 commits behind origin/main *and* holds
       commits that exist nowhere else (`af54ff0 docs: whitepaper + README link`, `3e34ca1 Add
       marketing landing page at /, move rankings app to /rankings.html`, `761ac52 wip: partial
@@ -440,13 +423,9 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 - [ ] Tap a book in the read list to mark it "photograph next", so the list doubles as the summary queue.
 
 ## Ingested 2026-10-03
-- [x] Confirm we didn't ship our credentials accidentally. Verified 2026-10-21: no service_role, live Stripe, ElevenLabs or private keys in tracked files, full git history, or the local DerivedData build; only the public anon key (role "anon") is in AuthStore.swift, as designed.
 - [ ] Figure out how to get full summaries for the remaining Goodreads books. The ones we uploaded ourselves will have much more detail, obviously.
-- [x] Account sheet shows a "New avatar saved." message pinned at the bottom after tapping the avatar. Remove or make it transient. Related: avatar is the small icon top right of Summaries; make that top right button the user's actual avatar. Done 2026-10-21: the avatar no longer posts a message; the new avatar is the feedback. Top-right avatar idea still open.
 - [ ] Layout idea: move the search field to the top, and use the bottom for nav tabs (Settings etc.). Currently the search pill floats at the bottom.
 - Screenshots (Oct 3): Account screen with Natural voices bar (about 3 chapters left), Daily review nudge, Export everything (25 files), Sign out, Delete account.
 
 ## Ingested 2026-10-16
-- [x] Bug: chapters from different books get mixed up. The Optimist, chapter 2, shows Autism for Dummies. Chapters 1 and 3 are fine. Fixed 2026-10-21: a next-chapter prefetch in Speaker.swift that finished after switching books saved its script into the new book. Ships with the next iOS/Mac build. The bad cached script is still on row ab3f7f0f (listen.chapters."2"); drop that key or it keeps showing.
 - [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
-- [x] 1.2.0 Mac upload (build 202610110356) bounced: ITMS-90287/90288/90286 invalid code signing entitlements on BookrankMac (com.apple.developer.applesignin and application-identifier not in the provisioning profile). Fix the profile or entitlements and re-upload. (screenshots: notes/attachments/2026-10-16/bookrank-2.png, notes/attachments/2026-10-16/app-store-administration-1.png) Done: resubmitted 2026-10-11 with profile R4M45U9W88 and the expanded entitlements, Mac 1.2.0 is live. 1.2.1 (build 202610210800, chapter mix-up fix) signed the same way 2026-10-21. iOS + Mac 1.2.1 submitted, WAITING_FOR_REVIEW (Mac submission ee8d6630).
