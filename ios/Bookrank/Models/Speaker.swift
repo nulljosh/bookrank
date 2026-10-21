@@ -140,12 +140,15 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     private func script(for i: Int) -> Task<[ListenState.Line]?, Never> {
         if let t = prefetch[i] { return t }
-        let t = Task<[ListenState.Line]?, Never> { [talks = talks, chapters] in
+        let t = Task<[ListenState.Line]?, Never> { [talks = talks, chapters, slug] in
             guard i < chapters.count else { return nil }
             if !talks { return Self.blocks(chapters[i].text) }
             if let s = scripts["\(i)"] { return s }
             if let s = await Narrator.narrate(text: chapters[i].text, title: chapters[i].title, ch: i, total: chapters.count) {
-                scripts["\(i)"] = s; return s
+                // A prefetch that lands after a book switch belongs to the old book. Saving it here
+                // is how Adult Autism's chapter 2 ended up in The Optimist.
+                if self.slug == slug { scripts["\(i)"] = s }
+                return s
             }
             return nil
         }
