@@ -440,7 +440,7 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 - [ ] Tap a book in the read list to mark it "photograph next", so the list doubles as the summary queue.
 
 ## Ingested 2026-10-03
-- [ ] Confirm we didn't ship our credentials accidentally. (Account screen screenshot shows the signed-in email, Goodreads profile link and a "Credentials" section; check the repo and built bundle for keys.)
+- [x] Confirm we didn't ship our credentials accidentally. Verified 2026-10-21: no service_role, live Stripe, ElevenLabs or private keys in tracked files, full git history, or the local DerivedData build; only the public anon key (role "anon") is in AuthStore.swift, as designed.
 - [ ] Figure out how to get full summaries for the remaining Goodreads books. The ones we uploaded ourselves will have much more detail, obviously.
 - [x] Account sheet shows a "New avatar saved." message pinned at the bottom after tapping the avatar. Remove or make it transient. Related: avatar is the small icon top right of Summaries; make that top right button the user's actual avatar. Done 2026-10-21: the avatar no longer posts a message; the new avatar is the feedback. Top-right avatar idea still open.
 - [ ] Layout idea: move the search field to the top, and use the bottom for nav tabs (Settings etc.). Currently the search pill floats at the bottom.
