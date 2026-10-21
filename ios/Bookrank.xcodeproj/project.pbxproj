@@ -30,6 +30,7 @@
 		4D2482A7BBC95BAA98D7DD6F /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9EA31865801340B0F2B9C /* WatchSync.swift */; };
 		5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */; };
 		55582AC68081F6A8CCA10CA3 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 0963751C4C2186FBB23D1722 /* sobriety-for-dummies.md */; };
+		582EC9A0A3F1B47661A21412 /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 31CE473B2168A861D6D3B577 /* how-ai-thinks.md */; };
 		5AB110C02187C725ADF752BB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94455A1D83055B6BDCDEA6B /* LibraryView.swift */; };
 		61844E872C58C71D585B3D08 /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367E334777880D13034D343 /* Nudge.swift */; };
 		61D6262F84FDA807D5117C90 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9EA31865801340B0F2B9C /* WatchSync.swift */; };
@@ -46,6 +47,7 @@
 		8BB0A0036A8BA3B915614B37 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2E51FA65956F7781A1864799 /* Supabase */; };
 		8C89E5673A4F728973FF29E3 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */; };
 		8DD38A520D8AC27450901D76 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2C66F822EFF6012055DCB /* SessionKeychainStorage.swift */; };
+		94E1A540E8712977633693B7 /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 31CE473B2168A861D6D3B577 /* how-ai-thinks.md */; };
 		98277152F4968E0BC6DEEBF3 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4E60649355186A61C354D /* Book.swift */; };
 		9AF29A0FEE50C2FB49B0C864 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D58CE8EE8BFD32B40F6B3 /* books.json */; };
 		9CD5FFEFDDBA03ED3740BA84 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = C002724A560D4513FDCC35AA /* sample.md */; };
@@ -100,6 +102,7 @@
 		26F0D65FAD99D25ADD9772F1 /* trading-for-canadians-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "trading-for-canadians-for-dummies.md"; sourceTree = "<group>"; };
 		2ADE31ED8113F2FAE6C5BEFA /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
 		2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ibs-for-dummies.md"; sourceTree = "<group>"; };
+		31CE473B2168A861D6D3B577 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
 		331316B68FF0C28F8DEB5027 /* BookrankUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BookrankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3A1353D313534351117C8B /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "good-feng-shui.md"; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 				3C3A1353D313534351117C8B /* data-science.md */,
 				FB40C73D2E6AB630EB181B27 /* fiend.md */,
 				4623675CF1C995DEFF7E1DE2 /* good-feng-shui.md */,
+				31CE473B2168A861D6D3B577 /* how-ai-thinks.md */,
 				2B3CA6528A026054AB82E449 /* ibs-for-dummies.md */,
 				A6E9ABA85A2BCC89BFA47CA2 /* living-well-in-a-down-economy-for-dummies.md */,
 				61F53FBCBA5F9FFB374E3654 /* macos-tahoe.md */,
@@ -412,6 +416,7 @@
 				649730D02B3481F8505CA549 /* data-science.md in Resources */,
 				1CD52914B85B54F45A727C4D /* fiend.md in Resources */,
 				6E183A454AFE9EF97C41F1F3 /* good-feng-shui.md in Resources */,
+				94E1A540E8712977633693B7 /* how-ai-thinks.md in Resources */,
 				7A25671191DF1EC112961C12 /* ibs-for-dummies.md in Resources */,
 				30981EBF8CC9CAB41337F5A7 /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				2BF804FB6372846B1BC65716 /* macos-tahoe.md in Resources */,
@@ -437,6 +442,7 @@
 				E7D47BF064A2A4010903F1EC /* data-science.md in Resources */,
 				A99308074D71072282416B28 /* fiend.md in Resources */,
 				002A71F32C1E13B5F67F19B2 /* good-feng-shui.md in Resources */,
+				582EC9A0A3F1B47661A21412 /* how-ai-thinks.md in Resources */,
 				AABDF0698D27BB2C2BE30BE8 /* ibs-for-dummies.md in Resources */,
 				5550DBFA5F72D74D7C38700F /* living-well-in-a-down-economy-for-dummies.md in Resources */,
 				8C89E5673A4F728973FF29E3 /* macos-tahoe.md in Resources */,
@@ -555,7 +561,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -564,7 +570,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -576,13 +582,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bookrank;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -598,7 +604,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -607,7 +613,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -618,13 +624,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bookrank;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -755,7 +761,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/BookrankMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -764,7 +770,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -777,7 +783,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bookrank/Bookrank.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610110324;
+				CURRENT_PROJECT_VERSION = 202610210800;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Bookrank/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -786,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

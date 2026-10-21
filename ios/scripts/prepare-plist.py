@@ -49,6 +49,8 @@ def main() -> int:
     data["UISupportedInterfaceOrientations~ipad"] = IPAD_ORIENTATIONS
     # Listen keeps playing with the screen locked or the app in the background.
     data["UIBackgroundModes"] = ["audio"]
+    # xcodegen drops this boolean too; without it every build waits on the compliance question.
+    data["ITSAppUsesNonExemptEncryption"] = False
     PLIST.write_bytes(plistlib.dumps(data))
 
     print(f"Info.plist: CFBundleShortVersionString={marketing}, CFBundleVersion={build}, {len(IPAD_ORIENTATIONS)} iPad orientations")
