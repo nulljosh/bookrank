@@ -429,3 +429,7 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 
 ## Ingested 2026-10-16
 - [ ] Needs a "completed" button for each book. The book page needs a UI overhaul.
+
+## Ingested 2026-10-21
+- [ ] [P1] Navigation: profile needs to be in Settings in the bottom nav, search needs to be at the top. Merges with the 2026-10-03 layout idea above. (notes/attachments/2026-10-21/bookrank-1.png)
+- [ ] [P2] QA the macOS app.
