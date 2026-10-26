@@ -13,7 +13,7 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 - [ ] The listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
 - [ ] Web offline mode: the iOS app keeps the shelf offline, the web does not.
-- [ ] Web accessibility labels and languages beyond English.
+- [ ] Web languages beyond English. (Accessibility labels done 2026-10-26: title, body, new email and new password fields labeled, profile status line is a live region.)
 - [ ] A daily review nudge (one old idea, resurfaced), highlights you can save, offline audio downloads.
 - [ ] The Man Who Solved the Market has only a cover photo in iCloud; photograph its chapters to summarize it.
 
