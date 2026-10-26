@@ -99,8 +99,8 @@ dl.profile dt { color:var(--text3); }
     </dl>
     <h2 style="font-family:var(--font-display);font-size:1rem;margin:0.5rem 0 0.6rem">Credentials</h2>
     <form class="auth" id="credForm">
-      <input type="email" id="newEmail" placeholder="New email" autocomplete="email">
-      <input type="password" id="newPassword" placeholder="New password (8+ characters)" autocomplete="new-password" minlength="8">
+      <input type="email" id="newEmail" aria-label="New email" placeholder="New email" autocomplete="email">
+      <input type="password" id="newPassword" aria-label="New password" placeholder="New password (8+ characters)" autocomplete="new-password" minlength="8">
       <div class="row">
         <button type="submit" class="primary">Update</button>
         <button type="button" id="pReset">Email me a reset link</button>
