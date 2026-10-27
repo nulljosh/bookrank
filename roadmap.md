@@ -8,7 +8,6 @@ iOS app gained text-to-speech via AVSpeechSynthesizer (new Speaker.swift model) 
 
 ## v1.1 (the loop runs to here)
 - [ ] Background audio: kept. App Review (2.5.4) rejected iOS 1.0.5 once because the review notes said no login and the reviewer never reached Listen; fixed with a sample chapter and honest notes. KEEP REVIEW NOTES TRUE every release. If Apple still asks, record 20 seconds on a physical phone (Listen, lock screen, audio continues) and put it in the notes.
-- [x] Decided 2026-10-26: keep `books.json`, `scripts/build.py` and `covers.json`. They back the public /api, the MCP tools (`list_books`, `search_books`) and the cover fallback on web and iOS; nothing to retire. `books.json` cannot go yet
 - [ ] Listen on a real phone: Lily and Brian, locked screen, background audio.
 - [ ] The listing reuses the old screenshots; refresh them with the next version (search bar, amber look).
 - [ ] Check natural voices, background audio, search, export and the Goodreads Account section on a real phone once 1.0.5 is out.
