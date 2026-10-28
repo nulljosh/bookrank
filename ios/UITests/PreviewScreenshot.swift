@@ -113,6 +113,25 @@ final class PreviewScreenshot: XCTestCase {
         XCTAssertFalse(app.buttons["Skip"].firstMatch.exists, "Skip should close the pages")
     }
 
+    /// Signed out: the library, the sample book and its first chapter. Never presses Listen.
+    func testSampleRead() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]
+        app.launch()
+        let sample = app.buttons["Try a sample chapter"].firstMatch
+        XCTAssertTrue(sample.waitForExistence(timeout: 15))
+        sleep(1)
+        saveTo("library", XCUIScreen.main.screenshot())
+        sample.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Know the ground'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10))
+        sleep(1)
+        saveTo("book", XCUIScreen.main.screenshot())
+        chapter.tap()
+        sleep(2)
+        saveTo("chapter", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

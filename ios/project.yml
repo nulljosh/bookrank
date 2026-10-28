@@ -6,7 +6,12 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
-    sources: [Kernel, ../Kernel.icon]
+    sources:
+      - Kernel
+      - ../Kernel.icon
+      - path: ../fonts
+        includes: ["*.otf"]
+        buildPhase: resources
     info:
       path: Kernel/Info.plist
       properties:
@@ -52,7 +57,12 @@ targets:
     type: application
     platform: macOS
     deploymentTarget: "14.0"
-    sources: [Kernel, ../Kernel.icon]
+    sources:
+      - Kernel
+      - ../Kernel.icon
+      - path: ../fonts
+        includes: ["*.otf"]
+        buildPhase: resources
     info:
       path: Kernel/Info.plist
       properties:

@@ -17,8 +17,10 @@
 		15D930050CBDA1658CCCD3A4 /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
 		16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
 		191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
+		1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */; };
 		1E5109055000EBDB812D992F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		1FD09E91C1599004CA7E5213 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */; };
+		235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */; };
 		241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
@@ -31,9 +33,12 @@
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
+		45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
+		4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
 		54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
 		599BE2FAB724AF643A6619DD /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
+		59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */; };
 		5C88017850B92C2908EBCB1D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
@@ -73,14 +78,17 @@
 		CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */; };
 		D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
+		D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
 		E20FA7D94F175478FA2E24F8 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
+		E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
 		E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
 		F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
+		FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */; };
 		FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
 		FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +112,7 @@
 		20EE769FDA16E1E24C359F00 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
+		27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Bold.otf"; sourceTree = "<group>"; };
 		29A3854E0210223CC5024821 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		32D10340DE121C50437BAE35 /* KernelMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -128,12 +137,15 @@
 		7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kernel.entitlements; sourceTree = "<group>"; };
 		86F8D3888306DB3496A66700 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		8917EA02FB6A28868C756F74 /* Nudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
+		957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Medium.otf"; sourceTree = "<group>"; };
 		9C9F810A2EE7CDD4B516ADEF /* Kernel.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Kernel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1FB1817D952E630F014265C /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Regular.otf"; sourceTree = "<group>"; };
 		A918FA2D7AF3995D74F8E133 /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		AAB8DB870805E0D468BF923B /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
 		B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "acing-the-system-design-interview.md"; sourceTree = "<group>"; };
+		BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Semibold.otf"; sourceTree = "<group>"; };
 		C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		D2CEA9519827D51461348E47 /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
@@ -170,6 +182,18 @@
 				4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */,
 			);
 			path = summaries;
+			sourceTree = "<group>";
+		};
+		0E26F8CC828070D4E6EE2F07 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */,
+				957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */,
+				A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */,
+				BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */,
+			);
+			name = fonts;
+			path = ../fonts;
 			sourceTree = "<group>";
 		};
 		1A2FED814490F5B9BF67D7D0 /* UITests */ = {
@@ -252,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				6A3EE226D4E25B6020FCE81E /* bookrank */,
+				0E26F8CC828070D4E6EE2F07 /* fonts */,
 				FBA8AD8272F433C19F1171F0 /* Kernel */,
 				B639F1186DEF4C633D487E80 /* KernelWatch */,
 				1A2FED814490F5B9BF67D7D0 /* UITests */,
@@ -414,6 +439,10 @@
 			files = (
 				99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */,
 				76A0A9AB5E70EF5F54180419 /* Kernel.icon in Resources */,
+				45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */,
+				FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */,
+				59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */,
+				D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */,
 				7BF9CE9EC2D13D4F8B4C7A07 /* accounting-for-canadians-for-dummies.md in Resources */,
 				7D545127040FA6FF4DCB2C66 /* accounting-for-canadians.md in Resources */,
 				B78C98F75A0D69F52D3EEE78 /* acing-the-system-design-interview.md in Resources */,
@@ -442,6 +471,10 @@
 			files = (
 				D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */,
 				ABB3578271ADDB49C6476803 /* Kernel.icon in Resources */,
+				4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */,
+				1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */,
+				235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */,
+				E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */,
 				2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */,
 				76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */,
 				54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */,

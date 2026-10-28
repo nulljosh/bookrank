@@ -51,11 +51,11 @@ struct OnboardingView: View {
             Spacer(minLength: 0)
             visual(i).frame(height: 160)
             Text(Self.pages[i].title)
-                .font(.largeTitle.weight(.bold))
+                .font(.kernel(.largeTitle, weight: .bold))
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
             Text(Self.pages[i].body)
-                .font(.title3)
+                .font(.kernel(.title3))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -106,7 +106,7 @@ struct OnboardingView: View {
 private struct GoldCapsule: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.body.weight(.semibold))
+            .font(.kernel(.body, weight: .semibold))
             .foregroundStyle(onAmber)
             .frame(maxWidth: .infinity, minHeight: 48)
             .background(amber, in: Capsule())
@@ -118,7 +118,7 @@ private struct GoldCapsule: ButtonStyle {
 private struct OutlineCapsule: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.body.weight(.semibold))
+            .font(.kernel(.body, weight: .semibold))
             .foregroundStyle(.primary)
             .frame(maxWidth: .infinity, minHeight: 48)
             .overlay(Capsule().strokeBorder(Color.secondary.opacity(0.5), lineWidth: 1))

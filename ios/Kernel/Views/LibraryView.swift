@@ -189,7 +189,7 @@ struct LibraryView: View {
                         Text(label)
                         Text("\(books.count)").monospacedDigit().foregroundStyle(.tertiary)
                         Spacer()
-                        Image(systemName: "chevron.right").font(.caption.weight(.semibold)).foregroundStyle(.tertiary)
+                        Image(systemName: "chevron.right").font(.kernel(.caption, weight: .semibold)).foregroundStyle(.tertiary)
                             .rotationEffect(.degrees(open ? 90 : 0))
                     }
                     .contentShape(Rectangle())
@@ -205,9 +205,9 @@ struct LibraryView: View {
         HStack(spacing: 14) {
             Thumb(url: store.cover(for: entry))
             VStack(alignment: .leading, spacing: 2) {
-                Text(entry.title).font(.body)
+                Text(entry.title).font(.kernel(.body))
                 if let pos = entry.listen?.pos, started(entry) {
-                    Text("Resume · Ch \(pos.ch + 1)").font(.footnote).foregroundStyle(.secondary)
+                    Text("Resume · Ch \(pos.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary)
                 }
             }
         }
@@ -230,14 +230,14 @@ private struct MiniPlayer: View {
             HStack(spacing: 12) {
                 Button("Previous chapter", systemImage: "backward.end.fill") { speaker.skip(-1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 Button(speaker.playing && !speaker.paused ? "Pause" : "Play", systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
-                    .labelStyle(.iconOnly).font(.title2).contentTransition(.symbolEffect(.replace))
+                    .labelStyle(.iconOnly).font(.kernel(.title2)).contentTransition(.symbolEffect(.replace))
                     .keyboardShortcut("p", modifiers: [.command, .shift])
                 Button("Next chapter", systemImage: "forward.end.fill") { speaker.skip(1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "Listening").font(.subheadline).lineLimit(1)
+                    Text(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "Listening").font(.kernel(.subheadline)).lineLimit(1)
                     // The book and which voice is speaking; on the Mac, hovering explains a fallback.
                     Text([speaker.slug.flatMap { store.summary(for: $0)?.title }, speaker.voice.isEmpty ? nil : speaker.voice].compactMap { $0 }.joined(separator: " · "))
-                        .font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                        .font(.kernel(.caption)).foregroundStyle(.secondary).lineLimit(1)
                         .help(speaker.status)
                 }
                 .padding(.leading, 4)
@@ -250,7 +250,7 @@ private struct MiniPlayer: View {
                     .pickerStyle(.inline)
                     Toggle("Natural voice", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
                 } label: {
-                    Text("\(speaker.rate, specifier: "%g")×").font(.footnote.weight(.medium)).monospacedDigit()
+                    Text("\(speaker.rate, specifier: "%g")×").font(.kernel(.footnote, weight: .medium)).monospacedDigit()
                         .padding(.horizontal, 8).padding(.vertical, 4)
                         .background(.quaternary, in: Capsule())
                 }
@@ -279,13 +279,13 @@ private struct GoodreadsRow: View {
         let row = HStack(spacing: 14) {
             Thumb(url: book.cover)
             VStack(alignment: .leading, spacing: 3) {
-                Text(book.title).font(.body).lineLimit(2)
-                Text(book.author).font(.footnote).foregroundStyle(.secondary).lineLimit(1)
+                Text(book.title).font(.kernel(.body)).lineLimit(2)
+                Text(book.author).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
             }
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 3) {
                 if let r = book.rating { Stars(r) }
-                if let when = book.when { Text(when).font(.caption).foregroundStyle(.tertiary) }
+                if let when = book.when { Text(when).font(.kernel(.caption)).foregroundStyle(.tertiary) }
             }
         }
         .padding(.vertical, 2)
@@ -301,7 +301,7 @@ private struct Stars: View {
         HStack(spacing: 1) {
             ForEach(0..<5, id: \.self) { i in Image(systemName: n >= Double(i) + 1 ? "star.fill" : n >= Double(i) + 0.5 ? "star.leadinghalf.filled" : "star") }
         }
-        .font(.caption2).foregroundStyle(amber)
+        .font(.kernel(.caption2)).foregroundStyle(amber)
         .accessibilityElement(children: .ignore).accessibilityLabel("\(n.formatted()) of 5 stars")
     }
 }
@@ -311,7 +311,7 @@ struct Thumb: View {
     let url: String?
     var width: CGFloat = 36
     var body: some View {
-        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.footnote).foregroundStyle(.tertiary)) }
+        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.kernel(.footnote)).foregroundStyle(.tertiary)) }
             .frame(width: width, height: width * 52 / 36)
             .clipShape(RoundedRectangle(cornerRadius: 3))
             .accessibilityHidden(true)   // the title beside it says everything; VoiceOver would read "image" first

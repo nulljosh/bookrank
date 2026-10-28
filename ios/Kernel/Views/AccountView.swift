@@ -86,7 +86,7 @@ struct AccountView: View {
                     Form {
                         signedIn
                         if let message {
-                            Section { Text(message).font(.footnote).foregroundStyle(.secondary) }
+                            Section { Text(message).font(.kernel(.footnote)).foregroundStyle(.secondary) }
                         }
                     }
                     #if os(macOS)
@@ -137,10 +137,10 @@ struct AccountView: View {
                     .accessibilityHidden(true)
                     .padding(.top, 12)
                 Text(isSigningUp ? "Create your account" : "Sign in to Kernel")
-                    .font(.title.weight(.semibold)).tracking(-0.8)
+                    .font(.kernel(.title, weight: .semibold)).tracking(-0.8)
                     .multilineTextAlignment(.center)
                 Text(isSigningUp ? "Chapter summaries of the books you read, in one private place." : "Your chapter summaries. Private to your account.")
-                    .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    .font(.kernel(.subheadline)).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     .padding(.bottom, 8)
 
                 if !isSigningUp && auth.hasSavedBiometricCredentials() {
@@ -165,7 +165,7 @@ struct AccountView: View {
 
                 HStack(spacing: 10) {
                     Rectangle().fill(.quaternary).frame(height: 1)
-                    Text("or").font(.footnote).foregroundStyle(.secondary)
+                    Text("or").font(.kernel(.footnote)).foregroundStyle(.secondary)
                     Rectangle().fill(.quaternary).frame(height: 1)
                 }
                 .padding(.vertical, 4)
@@ -197,7 +197,7 @@ struct AccountView: View {
                     }
                 } label: {
                     Text(isSigningUp ? "Create account" : "Sign in")
-                        .font(.body.weight(.medium)).foregroundStyle(onAmber)
+                        .font(.kernel(.body, weight: .medium)).foregroundStyle(onAmber)
                         .frame(maxWidth: .infinity, minHeight: 46)
                         .background(amber, in: Capsule())
                 }
@@ -206,7 +206,7 @@ struct AccountView: View {
                 .disabled(email.isEmpty || password.isEmpty)
 
                 if let message {
-                    Text(message).font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    Text(message).font(.kernel(.footnote)).foregroundStyle(.secondary).multilineTextAlignment(.center)
                 }
 
                 HStack {
@@ -225,10 +225,10 @@ struct AccountView: View {
                         message = nil
                     }
                 }
-                .font(.footnote).foregroundStyle(.secondary)
+                .font(.kernel(.footnote)).foregroundStyle(.secondary)
                 .buttonStyle(.plain)
 
-                appearancePicker.pickerStyle(.menu).font(.footnote).padding(.top, 6)
+                appearancePicker.pickerStyle(.menu).font(.kernel(.footnote)).padding(.top, 6)
             }
             .frame(maxWidth: 380)
             .padding(.horizontal, 24).padding(.bottom, 24)
@@ -252,15 +252,15 @@ struct AccountView: View {
                 .accessibilityLabel("Generate a new avatar")
                 VStack(alignment: .leading, spacing: 4) {
                     TextField("Username", text: $username, onCommit: saveUsername)
-                        .font(.headline)
+                        .font(.kernel(.headline))
                         .labelsHidden().textFieldStyle(.plain)   // the Mac grouped form would split it into label and field
                         .autocorrectionDisabled()
                         #if os(iOS)
                         .textInputAutocapitalization(.never)
                         .onSubmit(saveUsername)
                         #endif
-                    Text("bookrank.jaybulb.com/profile?u=\(auth.handle)").font(.caption2).foregroundStyle(.secondary)
-                    Text("Tap the avatar for a new one.").font(.caption2).foregroundStyle(.tertiary)
+                    Text("bookrank.jaybulb.com/profile?u=\(auth.handle)").font(.kernel(.caption2)).foregroundStyle(.secondary)
+                    Text("Tap the avatar for a new one.").font(.kernel(.caption2)).foregroundStyle(.tertiary)
                 }
             }
             .onAppear { username = auth.handle }
@@ -301,7 +301,7 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     ProgressView(value: usage.monthFraction)
                     Text(usage.chaptersLeft == 0 ? "Natural voices are used up for now. The device voice takes over."
-                         : "About \(usage.chaptersLeft) chapters of natural voice left").font(.subheadline)
+                         : "About \(usage.chaptersLeft) chapters of natural voice left").font(.kernel(.subheadline))
                 }
             } else {
                 Text("Checking natural voice usage").foregroundStyle(.secondary)
@@ -436,7 +436,7 @@ struct AvatarView: View {
                 AsyncImage(url: url) { $0.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.15) }
             } else {
                 Color.secondary.opacity(0.15)
-                Text(initial.uppercased()).font(.title2).foregroundStyle(.secondary)
+                Text(initial.uppercased()).font(.kernel(.title2)).foregroundStyle(.secondary)
             }
         }
         .frame(width: 56, height: 56)

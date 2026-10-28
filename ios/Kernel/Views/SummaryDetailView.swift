@@ -75,8 +75,8 @@ struct SummaryDetailView: View {
         HStack(spacing: 16) {
             Thumb(url: entry.flatMap { store.cover(for: $0) }, width: 64)
             VStack(alignment: .leading, spacing: 4) {
-                Text(entry?.title ?? "Summary").font(.title2.weight(.bold)).lineLimit(3)
-                Text("\(speaker.chapters.count) chapters").font(.footnote).foregroundStyle(.secondary)
+                Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).lineLimit(3)
+                Text("\(speaker.chapters.count) chapters").font(.kernel(.footnote)).foregroundStyle(.secondary)
             }
         }
         .padding(.vertical, 10)
@@ -97,7 +97,7 @@ struct SummaryDetailView: View {
             Text(speaker.chapters[i].title).lineLimit(2)
             Spacer(minLength: 8)
             if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
-                Label("Resume", systemImage: "play.circle").font(.footnote).foregroundStyle(.secondary).labelStyle(.titleAndIcon)
+                Label("Resume", systemImage: "play.circle").font(.kernel(.footnote)).foregroundStyle(.secondary).labelStyle(.titleAndIcon)
             }
         }
         .padding(.vertical, 3)
@@ -161,13 +161,12 @@ private struct LineView: View {
     let word: Range<Int>?
 
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            if line.md == nil { Text(line.host).font(.caption.weight(.semibold)).foregroundStyle(.tertiary).padding(.top, 3) }
-            text
-        }
+        // One narrator, so no speaker label; a little air between lines for reading.
+        text
+        .lineSpacing(5)
         .padding(.horizontal, 10).padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 6))
+        .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 12))
         .foregroundStyle(on || !dim ? .primary : .secondary)
     }
 
@@ -184,8 +183,8 @@ private struct LineView: View {
         if let md = line.md, let a = try? AttributedString(markdown: md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "• ", options: .regularExpression)
             .replacingOccurrences(of: "^#+ ", with: "", options: .regularExpression)) {
             // "# " is the chapter's own title, so it leads; "##" and below are its sections.
-            if md.hasPrefix("# ") { return Text(a).font(.title2.weight(.bold)) }
-            return md.hasPrefix("#") ? Text(a).font(.title3.weight(.semibold)) : Text(a)
+            if md.hasPrefix("# ") { return Text(a).font(.kernel(.title2, weight: .bold)) }
+            return md.hasPrefix("#") ? Text(a).font(.kernel(.title3, weight: .semibold)) : Text(a)
         }
         return Text(line.line)
     }
