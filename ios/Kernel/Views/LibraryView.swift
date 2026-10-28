@@ -227,6 +227,7 @@ private struct MiniPlayer: View {
     var body: some View {
         VStack(spacing: 0) {
             ProgressView(value: min(max(speaker.progress, 0), 1)).progressViewStyle(.linear).tint(amber).accessibilityHidden(true)
+                .padding(.horizontal, 20).padding(.top, 8)
             HStack(spacing: 12) {
                 Button("Previous chapter", systemImage: "backward.end.fill") { speaker.skip(-1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 Button(speaker.playing && !speaker.paused ? "Pause" : "Play", systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
@@ -264,8 +265,7 @@ private struct MiniPlayer: View {
             .frame(maxWidth: 760)
             .frame(maxWidth: .infinity)
         }
-        .background(.bar)
-        .overlay(alignment: .top) { Divider() }
+        .barGlass()
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Now playing")
         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -315,5 +315,16 @@ struct Thumb: View {
             .frame(width: width, height: width * 52 / 36)
             .clipShape(RoundedRectangle(cornerRadius: 3))
             .accessibilityHidden(true)   // the title beside it says everything; VoiceOver would read "image" first
+    }
+}
+
+extension View {
+    /// The player floats as Liquid Glass on iOS 26 and macOS 26; earlier systems keep the plain bar.
+    @ViewBuilder func barGlass() -> some View {
+        if #available(iOS 26, macOS 26, *) {
+            glassEffect(.regular, in: .rect(cornerRadius: 28)).padding(.horizontal, 12).padding(.bottom, 4)
+        } else {
+            background(.bar).overlay(alignment: .top) { Divider() }
+        }
     }
 }

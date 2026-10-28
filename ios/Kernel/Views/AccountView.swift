@@ -129,11 +129,10 @@ struct AccountView: View {
     private var authScreen: some View {
         ScrollView {
             VStack(spacing: 14) {
-                Image(systemName: "books.vertical.fill")
-                    .font(.system(size: 34, weight: .semibold))
-                    .foregroundStyle(amber)
+                // The app icon, as on the web sign-in: the white mark on the gold tile.
+                KernelMark(side: 56, color: .white)
                     .frame(width: 72, height: 72)
-                    .background(Color(red: 0.07, green: 0.09, blue: 0.18), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .background(LinearGradient(colors: [Color(red: 0.96, green: 0.72, blue: 0.24), Color(red: 0.79, green: 0.48, blue: 0)], startPoint: .top, endPoint: .bottom), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .accessibilityHidden(true)
                     .padding(.top, 12)
                 Text(isSigningUp ? "Create your account" : "Sign in to Kernel")
@@ -228,7 +227,6 @@ struct AccountView: View {
                 .font(.kernel(.footnote)).foregroundStyle(.secondary)
                 .buttonStyle(.plain)
 
-                appearancePicker.pickerStyle(.menu).font(.kernel(.footnote)).padding(.top, 6)
             }
             .frame(maxWidth: 380)
             .padding(.horizontal, 24).padding(.bottom, 24)

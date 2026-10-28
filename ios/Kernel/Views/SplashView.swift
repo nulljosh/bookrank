@@ -48,16 +48,17 @@ struct KernelMark: View {
     let side: CGFloat
     var lines: [Bool] = [true, true, true]
     var seed: Bool = true
+    var color: Color = amber
 
     var body: some View {
         ZStack {
             ForEach(0..<3, id: \.self) { i in
                 MarkLine(index: i)
                     .trim(from: 0, to: lines[i] ? 1 : 0)
-                    .stroke(amber, style: StrokeStyle(lineWidth: KernelMarkGeometry.strokeWidth * side / KernelMarkGeometry.unit, lineCap: .round))
+                    .stroke(color, style: StrokeStyle(lineWidth: KernelMarkGeometry.strokeWidth * side / KernelMarkGeometry.unit, lineCap: .round))
             }
             MarkSeed()
-                .fill(amber)
+                .fill(color)
                 .opacity(seed ? 1 : 0)
                 .offset(y: seed ? 0 : -side * 0.08)
                 .scaleEffect(seed ? 1 : 1.25)
