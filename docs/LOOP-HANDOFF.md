@@ -18,12 +18,13 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 
 ## Next, in order
 
-1. **Kernel Sans and gold in the apps.** Bundle `fonts/KernelSans-*.otf` in both targets, register at launch (Coda's `Theme.fontsRegistered` pattern), a `Font.kernel(...)` helper, use it for titles first. The accent colour is already gold in `AccentColor`; check the voice usage bar and other hard-coded blues.
-2. **Liquid Glass pass** (`liquid-glass` skill): glass only on bars, toolbars, mini player; nothing on rows. Then the Jony Ive spacing pass (`apple` skill) on every screen, iPhone and Mac, light and dark.
-3. **Mac QA** signed in: one instance, trap-kill, never press Listen, no GUI launches without asking Joshua first.
-4. **Icon and font A+.** Icon reads like a "text" glyph at small sizes; try the seed bolder or the lines shorter. Font: decide whether `:` `;` `!` `?` `i` `j` dots become seeds too.
-5. **Gap matrix rows** in `roadmap.md`, one minor version each, after 2.0.0 ships. Also: cold launch shows ~3s of white in the debug simulator before the splash; check a Release build.
-6. **Ship 2.0.0** on iOS and Mac: bump `project.yml`, new screenshots (`ios/scripts/shots.sh` names simulators this Mac lacks; use iPhone 17 Pro and iPad Pro 13), review notes that mention the one-time sign-in after the update, upload, submit. Use `ASC_BYPASS_KEYCHAIN=1` for every `asc` call.
+2.0.0 is in review on iOS and Mac (2026-10-28, builds 202610281242). Watch for App Review; answer anything in Resolution Center only with Joshua's yes.
+
+1. **2.x minors toward 3.0.0**: work the gap matrix in `roadmap.md` rows 1 to 5, one minor each, web and apps together, QA light and dark, ship each minor (`asc workflow run ship-ios VERSION:x.y.z`; Mac: archive KernelMac, export with `ios/ExportOptionsMac.plist` (automatic signing), `asc builds upload --app 6792376485 --pkg ... --version --build-number`, then `asc review submit`). A version can only be submitted once the previous one clears review.
+2. **Mac store screenshots** at 2880x1800 (this Mac's display is 1x, so render larger or skip).
+3. **Icon and font A+.** Icon reads like a text glyph at small sizes; font: seeds on the other dots?
+4. Cold launch shows ~3s white in the debug simulator; check a Release build.
+5. 4.0.0 and on: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
 
 ## Waiting on Joshua
 
