@@ -18,13 +18,17 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 
 ## Next, in order
 
+Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule); live on the web, in the apps from 3.0.0.
+
+
 2.0.0 is in review on iOS and Mac (2026-10-28, builds 202610281242). Watch for App Review; answer anything in Resolution Center only with Joshua's yes.
 
 1. **3.0.0 is built, waiting on 2.0.0.** Gap rows 1 to 5 are done and committed (minutes, Continue card, line skip, speed presets, sleep timer). Apple allows one version in review at a time, so the day 2.0.0 clears: create 3.0.0 on iOS and Mac (`asc versions create`), set What's New, fresh store shots (`sh ios/scripts/shots.sh`; if fastlane hangs in `simctl diagnose` after a passing test, take the PNGs from ~/Library/Caches/tools.fastlane/screenshots), `asc workflow run ship-ios VERSION:3.0.0`, then the Mac steps below. Mac: archive KernelMac, export with `ios/ExportOptionsMac.plist` (automatic signing), `asc builds upload --app 6792376485 --pkg ... --version --build-number`, `asc review submit`. Never let `xcodegen` alone rewrite `ios/Kernel/Info.plist` into a commit: restore it with git, the ship workflow patches it.
 2. **Mac store screenshots** at 2880x1800 (this Mac's display is 1x, so render larger or skip).
 3. **Icon and font A+.** Icon reads like a text glyph at small sizes; font: seeds on the other dots?
 4. Cold launch shows ~3s white in the debug simulator; check a Release build.
-5. **4.0.0**: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
+5. **Highlights (gap row 6), in progress.** Adding a `highlights` column on D1 was blocked by the permission check (production change), so store them inside the row's `listen` JSON as `listen.marks: [{ch, text}]`. Every writer must carry `marks` along: web `save` in library.html, Swift `ListenState` (add an optional `marks`), and keep marks even when `listen.for` no longer matches. Apps: long-press a line in ChapterView to save it, a Highlights list on the book page. Web: a save button for the current line and a list under the reader. Send `updated_at` back on every save (see CLAUDE.md, updated_at rule).
+6. **4.0.0**: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
 
 ## Waiting on Joshua
 
