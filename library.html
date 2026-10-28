@@ -295,7 +295,7 @@ function mountListen() {
     save: (pos, chapters) => {
       if (!current) return;
       current.listen = { for: current.updated_at, chapters, pos };
-      db.from(TABLE).update({ listen: current.listen }).eq('id', current.id).then(() => {});
+      db.from(TABLE).update({ listen: current.listen, updated_at: current.updated_at }).eq('id', current.id).then(() => {});  // keep updated_at, or listen.for stops matching
     },
   });
 }
@@ -327,7 +327,7 @@ async function olCandidates(title) {
 async function resolveCover(row) {
   if (row.cover) return row.cover;
   const u = matchCover(row.title, await books) || await firstLoadable(await olCandidates(row.title));
-  if (u) { row.cover = u; db.from(TABLE).update({ cover: u }).eq('id', row.id).then(() => {}); }
+  if (u) { row.cover = u; db.from(TABLE).update({ cover: u, updated_at: row.updated_at }).eq('id', row.id).then(() => {}); }
   return u;
 }
 function thumb(row) {
@@ -343,12 +343,12 @@ $('share').onclick = async () => {
   if (!current) { $('editMsg').textContent = 'Save first.'; return; }
   if (current.share_token) {
     if (!confirm('Stop sharing? The link stops working.')) return;
-    const { error } = await rows.update(current.id, { share_token: null });
+    const { error } = await rows.update(current.id, { share_token: null, updated_at: current.updated_at });
     if (error) { $('editMsg').textContent = error.message; return; }
     current.share_token = null; $('share').textContent = 'Share'; $('editMsg').textContent = 'Link removed.';
     return;
   }
-  const { data, error } = await rows.update(current.id, { share_token: crypto.randomUUID().replace(/-/g, '') });
+  const { data, error } = await rows.update(current.id, { share_token: crypto.randomUUID().replace(/-/g, ''), updated_at: current.updated_at });
   if (error) { $('editMsg').textContent = error.message; return; }
   current.share_token = data.share_token;
   const url = shareUrl(location.origin, data.share_token);

@@ -182,7 +182,12 @@ final class DataStore {
     }
 
     /// One row update, the same PATCH the web's spark.js makes.
+    /// Side data only (cover, share link, listen state). jaybulb-api stamps updated_at on every
+    /// PATCH unless it is sent, and a new updated_at throws the saved listen position away
+    /// (listen.for must equal it), so send the row's own value back unchanged.
     private func patch(_ id: String, _ fields: [String: Any]) async throws {
+        var fields = fields
+        if let at = summaryIndex.first(where: { $0.rowID == id })?.updatedAt { fields["updated_at"] = at }
         _ = try await API.call("PATCH", "/rest/bookrank_summaries?id=eq.\(id)", json: fields)
     }
 
