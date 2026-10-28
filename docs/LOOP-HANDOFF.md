@@ -14,13 +14,15 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 - **iPhone QA.** One title per screen on book and chapter pages, stronger heading sizes.
 - **iCloud Books.** Every photo handled; System Design complete and synced into Kernel.
 
+- **Later 2026-10-28.** Landing: covers from books.json, icon footer, scroll parallax, phone gutters. Listen is one narrator now (old two-host scripts rebuild). Voices fall back to Cloudflare Aura-2 when ElevenLabs runs out (own caps, cached forever). Apps: launch splash, first-run pages, true Kernel gold (`AccentColor` + `OnAccent`). Gap matrix in roadmap.md. summarize-books skill transcribes owned books word for word.
+
 ## Next, in order
 
 1. **Kernel Sans and gold in the apps.** Bundle `fonts/KernelSans-*.otf` in both targets, register at launch (Coda's `Theme.fontsRegistered` pattern), a `Font.kernel(...)` helper, use it for titles first. The accent colour is already gold in `AccentColor`; check the voice usage bar and other hard-coded blues.
 2. **Liquid Glass pass** (`liquid-glass` skill): glass only on bars, toolbars, mini player; nothing on rows. Then the Jony Ive spacing pass (`apple` skill) on every screen, iPhone and Mac, light and dark.
 3. **Mac QA** signed in: one instance, trap-kill, never press Listen, no GUI launches without asking Joshua first.
 4. **Icon and font A+.** Icon reads like a "text" glyph at small sizes; try the seed bolder or the lines shorter. Font: decide whether `:` `;` `!` `?` `i` `j` dots become seeds too.
-5. **Mobbin gap matrix** into `roadmap.md` (competitor sheets were fetched: Blinkist, Apple Books, Readwise, Shortform, getAbstract, StoryGraph, Speechify, Instaread; Snipd and Headway pulled the wrong apps).
+5. **Gap matrix rows** in `roadmap.md`, one minor version each, after 2.0.0 ships. Also: cold launch shows ~3s of white in the debug simulator before the splash; check a Release build.
 6. **Ship 2.0.0** on iOS and Mac: bump `project.yml`, new screenshots (`ios/scripts/shots.sh` names simulators this Mac lacks; use iPhone 17 Pro and iPad Pro 13), review notes that mention the one-time sign-in after the update, upload, submit. Use `ASC_BYPASS_KEYCHAIN=1` for every `asc` call.
 
 ## Waiting on Joshua
@@ -31,5 +33,5 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 ## Restart prompt
 
 ```
-/loop Kernel loop to the next major version (2.0.0) in ~/Documents/Code/bookrank. Read docs/LOOP-HANDOFF.md first and work its Next list in order. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
+/loop Kernel loop through 2.0.0, then 3.0.0, 4.0.0 and on to 10.0.0, in ~/Documents/Code/bookrank. Read docs/LOOP-HANDOFF.md first and work its Next list in order. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
 ```
