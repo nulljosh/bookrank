@@ -35,7 +35,6 @@ struct SummaryDetailView: View {
     var speaker = Speaker.shared
     @State private var shareURL: URL?
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
 
     var body: some View {
@@ -47,9 +46,13 @@ struct SummaryDetailView: View {
             List { rows(entry) }.frame(maxWidth: 680).frame(maxWidth: .infinity).listStyle(.plain)
             #endif
         }
-        .navigationTitle(entry?.title ?? "Summary")
+        // iPhone: the cover header already names the book, so the bar holds only controls (like Music's album
+        // pages). The Mac keeps it as the window title.
         #if os(iOS)
-        .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        #else
+        .navigationTitle(entry?.title ?? "Summary")
         #endif
         .toolbar {
             if let url = shareURL {
@@ -72,7 +75,7 @@ struct SummaryDetailView: View {
         HStack(spacing: 16) {
             Thumb(url: entry.flatMap { store.cover(for: $0) }, width: 64)
             VStack(alignment: .leading, spacing: 4) {
-                Text(entry?.title ?? "Summary").font(.title3.weight(.semibold)).lineLimit(3)
+                Text(entry?.title ?? "Summary").font(.title2.weight(.bold)).lineLimit(3)
                 Text("\(speaker.chapters.count) chapters").font(.footnote).foregroundStyle(.secondary)
             }
         }
@@ -135,9 +138,12 @@ struct ChapterView: View {
                 withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(speaker.line, anchor: UnitPoint(x: 0.5, y: f)) }
             }
         }
-        .navigationTitle(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "")
+        // The chapter's own heading opens the text, so on iPhone the bar holds only the controls.
         #if os(iOS)
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        #else
+        .navigationTitle(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "")
         #endif
         .toolbar { ListenControls() }
         .task { if speaker.ch != index { speaker.open(index) } }
@@ -177,6 +183,8 @@ private struct LineView: View {
         }
         if let md = line.md, let a = try? AttributedString(markdown: md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "• ", options: .regularExpression)
             .replacingOccurrences(of: "^#+ ", with: "", options: .regularExpression)) {
+            // "# " is the chapter's own title, so it leads; "##" and below are its sections.
+            if md.hasPrefix("# ") { return Text(a).font(.title2.weight(.bold)) }
             return md.hasPrefix("#") ? Text(a).font(.title3.weight(.semibold)) : Text(a)
         }
         return Text(line.line)
