@@ -33,6 +33,8 @@ Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule
 7. **Goodreads (G1), in progress.** RSS and signed-out shelf pages are gone (404 and sign-in redirect, 2026-10-28), so `/api/goodreads` returns nothing. Plan: the signed-out profile page for what it still shows, plus a Goodreads sign-in sheet (WKWebView) in the apps that reads review/list and user_status/list on the device. Joshua signs in himself.
 8. **A+ pass, right after Goodreads (Joshua asked twice).** Rows A1 to A4 in roadmap.md: Play button on the book page, Now Playing sheet, text size, streak dots. Competitor sheets: `python3 ~/.claude/skills/mobbin/fetch.py <dir> "Apple Books" "Blinkist" ...`.
 
+9. **Left from the 2026-10-28 code review.** (a) Highlights are last-writer-wins across devices: merge `marks` by union on save instead of overwriting. (b) Side-data saves echo a cached `updated_at`, which can roll a newer one back; the real fix is in jaybulb-api (stamp `updated_at` only when `content` changes). (c) The listen-player CSS is copied into index, library and share; move it to one stylesheet.
+
 ## Waiting on Joshua
 
 - OK to add kernel.jaybulb.com to the `bookrank` Pages project (the permission check blocked it).
