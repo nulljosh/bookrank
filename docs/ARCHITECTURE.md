@@ -52,7 +52,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | `ios/Kernel/Views/LibraryView.swift` | The list: covers and titles, search over titles and text, resume line, the Goodreads read-but-unsummarized section, empty and signed-out states, theme and account buttons |
 | `ios/Kernel/Views/SummaryDetailView.swift` | Chapter parsing, the chapter list for a book, and the chapter reader with the marker word highlight that the page follows, even through long paragraphs |
 | `ios/Kernel/Views/AccountView.swift` | Sign in with Apple or email, the Goodreads link with photo, quote and genres, export everything as markdown, password reset, sign out, delete account |
-| `ios/Kernel/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
+| `ios/Kernel/Models/Speaker.swift` | The player on AVSpeechSynthesizer, one-narrator scripts from `/api/narrate`, `ListenControls` toolbar |
 | `ios/Kernel/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
 | `ios/Kernel/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch; also `lines(from:)` for watch sync |
 | `ios/Kernel/Models/WatchSync.swift` | WCSessionDelegate singleton that syncs up to 30 lines from summaries to the paired watch app over applicationContext |
@@ -98,7 +98,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 |---|---|
 | `functions/api/[[route]].js` | REST router over `src/lib/tools.js` (`/api/search` and friends) |
 | `functions/mcp.js` | MCP over HTTP, JSON-RPC |
-| `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a two-host script, caches it on the row |
+| `functions/api/narrate.js` | `/api/narrate`: turns a chapter into a one-narrator script, caches it on the row |
 | `functions/api/goodreads.js` | `/api/goodreads`: reads a public Goodreads profile's shelf RSS (read, currently reading, to read) and, with `profile=1`, its photo, genres, about, interests and best quote. No credentials; Goodreads has no app sign-in |
 | `functions/api/speak.js` | `/api/speak`: one line in a natural ElevenLabs voice (host A or B) with per-word start times. Each line is stored for good in KV (`TTS_KV`), so it is paid for once; a monthly character budget for the app and a daily one per account, over either it answers 429 and the player uses the device voice; chapter one uses the better model (`TTS_MODEL_BEST`), the rest the cheap one; voices and caps come from env. Share-token, or signed in and paid: the apps send `X-Bookrank-App` (paid upfront), the web needs the `paid:<user>` flag in KV, else 402 and the device voice |
 | `functions/api/pay.js` | `/api/pay`: GET says whether the account has paid; POST returns the Stripe Payment Link (with the account id attached) for the $1 that unlocks natural voices on the web |
@@ -140,7 +140,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 **authmail**: a Cloudflare Worker that brands every auth email per app and sends it through Resend.
 
-**Claude** (through `/api/narrate`): writes the two-host scripts, cached on the row.
+**Claude** (through `/api/narrate`): writes the narrator's scripts, cached on the row.
 
 **Workers AI**: page photo reading in `/api/summarize-photo`.
 

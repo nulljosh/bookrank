@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 const s = parseScript('Intro junk\nA: Hello there.\n**B:** Why does it matter?\nB : because.\n');
 assert.deepEqual(s, [
   { host: 'A', line: 'Hello there.' },
-  { host: 'B', line: 'Why does it matter?' },
-  { host: 'B', line: 'because.' },
+  { host: 'A', line: 'Why does it matter?' },  // one narrator: a stray B line still reads in the one voice
+  { host: 'A', line: 'because.' },
 ]);
 assert.deepEqual(parseScript(''), []);
 console.log('narrate ok');
@@ -15,4 +15,6 @@ assert.match(sys(1, 3), /no greeting/i);
 assert.doesNotMatch(sys(1, 3), /introducing the book/);
 assert.match(sys(2, 3), /last chapter.*one thing to remember/);
 assert.match(sys(0, 1), /Open briefly/);
+assert.match(sys(0, 3), /one narrator/i);
+assert.doesNotMatch(sys(0, 3), /Host B|`B:/);
 console.log('prompt ok');

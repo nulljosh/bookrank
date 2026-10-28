@@ -3,7 +3,7 @@ import SwiftUI
 import Observation
 
 /// Chapter player over AVSpeechSynthesizer. Mirrors listen.js: "Explain it" fetches a
-/// two-host script per chapter from /api/narrate, "Read" speaks the markdown block by block.
+/// one-narrator script per chapter from /api/narrate, "Read" speaks the markdown block by block.
 /// The next chapter's script is fetched while the current one plays, the spoken line and
 /// word are published for the transcript to highlight, and the resume point + scripts are
 /// saved on the summary row so the web and the apps pick up at the same line.
@@ -23,11 +23,11 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var playing = false
     private(set) var paused = false
     private(set) var loading = false
-    /// Two hosts talk the chapter through; on by default and remembered. The signed-out sample has no script to build, so it reads the notes.
+    /// One narrator explains the chapter; on by default and remembered. The signed-out sample has no script to build, so it reads the notes.
     var explain: Bool = UserDefaults.standard.object(forKey: "bookrank.explain") as? Bool ?? true {
         didSet {
             UserDefaults.standard.set(explain, forKey: "bookrank.explain")
-            // The two-host script and the plain notes have different line counts, so keep the same place by fraction, not by index.
+            // The narrator's script and the plain notes have different line counts, so keep the same place by fraction, not by index.
             let spot = lines.isEmpty ? 0 : Double(line) / Double(lines.count)
             if playing { Task { await play(from: 0, fraction: spot) } } else { Task { await showChapter() } }
         }
@@ -82,7 +82,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if let r = UserDefaults.standard.object(forKey: "bookrank.rate.\(slug)") as? Float { rate = r }
         updatedAt = entry?.updatedAt ?? ""
         let st = entry?.listen.flatMap { $0.for == updatedAt ? $0 : nil }
-        scripts = st?.chapters ?? [:]; prefetch = [:]
+        // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
+        scripts = (st?.chapters ?? [:]).filter { !$0.value.contains { $0.host == "B" } }; prefetch = [:]
         ch = min(st?.pos.ch ?? 0, max(0, chapters.count - 1)); line = st?.pos.line ?? 0
         status = st.map { _ in "Resume at \(chapters[ch].title)" } ?? ""
         Task { await showChapter() }
@@ -332,7 +333,7 @@ struct ListenControls: View {
                 ForEach(Speaker.speeds, id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
             }
             Toggle("Natural voices", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
-            Toggle("Explain it (two hosts)", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))
+            Toggle("Explain it", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))
         }
     }
 }

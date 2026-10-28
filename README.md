@@ -11,7 +11,7 @@ You finish a book. A month later you remember one idea. Kernel keeps the rest: e
 Free on the [web](https://bookrank.jaybulb.com), iPhone, iPad and Mac.
 
 - **Chapters.** A list of your books. Open one, pick a chapter, read it.
-- **Listen.** Two voices talk the chapter through. The word being read lights up and the page follows.
+- **Listen.** One narrator explains the chapter. The word being read lights up and the page follows.
 - **Private.** Your summaries sit behind your account. Share one with a link if you want.
 - **Goodreads.** Paste your profile and the books you have read but not summarized show up.
 - **Offline.** The app keeps your books and covers on the device.

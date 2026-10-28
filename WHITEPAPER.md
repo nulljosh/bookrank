@@ -14,7 +14,7 @@ A summary is one markdown file. Chapters are the coarsest heading level that giv
 
 ## Listen
 
-Each chapter becomes a short script for two hosts, written by `/api/narrate` and cached on the row. Only the first chapter opens with an intro and only the last closes, so a book plays as one conversation instead of twenty. The player speaks one line at a time and prefetches the next chapter so there is no gap. The word being read is bold and dark, the rest of the line dims, and the screen follows along. The saved position is tied to the row's `updated_at`: edit the summary and the old scripts are thrown away instead of reading stale text.
+Each chapter becomes a short script for one narrator, written by `/api/narrate` and cached on the row. Only the first chapter opens with an intro and only the last closes, so a book plays as one narration instead of twenty. The player speaks one line at a time and prefetches the next chapter so there is no gap. The word being read is bold and dark, the rest of the line dims, and the screen follows along. The saved position is tied to the row's `updated_at`: edit the summary and the old scripts are thrown away instead of reading stale text.
 
 ## Covers
 

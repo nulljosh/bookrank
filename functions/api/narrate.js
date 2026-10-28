@@ -1,11 +1,11 @@
-// POST { text, title, ch, total, token? } -> { script: [{ host: "A"|"B", line }] }
+// POST { text, title, ch, total, token? } -> { script: [{ host: "A", line }] }
 // `ch`/`total` (0-based index, chapter count) shape the prompt: only chapter 0 opens the
 // conversation and only the last one closes it, so a whole book does not re-introduce
 // itself every chapter. `token` is a share link: it stands in for sign-in and the result is
 // cached on the shared row so the next listener does not pay for the model again.
-// Turns a chapter summary into a two-host conversation (the NotebookLM audio-overview
-// shape): the hosts explain the ideas, why they matter, and how they connect, instead
-// of the page reading its own markdown aloud. Text only; the browser does the voices.
+// Turns a chapter summary into one narrator explaining it: the ideas, why they matter and
+// how they connect, instead of the page reading its own markdown aloud. Every line is host
+// "A" (the field stays so old clients and cached rows keep parsing). Text only; the browser does the voices.
 // Signed-in accounts only, same gate as summarize-photo.
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const API = "https://api.jaybulb.com";
@@ -36,18 +36,18 @@ export async function onRequest({ request, env }) {
 
 export function messages(title, text, ch, total) {
   const place = total > 1
-    ? (ch === 0 ? `This is chapter 1 of ${total}: open the conversation by introducing the book and the two of you, briefly. Do not close the series.`
-      : ch === total - 1 ? `This is the last chapter (${ch + 1} of ${total}): pick up mid-conversation with no greeting or re-introduction of the book or hosts, and close the whole book with the one thing to remember.`
-      : `This is chapter ${ch + 1} of ${total} in one continuous conversation: no greeting, no "welcome back", no re-introduction of the book or hosts. Pick up as if the previous chapter just ended, and do not wrap up the book.`)
+    ? (ch === 0 ? `This is chapter 1 of ${total}: open by introducing the book in a sentence or two. Do not close the book.`
+      : ch === total - 1 ? `This is the last chapter (${ch + 1} of ${total}): no greeting or re-introduction of the book, and close the whole book with the one thing to remember.`
+      : `This is chapter ${ch + 1} of ${total} of one continuous narration: no greeting, no "welcome back", no re-introduction of the book. Pick up as if the previous chapter just ended, and do not wrap up the book.`)
     : "Open briefly and end with the one thing to remember.";
   return [
     { role: "system", content:
-      "You write the script for a two-host audio conversation about a book, like a podcast overview. " +
-      "Host A is the guide who knows the material; Host B is curious and asks the questions a smart reader would. " +
+      "You are one narrator explaining a book chapter out loud to one listener, like a good teacher. " +
+      "No second speaker, no questions to a co-host, no dialogue. " +
       "Do not read the notes back. Explain the main ideas in plain spoken English, say why each one matters, " +
       "give a concrete example or analogy where it helps, and connect ideas to each other. " +
-      "Skip trivia, page details, and filler. 12 to 20 exchanges, each 1 to 3 sentences. " + place + " " +
-      "Output ONLY lines in the form `A: ...` or `B: ...`, one exchange per line, no headings or markdown." },
+      "Skip trivia, page details, and filler. 10 to 16 lines, each 1 to 3 sentences. " + place + " " +
+      "Output ONLY lines in the form `A: ...`, one per line, no headings or markdown." },
     { role: "user", content: `Book: ${title}\n\nNotes:\n${text}` },
   ];
 }
@@ -56,7 +56,7 @@ export function parseScript(raw) {
   return raw.split("\n")
     .map(l => l.trim().match(/^\**([AB])\**\s*[:：]\s*\**(.+?)\**$/))
     .filter(Boolean)
-    .map(m => ({ host: m[1], line: m[2].trim() }));
+    .map(m => ({ host: "A", line: m[2].trim() }));
 }
 
 // The installed iOS and Mac apps still sign in through Supabase. They send their project key as

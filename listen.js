@@ -175,7 +175,8 @@ const NATURAL = '__natural';
 export function mount(root, api) {
   const synth = globalThis.speechSynthesis;
   const chs = chapters(api.content);
-  const scripts = { ...(api.scripts || {}) };
+  // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
+  const scripts = Object.fromEntries(Object.entries(api.scripts || {}).filter(([, s]) => !s?.some?.(l => l.host === 'B')));
   root.innerHTML = `
     <div class="lp-bar"><div class="lp-fill"></div></div>
     <div class="lp-controls">
