@@ -148,6 +148,7 @@ struct SummaryDetailView: View {
 struct ChapterView: View {
     let index: Int
     var speaker = Speaker.shared
+    @State private var asking = false
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -189,7 +190,13 @@ struct ChapterView: View {
         #else
         .navigationTitle(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "")
         #endif
-        .toolbar { ListenControls() }
+        .toolbar {
+            if speaker.slug != "sample" && speaker.chapters.indices.contains(speaker.ch) {
+                Button("Ask", systemImage: "bubble.left.and.text.bubble.right") { asking = true }
+            }
+            ListenControls()
+        }
+        .sheet(isPresented: $asking) { AskView(chapter: speaker.chapters[speaker.ch]).presentationDetents([.medium, .large]) }
         .task { if speaker.ch != index { speaker.open(index) } }
     }
 }

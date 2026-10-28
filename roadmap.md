@@ -28,7 +28,7 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 | 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | done (long-press in the apps, Highlight button on the web; kept in listen.marks) |
 | 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | done in the apps (Download on the book page); web waits on web offline mode |
 | 8 | Add a chapter by photographing pages in the app | Speechify | L | done (apps: + on the library, photos read by /api/summarize-photo; web already had From photos) |
-| 9 | Ask the chapter a question | Speechify, Readwise | M | open |
+| 9 | Ask the chapter a question | Speechify, Readwise | M | done (/api/ask from the chapter notes only; Ask on the chapter toolbar in the apps, Ask box under the web reader) |
 | 10 | Weekly listening goal | Blinkist, StoryGraph | M | open |
 
 Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other people's books.

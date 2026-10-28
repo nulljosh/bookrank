@@ -50,6 +50,9 @@ ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
+.ask { display:flex; gap:8px; margin:24px 0 8px; } .ask input { flex:1; } .ask button { flex:none; }
+.answer { font-size:0.9375rem; line-height:1.5; color:var(--text2); margin:0 0 16px; }
+.answer:empty { display:none; }
 .msg { font-size:0.8125rem; color:var(--text3); min-height:1.2em; }
 .hide { display:none !important; }   /* beats `ul.list li { display:flex }`, which silently kept filtered rows visible */
 a.back { font-size:0.8125rem; color:var(--text3); text-decoration:none; }
@@ -145,6 +148,8 @@ dl.profile dt { color:var(--text3); }
       </div>
     </div>
     <div id="listen"></div>
+    <form id="ask" class="ask hide"><input id="askQ" maxlength="500" placeholder="Ask this chapter a question" aria-label="Ask this chapter a question"><button class="primary">Ask</button></form>
+    <p id="askA" class="answer" aria-live="polite"></p>
     <p id="unlock" hidden style="font-size:14px;color:var(--muted,#8a8a8a);margin:12px 0">Natural voices are $1 on the web. Your device voice is playing. <button type="button" onclick="unlockVoices()">Unlock for $1</button></p>
     <textarea id="body" class="hide" placeholder="Chapter summaries, in markdown…" aria-label="Chapter summaries"></textarea>
     <p class="msg" id="editMsg"></p>
@@ -155,7 +160,7 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js" integrity="sha384-XQqX/4yiUGu+oyr87jvWzRuqBUK/adrY0DunhL+tID9m/9dwSpV8h9Fk/Sg6ifVQ" crossorigin="anonymous"></script>
 <script type="module">
 import { createClient } from './spark.js';
-import { mount, matchCover, shareUrl, coverCandidates } from './listen.js';
+import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -258,6 +263,22 @@ $('photos').onchange = async () => {
   }
   btn.textContent = label;
   btn.disabled = false;
+};
+
+// ---- ask the chapter ----
+// One question about the chapter on screen, answered from that chapter's notes by /api/ask.
+$('ask').onsubmit = async e => {
+  e.preventDefault();
+  const question = $('askQ').value.trim();
+  const ch = chapters(current?.content || '')[listen?.player.ch ?? 0];
+  if (!question || !ch) return;
+  const { data: { session } } = await db.auth.getSession();
+  $('askA').textContent = 'Thinking…';
+  try {
+    const res = await fetch('/api/ask', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text: ch.text, title: `${current.title}, ${ch.title}`, question }) });
+    const out = await res.json();
+    $('askA').textContent = out.answer || out.error || 'Could not answer that right now.';
+  } catch { $('askA').textContent = 'Could not answer that right now.'; }
 };
 
 // ---- listen ----
@@ -523,6 +544,7 @@ function showEditor(reading = false) {
 // Listen view (transcript + chapters) or the raw markdown editor.
 function render(reading) {
   $('listen').classList.toggle('hide', !reading);
+  $('ask').classList.toggle('hide', !reading); $('askA').textContent = '';
   $('body').classList.toggle('hide', reading);
   $('toggle').textContent = reading ? 'Edit' : 'Listen';
   $('share').classList.toggle('hide', !reading);

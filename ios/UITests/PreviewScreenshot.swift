@@ -191,6 +191,21 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("add-pages", XCUIScreen.main.screenshot())
     }
 
+    /// The chapter's Ask sheet. Asks nothing (that needs a real account).
+    func testAskSheet() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        let book = app.buttons.matching(NSPredicate(format: "label CONTAINS 'The Optimist'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 15)); book.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Chapter 1'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 20)); chapter.tap()
+        let ask = app.buttons["Ask"].firstMatch
+        XCTAssertTrue(ask.waitForExistence(timeout: 10)); ask.tap()
+        sleep(1)
+        saveTo("ask-sheet", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
