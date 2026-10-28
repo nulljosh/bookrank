@@ -75,12 +75,8 @@ final class DataStore {
     func loadSummaries() async {
         if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
-            summaryIndex = try await supabase
-                .from("bookrank_summaries")
-                .select("id,slug,title,content,updated_at,listen,cover,share_token")
-                .order("title")
-                .execute()
-                .value
+            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token&order=title")
+            summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
             summaryError = nil
             writeCache()
             Task { await fillCovers() }
@@ -141,7 +137,7 @@ final class DataStore {
         for e in summaryIndex where cover(for: e) == nil {
             guard let url = await lookupCover(e.title), let i = summaryIndex.firstIndex(where: { $0.slug == e.slug }) else { continue }
             summaryIndex[i].cover = url
-            if let id = e.rowID { _ = try? await supabase.from("bookrank_summaries").update(["cover": url]).eq("id", value: id).execute() }
+            if let id = e.rowID { _ = try? await patch(id, ["cover": url]) }
         }
         writeCache()
     }
@@ -171,17 +167,20 @@ final class DataStore {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return nil }
         if summaryIndex[i].shareToken == nil {
             let token = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
-            struct Patch: Encodable { let share_token: String }
-            guard (try? await supabase.from("bookrank_summaries").update(Patch(share_token: token)).eq("id", value: id).execute()) != nil else { return nil }
+            guard (try? await patch(id, ["share_token": token])) != nil else { return nil }
             summaryIndex[i].shareToken = token
         }
         return URL(string: "https://bookrank.jaybulb.com/share.html?t=\(summaryIndex[i].shareToken!)")
     }
     func stopSharing(_ slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }
-        // A struct with a nil field is dropped by JSONEncoder; a dictionary of optionals encodes null.
-        _ = try? await supabase.from("bookrank_summaries").update(["share_token": nil] as [String: String?]).eq("id", value: id).execute()
+        _ = try? await patch(id, ["share_token": NSNull()])
         summaryIndex[i].shareToken = nil
+    }
+
+    /// One row update, the same PATCH the web's spark.js makes.
+    private func patch(_ id: String, _ fields: [String: Any]) async throws {
+        _ = try await API.call("PATCH", "/rest/bookrank_summaries?id=eq.\(id)", json: fields)
     }
 
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
@@ -191,8 +190,8 @@ final class DataStore {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }
         summaryIndex[i].listen = state
         writeCache()
-        struct Patch: Encodable { let listen: ListenState }
-        _ = try? await supabase.from("bookrank_summaries").update(Patch(listen: state)).eq("id", value: id).execute()
+        guard let json = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(state)) else { return }
+        _ = try? await patch(id, ["listen": json])
     }
 
     /// One markdown file per summary in a temp folder, for the share sheet (Files, AirDrop, Mail, anything).

@@ -20,7 +20,7 @@ struct Book: Codable, Identifiable {
 /// copy would just be another thing to drift.
 struct SummaryEntry: Codable, Identifiable {
     var id: String { slug }
-    let rowID: String?          // Supabase uuid; nil for bundled entries
+    let rowID: String?          // row uuid on jaybulb-api; nil for bundled entries
     let slug: String
     let title: String
     let content: String

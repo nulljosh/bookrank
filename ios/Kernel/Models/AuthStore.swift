@@ -2,28 +2,10 @@ import AuthenticationServices
 import CryptoKit
 import Foundation
 import LocalAuthentication
-import Supabase
 
-// Credentials are hardcoded rather than read from Info.plist via $(SUPABASE_URL).
-// This project rewrites Info.plist in scripts/prepare-plist.py *after* xcodegen runs,
-// and xcodegen already silently drops keys here (see the notes in project.yml), so a
-// build-setting substitution has two places to go wrong before anyone notices. The
-// anon key is a public client credential — it is in library.html too — and every
-// table it can reach is behind RLS.
-/// The project's public anon key. Also sent to the Kernel API as `apikey` so it can check this session.
-let supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68"
-let supabase = SupabaseClient(
-    supabaseURL: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co")!,
-    supabaseKey: supabaseAnonKey,
-    options: SupabaseClientOptions(
-        auth: SupabaseClientOptions.AuthOptions(storage: SessionKeychainStorage())
-    )
-)
-
-/// Email + password only, deliberately. Adding any third-party provider makes Sign in
-/// with Apple mandatory under Guideline 4.8, and the Apple provider is not enabled on
-/// the shared `spark` project — shipping a button that always errors is what got a
-/// sibling app rejected under 2.1(a).
+/// Sign-in against jaybulb-api, the same account as the web (Supabase until 1.3; those
+/// sessions are dead, so the first launch after the update asks once). Email and password,
+/// and Sign in with Apple, which Guideline 4.8 requires alongside any other provider.
 @Observable
 @MainActor
 final class AuthStore {
@@ -33,8 +15,7 @@ final class AuthStore {
     var isLoading = true
 
     /// Screenshot automation must not sit at a sign-in wall. It reports signed-in with
-    /// no session, which is safe because every summary read goes through Supabase and
-    /// simply returns nothing.
+    /// no session, which is safe because every summary read needs a token and simply returns nothing.
     private let mockSignedIn = CommandLine.flag("UITEST_SNAPSHOT")
 
     var isSignedIn: Bool { mockSignedIn || user != nil }
@@ -45,38 +26,21 @@ final class AuthStore {
             return
         }
         Task { @MainActor in
-            for await (event, session) in supabase.auth.authStateChanges {
-                switch event {
-                case .initialSession:
-                    // The only event that fires on a cold launch with no stored session,
-                    // so it is the only safe place to drop isLoading.
-                    user = session?.user
-                    isLoading = false
-                case .signedIn:
-                    user = session?.user
-                case .signedOut:
-                    user = nil
-                default:
-                    break
-                }
+            if await API.token() != nil, let data = try? await API.call("GET", "/auth/user") {
+                user = try? JSONDecoder().decode(User.self, from: data)
             }
+            isLoading = false
         }
     }
 
     func signIn(email: String, password: String) async throws {
-        // Use the session signIn hands back rather than re-reading `try? auth.session`.
-        // The re-read swallows refresh failures and leaves the UI signed-out with no
-        // error, which is the "Sign In will load briefly and then stops" defect that
-        // got Lexly's Mac build rejected under 2.1(a).
-        let session = try await supabase.auth.signIn(email: email, password: password)
-        user = session.user
+        user = try await API.session("/auth/token?grant_type=password", ["email": email, "password": password])
         saveBiometricCredentials(email: email, password: password)
     }
 
     // MARK: Sign in with Apple
-    // Apple returns an identity token bound to a nonce we hash into the request; Supabase checks
-    // the token against Apple's public keys and the bundle ID in the project's Apple client list.
-    // No client secret is involved on native.
+    // Apple returns an identity token bound to a nonce we hash into the request; jaybulb-api checks
+    // the token against Apple's public keys and this bundle id in its audience list.
     private var appleNonce = ""
 
     func prepareApple(_ request: ASAuthorizationAppleIDRequest) {
@@ -95,10 +59,12 @@ final class AuthStore {
         case .success(let a):
             guard let cred = a.credential as? ASAuthorizationAppleIDCredential,
                   let data = cred.identityToken, let token = String(data: data, encoding: .utf8) else {
-                throw NSError(domain: "AuthStore", code: -2, userInfo: [NSLocalizedDescriptionKey: "Apple did not return a sign-in token."])
+                throw API.Failure(message: "Apple did not return a sign-in token.")
             }
-            let session = try await supabase.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: token, nonce: appleNonce))
-            user = session.user
+            let name = [cred.fullName?.givenName, cred.fullName?.familyName].compactMap { $0 }.joined(separator: " ")
+            var body: [String: Any] = ["provider": "apple", "id_token": token, "nonce": appleNonce]
+            if !name.isEmpty { body["full_name"] = name }
+            user = try await API.session("/auth/token?grant_type=id_token", body)
             return true
         }
     }
@@ -118,7 +84,7 @@ final class AuthStore {
         guard let email = UserDefaults.standard.string(forKey: Self.savedEmailKey),
               let data = KeychainHelper.load(key: email),
               let password = String(data: data, encoding: .utf8) else {
-            throw NSError(domain: "AuthStore", code: -1, userInfo: [NSLocalizedDescriptionKey: "No saved sign-in found."])
+            throw API.Failure(message: "No saved sign-in found.")
         }
         try await signIn(email: email, password: password)
     }
@@ -136,16 +102,16 @@ final class AuthStore {
         UserDefaults.standard.removeObject(forKey: Self.savedEmailKey)
     }
 
+    /// Always false: a new email account confirms by mail before it can sign in, and the caller says so.
     func signUp(email: String, password: String) async throws -> Bool {
-        let result = try await supabase.auth.signUp(email: email, password: password)
-        user = result.session?.user
-        // False means the project wants an email confirmation first. The caller has to
-        // say so, otherwise a successful sign-up looks like nothing happened.
-        return result.session != nil
+        _ = try await API.call("POST", "/auth/signup", json: ["email": email, "password": password,
+                                                             "redirect_to": "https://bookrank.jaybulb.com/library.html"], authed: false)
+        return false
     }
 
     func signOut() async throws {
-        try await supabase.auth.signOut()
+        _ = try? await API.call("POST", "/auth/logout", json: [String: Any]())
+        API.forget()
         user = nil
         clearBiometricCredentials()
     }
@@ -156,33 +122,26 @@ final class AuthStore {
         return raw.lowercased().filter { $0.isLetter || $0.isNumber || "._-".contains($0) }
     }
     func setMetadata(_ data: [String: AnyJSON]) async throws {
-        user = try await supabase.auth.update(user: UserAttributes(data: data))
+        user = try JSONDecoder().decode(User.self, from: try await API.call("PUT", "/auth/user", json: ["data": data.mapValues(\.plain)]))
     }
+    /// A new email only takes over once its confirmation link is opened.
     func updateCredentials(email: String?, password: String?) async throws {
-        user = try await supabase.auth.update(user: UserAttributes(email: email, password: password))
+        var body: [String: Any] = ["redirect_to": "https://bookrank.jaybulb.com/profile.html"]
+        if let email { body["email"] = email }
+        if let password { body["password"] = password }
+        user = try JSONDecoder().decode(User.self, from: try await API.call("PUT", "/auth/user", json: body))
     }
 
     func resetPassword(email: String) async throws {
-        try await supabase.auth.resetPasswordForEmail(email)
+        _ = try await API.call("POST", "/auth/recover", json: ["email": email, "redirect_to": "https://bookrank.jaybulb.com/profile.html"], authed: false)
     }
 
     /// Guideline 5.1.1(v): an app offering account creation must offer account deletion.
-    ///
-    /// Calls the shared `delete-account` Edge Function, which holds the service-role key
-    /// and removes the auth user server-side — the anon-key client cannot delete its own
-    /// user, and the summaries cascade from the foreign key.
+    /// jaybulb-api removes the user and their rows.
     func deleteAccount() async throws {
-        let session = try await supabase.auth.session
-        var request = URLRequest(
-            url: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co/functions/v1/delete-account")!)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: "Authorization")
-        let (_, response) = try await URLSession.shared.data(for: request)
-        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw NSError(domain: "AuthStore", code: -1, userInfo: [
-                NSLocalizedDescriptionKey: "Couldn't delete your account. Try again."
-            ])
-        }
-        try await signOut()
+        _ = try await API.call("DELETE", "/auth/user")
+        API.forget()
+        user = nil
+        clearBiometricCredentials()
     }
 }

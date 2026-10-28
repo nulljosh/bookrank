@@ -1,6 +1,5 @@
 import AuthenticationServices
 import SwiftUI
-import Supabase
 
 /// Sign in, sign up, and account deletion.
 ///
@@ -32,7 +31,6 @@ struct AccountView: View {
     private var generated: Bool { auth.user?.userMetadata["avatar_source"]?.stringValue == "generated" }
     private var linkedPhoto: String? {
         auth.user?.userMetadata["goodreads_avatar"]?.stringValue
-            ?? auth.user?.identities?.first { $0.provider == "github" }?.identityData?["avatar_url"]?.stringValue
     }
     private var goodreadsProfile: [String: AnyJSON]? { auth.user?.userMetadata["goodreads_profile"]?.objectValue }
 
