@@ -24,7 +24,7 @@
       const title = text((t.match(/<a [^>]*>([\s\S]*?)<\/a>/) || [])[1]?.replace(/<span[\s\S]*?<\/span>/g, ""));
       const author = text((cell(row, "author").match(/<a [^>]*>([\s\S]*?)<\/a>/) || [])[1]).replace(/\s*\*$/, "");
       const rc = cell(row, "rating");
-      const given = +(rc.match(/data-rating="(\d)"/) || [])[1] || 0;
+      const given = +(rc.match(/data-rating="(\d(?:\.\d+)?)"/) || [])[1] || 0;   // the owner's list says "3.0"
       const rating = given || (rc.match(/staticStar p10/g) || []).length || null;
       const rv = cell(row, "review");
       const full = rv.match(/<span id="freeText\d+"[^>]*>([\s\S]*?)<\/span>/) || rv.match(/<span id="freeTextContainer\d+"[^>]*>([\s\S]*?)<\/span>/);
@@ -60,7 +60,7 @@
   }
 
   /** In the web view: who is signed in, then every page of the three shelves and the latest progress. */
-  async function sync(maxPages = 10) {
+  async function sync(maxPages = 30) {
     const me = await fetch("/review/list?shelf=read", { credentials: "include" });
     const user = (me.url.match(/\/review\/list\/(\d+)/) || [])[1];
     if (!user && /sign_in|\/ap\/signin/.test(me.url)) return JSON.stringify({ signedIn: false });

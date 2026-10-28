@@ -58,7 +58,7 @@ final class Goodreads: NSObject, WKNavigationDelegate {
             shelves["currently-reading"] = shelves["currently-reading"]?.map { b in
                 var b = b; if let p = b.bookId.flatMap({ status[$0] }) { b.progress = p.percent; b.page = p.page; b.of = p.of }; return b
             }
-            let s = Synced(user: user, shelves: shelves, status: status)
+            let s = Synced(user: user, shelves: shelves, status: status, at: .now)
             data = s
             try? JSONEncoder().encode(s).write(to: Self.file)
             return true

@@ -22,6 +22,7 @@ const o = shelf(own)[0];
 assert.equal(o.author, 'Jane Doe'); assert.equal(o.rating, 4); assert.equal(o.review, 'Loved it, the ending\nmade me cry.');
 assert.equal(o.readAt, null); assert.equal(o.pages, null);
 assert.deepEqual(shelf('<html>sign in</html>'), []);
+assert.equal(shelf(own.replace('data-rating="4"', 'data-rating="3.0"'))[0].rating, 3);   // the owner's own list (2026-10-28)
 assert.equal(shelf(own.replace(/<td class="field review">[\s\S]*?<\/td>/, '<td class="field review"><div class="value"><a href="/review/edit/9">Write a review</a></div></td>'))[0].review, null);
 
 const st = status(readFileSync(new URL('./test/fixtures/goodreads/status.html', import.meta.url), 'utf8'));

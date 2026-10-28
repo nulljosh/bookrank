@@ -188,7 +188,12 @@ struct LibraryView: View {
             }
             .searchable(text: $query, prompt: "Search your summaries")
             .overlay { if shown.isEmpty && shelves.isEmpty && !q.isEmpty { ContentUnavailableView.search(text: query) } }
-            .task(id: store.summaryIndex.count) { await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+            .task(id: store.summaryIndex.count) {
+                let id = auth.user?.userMetadata["goodreads"]?.stringValue
+                await store.loadGoodreads(id)
+                // Signed in to Goodreads: refresh the shelves on open when the last sync is over an hour old.
+                if let at = Goodreads.shared.data?.at, at.timeIntervalSinceNow < -3600 || CommandLine.flag("GOODREADS_SYNC"), await Goodreads.shared.sync() { await store.loadGoodreads(id) }
+            }
         }
     }
 
