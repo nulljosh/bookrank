@@ -22,6 +22,7 @@
 		1FD09E91C1599004CA7E5213 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */; };
 		235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */; };
 		241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
+		27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849BD03EBC174F2FFE54D4A /* Goal.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */; };
@@ -68,6 +69,7 @@
 		95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
 		99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
+		9C1647D46D00627BD552A07E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849BD03EBC174F2FFE54D4A /* Goal.swift */; };
 		A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
@@ -152,6 +154,7 @@
 		9C9F810A2EE7CDD4B516ADEF /* Kernel.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Kernel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1FB1817D952E630F014265C /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Regular.otf"; sourceTree = "<group>"; };
+		A849BD03EBC174F2FFE54D4A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		A918FA2D7AF3995D74F8E133 /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		AAB8DB870805E0D468BF923B /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 				A1FB1817D952E630F014265C /* AuthStore.swift */,
 				EFD53A14FC46AD38DFFFA927 /* Book.swift */,
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
+				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
 				8457AA46B272289E03D54157 /* Narrator.swift */,
 				8917EA02FB6A28868C756F74 /* Nudge.swift */,
@@ -527,6 +531,7 @@
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
+				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */,
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
@@ -571,6 +576,7 @@
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
+				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */,
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,

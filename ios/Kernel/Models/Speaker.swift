@@ -71,7 +71,14 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private var lastUtterance: AVSpeechUtterance?
     private var token = 0
 
-    override private init() { super.init(); synth.delegate = self }
+    override private init() {
+        super.init(); synth.delegate = self
+        // Weekly goal: five seconds counted for every five actually spoken.
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+            guard let self, self.playing, !self.paused, !self.loading else { return }
+            Goal.shared.add(5)
+        }
+    }
 
     /// Bind to a summary. Restores the saved position when the content is unchanged.
     func load(slug: String, chapters: [Chapter], entry: SummaryEntry?, save: @escaping (ListenState) async -> Void) {
@@ -190,6 +197,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     func unload() { stop(); slug = nil }
 
     private func persist() {
+        Task { await Goal.shared.remind() }
         guard let save else { return }
         let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line), marks: marks)
         Task { await save(st) }

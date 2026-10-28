@@ -29,7 +29,7 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 | 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | done in the apps (Download on the book page); web waits on web offline mode |
 | 8 | Add a chapter by photographing pages in the app | Speechify | L | done (apps: + on the library, photos read by /api/summarize-photo; web already had From photos) |
 | 9 | Ask the chapter a question | Speechify, Readwise | M | done (/api/ask from the chapter notes only; Ask on the chapter toolbar in the apps, Ask box under the web reader) |
-| 10 | Weekly listening goal | Blinkist, StoryGraph | M | open |
+| 10 | Weekly listening goal | Blinkist, StoryGraph | M | done (apps: goal in Account, gold ring on the library, end-of-week reminder when behind; counted per device; web has no goal yet) |
 
 Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other people's books.
 

@@ -317,8 +317,12 @@ struct AccountView: View {
             Toggle("Daily review nudge", isOn: Binding(get: { nudge }, set: { on in
                 Task { nudge = await Nudge.enable(on, entries: store.summaryIndex) }
             }))
+            Picker("Weekly goal", selection: Binding(get: { Goal.shared.target }, set: { m in Task { await Goal.shared.set(m) } })) {
+                Text("Off").tag(0)
+                ForEach([15, 30, 60, 120], id: \.self) { Text("\($0) min").tag($0) }
+            }
         } footer: {
-            Text("At 9:00 each morning, one line from a book you summarized. Nothing leaves this device.")
+            Text("At 9:00 each morning, one of your highlights or a line from a book you summarized; tap it to open the book. With a weekly goal, one reminder at the end of the week if you are behind. Nothing leaves this device.")
         }
 
         Section {

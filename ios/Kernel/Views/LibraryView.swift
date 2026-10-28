@@ -5,6 +5,7 @@ struct LibraryView: View {
     @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAddPages = false
+    @State private var openSlug: String?
     @State private var showAccount = false
     @State private var query = ""
     @State private var openShelves: Set<String> = ["Currently reading"]
@@ -51,6 +52,7 @@ struct LibraryView: View {
             NavigationStack {
                 list
                     .navigationDestination(isPresented: $showSample) { SummaryDetailView(slug: "sample", store: store) }
+                    .navigationDestination(item: $openSlug) { SummaryDetailView(slug: $0, store: store) }
                     .navigationTitle("Summaries")
                     .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
                     .toolbar { accountButton }
@@ -58,6 +60,15 @@ struct LibraryView: View {
             #endif
         }
         .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
+        .task(id: NoteTap.shared.slug) {   // a tapped reminder: open its book
+            guard let s = NoteTap.shared.slug else { return }
+            NoteTap.shared.slug = nil
+            #if os(macOS)
+            selected = s
+            #else
+            openSlug = s
+            #endif
+        }
         .sheet(isPresented: $showAddPages) { AddPagesView(store: store) }
         .onAppear {
             if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true }   // screenshots of the Account sheet
@@ -185,6 +196,7 @@ struct LibraryView: View {
     private func listRows(_ shown: [SummaryEntry], _ shelves: [(String, [DataStore.GoodreadsBook])], _ q: String) -> some View {
         // The book you are partway through gets a card on top; it leaves the plain rows so it shows once.
         let cont = q.isEmpty ? shown.first(where: started) : nil
+        if Goal.shared.target > 0 && q.isEmpty { goalRow.listRowSeparator(.hidden) }
         if let cont {
             #if os(macOS)
             continueCard(cont).tag(cont.slug)
@@ -222,6 +234,25 @@ struct LibraryView: View {
                 .accessibilityHint(open ? "Hides the shelf" : "Shows the shelf")
             }
         }
+    }
+
+    /// The weekly goal: a gold ring and the minutes so far.
+    private var goalRow: some View {
+        let g = Goal.shared
+        let f = min(1, Double(g.minutes) / Double(max(g.target, 1)))
+        return HStack(spacing: 14) {
+            ZStack {
+                Circle().inset(by: 2.5).stroke(amber.opacity(0.2), lineWidth: 5)
+                Circle().inset(by: 2.5).trim(from: 0, to: f).stroke(amber, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
+            }
+            .frame(width: 36, height: 36)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(g.met ? "Weekly goal met" : "This week").font(.kernel(.footnote, weight: .semibold)).foregroundStyle(amber)
+                Text("\(g.minutes) of \(g.target) min").font(.kernel(.headline)).monospacedDigit()
+            }
+        }
+        .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
     }
 
     /// Continue: bigger cover, where you are and what is left, a gold progress line.

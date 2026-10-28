@@ -206,6 +206,21 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("ask-sheet", XCUIScreen.main.screenshot())
     }
 
+    /// The weekly goal ring on the library, then the goal picker in Account.
+    func testWeeklyGoal() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT", "-kernel.goal", "60"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["38 of 60 min"].firstMatch.waitForExistence(timeout: 15))
+        sleep(1)
+        saveTo("goal-library", XCUIScreen.main.screenshot())
+        app.buttons["Account"].firstMatch.tap()
+        let goal = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Weekly goal'")).firstMatch
+        for _ in 0..<6 where !goal.isHittable { app.swipeUp() }
+        sleep(1)
+        saveTo("goal-account", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

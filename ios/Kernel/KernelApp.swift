@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 import CoreText
 
 extension CommandLine {
@@ -12,6 +13,7 @@ struct KernelApp: App {
     // Covers load through URLSession, so a bigger disk cache keeps them on screen offline.
     init() {
         URLCache.shared = URLCache(memoryCapacity: 20 << 20, diskCapacity: 200 << 20)
+        UNUserNotificationCenter.current().delegate = NoteTap.shared   // a tapped reminder opens its book
         #if os(iOS)
         // Navigation titles are UIKit's; give them Kernel Sans too.
         let bar = UINavigationBar.appearance()

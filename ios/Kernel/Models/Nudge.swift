@@ -1,7 +1,7 @@
 import Foundation
 import UserNotifications
 
-/// Daily review nudge: one local notification at 9:00 with a line from one of your summaries, so a book you
+/// Daily review nudge: one local notification at 9:00 with one of your highlights or a line from one of your summaries, so a book you
 /// finished comes back a little at a time. Seven days are queued at once and re-queued each launch, so it
 /// keeps going without a server. Off by default; the toggle in Account asks for permission.
 enum Nudge {
@@ -56,9 +56,11 @@ enum Nudge {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<7).map { prefix + "\($0)" })
         let cal = Calendar.current
+        // Your own highlights come back first; a random line from a book fills the other days.
+        var marked = entries.flatMap { e in (e.listen?.marks ?? []).map { (e, $0.text) } }.shuffled()
         for day in 0..<7 {
-            guard let entry = entries.randomElement(), let text = line(from: entry.content),
-                  let date = cal.date(byAdding: .day, value: day, to: Date()) else { continue }
+            let pick: (SummaryEntry, String)? = marked.popLast() ?? entries.randomElement().flatMap { e in line(from: e.content).map { (e, $0) } }
+            guard let (entry, text) = pick, let date = cal.date(byAdding: .day, value: day, to: Date()) else { continue }
             var when = cal.dateComponents([.year, .month, .day], from: date)
             when.hour = 9; when.minute = 0
             if let at = cal.date(from: when), at <= Date() { continue }   // today's 9:00 already passed
@@ -66,6 +68,7 @@ enum Nudge {
             content.title = entry.title
             content.body = text
             content.sound = .default
+            content.userInfo = ["slug": entry.slug]   // a tap opens the book
             try? await center.add(UNNotificationRequest(identifier: prefix + "\(day)", content: content, trigger: UNCalendarNotificationTrigger(dateMatching: when, repeats: false)))
         }
     }
