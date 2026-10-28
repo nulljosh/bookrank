@@ -132,6 +132,18 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("chapter", XCUIScreen.main.screenshot())
     }
 
+    /// The player bar's menu (speed, sleep timer), shown silent via UITEST_PLAYER. Never presses Play.
+    func testPlayerMenu() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_PLAYER"]
+        app.launch()
+        let speed = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Speed'")).firstMatch
+        XCTAssertTrue(speed.waitForExistence(timeout: 15))
+        speed.tap()
+        sleep(1)
+        saveTo("player-menu", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
