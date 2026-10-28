@@ -1,5 +1,109 @@
-## 3.0.0 (next)
-- [x] Gap rows 1 to 5 built and committed 2026-10-28; ships as 3.0.0 once 2.0.0 clears review.
+## Road to 100 (2026-10-28)
+One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+
+| v | What | Where | Status |
+|---|---|---|---|
+| 3 | Gap rows 1 to 5: minutes, Continue card, line skip, speed presets, sleep timer; resume fix | apps, web | built |
+| 4 | Gap rows 6 to 10: highlights, offline audio, add pages, ask the chapter, weekly goal; Goodreads sign-in; book avatars; review fixes | apps, web | built |
+| 5 | A big Play / Continue button on the book page (A1) | apps, web | open |
+| 6 | Now Playing sheet: big cover, time left, line skip, speed, sleep, chapters (A2) | apps, web | open |
+| 7 | Reader text size and line spacing (A3) | apps, web | open |
+| 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | open |
+| 9 | Highlights merge across devices instead of last writer wins (review item a) | apps, web | open |
+| 10 | `updated_at` moves only on content edits, in jaybulb-api (review b); one listen stylesheet (review c) | api, web | open |
+| 11 | iPad pass: reading column, split view, screenshots | iPad | open |
+| 12 | Mac store screenshots at 2880x1800, signed-in Mac walk | Mac | open |
+| 13 | Icon and Kernel Sans A+ at small sizes | all | open |
+| 14 | Cold launch: Release build timing, no white flash | apps | open |
+| 15 | Web offline mode: the shelf and chapters work with no connection | web | open |
+| 16 | Web offline audio: Download on the web book page | web | open |
+| 17 | Web Add pages parity: per-photo progress, edit before save | web | open |
+| 18 | Search inside chapter text, results jump to the line | apps, web | open |
+| 19 | Collections: put books in your own groups | apps, web | open |
+| 20 | Sort and filter the library (recent, title, progress, length) | apps, web | open |
+| 21 | Your own note under any chapter | apps, web | open |
+| 22 | All highlights in one place; share a highlight as an image card | apps, web | open |
+| 23 | Export highlights and notes as Markdown | apps, web | open |
+| 24 | Daily review: five highlights resurface on a schedule | apps, web | open |
+| 25 | Quiz me: three questions per chapter, answers checked | apps, web | open |
+| 26 | Key ideas card at the top of each book | apps, web | open |
+| 27 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 28 | Connections: the same idea across your books | apps, web | open |
+| 29 | Ask the whole book, not only one chapter | apps, web | open |
+| 30 | Ask by voice (on-device dictation) | apps | open |
+| 31 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
+| 32 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | open |
+| 33 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | open |
+| 34 | Year in review | apps, web | open |
+| 35 | Goodreads on the web through your Goodreads export file | web | open |
+| 36 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
+| 37 | Import highlights from a Readwise or Apple Books export | apps, web | open |
+| 38 | Import an EPUB or PDF you own into chapters | apps, web | open |
+| 39 | Scan pages with the document camera in Add pages | iPhone, iPad | open |
+| 40 | Read the page text on the device before upload, so photos never leave it | apps | open |
+| 41 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | open |
+| 42 | Siri: "continue my book" | apps | open |
+| 43 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
+| 44 | Lock Screen widget and a Live Activity while listening | iPhone | open |
+| 45 | Control Center control for the current book | iPhone, Mac | open |
+| 46 | CarPlay audio | iPhone | open |
+| 47 | Handoff: pick up the same chapter on the Mac | apps | open |
+| 48 | Mac menu bar mini player | Mac | open |
+| 49 | Mac keyboard map and a command palette | Mac | open |
+| 50 | Spotlight finds your summaries and highlights | apps | open |
+| 51 | Share extension: save text or a web article as a summary | apps | open |
+| 52 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
+| 53 | Pick the narrator voice, per book | apps, web | open |
+| 54 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
+| 55 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
+| 56 | Storage screen: what is downloaded, how big, remove it | apps | open |
+| 57 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
+| 58 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | open |
+| 59 | Languages: French, Spanish and German interface | apps, web | open |
+| 60 | Narrate a chapter in your own language | apps, web | open |
+| 61 | Localized screenshots and listings | store | open |
+| 62 | First-run pages offer the Goodreads sign-in | apps | open |
+| 63 | Empty states and error messages A+ on every screen | apps, web | open |
+| 64 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | open |
+| 65 | Notifications: weekly recap, quiet hours | apps | open |
+| 66 | Public profile: the shelf and highlights you choose to share | web | open |
+| 67 | Share links with cover preview cards | web | open |
+| 68 | Landing refresh with real app screens and the Goodreads story | web | open |
+| 69 | Opt-in public pages for shared summaries | web | open |
+| 70 | 500-book library stays smooth (Goodreads scale) | apps, web | open |
+| 71 | Covers cached on disk | apps | open |
+| 72 | Startup time budget with an Instruments pass | apps | open |
+| 73 | On-device error log you can export when something breaks | apps | open |
+| 74 | Retry with backoff on every network call; saves queue while offline | apps, web | open |
+| 75 | Listen position merges across devices by time | apps, web | open |
+| 76 | Security sweep: auth, rate limits on every model route, KV caps | api | open |
+| 77 | Export everything you have as one file | apps, web | open |
+| 78 | Account deletion also clears usage counters and audio caches | api, apps | open |
+| 79 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | open |
+| 80 | kernel.jaybulb.com and the repo rename (needs Joshua) | web, repo | open |
+| 81 | Swift unit tests (parsers, goal, nudges) run in CI | apps | open |
+| 82 | Simulator UI walks run in CI | apps | open |
+| 83 | Docs to 100 percent | repo | open |
+| 84 | Web polish pass to match the apps (apple skill) | web | open |
+| 85 | Web keyboard shortcuts and a focus mode | web | open |
+| 86 | Read mode: page by page without audio, position saved | apps, web | open |
+| 87 | Kernel Sans italic and bold for quotes | all | open |
+| 88 | Sepia reading theme | apps, web | open |
+| 89 | True black for OLED | apps | open |
+| 90 | iPad: Stage Manager windows, Pencil highlights | iPad | open |
+| 91 | Mac: one window per book | Mac | open |
+| 92 | Promotional text and in-app events each release | store | open |
+| 93 | Two screenshot sets tested on the product page | store | open |
+| 94 | Second Mobbin pass against the best apps; close what is left | all | open |
+| 95 | apple skill audit of every screen, zero findings | all | open |
+| 96 | Security and privacy audit, zero findings | all | open |
+| 97 | Performance audit, zero regressions | all | open |
+| 98 | Docs, README, WHITEPAPER and landing final pass | repo, web | open |
+| 99 | Release candidate: every row above on iPhone, iPad, Mac and web | all | open |
+| 100 | Kernel 100 | all | open |
+
+## 3.0.0
+- [x] Gap rows 1 to 5 built and committed 2026-10-28.
 - [ ] Fresh Mac store screenshots at 2880x1800.
 
 ## 2.0.0 (shipped to review 2026-10-28)

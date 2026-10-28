@@ -1,4 +1,4 @@
-# Kernel loop handoff (2026-10-28, midday)
+# Kernel loop handoff (2026-10-28, evening)
 
 ## What the loop is
 
@@ -18,22 +18,13 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 
 ## Next, in order
 
-Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule); live on the web, in the apps from 3.0.0.
+**The loop now runs to Kernel 100.** The plan is the "Road to 100" table at the top of roadmap.md: one row per major, built on every platform the row names, QA'd with light and dark screenshots, marked built, tagged `vN.0.0` (push the tag by name), committed by path, pushed, web deployed. 3.0 and 4.0 are built and tagged. Next row: **5, the Play / Continue button on the book page**.
 
+Store: 2.0.0 is in review on iOS and Mac (builds 202610281242). The day it clears, ship the newest tagged major (not 3.0): `asc versions create`, What's New, fresh shots (`sh ios/scripts/shots.sh`; if fastlane hangs in `simctl diagnose`, take the PNGs from ~/Library/Caches/tools.fastlane/screenshots), `asc workflow run ship-ios VERSION:<v>`, then the Mac (archive KernelMac, export with `ios/ExportOptionsMac.plist`, `asc builds upload --pkg`, `asc review submit`). Review notes must mention the Goodreads sign-in (Goodreads' own page in a web view, nothing sent to Kernel). Never let `xcodegen` rewrite `ios/Kernel/Info.plist` into a commit.
 
-2.0.0 is in review on iOS and Mac (2026-10-28, builds 202610281242). Watch for App Review; answer anything in Resolution Center only with Joshua's yes.
+Goodreads (G1) works with Joshua's account on the Mac Debug build (420 read, 413 rated, 11 reading with pages, 8 reviews, 2026-10-28). The owner's list differs from the public one: ratings are `data-rating="3.0"`, an empty review is a "Write a review" link.
 
-1. **3.0.0 is built, waiting on 2.0.0.** Gap rows 1 to 5 are done and committed (minutes, Continue card, line skip, speed presets, sleep timer). Apple allows one version in review at a time, so the day 2.0.0 clears: create 3.0.0 on iOS and Mac (`asc versions create`), set What's New, fresh store shots (`sh ios/scripts/shots.sh`; if fastlane hangs in `simctl diagnose` after a passing test, take the PNGs from ~/Library/Caches/tools.fastlane/screenshots), `asc workflow run ship-ios VERSION:3.0.0`, then the Mac steps below. Mac: archive KernelMac, export with `ios/ExportOptionsMac.plist` (automatic signing), `asc builds upload --app 6792376485 --pkg ... --version --build-number`, `asc review submit`. Never let `xcodegen` alone rewrite `ios/Kernel/Info.plist` into a commit: restore it with git, the ship workflow patches it.
-2. **Mac store screenshots** at 2880x1800 (this Mac's display is 1x, so render larger or skip).
-3. **Icon and font A+.** Icon reads like a text glyph at small sizes; font: seeds on the other dots?
-4. Cold launch shows ~3s white in the debug simulator; check a Release build.
-5. **Highlights (gap row 6), in progress.** Adding a `highlights` column on D1 was blocked by the permission check (production change), so store them inside the row's `listen` JSON as `listen.marks: [{ch, text}]`. Every writer must carry `marks` along: web `save` in library.html, Swift `ListenState` (add an optional `marks`), and keep marks even when `listen.for` no longer matches. Apps: long-press a line in ChapterView to save it, a Highlights list on the book page. Web: a save button for the current line and a list under the reader. Send `updated_at` back on every save (see CLAUDE.md, updated_at rule).
-6. **4.0.0**: gap matrix done (rows 6 to 10: highlights, offline audio, add pages, ask the chapter, weekly goal). Reminders now use your highlights and open the book on tap. Next: the A+ pass over every screen (apple skill), web weekly goal, a signed-in QA walk of download, add pages and ask. Neither download nor add pages was walked end to end (needs a signed-in QA account and spends credits).
-
-7. **Goodreads (G1), in progress.** RSS and signed-out shelf pages are gone (404 and sign-in redirect, 2026-10-28), so `/api/goodreads` returns nothing. Plan: the signed-out profile page for what it still shows, plus a Goodreads sign-in sheet (WKWebView) in the apps that reads review/list and user_status/list on the device. Joshua signs in himself.
-8. **A+ pass, right after Goodreads (Joshua asked twice).** Rows A1 to A4 in roadmap.md: Play button on the book page, Now Playing sheet, text size, streak dots. Competitor sheets: `python3 ~/.claude/skills/mobbin/fetch.py <dir> "Apple Books" "Blinkist" ...`.
-
-9. **Left from the 2026-10-28 code review.** (a) Highlights are last-writer-wins across devices: merge `marks` by union on save instead of overwriting. (b) Side-data saves echo a cached `updated_at`, which can roll a newer one back; the real fix is in jaybulb-api (stamp `updated_at` only when `content` changes). (c) The listen-player CSS is copied into index, library and share; move it to one stylesheet.
+Testing on this Mac: there is no Simulator.app (headless simctl only), so a hands-on test for Joshua is the Mac Debug build: `xcodebuild -scheme KernelMac -derivedDataPath <scratch> build CODE_SIGNING_ALLOWED=NO`, then `open -n KernelMac.app --args -kernel.onboarded YES -UITEST_SNAPSHOT 1` (add `-GOODREADS_SYNC 1` to force a sync). Ask before opening it; one instance.
 
 ## Waiting on Joshua
 
@@ -43,5 +34,5 @@ Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule
 ## Restart prompt
 
 ```
-/loop Kernel loop through 2.0.0, then 3.0.0, 4.0.0 and on to 10.0.0, in ~/Documents/Code/bookrank. Read docs/LOOP-HANDOFF.md first and work its Next list in order. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
+/loop Kernel loop to v100, in ~/Documents/Code/bookrank. Read docs/LOOP-HANDOFF.md first, then build the next open row of the Road to 100 table in roadmap.md, one major per tick. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
 ```
