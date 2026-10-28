@@ -1,3 +1,16 @@
+## 2.0.0 (the loop runs to here)
+- [x] Rename to Kernel: name reserved on the 1.3.0 app info, code, targets, icon, subtitle and descriptions (2026-10-28).
+- [x] Brand: seed icon, Kernel gold, Kernel Sans, brand kit page at /brand, Hermes-style landing (2026-10-28).
+- [x] Apps on Cloudflare (jaybulb-api), supabase-swift removed, App Store purchase proof for natural voices (2026-10-28).
+- [ ] Kernel Sans and gold inside the iPhone and Mac apps.
+- [ ] Liquid Glass pass, then the Jony Ive spacing pass, iPhone and Mac, light and dark.
+- [ ] Mac QA signed in.
+- [ ] Icon and font A+ (small-size icon read; seed on the other dots?).
+- [ ] Mobbin gap matrix (below, once written).
+- [ ] Ship 2.0.0 on iOS and Mac with new screenshots; review notes mention the one-time sign-in.
+- [ ] kernel.jaybulb.com (needs Joshua's OK), then repo and folder rename to kernel.
+- [ ] Remove `viaApp`, the Supabase fallback and the Supabase project once nobody runs 1.2.x.
+
 ## Shipped 2026-09-05, Listen feature complete: shared player, share links, thumbnails, profile page, iOS/macOS account sync
 
 Listen feature complete. Refactored narration player into a shared module (listen.js) with one utterance at a time, next chapter prefetch to eliminate gaps, word+line highlight with auto-scroll, and pause resilient to loading. Share links (share.html?t=<token>) let readers play chapters without signing in. Thumbnails now probe Open Library/Google Books via title/ISBN match with fallback chain. Currently-playing group at top of summaries list (web/iOS). Profile page handles username (defaults to email local part), pixel avatar generation, email/password changes, and account deletion; iOS/macOS account view synced. KMP and TUI apps can open share links. Fixed root cause of tab-switching bug: onAuthStateChange was re-firing on tab focus + hourly token refresh, rebuilding the library list on every event; now only reacts to sign-in state flips. Fixed repeated chapter intro narrations by passing chapter index/total to prompt. Twenty-four tests (listen.test.js, narrate.test.js, profile.test.js, books.test.js). Deployed to bookrank.heyitsmejosh.com.
