@@ -1,6 +1,6 @@
 # API
 
-Bookrank has no HTTP API of its own. `library.html` — the only real app in this
+Kernel has no HTTP API of its own. `library.html` — the only real app in this
 repo — talks to Supabase directly from the browser, reading and writing the
 `bookrank_summaries` table with the anon/publishable key. There is no server,
 no serverless function, and nothing to call from outside the page.
@@ -17,7 +17,7 @@ be lying about what the app does.
 `webmcp.js`, loaded from `library.html` only, registers tools against
 `window.modelContext` when a WebMCP-capable browser is present. Every tool
 calls straight through to the existing functions in `library.html`'s module
-script (exposed as `window.__bookrank`) — the same Supabase client, the same
+script (exposed as `window.__kernel`) — the same Supabase client, the same
 queries, no reimplementation.
 
 ### Read-only
@@ -47,7 +47,7 @@ credentials must never pass through a tool call.
 
 ## Why tools use the data layer, not the UI
 
-`webmcp.js` calls `window.__bookrank.rows.*` — the query layer — never the
+`webmcp.js` calls `window.__kernel.rows.*` — the query layer — never the
 editor functions `open()` or `saveCurrent()`. Routing tools through the UI would
 let a tool call reset the editor's `current` record or overwrite the open
 textareas, so a user editing a summary when an agent created another one would

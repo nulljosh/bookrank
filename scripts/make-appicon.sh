@@ -8,11 +8,11 @@
 # stale for months when only the 1024 was rebuilt.
 set -e
 cd "$(dirname "$0")/.."
-BG="#0f172a"
-DIR="ios/Bookrank/Assets.xcassets/AppIcon.appiconset"
+BG="#c97a00"
+DIR="ios/Kernel/Assets.xcassets/AppIcon.appiconset"
 for SIZE in 1024 512 256 128 64 32 16; do
   DEST="$DIR/icon_$SIZE.png"
-  rsvg-convert -w "$SIZE" -h "$SIZE" icon.svg | magick - -background "$BG" -alpha remove -alpha off "$DEST"
+  rsvg-convert -w "$SIZE" -h "$SIZE" brand/icon-tile.svg | magick - -background "$BG" -alpha remove -alpha off "$DEST"
   sips -g pixelWidth -g pixelHeight -g hasAlpha "$DEST" | grep -q 'hasAlpha: no'
   sips -g pixelWidth "$DEST" | grep -q "pixelWidth: $SIZE"
   echo "OK: $DEST"

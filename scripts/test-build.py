@@ -23,7 +23,7 @@ ranked = build.by(books, "ranked")
 # 2. The actual regression: unrated books exist and are still exported.
 unrated = [b for b in ranked if b.get("rating") is None]
 assert unrated, "expected unrated books; if this fires the fixture changed, not the bug"
-ios = json.loads((ROOT / "ios/Bookrank/Resources/books.json").read_text())
+ios = json.loads((ROOT / "ios/Kernel/Resources/books.json").read_text())
 assert len(ios) == len(ranked), f"iOS ships {len(ios)} of {len(ranked)} ranked books"
 titles = {b["title"] for b in ios}
 for b in unrated:
@@ -40,10 +40,10 @@ for b in ios:
     assert isinstance(b["badges"], list)
 
 # 5. The generator is idempotent — running it twice changes nothing.
-before = (ROOT / "ios/Bookrank/Resources/books.json").read_bytes()
+before = (ROOT / "ios/Kernel/Resources/books.json").read_bytes()
 subprocess.run([sys.executable, str(ROOT / "scripts/build.py")], check=True,
                capture_output=True)
-assert (ROOT / "ios/Bookrank/Resources/books.json").read_bytes() == before, "build.py is not idempotent"
+assert (ROOT / "ios/Kernel/Resources/books.json").read_bytes() == before, "build.py is not idempotent"
 
 print(f"ok: {len(ranked)} ranked ({len(unrated)} unrated) all reach the app; "
       f"{len(books)} entries total")

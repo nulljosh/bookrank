@@ -1,4 +1,4 @@
-// The one definition of what Bookrank does over the network. Both surfaces — the REST
+// The one definition of what Kernel does over the network. Both surfaces — the REST
 // routes in functions/api/ and the MCP server in functions/mcp.js — call `callTool` from
 // here, so they cannot drift apart.
 //

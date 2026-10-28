@@ -1,4 +1,4 @@
-rootProject.name = "bookrank"
+rootProject.name = "kernel"
 
 pluginManagement {
     repositories {

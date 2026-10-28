@@ -42,7 +42,7 @@ def rows(slugs=()):
 def call(method, path, headers, body=None):
     # the User-Agent matters: Cloudflare rejects urllib's default one
     req = urllib.request.Request(API + path, json.dumps(body).encode() if body is not None else None, method=method,
-                                 headers={"User-Agent": "bookrank-import/1.0", "Content-Type": "application/json", **headers})
+                                 headers={"User-Agent": "kernel-import/1.0", "Content-Type": "application/json", **headers})
     with urllib.request.urlopen(req) as r:
         return json.loads(r.read() or "null")
 

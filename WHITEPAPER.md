@@ -1,8 +1,8 @@
-# Bookrank Technical Whitepaper
+# Kernel Technical Whitepaper
 
 **v1.0.1** | October 2026
 
-Chapter summaries of the books you actually read. You finish a book and a month later you remember one idea. Bookrank keeps the rest: every chapter, in plain words, readable in a minute or played aloud as two people talking it through. Your summaries are yours. They sit behind your account, and deleting the account deletes all of it. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com) and on the iOS and Mac App Stores.
+Chapter summaries of the books you actually read. You finish a book and a month later you remember one idea. Kernel keeps the rest: every chapter, in plain words, readable in a minute or played aloud as two people talking it through. Your summaries are yours. They sit behind your account, and deleting the account deletes all of it. Live at [bookrank.heyitsmejosh.com](https://bookrank.heyitsmejosh.com) and on the iOS and Mac App Stores.
 
 ## The shape
 

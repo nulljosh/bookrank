@@ -23,7 +23,7 @@ Unknown, check first, for every sub below before posting.
 ## Skipped
 
 - r/books: not on the approved subreddit map, self-promotion is not the norm there.
-- r/IndieBiz: no revenue angle, Bookrank is free with no paid rail.
-- r/AlphaAndBetaUsers, r/BetaTestersNeeded, r/iOSBeta: pre-launch only, Bookrank is already live.
-- r/writing: doesn't fit, Bookrank is about deciding what to read, not about writing craft.
+- r/IndieBiz: no revenue angle, Kernel is free with no paid rail.
+- r/AlphaAndBetaUsers, r/BetaTestersNeeded, r/iOSBeta: pre-launch only, Kernel is already live.
+- r/writing: doesn't fit, Kernel is about deciding what to read, not about writing craft.
 - r/AndroidApps: the Android build only opens shared links, it isn't a full app experience worth a dedicated post.

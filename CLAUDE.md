@@ -1,13 +1,15 @@
-# Bookrank
+# Kernel (ex-Bookrank)
 
-`bookrank.heyitsmejosh.com`, Joshua's book rankings/TBR site. Renamed from "Books" 2026-07-18, then repo+folder `spine`→`uprighty` 2026-07-29, then ASC app + GitHub repo + domain all renamed `uprighty`→`bookrank` 2026-08-07 (Uprighty was rejected as a duplicate ASC name). GitHub repo is now `nulljosh/bookrank`; local folder stays `~/Documents/Code/uprighty` (not renamed, matches this project's own pattern of folder lagging display name). Split out from the `nulljosh.github.io` (echo) repo into its own repo+domain (was previously nested under echo, which made no sense, books and echo are unrelated projects).
+Chapter summaries of the books you own, read or listened to. Renamed Bookrank to **Kernel** on 2026-10-28: the ASC name is reserved on the editable 1.3.0 app info (Apple's probe: Kernel, Exordium and Gravamen were the only free real words out of about 130), the code, Xcode targets (`Kernel`, `KernelMac`, `ios/Kernel/`), icon (`Kernel.icon`) and font (Kernel Sans) are renamed. Earlier names: Books, Spine, Uprighty, Bookrank. Folder is `~/Documents/Code/bookrank`.
+
+**Still on old names on purpose** (renaming breaks installs, saved settings or the API): bundle id `com.heyitsmejosh.spine`, `spine-theme`, the `bookrank_summaries` table, `bookrank.*` UserDefaults and localStorage keys (`rate`, `voice`, `mode`, `natural`, `explain`, `nudge`, `biometric.email`), the `bookrank` onboarding key, the `bookrank-data` cache, the `X-Bookrank-App` header, the KMP package `com.nulljosh.bookrank`, the Pages project `bookrank`, the Mac provisioning profile "Bookrank Mac App Store", and bookrank.jaybulb.com (keeps serving; kernel.jaybulb.com waits on adding the custom domain).
 
 ## Pivot: summaries only (2026-09-21)
 The product is chapter summaries. No rankings, no recommendations, no lists on the web. `rankings.html` and `book_rankings.md` are deleted; `/rankings.html` 301s to `library.html` via `_redirects`. `books.json` stays only because the iOS/macOS shelf and cover matching still read it. iOS/macOS (2026-10-02): `LibraryView` is a plain list of covers and titles; a book opens to its chapters, a chapter to its text with one Listen button. KMP is a share-link reader and the TUI searches summaries, both done. The watch app was retired 2026-10-02 (never shipped). `books.json` stays: it feeds the public /api and MCP tools and the cover fallback. Every summary row has a verified `cover` (24 of 24, 2026-10-02); never save a cover from a title-only search.
 
 ## Files
 - `books.json`: **the single source of truth for every book list.** Edit this, nothing else.
-- `scripts/build.py`: regenerates `rankings.html` (inside `<!-- generated:* -->` markers), `book_rankings.md`, and the three `ios/Bookrank/Resources/*.json` files from `books.json`. Run after every edit.
+- `scripts/build.py`: regenerates `rankings.html` (inside `<!-- generated:* -->` markers), `book_rankings.md`, and the three `ios/Kernel/Resources/*.json` files from `books.json`. Run after every edit.
 - `index.html`: landing page; hero is a cover wall built at runtime from `scripts/covers.json`
 - `rankings.html`: the ranked shelf (search, sort, star ratings). Page chrome is hand-written; the book rows are generated, do not hand-edit inside the markers.
 - `library.html`: private per-account chapter summaries
@@ -24,7 +26,7 @@ When the user says they've read, finished, or are partway through a book and wan
 The "Recently Read" and "Summaries" sections on `rankings.html` are separate from the ranked list and are allowed to hold finished books.
 
 ## Rule: no library checkout tracking (2026-08-22)
-Every library book is returned. The old "Out From The Library" section, its `data-due` countdown badge and the matching iOS `DueDateBadge` exist only as history, do not reintroduce a checkout or due-date feature without a real data source. `ios/Bookrank/Resources/library.json` carries `loans: []`; the iOS view already renders nothing when it is empty, which is why only the web page ever went stale (its list was hardcoded inline).
+Every library book is returned. The old "Out From The Library" section, its `data-due` countdown badge and the matching iOS `DueDateBadge` exist only as history, do not reintroduce a checkout or due-date feature without a real data source. `ios/Kernel/Resources/library.json` carries `loans: []`; the iOS view already renders nothing when it is empty, which is why only the web page ever went stale (its list was hardcoded inline).
 
 ## Chapter summaries (photographed books)
 Raw phone photos of physical books, their per-chapter summaries, and merged book-level markdown live in iCloud Drive at `~/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books/` (not in this repo, too large/private). That folder has its own `summarize.sh` and `CLAUDE.md`.

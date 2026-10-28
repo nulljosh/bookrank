@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>My summaries, Bookrank</title>
+<title>My summaries, Kernel</title>
 <link rel="stylesheet" href="tokens.css">
 <style>
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
@@ -93,12 +93,12 @@ dl.profile dt { color:var(--text3); }
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <main class="wrap" id="main">
-  <a class="back" href="/">&larr; Bookrank</a>
+  <a class="back" href="/">&larr; Kernel</a>
 
   <!-- signed out -->
   <section id="gate" class="hide gate">
     <img class="gate-icon" src="icon.svg" width="72" height="72" alt="">
-    <h1 id="gateTitle">Sign in to Bookrank</h1>
+    <h1 id="gateTitle">Sign in to Kernel</h1>
     <p class="sub" id="gateSub">Your chapter summaries. Private to your account.</p>
     <form class="auth" id="authForm">
       <input type="email" id="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
@@ -166,7 +166,7 @@ let current = null; // row being edited
 let signingUp = false;
 function setMode(up) {
   signingUp = up;
-  $('gateTitle').textContent = up ? 'Create your account' : 'Sign in to Bookrank';
+  $('gateTitle').textContent = up ? 'Create your account' : 'Sign in to Kernel';
   $('gateSub').textContent = up ? 'Chapter summaries of the books you read, in one private place.' : 'Your chapter summaries. Private to your account.';
   $('submitBtn').textContent = up ? 'Create account' : 'Sign in';
   $("authToggle").textContent = up ? 'Have an account? Sign in' : 'New here? Create an account';
@@ -558,7 +558,7 @@ $('del').onclick = async () => {
 // ponytail: exposes the data layer, not the UI functions. Same db client and
 // same table the UI uses, but a tool call cannot null out `current`, overwrite
 // the open textareas, or navigate the user somewhere they did not ask to go.
-window.__bookrank = {
+window.__kernel = {
   rows,
   stamp,
   whoami: async () => (await db.auth.getUser()).data.user,

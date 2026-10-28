@@ -1,10 +1,10 @@
-# Contributing to bookrank
+# Contributing to kernel
 
 ## Setup
 
 ```
 git clone https://github.com/nulljosh/bookrank.git
-cd bookrank
+cd kernel
 open Package.swift   # or the .xcodeproj/.xcworkspace, if present
 ```
 

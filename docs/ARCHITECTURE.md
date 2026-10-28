@@ -10,7 +10,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 **Android and desktop (KMP)**: a share-link reader. Paste a link, read that summary. No account, no list.
 
-**Terminal**: `bookrank-tui <query>` searches summaries through `/api/search`; `bookrank-tui share <link>` reads one.
+**Terminal**: `kernel-tui <query>` searches summaries through `/api/search`; `kernel-tui share <link>` reads one.
 
 ## Web
 
@@ -48,21 +48,21 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 | File | What it owns |
 |---|---|
-| `ios/Bookrank/BookrankApp.swift` | App entry, root scene |
-| `ios/Bookrank/Views/LibraryView.swift` | The list: covers and titles, search over titles and text, resume line, the Goodreads read-but-unsummarized section, empty and signed-out states, theme and account buttons |
-| `ios/Bookrank/Views/SummaryDetailView.swift` | Chapter parsing, the chapter list for a book, and the chapter reader with the marker word highlight that the page follows, even through long paragraphs |
-| `ios/Bookrank/Views/AccountView.swift` | Sign in with Apple or email, the Goodreads link with photo, quote and genres, export everything as markdown, password reset, sign out, delete account |
-| `ios/Bookrank/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
-| `ios/Bookrank/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
-| `ios/Bookrank/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch; also `lines(from:)` for watch sync |
-| `ios/Bookrank/Models/WatchSync.swift` | WCSessionDelegate singleton that syncs up to 30 lines from summaries to the paired watch app over applicationContext |
-| `ios/Bookrank/Models/AuthStore.swift` | Supabase email and password auth, session restore |
-| `ios/Bookrank/Models/Book.swift` | `Book` (for cover matching), `SummaryEntry`, `ListenState` |
-| `ios/Bookrank/Models/KeychainHelper.swift` | Small keychain read and write helper |
-| `ios/Bookrank/Models/SessionKeychainStorage.swift` | Supabase session storage in the data-protection keychain |
-| `ios/Bookrank/Resources/books.json` | Bundled copy of `books.json`, used only to match covers by title |
-| `ios/Bookrank/Resources/summaries/` | Sample summaries for screenshot mode |
-| `ios/project.yml` | xcodegen spec for the `Bookrank` and `BookrankMac` targets |
+| `ios/Kernel/KernelApp.swift` | App entry, root scene |
+| `ios/Kernel/Views/LibraryView.swift` | The list: covers and titles, search over titles and text, resume line, the Goodreads read-but-unsummarized section, empty and signed-out states, theme and account buttons |
+| `ios/Kernel/Views/SummaryDetailView.swift` | Chapter parsing, the chapter list for a book, and the chapter reader with the marker word highlight that the page follows, even through long paragraphs |
+| `ios/Kernel/Views/AccountView.swift` | Sign in with Apple or email, the Goodreads link with photo, quote and genres, export everything as markdown, password reset, sign out, delete account |
+| `ios/Kernel/Models/Speaker.swift` | The player on AVSpeechSynthesizer, two-host scripts from `/api/narrate`, `ListenControls` toolbar |
+| `ios/Kernel/Models/DataStore.swift` | Fetches `bookrank_summaries`, cover lookup (row cover, then `books.json` by title), share links, listen position saves, screenshot sample shelf |
+| `ios/Kernel/Models/Nudge.swift` | Daily review nudge: asks for notification permission, queues seven 9:00 local notifications with a line from a random summary, re-queued on launch; also `lines(from:)` for watch sync |
+| `ios/Kernel/Models/WatchSync.swift` | WCSessionDelegate singleton that syncs up to 30 lines from summaries to the paired watch app over applicationContext |
+| `ios/Kernel/Models/AuthStore.swift` | Supabase email and password auth, session restore |
+| `ios/Kernel/Models/Book.swift` | `Book` (for cover matching), `SummaryEntry`, `ListenState` |
+| `ios/Kernel/Models/KeychainHelper.swift` | Small keychain read and write helper |
+| `ios/Kernel/Models/SessionKeychainStorage.swift` | Supabase session storage in the data-protection keychain |
+| `ios/Kernel/Resources/books.json` | Bundled copy of `books.json`, used only to match covers by title |
+| `ios/Kernel/Resources/summaries/` | Sample summaries for screenshot mode |
+| `ios/project.yml` | xcodegen spec for the `Kernel` and `KernelMac` targets |
 | `ios/scripts/prepare-plist.py` | Patches the plist keys xcodegen drops |
 | `ios/UITests/PreviewScreenshot.swift` | App Store screenshots: list, chapters, chapter text, on the sample shelf |
 | `ios/UITests/SnapshotHelper.swift` | fastlane snapshot helper |
@@ -72,7 +72,7 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 | File | What it owns |
 |---|---|
 | `kmp/composeApp/src/commonMain/kotlin/com/nulljosh/bookrank/AppScreen.kt` | Share-link box and the shared summary reader with chapters |
-| `kmp/shared/src/commonMain/kotlin/com/nulljosh/bookrank/BookrankClient.kt` | Calls the public `shared_summary` RPC, parses chapters with the same rule as web and iOS |
+| `kmp/shared/src/commonMain/kotlin/com/nulljosh/bookrank/KernelClient.kt` | Calls the public `shared_summary` RPC, parses chapters with the same rule as web and iOS |
 | `kmp/composeApp/src/androidMain/kotlin/com/nulljosh/bookrank/MainActivity.kt` | Android entry |
 | `kmp/composeApp/src/desktopMain/kotlin/com/nulljosh/bookrank/Main.kt` | Desktop window |
 | `kmp/settings.gradle.kts`, `kmp/composeApp/build.gradle.kts`, `kmp/shared/build.gradle.kts`, `kmp/gradle/libs.versions.toml` | Gradle build and pinned versions |
@@ -81,10 +81,10 @@ Chapter summaries of the books you read. Open a book, pick a chapter, read it or
 
 | File | What it owns |
 |---|---|
-| `ios/BookrankWatch/BookrankWatchApp.swift` | Watch app entry, observes Lines instance |
-| `ios/BookrankWatch/ContentView.swift` | One line at a time with book title, tap to advance to a random line, empty state text |
-| `ios/BookrankWatch/Lines.swift` | WCSessionDelegate that receives lines from iPhone over applicationContext and stores in UserDefaults |
-| `ios/BookrankWatch/Assets.xcassets/` | Watch app icon and orange accent color |
+| `ios/KernelWatch/KernelWatchApp.swift` | Watch app entry, observes Lines instance |
+| `ios/KernelWatch/ContentView.swift` | One line at a time with book title, tap to advance to a random line, empty state text |
+| `ios/KernelWatch/Lines.swift` | WCSessionDelegate that receives lines from iPhone over applicationContext and stores in UserDefaults |
+| `ios/KernelWatch/Assets.xcassets/` | Watch app icon and orange accent color |
 
 ## Terminal
 

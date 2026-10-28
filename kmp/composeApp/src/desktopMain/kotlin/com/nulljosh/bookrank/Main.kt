@@ -8,9 +8,9 @@ import androidx.compose.ui.window.rememberWindowState
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "Bookrank",
+        title = "Kernel",
         state = rememberWindowState(width = 1040.dp, height = 720.dp),
     ) {
-        BookrankTheme { AppScreen() }
+        KernelTheme { AppScreen() }
     }
 }

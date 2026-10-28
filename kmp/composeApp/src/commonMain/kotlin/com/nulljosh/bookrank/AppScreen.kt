@@ -28,26 +28,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BookrankTheme(content: @Composable () -> Unit) =
+fun KernelTheme(content: @Composable () -> Unit) =
     MaterialTheme(colorScheme = lightColorScheme(), content = content)
 
 @Composable
-fun AppScreen(client: BookrankClient = BookrankClient()) {
+fun AppScreen(client: KernelClient = KernelClient()) {
     var shared by remember { mutableStateOf<SharedSummary?>(null) }
 
     shared?.let { SharedScreen(it) { shared = null } ; return }
 
     Surface {
         Column(Modifier.fillMaxSize().padding(24.dp)) {
-            Text("Bookrank", style = MaterialTheme.typography.headlineMedium)
+            Text("Kernel", style = MaterialTheme.typography.headlineMedium)
             ShareLinkBox(client) { shared = it }
         }
     }
 }
 
-/** Paste a bookrank share link to read that summary here. No account, no position, just the text. */
+/** Paste a kernel share link to read that summary here. No account, no position, just the text. */
 @Composable
-private fun ShareLinkBox(client: BookrankClient, onOpen: (SharedSummary) -> Unit) {
+private fun ShareLinkBox(client: KernelClient, onOpen: (SharedSummary) -> Unit) {
     var link by remember { mutableStateOf("") }
     var msg by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()

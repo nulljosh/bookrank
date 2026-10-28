@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Profile, Bookrank</title>
+<title>Profile, Kernel</title>
 <link rel="stylesheet" href="tokens.css">
 <style>
 @font-face { font-family:'Geist'; src:url('fonts/Geist-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
@@ -176,7 +176,7 @@ if (!user) { $('gateMsg').innerHTML = 'Sign in on <a href="library.html">My summ
 else {
   const handle = handleFor(user);
   if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
-  document.title = `${handle}, Bookrank`;
+  document.title = `${handle}, Kernel`;
   $('pName').textContent = handle; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${handle}`;
   $('username').value = handle;
   $('pEmail').textContent = user.email;
@@ -215,7 +215,7 @@ else {
     if (error) { $('profileMsg').textContent = error.message; return; }
     const h = handleFor(data.user);
     $('pName').textContent = h; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${h}`; $('username').value = h;
-    history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Bookrank`;
+    history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Kernel`;
     $('profileMsg').textContent = 'Username saved.';
   };
   // Email change sends a confirmation to both addresses ; password
@@ -262,9 +262,9 @@ else {
     const { data, error } = await db.from(TABLE).select('slug,title,content,updated_at,listen,cover').order('title');
     if (error) { $('profileMsg').textContent = error.message; return; }
     const files = data.map(r => [`${r.slug}.md`, `# ${r.title}\n\n${r.content}\n`]);
-    files.push(['bookrank.json', JSON.stringify(data, null, 2)]);
+    files.push(['kernel.json', JSON.stringify(data, null, 2)]);
     const blob = zip(files);
-    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `bookrank-${new Date().toISOString().slice(0, 10)}.zip` });
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `kernel-${new Date().toISOString().slice(0, 10)}.zip` });
     a.click(); URL.revokeObjectURL(a.href);
     $('profileMsg').textContent = `Exported ${data.length} summaries.`;
   };

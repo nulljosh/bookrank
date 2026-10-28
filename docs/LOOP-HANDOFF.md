@@ -1,4 +1,4 @@
-# Bookrank loop handoff (2026-10-22, early morning)
+# Kernel loop handoff (2026-10-22, early morning)
 
 ## What the loop is
 
@@ -25,5 +25,5 @@ A parity and ship loop. The web app is the reference. Each feature the web has g
 ## Restart prompt
 
 ```
-/loop Work Bookrank toward iOS and Mac parity, then ship. Repo: ~/Documents/Code/bookrank. Read docs/LOOP-HANDOFF.md first and work its Next list in order. Run live QA on each step. Mac QA means the signed-in app driven with cliclick and screencapture, not screenshot mode. Keep App Review notes true every release, retake screenshots on every UI fix, and bump versions through project.yml. Do not stage the uncommitted Xcode project files or .asc/release. Commit progress by exact path. No subagents. Finish each step with a live QA pass before moving to the next.
+/loop Work Kernel toward iOS and Mac parity, then ship. Repo: ~/Documents/Code/kernel. Read docs/LOOP-HANDOFF.md first and work its Next list in order. Run live QA on each step. Mac QA means the signed-in app driven with cliclick and screencapture, not screenshot mode. Keep App Review notes true every release, retake screenshots on every UI fix, and bump versions through project.yml. Do not stage the uncommitted Xcode project files or .asc/release. Commit progress by exact path. No subagents. Finish each step with a live QA pass before moving to the next.
 ```

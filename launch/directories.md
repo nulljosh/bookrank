@@ -2,7 +2,7 @@
 
 Reuse this for AlternativeTo, Indie Hackers products, Uneed and SaaSHub.
 
-Name: Bookrank
+Name: Kernel
 
 One-liner: Find the book worth reading next in ten seconds.
 
@@ -19,7 +19,7 @@ GitHub: https://github.com/nulljosh/bookrank
 
 - AlternativeTo: list as a free alternative to Goodreads-style to-be-read trackers.
 - Indie Hackers products: post under the maker's product page, use the maker story from producthunt.md.
-- BetaList: skip, Bookrank is already live, BetaList is pre-launch only.
+- BetaList: skip, Kernel is already live, BetaList is pre-launch only.
 - Uneed: standard listing above.
 - SaaSHub: standard listing above, note it is free with no paid tier.
 - dev.to: skip. No real technical hook, same call as hn.md.

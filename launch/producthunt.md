@@ -1,6 +1,6 @@
 # Product Hunt
 
-Name: Bookrank
+Name: Kernel
 
 Tagline (47): Find the book worth reading next in ten seconds
 
@@ -17,8 +17,8 @@ GitHub: https://github.com/nulljosh/bookrank
 
 ## First comment
 
-Hi, I'm Josh, I built Bookrank.
+Hi, I'm Josh, I built Kernel.
 
-Every best books list is one person's opinion. Bookrank ranks by the crowd: Goodreads rating weighted by how many people actually read it. You browse the shelf, read a chapter summary, and keep your own shelves of what is next. It took the decision of what to read from an hour to ten seconds for me.
+Every best books list is one person's opinion. Kernel ranks by the crowd: Goodreads rating weighted by how many people actually read it. You browse the shelf, read a chapter summary, and keep your own shelves of what is next. It took the decision of what to read from an hour to ten seconds for me.
 
 Free. Happy to answer anything.

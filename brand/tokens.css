@@ -1,7 +1,14 @@
-/* Bookrank brand tokens. The accent is the only colour this app owns; spacing, radii and type come from the shared system. */
+/* Kernel brand tokens. The accent is the only colour this app owns; spacing, radii and type come from the shared system. */
+@font-face { font-family: "Kernel Sans"; src: url("/fonts/KernelSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Kernel Sans"; src: url("/fonts/KernelSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Kernel Sans"; src: url("/fonts/KernelSans-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Kernel Sans"; src: url("/fonts/KernelSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 :root {
-  --accent: #1634b8;
-  --accent-light: #3f7bff;
-  --accent-deep: #1634b8;
-  --accent-ring: color-mix(in srgb, #1634b8 30%, transparent);
+  --accent: #a56200;          /* actions and links on light, 4.9:1 on white, white text on it 4.9:1 */
+  --accent-light: #f5b83d;    /* the accent on dark, and the icon's top */
+  --accent-deep: #c97a00;     /* the icon's base */
+  --accent-ring: color-mix(in srgb, #c97a00 30%, transparent);
+  --font: "Kernel Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #f5b83d; } }
+:root[data-theme="dark"] { --accent: #f5b83d; }

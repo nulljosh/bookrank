@@ -2,9 +2,9 @@
 """Generate every book-list surface from the root books.json.
 
 books.json is the only file to hand-edit. This writes:
-  - ios/Bookrank/Resources/books.json   (ranked list for the app)
-  - ios/Bookrank/Resources/picks.json   (top picks)
-  - ios/Bookrank/Resources/library.json (to-read; loans stay empty by policy)
+  - ios/Kernel/Resources/books.json   (ranked list for the app)
+  - ios/Kernel/Resources/picks.json   (top picks)
+  - ios/Kernel/Resources/library.json (to-read; loans stay empty by policy)
   - book_rankings.md                    (markdown mirror of the ranked list)
   - rankings.html                       (rows inside the generated:* markers only)
 
@@ -158,7 +158,7 @@ def write_md(books):
 # --- iOS resources -----------------------------------------------------------
 
 def write_ios(books):
-    res = ROOT / "ios/Bookrank/Resources"
+    res = ROOT / "ios/Kernel/Resources"
     ranked = [{
         "rank": b["rank"],
         "title": b["title"],

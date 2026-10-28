@@ -1,7 +1,7 @@
 import Foundation
 import SwiftTUI
 
-// ponytail: same fetch-and-render shape as wordroot-tui/cadence-tui — bookrank's
+// ponytail: same fetch-and-render shape as wordroot-tui/cadence-tui — kernel's
 // lookup logic is a Cloudflare Function, nothing local to port.
 
 struct SearchResult: Decodable, Identifiable {
@@ -14,7 +14,7 @@ struct SearchResponse: Decodable { let query: String; let total: Int; let result
 
 let args = Array(CommandLine.arguments.dropFirst())
 guard let query = args.first else {
-    print("usage: bookrank-tui <search query> | bookrank-tui share <link or token>")
+    print("usage: kernel-tui <search query> | kernel-tui share <link or token>")
     exit(1)
 }
 
@@ -33,7 +33,7 @@ func shared(_ link: String) async -> Shared? {
     return (try? JSONDecoder().decode([Shared].self, from: data))?.first
 }
 if query == "share" {
-    guard args.count > 1 else { print("usage: bookrank-tui share <link or token>"); exit(1) }
+    guard args.count > 1 else { print("usage: kernel-tui share <link or token>"); exit(1) }
     let sem = DispatchSemaphore(value: 0)
     var out: Shared?
     Task { out = await shared(args[1]); sem.signal() }
@@ -56,7 +56,7 @@ struct ResultsCard: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("bookrank: \(query)").bold()
+            Text("kernel: \(query)").bold()
             if let response {
                 Text("\(response.total) match(es)")
                 ForEach(response.results) { r in

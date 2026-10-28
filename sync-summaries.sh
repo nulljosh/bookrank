@@ -3,7 +3,7 @@ set -euo pipefail
 SRC="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/Misc/Books"
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 DEST="$ROOT/summaries"
-APP_DEST="$ROOT/ios/Bookrank/Resources/summaries"
+APP_DEST="$ROOT/ios/Kernel/Resources/summaries"
 mkdir -p "$DEST" "$APP_DEST"
 
 # ponytail: every write goes through here. A routine run on 2026-08-17 replaced a complete

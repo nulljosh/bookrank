@@ -1,5 +1,5 @@
-// WebMCP tool registration for the library page (bookrank's only real app).
-// Tools call window.__bookrank.rows, the data layer library.html's own module
+// WebMCP tool registration for the library page (kernel's only real app).
+// Tools call window.__kernel.rows, the data layer library.html's own module
 // script exposes — same spark-api client, same bookrank_summaries queries the UI
 // runs. Nothing here talks to the API directly.
 //
@@ -16,7 +16,7 @@ const mc = document.modelContext;
 if (!mc?.registerTool) {
   // WebMCP not available in this browser/context — do nothing.
 } else {
-  const bridge = () => window.__bookrank;
+  const bridge = () => window.__kernel;
 
   const tools = [
     // ---- read-only ----

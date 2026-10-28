@@ -1,6 +1,6 @@
 {
-  "name": "Bookrank",
-  "short_name": "Bookrank",
+  "name": "Kernel",
+  "short_name": "Kernel",
   "description": "Book summaries and rankings.",
   "start_url": "/",
   "scope": "/",

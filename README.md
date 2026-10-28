@@ -1,12 +1,12 @@
 <img src="icon.svg" width="80">
 
-# Bookrank
+# Kernel
 
-![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fbookrank-black?logo=github)](https://github.com/nulljosh/bookrank) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0D96F6?logo=appstore&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485) [![Mac App Store](https://img.shields.io/badge/Mac%20App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/bookrank/id6792376485?mt=12)
+![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fkernel-black?logo=github)](https://github.com/nulljosh/bookrank) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0D96F6?logo=appstore&logoColor=white)](https://apps.apple.com/us/app/kernel/id6792376485) [![Mac App Store](https://img.shields.io/badge/Mac%20App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/kernel/id6792376485?mt=12)
 
-You finish a book. A month later you remember one idea. Bookrank keeps the rest: every chapter in plain words, read it or listen to it.
+You finish a book. A month later you remember one idea. Kernel keeps the rest: every chapter in plain words, read it or listen to it.
 
-[![Bookrank, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/bookrank-ad.mp4)
+[![Kernel, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/bookrank/releases/download/v1.0.2/kernel-ad.mp4)
 
 Free on the [web](https://bookrank.jaybulb.com), iPhone, iPad and Mac.
 

@@ -1,4 +1,4 @@
-# Bookrank's own bed, Tchaikovsky-inspired: a waltz in D major in the spirit of the Sleeping Beauty and
+# Kernel's own bed, Tchaikovsky-inspired: a waltz in D major in the spirit of the Sleeping Beauty and
 # Flowers waltzes. Pizzicato bass on one, soft plucked chords on two and three, a harp rolling underneath,
 # a string pad that swells under it, a celesta carrying the tune. 3/4 at 132 BPM. numpy only.
 import numpy as np, wave

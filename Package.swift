@@ -2,14 +2,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "bookrank-tui",
+    name: "kernel-tui",
     platforms: [.macOS(.v13)],
     dependencies: [
         .package(url: "https://github.com/rensbreur/SwiftTUI", branch: "main")
     ],
     targets: [
         .executableTarget(
-            name: "bookrank-tui",
+            name: "kernel-tui",
             dependencies: ["SwiftTUI"],
             path: "tui"
         )

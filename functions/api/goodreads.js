@@ -23,7 +23,7 @@ export async function onRequest({ request }) {
 
   const books = [];
   for (let page = 1; page <= MAX_PAGES; page++) {
-    const r = await fetch(`https://www.goodreads.com/review/list_rss/${user}?shelf=${shelf}&page=${page}`, { headers: { "User-Agent": "Mozilla/5.0 (Bookrank)" } });
+    const r = await fetch(`https://www.goodreads.com/review/list_rss/${user}?shelf=${shelf}&page=${page}`, { headers: { "User-Agent": "Mozilla/5.0 (Kernel)" } });
     if (r.status === 404) return json({ error: "No Goodreads profile with that link." }, 404);
     if (!r.ok) return json({ error: "Goodreads did not answer. Try again in a minute." }, 502);
     const items = parseFeed(await r.text());
@@ -38,7 +38,7 @@ export async function onRequest({ request }) {
 
 /** ?profile=1 -> { name, avatar } from the public profile page's Open Graph tags. */
 async function profile(user) {
-  const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": "Mozilla/5.0 (Bookrank)" } });
+  const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": "Mozilla/5.0 (Kernel)" } });
   if (!r.ok) return json({ error: "No Goodreads profile with that link." }, 404);
   const p = parseProfile(await r.text());
   // Goodreads sometimes serves bots a stripped page; no name means we did not get the real profile.

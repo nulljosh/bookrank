@@ -5,10 +5,10 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 // Caller must send their own session JWT in the Authorization header.
 // Deletes the authenticated user via the service-role admin API.
 //
-// Native callers (lexly, healstack, litigate, bookrank) hit this with a plain
+// Native callers (lexly, healstack, litigate, kernel) hit this with a plain
 // URLRequest and do not care about CORS. Browsers do: supabase-js
 // functions.invoke() sends a preflighted POST, so the OPTIONS branch and the
-// response headers below are what let bookrank's library.html call this at all.
+// response headers below are what let kernel's library.html call this at all.
 const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",

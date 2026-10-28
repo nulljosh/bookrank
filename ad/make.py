@@ -1,9 +1,9 @@
-# The Bookrank ad. Same shape as Joshua Tree's: a voice reads ad.txt, every cut lands on a
+# The Kernel ad. Same shape as Joshua Tree's: a voice reads ad.txt, every cut lands on a
 # sentence, real app screenshots sit in a rounded frame on the house paper, type cards hold
 # the few words, and it ends on the mark. No version number, ever. Run: python3 make.py
 import base64, json, os, re, subprocess, urllib.request
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-FONT = '' or "/System/Library/Fonts/SFNS.ttf"  # Bookrank sets type in Geist, like the app and the landing
+FONT = '' or "/System/Library/Fonts/SFNS.ttf"  # Kernel sets type in Geist, like the app and the landing
 BG, INK, SOFT = "0x0A0A0A", "0xFAFAFA", "0x8A8A8A"
 FPS, W, H = 24, 1920, 1080
 VO_AT = 0.8      # the picture starts, the voice comes in after a breath
@@ -84,7 +84,7 @@ def screen(shot, dur, cap, out, height=860, radius=54, start=None):
 
 def end(dur, out):
     subprocess.run(["rsvg-convert", "-w", "240", "-h", "240", "../icon.svg", "-o", "cut/mark.png"], check=True)
-    title = text_png("Bookrank", 104, INK, "cut/title.png")
+    title = text_png("Kernel", 104, INK, "cut/title.png")
     sub = text_png("Chapter summaries of the books you read.   bookrank.jaybulb.com", 32, SOFT, "cut/sub.png")
     run(["-f", "lavfi", "-i", f"color=c={BG}:s={W}x{H}:r={FPS}", "-loop", "1", "-framerate", str(FPS), "-i", "cut/mark.png",
          "-loop", "1", "-framerate", str(FPS), "-i", title, "-loop", "1", "-framerate", str(FPS), "-i", sub, "-filter_complex",
@@ -124,6 +124,6 @@ run(["-i", "cut/picture.mp4", "-i", "ad.mp3", "-i", "cut/music2.wav", "-filter_c
      f"[l][h]amix=inputs=2:normalize=0,equalizer=f=90:t=q:w=1:g=-4,equalizer=f=2200:t=q:w=1:g=4,volume=0.7,afade=t=out:st={total - 2}:d=2[m];"
      f"[m][vo]sidechaincompress=threshold=0.1:ratio=1.6:attack=40:release=600[duck];"
      f"[duck][vo2]amix=inputs=2:normalize=0,loudnorm=I=-16:TP=-1.5[a]",
-     "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", str(total), "-movflags", "+faststart", "bookrank-ad.mp4"])
-run(["-ss", str(t[5] + 2.0), "-i", "bookrank-ad.mp4", "-frames:v", "1", "-q:v", "3", "ad-poster.jpg"])
+     "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", str(total), "-movflags", "+faststart", "kernel-ad.mp4"])
+run(["-ss", str(t[5] + 2.0), "-i", "kernel-ad.mp4", "-frames:v", "1", "-q:v", "3", "ad-poster.jpg"])
 print("AD", round(total, 1), "s; cuts at", [round(x, 1) for x in t])

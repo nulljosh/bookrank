@@ -24,7 +24,7 @@ final class PreviewScreenshot: XCTestCase {
     }
 
     /// Signed-out sign-in and create-account screens, saved as PNGs under the host's SHOTS_DIR
-    /// (QA, not the store set): `SHOTS_DIR=/tmp/x xcodebuild test -only-testing:BookrankUITests/PreviewScreenshot/testSignInScreens`.
+    /// (QA, not the store set): `SHOTS_DIR=/tmp/x xcodebuild test -only-testing:KernelUITests/PreviewScreenshot/testSignInScreens`.
     func testSignInScreens() {
         let app = XCUIApplication()
         app.launch()

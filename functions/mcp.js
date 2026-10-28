@@ -48,7 +48,7 @@ export async function onRequest({ request: req }) {
       return reply({
         protocolVersion: params.protocolVersion || '2025-06-18',
         capabilities: { tools: {} },
-        serverInfo: { name: 'bookrank', version: VERSION },
+        serverInfo: { name: 'kernel', version: VERSION },
       });
     case 'notifications/initialized':
       return new Response(null, { status: 202, headers: CORS });
@@ -64,7 +64,7 @@ export async function onRequest({ request: req }) {
         // A tool rejecting its input is a tool result, not a transport error — the client
         // should see the message and be able to retry, not get a dead connection.
         if (err instanceof ToolError) {
-          return reply({ content: [{ type: 'text', text: `bookrank: ${err.message}` }], isError: true });
+          return reply({ content: [{ type: 'text', text: `kernel: ${err.message}` }], isError: true });
         }
         throw err;
       }
