@@ -38,3 +38,13 @@ supa = false;
 assert.equal(await viaApp('Bearer junk', 'anon'), false);               // known to neither
 globalThis.fetch = realFetch;
 console.log('speak ok');
+
+import { estWords } from './functions/api/speak.js';
+const ew = estWords('one two three', 13);
+assert.deepEqual(ew.map(w => [w.i, w.n]), [[0, 3], [4, 3], [8, 5]]);
+assert.ok(ew[0].t === 0 && ew[1].t < ew[2].t && ew[2].t < 13);
+const kv2 = { m: new Map(), async get(k) { return this.m.get(k) ?? null; }, async put(k, v) { this.m.set(k, v); } };
+assert.equal(await spend(kv2, 'u:a', 50, { month: 100, day: 50 }, day1), null);
+assert.equal(await spend(kv2, 'u:a', 10, { month: 100, day: 50 }, day1), 'day');                  // the ElevenLabs day is spent
+assert.equal(await spend(kv2, 'u:a', 10, { month: 100, day: 50 }, day1, 'aura:'), null);         // the Aura budget is its own
+console.log('aura ok');
