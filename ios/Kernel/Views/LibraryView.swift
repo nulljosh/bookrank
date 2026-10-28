@@ -170,7 +170,17 @@ struct LibraryView: View {
 
     @ViewBuilder
     private func listRows(_ shown: [SummaryEntry], _ shelves: [(String, [DataStore.GoodreadsBook])], _ q: String) -> some View {
-        ForEach(shown) { entry in
+        // The book you are partway through gets a card on top; it leaves the plain rows so it shows once.
+        let cont = q.isEmpty ? shown.first(where: started) : nil
+        if let cont {
+            #if os(macOS)
+            continueCard(cont).tag(cont.slug)
+            #else
+            NavigationLink { SummaryDetailView(slug: cont.slug, store: store) } label: { continueCard(cont) }
+                .listRowSeparator(.hidden)
+            #endif
+        }
+        ForEach(shown.filter { $0.slug != cont?.slug }) { entry in
             #if os(macOS)
             summaryRow(entry).tag(entry.slug)
             #else
@@ -201,14 +211,32 @@ struct LibraryView: View {
         }
     }
 
+    /// Continue: bigger cover, where you are and what is left, a gold progress line.
+    private func continueCard(_ entry: SummaryEntry) -> some View {
+        let chapters = parseChapters(entry.content)
+        let ch = min(entry.listen?.pos.ch ?? 0, max(0, chapters.count - 1))
+        let left = chapters.isEmpty ? minutes(entry.content) : minutes(chapters[ch...].map(\.text).joined())
+        return HStack(spacing: 16) {
+            Thumb(url: store.cover(for: entry), width: 64)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Continue").font(.kernel(.footnote, weight: .semibold)).foregroundStyle(amber)
+                Text(entry.title).font(.kernel(.headline)).lineLimit(2)
+                Text("Chapter \(ch + 1) of \(max(chapters.count, 1)) · \(duration(left)) left").font(.kernel(.footnote)).foregroundStyle(.secondary)
+                ProgressView(value: Double(ch), total: Double(max(chapters.count, 1))).tint(amber).padding(.top, 4)
+            }
+        }
+        .padding(.vertical, 8)
+        .accessibilityElement(children: .combine)
+    }
+
     private func summaryRow(_ entry: SummaryEntry) -> some View {
         HStack(spacing: 14) {
             Thumb(url: store.cover(for: entry))
             VStack(alignment: .leading, spacing: 2) {
                 Text(entry.title).font(.kernel(.body))
                 Group {
-                    if let pos = entry.listen?.pos, started(entry) { Text("Resume · Ch \(pos.ch + 1) · \(minutes(entry.content)) min") }
-                    else { Text("\(minutes(entry.content)) min") }
+                    if let pos = entry.listen?.pos, started(entry) { Text("Resume · Ch \(pos.ch + 1) · \(duration(minutes(entry.content)))") }
+                    else { Text("\(duration(minutes(entry.content)))") }
                 }
                 .font(.kernel(.footnote)).foregroundStyle(.secondary)
             }
@@ -220,6 +248,9 @@ struct LibraryView: View {
 /// Listening time at about 180 words a minute (~1,100 characters), never under one. Same rule as listen.js `minutes`.
 /// utf8.count is constant time on native strings, so rows can call it on every render.
 func minutes(_ text: String) -> Int { max(1, Int((Double(text.utf8.count) / 1100).rounded())) }
+
+/// "45 min", "4 hr 21 min", "2 hr".
+func duration(_ m: Int) -> String { m < 60 ? "\(m) min" : m % 60 == 0 ? "\(m / 60) hr" : "\(m / 60) hr \(m % 60) min" }
 
 /// Kernel gold (brand/BRAND.md): #a56200 in light, #f5b83d in dark. `onAmber` is the text on it.
 let amber = Color("AccentColor")

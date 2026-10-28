@@ -152,3 +152,6 @@ import { minutes } from './listen.js';
 assert.equal(minutes(''), 1);
 assert.equal(minutes('x'.repeat(1100 * 7)), 7);
 console.log('minutes ok');
+import { duration } from './listen.js';
+assert.equal(duration(45), '45 min'); assert.equal(duration(261), '4 hr 21 min'); assert.equal(duration(120), '2 hr');
+console.log('duration ok');

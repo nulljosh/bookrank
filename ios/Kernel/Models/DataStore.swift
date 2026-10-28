@@ -102,7 +102,10 @@ final class DataStore {
         return picks.compactMap { slug in
             guard let url = Bundle.main.url(forResource: slug, withExtension: "md") ?? Bundle.main.url(forResource: slug, withExtension: "md", subdirectory: "summaries"),
                   let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
-            return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: nil, listen: nil, cover: covers[slug], shareToken: nil)
+            // The Optimist is partway through, so the store shots show the Continue card.
+            let partway = slug == "the-optimist"
+            return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: partway ? "snapshot" : nil,
+                                listen: partway ? ListenState(for: "snapshot", chapters: [:], pos: .init(ch: 3, line: 0)) : nil, cover: covers[slug], shareToken: nil)
         }.sorted { $0.title < $1.title }
     }
 
