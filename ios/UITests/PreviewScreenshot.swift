@@ -221,6 +221,44 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("goal-account", XCUIScreen.main.screenshot())
     }
 
+    /// Goodreads: the shelves with progress and a review, the Account section, and the sign-in page (signs in to nothing).
+    func testGoodreads() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        sleep(3)
+        for shelf in ["Read on Goodreads, no summary yet"] {   // Currently reading starts open
+            let h = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", shelf)).firstMatch
+            for _ in 0..<4 where !h.isHittable { app.swipeUp() }
+            if h.waitForExistence(timeout: 10) { h.tap(); sleep(1) }
+        }
+        app.swipeUp()
+        sleep(1)
+        saveTo("goodreads-shelves", XCUIScreen.main.screenshot())
+        app.buttons["Account"].firstMatch.tap()
+        let signIn = app.buttons["Sign in to Goodreads"].firstMatch
+        for _ in 0..<6 where !signIn.isHittable { app.swipeUp() }
+        sleep(1)
+        saveTo("goodreads-account", XCUIScreen.main.screenshot())
+        signIn.tap()
+        XCTAssertTrue(app.navigationBars["Goodreads"].waitForExistence(timeout: 10), "the Goodreads sign-in sheet should open")
+        sleep(5)
+        saveTo("goodreads-signin", XCUIScreen.main.screenshot())
+    }
+
+    /// The Currently reading shelf with Goodreads progress, and the default book avatar in Account.
+    func testAvatarAndProgress() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        sleep(3)
+        app.swipeUp(); sleep(1)   // Currently reading starts open
+        saveTo("reading-progress", XCUIScreen.main.screenshot())
+        app.buttons["Account"].firstMatch.tap()
+        sleep(2)
+        saveTo("avatar", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

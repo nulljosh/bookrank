@@ -86,6 +86,13 @@ struct GoodreadsRow: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title).font(.kernel(.body)).lineLimit(2)
                 Text(book.author).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
+                // Currently reading: the latest Goodreads progress. Read: the start of your review.
+                if let p = book.progress {
+                    ProgressView(value: Double(p), total: 100).tint(amber).padding(.top, 2)
+                    Text(book.page.flatMap { pg in book.of.map { "Page \(pg) of \($0)" } } ?? "\(p)% done")
+                        .font(.kernel(.caption)).foregroundStyle(.secondary).monospacedDigit()
+                }
+                if let r = book.review { Text(r).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(2).padding(.top, 2) }
             }
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 3) {

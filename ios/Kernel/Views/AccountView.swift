@@ -23,6 +23,7 @@ struct AccountView: View {
     @State private var goodreads = ""
     @State private var exportURLs: [URL] = []
     @State private var nudge = Nudge.enabled
+    @State private var showGoodreads = false
     @State private var usage: VoiceUsage?
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
@@ -95,6 +96,13 @@ struct AccountView: View {
                     .formStyle(.grouped)
                     #endif
                     .navigationTitle("Account")
+                    .sheet(isPresented: $showGoodreads) {
+                        GoodreadsSignIn {
+                            // Signed in: link the profile too (photo, quote) if it was not linked yet, then refresh the shelves.
+                            if goodreads.isEmpty, let u = Goodreads.shared.data?.user { goodreads = "goodreads.com/user/show/\(u)"; saveGoodreads() }
+                            else { Task { await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) } }
+                        }
+                    }
                 } else {
                     authScreen
                         #if os(iOS)
@@ -243,7 +251,7 @@ struct AccountView: View {
         Section {
             HStack(spacing: 14) {
                 Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg()), "avatar_source": .string("generated")]); return nil } } label: {
-                    AvatarView(svg: generated ? auth.user?.userMetadata["avatar"]?.stringValue : nil,
+                    AvatarView(svg: generated ? auth.user?.userMetadata["avatar"]?.stringValue : (linkedPhoto == nil ? AvatarArt.svg(seed: auth.user?.email ?? "") : nil),
                                initial: String(auth.user?.email?.first ?? "?"), photo: generated ? nil : linkedPhoto)
                 }
                 .buttonStyle(.plain)
@@ -276,6 +284,20 @@ struct AccountView: View {
         }
 
         Section {
+            let gr = Goodreads.shared
+            if let d = gr.data {
+                LabeledContent("Signed in", value: "\(d.shelves["read"]?.count ?? 0) read · \(d.shelves["currently-reading"]?.count ?? 0) reading")
+                Button(gr.syncing ? "Syncing…" : "Sync now", systemImage: "arrow.triangle.2.circlepath") {
+                    Task { await gr.sync(); await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+                }
+                .disabled(gr.syncing)
+                Button("Sign out of Goodreads", role: .destructive) {
+                    Task { await gr.signOut(); await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+                }
+            } else {
+                Button("Sign in to Goodreads", systemImage: "person.badge.key") { showGoodreads = true }
+            }
+            if let e = gr.error { Text(e).font(.kernel(.footnote)).foregroundStyle(.secondary) }
             TextField("Goodreads profile link", text: $goodreads, onCommit: saveGoodreads)
                 .autocorrectionDisabled()
                 #if os(iOS)
@@ -285,7 +307,7 @@ struct AccountView: View {
         } header: {
             Text("Goodreads")
         } footer: {
-            Text("Paste your profile link. Books you have read but not summarized show up under your list.")
+            Text("Opens Goodreads' own sign-in. Shelves, ratings, reviews and progress are read on this device; your Goodreads login never reaches Kernel.")
         }
         .onAppear { goodreads = auth.user?.userMetadata["goodreads"]?.stringValue.map { "goodreads.com/user/show/\($0)" } ?? "" }
         .task {
@@ -403,20 +425,29 @@ struct AccountView: View {
     }
 }
 
-/// Pixel-art identicon, mirrored 8x8, same shape as profile.html's avatarSVG. House palette: no purple, no teal.
+/// 8-bit book avatar: one of three 16x16 sprites in house colours. Same templates and output as
+/// avatarSVG in profile.html. With `seed` (the email) it is the same book every time: the default.
 enum AvatarArt {
-    static func svg() -> String {
-        let palettes = [["#e63946","#f1a7ad","#ffffff"], ["#1d3557","#457b9d","#a8dadc"], ["#d62828","#f77f00","#fcbf49"], ["#2d6a4f","#52b788","#b7e4c7"], ["#222222","#777777","#dddddd"]]
-        let palette = palettes.randomElement()!
-        let bg = ["#111","#1a1a1a","#0f0f1a","#0a1a0a","#f4f1ea"].randomElement()!
-        let px = 8, size = 8, total = size * px
-        let grid = (0..<size).map { _ in (0..<size / 2).map { _ in Double.random(in: 0..<1) > 0.45 ? Int.random(in: 0..<3) : -1 } }
+    static let books: [[String]] = [
+            ["................", "...DCCCCCCCCCC..", "...DCCCCCCCCCCP.", "...DCCCCCCCCCCP.", "...DCCTTTTTTCCP.", "...DCCTTTTTTCCP.", "...DCCCCCCCCCCP.", "...DCCCCTTCCCCP.", "...DCCCCCCCCCCP.", "...DCCCCCCCCCCP.", "...DCCCCCCCCCCP.", "...DCCCCCCCCCCP.", "...DCCCCCCCCCCP.", "...DDDDDDDDDDDP.", "....PPPPPPPPPPP.", "................"],
+            ["................", "................", "................", "...DCCCCCCCCCD..", "...DCTTTTTTTCD..", "...DCCCCCCCCCD..", ".....FEEEEEEEEEF", ".....FETTTTTTTEF", ".....FEEEEEEEEEF", ".HGGGGGGGGGGGH..", ".HGTTTTTTTTTGH..", ".HGGGGGGGGGGGH..", "..HGGGGGGGGGGGH.", "..HGTTTTTTTTTGH.", "..HGGGGGGGGGGGH.", "................"],
+            ["................", "................", "................", "..PPPPP..PPPPP..", ".PPPPPPDDPPPPPP.", ".PLLLLPDDPLLLLP.", ".PPPPPPDDPPPPPP.", ".PLLLPPDDPPLLLP.", ".PPPPPPDDPPPPPP.", ".PLLLLPDDPLLLLP.", ".PPPPPPDDPPPPPP.", ".PLLLPPDDPPLLLP.", "CCCCCCCDDCCCCCCC", ".CCCCCCCCCCCCCC.", "................", "................"]
+        ]
+    static func svg(seed: String? = nil) -> String {
+        var h: UInt32 = 2166136261
+        if let seed { for c in seed.utf16 { h = (h ^ UInt32(c)) &* 16777619 } }
+        func rand() -> Double {
+            guard seed != nil else { return Double.random(in: 0..<1) }
+            h = (h ^ (h >> 15)) &* 2246822507; return Double(h % 10007) / 10007
+        }
+        func pick<T>(_ a: [T]) -> T { a[Int(rand() * Double(a.count))] }
+        let covers = [["#c0392b", "#7f1d1d"], ["#1d3557", "#0f1d33"], ["#2d6a4f", "#1b4332"], ["#a56200", "#6b3f00"], ["#222222", "#000000"], ["#b5502c", "#7a3519"]]
+        let rows = pick(books), c = pick(covers), e = pick(covers), g = pick(covers)
+        let fill: [Character: String] = ["C": c[0], "D": c[1], "E": e[0], "F": e[1], "G": g[0], "H": g[1], "P": "#f4ecd8", "T": "#f5e6b8", "L": "#b9ad94"]
         var rects = ""
-        for row in 0..<size { for col in 0..<size {
-            let ci = grid[row][col < size / 2 ? col : size - 1 - col]
-            if ci >= 0 { rects += "<rect x=\"\(col * px)\" y=\"\(row * px)\" width=\"\(px)\" height=\"\(px)\" fill=\"\(palette[ci])\"/>" }
-        } }
-        return "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 \(total) \(total)\" shape-rendering=\"crispEdges\"><rect width=\"\(total)\" height=\"\(total)\" fill=\"\(bg)\"/>\(rects)</svg>"
+        for (y, row) in rows.enumerated() { for (x, k) in row.enumerated() { if let f = fill[k] { rects += "<rect x=\"\(x * 4)\" y=\"\(y * 4)\" width=\"4\" height=\"4\" fill=\"\(f)\"/>" } } }
+        let ground = pick(["#f4f1ea", "#fdf6e3", "#eef2f0", "#f6efe9", "#1c1c1e"])
+        return "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" shape-rendering=\"crispEdges\"><rect width=\"64\" height=\"64\" fill=\"\(ground)\"/>\(rects)</svg>"
     }
 }
 
@@ -432,7 +463,7 @@ struct AvatarView: View {
                 Canvas { ctx, size in
                     let s = size.width / 64
                     ctx.fill(Path(CGRect(origin: .zero, size: size)), with: .color(art.bg))
-                    for r in art.rects { ctx.fill(Path(CGRect(x: r.x * s, y: r.y * s, width: 8 * s, height: 8 * s)), with: .color(r.color)) }
+                    for r in art.rects { ctx.fill(Path(CGRect(x: r.x * s, y: r.y * s, width: r.w * s, height: r.w * s)), with: .color(r.color)) }
                 }
             } else if let photo, let url = URL(string: photo) {
                 AsyncImage(url: url) { $0.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.15) }
@@ -446,7 +477,7 @@ struct AvatarView: View {
         .overlay(Circle().strokeBorder(.quaternary))
     }
 
-    private struct Art { var bg: Color; var rects: [(x: CGFloat, y: CGFloat, color: Color)] }
+    private struct Art { var bg: Color; var rects: [(x: CGFloat, y: CGFloat, w: CGFloat, color: Color)] }
     private func parse(_ svg: String) -> Art? {
         let re = try! NSRegularExpression(pattern: #"<rect (?:x="(\d+)" y="(\d+)" )?width="(\d+)" height="(\d+)" fill="(#[0-9a-fA-F]+)""#)
         let ns = svg as NSString
@@ -454,7 +485,7 @@ struct AvatarView: View {
         for m in re.matches(in: svg, range: NSRange(location: 0, length: ns.length)) {
             let hex = ns.substring(with: m.range(at: 5))
             if m.range(at: 1).location == NSNotFound { art.bg = Color(hex: hex) }
-            else { art.rects.append((CGFloat(Int(ns.substring(with: m.range(at: 1)))!), CGFloat(Int(ns.substring(with: m.range(at: 2)))!), Color(hex: hex))) }
+            else { art.rects.append((CGFloat(Int(ns.substring(with: m.range(at: 1)))!), CGFloat(Int(ns.substring(with: m.range(at: 2)))!), CGFloat(Int(ns.substring(with: m.range(at: 3)))!), Color(hex: hex))) }
         }
         return art.rects.isEmpty ? nil : art
     }

@@ -131,19 +131,27 @@ const $ = id => document.getElementById(id);
 // No username field at sign-up, so the email's local part is the default handle.
 export const handleFor = user => (user.user_metadata?.username || user.email.split('@')[0]).toLowerCase().replace(/[^a-z0-9._-]/g, '');
 
-// Pixel-art identicon, same shape as sparkjar/epiphany. House palette: no purple, no teal.
-export function avatarSVG(rand = Math.random) {
-  const palettes = [['#e63946','#f1a7ad','#ffffff'], ['#1d3557','#457b9d','#a8dadc'], ['#d62828','#f77f00','#fcbf49'], ['#2d6a4f','#52b788','#b7e4c7'], ['#222222','#777777','#dddddd']];
-  const palette = palettes[Math.floor(rand() * palettes.length)];
-  const bg = ['#111','#1a1a1a','#0f0f1a','#0a1a0a', '#f4f1ea'][Math.floor(rand() * 5)];
-  const px = 8, size = 8, total = size * px;
-  const grid = Array.from({ length: size }, () => Array.from({ length: size / 2 }, () => rand() > 0.45 ? Math.floor(rand() * 3) : -1));
+// 8-bit book avatar: one of three 16x16 sprites (a closed book, a stack, an open book) in house
+// colours, no purple or teal. Same templates as AvatarArt in the apps' AccountView.swift.
+export const BOOKS = [
+  ['................', '...DCCCCCCCCCC..', '...DCCCCCCCCCCP.', '...DCCCCCCCCCCP.', '...DCCTTTTTTCCP.', '...DCCTTTTTTCCP.', '...DCCCCCCCCCCP.', '...DCCCCTTCCCCP.',
+   '...DCCCCCCCCCCP.', '...DCCCCCCCCCCP.', '...DCCCCCCCCCCP.', '...DCCCCCCCCCCP.', '...DCCCCCCCCCCP.', '...DDDDDDDDDDDP.', '....PPPPPPPPPPP.', '................'],
+  ['................', '................', '................', '...DCCCCCCCCCD..', '...DCTTTTTTTCD..', '...DCCCCCCCCCD..', '.....FEEEEEEEEEF', '.....FETTTTTTTEF', '.....FEEEEEEEEEF',
+   '.HGGGGGGGGGGGH..', '.HGTTTTTTTTTGH..', '.HGGGGGGGGGGGH..', '..HGGGGGGGGGGGH.', '..HGTTTTTTTTTGH.', '..HGGGGGGGGGGGH.', '................'],
+  ['................', '................', '................', '..PPPPP..PPPPP..', '.PPPPPPDDPPPPPP.', '.PLLLLPDDPLLLLP.', '.PPPPPPDDPPPPPP.', '.PLLLPPDDPPLLLP.',
+   '.PPPPPPDDPPPPPP.', '.PLLLLPDDPLLLLP.', '.PPPPPPDDPPPPPP.', '.PLLLPPDDPPLLLP.', 'CCCCCCCDDCCCCCCC', '.CCCCCCCCCCCCCC.', '................', '................'],
+];
+const COVERS = [['#c0392b', '#7f1d1d'], ['#1d3557', '#0f1d33'], ['#2d6a4f', '#1b4332'], ['#a56200', '#6b3f00'], ['#222222', '#000000'], ['#b5502c', '#7a3519']];
+const GROUNDS = ['#f4f1ea', '#fdf6e3', '#eef2f0', '#f6efe9', '#1c1c1e'];
+/** A random book sprite, or a fixed one for `seed` (the email), so everyone starts with a book. */
+export function avatarSVG(rand = Math.random, seed) {
+  if (seed != null) { let h = 2166136261; for (const c of String(seed)) h = Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0; rand = () => ((h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0) % 10007) / 10007; }
+  const pick = a => a[Math.floor(rand() * a.length)];
+  const rows = pick(BOOKS), [c, d] = pick(COVERS), [e, f] = pick(COVERS), [g, hh] = pick(COVERS);
+  const fill = { C: c, D: d, E: e, F: f, G: g, H: hh, P: '#f4ecd8', T: '#f5e6b8', L: '#b9ad94' };
   let rects = '';
-  for (let row = 0; row < size; row++) for (let col = 0; col < size; col++) {
-    const ci = grid[row][col < size / 2 ? col : size - 1 - col];
-    if (ci >= 0) rects += `<rect x="${col * px}" y="${row * px}" width="${px}" height="${px}" fill="${palette[ci]}"/>`;
-  }
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="crispEdges"><rect width="${total}" height="${total}" fill="${bg}"/>${rects}</svg>`;
+  rows.forEach((row, y) => [...row].forEach((k, x) => { if (fill[k]) rects += `<rect x="${x * 4}" y="${y * 4}" width="4" height="4" fill="${fill[k]}"/>`; }));
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges"><rect width="64" height="64" fill="${pick(GROUNDS)}"/>${rects}</svg>`;
 }
 // A linked GitHub account's photo is the avatar unless you generated one on purpose
 // (avatar_source "generated"). Clicking the avatar generates; "Use GitHub photo" goes back.
@@ -164,8 +172,8 @@ const showAvatar = (user) => {
   $('ghPhoto').classList.toggle('hide', !gh || !picked);
   if (gh && !picked) { $('avatar').replaceChildren(Object.assign(document.createElement('img'), { alt: '', src: gh })); return; }
   const svg = user.user_metadata?.avatar;
-  if (svg) $('avatar').innerHTML = `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}">`;
-  else $('avatar').replaceChildren(Object.assign(document.createElement('span'), { textContent: (user.email[0] || '?').toUpperCase() }));
+  // No picture yet: a book of your own, the same one every time until you tap for another.
+  $('avatar').innerHTML = `<img alt="" src="data:image/svg+xml;utf8,${encodeURIComponent(svg || avatarSVG(Math.random, user.email))}">`;
 };
 
 const { data: { user } } = await db.auth.getUser();

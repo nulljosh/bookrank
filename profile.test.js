@@ -12,11 +12,14 @@ test('handle falls back to the email local part, lowercased and cleaned', () => 
   assert.equal(handleFor({ email: 'x@y.z', user_metadata: { username: 'Josh Tro!' } }), 'joshtro');
 });
 
-test('avatar is a symmetric 8x8 svg with no purple or teal', () => {
+test('avatar is a 16x16 book sprite in house colours, stable per email', async () => {
+  const { BOOKS } = await import('/tmp/profile-helpers.mjs');
+  for (const b of BOOKS) { assert.equal(b.length, 16); for (const r of b) assert.equal(r.length, 16, r); }
   let n = 0; const rand = () => ((n++ * 7919) % 1000) / 1000;
   const svg = avatarSVG(rand);
-  assert.match(svg, /^<svg /);
-  const rects = [...svg.matchAll(/<rect x="(\d+)" y="(\d+)" width="8" height="8" fill="(#[0-9a-f]+)"/g)].map(m => [+m[1], +m[2], m[3]]);
-  for (const [x, y, fill] of rects) assert.ok(rects.some(([x2, y2, f2]) => x2 === 56 - x && y2 === y && f2 === fill), `no mirror for ${x},${y}`);
+  assert.match(svg, /^<svg [^>]*viewBox="0 0 64 64"/);
+  assert.ok([...svg.matchAll(/<rect x="\d+" y="\d+" width="4" height="4"/g)].length > 40);
   assert.doesNotMatch(svg, /#7b2d8b|#c77dff|#00b4d8/i);
+  assert.equal(avatarSVG(Math.random, 'a@b.c'), avatarSVG(Math.random, 'a@b.c'));
+  assert.notEqual(avatarSVG(Math.random, 'a@b.c'), avatarSVG(Math.random, 'z@y.x'));
 });

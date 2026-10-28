@@ -40,7 +40,7 @@ Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other 
 | A2 | Full Now Playing sheet from the mini player: big cover, time left, line skip, speed, sleep, chapters | Apple Books, Speechify, Blinkist | M | open |
 | A3 | Reader text size (and line spacing) in the chapter menu | Apple Books | S | open |
 | A4 | Goal streak: the week's days as dots under the ring | Apple Books | S | open |
-| G1 | Goodreads sign-in inside the app (RSS died 2026-10-28): shelves, ratings, reviews, reading progress | Goodreads itself | L | in progress |
+| G1 | Goodreads sign-in inside the app (RSS died 2026-10-28): shelves, ratings, reviews, reading progress | Goodreads itself | L | built (apps; web keeps the public Currently reading). Needs Joshua's own sign-in to verify |
 
 ## Shipped 2026-09-05, Listen feature complete: shared player, share links, thumbnails, profile page, iOS/macOS account sync
 
