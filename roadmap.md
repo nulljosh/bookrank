@@ -6,10 +6,28 @@
 - [ ] Liquid Glass pass, then the Jony Ive spacing pass, iPhone and Mac, light and dark.
 - [ ] Mac QA signed in.
 - [ ] Icon and font A+ (small-size icon read; seed on the other dots?).
-- [ ] Mobbin gap matrix (below, once written).
+- [x] Mobbin gap matrix, below (2026-10-28).
 - [ ] Ship 2.0.0 on iOS and Mac with new screenshots; review notes mention the one-time sign-in.
 - [ ] kernel.jaybulb.com (needs Joshua's OK), then repo and folder rename to kernel.
 - [ ] Remove `viaApp`, the Supabase fallback and the Supabase project once nobody runs 1.2.x.
+
+## Gap matrix (Mobbin pass, 2026-10-28)
+From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform, getAbstract, StoryGraph, Speechify, Instaread and Headway. Daily use first, polish before novelty. One row is one minor version, built on web, iPhone and Mac together.
+
+| # | Gap | Who has it | Size | Status |
+|---|---|---|---|---|
+| 1 | Minutes per chapter and per book on rows ("27 min, 11 chapters") | Blinkist, Instaread, Headway | S | open |
+| 2 | Continue card at the top of the library: cover, chapter, progress | Blinkist, Readwise, Apple Books | S | open |
+| 3 | Mini player: back and forward one line, a speed chip | Speechify, Readwise | S | open |
+| 4 | Speed sheet with presets (0.8 to 2.5) | Speechify | S | open |
+| 5 | Sleep timer | Apple Books | S | open |
+| 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | open |
+| 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | open |
+| 8 | Add a chapter by photographing pages in the app | Speechify | L | open |
+| 9 | Ask the chapter a question | Speechify, Readwise | M | open |
+| 10 | Weekly listening goal | Blinkist, StoryGraph | M | open |
+
+Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other people's books.
 
 ## Shipped 2026-09-05, Listen feature complete: shared player, share links, thumbnails, profile page, iOS/macOS account sync
 
