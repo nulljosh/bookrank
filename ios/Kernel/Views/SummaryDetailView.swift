@@ -77,6 +77,7 @@ struct SummaryDetailView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).lineLimit(3)
                 Text("\(speaker.chapters.count) chapters · \(duration(minutes(speaker.chapters.map(\.text).joined())))").font(.kernel(.footnote)).foregroundStyle(.secondary)
+                if speaker.natural && slug != "sample" { offlineButton }
             }
         }
         .padding(.vertical, 10)
@@ -100,6 +101,24 @@ struct SummaryDetailView: View {
             #else
             NavigationLink { ChapterView(index: i) } label: { chapterRow(i) }
             #endif
+        }
+    }
+
+    /// Keep the book's voice on the device: Download, a progress ring while it saves, then a menu to remove it.
+    @ViewBuilder
+    private var offlineButton: some View {
+        if let p = speaker.downloading {
+            HStack(spacing: 4) { ProgressView(value: p).progressViewStyle(.circular).controlSize(.mini); Text("Saving \(Int(p * 100))%") }
+                .font(.kernel(.footnote)).foregroundStyle(.secondary)
+        } else if speaker.offline.contains(slug) {
+            Menu { Button("Remove download", systemImage: "trash", role: .destructive) { speaker.removeDownload() } } label: {
+                HStack(spacing: 4) { Image(systemName: "checkmark.circle.fill"); Text("On this device") }.font(.kernel(.footnote, weight: .semibold))
+            }
+            .menuStyle(.button).buttonStyle(.borderless).fixedSize()
+        } else {
+            Button { Task { await speaker.download() } } label: { HStack(spacing: 4) { Image(systemName: "arrow.down.circle"); Text("Download") } }
+                .accessibilityLabel("Download")
+                .font(.kernel(.footnote, weight: .semibold)).buttonStyle(.borderless)
         }
     }
 

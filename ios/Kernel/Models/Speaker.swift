@@ -7,7 +7,6 @@ import Observation
 /// The next chapter's script is fetched while the current one plays, the spoken line and
 /// word are published for the transcript to highlight, and the resume point + scripts are
 /// saved on the summary row so the web and the apps pick up at the same line.
-/// ponytail: on-device voices only, no audio files.
 @Observable
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     struct Chapter { let title: String; let text: String }
@@ -124,6 +123,39 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if sleep == -1 { sleep = 0; stop(); status = "Stopped at the end of the chapter."; Task { await showChapter() }; return }
         if more { Task { await play(from: 0) } }
         else { line = 0; playing = false; word = nil; status = "Finished."; persist() }
+    }
+
+    /// Books whose voice lines are all on the device, and how far the current download is (0...1).
+    private(set) var offline: Set<String> = Set((try? FileManager.default.contentsOfDirectory(atPath: URL.applicationSupportDirectory.appending(path: "voice").path)) ?? [])
+        .filter { FileManager.default.fileExists(atPath: Narrator.offlineDir($0).appending(path: "done").path) }
+    private(set) var downloading: Double?
+
+    /// Fetch every line of the loaded book in the natural voice and keep it, so it plays with no connection.
+    /// ponytail: keeps the lines of the current mode (Explain it or the notes); the other mode still needs the network.
+    @MainActor
+    func download() async {
+        guard let slug, downloading == nil else { return }
+        let dir = Narrator.offlineDir(slug)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        downloading = 0
+        defer { downloading = nil }
+        for i in chapters.indices {
+            guard self.slug == slug, let s = await script(for: i).value else { status = "Download stopped. Try again with a connection."; return }
+            for l in s {
+                if await Narrator.speak(l.line, host: l.host, ch: i, slug: slug) == nil {
+                    status = "Download stopped (\(Narrator.lastFailure ?? "unknown")). Try again later."; return
+                }
+            }
+            downloading = Double(i + 1) / Double(chapters.count)
+        }
+        FileManager.default.createFile(atPath: dir.appending(path: "done").path, contents: nil)
+        offline.insert(slug)
+        persist()   // the scripts fetched on the way are what the lines were made from
+    }
+    func removeDownload() {
+        guard let slug else { return }
+        try? FileManager.default.removeItem(at: Narrator.offlineDir(slug))
+        offline.remove(slug)
     }
 
     /// Highlights for the book that is loaded.
@@ -248,13 +280,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// false = a line could not be fetched or played, `line` is where the device voice should pick up.
     @MainActor
     private func playNatural(_ script: [ListenState.Line], from start: Int, tok: Int) async -> Bool {
-        var next = Task { await Narrator.speak(script[start].line, host: script[start].host, ch: ch) }
+        var next = Task { await Narrator.speak(script[start].line, host: script[start].host, ch: ch, slug: slug) }
         for i in start..<script.count {
             guard tok == token else { return true }
             let clip = await next.value
             guard tok == token else { return true }
             guard let clip, let p = try? AVAudioPlayer(data: clip.audio) else { line = i; return false }
-            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host, ch: ch) } }
+            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host, ch: ch, slug: slug) } }
             line = i; word = nil
             status = "\(chapters[ch].title) · \(i + 1)/\(lines.count)"
             player = p; p.enableRate = true; p.rate = rate; p.play()

@@ -166,6 +166,18 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("highlight-book", XCUIScreen.main.screenshot())
     }
 
+    /// The book page's Download control (offline audio). Shot only; tapping it would spend voice credits.
+    func testOfflineButton() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        let book = app.buttons.matching(NSPredicate(format: "label CONTAINS 'The Optimist'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 15)); book.tap()
+        XCTAssertTrue(app.buttons["Download"].firstMatch.waitForExistence(timeout: 10), "a signed-in book should offer Download")
+        sleep(1)
+        saveTo("offline-book", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

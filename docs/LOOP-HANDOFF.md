@@ -28,7 +28,7 @@ Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule
 3. **Icon and font A+.** Icon reads like a text glyph at small sizes; font: seeds on the other dots?
 4. Cold launch shows ~3s white in the debug simulator; check a Release build.
 5. **Highlights (gap row 6), in progress.** Adding a `highlights` column on D1 was blocked by the permission check (production change), so store them inside the row's `listen` JSON as `listen.marks: [{ch, text}]`. Every writer must carry `marks` along: web `save` in library.html, Swift `ListenState` (add an optional `marks`), and keep marks even when `listen.for` no longer matches. Apps: long-press a line in ChapterView to save it, a Highlights list on the book page. Web: a save button for the current line and a list under the reader. Send `updated_at` back on every save (see CLAUDE.md, updated_at rule).
-6. **4.0.0**: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
+6. **4.0.0**: gap rows 6 and 7 done (highlights, offline audio in the apps). Next row 8 (photograph pages in the app), then 9 (ask the chapter), 10 (weekly goal).
 
 ## Waiting on Joshua
 

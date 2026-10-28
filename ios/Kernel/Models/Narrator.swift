@@ -1,4 +1,5 @@
 import AVFoundation
+import CryptoKit
 import SwiftUI
 import Observation
 
@@ -44,7 +45,22 @@ extension Narrator {
     /// Why the last natural line failed, in the server's own words when it gave any, so the player can say so.
     nonisolated(unsafe) static var lastFailure: String?
 
-    static func speak(_ text: String, host: String, ch: Int) async -> (audio: Data, words: [WordTime])? {
+    /// A downloaded book's voice lines: one file per line, named by a hash of host and text.
+    static func offlineDir(_ slug: String) -> URL { URL.applicationSupportDirectory.appending(path: "voice/\(slug)") }
+    private static func lineFile(_ text: String, _ host: String, _ slug: String) -> URL {
+        let h = SHA256.hash(data: Data("\(host)|\(text)".utf8)).map { String(format: "%02x", $0) }.joined()
+        return offlineDir(slug).appending(path: "\(h).json")
+    }
+    private struct Out: Decodable { let audio: String; let words: [WordTime] }
+    private static func clip(_ data: Data) -> (audio: Data, words: [WordTime])? {
+        guard let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) else { return nil }
+        return (audio, out.words)
+    }
+
+    /// With `slug`, a line already on the device plays from there, and a fetched one is kept when that book is downloading or downloaded.
+    static func speak(_ text: String, host: String, ch: Int, slug: String? = nil) async -> (audio: Data, words: [WordTime])? {
+        let file = slug.map { lineFile(text, host, $0) }
+        if let file, let d = try? Data(contentsOf: file), let c = clip(d) { return c }
         // One retry: a dropped connection or a 5xx from the voice service is usually gone a second later.
         for attempt in 0..<2 {
             if attempt > 0 { try? await Task.sleep(for: .milliseconds(700)) }
@@ -57,14 +73,14 @@ extension Narrator {
             // The App Store price is what pays for the voices: Apple's signed proof of this copy.
             if let proof = await API.receipt() { req.setValue(proof, forHTTPHeaderField: "x-kernel-receipt") }
             req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "host": host, "ch": ch])
-            struct Out: Decodable { let audio: String; let words: [WordTime] }
             struct Err: Decodable { let error: String? }
             guard let (data, resp) = try? await URLSession.shared.data(for: req), let code = (resp as? HTTPURLResponse)?.statusCode else {
                 lastFailure = "no connection"; continue
             }
-            if code == 200, let out = try? JSONDecoder().decode(Out.self, from: data), let audio = Data(base64Encoded: out.audio) {
+            if code == 200, let c = clip(data) {
                 lastFailure = nil
-                return (audio, out.words)
+                if let file, let slug, FileManager.default.fileExists(atPath: offlineDir(slug).path) { try? data.write(to: file) }
+                return c
             }
             lastFailure = (try? JSONDecoder().decode(Err.self, from: data))?.error ?? "server answered \(code)"
             if code < 500 { return nil }   // 4xx will not change on a retry
