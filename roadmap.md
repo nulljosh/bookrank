@@ -33,6 +33,15 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 
 Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other people's books.
 
+## A+ pass (2026-10-28, our screens beside Apple Books and Blinkist)
+| # | Gap | Who has it | Size | Status |
+|---|---|---|---|---|
+| A1 | A big Play / Continue button on the book page | Blinkist, Apple Books | S | open |
+| A2 | Full Now Playing sheet from the mini player: big cover, time left, line skip, speed, sleep, chapters | Apple Books, Speechify, Blinkist | M | open |
+| A3 | Reader text size (and line spacing) in the chapter menu | Apple Books | S | open |
+| A4 | Goal streak: the week's days as dots under the ring | Apple Books | S | open |
+| G1 | Goodreads sign-in inside the app (RSS died 2026-10-28): shelves, ratings, reviews, reading progress | Goodreads itself | L | in progress |
+
 ## Shipped 2026-09-05, Listen feature complete: shared player, share links, thumbnails, profile page, iOS/macOS account sync
 
 Listen feature complete. Refactored narration player into a shared module (listen.js) with one utterance at a time, next chapter prefetch to eliminate gaps, word+line highlight with auto-scroll, and pause resilient to loading. Share links (share.html?t=<token>) let readers play chapters without signing in. Thumbnails now probe Open Library/Google Books via title/ISBN match with fallback chain. Currently-playing group at top of summaries list (web/iOS). Profile page handles username (defaults to email local part), pixel avatar generation, email/password changes, and account deletion; iOS/macOS account view synced. KMP and TUI apps can open share links. Fixed root cause of tab-switching bug: onAuthStateChange was re-firing on tab focus + hourly token refresh, rebuilding the library list on every event; now only reacts to sign-in state flips. Fixed repeated chapter intro narrations by passing chapter index/total to prompt. Twenty-four tests (listen.test.js, narrate.test.js, profile.test.js, books.test.js). Deployed to bookrank.heyitsmejosh.com.

@@ -25,3 +25,16 @@ assert.deepEqual(bestQuote(q('x'.repeat(300), '9,999') + q('Short and loved.', '
 assert.equal(bestQuote(''), null);
 assert.equal(parseFeed('<item><title>Half</title><user_rating>3.5</user_rating></item>')[0].rating, 3.5);   // Goodreads allows half stars now
 console.log('goodreads ok');
+import { parseReading } from './functions/api/goodreads.js';
+// The public profile's Currently Reading box (structure from goodreads.com, 2026-10-28).
+const box = `<div id="currentlyReadingReviews"> <div class="Updates no_border"> <div class="firstcol"> <a title="Acing" href="/book/show/62241112-acing"><img alt="Acing the System ..." src="https://i.gr-assets.com/b/62241112._SX98_.jpg" /></a> </div>
+ <div class="userReview"> <strong><a href="/user/show/1-x">X</a></strong> is currently reading </div> <div><a class="bookTitle" href="/book/show/62241112-acing">Acing the System Design Interview</a></div> <div> <span class="by smallText">by</span> <a class="authorName" href="/author/show/1.Z">Zhiyong Tan</a> </div></div>
+ <div class="Updates"> <div class="firstcol"><a href="/book/show/2-face"><img alt="Face" src="https://i.gr-assets.com/b/2._SX98_.jpg" /></a></div> <div class="userReview"> rated a book <span class=" staticStars notranslate" title="really liked it"><span class="staticStar p10">really liked it</span><span class="staticStar p10"></span><span class="staticStar p10"></span><span class="staticStar p10"></span><span class="staticStar p0"></span></span> </div>
+ <div><a class="bookTitle" href="/book/show/2-face">Face with Tears of Joy &amp; More</a></div> <a class="authorName" href="/author/show/2.K">Keith Houston</a></div>
+ </div><div class="bigBoxBottom"></div><div class="Updates"><a class="bookTitle" href="/book/show/9">Not in the box</a></div>`;
+const cr = parseReading(box);
+assert.equal(cr.length, 2);
+assert.deepEqual(cr[0], { title: 'Acing the System Design Interview', author: 'Zhiyong Tan', isbn: null, cover: 'https://i.gr-assets.com/b/62241112._SY475_.jpg', readAt: null, rating: null, url: 'https://www.goodreads.com/book/show/62241112-acing' });
+assert.equal(cr[1].title, 'Face with Tears of Joy & More'); assert.equal(cr[1].rating, 4);
+assert.deepEqual(parseReading('<html>no box</html>'), []);
+console.log('reading ok');

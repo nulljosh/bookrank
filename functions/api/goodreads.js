@@ -1,12 +1,14 @@
 // GET /api/goodreads?user=<id or profile URL>&shelf=read|currently-reading|to-read
 // -> { user, shelf, books: [{ title, author, isbn, cover, readAt, rating, url }] }
-// Goodreads closed its API and OAuth in 2020, so there is no Goodreads sign-in to offer.
-// A public profile's shelves are still published as RSS; this reads them, follows the
-// pages, and hands back plain JSON the web and iOS apps can sync from. No credentials.
+// Goodreads closed its API and OAuth in 2020, and on 2026-10-28 its shelf RSS (404) and shelf
+// pages (sign-in redirect) went private too. What is left without a login is the public profile
+// page: its Currently Reading box. So currently-reading reads that; read and to-read come back
+// empty with `login: true`, and the apps read them through a Goodreads sign-in on the device.
 // ponytail: 10 pages (1000 books) per shelf and a one-hour edge cache; raise either if a
 // real shelf outgrows it.
 const SHELVES = new Set(["read", "currently-reading", "to-read"]);
 const MAX_PAGES = 10;
+const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15";
 
 export async function onRequest({ request }) {
   const url = new URL(request.url);
@@ -17,14 +19,22 @@ export async function onRequest({ request }) {
   if (!SHELVES.has(shelf)) return json({ error: "Unknown shelf." }, 400);
 
   const cache = caches.default;
-  const key = new Request(`https://goodreads.cache/v2/${user}/${shelf}`) // bump vN when the parse changes;
+  const key = new Request(`https://goodreads.cache/v3/${user}/${shelf}`) // bump vN when the parse changes;
   const hit = await cache.match(key);
   if (hit) return hit;
 
+  if (shelf === "currently-reading") {
+    const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": UA } });
+    if (!r.ok) return json({ error: "No Goodreads profile with that link." }, 404);
+    const res = json({ user, shelf, books: parseReading(await r.text()) });
+    res.headers.set("Cache-Control", "public, max-age=3600");
+    await cache.put(key, res.clone());
+    return res;
+  }
   const books = [];
   for (let page = 1; page <= MAX_PAGES; page++) {
-    const r = await fetch(`https://www.goodreads.com/review/list_rss/${user}?shelf=${shelf}&page=${page}`, { headers: { "User-Agent": "Mozilla/5.0 (Kernel)" } });
-    if (r.status === 404) return json({ error: "No Goodreads profile with that link." }, 404);
+    const r = await fetch(`https://www.goodreads.com/review/list_rss/${user}?shelf=${shelf}&page=${page}`, { headers: { "User-Agent": UA } });
+    if (r.status === 404) return json({ user, shelf, books: [], login: true });   // private since 2026-10-28
     if (!r.ok) return json({ error: "Goodreads did not answer. Try again in a minute." }, 502);
     const items = parseFeed(await r.text());
     books.push(...items);
@@ -38,7 +48,7 @@ export async function onRequest({ request }) {
 
 /** ?profile=1 -> { name, avatar } from the public profile page's Open Graph tags. */
 async function profile(user) {
-  const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": "Mozilla/5.0 (Kernel)" } });
+  const r = await fetch(`https://www.goodreads.com/user/show/${user}`, { headers: { "User-Agent": UA } });
   if (!r.ok) return json({ error: "No Goodreads profile with that link." }, 404);
   const p = parseProfile(await r.text());
   // Goodreads sometimes serves bots a stripped page; no name means we did not get the real profile.
@@ -69,6 +79,25 @@ export function bestQuote(html) {
   const short = qs.filter(q => q.text.length <= 220).sort((a, b) => b.likes - a.likes);
   const q = short[0] || qs[0];
   return q ? { text: q.text, author: q.author } : null;
+}
+
+/** The public profile's "Currently Reading" box -> books (title, author, cover, rating when given). */
+export function parseReading(html) {
+  const box = html.split('id="currentlyReadingReviews"')[1]?.split('class="bigBoxBottom"')[0] || "";
+  return box.split('<div class="Updates').slice(1).map(b => {
+    const link = b.match(/<a class="bookTitle" href="([^"]+)">([\s\S]*?)<\/a>/);
+    const stars = (b.match(/staticStars[\s\S]*?<\/span><\/span>/) || [""])[0].match(/staticStar p10/g)?.length || null;
+    const cover = (b.match(/<img alt="[^"]*" src="([^"]+)"/) || [])[1] || null;
+    return {
+      title: link ? cleanTitle(decode(link[2].replace(/<[^>]+>/g, ""))) : "",
+      author: decode((b.match(/class="authorName"[^>]*>([^<]+)</) || [])[1] || ""),
+      isbn: null,
+      cover: cover && cover.replace(/\._S[XY]\d+_\./, "._SY475_."),
+      readAt: null,
+      rating: stars,
+      url: link ? `https://www.goodreads.com${link[1]}` : null,
+    };
+  }).filter(b => b.title);
 }
 
 /** A profile URL (goodreads.com/user/show/62164337-josh) or a bare id -> "62164337". */

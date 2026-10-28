@@ -30,6 +30,9 @@ Fixed 2026-10-28: listen saves no longer reset the resume point (updated_at rule
 5. **Highlights (gap row 6), in progress.** Adding a `highlights` column on D1 was blocked by the permission check (production change), so store them inside the row's `listen` JSON as `listen.marks: [{ch, text}]`. Every writer must carry `marks` along: web `save` in library.html, Swift `ListenState` (add an optional `marks`), and keep marks even when `listen.for` no longer matches. Apps: long-press a line in ChapterView to save it, a Highlights list on the book page. Web: a save button for the current line and a list under the reader. Send `updated_at` back on every save (see CLAUDE.md, updated_at rule).
 6. **4.0.0**: gap matrix done (rows 6 to 10: highlights, offline audio, add pages, ask the chapter, weekly goal). Reminders now use your highlights and open the book on tap. Next: the A+ pass over every screen (apple skill), web weekly goal, a signed-in QA walk of download, add pages and ask. Neither download nor add pages was walked end to end (needs a signed-in QA account and spends credits).
 
+7. **Goodreads (G1), in progress.** RSS and signed-out shelf pages are gone (404 and sign-in redirect, 2026-10-28), so `/api/goodreads` returns nothing. Plan: the signed-out profile page for what it still shows, plus a Goodreads sign-in sheet (WKWebView) in the apps that reads review/list and user_status/list on the device. Joshua signs in himself.
+8. **A+ pass, right after Goodreads (Joshua asked twice).** Rows A1 to A4 in roadmap.md: Play button on the book page, Now Playing sheet, text size, streak dots. Competitor sheets: `python3 ~/.claude/skills/mobbin/fetch.py <dir> "Apple Books" "Blinkist" ...`.
+
 ## Waiting on Joshua
 
 - OK to add kernel.jaybulb.com to the `bookrank` Pages project (the permission check blocked it).
