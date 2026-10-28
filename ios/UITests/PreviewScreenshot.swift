@@ -178,6 +178,19 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("offline-book", XCUIScreen.main.screenshot())
     }
 
+    /// The Add pages sheet from the library's + button. Picks no photos (that needs a real account).
+    func testAddPages() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        let add = app.buttons["Add pages"].firstMatch
+        XCTAssertTrue(add.waitForExistence(timeout: 15), "signed in, the library offers Add pages")
+        add.tap()
+        XCTAssertTrue(app.buttons["Choose page photos"].firstMatch.waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("add-pages", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

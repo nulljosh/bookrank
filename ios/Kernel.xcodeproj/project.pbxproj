@@ -46,6 +46,8 @@
 		622B713EAD540119BE0B693E /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
+		66FA3A9E0BF6F1B90DCF99C4 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
+		6892694E45629DB122D66720 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
 		6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
 		6D23E02EC87768BAC843C81E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489B04517DC64E94DE1670F4 /* Assets.xcassets */; };
 		6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
@@ -155,6 +157,7 @@
 		C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		D2CEA9519827D51461348E47 /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
+		D6E725F291428741C2DC63FE /* AddPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPagesView.swift; sourceTree = "<group>"; };
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				20EE769FDA16E1E24C359F00 /* AccountView.swift */,
+				D6E725F291428741C2DC63FE /* AddPagesView.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
 				E2296F31EB47281BF6AF3961 /* OnboardingView.swift */,
 				706C79B39012060E094ED3A4 /* PlayerBar.swift */,
@@ -514,6 +518,7 @@
 			files = (
 				2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */,
 				241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */,
+				6892694E45629DB122D66720 /* AddPagesView.swift in Sources */,
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
@@ -556,6 +561,7 @@
 			files = (
 				A45E26D9E93A43680F4B1919 /* API.swift in Sources */,
 				79E0EA8196E45333523FD67F /* AccountView.swift in Sources */,
+				66FA3A9E0BF6F1B90DCF99C4 /* AddPagesView.swift in Sources */,
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,

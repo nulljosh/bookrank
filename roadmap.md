@@ -27,7 +27,7 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 | 5 | Sleep timer | Apple Books | S | done (apps: 15 to 60 min or end of chapter, moon on the speed chip) |
 | 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | done (long-press in the apps, Highlight button on the web; kept in listen.marks) |
 | 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | done in the apps (Download on the book page); web waits on web offline mode |
-| 8 | Add a chapter by photographing pages in the app | Speechify | L | open |
+| 8 | Add a chapter by photographing pages in the app | Speechify | L | done (apps: + on the library, photos read by /api/summarize-photo; web already had From photos) |
 | 9 | Ask the chapter a question | Speechify, Readwise | M | open |
 | 10 | Weekly listening goal | Blinkist, StoryGraph | M | open |
 

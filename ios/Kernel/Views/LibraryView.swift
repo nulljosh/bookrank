@@ -4,6 +4,7 @@ struct LibraryView: View {
     @State private var store = DataStore()
     @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
+    @State private var showAddPages = false
     @State private var showAccount = false
     @State private var query = ""
     @State private var openShelves: Set<String> = ["Currently reading"]
@@ -57,6 +58,7 @@ struct LibraryView: View {
             #endif
         }
         .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
+        .sheet(isPresented: $showAddPages) { AddPagesView(store: store) }
         .onAppear {
             if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true }   // screenshots of the Account sheet
             if CommandLine.flag("UITEST_PLAYER") {   // screenshots of the player bar, silent
@@ -117,7 +119,13 @@ struct LibraryView: View {
         }
     }
 
+    @ToolbarContentBuilder
     private var accountButton: some ToolbarContent {
+        if auth.isSignedIn {
+            ToolbarItem(placement: .automatic) {
+                Button("Add pages", systemImage: "plus") { showAddPages = true }
+            }
+        }
         ToolbarItem(placement: .automatic) {
             Button { showAccount = true } label: { Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle") }
                 .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")

@@ -186,6 +186,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if was { persist() }
     }
 
+    /// Forget the loaded book, so the next load reads its content again.
+    func unload() { stop(); slug = nil }
+
     private func persist() {
         guard let save else { return }
         let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line), marks: marks)
