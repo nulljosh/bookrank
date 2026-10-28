@@ -20,11 +20,11 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 
 2.0.0 is in review on iOS and Mac (2026-10-28, builds 202610281242). Watch for App Review; answer anything in Resolution Center only with Joshua's yes.
 
-1. **2.x minors toward 3.0.0**: work the gap matrix in `roadmap.md` rows 1 to 5, one minor each, web and apps together, QA light and dark, ship each minor (`asc workflow run ship-ios VERSION:x.y.z`; Mac: archive KernelMac, export with `ios/ExportOptionsMac.plist` (automatic signing), `asc builds upload --app 6792376485 --pkg ... --version --build-number`, then `asc review submit`). A version can only be submitted once the previous one clears review.
+1. **3.0.0 is built, waiting on 2.0.0.** Gap rows 1 to 5 are done and committed (minutes, Continue card, line skip, speed presets, sleep timer). Apple allows one version in review at a time, so the day 2.0.0 clears: create 3.0.0 on iOS and Mac (`asc versions create`), set What's New, fresh store shots (`sh ios/scripts/shots.sh`; if fastlane hangs in `simctl diagnose` after a passing test, take the PNGs from ~/Library/Caches/tools.fastlane/screenshots), `asc workflow run ship-ios VERSION:3.0.0`, then the Mac steps below. Mac: archive KernelMac, export with `ios/ExportOptionsMac.plist` (automatic signing), `asc builds upload --app 6792376485 --pkg ... --version --build-number`, `asc review submit`. Never let `xcodegen` alone rewrite `ios/Kernel/Info.plist` into a commit: restore it with git, the ship workflow patches it.
 2. **Mac store screenshots** at 2880x1800 (this Mac's display is 1x, so render larger or skip).
 3. **Icon and font A+.** Icon reads like a text glyph at small sizes; font: seeds on the other dots?
 4. Cold launch shows ~3s white in the debug simulator; check a Release build.
-5. 4.0.0 and on: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
+5. **4.0.0**: gap rows 6 to 10 (highlights, offline audio, photograph pages in the app, ask the chapter, weekly goal).
 
 ## Waiting on Joshua
 

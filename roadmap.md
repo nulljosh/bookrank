@@ -1,5 +1,5 @@
 ## 3.0.0 (next)
-- [ ] Gap rows 1 to 5 (minutes on rows, continue card, mini player line skip, speed sheet, sleep timer), one 2.x minor each, web and apps together.
+- [x] Gap rows 1 to 5 built and committed 2026-10-28; ships as 3.0.0 once 2.0.0 clears review.
 - [ ] Fresh Mac store screenshots at 2880x1800.
 
 ## 2.0.0 (shipped to review 2026-10-28)
