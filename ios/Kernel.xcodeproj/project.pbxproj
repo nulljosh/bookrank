@@ -20,8 +20,8 @@
 		1FD09E91C1599004CA7E5213 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */; };
 		241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
+		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */; };
-		2E5B528B0CE2EAC6DE4F985F /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276344431C09C425B1C7A764 /* SessionKeychainStorage.swift */; };
 		2E7C473755BE443C32332247 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
 		3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */; };
 		31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
@@ -31,6 +31,7 @@
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
+		54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
 		599BE2FAB724AF643A6619DD /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
@@ -48,7 +49,6 @@
 		7D53A724E5C8C8B87CDE04F3 /* KernelWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E7CC97FD4FD19768953CA /* KernelWatchApp.swift */; };
 		7D545127040FA6FF4DCB2C66 /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
 		7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
-		81793340D1FDA3451FA56273 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2F575E1AA7D7A0BB09EBD0A8 /* Supabase */; };
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
 		95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
@@ -56,17 +56,18 @@
 		9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
 		A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
+		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		ABB3578271ADDB49C6476803 /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = A918FA2D7AF3995D74F8E133 /* Kernel.icon */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		B4355185817350A40674BF08 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
+		B78C98F75A0D69F52D3EEE78 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
 		B99ED828E6CE500BF35CABC3 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */; };
 		C2B26317A76AB98D25A2E216 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
 		C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */; };
-		D42E5D11B7066B7E51F8BC77 /* SessionKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276344431C09C425B1C7A764 /* SessionKeychainStorage.swift */; };
 		D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
@@ -74,7 +75,6 @@
 		E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
-		ED43659663A3A5F6030D5446 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 81DF366062115A9A564ACA7B /* Supabase */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
 		F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
 		FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
@@ -100,7 +100,6 @@
 		20EE769FDA16E1E24C359F00 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
-		276344431C09C425B1C7A764 /* SessionKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeychainStorage.swift; sourceTree = "<group>"; };
 		29A3854E0210223CC5024821 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		32D10340DE121C50437BAE35 /* KernelMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "sobriety-for-dummies.md"; sourceTree = "<group>"; };
 		6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		75F4E8FFFECCDF017CFF9483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kernel.entitlements; sourceTree = "<group>"; };
 		86F8D3888306DB3496A66700 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		8917EA02FB6A28868C756F74 /* Nudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
@@ -128,6 +128,7 @@
 		A918FA2D7AF3995D74F8E133 /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		AAB8DB870805E0D468BF923B /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
+		B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "acing-the-system-design-interview.md"; sourceTree = "<group>"; };
 		C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		D2CEA9519827D51461348E47 /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
@@ -139,31 +140,13 @@
 		EFD53A14FC46AD38DFFFA927 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		1EB1063ADD7710E6F687D045 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ED43659663A3A5F6030D5446 /* Supabase in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8F809D0DCA45DAB258B03F1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81793340D1FDA3451FA56273 /* Supabase in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
 		0A125829F63DE65E184F0577 /* summaries */ = {
 			isa = PBXGroup;
 			children = (
 				13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */,
 				86F8D3888306DB3496A66700 /* accounting-for-canadians.md */,
+				B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */,
 				4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */,
 				4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */,
 				D2CEA9519827D51461348E47 /* data-science.md */,
@@ -224,12 +207,12 @@
 		8880599E6CAD5AF3B050787B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				75F4E8FFFECCDF017CFF9483 /* API.swift */,
 				A1FB1817D952E630F014265C /* AuthStore.swift */,
 				EFD53A14FC46AD38DFFFA927 /* Book.swift */,
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
 				8917EA02FB6A28868C756F74 /* Nudge.swift */,
-				276344431C09C425B1C7A764 /* SessionKeychainStorage.swift */,
 				29A3854E0210223CC5024821 /* Speaker.swift */,
 				640F6C819D393938A8ED5317 /* WatchSync.swift */,
 			);
@@ -292,7 +275,6 @@
 			buildPhases = (
 				27624E64890AD6E565D0441B /* Sources */,
 				9C4F0CE29CFD4C8EB68566C5 /* Resources */,
-				E8F809D0DCA45DAB258B03F1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,7 +282,6 @@
 			);
 			name = Kernel;
 			packageProductDependencies = (
-				2F575E1AA7D7A0BB09EBD0A8 /* Supabase */,
 			);
 			productName = Kernel;
 			productReference = 9C9F810A2EE7CDD4B516ADEF /* Kernel.app */;
@@ -312,7 +293,6 @@
 			buildPhases = (
 				4F824FE188A7BFC37F6D344C /* Sources */,
 				CDA5054F5E3474C3030C4CDC /* Resources */,
-				1EB1063ADD7710E6F687D045 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -320,7 +300,6 @@
 			);
 			name = KernelMac;
 			packageProductDependencies = (
-				81DF366062115A9A564ACA7B /* Supabase */,
 			);
 			productName = KernelMac;
 			productReference = 32D10340DE121C50437BAE35 /* KernelMac.app */;
@@ -399,9 +378,6 @@
 			);
 			mainGroup = F3C8B680AD9BD3B1C3777E0C;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				55A2C5FB24D82265EF930B7C /* XCRemoteSwiftPackageReference "supabase-swift" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3BEFBFF1973B1DD95CDE5364 /* Products */;
 			projectDirPath = "";
@@ -432,6 +408,7 @@
 				76A0A9AB5E70EF5F54180419 /* Kernel.icon in Resources */,
 				7BF9CE9EC2D13D4F8B4C7A07 /* accounting-for-canadians-for-dummies.md in Resources */,
 				7D545127040FA6FF4DCB2C66 /* accounting-for-canadians.md in Resources */,
+				B78C98F75A0D69F52D3EEE78 /* acing-the-system-design-interview.md in Resources */,
 				5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */,
 				B4355185817350A40674BF08 /* ai-in-business.md in Resources */,
 				C2B26317A76AB98D25A2E216 /* books.json in Resources */,
@@ -459,6 +436,7 @@
 				ABB3578271ADDB49C6476803 /* Kernel.icon in Resources */,
 				2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */,
 				76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */,
+				54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */,
 				B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */,
 				E9F035857054622655969C14 /* ai-in-business.md in Resources */,
 				2E7C473755BE443C32332247 /* books.json in Resources */,
@@ -485,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */,
 				241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */,
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
@@ -493,7 +472,6 @@
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
 				622B713EAD540119BE0B693E /* Nudge.swift in Sources */,
-				D42E5D11B7066B7E51F8BC77 /* SessionKeychainStorage.swift in Sources */,
 				E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */,
 				6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */,
 				191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */,
@@ -523,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A45E26D9E93A43680F4B1919 /* API.swift in Sources */,
 				79E0EA8196E45333523FD67F /* AccountView.swift in Sources */,
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
@@ -531,7 +510,6 @@
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
 				6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */,
-				2E5B528B0CE2EAC6DE4F985F /* SessionKeychainStorage.swift in Sources */,
 				C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */,
 				16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */,
 				31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */,
@@ -883,30 +861,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		55A2C5FB24D82265EF930B7C /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/supabase/supabase-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2F575E1AA7D7A0BB09EBD0A8 /* Supabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 55A2C5FB24D82265EF930B7C /* XCRemoteSwiftPackageReference "supabase-swift" */;
-			productName = Supabase;
-		};
-		81DF366062115A9A564ACA7B /* Supabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 55A2C5FB24D82265EF930B7C /* XCRemoteSwiftPackageReference "supabase-swift" */;
-			productName = Supabase;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEE60390B29FD39CD2989D32 /* Project object */;
 }
