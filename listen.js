@@ -300,10 +300,11 @@ export function mount(root, api) {
     box.innerHTML = marks.length ? '<h4>Highlights</h4>' : '';
     for (const m of marks) {
       const a = Object.assign(document.createElement('a'), { href: '#', textContent: m.text });
-      a.onclick = e => { e.preventDefault(); player.ch = m.ch; showChapter(); };
+      a.onclick = e => { e.preventDefault(); player.stop(); player.ch = m.ch; showChapter(); };
       box.append(a);
     }
   }
+  q('.lp-markbtn').hidden = !api.save;   // share links cannot keep highlights
   q('.lp-markbtn').onclick = () => {
     const el = text.children[player.line] || text.querySelector('.on');
     const t = el?.dataset.line; if (!t) return;

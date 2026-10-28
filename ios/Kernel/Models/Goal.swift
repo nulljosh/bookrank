@@ -49,7 +49,12 @@ final class Goal {
         roll()
         guard target > 0, !met else { return }
         // The evening of the week's last day (Saturday where weeks start Sunday, Sunday where they start Monday).
-        var when = DateComponents(); when.weekday = (Calendar.current.firstWeekday + 5) % 7 + 1; when.hour = 18
+        var last = DateComponents(); last.weekday = (Calendar.current.firstWeekday + 5) % 7 + 1; last.hour = 18
+        // Only this week's evening: past it, a reminder would land next week carrying this week's numbers.
+        let cal = Calendar.current
+        guard let at = cal.nextDate(after: .now, matching: last, matchingPolicy: .nextTime),
+              let end = cal.date(byAdding: .day, value: 7, to: Self.week()), at < end else { return }
+        let when = cal.dateComponents([.year, .month, .day, .hour, .minute], from: at)
         let content = UNMutableNotificationContent()
         content.title = "Weekly goal"
         content.body = "\(target - minutes) minutes to go this week. One chapter gets you closer."

@@ -63,7 +63,8 @@
   async function sync(maxPages = 10) {
     const me = await fetch("/review/list?shelf=read", { credentials: "include" });
     const user = (me.url.match(/\/review\/list\/(\d+)/) || [])[1];
-    if (!user) return JSON.stringify({ signedIn: false });
+    if (!user && /sign_in|\/ap\/signin/.test(me.url)) return JSON.stringify({ signedIn: false });
+    if (!user) return JSON.stringify({ signedIn: true, error: `Goodreads answered ${me.status}. Try again in a minute.` });
     const out = { signedIn: true, user, shelves: {} };
     for (const s of ["currently-reading", "read", "to-read"]) {
       const seen = new Set(), books = [];

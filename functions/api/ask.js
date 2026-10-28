@@ -1,18 +1,22 @@
 // POST { text, title, question } -> { answer }
 // Answers one question about one chapter, from that chapter's notes only. Signed-in accounts
-// only (same gate as narrate), so this is not a free public chatbot.
-import { isSignedIn } from "./narrate.js";
+// only, and metered in KV like the voices (per account per day, the whole app per month), so it
+// cannot become a free unmetered model proxy.
+import { userOf, spend } from "./speak.js";
 
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MAX_CHARS = 24000;
 
 export async function onRequest({ request, env }) {
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
-  if (!(await isSignedIn(request.headers.get("authorization") || ""))) return json({ error: "Sign in required." }, 401);
+  const uid = await userOf(request.headers.get("authorization") || "");
+  if (!uid) return json({ error: "Sign in required." }, 401);
   const body = await request.json().catch(() => ({}));
   const text = String(body.text || "").trim().slice(0, MAX_CHARS);
   const question = String(body.question || "").trim().slice(0, 500);
   if (!text || !question) return json({ error: "Ask a question about a chapter." }, 400);
+  const over = await spend(env.TTS_KV, `u:${uid}`, text.length + question.length, { day: +env.ASK_DAILY_CHARS || 150000, month: +env.ASK_MONTHLY_CHARS || 5000000 }, new Date(), "ask:");
+  if (over) return json({ error: over === "day" ? "That is enough questions for today. Try again tomorrow." : "Questions are paused for the rest of the month." }, 429);
   let out;
   try {
     out = await env.AI.run(MODEL, { messages: messages(String(body.title || "this book").slice(0, 200), text, question), max_tokens: 400 });

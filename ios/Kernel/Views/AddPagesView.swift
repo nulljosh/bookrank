@@ -118,6 +118,7 @@ extension DataStore {
             // A content edit: updated_at moves on purpose, so the narrator scripts rebuild (highlights stay).
             _ = try await API.call("PATCH", "/rest/bookrank_summaries?id=eq.\(id)", json: ["content": content])
         } else {
+            guard slug == nil else { throw API.Failure(message: "That book cannot take new chapters here. Add them on the web.") }
             let slug = title.lowercased().replacing(/[^a-z0-9]+/, with: "-").trimmingCharacters(in: CharacterSet(charactersIn: "-"))
             _ = try await API.call("POST", "/rest/bookrank_summaries", json: [
                 "slug": slug.isEmpty ? "untitled" : slug, "title": title, "content": "## \(chapter)\n\n\(body)\n",

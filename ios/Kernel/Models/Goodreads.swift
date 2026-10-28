@@ -42,10 +42,12 @@ final class Goodreads: NSObject, WKNavigationDelegate {
         defer { syncing = false }
         await withCheckedContinuation { loaded = $0; web.load(URLRequest(url: URL(string: "https://www.goodreads.com/robots.txt")!)) }
         do {
-            _ = try await web.evaluateJavaScript(src)
+            _ = try await web.evaluateJavaScript(src + "\n;0")   // a script that ends on undefined throws in the async overlay
             guard let json = try await web.callAsyncJavaScript("return await GR.sync()", contentWorld: .page) as? String,
                   let out = try? JSONDecoder().decode(Raw.self, from: Data(json.utf8)) else { error = "Goodreads sent something unexpected."; return false }
-            guard out.signedIn, let user = out.user else { data = nil; try? FileManager.default.removeItem(at: Self.file); error = "Signed out of Goodreads."; return false }
+            guard out.signedIn else { data = nil; try? FileManager.default.removeItem(at: Self.file); error = "Signed out of Goodreads."; return false }
+            // A hiccup (503, captcha, odd redirect) keeps the last good shelves.
+            guard let user = out.user else { error = out.error ?? "Goodreads did not answer. Try again in a minute."; return false }
             let status = out.status ?? [:]
             // Currently reading carries its latest "on page 230 of 368" or "85% done".
             var shelves = out.shelves ?? [:]
@@ -61,7 +63,7 @@ final class Goodreads: NSObject, WKNavigationDelegate {
             return false
         }
     }
-    private struct Raw: Decodable { let signedIn: Bool; let user: String?; let shelves: [String: [DataStore.GoodreadsBook]]?; let status: [String: Progress]? }
+    private struct Raw: Decodable { let signedIn: Bool; let user: String?; let error: String?; let shelves: [String: [DataStore.GoodreadsBook]]?; let status: [String: Progress]? }
 
     /// Forget the account: the synced copy and every Goodreads cookie on this device.
     func signOut() async {
