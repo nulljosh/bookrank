@@ -76,7 +76,7 @@ struct SummaryDetailView: View {
             Thumb(url: entry.flatMap { store.cover(for: $0) }, width: 64)
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).lineLimit(3)
-                Text("\(speaker.chapters.count) chapters").font(.kernel(.footnote)).foregroundStyle(.secondary)
+                Text("\(speaker.chapters.count) chapters · \(minutes(speaker.chapters.map(\.text).joined())) min").font(.kernel(.footnote)).foregroundStyle(.secondary)
             }
         }
         .padding(.vertical, 10)
@@ -96,6 +96,7 @@ struct SummaryDetailView: View {
         HStack(spacing: 10) {
             Text(speaker.chapters[i].title).lineLimit(2)
             Spacer(minLength: 8)
+            Text("\(minutes(speaker.chapters[i].text)) min").font(.kernel(.footnote)).foregroundStyle(.tertiary).monospacedDigit()
             if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
                 Label("Resume", systemImage: "play.circle").font(.kernel(.footnote)).foregroundStyle(.secondary).labelStyle(.titleAndIcon)
             }

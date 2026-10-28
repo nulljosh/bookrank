@@ -206,14 +206,20 @@ struct LibraryView: View {
             Thumb(url: store.cover(for: entry))
             VStack(alignment: .leading, spacing: 2) {
                 Text(entry.title).font(.kernel(.body))
-                if let pos = entry.listen?.pos, started(entry) {
-                    Text("Resume · Ch \(pos.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary)
+                Group {
+                    if let pos = entry.listen?.pos, started(entry) { Text("Resume · Ch \(pos.ch + 1) · \(minutes(entry.content)) min") }
+                    else { Text("\(minutes(entry.content)) min") }
                 }
+                .font(.kernel(.footnote)).foregroundStyle(.secondary)
             }
         }
         .padding(.vertical, 2)
     }
 }
+
+/// Listening time at about 180 words a minute (~1,100 characters), never under one. Same rule as listen.js `minutes`.
+/// utf8.count is constant time on native strings, so rows can call it on every render.
+func minutes(_ text: String) -> Int { max(1, Int((Double(text.utf8.count) / 1100).rounded())) }
 
 /// Kernel gold (brand/BRAND.md): #a56200 in light, #f5b83d in dark. `onAmber` is the text on it.
 let amber = Color("AccentColor")

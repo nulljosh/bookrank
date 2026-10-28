@@ -147,3 +147,8 @@ test('coverCandidates: work cover, then isbn, then edition, none when empty', ()
   assert.deepEqual(coverCandidates(null), []);
   assert.deepEqual(coverCandidates({}), []);
 });
+
+import { minutes } from './listen.js';
+assert.equal(minutes(''), 1);
+assert.equal(minutes('x'.repeat(1100 * 7)), 7);
+console.log('minutes ok');

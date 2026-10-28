@@ -172,6 +172,9 @@ const wordLen = (t, i) => (t.slice(i).match(/^\S+/) || [''])[0].length;
 //   { title, content, scripts, narrate(i, text, title, total) -> Promise<lines|null>,
 //     save(pos, scripts) (optional), voices() -> SpeechSynthesisVoice[], pos: {ch, line} }
 const NATURAL = '__natural';
+/** Listening time at about 180 words a minute (~1,100 characters), never under one. Same rule as Swift's `minutes`. */
+export const minutes = text => Math.max(1, Math.round((text || '').length / 1100));
+
 export function mount(root, api) {
   const synth = globalThis.speechSynthesis;
   const chs = chapters(api.content);
@@ -215,6 +218,7 @@ export function mount(root, api) {
 
   chs.forEach((c, i) => {
     const a = Object.assign(document.createElement('a'), { href: '#', textContent: c.title });
+    a.append(Object.assign(document.createElement('small'), { textContent: ` ${minutes(c.text)} min` }));
     a.onclick = e => { e.preventDefault(); player.play(i, 0); };
     const li = document.createElement('li'); li.append(a); toc.append(li);
   });
