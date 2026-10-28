@@ -1,4 +1,4 @@
-import { words, spend, pickModel, capsOf } from './functions/api/speak.js';
+import { words, spend, pickModel, capsOf, viaApp } from './functions/api/speak.js';
 import { sigOk } from './functions/api/stripe-webhook.js';
 import assert from 'node:assert/strict';
 const text = 'Hi there you';
@@ -26,4 +26,15 @@ assert.equal(await sigOk('{}', '', 'whsec_x', 1100), false);                  //
 assert.deepEqual(capsOf({}), { month: 50000, day: 8000 });
 assert.deepEqual(capsOf({ TTS_MONTHLY_CHARS: '100', TTS_DAILY_CHARS: '10' }), { month: 100, day: 10 });
 assert.equal(await kv.get('um:u:a:2026-10'), '60');                    // the account's month: 30 + 30 across day1 and day2
+// The app header only counts for a Supabase session spark-api does not know (a web session cannot claim it).
+const realFetch = globalThis.fetch;
+globalThis.fetch = async url => ({ ok: String(url).includes('jaybulb') ? spark : supa });
+let spark = true, supa = true;
+assert.equal(await viaApp('Bearer web', 'anon'), false);                // signed in on the web: no free voices
+spark = false;
+assert.equal(await viaApp('Bearer app', 'anon'), true);                 // the installed app's Supabase session
+assert.equal(await viaApp('Bearer app', null), false);                  // no apikey: not the app
+supa = false;
+assert.equal(await viaApp('Bearer junk', 'anon'), false);               // known to neither
+globalThis.fetch = realFetch;
 console.log('speak ok');

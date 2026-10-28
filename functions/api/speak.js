@@ -32,7 +32,7 @@ export async function onRequest({ request, env }) {
   if (!(token ? await isShared(token) : await isSignedIn(auth, request.headers.get("apikey")))) return json({ error: "Sign in required." }, 401);
 
   const uid = token ? null : await userOf(auth, request.headers.get("apikey"));
-  if (env.STRIPE_PAYMENT_LINK && !token && !(request.headers.get("x-bookrank-app") || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
+  if (env.STRIPE_PAYMENT_LINK && !token && !((request.headers.get("x-bookrank-app") && await viaApp(auth, request.headers.get("apikey"))) || (uid && env.TTS_KV && await env.TTS_KV.get(`paid:${uid}`)))) {
     return json({ error: "Natural voices are $1.", pay: true }, 402);
   }
 
@@ -107,6 +107,16 @@ export async function userOf(auth, apikey = null) {
   if (!apikey) return null;
   const sb = await fetch("https://tjsxsqlxjmanwvmywwvw.supabase.co/auth/v1/user", { headers: { authorization: auth, apikey } });
   return sb.ok ? (await sb.json()).id || null : null;
+}
+
+// The header alone let any signed-in web user skip the $1, so it only counts for a session the
+// installed apps hold: a Supabase token that spark-api does not know.
+// ponytail: someone who signs up on Supabase directly can still pass this; App Store proof
+// (StoreKit AppTransaction JWS, verified here) closes it when the apps move to jaybulb-api.
+export async function viaApp(auth, apikey) {
+  if (!auth.startsWith("Bearer ") || !apikey) return false;
+  if ((await fetch(`${API}/auth/user`, { headers: { authorization: auth } })).ok) return false;
+  return (await fetch("https://tjsxsqlxjmanwvmywwvw.supabase.co/auth/v1/user", { headers: { authorization: auth, apikey } })).ok;
 }
 
 async function sha(s) {
