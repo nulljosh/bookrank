@@ -125,14 +125,13 @@ struct AccountView: View {
     // MARK: - Signed out
 
     /// Matches the web sign-in: icon, bold title, Apple first, then email and password, one orange pill.
-    private static let orange = Color(red: 239 / 255, green: 160 / 255, blue: 72 / 255)
 
     private var authScreen: some View {
         ScrollView {
             VStack(spacing: 14) {
                 Image(systemName: "books.vertical.fill")
                     .font(.system(size: 34, weight: .semibold))
-                    .foregroundStyle(Self.orange)
+                    .foregroundStyle(amber)
                     .frame(width: 72, height: 72)
                     .background(Color(red: 0.07, green: 0.09, blue: 0.18), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
                     .accessibilityHidden(true)
@@ -198,9 +197,9 @@ struct AccountView: View {
                     }
                 } label: {
                     Text(isSigningUp ? "Create account" : "Sign in")
-                        .font(.body.weight(.medium)).foregroundStyle(Color(red: 0.10, green: 0.07, blue: 0.03))
+                        .font(.body.weight(.medium)).foregroundStyle(onAmber)
                         .frame(maxWidth: .infinity, minHeight: 46)
-                        .background(Self.orange, in: Capsule())
+                        .background(amber, in: Capsule())
                 }
                 .buttonStyle(.plain)
                 .opacity(email.isEmpty || password.isEmpty ? 0.5 : 1)

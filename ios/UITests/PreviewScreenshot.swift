@@ -27,6 +27,7 @@ final class PreviewScreenshot: XCTestCase {
     /// (QA, not the store set): `SHOTS_DIR=/tmp/x xcodebuild test -only-testing:KernelUITests/PreviewScreenshot/testSignInScreens`.
     func testSignInScreens() {
         let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]   // the first-run pages would cover the library
         app.launch()
         sleep(3)
         let open = app.buttons["Sign in"].firstMatch
@@ -48,6 +49,7 @@ final class PreviewScreenshot: XCTestCase {
         let env = ProcessInfo.processInfo.environment
         guard let email = env["QA_EMAIL"], let password = env["QA_PASSWORD"] else { throw XCTSkip("no QA account") }
         let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]
         app.launch()
         let open = app.buttons["Sign in"].firstMatch
         XCTAssertTrue(open.waitForExistence(timeout: 10))
@@ -72,6 +74,7 @@ final class PreviewScreenshot: XCTestCase {
     /// What App Review does: signed out, open the sample chapter and press Listen.
     func testSampleListen() {
         let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]
         app.launch()
         let sample = app.buttons["Try a sample chapter"]
         XCTAssertTrue(sample.waitForExistence(timeout: 10))
@@ -85,6 +88,35 @@ final class PreviewScreenshot: XCTestCase {
         listen.tap()
         sleep(4)
         save("sample-1", XCUIScreen.main.screenshot())
+    }
+
+    /// First-run pages, walked with taps: page 1 to 3, then Skip and the library. Never presses
+    /// the sample's Listen or any Play. Screenshots go to TEST_RUNNER_SHOTS_DIR (the xcodebuild line).
+    func testOnboardingWalk() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "NO"]
+        app.launch()
+        let next = app.buttons["Next"].firstMatch
+        XCTAssertTrue(next.waitForExistence(timeout: 15), "the first-run pages should appear after the splash")
+        sleep(1)
+        saveTo("onboard-1", XCUIScreen.main.screenshot())
+        next.tap()
+        sleep(1)
+        saveTo("onboard-2", XCUIScreen.main.screenshot())
+        app.buttons["Next"].firstMatch.tap()
+        sleep(1)
+        saveTo("onboard-3", XCUIScreen.main.screenshot())
+        XCTAssertTrue(app.buttons["Try a sample chapter"].firstMatch.exists)
+        app.buttons["Skip"].firstMatch.tap()
+        sleep(2)
+        saveTo("library-after-skip", XCUIScreen.main.screenshot())
+        XCTAssertFalse(app.buttons["Skip"].firstMatch.exists, "Skip should close the pages")
+    }
+
+    private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
+        let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
+        try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
+        try? shot.pngRepresentation.write(to: URL(fileURLWithPath: "\(dir)/\(name).png"))
     }
 
     private func save(_ name: String, _ shot: XCUIScreenshot) {

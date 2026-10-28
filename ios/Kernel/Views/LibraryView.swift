@@ -11,6 +11,11 @@ struct LibraryView: View {
     @State private var showSample = false
     @State private var selected: String?   // Mac: the book in the chapters column
     @State private var chapter: Int?        // Mac: the chapter in the text column
+    @AppStorage("kernel.onboarded") private var onboarded = false
+    @State private var showOnboarding = false
+    @State private var afterOnboarding: OnboardingChoice = .skip
+    /// False while the launch splash is on screen, so the first-run pages wait for it.
+    var splashDone = true
     var speaker = Speaker.shared
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
@@ -53,6 +58,19 @@ struct LibraryView: View {
         }
         .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
         .onAppear { if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true } }   // screenshots of the Account sheet
+        // First launch only, signed out. Waits for the splash, and stays out of the screenshot modes.
+        .onChange(of: splashDone, initial: true) { _, done in
+            if done && !onboarded && !auth.isSignedIn && !CommandLine.flag("UITEST_SNAPSHOT") && !CommandLine.flag("UITEST_ACCOUNT") { showOnboarding = true }
+        }
+        #if os(iOS)
+        .fullScreenCover(isPresented: $showOnboarding, onDismiss: runOnboardingChoice) {
+            OnboardingView { choice in afterOnboarding = choice; showOnboarding = false }
+        }
+        #else
+        .sheet(isPresented: $showOnboarding, onDismiss: runOnboardingChoice) {
+            OnboardingView { choice in afterOnboarding = choice; showOnboarding = false }
+        }
+        #endif
         // Playback follows you off the chapter: a bar along the bottom with pause and stop,
         // on every screen, for as long as something is playing or paused.
         .safeAreaInset(edge: .bottom) { if speaker.playing || speaker.paused || speaker.loading { MiniPlayer(store: store) } }
@@ -75,6 +93,25 @@ struct LibraryView: View {
         }
     }
 
+    /// Runs once the first-run pages are gone, so the sample or sign-in opens on a clear screen.
+    private func runOnboardingChoice() {
+        onboarded = true
+        let choice = afterOnboarding
+        afterOnboarding = .skip
+        switch choice {
+        case .skip: break
+        case .signIn: showAccount = true
+        case .sample:
+            guard !auth.isSignedIn else { break }   // the sample replaces the shelf; an account already has one
+            store.loadSample()
+            #if os(macOS)
+            selected = "sample"
+            #else
+            showSample = true
+            #endif
+        }
+    }
+
     private var accountButton: some ToolbarContent {
         ToolbarItem(placement: .automatic) {
             Button { showAccount = true } label: { Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle") }
@@ -93,7 +130,8 @@ struct LibraryView: View {
             } description: {
                 Text("Sign in to read them chapter by chapter.")
             } actions: {
-                Button("Sign in") { showAccount = true }.buttonStyle(.borderedProminent).tint(amber).foregroundStyle(Color(red: 0.10, green: 0.07, blue: 0.03))
+                Button("Sign in") { showAccount = true }
+                    .buttonStyle(.borderedProminent).buttonBorderShape(.capsule).controlSize(.large).tint(amber).foregroundStyle(onAmber)
                 Button("Try a sample chapter") {
                     store.loadSample()
                     #if os(macOS)
@@ -177,7 +215,9 @@ struct LibraryView: View {
     }
 }
 
-let amber = Color(red: 239 / 255, green: 160 / 255, blue: 72 / 255)
+/// Kernel gold (brand/BRAND.md): #a56200 in light, #f5b83d in dark. `onAmber` is the text on it.
+let amber = Color("AccentColor")
+let onAmber = Color("OnAccent")
 
 /// The bar that keeps playback reachable: a progress line, chapter and book, play/pause, stop.
 /// Mac: ⌘⇧P plays or pauses, ⌘. stops.

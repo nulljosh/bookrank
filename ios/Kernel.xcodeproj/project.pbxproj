@@ -17,6 +17,7 @@
 		15D930050CBDA1658CCCD3A4 /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
 		16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
 		191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
+		1E5109055000EBDB812D992F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		1FD09E91C1599004CA7E5213 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */; };
 		241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
@@ -33,6 +34,7 @@
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
 		599BE2FAB724AF643A6619DD /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
+		5C88017850B92C2908EBCB1D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
 		622B713EAD540119BE0B693E /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
@@ -61,7 +63,9 @@
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		B4355185817350A40674BF08 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
+		B72C4EA1CA39F51878968A75 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D42622E422604FB14F1EF9 /* SplashView.swift */; };
 		B78C98F75A0D69F52D3EEE78 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
+		B8C0EFF15FD313627FFB4073 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D42622E422604FB14F1EF9 /* SplashView.swift */; };
 		B99ED828E6CE500BF35CABC3 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */; };
 		C2B26317A76AB98D25A2E216 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
@@ -117,6 +121,7 @@
 		6031C7693DB73B68A9F6ADED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		640F6C819D393938A8ED5317 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		68D42622E422604FB14F1EF9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "sobriety-for-dummies.md"; sourceTree = "<group>"; };
 		6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		75F4E8FFFECCDF017CFF9483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -134,6 +139,7 @@
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E9350AD17532E2632CEBF4A5 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		EADD79E8481EC276F89FE4B1 /* KernelUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KernelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelApp.swift; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 			children = (
 				20EE769FDA16E1E24C359F00 /* AccountView.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
+				E2296F31EB47281BF6AF3961 /* OnboardingView.swift */,
+				68D42622E422604FB14F1EF9 /* SplashView.swift */,
 				474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */,
 			);
 			path = Views;
@@ -472,7 +480,9 @@
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
 				622B713EAD540119BE0B693E /* Nudge.swift in Sources */,
+				5C88017850B92C2908EBCB1D /* OnboardingView.swift in Sources */,
 				E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */,
+				B72C4EA1CA39F51878968A75 /* SplashView.swift in Sources */,
 				6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */,
 				191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */,
 			);
@@ -510,7 +520,9 @@
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
 				6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */,
+				1E5109055000EBDB812D992F /* OnboardingView.swift in Sources */,
 				C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */,
+				B8C0EFF15FD313627FFB4073 /* SplashView.swift in Sources */,
 				16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */,
 				31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */,
 			);
