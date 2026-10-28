@@ -70,6 +70,11 @@ a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.
 .lp-toc a::before { content:counter(ch) "  "; color:var(--text3); }
 .lp-toc a:hover { color:var(--text); background:var(--bg2); }
 .lp-toc small { color:var(--text3); font-size:.85em; white-space:nowrap; }
+.lp-text > div.marked { box-shadow: inset 3px 0 0 var(--accent); }
+.lp-toc .lp-marks a::before { content:none; }
+.lp-toc .lp-marks a { padding:6px 0; border-radius:0; background:none; }
+.lp-marks h4 { font-size:13px; font-weight:600; color:var(--text2); margin:24px 0 8px; }
+.lp-marks a { display:block; font-size:13px; color:var(--text2); padding:6px 0; border-top:1px solid var(--border); text-decoration:none; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
 .lp-toc a.on { color:var(--text); background:var(--bg2); font-weight:500; }
 .lp-text > div { margin-bottom:0.9rem; padding:0.3rem 0.6rem; margin-left:-0.6rem; margin-right:-0.6rem; border-radius:var(--radius-sm); color:var(--text2); cursor:pointer; scroll-margin:40vh; }
 .lp-text > div b { color:var(--text3); font-weight:500; margin-right:0.25rem; }
@@ -291,10 +296,11 @@ function mountListen() {
   const st = current.listen?.for === current.updated_at ? current.listen : null;
   listen = mount($('listen'), {
     title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate, speak,
+    marks: current.listen?.marks || [],   // kept even when listen.for is stale: a saved line is its text
     voices: () => speechSynthesis.getVoices(),
-    save: (pos, chapters) => {
+    save: (pos, chapters, marks) => {
       if (!current) return;
-      current.listen = { for: current.updated_at, chapters, pos };
+      current.listen = { for: current.updated_at, chapters, pos, marks: marks ?? current.listen?.marks ?? [] };
       db.from(TABLE).update({ listen: current.listen, updated_at: current.updated_at }).eq('id', current.id).then(() => {});  // keep updated_at, or listen.for stops matching
     },
   });

@@ -41,7 +41,10 @@ struct ListenState: Codable {
         init(host: String, line: String, md: String? = nil) { self.host = host; self.line = line; self.md = md }
     }
     struct Pos: Codable { var ch: Int; var line: Int }
+    /// A saved line: its chapter and its text, so it survives a rebuilt script. Same shape as listen.js.
+    struct Mark: Codable, Hashable { var ch: Int; var text: String }
     var `for`: String
     var chapters: [String: [Line]]
     var pos: Pos
+    var marks: [Mark]? = nil
 }

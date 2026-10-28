@@ -83,6 +83,17 @@ struct SummaryDetailView: View {
         .listRowSeparator(.hidden)
         .selectionDisabled()
         .accessibilityElement(children: .combine)
+        if !speaker.marks.isEmpty {
+            Section("Highlights") {
+                ForEach(speaker.marks, id: \.self) { m in
+                    #if os(macOS)
+                    markRow(m).tag(m.ch)
+                    #else
+                    NavigationLink { ChapterView(index: m.ch) } label: { markRow(m) }
+                    #endif
+                }
+            }
+        }
         ForEach(speaker.chapters.indices, id: \.self) { i in
             #if os(macOS)
             chapterRow(i).tag(i)
@@ -90,6 +101,14 @@ struct SummaryDetailView: View {
             NavigationLink { ChapterView(index: i) } label: { chapterRow(i) }
             #endif
         }
+    }
+
+    private func markRow(_ m: ListenState.Mark) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(m.text).lineLimit(3)
+            if speaker.chapters.indices.contains(m.ch) { Text(speaker.chapters[m.ch].title).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1) }
+        }
+        .padding(.vertical, 3)
     }
 
     private func chapterRow(_ i: Int) -> some View {
@@ -119,7 +138,12 @@ struct ChapterView: View {
                     ForEach(speaker.lines.indices, id: \.self) { i in
                         LineView(line: speaker.lines[i], on: i == speaker.line && (speaker.playing || speaker.paused),
                                  dim: speaker.playing || speaker.paused,
-                                 word: i == speaker.line ? speaker.word : nil)
+                                 word: i == speaker.line ? speaker.word : nil,
+                                 marked: speaker.isMarked(speaker.lines[i], in: speaker.ch))
+                            .contextMenu {
+                                let m = speaker.isMarked(speaker.lines[i], in: speaker.ch)
+                                Button(m ? "Remove highlight" : "Highlight", systemImage: m ? "highlighter.badge.minus" : "highlighter") { speaker.toggleMark(speaker.lines[i]) }
+                            }
                             .id(i)
                             .onTapGesture { speaker.go(to: speaker.ch, line: i) }
                     }
@@ -160,6 +184,7 @@ private struct LineView: View {
     let on: Bool
     let dim: Bool   // only dim the other lines while something is being read
     let word: Range<Int>?
+    var marked = false
 
     var body: some View {
         // One narrator, so no speaker label; a little air between lines for reading.
@@ -168,6 +193,7 @@ private struct LineView: View {
         .padding(.horizontal, 10).padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 12))
+        .overlay(alignment: .leading) { if marked { Capsule().fill(amber).frame(width: 3).padding(.vertical, 6) } }
         .foregroundStyle(on || !dim ? .primary : .secondary)
     }
 

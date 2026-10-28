@@ -144,6 +144,28 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("player-menu", XCUIScreen.main.screenshot())
     }
 
+    /// Long-press a line in the sample, highlight it, and find it on the book page. Never presses Listen.
+    func testHighlight() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]
+        app.launch()
+        let sample = app.buttons["Try a sample chapter"].firstMatch
+        XCTAssertTrue(sample.waitForExistence(timeout: 15)); sample.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Know the ground'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        let line = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Sun Tzu opens'")).firstMatch
+        XCTAssertTrue(line.waitForExistence(timeout: 10))
+        line.press(forDuration: 1.0)
+        let mark = app.buttons["Highlight"].firstMatch
+        XCTAssertTrue(mark.waitForExistence(timeout: 5)); mark.tap()
+        sleep(1)
+        saveTo("highlight-chapter", XCUIScreen.main.screenshot())
+        app.navigationBars.buttons.firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Highlights"].waitForExistence(timeout: 5), "the book page should list the highlight")
+        sleep(1)
+        saveTo("highlight-book", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

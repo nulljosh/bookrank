@@ -68,27 +68,8 @@ export function voicePair(list, name) {
   return [a, list.find(v => v !== a && a && v.lang === a.lang) || a];
 }
 
-// Thumbnails: exact title match first, then either title starting with the other
-// ("Adult Autism" vs "Adult Autism Essentials"), then a contains match.
-const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-export function matchCover(title, books) {
-  const t = norm(title); if (!t) return null;
-  const withCover = books.filter(b => b.cover);
-  const pick = f => withCover.find(b => f(norm(b.title)))?.cover || null;
-  return pick(n => n === t) || pick(n => n.startsWith(t) || t.startsWith(n)) || pick(n => n.includes(t) || t.includes(n));
-}
-
-// Candidate cover URLs from one Open Library search doc: the work cover, then each ISBN
-// and edition, which often carry a cover the work does not. `default=false` makes a miss a
-// 404 the browser can detect instead of a placeholder image.
-export function coverCandidates(doc) {
-  if (!doc) return [];
-  const out = [];
-  if (doc.cover_i) out.push(`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`);
-  for (const i of (doc.isbn || []).slice(0, 4)) out.push(`https://covers.openlibrary.org/b/isbn/${i}-M.jpg?default=false`);
-  for (const k of (doc.edition_key || []).slice(0, 3)) out.push(`https://covers.openlibrary.org/b/olid/${k}-M.jpg?default=false`);
-  return out;
-}
+// Covers and share links live in covers.js; re-exported so pages keep importing from here.
+export { matchCover, coverCandidates, shareUrl } from './covers.js';
 
 // 0..1 across the whole book. Chapters are weighted equally because unfetched ones have
 // no line count yet.
@@ -97,8 +78,6 @@ export function progress(ch, line, len, count) {
   return Math.min(1, (ch + (len ? Math.min(line, len) / len : 0)) / count);
 }
 
-// Public share URL for a token.
-export const shareUrl = (origin, token) => `${origin}/share.html?t=${token}`;
 
 // ---- player ----
 // opts: { synth, scriptFor(i) -> Promise<lines>, count() -> chapters, voices() -> [a, b],
@@ -170,7 +149,8 @@ const wordLen = (t, i) => (t.slice(i).match(/^\S+/) || [''])[0].length;
 // Builds the listen view inside `root`: progress bar, controls, chapter sidebar and the
 // transcript with line + word highlighting. `api`:
 //   { title, content, scripts, narrate(i, text, title, total) -> Promise<lines|null>,
-//     save(pos, scripts) (optional), voices() -> SpeechSynthesisVoice[], pos: {ch, line} }
+//     save(pos, scripts, marks) (optional), voices() -> SpeechSynthesisVoice[], pos: {ch, line},
+//     marks: [{ ch, text }] (saved lines; kept in the row's listen JSON) }
 const NATURAL = '__natural';
 /** Listening time at about 180 words a minute (~1,100 characters), never under one. Same rule as Swift's `minutes`. */
 export const minutes = text => Math.max(1, Math.round((text || '').length / 1100));
@@ -181,6 +161,7 @@ export function mount(root, api) {
   const synth = globalThis.speechSynthesis;
   const chs = chapters(api.content);
   // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
+  const marks = [...(api.marks || [])];
   const scripts = Object.fromEntries(Object.entries(api.scripts || {}).filter(([, s]) => !s?.some?.(l => l.host === 'B')));
   root.innerHTML = `
     <div class="lp-bar"><div class="lp-fill"></div></div>
@@ -191,10 +172,11 @@ export function mount(root, api) {
       <select class="lp-voice" aria-label="Voice"></select>
       <select class="lp-rate" aria-label="Speed">${[0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.75, 2].map(r => `<option value="${r}">${r}×</option>`).join('')}</select>
       <select class="lp-mode" aria-label="How to read it"><option value="talk">Explain it</option><option value="read">Read the notes</option></select>
+      <button class="lp-markbtn" aria-label="Highlight this line">Highlight</button>
       <span class="lp-status msg" aria-live="polite"></span>
     </div>
     <div class="lp-body">
-      <nav class="lp-toc" aria-label="Chapters"><ol></ol></nav>
+      <nav class="lp-toc" aria-label="Chapters"><ol></ol><div class="lp-marks"></div></nav>
       <div class="lp-text" aria-live="off"></div>
     </div>`;
   const q = s => root.querySelector(s);
@@ -278,7 +260,7 @@ export function mount(root, api) {
       if (st.playing && st.loading) { text.innerHTML = '<p class="lp-loading">Preparing this chapter…</p>'; return; }
       if (st.script) renderScript(st.script, st.ch);
       fill.style.width = (progress(st.ch, st.line, st.script?.length || 0, chs.length) * 100) + '%';
-      if (!st.playing) api.save?.({ ch: st.ch, line: st.line }, scripts);
+      if (!st.playing) api.save?.({ ch: st.ch, line: st.line }, scripts, marks);
     },
     onLine: (i, ch) => {
       const el = text.children[i]; if (!el) return;
@@ -306,10 +288,31 @@ export function mount(root, api) {
       p.dataset.line = l.line; p.dataset.host = host;
       p.innerHTML = host + (l.md ? md(l.md, l.line) : esc(l.line));
       p.dataset.raw = p.innerHTML;
+      p.classList.toggle('marked', isMarked(ch, l.line));
       p.onclick = () => player.play(ch, [...text.children].indexOf(p));
       text.append(p);
     }
   }
+  // Highlights: a saved line is its chapter and its text, so it survives a rebuilt script.
+  function isMarked(ch, t) { return marks.some(m => m.ch === ch && m.text === t); }
+  function renderMarks() {
+    const box = q('.lp-marks');
+    box.innerHTML = marks.length ? '<h4>Highlights</h4>' : '';
+    for (const m of marks) {
+      const a = Object.assign(document.createElement('a'), { href: '#', textContent: m.text });
+      a.onclick = e => { e.preventDefault(); player.ch = m.ch; showChapter(); };
+      box.append(a);
+    }
+  }
+  q('.lp-markbtn').onclick = () => {
+    const el = text.children[player.line] || text.querySelector('.on');
+    const t = el?.dataset.line; if (!t) return;
+    const k = marks.findIndex(m => m.ch === player.ch && m.text === t);
+    if (k >= 0) marks.splice(k, 1); else marks.push({ ch: player.ch, text: t });
+    el.classList.toggle('marked', k < 0);
+    renderMarks();
+    api.save?.({ ch: player.ch, line: player.line }, scripts, marks);
+  };
   function markToc(i) { [...toc.querySelectorAll('a')].forEach((a, k) => a.classList.toggle('on', k === i)); }
   const showChapter = async () => { // idle view: the current chapter's text, no audio
     markToc(player.ch);
@@ -336,13 +339,14 @@ export function mount(root, api) {
       try { navigator.mediaSession.setActionHandler(action, () => { if (player.script?.length) player.play(player.ch, Math.max(0, Math.min(player.script.length - 1, player.line + d))); }); } catch {}
     }
   }
-  const persist = () => { if (player.playing) api.save?.({ ch: player.ch, line: player.line }, scripts); };
+  const persist = () => { if (player.playing) api.save?.({ ch: player.ch, line: player.line }, scripts, marks); };
   addEventListener('pagehide', persist);
   document.addEventListener('visibilitychange', () => { if (document.hidden) persist(); });
 
   if (!chs.length) { text.innerHTML = '<p class="msg">Nothing to read yet.</p>'; play.disabled = true; }
   else showChapter();
-  return { player, stop: () => player.stop(), scripts };
+  renderMarks();
+  return { player, stop: () => player.stop(), scripts, marks };
 }
 // Markdown from a summary (possibly someone else's, via a share link) is untrusted: render it
 // through DOMPurify, and fall back to plain escaped text if either library failed to load.

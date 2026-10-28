@@ -86,6 +86,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         scripts = (st?.chapters ?? [:]).filter { !$0.value.contains { $0.host == "B" } }; prefetch = [:]
         ch = min(st?.pos.ch ?? 0, max(0, chapters.count - 1)); line = st?.pos.line ?? 0
         status = st.map { _ in "Resume at \(chapters[ch].title)" } ?? ""
+        marks = entry?.listen?.marks ?? []   // kept even when listen.for is stale
         Task { await showChapter() }
     }
 
@@ -125,6 +126,15 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         else { line = 0; playing = false; word = nil; status = "Finished."; persist() }
     }
 
+    /// Highlights for the book that is loaded.
+    private(set) var marks: [ListenState.Mark] = []
+    func isMarked(_ l: ListenState.Line, in chapter: Int) -> Bool { marks.contains(.init(ch: chapter, text: l.line)) }
+    func toggleMark(_ l: ListenState.Line) {
+        let m = ListenState.Mark(ch: ch, text: l.line)
+        if let k = marks.firstIndex(of: m) { marks.remove(at: k) } else { marks.append(m) }
+        persist()
+    }
+
     /// Back or forward one line in the chapter that is playing.
     func nudge(_ delta: Int) {
         guard !lines.isEmpty else { return }
@@ -146,7 +156,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     private func persist() {
         guard let save else { return }
-        let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line))
+        let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line), marks: marks)
         Task { await save(st) }
     }
 

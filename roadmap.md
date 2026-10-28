@@ -25,7 +25,7 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 | 3 | Mini player: back and forward one line, a speed chip | Speechify, Readwise | S | done (apps; web via headphone and lock-screen skip) |
 | 4 | Speed sheet with presets (0.8 to 2.5) | Speechify | S | done (0.75 to 2 menu on the speed chip; web select) |
 | 5 | Sleep timer | Apple Books | S | done (apps: 15 to 60 min or end of chapter, moon on the speed chip) |
-| 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | open |
+| 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | done (long-press in the apps, Highlight button on the web; kept in listen.marks) |
 | 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | open |
 | 8 | Add a chapter by photographing pages in the app | Speechify | L | open |
 | 9 | Ask the chapter a question | Speechify, Readwise | M | open |
