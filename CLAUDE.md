@@ -39,6 +39,8 @@ To expose a finished book's summary on the site:
 ## Listen (2026-09-05)
 `bookrank_summaries.listen` jsonb = `{ for: <updated_at>, chapters: { "<i>": [{host, line}] }, pos: {ch, line} }`. `for` must equal the row's `updated_at` (PostgREST ISO form, `to_jsonb(updated_at) #>> '{}'` in SQL) or the scripts and position are discarded. The player is `listen.js` (shared by `library.html` and `share.html`; `listen.test.js` drives it with a fake synth). One utterance in flight at a time, chained; the next chapter's script is prefetched. Chapters = the coarsest heading level yielding two or more, `#` before `##`; `Speaker.swift` / `parseChapters` and the KMP `chapters()` follow the same rule. `functions/api/narrate.js` takes `ch`/`total` so only chapter 1 opens and only the last closes (the repeated-intro bug).
 
+**updated_at rule (2026-10-28):** jaybulb-api stamps `updated_at` on every PATCH unless the body carries it. Any save that is not a content edit (listen, cover, share_token, later highlights) must send the row's own `updated_at` back, or `listen.for` goes stale and the next load drops the position and scripts. Web: the `update(...)` calls in library.html; apps: `DataStore.patch` adds it.
+
 **Auth listener rule:** `onAuthStateChange` fires on every tab focus and hourly refresh. `library.html` only reacts when the signed-in state actually flips; reacting to every event rebuilt the list and killed playback.
 
 **Share:** `share_token` column + `shared_summary(t)` / `cache_shared_script(t, ch, script)` security-definer RPCs (`supabase/migrations/20260905_share_listen.sql`). The RPC returns title/content/cover/scripts only. `/api/narrate` accepts `token` in place of a session and caches the result on the row.
