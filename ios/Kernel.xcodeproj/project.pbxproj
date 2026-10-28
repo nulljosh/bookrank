@@ -579,7 +579,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/KernelMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -588,7 +588,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -680,13 +680,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -700,13 +700,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -776,7 +776,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/KernelMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -785,7 +785,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -798,7 +798,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/Kernel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -807,7 +807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -841,7 +841,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/Kernel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610210800;
+				CURRENT_PROJECT_VERSION = 202610281242;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -850,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

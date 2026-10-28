@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 fastlane snapshot --only_testing KernelUITests/PreviewScreenshot/testTakeScreenshots --skip_open_summary
 export SIMCTL_CHILD_SHOTS_DIR="${SHOTS_DIR:-/tmp/kernel-shots}"
 mkdir -p "$SIMCTL_CHILD_SHOTS_DIR"
-for name in "iPhone 11 Pro Max" "iPad Pro 13-inch (M5)"; do
+for name in "iPhone 17 Pro Max" "iPad Pro 13"; do
   xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination "platform=iOS Simulator,name=$name" \
     -only-testing:KernelUITests/PreviewScreenshot/testSignInScreens CODE_SIGNING_ALLOWED=NO >/dev/null 2>&1 && echo "signin shots ok $name"
 done

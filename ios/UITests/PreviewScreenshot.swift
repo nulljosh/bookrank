@@ -7,7 +7,7 @@ final class PreviewScreenshot: XCTestCase {
         setupSnapshot(app)
         app.launchArguments.append("UITEST_SNAPSHOT")
         app.launch()
-        sleep(3)
+        sleep(8)   // covers load over the network; the iPad shot caught placeholders at 3
         snapshot("0Library")
         let first = app.buttons.matching(NSPredicate(format: "label CONTAINS 'The Optimist'")).firstMatch
         if first.waitForExistence(timeout: 5) {
