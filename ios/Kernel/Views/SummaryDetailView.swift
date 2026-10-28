@@ -72,16 +72,33 @@ struct SummaryDetailView: View {
     /// The book up top (cover, title, how many chapters), then one row per chapter.
     @ViewBuilder
     private func rows(_ entry: SummaryEntry?) -> some View {
-        HStack(spacing: 16) {
-            Thumb(url: entry.flatMap { store.cover(for: $0) }, width: 64)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).lineLimit(3)
-                Text("\(speaker.chapters.count) chapters · \(duration(minutes(speaker.chapters.map(\.text).joined())))").font(.kernel(.footnote)).foregroundStyle(.secondary)
-                if speaker.natural && slug != "sample" { offlineButton }
-            }
+        // The cover is the hero: big and centred over a soft blur of itself. Scrolling up, it drifts at
+        // half speed and fades, so the page slides over it (parallax).
+        let cover = entry.flatMap { store.cover(for: $0) }
+        VStack(spacing: 6) {
+            Thumb(url: cover, width: 150)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+                .shadow(color: .black.opacity(0.3), radius: 20, y: 12)
+                .padding(.top, 12).padding(.bottom, 14)
+                .visualEffect { content, proxy in
+                    let y = min(0, proxy.frame(in: .scrollView(axis: .vertical)).minY)
+                    return content.offset(y: -y * 0.5).opacity(1 + y / 200)
+                }
+            Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).multilineTextAlignment(.center).lineLimit(3)
+            Text("\(speaker.chapters.count) chapters · \(duration(minutes(speaker.chapters.map(\.text).joined())))").font(.kernel(.footnote)).foregroundStyle(.secondary)
+            if speaker.natural && slug != "sample" { offlineButton }
         }
-        .padding(.vertical, 10)
+        .frame(maxWidth: .infinity)
+        .padding(.bottom, 6)
+        .background(alignment: .top) {
+            AsyncImage(url: cover.flatMap(URL.init)) { $0.resizable().scaledToFill() } placeholder: { Color.clear }
+                .frame(width: 320, height: 320).clipped()
+                .blur(radius: 50).opacity(0.45)
+                .mask(RadialGradient(colors: [.black, .clear], center: .center, startRadius: 30, endRadius: 160))   // a glow, no edges
+                .accessibilityHidden(true)
+        }
         .listRowSeparator(.hidden)
+        .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
         .selectionDisabled()
         .accessibilityElement(children: .combine)
         playButton

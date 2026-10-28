@@ -259,6 +259,21 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("avatar", XCUIScreen.main.screenshot())
     }
 
+    /// The book page hero at rest and part-way scrolled (the cover drifts slower than the page).
+    func testHero() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        let book = app.buttons.matching(NSPredicate(format: "label CONTAINS 'The Optimist'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 15)); book.tap()
+        sleep(3)
+        saveTo("hero-0", XCUIScreen.main.screenshot())
+        let w = app.windows.firstMatch
+        w.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7)).press(forDuration: 0.05, thenDragTo: w.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.55)), withVelocity: .slow, thenHoldForDuration: 0.6)
+        sleep(1)
+        saveTo("hero-1", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
