@@ -574,3 +574,8 @@ Goodreads: three folded shelves under the summaries (Currently reading, Read on 
 
 ## Ingested 2026-10-25
 - [ ] Needs a better name. (Probe Apple first, one name everywhere.)
+
+## Still open after the prune
+
+- [ ] Mac QA: the signed-in Mac walk is still open.
+- [ ] Mac App Store screenshots are still the 1.2 ones; retake them for the Kernel 2.0.0 listing.
