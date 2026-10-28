@@ -103,19 +103,10 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 100 | Kernel 100 | all | open |
 
 ## 3.0.0
-- [x] Gap rows 1 to 5 built and committed 2026-10-28.
 - [ ] Fresh Mac store screenshots at 2880x1800.
 
 ## 2.0.0 (shipped to review 2026-10-28)
-- [x] Rename to Kernel: name reserved on the 1.3.0 app info, code, targets, icon, subtitle and descriptions (2026-10-28).
-- [x] Brand: seed icon, Kernel gold, Kernel Sans, brand kit page at /brand, Hermes-style landing (2026-10-28).
-- [x] Apps on Cloudflare (jaybulb-api), supabase-swift removed, App Store purchase proof for natural voices (2026-10-28).
-- [x] Kernel Sans and gold inside the iPhone and Mac apps (2026-10-28).
-- [x] Liquid Glass player bar, splash, first-run pages, roomier chapter text (2026-10-28).
-- [x] Mac QA: welcome sheet and library (2026-10-28); signed-in Mac walk still open.
 - [ ] Icon and font A+ (small-size icon read; seed on the other dots?).
-- [x] Mobbin gap matrix, below (2026-10-28).
-- [x] Ship 2.0.0 on iOS and Mac: both WAITING_FOR_REVIEW 2026-10-28, new iPhone and iPad screenshots, notes mention the one-time sign-in. Mac store screenshots are still the 1.2 ones.
 - [ ] kernel.jaybulb.com (needs Joshua's OK), then repo and folder rename to kernel.
 - [ ] Remove `viaApp`, the Supabase fallback and the Supabase project once nobody runs 1.2.x.
 
