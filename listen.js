@@ -254,7 +254,7 @@ export function mount(root, api) {
       return s || blocks(chs[i].text);
     },
     onState: st => {
-      play.textContent = st.playing ? (st.loading ? 'Loading…' : 'Pause') : 'Play';
+      play.textContent = st.playing ? (st.loading ? 'Loading…' : 'Pause') : (player.ch || player.line) ? `Continue chapter ${player.ch + 1}` : 'Play';
       play.disabled = false;
       markToc(st.ch);
       if (st.playing && st.loading) { text.innerHTML = '<p class="lp-loading">Preparing this chapter…</p>'; return; }
@@ -320,6 +320,7 @@ export function mount(root, api) {
     text.innerHTML = '<p class="lp-loading">…</p>';
     const s = modeSel.value === 'talk' && scripts[player.ch] ? scripts[player.ch] : blocks(chs[player.ch]?.text || '');
     renderScript(s, player.ch);
+    if (api.pos && (api.pos.ch || api.pos.line)) play.textContent = `Continue chapter ${player.ch + 1}`;
     if (api.pos && (api.pos.ch || api.pos.line)) status.textContent = `Resume at ${chs[player.ch].title} · line ${player.line + 1}`;
   };
 

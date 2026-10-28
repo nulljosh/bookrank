@@ -5,7 +5,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 |---|---|---|---|
 | 3 | Gap rows 1 to 5: minutes, Continue card, line skip, speed presets, sleep timer; resume fix | apps, web | built |
 | 4 | Gap rows 6 to 10: highlights, offline audio, add pages, ask the chapter, weekly goal; Goodreads sign-in; book avatars; review fixes | apps, web | built |
-| 5 | A big Play / Continue button on the book page (A1) | apps, web | open |
+| 5 | A big Play / Continue button on the book page (A1) | apps, web | built |
 | 6 | Now Playing sheet: big cover, time left, line skip, speed, sleep, chapters (A2) | apps, web | open |
 | 7 | Reader text size and line spacing (A3) | apps, web | open |
 | 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | open |
@@ -140,7 +140,7 @@ Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other 
 ## A+ pass (2026-10-28, our screens beside Apple Books and Blinkist)
 | # | Gap | Who has it | Size | Status |
 |---|---|---|---|---|
-| A1 | A big Play / Continue button on the book page | Blinkist, Apple Books | S | open |
+| A1 | A big Play / Continue button on the book page | Blinkist, Apple Books | S | done (v5) |
 | A2 | Full Now Playing sheet from the mini player: big cover, time left, line skip, speed, sleep, chapters | Apple Books, Speechify, Blinkist | M | open |
 | A3 | Reader text size (and line spacing) in the chapter menu | Apple Books | S | open |
 | A4 | Goal streak: the week's days as dots under the ring | Apple Books | S | open |

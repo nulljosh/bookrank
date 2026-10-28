@@ -84,6 +84,9 @@ struct SummaryDetailView: View {
         .listRowSeparator(.hidden)
         .selectionDisabled()
         .accessibilityElement(children: .combine)
+        playButton
+            .listRowSeparator(.hidden)
+            .selectionDisabled()
         if !speaker.marks.isEmpty {
             Section("Highlights") {
                 ForEach(speaker.marks, id: \.self) { m in
@@ -102,6 +105,20 @@ struct SummaryDetailView: View {
             NavigationLink { ChapterView(index: i) } label: { chapterRow(i) }
             #endif
         }
+    }
+
+    /// One big gold control for the book: Play, Continue where you left off, Pause, Resume.
+    private var playButton: some View {
+        let on = speaker.playing && !speaker.paused
+        let title = on ? "Pause" : speaker.paused ? "Resume" : (speaker.ch > 0 || speaker.line > 0) ? "Continue chapter \(speaker.ch + 1)" : "Play"
+        return Button { speaker.toggle() } label: {
+            Label(title, systemImage: on ? "pause.fill" : "play.fill")
+                .font(.kernel(.headline)).frame(maxWidth: .infinity)
+                .contentTransition(.symbolEffect(.replace))
+        }
+        .buttonStyle(.borderedProminent).buttonBorderShape(.capsule).controlSize(.large)
+        .tint(amber).foregroundStyle(Color("OnAccent"))
+        .disabled(speaker.chapters.isEmpty)
     }
 
     /// Keep the book's voice on the device: Download, a progress ring while it saves, then a menu to remove it.

@@ -18,7 +18,7 @@ Take Kernel (ex-Bookrank) to 2.0.0 on iOS and Mac: brand, font and design system
 
 ## Next, in order
 
-**The loop now runs to Kernel 100.** The plan is the "Road to 100" table at the top of roadmap.md: one row per major, built on every platform the row names, QA'd with light and dark screenshots, marked built, tagged `vN.0.0` (push the tag by name), committed by path, pushed, web deployed. 3.0 and 4.0 are built and tagged. Next row: **5, the Play / Continue button on the book page**.
+**The loop now runs to Kernel 100.** The plan is the "Road to 100" table at the top of roadmap.md: one row per major, built on every platform the row names, QA'd with light and dark screenshots, marked built, tagged `vN.0.0` (push the tag by name), committed by path, pushed, web deployed. 3.0 and 4.0 are built and tagged. Next row: **6, the Now Playing sheet**.
 
 Store: 2.0.0 is in review on iOS and Mac (builds 202610281242). The day it clears, ship the newest tagged major (not 3.0): `asc versions create`, What's New, fresh shots (`sh ios/scripts/shots.sh`; if fastlane hangs in `simctl diagnose`, take the PNGs from ~/Library/Caches/tools.fastlane/screenshots), `asc workflow run ship-ios VERSION:<v>`, then the Mac (archive KernelMac, export with `ios/ExportOptionsMac.plist`, `asc builds upload --pkg`, `asc review submit`). Review notes must mention the Goodreads sign-in (Goodreads' own page in a web view, nothing sent to Kernel). Never let `xcodegen` rewrite `ios/Kernel/Info.plist` into a commit.
 
