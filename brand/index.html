@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kernel brand</title>
+<meta name="description" content="Kernel's mark, colour, type and controls on one page.">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/brand/tokens.css">
+<style>
+:root { --bg:#ffffff; --bg2:#f5f5f7; --text:#1d1d1f; --text2:#6e6e73; --border:#e5e5ea; --on-accent:#ffffff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#000000; --bg2:#1c1c1e; --text:#f5f5f7; --text2:#a1a1a6; --border:#2c2c2e; --on-accent:#1d1d1f; } }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:17px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+main { max-width:960px; margin:0 auto; padding:64px 20px 96px; }
+a { color:var(--accent); }
+.eyebrow { font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text2); }
+h1 { font-size:clamp(48px, 9vw, 96px); font-weight:700; letter-spacing:-.045em; line-height:.95; margin:16px 0 24px; }
+.lede { font-size:19px; color:var(--text2); max-width:34em; }
+section { margin-top:80px; }
+h2 { font-size:28px; font-weight:700; letter-spacing:-.02em; margin-bottom:8px; }
+.note { color:var(--text2); max-width:40em; margin-bottom:24px; }
+.row { display:flex; flex-wrap:wrap; gap:24px; align-items:flex-end; }
+.tile { border-radius:22.37%; display:block; }
+.cap { font-size:13px; color:var(--text2); margin-top:8px; text-align:center; }
+.mark { width:96px; height:96px; color:var(--accent); }
+.swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:16px; }
+.sw { border-radius:20px; overflow:hidden; border:1px solid var(--border); }
+.sw div { height:96px; }
+.sw p { padding:12px 16px; font-size:15px; }
+.sw p span { display:block; color:var(--text2); font-size:13px; }
+.scale p { border-bottom:1px solid var(--border); padding:16px 0; display:flex; gap:24px; align-items:baseline; }
+.scale p span { width:88px; flex:none; font-size:13px; color:var(--text2); }
+.seed { font-size:clamp(120px, 24vw, 280px); font-weight:700; letter-spacing:-.05em; line-height:1; }
+.btns { display:flex; flex-wrap:wrap; gap:12px; }
+.btn { display:inline-flex; align-items:center; height:48px; padding:0 24px; border-radius:999px; font:inherit; font-weight:600; border:0; }
+.btn.gold { background:var(--accent); color:var(--on-accent); }
+.btn.plain { background:var(--bg2); color:var(--text); }
+.btn.focus { outline:4px solid var(--accent-ring); outline-offset:2px; background:var(--bg2); color:var(--text); }
+.grid8 { display:flex; gap:12px; align-items:flex-end; }
+.grid8 i { display:block; background:var(--accent); border-radius:4px; width:24px; }
+.radii { display:flex; gap:16px; }
+.radii div { width:96px; height:96px; background:var(--bg2); border:1px solid var(--border); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Brand kit</p>
+  <h1>Kernel.</h1>
+  <p class="lede">One mark, one colour, one typeface. A summary that ends on a seed: the kernel of a book. Source: <a href="https://github.com/nulljosh/bookrank/blob/main/brand/BRAND.md">BRAND.md</a> and <a href="/brand/tokens.css">tokens.css</a>.</p>
+
+  <section>
+    <h2>The mark</h2>
+    <p class="note">Three lines of a page, the last one short, ending on a seed. The seed is the same outline as the full stop in Kernel Sans.</p>
+    <div class="row">
+      <div><img class="tile" src="/brand/icon-1024.png" width="160" height="160" alt="Kernel app icon"><p class="cap">App icon</p></div>
+      <div><img class="tile" src="/brand/icon-1024.png" width="64" height="64" alt=""><p class="cap">64</p></div>
+      <div><img class="tile" src="/brand/icon-1024.png" width="29" height="29" alt=""><p class="cap">29</p></div>
+      <div><img class="mark" src="/brand/mark.svg" alt="The mark alone" style="filter:none"><p class="cap">Mark alone</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Colour</h2>
+    <p class="note">Kernel gold is for actions, links and the icon, one gold control per screen. Everything else is the system's black, white and greys.</p>
+    <div class="swatches">
+      <div class="sw"><div style="background:#a56200"></div><p>Gold, light<span>#a56200 · 4.9:1 on white</span></p></div>
+      <div class="sw"><div style="background:#f5b83d"></div><p>Gold, dark<span>#f5b83d · on black</span></p></div>
+      <div class="sw"><div style="background:linear-gradient(#f5b83d,#c97a00)"></div><p>Icon<span>#f5b83d to #c97a00</span></p></div>
+      <div class="sw"><div style="background:#1d1d1f"></div><p>Text<span>#1d1d1f · #f5f5f7 dark</span></p></div>
+      <div class="sw"><div style="background:#f5f5f7"></div><p>Surface<span>#f5f5f7 · #1c1c1e dark</span></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kernel Sans</h2>
+    <p class="note">Our own face: proportional, between San Francisco and Helvetica, built from Geist (open font licence). Every sentence ends on the seed.</p>
+    <p class="seed">a.</p>
+    <div class="scale">
+      <p><span>34 bold</span><b style="font-size:34px;letter-spacing:-.02em">Remember every book.</b></p>
+      <p><span>22 semibold</span><b style="font-size:22px;font-weight:600">Chapter 1: Know the ground</b></p>
+      <p><span>17 regular</span><span style="width:auto;font-size:17px;color:var(--text)">Sun Tzu opens with a plain claim. War is serious, so you plan before you move.</span></p>
+      <p><span>15 regular</span><span style="width:auto;font-size:15px;color:var(--text2)">14 chapters · 1234567890</span></p>
+      <p><span>13 medium</span><span style="width:auto;font-size:13px;font-weight:500;color:var(--text2)">BOOK SUMMARIES, CHAPTER BY CHAPTER</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Controls</h2>
+    <p class="note">48 point capsules, one height in a row. Focus is a 4 point ring at 30 percent gold.</p>
+    <div class="btns"><span class="btn gold">Open my library</span><span class="btn plain">Try a chapter</span><span class="btn focus">Focused</span></div>
+  </section>
+
+  <section>
+    <h2>Space and shape</h2>
+    <p class="note">The 8 point grid (4, 8, 12, 16, 24, 32, 48), a 20 point side margin, a 680 point reading column. Radii: cards 28, lists 20, controls fully round.</p>
+    <div class="row">
+      <div class="grid8"><i style="height:4px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:32px"></i><i style="height:48px"></i></div>
+      <div class="radii"><div style="border-radius:28px"></div><div style="border-radius:20px"></div><div style="border-radius:48px"></div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
