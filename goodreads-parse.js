@@ -28,7 +28,7 @@
       const rating = given || (rc.match(/staticStar p10/g) || []).length || null;
       const rv = cell(row, "review");
       const full = rv.match(/<span id="freeText\d+"[^>]*>([\s\S]*?)<\/span>/) || rv.match(/<span id="freeTextContainer\d+"[^>]*>([\s\S]*?)<\/span>/);
-      const review = text(full ? full[1] : rv.replace(/<a [^>]*>\.\.\.more<\/a>/, "")).replace(/^None$/, "") || null;
+      const review = text(full ? full[1] : rv.replace(/<a [^>]*>\.\.\.more<\/a>/, "")).replace(/^(None|Write a review|\[?edit\]?)$/i, "") || null;   // the owner's empty cell is a "Write a review" link
       const cover = (cell(row, "cover").match(/src="([^"]+)"/) || [])[1] || null;
       return {
         id: (r.match(/^(\d+)/) || [])[1] || null,

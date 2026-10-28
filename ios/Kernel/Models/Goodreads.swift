@@ -25,7 +25,11 @@ final class Goodreads: NSObject, WKNavigationDelegate {
     private static let file = URL.applicationSupportDirectory.appending(path: "goodreads.json")
 
     nonisolated static func config() -> WKWebViewConfiguration {
-        let c = WKWebViewConfiguration(); c.websiteDataStore = .default(); return c
+        let c = WKWebViewConfiguration(); c.websiteDataStore = .default()
+        // Apple's and Amazon's sign-in pages refuse a web view that does not say Safari.
+        c.applicationNameForUserAgent = "Version/26.0 Safari/605.1.15"
+        c.preferences.javaScriptCanOpenWindowsAutomatically = true
+        return c
     }
 
     override private init() {
@@ -89,6 +93,23 @@ struct GoodreadsSignIn: View {
                 guard url.host()?.hasSuffix("goodreads.com") == true, !url.path().contains("sign"), !url.path().hasPrefix("/ap/") else { return }
                 Task { if await Goodreads.shared.sync() { onDone(); dismiss() } }
             }
+            // Signed in, the shelves take a few seconds: say so, and say what went wrong instead of sitting there.
+            .overlay {
+                if Goodreads.shared.syncing {
+                    VStack(spacing: 12) { ProgressView(); Text("Reading your Goodreads shelves…").font(.kernel(.subheadline)) }
+                        .padding(24).background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if let e = Goodreads.shared.error, !Goodreads.shared.syncing {
+                    HStack {
+                        Text(e).font(.kernel(.footnote)).foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Try again") { Task { if await Goodreads.shared.sync() { onDone(); dismiss() } } }
+                    }
+                    .padding().background(.bar)
+                }
+            }
             .navigationTitle("Goodreads")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
@@ -105,15 +126,21 @@ struct GoodreadsSignIn: View {
 private struct WebPage {
     let url: URL
     var finished: (URL) -> Void
-    final class Coordinator: NSObject, WKNavigationDelegate {
+    final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         var finished: (URL) -> Void
         init(_ f: @escaping (URL) -> Void) { finished = f }
         func webView(_ w: WKWebView, didFinish n: WKNavigation!) { if let u = w.url { finished(u) } }
+        /// Sign in with Apple and Amazon open a popup; run it in the same view instead of dropping it.
+        func webView(_ w: WKWebView, createWebViewWith c: WKWebViewConfiguration, for a: WKNavigationAction, windowFeatures f: WKWindowFeatures) -> WKWebView? {
+            if a.targetFrame == nil { w.load(a.request) }
+            return nil
+        }
     }
     func makeCoordinator() -> Coordinator { Coordinator(finished) }
     func make(_ c: Coordinator) -> WKWebView {
         let w = WKWebView(frame: .zero, configuration: Goodreads.config())
         w.navigationDelegate = c
+        w.uiDelegate = c
         w.load(URLRequest(url: url))
         return w
     }
