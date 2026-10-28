@@ -58,16 +58,16 @@ a:hover { text-decoration:underline; }
 .btn.plain { background:var(--bg2); color:var(--text); }
 
 /* hero */
-.hero { text-align:center; padding:96px 0 64px; }
+.hero { text-align:center; padding-block:96px 64px; }
 .eyebrow { font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text2); }
 .word { font-size:clamp(56px, 11vw, 136px); font-weight:700; letter-spacing:-.045em; line-height:.95; max-width:9em; margin:24px auto 32px; }
 .lede { font-size:clamp(19px, 2.2vw, 22px); color:var(--text2); max-width:30em; margin:0 auto 32px; }
 .ctas { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 .fine { margin-top:16px; font-size:13px; color:var(--text3); }
 
-/* the band: covers from a real read shelf in Kernel gold, the real reader on top */
+/* the band: covers from the real reading list in Kernel gold, the real reader on top */
 .band { position:relative; overflow:hidden; border-radius:var(--card); background:var(--gold); padding:64px 24px; isolation:isolate; }
-.covers { position:absolute; inset:-8px; z-index:-1; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start; opacity:.55; mix-blend-mode:multiply; }
+.covers { position:absolute; inset:-96px -8px; z-index:-1; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start; justify-content:center; opacity:.55; mix-blend-mode:multiply; }
 .covers img { width:72px; height:108px; object-fit:cover; border-radius:4px; filter:grayscale(1) contrast(1.15); }
 .app { max-width:880px; margin:0 auto; background:var(--bg); color:var(--text); border-radius:20px; padding:32px; text-align:left; }
 .app h2 { font-size:28px; font-weight:700; letter-spacing:-.02em; margin-bottom:4px; }
@@ -97,7 +97,7 @@ a:hover { text-decoration:underline; }
 @media (max-width:700px) { .lp-body { grid-template-columns:1fr; } .lp-toc ol { display:flex; flex-wrap:wrap; gap:4px; } .app { padding:24px 20px; } .band { padding:32px 12px; border-radius:20px; } }
 
 /* how it works */
-.how { padding:96px 0; }
+.how { padding-block:96px; }
 .how h2, .gold-band h2 { font-size:clamp(40px, 7vw, 80px); font-weight:700; letter-spacing:-.04em; line-height:1; }
 .how h2 { text-align:center; margin-bottom:48px; }
 .steps { display:grid; grid-template-columns:repeat(3, 1fr); gap:32px; }
@@ -112,9 +112,24 @@ a:hover { text-decoration:underline; }
 
 footer { padding:48px 0 64px; color:var(--text2); font-size:13px; }
 footer .wrap { display:flex; flex-wrap:wrap; gap:16px 24px; align-items:center; justify-content:space-between; }
+footer .sign { display:flex; align-items:center; gap:8px; }
+footer .sign svg { width:24px; height:24px; color:var(--accent); flex:none; }
 footer nav { display:flex; flex-wrap:wrap; gap:8px 20px; }
-footer a { color:var(--text2); }
-@media (max-width:640px) { .bar nav { display:none; } .bar .wrap { grid-template-columns:auto 1fr; } .bar .brand { grid-column:1; } .hero { padding:64px 0 48px; } }
+footer a { color:var(--text2); display:inline-flex; align-items:center; gap:6px; min-height:32px; }
+footer a:hover { color:var(--text); text-decoration:none; }
+footer nav svg { width:16px; height:16px; flex:none; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+
+/* parallax: native scroll-driven CSS, nothing runs where it's unsupported or motion is reduced */
+@supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+  .hero .eyebrow, .hero .word, .hero .lede, .hero .ctas, .hero .fine { animation:rise linear both; animation-timeline:view(); animation-range:exit 0% exit 100%; }
+  .hero .word { --d:-40px; } .hero .lede { --d:-90px; } .hero .ctas, .hero .fine { --d:-130px; } .hero .eyebrow { --d:-20px; }
+  .covers { animation:drift linear both; animation-timeline:view(); animation-range:cover; }
+  .band .app { animation:lift linear both; animation-timeline:view(); animation-range:entry 0% entry 80%; }
+  @keyframes rise { to { transform:translateY(var(--d)); opacity:0; } }
+  @keyframes drift { from { transform:translateY(80px); } to { transform:translateY(-80px); } }
+  @keyframes lift { from { transform:translateY(48px) scale(.96); opacity:.4; } }
+} }
+@media (max-width:640px) { .bar nav { display:none; } .bar .wrap { grid-template-columns:auto 1fr; } .bar .brand { grid-column:1; } .hero { padding-block:64px 48px; } }
 </style>
 </head>
 <body>
@@ -148,7 +163,7 @@ footer a { color:var(--text2); }
       <div id="reader"></div>
     </div>
   </div>
-  <p class="caption">The real reader, running on this page. Covers from a real read shelf.</p>
+  <p class="caption">The real reader, running on this page. Covers from a real reading list.</p>
 </section>
 
 <section class="how wrap" id="how">
@@ -171,14 +186,14 @@ footer a { color:var(--text2); }
 
 <footer>
   <div class="wrap">
-    <span>Kernel, formerly Bookrank. MIT. Made in Vancouver.</span>
+    <span class="sign"><svg viewBox="0 0 1024 1024" aria-hidden="true"><g stroke="currentColor" stroke-width="84" stroke-linecap="round"><path d="M262 352H762M262 512H762M262 672H520"/></g><path fill="currentColor" d="M650 716C629 712 600 684 600 652C600 625 622 602 650 602C678 602 700 625 700 652C700 684 671 712 650 716Z"/></svg>Kernel, formerly Bookrank. MIT. Made in Vancouver.</span>
     <nav aria-label="Footer">
-      <a href="https://apps.apple.com/app/id6792376485">App Store</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/brand/BRAND.md">Brand</a>
-      <a href="https://github.com/nulljosh/bookrank">Source</a>
-      <a href="https://github.com/nulljosh/bookrank/blob/main/docs/API.md">API</a>
-      <a href="https://jaybulb.com">jaybulb.com</a>
+      <a href="https://apps.apple.com/app/id6792376485"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>App Store</a>
+      <a href="/privacy.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>Privacy</a>
+      <a href="/brand/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Brand</a>
+      <a href="https://github.com/nulljosh/bookrank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5"/></svg>Source</a>
+      <a href="https://github.com/nulljosh/bookrank/blob/main/docs/API.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5c-2 0-3 1-3 3v2c0 1.5-.8 2.5-2.5 2.5C5.2 12 6 13 6 14.5v2c0 2 1 3 3 3M15 4.5c2 0 3 1 3 3v2c0 1.5.8 2.5 2.5 2.5-1.7 0-2.5 1-2.5 2.5v2c0 2-1 3-3 3"/></svg>API</a>
+      <a href="https://jaybulb.com"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>jaybulb.com</a>
     </nav>
   </div>
 </footer>
@@ -195,10 +210,10 @@ if (content) mount(document.getElementById('reader'), {
 });
 </script>
 <script>
-// Covers from the public Goodreads read shelf, grey under the gold. Decoration only.
-fetch('/api/goodreads?user=62164337&shelf=read').then(function (r) { return r.json(); }).then(function (d) {
-  var u = (d.books || []).map(function (b) { return b.cover; }).filter(function (c) { return c && !/nophoto/.test(c); });
-  document.getElementById('covers').innerHTML = u.concat(u).slice(0, 120).map(function (s) { return '<img src="' + s + '" alt="" loading="lazy" width="72" height="108">'; }).join('');
+// Covers from books.json (the real reading list), grey under the gold. Decoration only.
+fetch('/books.json').then(function (r) { return r.json(); }).then(function (d) {
+  var u = d.map(function (b) { return b.cover; }).filter(Boolean);
+  document.getElementById('covers').innerHTML = u.concat(u).slice(0, 120).map(function (s) { return '<img src="' + s + '" alt="" loading="lazy" width="72" height="108" onerror="this.remove()">'; }).join('');
 }).catch(function () {});
 if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js'); });
 </script>
