@@ -57,7 +57,12 @@ struct LibraryView: View {
             #endif
         }
         .sheet(isPresented: $showAccount) { AccountView(auth: auth, store: store) }
-        .onAppear { if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true } }   // screenshots of the Account sheet
+        .onAppear {
+            if CommandLine.flag("UITEST_ACCOUNT") { showAccount = true }   // screenshots of the Account sheet
+            if CommandLine.flag("UITEST_PLAYER") {   // screenshots of the player bar, silent
+                store.loadSample(); speaker.showPausedForScreenshot(chapters: parseChapters(store.summaryMarkdown(for: "sample")))
+            }
+        }
         // First launch only, signed out. Waits for the splash, and stays out of the screenshot modes.
         .onChange(of: splashDone, initial: true) { _, done in
             if done && !onboarded && !auth.isSignedIn && !CommandLine.flag("UITEST_SNAPSHOT") && !CommandLine.flag("UITEST_ACCOUNT") { showOnboarding = true }
@@ -266,11 +271,12 @@ private struct MiniPlayer: View {
             ProgressView(value: min(max(speaker.progress, 0), 1)).progressViewStyle(.linear).tint(amber).accessibilityHidden(true)
                 .padding(.horizontal, 20).padding(.top, 8)
             HStack(spacing: 12) {
-                Button("Previous chapter", systemImage: "backward.end.fill") { speaker.skip(-1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
+                // A line back or forward; whole chapters are in the book's list and on the lock screen.
+                Button("Back a line", systemImage: "gobackward") { speaker.nudge(-1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 Button(speaker.playing && !speaker.paused ? "Pause" : "Play", systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
                     .labelStyle(.iconOnly).font(.kernel(.title2)).contentTransition(.symbolEffect(.replace))
                     .keyboardShortcut("p", modifiers: [.command, .shift])
-                Button("Next chapter", systemImage: "forward.end.fill") { speaker.skip(1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
+                Button("Forward a line", systemImage: "goforward") { speaker.nudge(1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "Listening").font(.kernel(.subheadline)).lineLimit(1)
                     // The book and which voice is speaking; on the Mac, hovering explains a fallback.

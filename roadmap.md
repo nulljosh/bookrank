@@ -22,8 +22,8 @@ From the App Store screens of Blinkist, Apple Books, Readwise Reader, Shortform,
 |---|---|---|---|---|
 | 1 | Minutes per chapter and per book on rows ("27 min, 11 chapters") | Blinkist, Instaread, Headway | S | done (apps; web on chapters) |
 | 2 | Continue card at the top of the library: cover, chapter, progress | Blinkist, Readwise, Apple Books | S | done (apps; web keeps its Currently playing group) |
-| 3 | Mini player: back and forward one line, a speed chip | Speechify, Readwise | S | open |
-| 4 | Speed sheet with presets (0.8 to 2.5) | Speechify | S | open |
+| 3 | Mini player: back and forward one line, a speed chip | Speechify, Readwise | S | done (apps; web via headphone and lock-screen skip) |
+| 4 | Speed sheet with presets (0.8 to 2.5) | Speechify | S | done (0.75 to 2 menu on the speed chip; web select) |
 | 5 | Sleep timer | Apple Books | S | open |
 | 6 | Save a line as a highlight, see a book's highlights | Readwise, Apple Books | M | open |
 | 7 | Offline audio: keep a book's voice lines on the device | Speechify, Blinkist | M | open |

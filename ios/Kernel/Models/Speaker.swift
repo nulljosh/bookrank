@@ -101,6 +101,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         ch = max(0, min(chapters.count - 1, ch + delta)); line = 0
         Task { await play(from: 0) }
     }
+    /// Back or forward one line in the chapter that is playing.
+    func nudge(_ delta: Int) {
+        guard !lines.isEmpty else { return }
+        go(to: ch, line: max(0, min(lines.count - 1, line + delta)))
+    }
+    /// Screenshots only (UITEST_PLAYER): the bar as if paused on a chapter, with nothing spoken.
+    func showPausedForScreenshot(chapters: [Chapter]) { self.chapters = chapters; ch = 0; paused = true; status = "" }
     /// Show a chapter without speaking it.
     func open(_ chapter: Int) { stop(); ch = chapter; line = 0; Task { await showChapter() } }
     func go(to chapter: Int, line l: Int = 0) { ch = chapter; line = l; Task { await play(from: l) } }

@@ -331,6 +331,10 @@ export function mount(root, api) {
     navigator.mediaSession.setActionHandler('pause', () => player.stop());
     navigator.mediaSession.setActionHandler('nexttrack', () => q('.lp-next').onclick());
     navigator.mediaSession.setActionHandler('previoustrack', () => q('.lp-prev').onclick());
+    // Headphone and lock-screen skip buttons move one line, like the apps' player bar.
+    for (const [action, d] of [['seekbackward', -1], ['seekforward', 1]]) {
+      try { navigator.mediaSession.setActionHandler(action, () => { if (player.script?.length) player.play(player.ch, Math.max(0, Math.min(player.script.length - 1, player.line + d))); }); } catch {}
+    }
   }
   const persist = () => { if (player.playing) api.save?.({ ch: player.ch, line: player.line }, scripts); };
   addEventListener('pagehide', persist);
