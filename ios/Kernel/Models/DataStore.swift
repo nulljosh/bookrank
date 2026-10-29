@@ -28,7 +28,7 @@ final class DataStore {
     func loadGoodreads(_ id: String?) async {
         if CommandLine.flag("UITEST_SNAPSHOT") && Goodreads.shared.data == nil {   // screenshots: the shelves without a linked account
             let b = { (t: String, a: String, r: Double?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
-            var r = b("The Man Who Solved the Market", "Gregory Zuckerman", nil, nil); r.progress = 63; r.page = 230; r.of = 368
+            var r = GoodreadsBook(title: "The Man Who Solved the Market", author: "Gregory Zuckerman", cover: "https://covers.openlibrary.org/b/isbn/9780735217980-M.jpg", url: nil, readAt: nil, rating: nil); r.progress = 63; r.page = 230; r.of = 368
             goodreadsReading = [r]
             var q = b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"); q.review = "Clear on how models actually work, without the hype. The chapter on training data is worth the price alone."
             goodreadsQueue = [q, b("Fiend", "Peter Stenson", 3.5, "2026-08-11")]

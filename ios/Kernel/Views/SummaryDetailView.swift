@@ -127,7 +127,7 @@ struct SummaryDetailView: View {
     /// One big gold control for the book: Play, Continue where you left off, Pause, Resume.
     private var playButton: some View {
         let on = speaker.playing && !speaker.paused
-        let title = on ? "Pause" : speaker.paused ? "Resume" : (speaker.ch > 0 || speaker.line > 0) ? "Continue chapter \(speaker.ch + 1)" : "Play"
+        let title = on ? "Pause" : speaker.paused ? "Resume" : speaker.resumed ? "Continue" : "Play"
         return Button { speaker.toggle() } label: {
             Label(title, systemImage: on ? "pause.fill" : "play.fill")
                 .font(.kernel(.headline)).frame(maxWidth: .infinity)

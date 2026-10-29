@@ -49,6 +49,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         }
     }
     var status = ""
+    /// There is a place to go back to: a saved position, or something already played. Opening a chapter is not one.
+    private(set) var resumed = false
     /// Which voice is speaking right now, so the player can say so instead of quietly switching.
     private(set) var voice = ""
     /// Natural voices (ElevenLabs through /api/speak). Off, or any failed line, falls back to the device voice.
@@ -92,6 +94,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         scripts = (st?.chapters ?? [:]).filter { !$0.value.contains { $0.host == "B" } }; prefetch = [:]
         ch = min(st?.pos.ch ?? 0, max(0, chapters.count - 1)); line = st?.pos.line ?? 0
         status = st.map { _ in "Resume at \(chapters[ch].title)" } ?? ""
+        resumed = ch > 0 || line > 0
         marks = entry?.listen?.marks ?? []   // kept even when listen.for is stale
         Task { await showChapter() }
     }
@@ -262,7 +265,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         token += 1; let tok = token
         synth.stopSpeaking(at: .immediate); player?.stop(); player = nil; lineOf = [:]; paused = false; word = nil
         guard ch < chapters.count else { return }
-        playing = true; loading = true
+        playing = true; loading = true; resumed = true
         var got = await script(for: ch).value
         guard tok == token else { return }
         loading = false

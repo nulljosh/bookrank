@@ -162,6 +162,7 @@ export function mount(root, api) {
   const chs = chapters(api.content);
   // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
   const marks = [...(api.marks || [])];
+  let resumed = !!(api.pos && (api.pos.ch || api.pos.line));
   const scripts = Object.fromEntries(Object.entries(api.scripts || {}).filter(([, s]) => !s?.some?.(l => l.host === 'B')));
   root.innerHTML = `
     <div class="lp-bar"><div class="lp-fill"></div></div>
@@ -254,7 +255,8 @@ export function mount(root, api) {
       return s || blocks(chs[i].text);
     },
     onState: st => {
-      play.textContent = st.playing ? (st.loading ? 'Loading…' : 'Pause') : (player.ch || player.line) ? `Continue chapter ${player.ch + 1}` : 'Play';
+      if (st.playing) resumed = true;   // "Continue" only once there is a place to go back to, never for a chapter just opened
+      play.textContent = st.playing ? (st.loading ? 'Loading…' : 'Pause') : resumed ? 'Continue' : 'Play';
       play.disabled = false;
       markToc(st.ch);
       if (st.playing && st.loading) { text.innerHTML = '<p class="lp-loading">Preparing this chapter…</p>'; return; }
@@ -320,7 +322,7 @@ export function mount(root, api) {
     text.innerHTML = '<p class="lp-loading">…</p>';
     const s = modeSel.value === 'talk' && scripts[player.ch] ? scripts[player.ch] : blocks(chs[player.ch]?.text || '');
     renderScript(s, player.ch);
-    if (api.pos && (api.pos.ch || api.pos.line)) play.textContent = `Continue chapter ${player.ch + 1}`;
+    if (resumed) play.textContent = 'Continue';
     if (api.pos && (api.pos.ch || api.pos.line)) status.textContent = `Resume at ${chs[player.ch].title} · line ${player.line + 1}`;
   };
 

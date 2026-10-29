@@ -1,6 +1,6 @@
 // ponytail: network-first for pages, cache-first for the hashed assets they name.
 // Bump CACHE to evict everything a previous version stored.
-const CACHE = "kernel-v12";
+const CACHE = "kernel-v13";
 const FILES = ["/", "/index.html","/library.html","/share.html","/profile.html","/listen.js","/listen.css","/covers.js","/goal.js","/marks.js","/spark.js","/privacy.html", "/manifest.webmanifest"];
 
 self.addEventListener("install", e => {

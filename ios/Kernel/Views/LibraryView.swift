@@ -80,6 +80,15 @@ struct LibraryView: View {
             if CommandLine.flag("UITEST_PLAYER") {   // screenshots of the player bar, silent
                 store.loadSample(); speaker.showPausedForScreenshot(chapters: parseChapters(store.summaryMarkdown(for: "sample")))
             }
+            #if os(macOS)
+            // Mac store screenshots: a 1440x900 window opened on a book (`-UITEST_OPEN slug`) and chapter (`-UITEST_CHAPTER n`).
+            if let open = UserDefaults.standard.string(forKey: "UITEST_OPEN") {
+                NSApp.windows.first?.setFrame(NSRect(x: 40, y: 40, width: 1440, height: 900), display: true)
+                selected = open
+                let ch = UserDefaults.standard.string(forKey: "UITEST_CHAPTER").flatMap { Int($0) }   // launch arguments arrive as strings
+                Task { try? await Task.sleep(for: .milliseconds(600)); chapter = ch }   // after onChange(of: selected) clears it
+            }
+            #endif
         }
         // First launch only, signed out. Waits for the splash, and stays out of the screenshot modes.
         .onChange(of: splashDone, initial: true) { _, done in
