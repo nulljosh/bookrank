@@ -289,7 +289,7 @@ final class LibraryWalk: XCTestCase {
     /// Account, signed in (mocked): profile, Listening, Goodreads, Notifications, Data, then credentials.
     func testAccountSections() {
         let app = XCUIApplication()
-        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_ACCOUNT", "-kernel.onboarded", "YES"]
+        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_ACCOUNT", "UITEST_ERRORLOG", "-kernel.onboarded", "YES"]
         app.launch()
         XCTAssertTrue(app.staticTexts["Listening"].waitForExistence(timeout: 10))
         sleep(1)

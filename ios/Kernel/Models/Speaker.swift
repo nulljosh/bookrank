@@ -277,7 +277,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         var got = await script(for: ch).value
         guard tok == token else { return }
         loading = false
-        if got == nil { status = "Could not build the conversation; reading the notes."; got = Self.blocks(chapters[ch].text) }
+        if got == nil { ErrorLog.note("Narrate failed, chapter \(ch + 1)"); status = "Could not build the conversation; reading the notes."; got = Self.blocks(chapters[ch].text) }
         guard let script = got, !script.isEmpty else { playing = false; return }
         lines = script
         if ch + 1 < chapters.count { _ = self.script(for: ch + 1); prefetchAudio(ch + 1) } // warm the next chapter

@@ -64,6 +64,7 @@ final class Goodreads: NSObject, WKNavigationDelegate {
             return true
         } catch {
             self.error = "Could not reach Goodreads."
+            ErrorLog.note("Goodreads sync: \(error.localizedDescription)")
             return false
         }
     }

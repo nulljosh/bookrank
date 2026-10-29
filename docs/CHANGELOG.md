@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 61.0.0 (2026-10-29)
+When something breaks, Account > Data > Export error log hands you a text file of what went wrong lately, to send with a bug report. It stays on your device until you share it.
+
 ## 60.0.0 (2026-10-29)
 A startup budget: Kernel's own work before the first screen stays under 50 ms (it measures about 30), checked with an Instruments trace and a launch-time test.
 

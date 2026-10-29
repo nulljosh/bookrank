@@ -1673,24 +1673,24 @@
         }
       }
     },
-    "Every summary as a markdown file. Yours to keep.": {
+    "Every summary as a markdown file. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque résumé en fichier Markdown. Il vous appartient."
+            "value": "Chaque résumé en fichier Markdown, à vous. Le journal d'erreurs liste ce qui a mal tourné récemment, sur cet appareil uniquement ; joignez-le à un signalement de bug."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada resumen como archivo Markdown. Tuyo para siempre."
+            "value": "Cada resumen como archivo Markdown, tuyo para siempre. El registro de errores muestra lo que falló hace poco, solo en este dispositivo; envíalo con un informe de error."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jede Zusammenfassung als Markdown-Datei. Gehört dir."
+            "value": "Jede Zusammenfassung als Markdown-Datei, für dich. Das Fehlerprotokoll zeigt, was zuletzt schiefging, nur auf diesem Gerät; schick es mit einem Fehlerbericht."
           }
         }
       }
@@ -1735,6 +1735,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Exportieren"
+          }
+        }
+      }
+    },
+    "Export error log": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter le journal d'erreurs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar el registro de errores"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fehlerprotokoll exportieren"
           }
         }
       }

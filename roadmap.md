@@ -61,7 +61,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 58 | 500-book library stays smooth (Goodreads scale) | apps, web | built (web: a missing cover is looked up only when its row nears the screen, 40 lookups instead of about 1,000; 500 books show in about 130 ms and a search narrows them in about 20 ms. Apps: covers drawn once stay in memory, the Goodreads match splits titles once, and testBigShelf checks a 500-book shelf against a 60-book one) |
 | 59 | Covers cached on disk | apps | built (every cover the apps draw is kept in Caches/covers as well as in memory, so the shelf shows covers at once after a relaunch and offline; Storage shows their size with a Clear button) |
 | 60 | Startup time budget with an Instruments pass | apps | built (budget in docs/ARCHITECTURE.md: Kernel's own work before the first frame under 50 ms, measured at about 30 ms with an Instruments Time Profiler trace; testLaunchTime measures cold launch, 2.2 s on the simulator, mostly the simulator itself) |
-| 61 | On-device error log you can export when something breaks | apps | open |
+| 61 | On-device error log you can export when something breaks | apps | built (ErrorLog keeps the last 200 failures on the device: every server or network error from API.call, a failed Goodreads sync, a narration that fell back. Account > Data > Export error log shares it with the app version and system on top; nothing is sent on its own) |
 | 62 | Retry with backoff on every network call; saves queue while offline | apps, web | open |
 | 63 | Listen position merges across devices by time | apps, web | open |
 | 64 | Security sweep: auth, rate limits on every model route, KV caps | api | open |

@@ -35,12 +35,16 @@ enum API {
             guard let token = await token() else { throw Failure(message: "Sign in first.") }
             r.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        let (data, res) = try await URLSession.shared.data(for: r)
+        let place = "\(method) \(r.url?.path() ?? path)"   // no query string: it can carry ids
+        let data: Data, res: URLResponse
+        do { (data, res) = try await URLSession.shared.data(for: r) } catch { ErrorLog.note("\(place): \(error.localizedDescription)"); throw error }
         let code = (res as? HTTPURLResponse)?.statusCode ?? 0
         guard (200..<300).contains(code) else {
             struct E: Decodable { let error: String?; let message: String?; let msg: String? }
             let e = try? JSONDecoder().decode(E.self, from: data)
-            throw Failure(message: e?.error ?? e?.message ?? e?.msg ?? "The server said \(code).")
+            let message = e?.error ?? e?.message ?? e?.msg ?? "The server said \(code)."
+            ErrorLog.note("\(place): \(code) \(message)")
+            throw Failure(message: message)
         }
         return data
     }

@@ -16,6 +16,8 @@ struct KernelApp: App {
         URLCache.shared = URLCache(memoryCapacity: 20 << 20, diskCapacity: 200 << 20)
         UNUserNotificationCenter.current().delegate = NoteTap.shared   // a tapped reminder opens its book
         // Screenshot runs: act as if Siri ran Continue my book (the player stays silent under UITEST_SNAPSHOT).
+        // Screenshot runs: one line in the error log so Account shows Export error log.
+        if CommandLine.flag("UITEST_ERRORLOG") { try? "2026-10-29T08:00:00Z GET /rest/v1/bookrank_summaries: 503 The server said 503.\n".write(to: ErrorLog.file, atomically: true, encoding: .utf8) }
         if CommandLine.flag("UITEST_CONTINUE"), let e = DataStore.lastStarted() { NoteTap.shared.play = true; NoteTap.shared.slug = e.slug }
         #if os(macOS)
         if CommandLine.flag("UITEST_MENUBAR_SHOT") { DispatchQueue.main.async { MainActor.assumeIsolated { menuBarShots() } } }

@@ -367,10 +367,13 @@ struct AccountView: View {
             }
             Button("Storage on this device", systemImage: "internaldrive") { showStorage = true }
                 .sheet(isPresented: $showStorage) { StorageView(store: store) }
+            if !ErrorLog.isEmpty {
+                ShareLink(item: ErrorLog.export()) { Label("Export error log", systemImage: "doc.text.magnifyingglass") }
+            }
         } header: {
             Text("Data")
         } footer: {
-            Text("Every summary as a markdown file. Yours to keep.")
+            Text("Every summary as a markdown file. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.")
         }
         .task(id: store.summaryIndex.count) { exportURLs = store.writeExport() }
 

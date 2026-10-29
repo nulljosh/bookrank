@@ -97,6 +97,7 @@
 		A83E380572B1C456801F1DDD /* Meaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E2C3E7F816D3A9C7931FA /* Meaning.swift */; };
 		A8CB625B3301A3A4194CAE1A /* SpeakerExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B1514899126444871DA82 /* SpeakerExtras.swift */; };
 		AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
+		AD42C274C025C2507F73F186 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
 		B36F0C2C58643588AF88C076 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */; };
@@ -107,6 +108,7 @@
 		B8C0EFF15FD313627FFB4073 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D42622E422604FB14F1EF9 /* SplashView.swift */; };
 		B99ED828E6CE500BF35CABC3 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */; };
+		BC1123D744FF56E042D95869 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */; };
 		C2B26317A76AB98D25A2E216 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
 		C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		CA3B1BAD9B33C357CAC89A95 /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372CE246108E47F43F82313 /* EmptyStates.swift */; };
@@ -191,6 +193,7 @@
 		706C79B39012060E094ED3A4 /* PlayerBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBar.swift; sourceTree = "<group>"; };
 		7553A26F78E2CFC07C8E8C6D /* AskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskView.swift; sourceTree = "<group>"; };
 		75F4E8FFFECCDF017CFF9483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLog.swift; sourceTree = "<group>"; };
 		7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kernel.entitlements; sourceTree = "<group>"; };
 		8457AA46B272289E03D54157 /* Narrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narrator.swift; sourceTree = "<group>"; };
 		856723BDA9B438B185F67005 /* LibraryWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWalk.swift; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 				EFD53A14FC46AD38DFFFA927 /* Book.swift */,
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
 				E7033956A451A6A740DBEDBF /* Ebook.swift */,
+				77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */,
 				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				F52DEE4EFC635882441F8ED3 /* Goodreads.swift */,
 				1C110E896A31BA878678B4AF /* Intents.swift */,
@@ -616,6 +620,7 @@
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
 				AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */,
 				7D91AC8FE21BD77013D341A7 /* EmptyStates.swift in Sources */,
+				AD42C274C025C2507F73F186 /* ErrorLog.swift in Sources */,
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */,
 				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
@@ -678,6 +683,7 @@
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
 				91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */,
 				CA3B1BAD9B33C357CAC89A95 /* EmptyStates.swift in Sources */,
+				BC1123D744FF56E042D95869 /* ErrorLog.swift in Sources */,
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */,
 				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,
