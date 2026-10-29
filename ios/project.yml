@@ -30,8 +30,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
-        MARKETING_VERSION: "2.0.0"
-        CURRENT_PROJECT_VERSION: "202610281242"
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
         ASSETCATALOG_COMPILER_APPICON_NAME: Kernel
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
@@ -78,8 +78,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
-        MARKETING_VERSION: "2.0.0"
-        CURRENT_PROJECT_VERSION: "202610281242"
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
         ASSETCATALOG_COMPILER_APPICON_NAME: Kernel
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
@@ -98,8 +98,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.watchkitapp
-        MARKETING_VERSION: "2.0.0"
-        CURRENT_PROJECT_VERSION: "202610281242"
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Kernel
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.heyitsmejosh.spine
