@@ -12,6 +12,7 @@ Always set `ASC_BYPASS_KEYCHAIN=1` for `asc`. ASC app 6792376485, one record for
 2. The listing in every language: `sh scripts/store-listing.sh <version id>` puts `docs/store/listing.json` (English, French, Spanish, German) on the new version. Fresh screenshots: `sh ios/scripts/shots.sh`; the French, Spanish and German sets sit in `ios/fastlane/screenshots/<locale>`. If fastlane hangs in `simctl diagnose` after a passing run, the PNGs are already in `~/Library/Caches/tools.fastlane/screenshots`.
 3. `asc workflow run ship-ios VERSION:<v>`. It edits `ios/project.yml`, runs xcodegen and `ios/scripts/prepare-plist.py <build>`, because xcodegen drops the version, build number and iPad orientations.
 4. Afterwards `git checkout ios/Kernel/Info.plist`.
+5. Once the version is live: `sh scripts/promo.sh` sets the promotional text from `docs/store/listing.json` (no review needed), and an in-app event goes up if the release has one ([events.md](store/events.md)).
 
 ## Mac
 

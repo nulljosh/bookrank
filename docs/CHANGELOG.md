@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 80.0.0 (2026-10-29)
+Each release now refreshes the App Store's promotional text (`scripts/promo.sh`, on the newest live version of each platform, no review needed) and can carry an in-app event, planned in docs/store/events.md. The first run waits for the next version, so the text never names a feature the live app lacks.
+
 ## 79.0.0 (2026-10-29)
 On the Mac, right-click a book and choose Open in New Window to read it in a window of its own, next to your library. Every window shares the same books.
 
