@@ -12,7 +12,11 @@ Free on the [web](https://bookrank.jaybulb.com), $0.99 on iPhone, iPad and Mac. 
 - **Listen.** One narrator explains the chapter while the words light up.
 - **Highlights and questions.** Save a line, or ask the chapter something.
 - **Goodreads.** Your shelves show up next to your summaries.
-- **Offline.** Your books stay on the device, and the apps can download the audio too.
+- **Search.** Find words inside your chapters, or ideas close in meaning.
+- **Bring your books.** Photos of pages, EPUB and PDF, Kindle and Readwise highlights.
+- **Four languages.** English, French, Spanish and German, narration included.
+- **Offline.** Your books stay on the device, the apps download the audio, and saves made offline go up later.
+- **Yours.** Export everything as one zip. Deleting your account deletes all of it.
 
 ## Run it
 

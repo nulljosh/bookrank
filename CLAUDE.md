@@ -7,6 +7,7 @@ Chapter summaries of the books you own, read or listen to, on the web, iPhone, i
 ## Map
 - `library.html`: the web app (your summaries, the player, highlights, Ask, Goodreads). Its data layer is `rows`; every read goes through `cached()` so it works offline.
 - `listen.js` + `listen.css`: the player, shared by `library.html` and `share.html`. `marks.js` merges highlights, `goal.js` the weekly goal.
+- `outbox.js` (web) and `Outbox.swift` (apps) hold saves made offline; `i18n.js` and `ios/Kernel/Localizable.xcstrings` carry French, Spanish and German. New fixed text needs a translation in both.
 - `spark.js`: the client for jaybulb-api (api.jaybulb.com). `functions/api/`: speak, narrate, ask, summarize-photo, goodreads, apple receipts, pay. The whole picture is `docs/ARCHITECTURE.md`.
 - `sw.js`: the service worker. Bump `CACHE` on every web change that touches a precached file.
 - `ios/`: SwiftUI app for iPhone, iPad and Mac from `ios/project.yml`. Run `git checkout ios/Kernel/Info.plist` after xcodegen or xcodebuild.

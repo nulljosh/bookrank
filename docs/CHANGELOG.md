@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 71.0.0 (2026-10-29)
+Docs caught up with everything through 70: the whitepaper (sync, finding things, languages, sharing, limits), the README's feature list, the architecture map of every web file and server route, and how to run the apps' tests. Every local link checked.
+
 ## 70.0.0 (2026-10-29)
 CI walks the iPhone app on a simulator after the unit tests: search, sort and filter, the command palette, Account and the sleep timer menu, on the silent screenshot shelf.
 

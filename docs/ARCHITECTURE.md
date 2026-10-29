@@ -13,14 +13,20 @@ Your summaries live in one table on jaybulb-api (api.jaybulb.com, a Cloudflare W
 | `share.html` | A shared summary for anyone with the link, no account |
 | `profile.html`, `privacy.html` | Profile and account deletion; the privacy policy |
 | `listen.js`, `listen.css` | The player: chapters, one line at a time, word highlight, speed, sleep, highlights |
-| `marks.js` | Highlights merge across devices |
+| `marks.js` | Highlights merge across devices, Today's five, the Markdown export, `catchUp` for late listening saves |
 | `goal.js` | The weekly listening goal |
 | `covers.js` | Cover thumbnails and share links |
 | `goodreads-parse.js` | Reads a signed-in Goodreads page into plain data, run on the device by the apps |
-| `spark.js` | The jaybulb-api client: sign-in, refresh, rows |
+| `spark.js` | The jaybulb-api client: sign-in, refresh, rows, retries with backoff |
+| `outbox.js` | Saves made offline, sent when the connection returns |
+| `search.js`, `meaning.js` | Search inside chapters; search by meaning over an on-device index |
+| `voices.js`, `card.js` | Narrator choice; highlight and year share cards |
+| `kindle.js`, `epub.js`, `goodreads-export.js` | Imports: Kindle clippings and Readwise, EPUB, a Goodreads export CSV |
+| `i18n.js`, `i18n/` | French, Spanish and German for the fixed text, by the browser's language |
+| `public-profile.js` | Someone's public profile, and your switches for yours |
 | `sw.js` | Service worker: the shelf and every book work offline |
 | `onboarding.js`, `webmcp.js` | First-run pages; WebMCP tools for agents in the browser ([API](API.md)) |
-| `tokens.css`, `devices.css`, `brand/` | Design tokens, landing frames, the brand kit at /brand |
+| `tokens.css`, `devices.css`, `brand/`, `screens/` | Design tokens, landing frames, the brand kit at /brand, the landing's iPhone screens |
 
 ## Apps
 
@@ -70,6 +76,10 @@ xcrun xctrace record --template 'Time Profiler' --device <simulator id> --time-l
 | `functions/api/speak.js` | One line in a natural voice with word timings: ElevenLabs, then Cloudflare Aura-2, then the device voice. Every line stored for good in KV, with monthly and daily caps |
 | `functions/api/ask.js` | Answers a question from one chapter's notes, metered like the voices |
 | `functions/api/summarize-photo.js` | Reads a photographed page, nothing stored |
+| `functions/api/embed.js` | Embeds paragraphs for search by meaning (Workers AI, bge-small) |
+| `functions/api/forget.js` | Clears an account's voice counters, $1 record and stored narration before it is deleted |
+| `functions/share.js` | The book's title and cover in a share link's preview; indexable only with a public profile |
+| `src/lib/quota.js` | The hourly cap per person on every model and Goodreads route |
 | `functions/api/goodreads.js` | The public Currently Reading box; everything else needs the sign-in on the device |
 | `functions/api/apple.js` | Checks StoreKit's AppTransaction (`X-Kernel-Receipt`) to prove an app was bought |
 | `functions/api/pay.js`, `functions/api/stripe-webhook.js` | The $1 web unlock and the webhook that flags the account |
