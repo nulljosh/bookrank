@@ -68,6 +68,20 @@ final class LibraryWalk: XCTestCase {
         menu.tap(); app.buttons["Recently edited"].firstMatch.tap()
     }
 
+    /// Search by meaning: words that are not in the book still find the line that means it. On the device, no network.
+    func testMeaning() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        sleep(4)
+        app.swipeDown()
+        let field = app.searchFields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText("seeing how people are connected")
+        XCTAssertTrue(app.staticTexts["Close in meaning"].waitForExistence(timeout: 60))
+        sleep(1)
+        saveTo("meaning-results", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

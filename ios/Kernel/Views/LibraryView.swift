@@ -8,6 +8,7 @@ struct LibraryView: View {
     @State private var openSlug: String?
     @State private var showAccount = false
     @State private var query = ""
+    @State private var meaning: [Meaning.Hit] = []
     @AppStorage("kernel.sort") private var sort = "recent"   // recent, title, progress, short; same keys as the web
     @AppStorage("kernel.show") private var show = "all"      // all, started, new
     @State private var openShelves: Set<String> = ["Currently reading"]
@@ -225,7 +226,12 @@ struct LibraryView: View {
                 #endif
             }
             .searchable(text: $query, prompt: "Search your summaries")
-            .overlay { if shown.isEmpty && shelves.isEmpty && !q.isEmpty { ContentUnavailableView.search(text: query) } }
+            .overlay { if shown.isEmpty && shelves.isEmpty && meaning.isEmpty && !q.isEmpty { ContentUnavailableView.search(text: query) } }
+            .task(id: q) {   // search by meaning once typing stops, on the device
+                meaning = []
+                guard q.count >= 4, (try? await Task.sleep(for: .milliseconds(500))) != nil else { return }
+                meaning = await Meaning.shared.search(q, in: store.summaryIndex)
+            }
             .task(id: store.summaryIndex.count) {
                 let id = auth.user?.userMetadata["goodreads"]?.stringValue
                 await store.loadGoodreads(id)
@@ -257,6 +263,7 @@ struct LibraryView: View {
         let rest = plain.filter { names.isEmpty || $0.collection == nil }
         if names.isEmpty { ForEach(rest) { bookLink($0) } }
         else if !rest.isEmpty { Section("Library") { ForEach(rest) { bookLink($0) } } }
+        if !q.isEmpty { MeaningResults(hits: meaning, store: store) }
         ForEach(shelves, id: \.0) { shelf in
             let (label, books) = shelf
             let open = openShelves.contains(label) || !q.isEmpty

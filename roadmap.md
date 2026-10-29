@@ -21,7 +21,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 18 | Search inside chapter text, results jump to the line | apps, web | built (matching line under each result; the book opens on the notes at that line, marked; testSearch) |
 | 19 | Collections: put books in your own groups | apps, web | built (one collection per book, a `collection` column on jaybulb-api; library groups A to Z, then Library; testCollections) |
 | 20 | Sort and filter the library (recent, title, progress, length) | apps, web | built (Recently edited, Title, Progress, Shortest first; All, In progress, Not started; kept per device; testSortFilter) |
-| 21 | Search by meaning: find an idea even when the words differ (on-device embeddings in the apps, Workers AI on the web), no chat | apps, web | open |
+| 21 | Search by meaning: find an idea even when the words differ, no chat | apps, web | built (bge-small through /api/embed, vectors kept per book version in Cache Storage and Application Support; Apple NLEmbedding and NLContextualEmbedding were tried and ranked the right line last; UI checked with a stand-in embedder, the 0.6 floor still to tune on the real model) |
 | 22 | All highlights in one place; share a highlight as an image card | apps, web | open |
 | 23 | Export highlights and notes as Markdown | apps, web | open |
 | 24 | Daily review: five highlights resurface on a schedule | apps, web | open |
@@ -103,6 +103,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 100 | Kernel 100 | all | open |
 
 ## Open outside the table
+- [ ] Workers AI ran out of its 10,000 free daily neurons on 2026-10-28 (narration scripts, Ask, page photos and the Aura-2 fallback fail until 00:00 UTC). Workers Paid is $5 a month (Joshua's call). Then tune the meaning floor (0.6) on real bge scores.
 - [ ] Add kernel.jaybulb.com to the `bookrank` Pages project (Joshua: Cloudflare dashboard, Pages, bookrank, Custom domains). Then point canonical, sitemap, OG, the apps and the launch kit at it; the old host keeps serving.
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
 - [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 21.0.0 (2026-10-28)
+Search by meaning: below the word matches, Close in meaning finds the lines that say what you typed in other words, and opens the book at that line. Each book is read once and kept on the device.
+
 ## 20.0.0 (2026-10-28)
 Sort the library by recently edited, title, progress or shortest first, and show all books, the ones in progress or the ones not started. Each device remembers your pick.
 
