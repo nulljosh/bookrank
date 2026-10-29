@@ -141,7 +141,7 @@ dl.profile dt { color:var(--text3); }
     <p class="msg" id="listMsg"></p>
     <div class="stats hide" id="stats"></div>
     <p class="grimport msg" id="grImport">Bring your Goodreads shelves: export them at <a href="https://www.goodreads.com/review/import" target="_blank" rel="noopener">goodreads.com/review/import</a>, then <button type="button" class="link" id="grPick">choose the file</button>. It stays in this browser.<input type="file" id="grFile" accept=".csv,text/csv" hidden></p>
-    <p class="grimport msg" id="kindleImport">Kindle highlights: plug your Kindle in, then <button type="button" class="link" id="kindlePick">choose documents/My Clippings.txt</button>. Each book gets a Kindle highlights chapter.<input type="file" id="kindleFile" accept=".txt,text/plain" hidden></p>
+    <p class="grimport msg" id="kindleImport">Kindle or Readwise highlights: <button type="button" class="link" id="kindlePick">choose My Clippings.txt</button> from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.<input type="file" id="kindleFile" accept=".txt,.csv,text/plain,text/csv" hidden></p>
   </section>
 
   <!-- editor / listen -->
@@ -182,7 +182,7 @@ import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
 import { card, yearCard } from './card.js';
 import { parseExport } from './goodreads-export.js';
-import { parseClippings, kindleChapter } from './kindle.js';
+import { parseClippings, parseReadwise, kindleChapter } from './kindle.js';
 import * as goal from './goal.js';
 import { mergeMarks, marksMarkdown, dailyFive } from './marks.js';
 
@@ -772,20 +772,20 @@ $('kindlePick').onclick = () => $('kindleFile').click();
 $('kindleFile').onchange = async () => {
   const f = $('kindleFile').files[0]; $('kindleFile').value = '';
   if (!f) return;
-  const books = parseClippings(await f.text());
+  const text = await f.text(), rw = parseReadwise(text), books = rw || parseClippings(text), heading = rw ? 'Readwise highlights' : 'Kindle highlights';
   let lines = 0, updated = 0, made = 0;
-  $('listMsg').textContent = `Reading ${books.length} Kindle books…`;
+  $('listMsg').textContent = `Reading ${books.length} books…`;
   for (const b of books) {
     const row = listData.find(r => norm(r.title) && sameTitle(norm(r.title), norm(b.title)));
     if (row) {
       const { data } = await rows.get(row.id), body = kindleChapter(data?.content, b.lines);
       if (!body) continue;
       const mark = (data.content.match(/^# /gm) || []).length >= 2 ? '#' : '##';   // the level the book's chapters use, like Add pages
-      if (!(await rows.update(row.id, { content: data.content.trimEnd() + `\n\n${mark} Kindle highlights\n\n${body}\n` })).error) { updated++; lines += body.split('\n').length; }
-    } else if (!(await rows.insert(stamp(b.title, `## Kindle highlights\n\n${kindleChapter('', b.lines)}\n`))).error) { made++; lines += b.lines.length; }
+      if (!(await rows.update(row.id, { content: data.content.trimEnd() + `\n\n${mark} ${heading}\n\n${body}\n` })).error) { updated++; lines += body.split('\n').length; }
+    } else if (!(await rows.insert(stamp(b.title, `## ${heading}\n\n${kindleChapter('', b.lines)}\n`))).error) { made++; lines += b.lines.length; }
   }
   await load();
-  $('listMsg').textContent = lines ? `Added ${lines} Kindle highlights: ${updated} books updated, ${made} new.` : 'Nothing new in that file.';
+  $('listMsg').textContent = lines ? `Added ${lines} ${rw ? 'Readwise' : 'Kindle'} highlights: ${updated} books updated, ${made} new.` : 'Nothing new in that file.';
 };
 $('grFile').onchange = async () => {
   const f = $('grFile').files[0]; $('grFile').value = '';

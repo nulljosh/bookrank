@@ -22,3 +22,19 @@ export function kindleChapter(content, lines) {
   const fresh = lines.filter(l => !(content || '').includes(l));
   return fresh.map(l => `- ${l}`).join('\n');
 }
+
+// Readwise's CSV export (readwise.io/export): the same shape as the Kindle books, under a Readwise highlights chapter.
+import { csv } from './goodreads-export.js';
+export function parseReadwise(text) {
+  const [head, ...rows] = csv(text.replace(/^﻿/, ''));
+  const h = head.indexOf('Highlight'), t = head.indexOf('Book Title'), a = head.indexOf('Book Author');
+  if (h < 0 || t < 0) return null;
+  const books = new Map();
+  for (const r of rows) {
+    const title = (r[t] || '').trim(), line = (r[h] || '').replace(/\s+/g, ' ').trim();
+    if (!title || !line) continue;
+    if (!books.has(title)) books.set(title, { title, author: (r[a] || '').trim(), lines: [] });
+    if (!books.get(title).lines.includes(line)) books.get(title).lines.push(line);
+  }
+  return [...books.values()];
+}

@@ -49,17 +49,17 @@ struct AddPagesView: View {
                         .foregroundStyle(error == nil ? Color.secondary : Color.red)
                 }
                 Section {
-                    Button { kindle = true } label: { Label(importing ?? "Import Kindle highlights", systemImage: "book.pages") }.disabled(importing != nil)
+                    Button { kindle = true } label: { Label(importing ?? "Import Kindle or Readwise highlights", systemImage: "book.pages") }.disabled(importing != nil)
                 } footer: {
-                    Text(kindleDone ?? "Plug your Kindle in and choose documents/My Clippings.txt. Each book gets a Kindle highlights chapter.")
+                    Text(kindleDone ?? "Choose My Clippings.txt from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.")
                 }
             }
-            .fileImporter(isPresented: $kindle, allowedContentTypes: [.plainText, .text]) { r in
+            .fileImporter(isPresented: $kindle, allowedContentTypes: [.plainText, .text, .commaSeparatedText]) { r in
                 guard case .success(let url) = r else { return }
                 let ok = url.startAccessingSecurityScopedResource(); defer { if ok { url.stopAccessingSecurityScopedResource() } }
                 guard let text = try? String(contentsOf: url, encoding: .utf8) else { kindleDone = "Could not read that file."; return }
-                let books = Kindle.parse(text)
-                Task { importing = "Adding \(books.count) Kindle books…"; kindleDone = await store.importKindle(books); importing = nil }
+                let rw = Kindle.parseReadwise(text), books = rw ?? Kindle.parse(text)
+                Task { importing = "Adding \(books.count) books…"; kindleDone = await store.importKindle(books, heading: rw == nil ? "Kindle highlights" : "Readwise highlights"); importing = nil }
             }
             .formStyle(.grouped)
             .navigationTitle("Add pages")

@@ -20,3 +20,10 @@ test('kindleChapter adds only what the summary does not have', () => {
   assert.equal(kindleChapter('# A\n\n- old line', ['old line', 'new line']), '- new line');
   assert.equal(kindleChapter('old line', ['old line']), '');
 });
+
+test('parseReadwise reads the CSV export into books, and is null for other files', async () => {
+  const { parseReadwise } = await import('./kindle.js');
+  const file = 'Highlight,Book Title,Book Author,Amazon Book ID,Note\n"Small habits, compounded, win.",Atomic Habits,James Clear,,\n"You do not rise to your goals.\nYou fall to your systems.",Atomic Habits,James Clear,,\n';
+  assert.deepEqual(parseReadwise(file), [{ title: 'Atomic Habits', author: 'James Clear', lines: ['Small habits, compounded, win.', 'You do not rise to your goals. You fall to your systems.'] }]);
+  assert.equal(parseReadwise('Book Id,Title\n1,x'), null);
+});

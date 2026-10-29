@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 31.0.0 (2026-10-28)
+Readwise highlights: choose a Readwise CSV export where you import Kindle highlights, and each book gets a Readwise highlights chapter.
+
 ## 30.0.0 (2026-10-28)
 Kindle highlights: plug your Kindle in and choose My Clippings.txt, under the library on the web or in Add pages in the apps. Each book gets a Kindle highlights chapter, or becomes a new book, and only lines you do not have yet are added.
 

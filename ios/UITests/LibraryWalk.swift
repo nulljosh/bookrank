@@ -155,7 +155,7 @@ final class LibraryWalk: XCTestCase {
         saveTo("reading-stats", XCUIScreen.main.screenshot())
     }
 
-    /// Add pages offers Import Kindle highlights, which opens the file picker (nothing is picked).
+    /// Add pages offers Import Kindle or Readwise highlights, which opens the file picker (nothing is picked).
     func testKindleImport() {
         let app = XCUIApplication()
         app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "UITEST_SIGNED_IN"]
@@ -164,7 +164,7 @@ final class LibraryWalk: XCTestCase {
         for _ in 0..<5 where !row.exists { app.swipeUp() }
         XCTAssertTrue(row.waitForExistence(timeout: 10)); row.press(forDuration: 1.2)
         app.buttons["Summarize this book"].firstMatch.tap()
-        let kindle = app.buttons["Import Kindle highlights"].firstMatch
+        let kindle = app.buttons["Import Kindle or Readwise highlights"].firstMatch
         for _ in 0..<3 where !kindle.isHittable { app.swipeUp() }
         XCTAssertTrue(kindle.waitForExistence(timeout: 5))
         sleep(1)
