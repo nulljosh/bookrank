@@ -2,11 +2,12 @@
 // which functions/mcp.js also calls. No shelf logic lives here.
 
 import { callTool, ToolError, TOOL_NAMES } from '../../src/lib/tools.js';
+import { callSummaryTool, SummaryError } from '../../src/lib/summaries.js';
 
 const CORS = {
   'access-control-allow-origin': '*',
-  'access-control-allow-headers': 'content-type',
-  'access-control-allow-methods': 'GET, OPTIONS',
+  'access-control-allow-headers': 'content-type, authorization',
+  'access-control-allow-methods': 'GET, POST, PATCH, OPTIONS',
 };
 
 const json = (body, status = 200) =>
@@ -20,7 +21,11 @@ const ENDPOINTS = {
   'GET /api/books?section=&limit=&offset=': 'Books on the shelf, paginated.',
   'GET /api/search?q=&limit=&section=': 'Books matching a query.',
   'GET /api/book?title=': 'One book by title.',
-  'POST /mcp': 'Model Context Protocol, JSON-RPC. Same four tools.',
+  'GET /api/summaries': 'Your summaries (Authorization: Bearer <your Kernel token>).',
+  'POST /api/summaries': 'Add one: { title, markdown }.',
+  'GET /api/summaries/:id': 'One of yours, as Markdown.',
+  'PATCH /api/summaries/:id': 'Change its { title, markdown }.',
+  'POST /mcp': 'Model Context Protocol, JSON-RPC. The same tools, yours with the same token.',
 };
 
 const ROUTES = {
@@ -32,11 +37,13 @@ const ROUTES = {
 
 export async function onRequest({ request }) {
   if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
-  // The shelf is read-only from outside; writing summaries is a signed-in, per-user action
-  // and stays in library.html against spark-api, where RLS can see who is asking.
+  const url = new URL(request.url);
+  // Your own summaries: signed in with your token, passed through to jaybulb-api, never cached.
+  const mine = url.pathname.replace(/\/+$/, '').match(/^\/api\/summaries(?:\/([^/]+))?$/);
+  if (mine) return summaries(request, mine[1]);
+  // The shelf is read-only from outside.
   if (request.method !== 'GET') return json({ error: 'This API is read-only; use GET.' }, 405);
 
-  const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, '');
   const p = url.searchParams;
   const tool = ROUTES[path];
@@ -58,6 +65,18 @@ export async function onRequest({ request }) {
     );
   } catch (err) {
     if (err instanceof ToolError) return json({ error: err.message, tool }, 400);
+    throw err;
+  }
+}
+
+async function summaries(request, id) {
+  const tool = { 'GET': id ? 'read_summary' : 'my_summaries', 'POST': id ? null : 'create_summary', 'PATCH': id ? 'update_summary' : null }[request.method];
+  const send = (body, status = 200) => new Response(JSON.stringify(body, null, 2), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...CORS } });
+  if (!tool) return send({ error: `${request.method} is not allowed here.` }, 405);
+  const body = request.method === 'GET' ? {} : await request.json().catch(() => ({}));
+  try { return send(await callSummaryTool(tool, { ...body, id }, request.headers.get('authorization'))); }
+  catch (err) {
+    if (err instanceof SummaryError) return send({ error: err.message }, err.status);
     throw err;
   }
 }

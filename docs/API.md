@@ -1,6 +1,6 @@
 # API
 
-Kernel has three surfaces an agent or a script can use.
+Kernel has four surfaces an agent or a script can use.
 
 ## Your summaries, in the browser (WebMCP)
 
@@ -30,6 +30,17 @@ Read-only, no account, over `books.json`. Both routes call `callTool()` in `src/
 | `GET /api/book?title=` | `get_book` | One book; an exact title wins |
 
 MCP is `POST /mcp`, JSON-RPC, stateless.
+
+## Your summaries (/api/summaries and /mcp)
+
+Send your Kernel sign-in token as `Authorization: Bearer <token>`. Calls go straight through to jaybulb-api, which only ever shows and changes your own rows; nothing is kept on the way.
+
+| REST | MCP tool | Does |
+|---|---|---|
+| `GET /api/summaries` | `my_summaries` | Your summaries: id, title, last edited |
+| `GET /api/summaries/:id` | `read_summary` | One in full, as Markdown |
+| `POST /api/summaries` | `create_summary` | A new one from `{ title, markdown }` (`## ` per chapter) |
+| `PATCH /api/summaries/:id` | `update_summary` | Change its `title` or `markdown` |
 
 ## The app's own endpoints
 

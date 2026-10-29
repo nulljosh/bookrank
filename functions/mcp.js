@@ -9,12 +9,13 @@
 // in-page tools in webmcp.js, which read and write the signed-in reader's own summaries.
 
 import { callTool, ToolError, TOOLS } from '../src/lib/tools.js';
+import { callSummaryTool, SummaryError, SUMMARY_TOOLS, SUMMARY_TOOL_NAMES } from '../src/lib/summaries.js';
 
 const VERSION = '1.0.0';
 
 const CORS = {
   'access-control-allow-origin': '*',
-  'access-control-allow-headers': 'content-type, mcp-protocol-version',
+  'access-control-allow-headers': 'content-type, mcp-protocol-version, authorization',
   'access-control-allow-methods': 'GET, POST, OPTIONS',
 };
 
@@ -55,12 +56,15 @@ export async function onRequest({ request: req }) {
     case 'ping':
       return reply({});
     case 'tools/list':
-      return reply({ tools: TOOLS });
+      return reply({ tools: [...TOOLS, ...SUMMARY_TOOLS] });
     case 'tools/call': {
       let result;
       try {
-        result = callTool(params.name, params.arguments || {});
+        result = SUMMARY_TOOL_NAMES.includes(params.name)
+          ? await callSummaryTool(params.name, params.arguments || {}, req.headers.get('authorization'))   // yours, with your token
+          : callTool(params.name, params.arguments || {});
       } catch (err) {
+        if (err instanceof SummaryError) return reply({ content: [{ type: 'text', text: `kernel: ${err.message}` }], isError: true });
         // A tool rejecting its input is a tool result, not a transport error — the client
         // should see the message and be able to retry, not get a dead connection.
         if (err instanceof ToolError) {

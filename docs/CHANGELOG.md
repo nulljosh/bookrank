@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 41.0.0 (2026-10-28)
+Your summaries over the API and MCP: list, read, add and change them from a script or an agent with your Kernel sign-in token (docs/API.md).
+
 ## 40.0.0 (2026-10-28)
 Spotlight: search your iPhone or Mac for a line or a title and your Kernel books and highlights come up; a result opens the book.
 
