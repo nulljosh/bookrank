@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 24.0.0 (2026-10-28)
+Today's five: five of your highlights come back at the top of the library each day, the same five on every device, a new five tomorrow. Done puts them away until then.
+
 ## 23.0.0 (2026-10-28)
 Export on the Highlights page saves every highlight as one Markdown file, by book and chapter, ready for Notes, Obsidian or anywhere else.
 

@@ -45,6 +45,7 @@ details.gr { margin-top:1.5rem; }
 details.gr .by { display:block; }
 details.gr summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
+.today { margin:0 0 1.25rem; padding:1rem 1.25rem; border-radius:20px; background:var(--bg2); } .today h4 { margin:0 0 0.5rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .today ol { margin:0 0 0.75rem; padding-left:1.25rem; } .today li { margin:0.4rem 0; cursor:pointer; line-height:1.45; } .today li small { display:block; color:var(--text3); font-size:0.8125rem; } .today button { font-size:0.8125rem; padding:0.3rem 0.7rem; }
 .sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar #marksBtn { margin-left:auto; font-size:0.8125rem; padding:0.3rem 0.7rem; }
 ul.marks li { display:block; padding:1rem 0; } ul.marks blockquote { margin:0 0 0.4rem; cursor:pointer; line-height:1.5; } ul.marks .by { display:flex; justify-content:space-between; align-items:center; gap:1rem; } ul.marks .by button { font-size:0.8125rem; padding:0.3rem 0.7rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
 #find { width:100%; margin:0.25rem 0 0.75rem; padding:0.7rem 0.9rem; border:1px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); font:inherit; }
@@ -125,6 +126,7 @@ dl.profile dt { color:var(--text3); }
       </div>
     </div>
     <div class="goal" id="goal"></div>
+    <div class="today hide" id="today"><h4>Today's five</h4><ol></ol><button type="button" id="todayDone">Done for today</button></div>
     <input type="search" id="find" class="hide" placeholder="Search your summaries" aria-label="Search your summaries" autocomplete="off">
     <div class="sortbar hide" id="sortbar">
       <select id="sort" aria-label="Sort"><option value="recent">Recently edited</option><option value="title">Title</option><option value="progress">Progress</option><option value="short">Shortest first</option></select>
@@ -173,7 +175,7 @@ import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
 import { card } from './card.js';
 import * as goal from './goal.js';
-import { mergeMarks, marksMarkdown } from './marks.js';
+import { mergeMarks, marksMarkdown, dailyFive } from './marks.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -542,6 +544,19 @@ async function byMeaning(q, data) {
 // ---- all highlights ----
 // Every saved line from every book, newest book first. A line opens its book at that line; Share makes a card.
 let marks = [], listData = [];
+// Today's five: highlights come back a few at a time, the same five on every device today. Done hides them until tomorrow.
+const today = () => new Date().toLocaleDateString('en-CA');   // YYYY-MM-DD, local
+function drawToday() {
+  const five = dailyFive(marks, today()), done = pref('kernel.reviewed', '') === today();
+  $('today').classList.toggle('hide', !five.length || done);
+  $('today').querySelector('ol').replaceChildren(...five.map(m => {
+    const li = document.createElement('li');
+    li.append(m.text, Object.assign(document.createElement('small'), { textContent: `${m.book} · Ch ${m.ch + 1}` }));
+    li.onclick = async () => { const row = await open(m.id); const f = row && findLine(row.content, m.text); if (f) listen?.find(f); };
+    return li;
+  }));
+}
+$('todayDone').onclick = () => { try { localStorage.setItem('kernel.reviewed', today()); } catch {} drawToday(); };
 // Export: one Markdown file of every highlight, by book and chapter.
 $('marksExport').onclick = async () => {
   await allTexts(listData);
@@ -595,6 +610,7 @@ async function load() {
   $('collections').replaceChildren(...names.map(n => new Option(n)));
   listData = data;
   marks = data.flatMap(r => (r.listen?.marks || []).map(m => ({ ...m, id: r.id, book: r.title })));
+  drawToday();
   $('marksBtn').textContent = `Highlights · ${marks.length}`; $('marksBtn').classList.toggle('hide', !marks.length);
   const groups = [['Currently playing', shown.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),
     [data.some(started) || names.length ? 'Library' : '', rest.filter(r => !r.collection)]];

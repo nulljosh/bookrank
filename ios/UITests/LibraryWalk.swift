@@ -102,6 +102,16 @@ final class LibraryWalk: XCTestCase {
         saveTo("highlight-share", XCUIScreen.main.screenshot())
     }
 
+    /// Today's five at the top of the library; Done hides it until tomorrow.
+    func testTodaysFive() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-kernel.reviewed", ""]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Today's five"].waitForExistence(timeout: 15))
+        sleep(2)
+        saveTo("todays-five", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

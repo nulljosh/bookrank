@@ -24,7 +24,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 21 | Search by meaning: find an idea even when the words differ, no chat | apps, web | built (bge-small through /api/embed, vectors kept per book version in Cache Storage and Application Support; Apple NLEmbedding and NLContextualEmbedding were tried and ranked the right line last; UI checked with a stand-in embedder, the 0.6 floor still to tune on the real model) |
 | 22 | All highlights in one place; share a highlight as an image card | apps, web | built (Highlights button on the library, a 1080 gold card from card.js and HighlightCard; the app card is rendered only when shared, not yet seen in a shot) |
 | 23 | Export highlights and notes as Markdown | apps, web | built (highlights, by book and chapter: marksMarkdown and exportMarkdown; notes join when row 29 lands) |
-| 24 | Daily review: five highlights resurface on a schedule | apps, web | open |
+| 24 | Daily review: five highlights resurface on a schedule | apps, web | built (Today's five on the library, the same five on every device by FNV of the day, Done until tomorrow; a daily shuffle, not spaced repetition) |
 | 25 | Quiz me: three questions per chapter, answers checked | apps, web | open |
 | 26 | Key ideas card at the top of each book | apps, web | open |
 | 27 | Two-line recap at the end of each chapter in Listen | apps, web | open |

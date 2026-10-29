@@ -25,3 +25,11 @@ export function marksMarkdown(books) {
   }
   return out.trimEnd() + '\n';
 }
+
+// Today's five: the same five highlights on every device for a given day, a different five tomorrow.
+// Ranked by FNV-1a of the day and the line; dailyFive in HighlightsView.swift uses the same hash. `day` is "YYYY-MM-DD".
+// ponytail: a daily shuffle, not spaced repetition; weight by last seen if people want the old ones back more.
+export function dailyFive(marks, day, n = 5) {
+  const h = s => { let x = 0x811c9dc5; for (let i = 0; i < s.length; i++) x = Math.imul(x ^ s.charCodeAt(i), 0x01000193) >>> 0; return x; };
+  return [...marks].sort((a, b) => h(day + a.text) - h(day + b.text) || (a.text < b.text ? -1 : 1)).slice(0, n);
+}

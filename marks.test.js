@@ -23,3 +23,15 @@ const { marksMarkdown } = await import('./marks.js');
   ]);
   assert.equal(md, '# Highlights\n\n## Book A\n\n### One\n\n> first line\n\n### Two\n\n> later line\n');
 }
+
+// Today's five: same day, same five; another day, another order; never more than five.
+{
+  const { dailyFive } = await import('./marks.js');
+  const all = Array.from({ length: 12 }, (_, i) => m(0, `line ${i}`));
+  const a = dailyFive(all, '2026-10-28'), b = dailyFive([...all].reverse(), '2026-10-28');
+  assert.equal(a.length, 5); assert.deepEqual(a, b);
+  assert.notDeepEqual(dailyFive(all, '2026-10-29'), a);
+  assert.deepEqual(dailyFive(all.slice(0, 2), '2026-10-28').length, 2);
+  // Pinned: the apps' dailyFive (HighlightsView.swift) must give this same list.
+  assert.deepEqual(a.map(x => x.text), ['line 11', 'line 10', 'line 8', 'line 9', 'line 6']);
+}

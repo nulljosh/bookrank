@@ -115,3 +115,40 @@ struct MarkdownExport: Transferable {
             .suggestedFileName("Kernel highlights.md")
     }
 }
+
+/// Today's five: the same five highlights as on the web today (dailyFive in marks.js), a different five tomorrow.
+func dailyFive<T>(_ items: [T], text: (T) -> String, day: String, n: Int = 5) -> [T] {
+    func h(_ s: String) -> UInt32 { var x: UInt32 = 0x811c9dc5; for u in s.utf16 { x = (x ^ UInt32(u)) &* 0x01000193 }; return x }
+    return Array(items.sorted { (h(day + text($0)), text($0)) < (h(day + text($1)), text($1)) }.prefix(n))
+}
+
+/// Highlights come back a few at a time at the top of the library. Done hides them until tomorrow.
+struct TodaysFive: View {
+    let store: DataStore
+    @AppStorage("kernel.reviewed") private var reviewed = ""
+
+    var body: some View {
+        let day = Date.now.formatted(Date.ISO8601FormatStyle(timeZone: .current).year().month().day())   // local day, like the web
+        let five = dailyFive(store.summaryIndex.flatMap { e in (e.listen?.marks ?? []).map { (e, $0) } }, text: { $0.1.text }, day: day)
+        if !five.isEmpty && reviewed != day {
+            Section {
+                ForEach(five, id: \.1.text) { e, m in
+                    #if os(macOS)
+                    line(e, m).tag(e.slug)
+                    #else
+                    NavigationLink { SummaryDetailView(slug: e.slug, store: store, find: m.text) } label: { line(e, m) }
+                    #endif
+                }
+                Button("Done for today") { withAnimation { reviewed = day } }.font(.kernel(.footnote)).foregroundStyle(.tint)
+            } header: { Text("Today's five") }
+        }
+    }
+
+    private func line(_ e: SummaryEntry, _ m: ListenState.Mark) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(m.text).font(.kernel(.body)).lineLimit(4)
+            Text("\(e.title) · Ch \(m.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
+        }
+        .padding(.vertical, 2)
+    }
+}

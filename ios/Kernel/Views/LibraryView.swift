@@ -254,6 +254,7 @@ struct LibraryView: View {
                 .listRowSeparator(.hidden)
             #endif
         }
+        if q.isEmpty { TodaysFive(store: store) }
         // Your collections, A to Z, then the books in none. A search shows one plain list.
         let plain = shown.filter { $0.slug != cont?.slug }
         let names = q.isEmpty ? store.collections.filter { n in plain.contains { $0.collection == n } } : []
