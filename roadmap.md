@@ -1,5 +1,5 @@
 ## Road to 100 (2026-10-28)
-One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 36 to 39 need Workers AI, so they wait for Workers Paid (Joshua, 2026-10-29); "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 48 and 53 to 56 need Workers AI (Workers Paid, Joshua, 2026-10-29) and row 52 needs Joshua's Goodreads sign-in to test, so they wait; rows move freely; "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
 
 | v | What | Where | Status |
 |---|---|---|---|
@@ -35,29 +35,29 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 32 | Import an EPUB or PDF you own into chapters | apps, web | built (epub.js and Ebook.swift unzip in place, a chapter per spine section; PDF in the apps by outline or ten pages at a time; web PDF waits on a PDF reader worth its size) |
 | 33 | Scan pages with the document camera in Add pages | iPhone, iPad | built (VisionKit document camera, flat cropped pages through the same reader; only on a device with a camera, so not seen in the simulator yet) |
 | 34 | Read the page text on the device before upload, so photos never leave it | apps | built (Pages: Keep the exact words reads each page with Vision on the device, accurate then fast; no upload, works with no AI quota; checked with a rendered page on the Mac) |
-| 35 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
-| 36 | Quiz me: three questions per chapter, answers checked | apps, web | open |
-| 37 | Key ideas card at the top of each book | apps, web | open |
-| 38 | Two-line recap at the end of each chapter in Listen | apps, web | open |
-| 39 | Connections: the same idea across your books | apps, web | open |
-| 40 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
-| 41 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | open |
-| 42 | Siri: "continue my book" | apps | open |
-| 43 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
-| 44 | Lock Screen widget and a Live Activity while listening | iPhone | open |
-| 45 | Control Center control for the current book | iPhone, Mac | open |
-| 46 | CarPlay audio | iPhone | open |
-| 47 | Handoff: pick up the same chapter on the Mac | apps | open |
-| 48 | Mac menu bar mini player | Mac | open |
-| 49 | Mac keyboard map and a command palette | Mac | open |
-| 50 | Spotlight finds your summaries and highlights | apps | open |
-| 51 | Share extension: save text or a web article as a summary | apps | open |
-| 52 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
-| 53 | Pick the narrator voice, per book | apps, web | open |
-| 54 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
-| 55 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
-| 56 | Storage screen: what is downloaded, how big, remove it | apps | open |
-| 57 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
+| 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | open |
+| 36 | Siri: "continue my book" | apps | open |
+| 37 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
+| 38 | Lock Screen widget and a Live Activity while listening | iPhone | open |
+| 39 | Control Center control for the current book | iPhone, Mac | open |
+| 40 | CarPlay audio | iPhone | open |
+| 41 | Handoff: pick up the same chapter on the Mac | apps | open |
+| 42 | Mac menu bar mini player | Mac | open |
+| 43 | Mac keyboard map and a command palette | Mac | open |
+| 44 | Spotlight finds your summaries and highlights | apps | open |
+| 45 | Share extension: save text or a web article as a summary | apps | open |
+| 46 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
+| 47 | Pick the narrator voice, per book | apps, web | open |
+| 48 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
+| 49 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
+| 50 | Storage screen: what is downloaded, how big, remove it | apps | open |
+| 51 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
+| 52 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
+| 53 | Quiz me: three questions per chapter, answers checked | apps, web | open |
+| 54 | Key ideas card at the top of each book | apps, web | open |
+| 55 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 56 | Connections: the same idea across your books | apps, web | open |
+| 57 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
 | 58 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | open |
 | 59 | Languages: French, Spanish and German interface | apps, web | open |
 | 60 | Narrate a chapter in your own language | apps, web | open |
