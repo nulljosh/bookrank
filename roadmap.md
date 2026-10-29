@@ -21,7 +21,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 18 | Search inside chapter text, results jump to the line | apps, web | built (matching line under each result; the book opens on the notes at that line, marked; testSearch) |
 | 19 | Collections: put books in your own groups | apps, web | built (one collection per book, a `collection` column on jaybulb-api; library groups A to Z, then Library; testCollections) |
 | 20 | Sort and filter the library (recent, title, progress, length) | apps, web | built (Recently edited, Title, Progress, Shortest first; All, In progress, Not started; kept per device; testSortFilter) |
-| 21 | Your own note under any chapter | apps, web | open |
+| 21 | Search by meaning: find an idea even when the words differ (on-device embeddings in the apps, Workers AI on the web), no chat | apps, web | open |
 | 22 | All highlights in one place; share a highlight as an image card | apps, web | open |
 | 23 | Export highlights and notes as Markdown | apps, web | open |
 | 24 | Daily review: five highlights resurface on a schedule | apps, web | open |
@@ -29,7 +29,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 26 | Key ideas card at the top of each book | apps, web | open |
 | 27 | Two-line recap at the end of each chapter in Listen | apps, web | open |
 | 28 | Connections: the same idea across your books | apps, web | open |
-| 29 | Ask the whole book, not only one chapter | apps, web | open |
+| 29 | Your own note under any chapter (moved from 21; Joshua 2026-10-28: AI should be quiet and useful, not more chat) | apps, web | open |
 | 30 | Ask by voice (on-device dictation) | apps | open |
 | 31 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
 | 32 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | open |
