@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 33.0.0 (2026-10-28)
+Scan pages in Add pages on iPhone and iPad: the document camera finds each page's edges, flattens it and reads it, no photo library needed.
+
 ## 32.0.0 (2026-10-28)
 Bring your own ebooks: an EPUB without DRM becomes a book with a chapter per section, on the web and in the apps, and the apps take PDFs too, split by the PDF's own chapters.
 

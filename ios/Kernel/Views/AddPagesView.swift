@@ -2,6 +2,9 @@ import SwiftUI
 import PhotosUI
 import ImageIO
 import UniformTypeIdentifiers
+#if os(iOS)
+import VisionKit
+#endif
 
 /// Add a chapter from photos of the pages: each photo goes to /api/summarize-photo (same as the
 /// web's "From photos"), the text lands in an editor, Save appends it to a book or starts a new one.
@@ -21,6 +24,7 @@ struct AddPagesView: View {
     @State private var error: String?
     @State private var saving = false
     @State private var kindle = false
+    @State private var scanning = false
     @State private var ebook = false
     @State private var importing: String?
     @State private var kindleDone: String?
@@ -41,6 +45,12 @@ struct AddPagesView: View {
                         Label(reading ?? "Choose page photos", systemImage: "photo.on.rectangle")
                     }
                     .disabled(reading != nil)
+                    #if os(iOS)
+                    if VNDocumentCameraViewController.isSupported {
+                        Button { scanning = true } label: { Label("Scan pages", systemImage: "doc.viewfinder") }.disabled(reading != nil)
+                            .fullScreenCover(isPresented: $scanning) { Scanner { pages in Task { await readScans(pages) } }.ignoresSafeArea() }
+                    }
+                    #endif
                     TextEditor(text: $text).frame(minHeight: 200).font(.kernel(.body))
                         .overlay(alignment: .topLeading) {
                             if text.isEmpty { Text("The pages' text shows up here.").foregroundStyle(.tertiary).padding(.top, 8).padding(.leading, 5).allowsHitTesting(false) }
@@ -87,6 +97,17 @@ struct AddPagesView: View {
             }
             .onChange(of: picks) { _, items in Task { await read(items) } }
         }
+    }
+
+    /// Pages from the document camera: already flat and cropped JPEGs, read the same way as photos.
+    private func readScans(_ pages: [Data]) async {
+        error = nil
+        for (i, jpeg) in pages.enumerated() {
+            reading = "Reading \(i + 1) of \(pages.count)…"
+            do { let page = try await Self.summarize(jpeg); text += (text.isEmpty ? "" : "\n\n") + page }
+            catch { self.error = (error as? API.Failure)?.message ?? "Could not read a page." }
+        }
+        reading = nil
     }
 
     private func read(_ items: [PhotosPickerItem]) async {

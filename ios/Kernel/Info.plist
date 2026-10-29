@@ -24,6 +24,8 @@
 	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan book pages into a chapter. The pages are read and dropped, never kept.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Sign in faster with Touch ID.</string>
 	<key>UIBackgroundModes</key>
