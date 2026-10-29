@@ -52,6 +52,7 @@ struct KernelApp: App {
                     }
                 #if os(iOS)
                 if CommandLine.flag("UITEST_WIDGETS") { WidgetGallery() }   // screenshots of the Home Screen widgets
+                if CommandLine.flag("UITEST_GOODREADS_PAGE") { GoodreadsBookPage(title: "Atomic Habits") }   // screenshots: Mark Read on Goodreads
                 if CommandLine.flag("UITEST_SHARE") {   // screenshots of the share sheet, as Safari would show it
                     ShareView(title: "The Psychology of Money", text: "", url: URL(string: "https://example.com/psychology-of-money")) { _ in }
                 }

@@ -94,7 +94,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 91 | CarPlay audio | iPhone | open |
 | 92 | Share extension: save text or a web article as a summary | apps | built (CHANGELOG 92.0.0; iPhone and iPad; the extension itself shows only in a signed build) |
 | 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
-| 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
+| 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | built (CHANGELOG 94.0.0; Kernel opens the page, Goodreads' own button marks it, so no one's account is touched by the agent) |
 | 95 | Quiz me: three questions per chapter, answers checked | apps, web | open |
 | 96 | Key ideas card at the top of each book | apps, web | open |
 | 97 | Two-line recap at the end of each chapter in Listen | apps, web | open |

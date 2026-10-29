@@ -381,6 +381,16 @@ final class LibraryWalk: XCTestCase {
         saveTo("share-sheet", XCUIScreen.main.screenshot())
     }
 
+    /// Mark Read on Goodreads: the book's own Goodreads page inside Kernel, where Goodreads' button does the marking.
+    func testGoodreadsBookPage() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_GOODREADS_PAGE", "-kernel.onboarded", "YES"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Goodreads"].waitForExistence(timeout: 10))
+        sleep(6)   // the page loads from goodreads.com
+        saveTo("goodreads-book", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

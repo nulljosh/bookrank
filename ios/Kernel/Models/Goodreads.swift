@@ -84,6 +84,26 @@ final class Goodreads: NSObject, WKNavigationDelegate {
     nonisolated func webView(_ w: WKWebView, didFailProvisionalNavigation n: WKNavigation!, withError e: Error) { Task { @MainActor in loaded?.resume(); loaded = nil } }
 }
 
+/// A book on Goodreads, opened with your Goodreads sign-in so you can mark it read with Goodreads' own button.
+/// Kernel finds the page and never presses anything for you; Done refreshes your shelves.
+struct GoodreadsBookPage: View {
+    let title: String
+    @Environment(\.dismiss) private var dismiss
+    var body: some View {
+        NavigationStack {
+            WebPage(url: URL(string: "https://www.goodreads.com/search?q=\(title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!) { _ in }
+                .navigationTitle("Goodreads")
+                #if os(iOS)
+                .navigationBarTitleDisplayMode(.inline)
+                #endif
+                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { Task { _ = await Goodreads.shared.sync() }; dismiss() } } }
+        }
+        #if os(macOS)
+        .frame(minWidth: 640, minHeight: 640)
+        #endif
+    }
+}
+
 /// Goodreads' own sign-in page. Once a page on goodreads.com loads that is not a sign-in step, it syncs and closes.
 struct GoodreadsSignIn: View {
     @Environment(\.dismiss) private var dismiss

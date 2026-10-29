@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 94.0.0 (2026-10-29)
+Mark Read on Goodreads, from the chapters menu in Now Playing when you are signed in to Goodreads: the book's Goodreads page opens inside Kernel with your sign-in, you press Goodreads' own button, and Done refreshes your shelves. Kernel never presses it for you.
+
 ## 92.0.0 (2026-10-29)
 Share to Kernel from Safari or any app on iPhone and iPad: a web page or some selected text, saved under a title you choose. The next time Kernel opens it becomes a book on your account, the page's own paragraphs with a link back. The share sheet never needs your sign-in.
 

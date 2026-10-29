@@ -7,6 +7,7 @@ struct NowPlaying: View {
     var speaker = Speaker.shared
     @Environment(\.dismiss) private var dismiss
     @State private var scrub: Double?
+    @State private var goodreads: String?   // the book whose Goodreads page is open
 
     var body: some View {
         let entry = speaker.slug.flatMap { store.summary(for: $0) }
@@ -73,10 +74,15 @@ struct NowPlaying: View {
                                 if i == speaker.ch { Label(speaker.chapters[i].title, systemImage: "speaker.wave.2") } else { Text(speaker.chapters[i].title) }
                             }
                         }
+                        if Goodreads.shared.data != nil, let t = entry?.title {   // signed in to Goodreads on this device
+                            Divider()
+                            Button("Mark Read on Goodreads", systemImage: "checkmark.circle") { goodreads = t }
+                        }
                     } label: { Image(systemName: "list.bullet").accessibilityLabel("Chapters") }
                 }
                 .font(.kernel(.headline)).foregroundStyle(.secondary).menuStyle(.button).buttonStyle(.plain)
                 .padding(.horizontal, 24)
+                .sheet(isPresented: Binding(get: { goodreads != nil }, set: { if !$0 { goodreads = nil } })) { GoodreadsBookPage(title: goodreads ?? "") }
                 Spacer(minLength: 8)
             }
             .padding(.horizontal, 28)

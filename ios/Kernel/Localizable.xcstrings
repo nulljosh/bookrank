@@ -2619,6 +2619,28 @@
         }
       }
     },
+    "Mark Read on Goodreads": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marquer comme lu sur Goodreads"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar como leído en Goodreads"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf Goodreads als gelesen markieren"
+          }
+        }
+      }
+    },
     "Match device": {
       "localizations": {
         "fr": {
