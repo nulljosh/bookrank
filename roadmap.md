@@ -1,5 +1,5 @@
 ## Road to 100 (2026-10-28)
-One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 48 and 53 to 56 need Workers AI (Workers Paid, Joshua, 2026-10-29) and row 52 needs Joshua's Goodreads sign-in to test, so they wait; rows move freely; "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. The last rows before 100 wait on something outside the code: Workers AI (Workers Paid), Joshua's Goodreads sign-in, an App Group for widgets and extensions (set up once in Xcode with Joshua's account), and Apple's CarPlay entitlement; rows move freely; "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
 
 | v | What | Where | Status |
 |---|---|---|---|
@@ -37,69 +37,69 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 34 | Read the page text on the device before upload, so photos never leave it | apps | built (Pages: Keep the exact words reads each page with Vision on the device, accurate then fast; no upload, works with no AI quota; checked with a rendered page on the Mac) |
 | 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | built (App Intents: Add a summary, Play or pause, Next chapter, with Siri phrases; in the built metadata; the simulator's Shortcuts app did not list them, check on a device) |
 | 36 | Siri: "continue my book" | apps | built (ContinueBookIntent opens the book you are partway through and plays it; testContinueMyBook with a silent stand-in) |
-| 37 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
-| 38 | Lock Screen widget and a Live Activity while listening | iPhone | open |
-| 39 | Control Center control for the current book | iPhone, Mac | open |
-| 40 | CarPlay audio | iPhone | open |
-| 41 | Handoff: pick up the same chapter on the Mac | apps | open |
-| 42 | Mac menu bar mini player | Mac | open |
-| 43 | Mac keyboard map and a command palette | Mac | open |
-| 44 | Spotlight finds your summaries and highlights | apps | open |
-| 45 | Share extension: save text or a web article as a summary | apps | open |
-| 46 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
-| 47 | Pick the narrator voice, per book | apps, web | open |
-| 48 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
-| 49 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
-| 50 | Storage screen: what is downloaded, how big, remove it | apps | open |
-| 51 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
-| 52 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
-| 53 | Quiz me: three questions per chapter, answers checked | apps, web | open |
-| 54 | Key ideas card at the top of each book | apps, web | open |
-| 55 | Two-line recap at the end of each chapter in Listen | apps, web | open |
-| 56 | Connections: the same idea across your books | apps, web | open |
-| 57 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
-| 58 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | open |
-| 59 | Languages: French, Spanish and German interface | apps, web | open |
-| 60 | Narrate a chapter in your own language | apps, web | open |
-| 61 | Localized screenshots and listings | store | open |
-| 62 | First-run pages offer the Goodreads sign-in | apps | open |
-| 63 | Empty states and error messages A+ on every screen | apps, web | open |
-| 64 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | open |
-| 65 | Notifications: weekly recap, quiet hours | apps | open |
-| 66 | Public profile: the shelf and highlights you choose to share | web | open |
-| 67 | Share links with cover preview cards | web | open |
-| 68 | Landing refresh with real app screens and the Goodreads story | web | open |
-| 69 | Opt-in public pages for shared summaries | web | open |
-| 70 | 500-book library stays smooth (Goodreads scale) | apps, web | open |
-| 71 | Covers cached on disk | apps | open |
-| 72 | Startup time budget with an Instruments pass | apps | open |
-| 73 | On-device error log you can export when something breaks | apps | open |
-| 74 | Retry with backoff on every network call; saves queue while offline | apps, web | open |
-| 75 | Listen position merges across devices by time | apps, web | open |
-| 76 | Security sweep: auth, rate limits on every model route, KV caps | api | open |
-| 77 | Export everything you have as one file | apps, web | open |
-| 78 | Account deletion also clears usage counters and audio caches | api, apps | open |
-| 79 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | open |
-| 80 | kernel.jaybulb.com and the repo rename | web, repo | built (repo nulljosh/kernel, folder kernel with a bookrank link, auth mails say Kernel; kernel.jaybulb.com waits on Joshua adding it to the Pages project) |
-| 81 | Swift unit tests (parsers, goal, nudges) run in CI | apps | open |
-| 82 | Simulator UI walks run in CI | apps | open |
-| 83 | Docs to 100 percent | repo | open |
-| 84 | Web polish pass to match the apps (apple skill) | web | open |
-| 85 | Web keyboard shortcuts and a focus mode | web | open |
-| 86 | Read mode: page by page without audio, position saved | apps, web | open |
-| 87 | Kernel Sans italic and bold for quotes | all | open |
-| 88 | Sepia reading theme | apps, web | open |
-| 89 | True black for OLED | apps | open |
-| 90 | iPad: Stage Manager windows, Pencil highlights | iPad | open |
-| 91 | Mac: one window per book | Mac | open |
-| 92 | Promotional text and in-app events each release | store | open |
-| 93 | Two screenshot sets tested on the product page | store | open |
-| 94 | Second Mobbin pass against the best apps; close what is left | all | open |
-| 95 | apple skill audit of every screen, zero findings | all | open |
-| 96 | Security and privacy audit, zero findings | all | open |
-| 97 | Performance audit, zero regressions | all | open |
-| 98 | Docs, README, WHITEPAPER and landing final pass | repo, web | open |
-| 99 | Release candidate: every row above on iPhone, iPad, Mac and web | all | open |
+| 37 | Handoff: pick up the same chapter on the Mac | apps | open |
+| 38 | Mac menu bar mini player | Mac | open |
+| 39 | Mac keyboard map and a command palette | Mac | open |
+| 40 | Spotlight finds your summaries and highlights | apps | open |
+| 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
+| 42 | Pick the narrator voice, per book | apps, web | open |
+| 43 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
+| 44 | Storage screen: what is downloaded, how big, remove it | apps | open |
+| 45 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
+| 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | open |
+| 47 | Languages: French, Spanish and German interface | apps, web | open |
+| 48 | Narrate a chapter in your own language | apps, web | open |
+| 49 | Localized screenshots and listings | store | open |
+| 50 | First-run pages offer the Goodreads sign-in | apps | open |
+| 51 | Empty states and error messages A+ on every screen | apps, web | open |
+| 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | open |
+| 53 | Notifications: weekly recap, quiet hours | apps | open |
+| 54 | Public profile: the shelf and highlights you choose to share | web | open |
+| 55 | Share links with cover preview cards | web | open |
+| 56 | Landing refresh with real app screens and the Goodreads story | web | open |
+| 57 | Opt-in public pages for shared summaries | web | open |
+| 58 | 500-book library stays smooth (Goodreads scale) | apps, web | open |
+| 59 | Covers cached on disk | apps | open |
+| 60 | Startup time budget with an Instruments pass | apps | open |
+| 61 | On-device error log you can export when something breaks | apps | open |
+| 62 | Retry with backoff on every network call; saves queue while offline | apps, web | open |
+| 63 | Listen position merges across devices by time | apps, web | open |
+| 64 | Security sweep: auth, rate limits on every model route, KV caps | api | open |
+| 65 | Export everything you have as one file | apps, web | open |
+| 66 | Account deletion also clears usage counters and audio caches | api, apps | open |
+| 67 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | open |
+| 68 | kernel.jaybulb.com and the repo rename | web, repo | built (repo nulljosh/kernel, folder kernel with a bookrank link, auth mails say Kernel; kernel.jaybulb.com waits on Joshua adding it to the Pages project) |
+| 69 | Swift unit tests (parsers, goal, nudges) run in CI | apps | open |
+| 70 | Simulator UI walks run in CI | apps | open |
+| 71 | Docs to 100 percent | repo | open |
+| 72 | Web polish pass to match the apps (apple skill) | web | open |
+| 73 | Web keyboard shortcuts and a focus mode | web | open |
+| 74 | Read mode: page by page without audio, position saved | apps, web | open |
+| 75 | Kernel Sans italic and bold for quotes | all | open |
+| 76 | Sepia reading theme | apps, web | open |
+| 77 | True black for OLED | apps | open |
+| 78 | iPad: Stage Manager windows, Pencil highlights | iPad | open |
+| 79 | Mac: one window per book | Mac | open |
+| 80 | Promotional text and in-app events each release | store | open |
+| 81 | Two screenshot sets tested on the product page | store | open |
+| 82 | Second Mobbin pass against the best apps; close what is left | all | open |
+| 83 | apple skill audit of every screen, zero findings | all | open |
+| 84 | Security and privacy audit, zero findings | all | open |
+| 85 | Performance audit, zero regressions | all | open |
+| 86 | Docs, README, WHITEPAPER and landing final pass | repo, web | open |
+| 87 | Release candidate: every row above on iPhone, iPad, Mac and web | all | open |
+| 88 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
+| 89 | Lock Screen widget and a Live Activity while listening | iPhone | open |
+| 90 | Control Center control for the current book | iPhone, Mac | open |
+| 91 | CarPlay audio | iPhone | open |
+| 92 | Share extension: save text or a web article as a summary | apps | open |
+| 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
+| 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
+| 95 | Quiz me: three questions per chapter, answers checked | apps, web | open |
+| 96 | Key ideas card at the top of each book | apps, web | open |
+| 97 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 98 | Connections: the same idea across your books | apps, web | open |
+| 99 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
 | 100 | Kernel 100 | all | open |
 
 ## Open outside the table
