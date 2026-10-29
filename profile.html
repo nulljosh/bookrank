@@ -64,6 +64,11 @@ a.skip:focus { left:1rem; top:1rem; position:fixed; z-index:9; padding:0.5rem 0.
 .head input { max-width:16rem; }
 dl.profile { display:grid; grid-template-columns:auto 1fr; gap:0.5rem 1.5rem; font-size:0.9375rem; margin-bottom:2rem; }
 dl.profile dt { color:var(--text3); }
+.pub { display:grid; gap:0.5rem; margin-bottom:2rem; font-size:0.9375rem; }
+.pub label { display:flex; gap:0.6rem; align-items:center; }
+.pub input[type=checkbox] { width:auto; height:auto; flex:none; margin:0; accent-color:var(--accent); }
+.list.public li { display:block; padding:0.9rem 0; border-bottom:1px solid var(--border2); }
+.list.public blockquote { margin:0.5rem 0 0; padding-left:0.8rem; border-left:2px solid var(--accent); color:var(--text2); font-size:0.9375rem; }
 </style>
 </head>
 <body>
@@ -94,6 +99,8 @@ dl.profile dt { color:var(--text3); }
       <dt class="hide" id="grGenT">Favorite genres</dt><dd class="hide" id="grGen"></dd>
       <dt>Goodreads</dt><dd><input id="goodreads" placeholder="Paste your Goodreads profile link" autocomplete="off" aria-label="Goodreads profile link"><span class="sub" id="grMsg"></span></dd>
     </dl>
+    <h2 style="font-family:var(--font-display);font-size:1rem;margin:0.5rem 0 0.6rem">Public profile</h2>
+    <div class="pub" id="pubSwitches"></div>
     <h2 style="font-family:var(--font-display);font-size:1rem;margin:0.5rem 0 0.6rem">Credentials</h2>
     <form class="auth" id="credForm">
       <input type="email" id="newEmail" aria-label="New email" placeholder="New email" autocomplete="email">
@@ -117,6 +124,7 @@ dl.profile dt { color:var(--text3); }
     </form>
     <p class="msg" id="profileMsg" role="status" aria-live="polite"></p>
   </section>
+  <section id="publicView" class="hide"></section>
   <p class="msg" id="gateMsg"></p>
 </main>
 <script type="module">
@@ -125,6 +133,7 @@ dl.profile dt { color:var(--text3); }
 // ponytail: own profile only. Viewing someone else's needs a public profiles table; add it
 // when a second person asks.
 import { createClient } from './spark.js';
+import { showPublic, publicSwitches } from './public-profile.js';
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
@@ -177,7 +186,11 @@ const showAvatar = (user) => {
 };
 
 const { data: { user } } = await db.auth.getUser();
-if (!user) { $('gateMsg').innerHTML = 'Sign in on <a href="library.html">My summaries</a> to see your profile.'; }
+const asked = (new URLSearchParams(location.search).get('u') || '').toLowerCase();
+if (asked && (!user || asked !== handleFor(user))) {   // someone else's profile, or yours signed out
+  $('publicView').classList.remove('hide'); Object.assign($('main').querySelector('.back'), { href: '/', textContent: '\u2190 Kernel' });
+  await showPublic(db, asked, $('publicView'));
+} else if (!user) { $('gateMsg').innerHTML = 'Sign in on <a href="library.html">My summaries</a> to see your profile.'; }
 else {
   const handle = handleFor(user);
   if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
@@ -197,6 +210,7 @@ else {
       $('pUsage').textContent = left < u.chapter ? 'Used up for now. The device voice takes over.' : `About ${Math.floor(left / u.chapter)} chapters left`;
     }).catch(() => { $('pUsage').textContent = '\u2014'; });
   showAvatar(user); showGoodreads(user);
+  publicSwitches(db, user, $('pubSwitches'), handle);
   db.from(TABLE).select('id', { count: 'exact', head: true }).then(({ count }) => { $('pCount').textContent = count ?? '\u2014'; });
   $('profileView').classList.remove('hide');
 

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 54.0.0 (2026-10-29)
+A public profile, if you want one: turn it on in your profile and bookrank.jaybulb.com/profile?u=<your name> shows the books you already shared by link, and your highlights from them if you choose. Off by default.
+
 ## 53.0.0 (2026-10-29)
 Pick the hour your morning line arrives, so nothing comes before you are up, and turn on a weekly recap with your minutes and listening days.
 
