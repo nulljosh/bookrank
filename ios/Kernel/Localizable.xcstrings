@@ -177,6 +177,28 @@
         }
       }
     },
+    "%lld minutes listened, on %lld days.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutes écoutées, sur %lld jours."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutos escuchados, en %lld días."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten gehört, an %lld Tagen."
+          }
+        }
+      }
+    },
     "%lld of %lld min": {
       "localizations": {
         "fr": {
@@ -1497,6 +1519,28 @@
         }
       }
     },
+    "Each morning at the hour you pick, one of your highlights or a line from a book you summarized; tap it to open the book. Nothing arrives before that hour. The weekly recap comes on the week's last evening with your minutes and days. Nothing leaves this device.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque matin à l'heure choisie, un de vos passages surlignés ou une phrase d'un livre résumé ; touchez-la pour ouvrir le livre. Rien n'arrive avant cette heure. Le bilan de la semaine arrive le dernier soir de la semaine avec vos minutes et vos jours. Rien ne quitte cet appareil."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada mañana a la hora que elijas, uno de tus subrayados o una frase de un libro resumido; tócala para abrir el libro. No llega nada antes de esa hora. El resumen semanal llega la última tarde de la semana con tus minutos y días. Nada sale de este dispositivo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeden Morgen zur gewählten Stunde eine deiner Markierungen oder eine Zeile aus einem zusammengefassten Buch; tippe darauf, um das Buch zu öffnen. Vorher kommt nichts. Der Wochenrückblick kommt am letzten Abend der Woche mit deinen Minuten und Tagen. Nichts verlässt dieses Gerät."
+          }
+        }
+      }
+    },
     "Email": {
       "localizations": {
         "fr": {
@@ -2443,6 +2487,28 @@
         }
       }
     },
+    "Morning line at": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phrase du matin à"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de la mañana a las"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenzeile um"
+          }
+        }
+      }
+    },
     "Name": {
       "localizations": {
         "fr": {
@@ -2791,6 +2857,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Noch keine Markierungen"
+          }
+        }
+      }
+    },
+    "No listening this week yet. A chapter takes about five minutes.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune écoute cette semaine. Un chapitre prend environ cinq minutes."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no has escuchado nada esta semana. Un capítulo dura unos cinco minutos."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Woche noch nichts gehört. Ein Kapitel dauert etwa fünf Minuten."
           }
         }
       }
@@ -5083,6 +5171,28 @@
         }
       }
     },
+    "Weekly recap": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bilan de la semaine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumen semanal"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wochenrückblick"
+          }
+        }
+      }
+    },
     "What do you want to know?": {
       "localizations": {
         "fr": {
@@ -5277,6 +5387,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deine Zusammenfassungen"
+          }
+        }
+      }
+    },
+    "Your week in Kernel": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre semaine dans Kernel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu semana en Kernel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Woche in Kernel"
           }
         }
       }

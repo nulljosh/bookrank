@@ -53,7 +53,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 50 | First-run pages offer the Goodreads sign-in | apps | built (the last first-run page has "Bring my Goodreads shelves" under the sample and sign-in; it opens Goodreads' own sign-in and the shelves fill the library behind it. The first-run pages now translate too) |
 | 51 | Empty states and error messages A+ on every screen | apps, web | built (apps: the library says it could not reach your library with a Try again button instead of a raw error, Highlights and the command palette say when they are empty; web: the same failed load with a try again link, and the empty library points at New summary) |
 | 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | built (profile, then Listening, Goodreads, Appearance, Notifications and Data, which now also opens Storage, then credentials, sign out and delete) |
-| 53 | Notifications: weekly recap, quiet hours | apps | open |
+| 53 | Notifications: weekly recap, quiet hours | apps | built (Account, Notifications: pick the hour the morning line arrives, 7 to noon, and nothing comes before it; a Weekly recap toggle sends your minutes and days on the week's last evening, requeued each time you listen) |
 | 54 | Public profile: the shelf and highlights you choose to share | web | open |
 | 55 | Share links with cover preview cards | web | open |
 | 56 | Landing refresh with real app screens and the Goodreads story | web | open |

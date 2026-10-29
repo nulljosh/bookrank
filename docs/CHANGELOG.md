@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 53.0.0 (2026-10-29)
+Pick the hour your morning line arrives, so nothing comes before you are up, and turn on a weekly recap with your minutes and listening days.
+
 ## 52.0.0 (2026-10-29)
 Account is grouped the way you use it: Listening, Goodreads, Appearance, Notifications and Data, with Storage reachable from Data.
 

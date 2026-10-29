@@ -1,5 +1,6 @@
 import AuthenticationServices
 import SwiftUI
+import UserNotifications
 
 /// Sign in, sign up, and account deletion.
 ///
@@ -25,6 +26,8 @@ struct AccountView: View {
     @State private var nudge = Nudge.enabled
     @State private var showGoodreads = false
     @State private var showStorage = false
+    @AppStorage("kernel.nudgeHour") private var nudgeHour = 9
+    @AppStorage("kernel.recap") private var recap = false
     @State private var usage: VoiceUsage?
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
@@ -344,10 +347,18 @@ struct AccountView: View {
                 Text("Off").tag(0)
                 ForEach([15, 30, 60, 120], id: \.self) { Text("\($0) min").tag($0) }
             }
+            Picker("Morning line at", selection: Binding(get: { nudgeHour }, set: { h in nudgeHour = h; Task { await Nudge.schedule(store.summaryIndex) } })) {
+                ForEach([7, 8, 9, 10, 12], id: \.self) { h in Text(Calendar.current.date(bySettingHour: h, minute: 0, second: 0, of: .now)!, style: .time).tag(h) }
+            }
+            .disabled(!nudge)
+            Toggle("Weekly recap", isOn: Binding(get: { recap }, set: { on in
+                recap = on
+                Task { if on { _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) }; await Nudge.recap() }
+            }))
         } header: {
             Text("Notifications")
         } footer: {
-            Text("At 9:00 each morning, one of your highlights or a line from a book you summarized; tap it to open the book. With a weekly goal, one reminder at the end of the week if you are behind. Nothing leaves this device.")
+            Text("Each morning at the hour you pick, one of your highlights or a line from a book you summarized; tap it to open the book. Nothing arrives before that hour. The weekly recap comes on the week's last evening with your minutes and days. Nothing leaves this device.")
         }
 
         Section {

@@ -8,6 +8,27 @@ enum Nudge {
     static let key = "bookrank.nudge"
     private static let prefix = "bookrank.nudge."
     static var enabled: Bool { UserDefaults.standard.bool(forKey: key) }
+    /// The hour the morning line arrives, so nothing comes before you are up. 9 unless you pick another.
+    static var hour: Int { UserDefaults.standard.object(forKey: "kernel.nudgeHour") as? Int ?? 9 }
+    private static let recapID = "kernel.recap"
+
+    /// The week's last evening at 19:00: minutes listened and on how many days. Requeued whenever listening is saved,
+    /// so the numbers are as of the last time you listened. ponytail: no background refresh; a week with no launch says nothing new.
+    static func recap() async {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [recapID])
+        guard UserDefaults.standard.bool(forKey: recapID) else { return }
+        let cal = Calendar.current
+        var last = DateComponents(); last.weekday = (cal.firstWeekday + 5) % 7 + 1; last.hour = 19
+        guard let at = cal.nextDate(after: .now, matching: last, matchingPolicy: .nextTime),
+              let end = cal.date(byAdding: .day, value: 7, to: Goal.week()), at < end else { return }
+        let g = Goal.shared, content = UNMutableNotificationContent()
+        content.title = String(localized: "Your week in Kernel")
+        content.body = g.minutes == 0 ? String(localized: "No listening this week yet. A chapter takes about five minutes.")
+            : String(localized: "\(g.minutes) minutes listened, on \(g.days.count) days.")
+        try? await center.add(UNNotificationRequest(identifier: recapID, content: content,
+            trigger: UNCalendarNotificationTrigger(dateMatching: cal.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)))
+    }
 
     /// A readable paragraph: not a heading, a sentence or two, cut at a sentence end under ~170 characters.
     static func line(from content: String) -> String? {
@@ -62,8 +83,8 @@ enum Nudge {
             let pick: (SummaryEntry, String)? = marked.popLast() ?? entries.randomElement().flatMap { e in line(from: e.content).map { (e, $0) } }
             guard let (entry, text) = pick, let date = cal.date(byAdding: .day, value: day, to: Date()) else { continue }
             var when = cal.dateComponents([.year, .month, .day], from: date)
-            when.hour = 9; when.minute = 0
-            if let at = cal.date(from: when), at <= Date() { continue }   // today's 9:00 already passed
+            when.hour = hour; when.minute = 0
+            if let at = cal.date(from: when), at <= Date() { continue }   // today's hour already passed
             let content = UNMutableNotificationContent()
             content.title = entry.title
             content.body = text
