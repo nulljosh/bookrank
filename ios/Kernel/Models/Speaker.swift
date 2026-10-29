@@ -180,7 +180,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         go(to: ch, line: max(0, min(lines.count - 1, line + delta)))
     }
     /// Screenshots only (UITEST_PLAYER): the bar as if paused on a chapter, with nothing spoken.
-    func showPausedForScreenshot(chapters: [Chapter]) { self.chapters = chapters; ch = 0; paused = true; status = "" }
+    func showPausedForScreenshot(chapters: [Chapter]) {
+        self.chapters = chapters; slug = "sample"; ch = 0; lines = Self.blocks(chapters.first?.text ?? ""); line = min(2, max(lines.count - 1, 0)); paused = true; status = ""
+    }
     /// Show a chapter without speaking it.
     func open(_ chapter: Int) { stop(); ch = chapter; line = 0; Task { await showChapter() } }
     func go(to chapter: Int, line l: Int = 0) { ch = chapter; line = l; Task { await play(from: l) } }
@@ -251,6 +253,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
 
     @MainActor
     private func play(from: Int, fraction: Double? = nil) async {
+        // Screenshot runs are silent, whatever gets tapped: simulator audio plays out loud on Joshua's Mac.
+        if CommandLine.flag("UITEST_PLAYER") || CommandLine.flag("UITEST_SNAPSHOT") { return }
         token += 1; let tok = token
         synth.stopSpeaking(at: .immediate); player?.stop(); player = nil; lineOf = [:]; paused = false; word = nil
         guard ch < chapters.count else { return }

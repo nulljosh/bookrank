@@ -18,6 +18,7 @@ let onAmber = Color("OnAccent")
 struct MiniPlayer: View {
     let store: DataStore
     var speaker = Speaker.shared
+    @State private var full = false
     var body: some View {
         VStack(spacing: 0) {
             ProgressView(value: min(max(speaker.progress, 0), 1)).progressViewStyle(.linear).tint(amber).accessibilityHidden(true)
@@ -37,6 +38,9 @@ struct MiniPlayer: View {
                         .help(speaker.status)
                 }
                 .padding(.leading, 4)
+                .contentShape(Rectangle())
+                .onTapGesture { full = true }   // the title opens the full player
+                .accessibilityAddTraits(.isButton).accessibilityHint("Opens the full player").accessibilityIdentifier("nowPlayingTitle")
                 Spacer(minLength: 8)
                 // Speed, as a menu so the bar stays one line. ⌘⇧P pauses, ⌘. stops.
                 Menu {
@@ -71,6 +75,7 @@ struct MiniPlayer: View {
             .frame(maxWidth: .infinity)
         }
         .barGlass()
+        .sheet(isPresented: $full) { NowPlaying(store: store) }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Now playing")
         .transition(.move(edge: .bottom).combined(with: .opacity))

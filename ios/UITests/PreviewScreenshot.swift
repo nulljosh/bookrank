@@ -274,6 +274,18 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("hero-1", XCUIScreen.main.screenshot())
     }
 
+    /// The full player from the mini player, silent via UITEST_PLAYER. Never presses Play.
+    func testNowPlaying() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_PLAYER"]
+        app.launch()
+        let title = app.descendants(matching: .any)["nowPlayingTitle"].firstMatch
+        XCTAssertTrue(title.waitForExistence(timeout: 15)); title.tap()
+        XCTAssertTrue(app.buttons["Close"].waitForExistence(timeout: 5), "the full player should open")
+        sleep(2)
+        saveTo("now-playing", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
