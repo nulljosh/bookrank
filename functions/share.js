@@ -1,5 +1,6 @@
 // /share?t=<token>: the same page, with the book's title and cover in the link preview, so a shared
 // link shows up in Messages, Slack or X as a card instead of a bare URL. No token, or a dead one: the page as is.
+// Search engines may index it only if the owner has a public profile (`listed`).
 const API = "https://api.jaybulb.com";   // KERNEL_API overrides it for a local test
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
@@ -23,5 +24,7 @@ export async function onRequestGet({ request, env }) {
   return new HTMLRewriter()
     .on("title", { element: (e) => e.setInnerContent(`${row.title} · Kernel`) })
     .on("head", { element: (e) => e.append(cardMeta(row, request.url), { html: true }) })
+    // Listed only when the owner turned on a public profile; every other shared page stays out of search.
+    .on('meta[name="robots"]', { element: (e) => { if (row.listed) e.setAttribute("content", "index, follow"); } })
     .transform(page);
 }

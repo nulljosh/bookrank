@@ -16,7 +16,7 @@ export async function showPublic(db, u, el) {
 // Your own switches: the profile is public only with an explicit username, so the email never stands in for it.
 export function publicSwitches(db, user, el, handle) {
   const m = user.user_metadata || {};
-  el.innerHTML = `<label><input type="checkbox" id="pubOn"${m.public_profile ? ' checked' : ''}> Public profile: books you shared by link</label>
+  el.innerHTML = `<label><input type="checkbox" id="pubOn"${m.public_profile ? ' checked' : ''}> Public profile: books you shared by link, which search engines may then list</label>
     <label><input type="checkbox" id="pubMarks"${m.public_marks ? ' checked' : ''}${m.public_profile ? '' : ' disabled'}> Show my highlights from those books</label>
     <p class="sub" id="pubMsg"></p>`;
   const msg = t => { el.querySelector('#pubMsg').textContent = t; };

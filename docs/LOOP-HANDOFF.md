@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100. v50 tagged and checkpointed 2026-10-29.
 
-Next row: **57, Opt-in public pages for shared summaries**. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
+Next row: **58, 500-book library stays smooth (Goodreads scale)**. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
 
 ## How to QA
 
@@ -18,7 +18,7 @@ Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the
 
 ## Waiting on Joshua
 
-- Deploy jaybulb-api (`npx wrangler deploy` in ~/Documents/Code/jaybulb-api) so the public profile lookup from 54.0.0 goes live. The agent was not allowed to deploy the shared API.
+- Deploy jaybulb-api (`npx wrangler deploy` in ~/Documents/Code/jaybulb-api) so the public profile lookup from 54.0.0 and the listed flag from 57.0.0 go live. The agent was not allowed to deploy the shared API.
 
 - kernel.jaybulb.com on the `bookrank` Pages project (Cloudflare blocked the agent from adding it).
 - The signed-in Mac walk and the other checks listed in roadmap.md.
