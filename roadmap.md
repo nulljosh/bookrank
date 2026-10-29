@@ -9,7 +9,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 6 | Now Playing sheet: big cover, time left, line skip, speed, sleep, chapters (A2) | apps (the web reader already is one) | built |
 | 7 | Reader text size and line spacing (A3) | apps, web | built |
 | 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | built |
-| 9 | Highlights merge across devices instead of last writer wins (review item a) | apps, web | open |
+| 9 | Highlights merge across devices instead of last writer wins (review item a) | apps, web | built (three-way merge on save: marks.js and ListenState.merge) |
 | 10 | `updated_at` moves only on content edits, in jaybulb-api (review b); one listen stylesheet (review c) | api, web | open |
 | 11 | iPad pass: reading column, split view, screenshots | iPad | open |
 | 12 | Mac store screenshots at 2880x1800, signed-in Mac walk | Mac | open |

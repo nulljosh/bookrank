@@ -1,7 +1,7 @@
 // ponytail: network-first for pages, cache-first for the hashed assets they name.
 // Bump CACHE to evict everything a previous version stored.
-const CACHE = "kernel-v10";
-const FILES = ["/", "/index.html","/library.html","/share.html","/profile.html","/listen.js","/covers.js","/goal.js","/spark.js","/privacy.html", "/manifest.webmanifest"];
+const CACHE = "kernel-v11";
+const FILES = ["/", "/index.html","/library.html","/share.html","/profile.html","/listen.js","/covers.js","/goal.js","/marks.js","/spark.js","/privacy.html", "/manifest.webmanifest"];
 
 self.addEventListener("install", e => {
   // A single missing file fails the whole addAll, so tolerate misses.

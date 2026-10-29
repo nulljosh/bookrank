@@ -198,12 +198,23 @@ final class DataStore {
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
 
     /// Persist listen progress + scripts on the row (same shape the web writes).
-    func saveListen(_ state: ListenState, for slug: String) async {
-        guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }
+    /// Highlights are merged with the row first, so another device's highlights survive; returns the merged list.
+    @discardableResult
+    func saveListen(_ state: ListenState, for slug: String) async -> [ListenState.Mark] {
+        var state = state
+        let local = state.marks ?? []
+        guard let id = summary(for: slug)?.rowID else { return local }
+        struct Row: Decodable { let listen: ListenState? }
+        if let data = try? await API.call("GET", "/rest/bookrank_summaries?id=eq.\(id)&select=listen"),
+           let row = try? JSONDecoder().decode([Row].self, from: data).first {
+            let base = summary(for: slug)?.listen?.marks ?? []
+            state.marks = ListenState.merge(base: base, local: local, server: row.listen?.marks ?? [])
+        }
+        guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }) else { return state.marks ?? local }
         summaryIndex[i].listen = state
         writeCache()
-        guard let json = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(state)) else { return }
-        _ = try? await patch(id, ["listen": json])
+        if let json = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(state)) { _ = try? await patch(id, ["listen": json]) }
+        return state.marks ?? local
     }
 
     /// One markdown file per summary in a temp folder, for the share sheet (Files, AirDrop, Mail, anything).

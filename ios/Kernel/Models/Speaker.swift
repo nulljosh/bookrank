@@ -66,7 +66,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private var scripts: [String: [ListenState.Line]] = [:]
     private var prefetch: [Int: Task<[ListenState.Line]?, Never>] = [:]
     private var updatedAt = ""
-    private var save: ((ListenState) async -> Void)?
+    private var save: ((ListenState) async -> [ListenState.Mark])?
     private var lineOf: [ObjectIdentifier: (line: Int, offset: Int)] = [:]
     private var lastUtterance: AVSpeechUtterance?
     private var token = 0
@@ -81,7 +81,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     /// Bind to a summary. Restores the saved position when the content is unchanged.
-    func load(slug: String, chapters: [Chapter], entry: SummaryEntry?, save: @escaping (ListenState) async -> Void) {
+    func load(slug: String, chapters: [Chapter], entry: SummaryEntry?, save: @escaping (ListenState) async -> [ListenState.Mark]) {
         if self.slug == slug { return }
         stop()
         self.slug = slug; self.chapters = chapters; self.save = save
@@ -202,7 +202,11 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         Task { await Goal.shared.remind() }
         guard let save else { return }
         let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line), marks: marks)
-        Task { await save(st) }
+        Task { [slug] in
+            let merged = await save(st)
+            // Take another device's highlights, unless a toggle landed while this save was out.
+            if self.slug == slug, marks == st.marks { marks = merged }
+        }
     }
 
     // ponytail: same block rule as listen.js blocks(): paragraphs join, list items and

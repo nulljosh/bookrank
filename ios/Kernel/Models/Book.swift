@@ -47,4 +47,11 @@ struct ListenState: Codable {
     var chapters: [String: [Line]]
     var pos: Pos
     var marks: [Mark]? = nil
+
+    /// Highlights from two devices, the same rule as mergeMarks in marks.js. `base` is what this device last saw on
+    /// the row: lines another device added since are kept, lines it removed go, this device's own changes win on top.
+    static func merge(base: [Mark], local: [Mark], server: [Mark]) -> [Mark] {
+        let b = Set(base), s = Set(server), l = Set(local)
+        return local.filter { !b.contains($0) || s.contains($0) } + server.filter { !b.contains($0) && !l.contains($0) }
+    }
 }

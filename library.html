@@ -174,6 +174,7 @@ dl.profile dt { color:var(--text3); }
 import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import * as goal from './goal.js';
+import { mergeMarks } from './marks.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -353,10 +354,16 @@ function mountListen() {
     title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate, speak,
     marks: current.listen?.marks || [],   // kept even when listen.for is stale: a saved line is its text
     voices: () => speechSynthesis.getVoices(),
-    save: (pos, chapters, marks) => {
+    save: async (pos, chapters, marks) => {
       if (!current) return;
-      current.listen = { for: current.updated_at, chapters, pos, marks: marks ?? current.listen?.marks ?? [] };
-      db.from(TABLE).update({ listen: current.listen, updated_at: current.updated_at }).eq('id', current.id).then(() => {});  // keep updated_at, or listen.for stops matching
+      const row = current, base = row.listen?.marks ?? [];
+      marks ??= base;
+      // Another device may have highlighted since this page loaded: merge with the row, not over it.
+      // ponytail: the merged lines show on the next toggle or open; the player's list is updated in place.
+      const { data } = await db.from(TABLE).select('listen').eq('id', row.id).single();   // errors come back as { error }, so offline just saves this device's list
+      if (data) marks.splice(0, marks.length, ...mergeMarks(base, marks, data.listen?.marks ?? []));
+      row.listen = { for: row.updated_at, chapters, pos, marks: [...marks] };
+      db.from(TABLE).update({ listen: row.listen, updated_at: row.updated_at }).eq('id', row.id).then(() => {});  // keep updated_at, or listen.for stops matching
     },
   });
 }
