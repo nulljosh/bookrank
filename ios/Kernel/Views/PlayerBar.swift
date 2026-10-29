@@ -131,11 +131,36 @@ private struct Stars: View {
 }
 
 /// ponytail: a 36×52 cover (or wider, same shape) or a flat placeholder; matched by title from the bundled shelf.
+#if os(iOS)
+typealias PlatformImage = UIImage
+private extension Image { init(platform i: UIImage) { self.init(uiImage: i) } }
+#else
+typealias PlatformImage = NSImage
+private extension Image { init(platform i: NSImage) { self.init(nsImage: i) } }
+#endif
+
+/// Covers already drawn once, so a long shelf scrolls without fetching and decoding each one again.
+/// ponytail: NSCache drops entries under memory pressure on its own; no size limit set.
+@MainActor enum CoverCache {
+    static let images = NSCache<NSString, PlatformImage>()
+    static func load(_ u: String) async -> PlatformImage? {
+        if let hit = images.object(forKey: u as NSString) { return hit }
+        guard let url = URL(string: u), let (data, _) = try? await URLSession.shared.data(from: url), let img = PlatformImage(data: data) else { return nil }
+        images.setObject(img, forKey: u as NSString)
+        return img
+    }
+}
+
 struct Thumb: View {
     let url: String?
     var width: CGFloat = 36
+    @State private var image: PlatformImage?
     var body: some View {
-        AsyncImage(url: url.flatMap(URL.init)) { img in img.resizable().scaledToFill() } placeholder: { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.kernel(.footnote)).foregroundStyle(.tertiary)) }
+        Group {
+            if let image { Image(platform: image).resizable().scaledToFill() }
+            else { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.kernel(.footnote)).foregroundStyle(.tertiary)) }
+        }
+            .task(id: url) { image = url.flatMap { CoverCache.images.object(forKey: $0 as NSString) }; if image == nil, let url { image = await CoverCache.load(url) } }
             .frame(width: width, height: width * 52 / 36)
             .clipShape(RoundedRectangle(cornerRadius: 3))
             .accessibilityHidden(true)   // the title beside it says everything; VoiceOver would read "image" first

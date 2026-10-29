@@ -58,7 +58,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 55 | Share links with cover preview cards | web | built (functions/share.js puts the book's title and cover into the link preview of /share?t=; the apps' share.html links redirect there and get it too. Checked with a local mock of the API; the card itself shows in Messages, Slack and X) |
 | 56 | Landing refresh with real app screens and the Goodreads story | web | built (the steps now cover every way in and the four languages, a row of real iPhone screens from fresh store shots, a Goodreads section, and footer links on nulljosh/kernel. The English store shots were retaken in light mode too) |
 | 57 | Opt-in public pages for shared summaries | web | built (a shared page becomes indexable, `index, follow`, only when its owner has the public profile on; every other shared page keeps `noindex`. The flag comes from jaybulb-api's shared_summary, committed with the 54 lookup; live once Joshua deploys it) |
-| 58 | 500-book library stays smooth (Goodreads scale) | apps, web | open |
+| 58 | 500-book library stays smooth (Goodreads scale) | apps, web | built (web: a missing cover is looked up only when its row nears the screen, 40 lookups instead of about 1,000; 500 books show in about 130 ms and a search narrows them in about 20 ms. Apps: covers drawn once stay in memory, the Goodreads match splits titles once, and testBigShelf checks a 500-book shelf against a 60-book one) |
 | 59 | Covers cached on disk | apps | open |
 | 60 | Startup time budget with an Instruments pass | apps | open |
 | 61 | On-device error log you can export when something breaks | apps | open |

@@ -465,10 +465,14 @@ async function resolveCover(row) {
   if (u) { row.cover = u; db.from(TABLE).update({ cover: u, updated_at: row.updated_at }).eq('id', row.id).then(() => {}); }
   return u;
 }
+// A missing cover is looked up only when its row comes near the screen, so a 500-book shelf
+// does not fire 500 Open Library searches on load.
+const nearScreen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { nearScreen.unobserve(e.target); e.target.load(); } }), { rootMargin: '600px' });
 function thumb(row) {
   const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
   img.onerror = () => { img.removeAttribute('src'); img.className = 'thumb-empty'; };   // offline, the cover host is out of reach
-  resolveCover(row).then(u => { if (u) img.src = u; else img.className = 'thumb-empty'; });
+  img.load = () => resolveCover(row).then(u => { if (u) img.src = u; else img.className = 'thumb-empty'; });
+  if (row.cover) img.load(); else nearScreen.observe(img);
   return img;
 }
 

@@ -47,13 +47,14 @@ final class DataStore {
             (reading, read, toRead) = (data.flatMap { try? JSONDecoder().decode(Out.self, from: $0) }?.books ?? [], [], [])
         } else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; goodreadsRead = []; return }
         let norm = { (s: String) in s.lowercased().replacingOccurrences(of: "[^a-z0-9]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespaces) }
-        let have = summaryIndex.map { norm($0.title) }.filter { !$0.isEmpty }
+        // Split each title once: with 500 summaries and 500 read books this runs 250,000 times.
+        let have = summaryIndex.map { norm($0.title) }.filter { !$0.isEmpty }.map { (words: Set($0.split(separator: " ")), flat: $0.replacingOccurrences(of: " ", with: "")) }
         goodreadsReading = reading
         goodreadsToRead = toRead
         goodreadsRead = read
         goodreadsQueue = read.filter { b in
-            let t = norm(b.title), words = Set(t.split(separator: " "))
-            return !have.contains { h in h.split(separator: " ").allSatisfy(words.contains) || t.replacingOccurrences(of: " ", with: "").contains(h.replacingOccurrences(of: " ", with: "")) }
+            let t = norm(b.title), words = Set(t.split(separator: " ")), flat = t.replacingOccurrences(of: " ", with: "")
+            return !have.contains { h in h.words.isSubset(of: words) || flat.contains(h.flat) }
         }.sorted { ($0.readAt ?? "") > ($1.readAt ?? "") }
     }
 
@@ -111,7 +112,7 @@ final class DataStore {
         let marked = ListenState(for: "", chapters: [:], pos: .init(ch: 0, line: 0), marks: [
             .init(ch: 1, text: "Gephi is an open-source network-graph visualization tool, good for exploring relationships and connections as node-and-edge graphs."),
             .init(ch: 0, text: "ImageQuilts lets you compile grids of related images into a single collage, useful for quick visual analysis.")])
-        return picks.compactMap { slug in
+        let shelf: [SummaryEntry] = picks.compactMap { slug in
             guard let url = Bundle.main.url(forResource: slug, withExtension: "md") ?? Bundle.main.url(forResource: slug, withExtension: "md", subdirectory: "summaries"),
                   let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
             // The Optimist is partway through, so the store shots show the Continue card.
@@ -119,6 +120,10 @@ final class DataStore {
             return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: partway ? "snapshot" : nil,
                                 listen: partway ? ListenState(for: "snapshot", chapters: [:], pos: .init(ch: 3, line: 0)) : slug == "data-science" ? marked : nil, cover: covers[slug], shareToken: nil)
         }.sorted { $0.title < $1.title }
+        // UITEST_SHELF=<n> in the environment: a long shelf (500 is Goodreads-sized), to check scrolling and search stay smooth.
+        guard let n = Int(ProcessInfo.processInfo.environment["UITEST_SHELF"] ?? ""), !shelf.isEmpty else { return shelf }
+        return (0..<n).map { i -> SummaryEntry in let e = shelf[i % shelf.count]
+            return SummaryEntry(rowID: nil, slug: "\(e.slug)-\(i)", title: "\(e.title) \(i + 1)", content: e.content, updatedAt: nil, listen: nil, cover: e.cover, shareToken: nil) }
     }
 
     /// Signed-out preview: one short original summary so anyone, including App Review, can press Listen without an account.

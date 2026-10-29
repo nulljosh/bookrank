@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 58.0.0 (2026-10-29)
+A library of hundreds of books stays quick: on the web covers load as you scroll instead of all at once, and the apps keep covers they have drawn and match Goodreads shelves faster.
+
 ## 57.0.0 (2026-10-29)
 With a public profile turned on, your shared summaries can show up in search; without it they stay out, as before.
 
