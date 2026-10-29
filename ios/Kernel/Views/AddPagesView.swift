@@ -21,6 +21,7 @@ struct AddPagesView: View {
     @State private var error: String?
     @State private var saving = false
     @State private var kindle = false
+    @State private var ebook = false
     @State private var importing: String?
     @State private var kindleDone: String?
 
@@ -49,9 +50,23 @@ struct AddPagesView: View {
                         .foregroundStyle(error == nil ? Color.secondary : Color.red)
                 }
                 Section {
+                    Button { ebook = true } label: { Label(importing ?? "Import an EPUB or PDF you own", systemImage: "book.closed") }.disabled(importing != nil)
+                        .fileImporter(isPresented: $ebook, allowedContentTypes: [.epub, .pdf]) { r in   // its own view: two importers on one view clash
+                            guard case .success(let url) = r else { return }
+                            let ok = url.startAccessingSecurityScopedResource(); defer { if ok { url.stopAccessingSecurityScopedResource() } }
+                            do {
+                                let book = try Ebook.markdown(url)
+                                Task {
+                                    importing = "Adding \(book.title)…"
+                                    do { try await store.addBook(title: book.title, markdown: book.markdown); kindleDone = "Added \(book.title)." }
+                                    catch { kindleDone = (error as? API.Failure)?.message ?? "Could not save that book." }
+                                    importing = nil
+                                }
+                            } catch { kindleDone = (error as? Ebook.Failure)?.message ?? "Could not read that file." }
+                        }
                     Button { kindle = true } label: { Label(importing ?? "Import Kindle or Readwise highlights", systemImage: "book.pages") }.disabled(importing != nil)
                 } footer: {
-                    Text(kindleDone ?? "Choose My Clippings.txt from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.")
+                    Text(kindleDone ?? "An EPUB without DRM or a PDF becomes a book, a chapter per section. For highlights, choose My Clippings.txt from your Kindle's documents folder, or a Readwise CSV export.")
                 }
             }
             .fileImporter(isPresented: $kindle, allowedContentTypes: [.plainText, .text, .commaSeparatedText]) { r in

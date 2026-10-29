@@ -72,6 +72,7 @@
 		7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
 		80BD2E4062F6A2D29CAF6B1C /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
+		91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
 		9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
 		95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
 		99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		A83E380572B1C456801F1DDD /* Meaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E2C3E7F816D3A9C7931FA /* Meaning.swift */; };
+		AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
@@ -187,6 +189,7 @@
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E7033956A451A6A740DBEDBF /* Ebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
 		E9350AD17532E2632CEBF4A5 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		EADD79E8481EC276F89FE4B1 /* KernelUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KernelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED27DE465914D0C6444A386E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				A1FB1817D952E630F014265C /* AuthStore.swift */,
 				EFD53A14FC46AD38DFFFA927 /* Book.swift */,
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
+				E7033956A451A6A740DBEDBF /* Ebook.swift */,
 				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				F52DEE4EFC635882441F8ED3 /* Goodreads.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
@@ -564,6 +568,7 @@
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
+				AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */,
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */,
 				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
@@ -616,6 +621,7 @@
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
+				91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */,
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */,
 				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,

@@ -142,6 +142,7 @@ dl.profile dt { color:var(--text3); }
     <div class="stats hide" id="stats"></div>
     <p class="grimport msg" id="grImport">Bring your Goodreads shelves: export them at <a href="https://www.goodreads.com/review/import" target="_blank" rel="noopener">goodreads.com/review/import</a>, then <button type="button" class="link" id="grPick">choose the file</button>. It stays in this browser.<input type="file" id="grFile" accept=".csv,text/csv" hidden></p>
     <p class="grimport msg" id="kindleImport">Kindle or Readwise highlights: <button type="button" class="link" id="kindlePick">choose My Clippings.txt</button> from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.<input type="file" id="kindleFile" accept=".txt,.csv,text/plain,text/csv" hidden></p>
+    <p class="grimport msg" id="epubImport">Your own ebooks: <button type="button" class="link" id="epubPick">choose an EPUB</button> without DRM and it becomes a book, a chapter per section. PDFs import in the apps.<input type="file" id="epubFile" accept=".epub,application/epub+zip" hidden></p>
   </section>
 
   <!-- editor / listen -->
@@ -183,6 +184,7 @@ import { lines as meaningLines, closest } from './meaning.js';
 import { card, yearCard } from './card.js';
 import { parseExport } from './goodreads-export.js';
 import { parseClippings, parseReadwise, kindleChapter } from './kindle.js';
+import { epubToMarkdown } from './epub.js';
 import * as goal from './goal.js';
 import { mergeMarks, marksMarkdown, dailyFive } from './marks.js';
 
@@ -769,6 +771,23 @@ $('grPick').onclick = () => $('grFile').click();
 const norm = s => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const sameTitle = (h, t) => { const tw = new Set(t.split(' ')); return h.split(' ').every(w => tw.has(w)) || t.replace(/ /g, '').includes(h.replace(/ /g, '')); };
 $('kindlePick').onclick = () => $('kindleFile').click();
+// An EPUB you own becomes a new book; its text is read here and only the Markdown is saved.
+$('epubPick').onclick = () => $('epubFile').click();
+$('epubFile').onchange = async () => {
+  const f = $('epubFile').files[0]; $('epubFile').value = '';
+  if (!f) return;
+  $('listMsg').textContent = `Reading ${f.name}…`;
+  try {
+    const { title, markdown } = await epubToMarkdown(await f.arrayBuffer());
+    const chapters = (markdown.match(/^## /gm) || []).length;
+    if (!chapters) throw new Error('No readable text in that EPUB (it may have DRM).');
+    const { data, error } = await rows.insert(stamp(title, markdown));
+    if (error) throw error;
+    await load();
+    $('listMsg').textContent = `Added ${title}, ${chapters} chapters.`;
+    if (data?.id) open(data.id);
+  } catch (e) { $('listMsg').textContent = e.message || 'Could not read that EPUB.'; }
+};
 $('kindleFile').onchange = async () => {
   const f = $('kindleFile').files[0]; $('kindleFile').value = '';
   if (!f) return;
