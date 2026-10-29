@@ -38,4 +38,4 @@ Row-level security keeps each account to its own rows. Auth emails come from our
 
 ## License
 
-MIT 2026, Joshua Trommel
+Apache 2.0, 2026, Joshua Trommel
