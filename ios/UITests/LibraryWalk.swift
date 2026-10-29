@@ -361,6 +361,16 @@ final class LibraryWalk: XCTestCase {
         saveTo("connections", XCUIScreen.main.screenshot())
     }
 
+    /// The Home Screen widgets (Continue, and Continue with the week), drawn in the app at their real sizes.
+    func testWidgets() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_WIDGETS", "-kernel.onboarded", "YES"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Continue"].firstMatch.waitForExistence(timeout: 10))
+        sleep(1)
+        saveTo("widgets", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

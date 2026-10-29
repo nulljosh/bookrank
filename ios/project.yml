@@ -4,10 +4,13 @@ options:
 targets:
   Kernel:
     type: application
+    dependencies:
+      - target: KernelWidgets   # the Home Screen widgets, embedded
     platform: iOS
     deploymentTarget: "17.0"
     sources:
       - Kernel
+      - Widgets/WidgetFeed.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources
@@ -24,6 +27,7 @@ targets:
         NSCameraUsageDescription: Scan book pages into a chapter. The pages are read and dropped, never kept.
         NSUserActivityTypes: [com.heyitsmejosh.spine.reading]
         UIApplicationSceneManifest: { UIApplicationSupportsMultipleScenes: true }   # iPad Stage Manager and Split View: more than one Kernel window
+        CFBundleURLTypes: [{ CFBundleURLName: com.heyitsmejosh.spine, CFBundleURLSchemes: [kernel] }]   # kernel://book/<slug>, from the widgets
         ITSAppUsesNonExemptEncryption: false   # HTTPS only; without this every build needs the compliance flag set by hand
         # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
         # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist
@@ -58,6 +62,24 @@ targets:
         DEVELOPMENT_TEAM: QMM486NPYC
     dependencies:
       - target: Kernel
+  KernelWidgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources: [Widgets]
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Kernel
+        NSExtension: { NSExtensionPointIdentifier: com.apple.widgetkit-extension }
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.widgets
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: QMM486NPYC
+        CODE_SIGN_ENTITLEMENTS: Widgets/KernelWidgets.entitlements
   KernelTests:
     type: bundle.unit-test
     platform: iOS
@@ -77,6 +99,7 @@ targets:
     deploymentTarget: "14.0"
     sources:
       - Kernel
+      - Widgets/WidgetFeed.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources

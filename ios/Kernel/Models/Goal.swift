@@ -65,6 +65,7 @@ final class Goal {
         center.removePendingNotificationRequests(withIdentifiers: [Self.reminder])
         roll()
         await Nudge.recap()
+        await MainActor.run { WidgetFeed.publish() }
         guard target > 0, !met else { return }
         // The evening of the week's last day (Saturday where weeks start Sunday, Sunday where they start Monday).
         var last = DateComponents(); last.weekday = (Calendar.current.firstWeekday + 5) % 7 + 1; last.hour = 18

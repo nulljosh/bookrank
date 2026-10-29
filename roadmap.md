@@ -88,7 +88,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 85 | Performance audit, zero regressions | all | built (CHANGELOG 85.0.0; the table is in docs/ARCHITECTURE.md) |
 | 86 | Docs, README, WHITEPAPER and landing final pass | repo, web | built (CHANGELOG 86.0.0) |
 | 87 | Release candidate: every row above on iPhone, iPad, Mac and web | all | built (CHANGELOG 87.0.0: iPhone 31 of 31 tests, iPad unit tests and six walks, Mac Release build, web 50 tests and every live page) |
-| 88 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
+| 88 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | built (CHANGELOG 88.0.0; iPhone and iPad, the Mac widget comes with 90) |
 | 89 | Lock Screen widget and a Live Activity while listening | iPhone | open |
 | 90 | Control Center control for the current book | iPhone, Mac | open |
 | 91 | CarPlay audio | iPhone | open |

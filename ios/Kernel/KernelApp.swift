@@ -40,9 +40,14 @@ struct KernelApp: App {
             ZStack {
                 LibraryView(splashDone: !showSplash)
                     .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
+                    .onOpenURL { u in if u.host() == "book", let s = u.pathComponents.last, s != "/" { NoteTap.shared.slug = s } }   // a widget
+                    .task { WidgetFeed.publish() }
                     .onContinueUserActivity(CSSearchableItemActionType) { a in   // a Spotlight result
                         if let id = a.userInfo?[CSSearchableItemActivityIdentifier] as? String, let s = Spotlight.slug(from: id) { NoteTap.shared.slug = s }
                     }
+                #if os(iOS)
+                if CommandLine.flag("UITEST_WIDGETS") { WidgetGallery() }   // screenshots of the Home Screen widgets
+                #endif
                 if showSplash {
                     SplashView { showSplash = false }
                         .transition(.identity)   // SplashView fades itself out before it calls back
