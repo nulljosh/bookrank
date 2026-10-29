@@ -62,6 +62,11 @@ final class KernelTests: XCTestCase {
         XCTAssertEqual(minutes(""), 1); XCTAssertEqual(minutes(String(repeating: "a", count: 11000)), 10)
     }
 
+    func testArticleKeepsProseAndDropsChrome() {
+        let html = "<html><nav><p>Home About Contact and some other links that are long enough to count</p></nav><script>var p = '<p>no</p>'</script><article><p>Short.</p><p>The first real paragraph of the article, long enough to be prose and kept.</p><p>A second paragraph with <a href='#'>a link</a> &amp; an entity, also long enough.</p></article><footer><p>Copyright notice that is long enough to pass the bar for prose here.</p></footer></html>"
+        XCTAssertEqual(Inbox.article(fromHTML: html), ["The first real paragraph of the article, long enough to be prose and kept.", "A second paragraph with a link & an entity, also long enough."])
+    }
+
     func testMorningLineIsReadable() {
         let content = "# Title\n\nShort.\n\n" + String(repeating: "A long readable paragraph with words. ", count: 10)
         let line = Nudge.line(from: content)

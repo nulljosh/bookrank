@@ -2311,6 +2311,28 @@
         }
       }
     },
+    "Kept as a book in Kernel the next time you open it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gardé comme un livre dans Kernel à sa prochaine ouverture."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se guarda como libro en Kernel la próxima vez que lo abras."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird beim nächsten Öffnen von Kernel als Buch behalten."
+          }
+        }
+      }
+    },
     "Kernel": {
       "localizations": {
         "fr": {
@@ -2373,6 +2395,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kernel-Markierungen.md"
+          }
+        }
+      }
+    },
+    "Kernel reads the page and keeps its text as a book, the next time you open Kernel.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kernel lit la page et garde son texte comme un livre, la prochaine fois que vous ouvrez Kernel."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kernel lee la página y guarda su texto como un libro la próxima vez que abras Kernel."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kernel liest die Seite und behält ihren Text als Buch, wenn du Kernel das nächste Mal öffnest."
           }
         }
       }
@@ -4045,6 +4089,50 @@
           "stringUnit": {
             "state": "translated",
             "value": "Speichern"
+          }
+        }
+      }
+    },
+    "Save as": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer sous"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar como"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sichern als"
+          }
+        }
+      }
+    },
+    "Save to Kernel": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer dans Kernel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar en Kernel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In Kernel sichern"
           }
         }
       }

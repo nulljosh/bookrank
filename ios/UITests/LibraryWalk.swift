@@ -371,6 +371,16 @@ final class LibraryWalk: XCTestCase {
         saveTo("widgets", XCUIScreen.main.screenshot())
     }
 
+    /// Share to Kernel: the sheet Safari shows, drawn in the app (a test cannot open another app's share sheet).
+    func testShareSheet() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_SHARE", "-kernel.onboarded", "YES"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Save to Kernel"].waitForExistence(timeout: 10))
+        sleep(1)
+        saveTo("share-sheet", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

@@ -6,6 +6,7 @@ targets:
     type: application
     dependencies:
       - target: KernelWidgets   # the Home Screen widgets, embedded
+      - target: KernelShare   # Share to Kernel from Safari and other apps
     platform: iOS
     deploymentTarget: "17.0"
     sources:
@@ -13,6 +14,8 @@ targets:
       - Widgets/WidgetFeed.swift
       - Widgets/ListenActivity.swift
       - Widgets/ToggleIntent.swift
+      - Widgets/Inbox.swift
+      - Widgets/ShareView.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources
@@ -84,6 +87,28 @@ targets:
         DEVELOPMENT_TEAM: QMM486NPYC
         CODE_SIGN_ENTITLEMENTS: Widgets/KernelWidgets.entitlements
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) WIDGET_EXTENSION"   # the shared intent runs in the app, not here
+  KernelShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources: [Share, Widgets/Inbox.swift, Widgets/WidgetFeed.swift, Widgets/ShareView.swift, Kernel/Localizable.xcstrings]
+    info:
+      path: Share/Info.plist
+      properties:
+        CFBundleDisplayName: Kernel
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule: { NSExtensionActivationSupportsText: true, NSExtensionActivationSupportsWebURLWithMaxCount: 1 }
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.share
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: QMM486NPYC
+        CODE_SIGN_ENTITLEMENTS: Share/KernelShare.entitlements
   KernelTests:
     type: bundle.unit-test
     platform: iOS
@@ -126,6 +151,7 @@ targets:
       - Kernel
       - Widgets/WidgetFeed.swift
       - Widgets/ToggleIntent.swift
+      - Widgets/Inbox.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources

@@ -92,7 +92,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 89 | Lock Screen widget and a Live Activity while listening | iPhone | built (CHANGELOG 89.0.0; the Live Activity itself shows only on a real device or a signed build) |
 | 90 | Control Center control for the current book | iPhone, Mac | built (CHANGELOG 90.0.0; iOS 18 and macOS 26 for the control) |
 | 91 | CarPlay audio | iPhone | open |
-| 92 | Share extension: save text or a web article as a summary | apps | open |
+| 92 | Share extension: save text or a web article as a summary | apps | built (CHANGELOG 92.0.0; iPhone and iPad; the extension itself shows only in a signed build) |
 | 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
 | 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
 | 95 | Quiz me: three questions per chapter, answers checked | apps, web | open |

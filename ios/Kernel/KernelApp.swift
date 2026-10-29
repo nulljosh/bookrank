@@ -41,7 +41,7 @@ struct KernelApp: App {
                 LibraryView(splashDone: !showSplash)
                     .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
                     .onOpenURL { u in if u.host() == "book", let s = u.pathComponents.last, s != "/" { NoteTap.shared.slug = s } }   // a widget
-                    .task { WidgetFeed.publish() }
+                    .task { WidgetFeed.publish(); await Inbox.importAll(into: DataStore.shared) }   // what was shared to Kernel
                     #if os(iOS)
                     .onChange(of: Speaker.shared.playing) { LiveListen.update() }
                     .onChange(of: Speaker.shared.paused) { LiveListen.update() }
@@ -52,6 +52,9 @@ struct KernelApp: App {
                     }
                 #if os(iOS)
                 if CommandLine.flag("UITEST_WIDGETS") { WidgetGallery() }   // screenshots of the Home Screen widgets
+                if CommandLine.flag("UITEST_SHARE") {   // screenshots of the share sheet, as Safari would show it
+                    ShareView(title: "The Psychology of Money", text: "", url: URL(string: "https://example.com/psychology-of-money")) { _ in }
+                }
                 #endif
                 if showSplash {
                     SplashView { showSplash = false }
