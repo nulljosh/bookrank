@@ -1,13 +1,13 @@
 // A highlight as a square image card to share: the line in Kernel Sans on Kernel gold, the book under it.
 // Same card as HighlightCard in the apps. Drawn on a canvas; nothing leaves the page unless you share it.
 export async function card(text, book) {
-  await document.fonts.load('600 52px "Kernel Sans"').catch(() => {});
+  await document.fonts.load('italic 700 52px "Kernel Sans"').catch(() => {});
   const c = Object.assign(document.createElement('canvas'), { width: 1080, height: 1080 }), g = c.getContext('2d');
   g.fillStyle = '#f5b83d'; g.fillRect(0, 0, 1080, 1080);
   g.fillStyle = '#1d1d1f';
   // Shrink the type until the line fits in eleven rows.
   let size = 64, rows;
-  do { g.font = `600 ${size}px "Kernel Sans", -apple-system, Helvetica, Arial, sans-serif`; rows = wrap(g, text, 920); } while (rows.length > 11 && (size -= 4) > 28);
+  do { g.font = `italic 700 ${size}px "Kernel Sans", -apple-system, Helvetica, Arial, sans-serif`; rows = wrap(g, text, 920); } while (rows.length > 11 && (size -= 4) > 28);
   const lh = size * 1.25, top = (1080 - rows.length * lh) / 2 - 40;
   rows.slice(0, 11).forEach((r, i) => g.fillText(r, 80, top + (i + 1) * lh));
   g.font = '500 34px "Kernel Sans", -apple-system, Helvetica, Arial, sans-serif';

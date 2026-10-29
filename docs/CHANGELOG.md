@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 75.0.0 (2026-10-29)
+Kernel Sans has an italic and a bold italic now, built from Geist's own like the uprights and ending each sentence on the same seed. Highlights, Today's five and a Goodreads quote are set in it, and the share card in the bold italic.
+
 ## 74.0.0 (2026-10-29)
 Reading saves your place too, not only listening: scroll a chapter with no audio and, once you stop, the line at the top becomes where you left off, on the web and in the apps (iOS 18 and macOS 15 or later).
 

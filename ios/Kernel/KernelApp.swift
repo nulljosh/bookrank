@@ -67,8 +67,8 @@ struct KernelApp: App {
 /// Kernel Sans (fonts/, built by scripts/gen_font.py), registered from the bundle once so
 /// neither Info.plist needs a font list.
 private let kernelFontsRegistered: Void = {
-    for name in ["Regular", "Medium", "Semibold", "Bold"] {
-        if let url = Bundle.main.url(forResource: "KernelSans-\(name)", withExtension: "otf") {
+    for name in ["Regular", "Medium", "Semibold", "Bold", "Italic", "BoldItalic"] {
+        if let url = Bundle.main.url(forResource: "KernelSans-\(name)", withExtension: "otf") ?? Bundle.main.url(forResource: "KernelSans-\(name)", withExtension: "ttf") {
             CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
         }
     }
@@ -86,6 +86,12 @@ extension Font {
         default: "KernelSans-Regular"
         }
         return .custom(name, size: size(style), relativeTo: style)
+    }
+
+    /// Kernel Sans italic, for quotes: highlights, Today's five, a Goodreads quote. Bold for the share card.
+    static func kernelItalic(_ style: Font.TextStyle, bold: Bool = false) -> Font {
+        _ = kernelFontsRegistered
+        return .custom(bold ? "KernelSans-BoldItalic" : "KernelSans-Italic", size: size(style), relativeTo: style)
     }
 
     private static func size(_ style: Font.TextStyle) -> CGFloat {

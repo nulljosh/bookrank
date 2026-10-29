@@ -12,7 +12,7 @@ targets:
       - path: ../goodreads-parse.js
         buildPhase: resources
       - path: ../fonts
-        includes: ["*.otf"]
+        includes: ["*.otf", "*.ttf"]
         buildPhase: resources
     info:
       path: Kernel/Info.plist
@@ -80,7 +80,7 @@ targets:
       - path: ../goodreads-parse.js
         buildPhase: resources
       - path: ../fonts
-        includes: ["*.otf"]
+        includes: ["*.otf", "*.ttf"]
         buildPhase: resources
     info:
       path: Kernel/Info.plist

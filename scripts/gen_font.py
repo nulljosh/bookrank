@@ -3,8 +3,8 @@ full stop redrawn as the Kernel mark: a seed, round on top and pointed at the ba
 
 Geist is the brief (Joshua, 2026-10-28): proportional, sans serif, between San Francisco and Helvetica. Same method
 as Coda's Quip Sans: pinned release, renamed, OFL shipped beside the fonts, Vercel's copyright kept in the name
-table. The full stop is the one glyph drawn here, so every sentence ends on the mark. Four weights, Latin only,
-every build the same bytes.
+table. The full stop is the one glyph drawn here, so every sentence ends on the mark. Four weights and two
+italics, Latin only, every build the same bytes.
 
     uv run --with fonttools --with brotli python3 scripts/gen_font.py           # fonts/KernelSans-*.{ttf,woff2} + OFL.txt
     uv run --with fonttools --with brotli python3 scripts/gen_font.py --check   # named, licensed, proportional, mark drawn
@@ -14,22 +14,29 @@ import os
 import sys
 import urllib.request
 
+from fontTools import subset
 from fontTools.pens.boundsPen import BoundsPen
+from fontTools.pens.cu2quPen import Cu2QuPen
 from fontTools.pens.t2CharStringPen import T2CharStringPen
+from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.ttLib import TTFont
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "fonts")
 SOURCE = "https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.3.0/"
 WEIGHTS = {"Regular": 400, "Medium": 500, "Semibold": 600, "Bold": 700}
+# Italics for quotes and highlights: Fontsource has none, so these come from Vercel's own package as TrueType,
+# cut to the same characters as the uprights. They ship as .ttf beside the .otf uprights.
+ITALIC_SOURCE = "https://cdn.jsdelivr.net/npm/geist@1.8.2/dist/fonts/geist-sans/"
+ITALICS = {"Italic": "Geist-Italic.ttf", "BoldItalic": "Geist-BoldItalic.ttf"}
 COPYRIGHT = "Copyright 2023 Vercel, in collaboration with basement.studio. Kernel Sans is Geist, renamed."
 LICENSE = "This Font Software is licensed under the SIL Open Font License, Version 1.1."
 K = 0.5523  # cubic circle constant
 
 
-def fetch(path):
+def fetch(path, source=SOURCE):
     """Bytes of one file from the pinned Geist release."""
-    with urllib.request.urlopen(SOURCE + path, timeout=60) as r:
+    with urllib.request.urlopen(source + path, timeout=60) as r:
         return r.read()
 
 
@@ -46,16 +53,24 @@ def seed(pen, cx, cy, r, tip):
 def redraw_period(font):
     """Replace the full stop with the seed, inside the original's advance so spacing never moves."""
     glyphs = font.getGlyphSet()
-    cff = font["CFF "].cff
-    top = cff.topDictIndex[0]
     name = font.getBestCmap()[ord(".")]
     bp = BoundsPen(glyphs)
     glyphs[name].draw(bp)
     x0, y0, x1, y1 = bp.bounds
     width = font["hmtx"][name][0]
     r = (x1 - x0) / 2
+    draw = lambda p: seed(p, (x0 + x1) / 2, y0 + 1.24 * r, r, y0 - 0.03 * (y1 - y0))   # on the baseline, 12 percent taller
+    if "glyf" in font:   # TrueType italics: quadratic curves, clockwise outer contour
+        pen = TTGlyphPen(glyphs)
+        draw(Cu2QuPen(pen, 1, reverse_direction=True))
+        g = pen.glyph(); g.recalcBounds(font["glyf"])
+        font["glyf"][name] = g
+        font["hmtx"][name] = (width, g.xMin)
+        return
+    cff = font["CFF "].cff
+    top = cff.topDictIndex[0]
     pen = T2CharStringPen(width, None)
-    seed(pen, (x0 + x1) / 2, y0 + 1.24 * r, r, y0 - 0.03 * (y1 - y0))   # sits on the baseline, 12 percent taller
+    draw(pen)
     top.CharStrings[name] = pen.getCharString(private=top.Private, globalSubrs=cff.GlobalSubrs)
 
 
@@ -68,11 +83,12 @@ def rename(font, style):
     for nid, text in names.items():
         table.setName(text, nid, 3, 1, 0x409)
         table.setName(text, nid, 1, 0, 0)
-    cff = font["CFF "].cff
-    cff.fontNames = [f"KernelSans-{style}"]
-    top = cff.topDictIndex[0]
-    top.FullName, top.FamilyName = f"Kernel Sans {style}", "Kernel Sans"
-    top.Notice, top.Copyright = COPYRIGHT, COPYRIGHT
+    if "CFF " in font:
+        cff = font["CFF "].cff
+        cff.fontNames = [f"KernelSans-{style}"]
+        top = cff.topDictIndex[0]
+        top.FullName, top.FamilyName = f"Kernel Sans {style}", "Kernel Sans"
+        top.Notice, top.Copyright = COPYRIGHT, COPYRIGHT
     font["head"].created = font["head"].modified = 3_700_000_000   # fixed, so every build is the same bytes
     font["OS/2"].achVendID = "KRNL"
 
@@ -88,8 +104,8 @@ def to_bytes(font, flavor):
 def check():
     """Self-check of the shipped files."""
     assert os.path.exists(os.path.join(OUT, "OFL.txt")), "the OFL must ship with the fonts"
-    for style in WEIGHTS:
-        for ext in ("otf", "woff2"):
+    for style in [*WEIGHTS, *ITALICS]:
+        for ext in ("ttf" if style in ITALICS else "otf", "woff2"):
             f = TTFont(os.path.join(OUT, f"KernelSans-{style}.{ext}"))
             assert f["name"].getDebugName(1) == "Kernel Sans" and f["name"].getDebugName(6) == f"KernelSans-{style}"
             assert "Vercel" in f["name"].getDebugName(0), "the original copyright must stay in the name table"
@@ -102,8 +118,9 @@ def check():
             glyphs[cmap[ord(".")]].draw(bp)
             x0, y0, x1, y1 = bp.bounds
             assert y0 <= 0 < y1 and y1 - y0 > x1 - x0, "the full stop is not the seed"
-            assert 0 <= x0 and x1 <= hmtx[cmap[ord(".")]][0], "the seed spills out of its advance"
-    print(f"font ok: Kernel Sans (Geist, OFL), {len(WEIGHTS)} weights, full stop is the seed")
+            lean = 0.2 * hmtx[cmap[ord(".")]][0] if style in ITALICS else 0   # Geist's own italic stop sits left of zero
+            assert -lean <= x0 and x1 <= hmtx[cmap[ord(".")]][0], "the seed spills out of its advance"
+    print(f"font ok: Kernel Sans (Geist, OFL), {len(WEIGHTS)} weights and {len(ITALICS)} italics, full stop is the seed")
 
 
 def main():
@@ -121,6 +138,17 @@ def main():
             with open(os.path.join(OUT, f"KernelSans-{style}.{ext}"), "wb") as f:
                 f.write(to_bytes(font, flavor))
         print(f"KernelSans-{style}: Geist {weight}")
+    latin = set(TTFont(os.path.join(OUT, "KernelSans-Regular.otf")).getBestCmap())
+    for style, file in ITALICS.items():
+        font = TTFont(io.BytesIO(fetch(file, ITALIC_SOURCE)))
+        opts = subset.Options(); opts.name_IDs = ["*"]; opts.layout_features = ["*"]
+        cut = subset.Subsetter(opts); cut.populate(unicodes=latin); cut.subset(font)
+        redraw_period(font)
+        rename(font, style)
+        for ext, flavor in (("ttf", None), ("woff2", "woff2")):
+            with open(os.path.join(OUT, f"KernelSans-{style}.{ext}"), "wb") as f:
+                f.write(to_bytes(font, flavor))
+        print(f"KernelSans-{style}: {file}")
 
 
 if __name__ == "__main__":

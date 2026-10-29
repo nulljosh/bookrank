@@ -56,6 +56,7 @@
 		5C88017850B92C2908EBCB1D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
+		5DF53F17E4F000361BDFC400 /* KernelSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */; };
 		622B713EAD540119BE0B693E /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		647DD44F3E5C566CA0D538B7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */; };
@@ -88,8 +89,10 @@
 		7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
 		80BD2E4062F6A2D29CAF6B1C /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
+		8EAB011874B6025CE7D03B55 /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
 		91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
 		9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
+		92AA9D935A513FE6702F507A /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
 		95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
 		99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
@@ -140,6 +143,7 @@
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
+		F32152999FACB72DD8645343 /* KernelSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */; };
 		F5D34F362488A7DD2DADE92F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DE465914D0C6444A386E /* StatsView.swift */; };
 		F7C5BBBC7B5C9F3E4AC9723D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
 		F7D405CA6423FBFA213E6E20 /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
@@ -194,6 +198,7 @@
 		474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
 		489B04517DC64E94DE1670F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "trading-for-canadians-for-dummies.md"; sourceTree = "<group>"; };
+		4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4C7B801F028407305CB2D2E5 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
 		4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "adult-autism.md"; sourceTree = "<group>"; };
 		4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-in-business.md"; sourceTree = "<group>"; };
@@ -222,6 +227,7 @@
 		957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Medium.otf"; sourceTree = "<group>"; };
 		9C9F810A2EE7CDD4B516ADEF /* Kernel.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Kernel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1FB1817D952E630F014265C /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Italic.ttf"; sourceTree = "<group>"; };
 		A51B1514899126444871DA82 /* SpeakerExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerExtras.swift; sourceTree = "<group>"; };
 		A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Regular.otf"; sourceTree = "<group>"; };
 		A849BD03EBC174F2FFE54D4A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -283,6 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */,
+				4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */,
+				A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */,
 				957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */,
 				A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */,
 				BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */,
@@ -600,6 +608,8 @@
 				99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */,
 				DD645625E3601F018202F4DA /* Kernel.icon in Resources */,
 				45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */,
+				5DF53F17E4F000361BDFC400 /* KernelSans-BoldItalic.ttf in Resources */,
+				8EAB011874B6025CE7D03B55 /* KernelSans-Italic.ttf in Resources */,
 				FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */,
 				59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */,
 				D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */,
@@ -634,6 +644,8 @@
 				D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */,
 				670187A13FCDD35DCBEBF3C9 /* Kernel.icon in Resources */,
 				4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */,
+				F32152999FACB72DD8645343 /* KernelSans-BoldItalic.ttf in Resources */,
+				92AA9D935A513FE6702F507A /* KernelSans-Italic.ttf in Resources */,
 				1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */,
 				235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */,
 				E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */,

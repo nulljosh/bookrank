@@ -13,7 +13,7 @@ struct HighlightsView: View {
                 let (e, m) = pair
                 NavigationLink { SummaryDetailView(slug: e.slug, store: store, find: m.text) } label: {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(m.text).font(.kernel(.body)).lineLimit(6)
+                        Text(m.text).font(.kernelItalic(.body)).lineLimit(6)
                         HStack {
                             Text("\(e.title) · Ch \(m.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
                             Spacer()
@@ -61,7 +61,7 @@ struct HighlightCard: Transferable {
         let ink = Color(red: 0x1d / 255, green: 0x1d / 255, blue: 0x1f / 255)
         return VStack(alignment: .leading) {
             Spacer()
-            Text(text).font(.custom("KernelSans-Semibold", fixedSize: text.count > 220 ? 44 : 60)).lineSpacing(10).minimumScaleFactor(0.5)
+            Text(text).font(.custom("KernelSans-BoldItalic", fixedSize: text.count > 220 ? 44 : 60)).lineSpacing(10).minimumScaleFactor(0.5)
             Spacer()
             HStack { Text(book).font(.custom("KernelSans-Medium", fixedSize: 34)).lineLimit(1); Spacer(); Text("Kernel.").font(.custom("KernelSans-Bold", fixedSize: 34)) }
         }
@@ -149,7 +149,7 @@ struct TodaysFive: View {
 
     private func line(_ e: SummaryEntry, _ m: ListenState.Mark) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(m.text).font(.kernel(.body)).lineLimit(4)
+            Text(m.text).font(.kernelItalic(.body)).lineLimit(4)
             Text("\(e.title) · Ch \(m.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
         }
         .padding(.vertical, 2)

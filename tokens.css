@@ -4,6 +4,8 @@
 @font-face { font-family:"Kernel Sans"; src:url("/fonts/KernelSans-Medium.woff2") format("woff2"); font-weight:500; font-display:swap; }
 @font-face { font-family:"Kernel Sans"; src:url("/fonts/KernelSans-Semibold.woff2") format("woff2"); font-weight:600; font-display:swap; }
 @font-face { font-family:"Kernel Sans"; src:url("/fonts/KernelSans-Bold.woff2") format("woff2"); font-weight:700; font-display:swap; }
+@font-face { font-family:"Kernel Sans"; src:url("/fonts/KernelSans-Italic.woff2") format("woff2"); font-weight:400; font-style:italic; font-display:swap; }
+@font-face { font-family:"Kernel Sans"; src:url("/fonts/KernelSans-BoldItalic.woff2") format("woff2"); font-weight:700; font-style:italic; font-display:swap; }
 
 :root {
   --bg: #fcfcfc;

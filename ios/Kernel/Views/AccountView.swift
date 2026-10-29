@@ -278,7 +278,7 @@ struct AccountView: View {
             LabeledContent("Summaries", value: "\(store.summaryIndex.count)")
             if let q = goodreadsProfile?["quote"]?.objectValue, let text = q["text"]?.stringValue {
                 Text("\u{201C}\(text)\u{201D}" + (q["author"]?.stringValue.map { " \($0)" } ?? ""))
-                    .font(.footnote.italic()).foregroundStyle(.secondary)
+                    .font(.kernelItalic(.footnote)).foregroundStyle(.secondary)
             }
             if let about = goodreadsProfile?["about"]?.stringValue { LabeledContent("About", value: about) }
             if let interests = goodreadsProfile?["interests"]?.stringValue { LabeledContent("Interests", value: interests) }
