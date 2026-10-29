@@ -23,6 +23,9 @@ struct WidgetFeed: Codable, Equatable {
     /// Sample shown in the widget gallery and in screenshot runs.
     static let sample = WidgetFeed(title: "The Optimist", slug: "the-optimist", chapter: 3, chapters: 14, left: 261, minutes: 38, target: 60, days: [0, 1, 2])
 
+    /// "45 min", "4 hr 21 min": the apps' duration, for the widgets and the Live Activity.
+    static func time(_ m: Int) -> String { m < 60 ? "\(m) min" : m % 60 == 0 ? "\(m / 60) hr" : "\(m / 60) hr \(m % 60) min" }
+
     var url: URL { URL(string: slug.map { "kernel://book/\($0)" } ?? "kernel://library")! }
 }
 
@@ -40,7 +43,7 @@ struct ContinueWidgetView: View {
             Spacer(minLength: 0)
             if feed.title != nil {
                 Text("Chapter \(feed.chapter + 1) of \(feed.chapters)").font(.caption).foregroundStyle(.secondary)
-                Text(feed.left >= 60 ? "\(feed.left / 60) hr \(feed.left % 60) min left" : "\(feed.left) min left").font(.caption).foregroundStyle(.secondary)
+                Text("\(WidgetFeed.time(feed.left)) left").font(.caption).foregroundStyle(.secondary)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

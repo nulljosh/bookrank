@@ -39,6 +39,8 @@
 	<string>Scan book pages into a chapter. The pages are read and dropped, never kept.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Sign in faster with Touch ID.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.heyitsmejosh.spine.reading</string>

@@ -11,6 +11,7 @@ targets:
     sources:
       - Kernel
       - Widgets/WidgetFeed.swift
+      - Widgets/ListenActivity.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources
@@ -28,6 +29,7 @@ targets:
         NSUserActivityTypes: [com.heyitsmejosh.spine.reading]
         UIApplicationSceneManifest: { UIApplicationSupportsMultipleScenes: true }   # iPad Stage Manager and Split View: more than one Kernel window
         CFBundleURLTypes: [{ CFBundleURLName: com.heyitsmejosh.spine, CFBundleURLSchemes: [kernel] }]   # kernel://book/<slug>, from the widgets
+        NSSupportsLiveActivities: true   # the Lock Screen and Dynamic Island while listening
         ITSAppUsesNonExemptEncryption: false   # HTTPS only; without this every build needs the compliance flag set by hand
         # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
         # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist

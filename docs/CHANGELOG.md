@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 89.0.0 (2026-10-29)
+On the iPhone Lock Screen, a widget with the book you are reading, the time left and your week; and while Kernel plays, a Live Activity on the Lock Screen and in the Dynamic Island with the chapter, playing or paused, and the time left. Tap either to open the book.
+
 ## 88.0.0 (2026-10-29)
 Home Screen widgets on iPhone and iPad: Continue shows the book you are partway through, its chapter and the time left, and the medium size adds the week's ring against your goal and a dot for each day you listened. Tap one and the book opens. The app writes what they show to a shared App Group; nothing goes over the network.
 

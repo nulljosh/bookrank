@@ -25,20 +25,54 @@ struct ContinueWidget: Widget {
         }
         .configurationDisplayName("Continue")
         .description("The book you are partway through, and your week.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
     }
 }
 
-/// Medium shows the week; small keeps to Continue.
+/// Medium shows the week; small keeps to Continue; the Lock Screen gets one or two plain lines.
 private struct WeekView: View {
     let entry: FeedEntry
     @Environment(\.widgetFamily) private var family
     var body: some View {
-        if family == .systemMedium { WeekWidgetView(feed: entry.feed) } else { ContinueWidgetView(feed: entry.feed) }
+        let f = entry.feed
+        switch family {
+        case .systemMedium: WeekWidgetView(feed: f)
+        case .accessoryInline: Text(f.title.map { "Kernel: \($0)" } ?? "Kernel")
+        case .accessoryRectangular:
+            VStack(alignment: .leading, spacing: 1) {
+                Text(f.title ?? "Kernel").font(.headline).lineLimit(1)
+                Text(f.title == nil ? "Pick a book" : "Ch \(f.chapter + 1) · \(WidgetFeed.time(f.left)) left").font(.caption)
+                if f.target > 0 { Text("\(f.minutes) of \(f.target) min this week").font(.caption2) }
+            }
+        default: ContinueWidgetView(feed: f)
+        }
+    }
+}
+
+/// The Live Activity while listening: the Lock Screen banner and the Dynamic Island.
+struct ListenLiveActivity: Widget {
+    var body: some WidgetConfiguration {
+        ActivityConfiguration(for: ListenAttributes.self) { ctx in
+            ListenActivityView(title: ctx.attributes.title, state: ctx.state)
+                .widgetURL(URL(string: "kernel://book/\(ctx.attributes.slug)"))
+        } dynamicIsland: { ctx in
+            DynamicIsland {
+                DynamicIslandExpandedRegion(.leading) { Image(systemName: ctx.state.playing ? "waveform" : "pause.fill").foregroundStyle(.yellow) }
+                DynamicIslandExpandedRegion(.center) { Text(ctx.attributes.title).font(.headline).lineLimit(1) }
+                DynamicIslandExpandedRegion(.bottom) { Text("\(ctx.state.chapter) · \(WidgetFeed.time(ctx.state.left)) left").font(.caption).foregroundStyle(.secondary).lineLimit(1) }
+            } compactLeading: {
+                Image(systemName: ctx.state.playing ? "waveform" : "pause.fill").foregroundStyle(.yellow)
+            } compactTrailing: {
+                Text(ctx.state.left >= 60 ? "\(ctx.state.left / 60)h" : "\(ctx.state.left)m").font(.caption2).monospacedDigit()
+            } minimal: {
+                Image(systemName: "book.fill").foregroundStyle(.yellow)
+            }
+            .widgetURL(URL(string: "kernel://book/\(ctx.attributes.slug)"))
+        }
     }
 }
 
 @main
 struct KernelWidgetBundle: WidgetBundle {
-    var body: some Widget { ContinueWidget() }
+    var body: some Widget { ContinueWidget(); ListenLiveActivity() }
 }

@@ -42,6 +42,11 @@ struct KernelApp: App {
                     .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
                     .onOpenURL { u in if u.host() == "book", let s = u.pathComponents.last, s != "/" { NoteTap.shared.slug = s } }   // a widget
                     .task { WidgetFeed.publish() }
+                    #if os(iOS)
+                    .onChange(of: Speaker.shared.playing) { LiveListen.update() }
+                    .onChange(of: Speaker.shared.paused) { LiveListen.update() }
+                    .onChange(of: Speaker.shared.ch) { LiveListen.update() }
+                    #endif
                     .onContinueUserActivity(CSSearchableItemActionType) { a in   // a Spotlight result
                         if let id = a.userInfo?[CSSearchableItemActivityIdentifier] as? String, let s = Spotlight.slug(from: id) { NoteTap.shared.slug = s }
                     }

@@ -34,6 +34,15 @@ struct WidgetGallery: View {
         ZStack {
             LinearGradient(colors: [Color(white: 0.55), Color(red: 0.55, green: 0.42, blue: 0.25)], startPoint: .top, endPoint: .bottom).ignoresSafeArea()   // a plain wallpaper
             VStack(spacing: 24) {
+                // Lock Screen: the rectangular widget, and the Live Activity while listening.
+                VStack(alignment: .leading, spacing: 1) {
+                    Text("The Optimist").font(.headline)
+                    Text("Ch 4 · \(WidgetFeed.time(261)) left").font(.caption)
+                    Text("38 of 60 min this week").font(.caption2)
+                }
+                .foregroundStyle(.white).frame(width: 170, alignment: .leading)
+                ListenActivityView(title: "The Optimist", state: .init(chapter: "Chapter 3: \"Where Are You?\"", index: 3, total: 14, playing: true, left: 261))
+                    .foregroundStyle(.white).frame(width: 364).background(.black.opacity(0.75), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                 tile(ContinueWidgetView(feed: .sample), width: 170)
                 tile(WeekWidgetView(feed: .sample), width: 364)
             }
