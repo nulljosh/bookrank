@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 17.0.0 (2026-10-28)
+Add pages on the web works like the apps: a progress bar while each photo is read, the pages that could not be read named, and the new text selected in the editor so you can fix it before you save.
+
 ## 16.0.0 (2026-10-28)
 Download on the web book page keeps a whole book's narration on the device, so it plays with no connection, like Download in the apps. Every line you have already heard is kept too.
 

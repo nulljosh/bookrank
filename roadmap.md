@@ -17,7 +17,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 14 | Cold launch: Release build timing, no white flash | apps | built (Release launch about 3 s in the simulator, Settings 3.6 s; splash follows the app theme from frame one; nav titles get Kernel Sans; iOS launch screen still follows the phone) |
 | 15 | Web offline mode: the shelf and chapters work with no connection | web | built |
 | 16 | Web offline audio: Download on the web book page | web | built (every line heard or downloaded is kept on the device; Download fetches the rest) |
-| 17 | Web Add pages parity: per-photo progress, edit before save | web | open |
+| 17 | Web Add pages parity: per-photo progress, edit before save | web | built (Add pages button, progress bar, failed pages named, new text selected in the editor until Save) |
 | 18 | Search inside chapter text, results jump to the line | apps, web | open |
 | 19 | Collections: put books in your own groups | apps, web | open |
 | 20 | Sort and filter the library (recent, title, progress, length) | apps, web | open |

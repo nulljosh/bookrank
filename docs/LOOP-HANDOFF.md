@@ -2,7 +2,9 @@
 
 The loop takes Kernel to 100, one major per tick, from the Road to 100 table in roadmap.md. Each row: build it on every platform it names, take light and dark screenshots, mark it built, add a CHANGELOG entry, commit by path, tag `vN.0.0` and push the tag by name, make the GitHub release "Kernel N.0.0", deploy the web if it changed. Replies to Joshua stay under two lines, in plain English.
 
-Next row: **17, Web Add pages parity: per-photo progress, edit before save**.
+Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100.
+
+Next row: **18, Search inside chapter text, results jump to the line**.
 
 ## How to QA
 
