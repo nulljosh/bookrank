@@ -6,7 +6,7 @@
 
 [![Kernel, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/kernel/releases/download/v1.0.2/kernel-ad.mp4)
 
-Free on the [web](https://bookrank.jaybulb.com), $0.99 on iPhone, iPad and Mac. Formerly Bookrank.
+Free on the [web](https://kernel.jaybulb.com), $0.99 on iPhone, iPad and Mac. Formerly Bookrank.
 
 - **Chapters.** Open a book, pick a chapter, read it.
 - **Listen.** One narrator explains the chapter while the words light up.
