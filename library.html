@@ -109,7 +109,7 @@ dl.profile dt { color:var(--text3); }
   <section id="marksView" class="hide">
     <div class="bar">
       <div><h1>Highlights</h1><p class="sub" id="marksSub"></p></div>
-      <div class="row"><button id="marksBack">Library</button></div>
+      <div class="row"><button id="marksExport">Export</button><button id="marksBack">Library</button></div>
     </div>
     <ul class="list marks" id="marksList"></ul>
   </section>
@@ -173,7 +173,7 @@ import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
 import { card } from './card.js';
 import * as goal from './goal.js';
-import { mergeMarks } from './marks.js';
+import { mergeMarks, marksMarkdown } from './marks.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -541,7 +541,13 @@ async function byMeaning(q, data) {
 }
 // ---- all highlights ----
 // Every saved line from every book, newest book first. A line opens its book at that line; Share makes a card.
-let marks = [];
+let marks = [], listData = [];
+// Export: one Markdown file of every highlight, by book and chapter.
+$('marksExport').onclick = async () => {
+  await allTexts(listData);
+  const md = marksMarkdown(listData.map(r => ({ title: r.title, content: texts?.[r.id], marks: r.listen?.marks })));
+  Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([md], { type: 'text/markdown' })), download: 'Kernel highlights.md' }).click();
+};
 $('marksBtn').onclick = () => {
   $('marksSub').textContent = `${marks.length} from ${new Set(marks.map(m => m.id)).size} books`;
   $('marksList').replaceChildren(...marks.map(m => {
@@ -587,6 +593,7 @@ async function load() {
   const rest = shown.filter(r => !started(r));
   const names = [...new Set(data.map(r => r.collection).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   $('collections').replaceChildren(...names.map(n => new Option(n)));
+  listData = data;
   marks = data.flatMap(r => (r.listen?.marks || []).map(m => ({ ...m, id: r.id, book: r.title })));
   $('marksBtn').textContent = `Highlights · ${marks.length}`; $('marksBtn').classList.toggle('hide', !marks.length);
   const groups = [['Currently playing', shown.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),

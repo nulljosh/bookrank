@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 23.0.0 (2026-10-28)
+Export on the Highlights page saves every highlight as one Markdown file, by book and chapter, ready for Notes, Obsidian or anywhere else.
+
 ## 22.0.0 (2026-10-28)
 Highlights: every line you saved, from every book, on one page. Tap one to open the book at that line, or share it as a square gold card with the book's name.
 

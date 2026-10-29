@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100.
 
-Next row: **23, Export highlights and notes as Markdown**.
+Next row: **24, Daily review: five highlights resurface on a schedule**.
 
 ## How to QA
 

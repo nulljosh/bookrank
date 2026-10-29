@@ -92,6 +92,11 @@ final class LibraryWalk: XCTestCase {
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Gephi'")).firstMatch.waitForExistence(timeout: 5))
         sleep(1)
         saveTo("highlights", XCUIScreen.main.screenshot())
+        app.buttons["Export"].firstMatch.tap()
+        sleep(3)
+        saveTo("highlights-export", XCUIScreen.main.screenshot())
+        app.swipeDown(velocity: .fast)   // close the share sheet
+        sleep(1)
         app.buttons["Share as a card"].firstMatch.tap()
         sleep(3)
         saveTo("highlight-share", XCUIScreen.main.screenshot())

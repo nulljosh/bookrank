@@ -26,7 +26,12 @@ struct HighlightsView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Highlights")
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+                ToolbarItem(placement: .automatic) {
+                    ShareLink(item: MarkdownExport(text: exportMarkdown(store.summaryIndex)), preview: SharePreview("Kernel highlights.md")) { Label("Export", systemImage: "square.and.arrow.down") }
+                }
+            }
         }
         #if os(macOS)
         .frame(minWidth: 520, minHeight: 600)
@@ -82,5 +87,31 @@ private struct HighlightsButton: ViewModifier {
                 }
             }
             .sheet(isPresented: $open) { HighlightsView(store: store) }
+    }
+}
+
+/// Every highlight as one Markdown file: a section per book, the chapter's title, each line as a quote.
+/// Same layout as marksMarkdown in marks.js.
+func exportMarkdown(_ books: [SummaryEntry]) -> String {
+    var out = "# Highlights"
+    for b in books {
+        guard let marks = b.listen?.marks, !marks.isEmpty else { continue }
+        let chs = parseChapters(b.content)
+        out += "\n\n## \(b.title)\n"
+        var last: Int?
+        for m in marks.sorted(by: { $0.ch < $1.ch }) {
+            if m.ch != last { out += "\n### \(chs.indices.contains(m.ch) ? chs[m.ch].title : "Chapter \(m.ch + 1)")\n"; last = m.ch }
+            out += "\n> \(m.text)\n"
+        }
+    }
+    return out + "\n"
+}
+
+/// The export as a .md file in the share sheet.
+struct MarkdownExport: Transferable {
+    let text: String
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: UTType(filenameExtension: "md") ?? .plainText) { Data($0.text.utf8) }
+            .suggestedFileName("Kernel highlights.md")
     }
 }

@@ -13,3 +13,13 @@ assert.deepEqual(mergeMarks([], [c], [c]), [c]);
 // Same text in another chapter is another highlight.
 assert.deepEqual(mergeMarks([], [m(0, 'c')], [c]), [m(0, 'c'), c]);
 console.log('marks ok');
+
+// Export: a section per book, chapter titles, quotes in chapter order.
+const { marksMarkdown } = await import('./marks.js');
+{
+  const md = marksMarkdown([
+    { title: 'Book A', content: '# One\n\nx\n\n# Two\n\ny', marks: [{ ch: 1, text: 'later line' }, { ch: 0, text: 'first line' }] },
+    { title: 'No marks', content: '', marks: [] },
+  ]);
+  assert.equal(md, '# Highlights\n\n## Book A\n\n### One\n\n> first line\n\n### Two\n\n> later line\n');
+}
