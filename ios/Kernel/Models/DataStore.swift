@@ -103,13 +103,17 @@ final class DataStore {
                       "data-science": "https://covers.openlibrary.org/b/id/13285377-M.jpg",
                       "statistics-for-dummies": "https://covers.openlibrary.org/b/id/9700982-M.jpg",
                       "good-feng-shui": "https://covers.openlibrary.org/b/id/14016705-M.jpg"]
+        // Two highlights on a book whose text is fine for the store, so Highlights has something to show.
+        let marked = ListenState(for: "", chapters: [:], pos: .init(ch: 0, line: 0), marks: [
+            .init(ch: 1, text: "Gephi is an open-source network-graph visualization tool, good for exploring relationships and connections as node-and-edge graphs."),
+            .init(ch: 0, text: "ImageQuilts lets you compile grids of related images into a single collage, useful for quick visual analysis.")])
         return picks.compactMap { slug in
             guard let url = Bundle.main.url(forResource: slug, withExtension: "md") ?? Bundle.main.url(forResource: slug, withExtension: "md", subdirectory: "summaries"),
                   let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
             // The Optimist is partway through, so the store shots show the Continue card.
             let partway = slug == "the-optimist"
             return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: partway ? "snapshot" : nil,
-                                listen: partway ? ListenState(for: "snapshot", chapters: [:], pos: .init(ch: 3, line: 0)) : nil, cover: covers[slug], shareToken: nil)
+                                listen: partway ? ListenState(for: "snapshot", chapters: [:], pos: .init(ch: 3, line: 0)) : slug == "data-science" ? marked : nil, cover: covers[slug], shareToken: nil)
         }.sorted { $0.title < $1.title }
     }
 

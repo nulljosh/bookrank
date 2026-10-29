@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 22.0.0 (2026-10-28)
+Highlights: every line you saved, from every book, on one page. Tap one to open the book at that line, or share it as a square gold card with the book's name.
+
 ## 21.0.0 (2026-10-28)
 Search by meaning: below the word matches, Close in meaning finds the lines that say what you typed in other words, and opens the book at that line. Each book is read once and kept on the device.
 

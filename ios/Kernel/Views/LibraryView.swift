@@ -34,7 +34,7 @@ struct LibraryView: View {
                 list
                     .navigationSplitViewColumnWidth(min: 280, ideal: 340, max: 520)
                     .navigationTitle("Summaries")
-                    .toolbar { accountButton }
+                    .toolbar { accountButton }.highlights(store)
             } content: {
                 if let slug = selected {
                     SummaryDetailView(slug: slug, store: store, chapter: $chapter, find: query).id(slug)
@@ -178,7 +178,7 @@ struct LibraryView: View {
             .navigationDestination(item: $openSlug) { SummaryDetailView(slug: $0, store: store) }
             .navigationTitle("Summaries")
             .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
-            .toolbar { accountButton }
+            .toolbar { accountButton }.highlights(store)
     }
     #endif
 

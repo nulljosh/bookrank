@@ -45,7 +45,8 @@ details.gr { margin-top:1.5rem; }
 details.gr .by { display:block; }
 details.gr summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
-.sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
+.sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar #marksBtn { margin-left:auto; font-size:0.8125rem; padding:0.3rem 0.7rem; }
+ul.marks li { display:block; padding:1rem 0; } ul.marks blockquote { margin:0 0 0.4rem; cursor:pointer; line-height:1.5; } ul.marks .by { display:flex; justify-content:space-between; align-items:center; gap:1rem; } ul.marks .by button { font-size:0.8125rem; padding:0.3rem 0.7rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
 #find { width:100%; margin:0.25rem 0 0.75rem; padding:0.7rem 0.9rem; border:1px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); font:inherit; }
 ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
 ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
@@ -104,6 +105,15 @@ dl.profile dt { color:var(--text3); }
     </form>
   </section>
 
+  <!-- every highlight, across books -->
+  <section id="marksView" class="hide">
+    <div class="bar">
+      <div><h1>Highlights</h1><p class="sub" id="marksSub"></p></div>
+      <div class="row"><button id="marksBack">Library</button></div>
+    </div>
+    <ul class="list marks" id="marksList"></ul>
+  </section>
+
   <!-- list -->
   <section id="listView" class="hide">
     <div class="bar">
@@ -119,6 +129,7 @@ dl.profile dt { color:var(--text3); }
     <div class="sortbar hide" id="sortbar">
       <select id="sort" aria-label="Sort"><option value="recent">Recently edited</option><option value="title">Title</option><option value="progress">Progress</option><option value="short">Shortest first</option></select>
       <select id="show" aria-label="Show"><option value="all">All books</option><option value="started">In progress</option><option value="new">Not started</option></select>
+      <button type="button" id="marksBtn" class="hide">Highlights</button>
     </div>
     <ul class="list" id="list"></ul>
     <div id="meaning" class="hide"><h4 class="group">Close in meaning</h4><ul class="list"></ul></div>
@@ -160,13 +171,14 @@ import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
+import { card } from './card.js';
 import * as goal from './goal.js';
 import { mergeMarks } from './marks.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
-const show = (...ids) => ['gate','listView','editView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
+const show = (...ids) => ['gate','listView','editView','marksView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'untitled';
 
 let current = null; // row being edited
@@ -527,6 +539,27 @@ async function byMeaning(q, data) {
   box.classList.toggle('hide', !hits.length);
   if (hits.length && $('listMsg').textContent.startsWith('Nothing matches')) $('listMsg').textContent = '';
 }
+// ---- all highlights ----
+// Every saved line from every book, newest book first. A line opens its book at that line; Share makes a card.
+let marks = [];
+$('marksBtn').onclick = () => {
+  $('marksSub').textContent = `${marks.length} from ${new Set(marks.map(m => m.id)).size} books`;
+  $('marksList').replaceChildren(...marks.map(m => {
+    const li = document.createElement('li'), q = Object.assign(document.createElement('blockquote'), { textContent: m.text });
+    q.onclick = async () => { const row = await open(m.id); const f = row && findLine(row.content, m.text); if (f) listen?.find(f); };
+    const by = Object.assign(document.createElement('div'), { className: 'by' });
+    const share = Object.assign(document.createElement('button'), { textContent: 'Share' });
+    share.onclick = async () => {
+      const file = new File([await card(m.text, m.book)], 'highlight.png', { type: 'image/png' });
+      if (navigator.canShare?.({ files: [file] })) navigator.share({ files: [file], text: `${m.text} (${m.book})` }).catch(() => {});
+      else Object.assign(document.createElement('a'), { href: URL.createObjectURL(file), download: 'highlight.png' }).click();
+    };
+    by.append(Object.assign(document.createElement('span'), { textContent: `${m.book} · Ch ${m.ch + 1}` }), share);
+    li.append(q, by); return li;
+  }));
+  show('marksView');
+};
+$('marksBack').onclick = () => show('listView');
 const pref = (k, d) => { try { return localStorage.getItem(k) || d; } catch { return d; } };
 $('sort').onchange = () => { try { localStorage.setItem('kernel.sort', $('sort').value); } catch {} load(); };
 $('show').onchange = () => { try { localStorage.setItem('kernel.show', $('show').value); } catch {} load(); };
@@ -554,6 +587,8 @@ async function load() {
   const rest = shown.filter(r => !started(r));
   const names = [...new Set(data.map(r => r.collection).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   $('collections').replaceChildren(...names.map(n => new Option(n)));
+  marks = data.flatMap(r => (r.listen?.marks || []).map(m => ({ ...m, id: r.id, book: r.title })));
+  $('marksBtn').textContent = `Highlights · ${marks.length}`; $('marksBtn').classList.toggle('hide', !marks.length);
   const groups = [['Currently playing', shown.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),
     [data.some(started) || names.length ? 'Library' : '', rest.filter(r => !r.collection)]];
   for (const [label, rows] of groups) {

@@ -82,6 +82,21 @@ final class LibraryWalk: XCTestCase {
         saveTo("meaning-results", XCUIScreen.main.screenshot())
     }
 
+    /// Highlights across books, and one shared as a card (the share sheet, nothing sent).
+    func testHighlightsPage() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let open = app.buttons["Highlights"].firstMatch
+        XCTAssertTrue(open.waitForExistence(timeout: 15)); open.tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Gephi'")).firstMatch.waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("highlights", XCUIScreen.main.screenshot())
+        app.buttons["Share as a card"].firstMatch.tap()
+        sleep(3)
+        saveTo("highlight-share", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

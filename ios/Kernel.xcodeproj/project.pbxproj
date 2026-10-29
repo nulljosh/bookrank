@@ -36,6 +36,7 @@
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
+		446430E59725102456EF42D5 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */; };
 		45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
@@ -94,6 +95,7 @@
 		D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
 		D63E6A6B8F231D6504401456 /* LibraryWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856723BDA9B438B185F67005 /* LibraryWalk.swift */; };
+		D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */; };
 		DD645625E3601F018202F4DA /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = 28F2279A9A1CB974E6CE26AD /* Kernel.icon */; };
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
@@ -177,6 +179,7 @@
 		D2CEA9519827D51461348E47 /* data-science.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-science.md"; sourceTree = "<group>"; };
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
 		D6E725F291428741C2DC63FE /* AddPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPagesView.swift; sourceTree = "<group>"; };
+		D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 				20EE769FDA16E1E24C359F00 /* AccountView.swift */,
 				D6E725F291428741C2DC63FE /* AddPagesView.swift */,
 				7553A26F78E2CFC07C8E8C6D /* AskView.swift */,
+				D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
 				39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */,
 				E2296F31EB47281BF6AF3961 /* OnboardingView.swift */,
@@ -554,6 +558,7 @@
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */,
+				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
 				BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */,
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
@@ -603,6 +608,7 @@
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */,
+				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,
 				FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */,
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
