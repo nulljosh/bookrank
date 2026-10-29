@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 83.0.0 (2026-10-29)
+An Apple-style pass over the web: every button, picker and field is one 44 point height, buttons and pickers are capsules with a drawn chevron, search has a magnifier, and keyboard focus is a soft ring in the accent. The apps already use the system's own controls.
+
 ## 82.0.0 (2026-10-29)
 A second look at Blinkist, Shortform, Readwise Reader and Headway. Kernel already has their continue card, weekly goal and stats, audio or text, highlights, offline and imports; the web player now also says how much of the chapter is left, like the apps. What remains (key ideas, exercises, a coach) waits on Workers AI.
 

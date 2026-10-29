@@ -83,7 +83,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 80 | Promotional text and in-app events each release | store | built (CHANGELOG 80.0.0; first run with the next live version, since today's promo text names features 1.2.1 lacks) |
 | 81 | Two screenshot sets tested on the product page | store | built (CHANGELOG 81.0.0; the test starts once the version in the shots is on sale) |
 | 82 | Second Mobbin pass against the best apps; close what is left | all | built (CHANGELOG 82.0.0: against Blinkist, Shortform, Readwise Reader and Headway; what is left is key ideas, exercises and a coach, rows 95 to 98 on Workers AI) |
-| 83 | apple skill audit of every screen, zero findings | all | open |
+| 83 | apple skill audit of every screen, zero findings | all | built (CHANGELOG 83.0.0; Kernel Sans stays, it was Joshua's brief, and sepia stays as a reading choice) |
 | 84 | Security and privacy audit, zero findings | all | open |
 | 85 | Performance audit, zero regressions | all | open |
 | 86 | Docs, README, WHITEPAPER and landing final pass | repo, web | open |
