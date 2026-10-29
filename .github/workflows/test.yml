@@ -21,7 +21,8 @@ jobs:
       - run: node --test
 
   swift:
-    # The apps' pure rules (ios/Tests), then a few UI walks over the screenshot shelf, on a simulator.
+    # The apps' pure rules (ios/Tests), then a few UI walks over the screenshot shelf, on the same iPhone the
+    # screenshots and local walks use (17 Pro Max), so a narrower phone's toolbar does not change what they find.
     runs-on: macos-26
     timeout-minutes: 40
     steps:
@@ -31,16 +32,23 @@ jobs:
         run: |
           set -o pipefail
           cd ios && xcodegen
-          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
+          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
       - name: UI walks
         # The silent screenshot shelf only: no sign-in, never presses Listen.
         run: |
           set -o pipefail
           cd ios
-          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO \
+          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' CODE_SIGNING_ALLOWED=NO -resultBundlePath walks.xcresult \
             -only-testing:KernelUITests/LibraryWalk/testSearch -only-testing:KernelUITests/LibraryWalk/testSortFilter \
             -only-testing:KernelUITests/LibraryWalk/testCommandPalette -only-testing:KernelUITests/LibraryWalk/testAccountSections \
             -only-testing:KernelUITests/LibraryWalk/testSleepNote | tail -40
+      - name: Keep the walk results when they fail
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: walks-xcresult
+          path: ios/walks.xcresult
+          retention-days: 7
 
   docs:
     runs-on: ubuntu-latest
