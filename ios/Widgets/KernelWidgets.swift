@@ -25,7 +25,11 @@ struct ContinueWidget: Widget {
         }
         .configurationDisplayName("Continue")
         .description("The book you are partway through, and your week.")
+        #if os(iOS)
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
+        #else
+        .supportedFamilies([.systemSmall, .systemMedium])
+        #endif
     }
 }
 
@@ -37,6 +41,7 @@ private struct WeekView: View {
         let f = entry.feed
         switch family {
         case .systemMedium: WeekWidgetView(feed: f)
+        #if os(iOS)
         case .accessoryInline: Text(f.title.map { "Kernel: \($0)" } ?? "Kernel")
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 1) {
@@ -44,11 +49,13 @@ private struct WeekView: View {
                 Text(f.title == nil ? "Pick a book" : "Ch \(f.chapter + 1) · \(WidgetFeed.time(f.left)) left").font(.caption)
                 if f.target > 0 { Text("\(f.minutes) of \(f.target) min this week").font(.caption2) }
             }
+        #endif
         default: ContinueWidgetView(feed: f)
         }
     }
 }
 
+#if os(iOS)
 /// The Live Activity while listening: the Lock Screen banner and the Dynamic Island.
 struct ListenLiveActivity: Widget {
     var body: some WidgetConfiguration {
@@ -72,7 +79,29 @@ struct ListenLiveActivity: Widget {
     }
 }
 
+#endif
+
+/// Control Center (and the Lock Screen and Action button): one tap plays or pauses the book open in Kernel.
+@available(iOS 18.0, macOS 26.0, *)
+struct ListenControl: ControlWidget {
+    var body: some ControlWidgetConfiguration {
+        StaticControlConfiguration(kind: "com.heyitsmejosh.spine.listen") {
+            ControlWidgetButton(action: ToggleListeningIntent()) {
+                Label(WidgetFeed.load().title ?? "Kernel", systemImage: "book")
+            }
+        }
+        .displayName("Play or Pause Kernel")
+        .description("Plays or pauses the book you are listening to.")
+    }
+}
+
 @main
 struct KernelWidgetBundle: WidgetBundle {
-    var body: some Widget { ContinueWidget(); ListenLiveActivity() }
+    var body: some Widget {
+        ContinueWidget()
+        #if os(iOS)
+        ListenLiveActivity()
+        #endif
+        if #available(iOS 18.0, macOS 26.0, *) { ListenControl() }
+    }
 }

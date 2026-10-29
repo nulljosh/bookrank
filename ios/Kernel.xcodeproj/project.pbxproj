@@ -23,6 +23,7 @@
 		16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
 		191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
 		193B57C7BF8ED068C4FDBCA7 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881CC0060AEE79428999FE2 /* Spotlight.swift */; };
+		1AE2C94397CB9722D6779DA1 /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
 		1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */; };
 		1E5109055000EBDB812D992F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		1FD09E91C1599004CA7E5213 /* sobriety-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */; };
@@ -30,8 +31,10 @@
 		241B15FC5B5F6C432F8FB15A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
 		255D8A8DD3FFFFDAE50C15D1 /* Meaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E2C3E7F816D3A9C7931FA /* Meaning.swift */; };
 		27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849BD03EBC174F2FFE54D4A /* Goal.swift */; };
+		2B17B7865DD62CF46BF23E4F /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
+		2D22E7FC1961723E71545049 /* WidgetFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1C8308572FB76ACF005C1 /* WidgetFeed.swift */; };
 		2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */; };
 		2E7C473755BE443C32332247 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
 		2F0EFA5B971F40F98A5AE0CD /* CommandPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */; };
@@ -62,6 +65,7 @@
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
 		5DF53F17E4F000361BDFC400 /* KernelSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */; };
+		6118A1928E5DAF6B691FEB1F /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
 		622B713EAD540119BE0B693E /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		63351371081E50673664542D /* WidgetFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1C8308572FB76ACF005C1 /* WidgetFeed.swift */; };
@@ -79,6 +83,7 @@
 		6FB9D32EE441567B36649298 /* ListenActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6ED721719C6E428CD266C /* ListenActivity.swift */; };
 		70B8E24EB52F15F4F8820892 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */; };
 		71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
+		72593BFF1ED1F1CE28838C4A /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
 		76251A9A7A7BB916A85E8E93 /* SpeedWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24258C8F8C16CC8576EE2683 /* SpeedWalk.swift */; };
 		7699430312B7D04FC801034C /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
@@ -99,6 +104,7 @@
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		8EAB011874B6025CE7D03B55 /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
 		91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
+		91F5416A612BA14C21E4C45E /* KernelWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DDF21C40031895E52C6117 /* KernelWidgets.swift */; };
 		9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
 		92AA9D935A513FE6702F507A /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
 		95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
@@ -130,6 +136,7 @@
 		C2B26317A76AB98D25A2E216 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
 		C51CD4BB582F1905019F7C25 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DECB595714C49AC4A2167F /* KernelTests.swift */; };
 		C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
+		C66D0F16C70EAE4DD154B5F3 /* Mac-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65D4C50C9872E0E46384D1D7 /* Mac-Info.plist */; };
 		CA3B1BAD9B33C357CAC89A95 /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372CE246108E47F43F82313 /* EmptyStates.swift */; };
 		CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		CF8195898C51A6BFA200D9C8 /* AskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7553A26F78E2CFC07C8E8C6D /* AskView.swift */; };
@@ -154,6 +161,7 @@
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
+		EFA8080E2FCBE4FD400A59E9 /* KernelMacWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 602CD0B69C3E5F3906997C20 /* KernelMacWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F32152999FACB72DD8645343 /* KernelSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA98DFB7F5538965D9B6C7 /* KernelSans-BoldItalic.ttf */; };
 		F5D34F362488A7DD2DADE92F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DE465914D0C6444A386E /* StatsView.swift */; };
 		F7C5BBBC7B5C9F3E4AC9723D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
@@ -172,6 +180,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1F4B54A97C1D34A2C8C4EFF3;
 			remoteInfo = Kernel;
+		};
+		B25E0E7B0ABDC93E5D2F5960 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE60390B29FD39CD2989D32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE24A65C7ECFC349EF8BA4A4;
+			remoteInfo = KernelMacWidgets;
 		};
 		BF2253D58FC74B3237C12AC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -197,6 +212,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				7D2468A508C41D382EF3AA20 /* KernelWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6DA03FBA79BBC01354F746F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EFA8080E2FCBE4FD400A59E9 /* KernelMacWidgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,12 +264,14 @@
 		5143E3D28C23EEE7661B6DDE /* KernelWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E50E1C377807E014AE18C2 /* good-feng-shui.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "good-feng-shui.md"; sourceTree = "<group>"; };
 		56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
+		602CD0B69C3E5F3906997C20 /* KernelMacWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KernelMacWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6031C7693DB73B68A9F6ADED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		60DECB595714C49AC4A2167F /* KernelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		6372CE246108E47F43F82313 /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
 		63DDF21C40031895E52C6117 /* KernelWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelWidgets.swift; sourceTree = "<group>"; };
 		640F6C819D393938A8ED5317 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		65D4C50C9872E0E46384D1D7 /* Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Info.plist"; sourceTree = "<group>"; };
 		67431B1D26A68A4341C3EF29 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		68D42622E422604FB14F1EF9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6CD7AD5D25771852E47A0989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -265,6 +293,7 @@
 		A1FB1817D952E630F014265C /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Italic.ttf"; sourceTree = "<group>"; };
 		A51B1514899126444871DA82 /* SpeakerExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerExtras.swift; sourceTree = "<group>"; };
+		A6E12B00D200582798742517 /* ToggleIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleIntent.swift; sourceTree = "<group>"; };
 		A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Regular.otf"; sourceTree = "<group>"; };
 		A849BD03EBC174F2FFE54D4A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		AAB8DB870805E0D468BF923B /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
@@ -272,6 +301,7 @@
 		B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "acing-the-system-design-interview.md"; sourceTree = "<group>"; };
 		B418C71886BBCDA4C7D77C4A /* Outbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbox.swift; sourceTree = "<group>"; };
 		BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Semibold.otf"; sourceTree = "<group>"; };
+		C02F014FE819A18AF33F8140 /* KernelMacWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KernelMacWidgets.entitlements; sourceTree = "<group>"; };
 		C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
 		C82E2C3E7F816D3A9C7931FA /* Meaning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meaning.swift; sourceTree = "<group>"; };
 		D0332B5062B1D4C2E1124B7D /* KernelWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = KernelWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,9 +393,12 @@
 			isa = PBXGroup;
 			children = (
 				6CD7AD5D25771852E47A0989 /* Info.plist */,
+				C02F014FE819A18AF33F8140 /* KernelMacWidgets.entitlements */,
 				E41287D31C5C414AD2BBE865 /* KernelWidgets.entitlements */,
 				63DDF21C40031895E52C6117 /* KernelWidgets.swift */,
 				EAF6ED721719C6E428CD266C /* ListenActivity.swift */,
+				65D4C50C9872E0E46384D1D7 /* Mac-Info.plist */,
+				A6E12B00D200582798742517 /* ToggleIntent.swift */,
 				E4D1C8308572FB76ACF005C1 /* WidgetFeed.swift */,
 			);
 			path = Widgets;
@@ -376,6 +409,7 @@
 			children = (
 				9C9F810A2EE7CDD4B516ADEF /* Kernel.app */,
 				32D10340DE121C50437BAE35 /* KernelMac.app */,
+				602CD0B69C3E5F3906997C20 /* KernelMacWidgets.appex */,
 				1E0CD605F7A5ED78342D424E /* KernelTests.xctest */,
 				EADD79E8481EC276F89FE4B1 /* KernelUITests.xctest */,
 				5143E3D28C23EEE7661B6DDE /* KernelWatch.app */,
@@ -525,6 +559,7 @@
 			buildConfigurationList = BC9636B47CF36147197B668C /* Build configuration list for PBXNativeTarget "KernelWidgets" */;
 			buildPhases = (
 				1AD4BB4B8EB852016D8E418F /* Sources */,
+				D22057CD5CF9F6DBFEDC3B6F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -543,10 +578,12 @@
 			buildPhases = (
 				4F824FE188A7BFC37F6D344C /* Sources */,
 				CDA5054F5E3474C3030C4CDC /* Resources */,
+				C6DA03FBA79BBC01354F746F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E8176C74B02A41EC2150B826 /* PBXTargetDependency */,
 			);
 			name = KernelMac;
 			packageProductDependencies = (
@@ -590,6 +627,23 @@
 			productName = KernelWatch;
 			productReference = 5143E3D28C23EEE7661B6DDE /* KernelWatch.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CE24A65C7ECFC349EF8BA4A4 /* KernelMacWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94375079AC422BC69BB6FDF2 /* Build configuration list for PBXNativeTarget "KernelMacWidgets" */;
+			buildPhases = (
+				A380A99D92EC7CEA8C1E301C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KernelMacWidgets;
+			packageProductDependencies = (
+			);
+			productName = KernelMacWidgets;
+			productReference = 602CD0B69C3E5F3906997C20 /* KernelMacWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		EABF55C6048A8F41A55BCFFF /* KernelTests */ = {
 			isa = PBXNativeTarget;
@@ -639,6 +693,10 @@
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
 					};
+					CE24A65C7ECFC349EF8BA4A4 = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
 					EABF55C6048A8F41A55BCFFF = {
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
@@ -666,6 +724,7 @@
 				67EEB91CB1045ED71966746E /* KernelUITests */,
 				4EA43C08E7FC8712A47AC6F8 /* KernelWidgets */,
 				EABF55C6048A8F41A55BCFFF /* KernelTests */,
+				CE24A65C7ECFC349EF8BA4A4 /* KernelMacWidgets */,
 				641E7359B150E204B5A5C28A /* KernelMac */,
 				ADB3F2D5E33115FA40F87DB2 /* KernelWatch */,
 			);
@@ -753,6 +812,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D22057CD5CF9F6DBFEDC3B6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C66D0F16C70EAE4DD154B5F3 /* Mac-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -762,6 +829,7 @@
 			files = (
 				15160455007F616697BA9A39 /* KernelWidgets.swift in Sources */,
 				0F02CCF7EF5D1993B996E47C /* ListenActivity.swift in Sources */,
+				1AE2C94397CB9722D6779DA1 /* ToggleIntent.swift in Sources */,
 				3DF8061E6FA0295373D8D194 /* WidgetFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,6 +878,7 @@
 				F5D34F362488A7DD2DADE92F /* StatsView.swift in Sources */,
 				3831C6DFED6164F2EC4B8F3E /* StorageView.swift in Sources */,
 				6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */,
+				72593BFF1ED1F1CE28838C4A /* ToggleIntent.swift in Sources */,
 				191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */,
 				0898458199122CC1480F8A7C /* WidgetFeed.swift in Sources */,
 				37C54EC54D35BC77579D7AA5 /* WidgetPublish.swift in Sources */,
@@ -888,9 +957,20 @@
 				485245FF235D4C63C91869FB /* StatsView.swift in Sources */,
 				70B8E24EB52F15F4F8820892 /* StorageView.swift in Sources */,
 				16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */,
+				6118A1928E5DAF6B691FEB1F /* ToggleIntent.swift in Sources */,
 				31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */,
 				63351371081E50673664542D /* WidgetFeed.swift in Sources */,
 				E4B3867048DDFF3F232515B7 /* WidgetPublish.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A380A99D92EC7CEA8C1E301C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F5416A612BA14C21E4C45E /* KernelWidgets.swift in Sources */,
+				2B17B7865DD62CF46BF23E4F /* ToggleIntent.swift in Sources */,
+				2D22E7FC1961723E71545049 /* WidgetFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +991,11 @@
 			isa = PBXTargetDependency;
 			target = 1F4B54A97C1D34A2C8C4EFF3 /* Kernel */;
 			targetProxy = 5B8B2699E03761AAF42F3698 /* PBXContainerItemProxy */;
+		};
+		E8176C74B02A41EC2150B826 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE24A65C7ECFC349EF8BA4A4 /* KernelMacWidgets */;
+			targetProxy = B25E0E7B0ABDC93E5D2F5960 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -952,9 +1037,32 @@
 				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		38A226AB5D57BE3480303BD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widgets/KernelMacWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 202610282009;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				INFOPLIST_FILE = "Widgets/Mac-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 18.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+			};
+			name = Release;
 		};
 		4120EB4367AE87DE31EB712E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1096,6 +1204,7 @@
 				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1239,6 +1348,28 @@
 			};
 			name = Debug;
 		};
+		E0FFAD9A1156FB92C7D24DD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widgets/KernelMacWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 202610282009;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				INFOPLIST_FILE = "Widgets/Mac-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 18.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+			};
+			name = Debug;
+		};
 		E3BE8B81ABC417A77B5E8E1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1317,6 +1448,15 @@
 			buildConfigurations = (
 				B38EB94702FE7EA01DC28B97 /* Debug */,
 				F9328AC3A2051FAB359B2280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		94375079AC422BC69BB6FDF2 /* Build configuration list for PBXNativeTarget "KernelMacWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0FFAD9A1156FB92C7D24DD7 /* Debug */,
+				38A226AB5D57BE3480303BD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

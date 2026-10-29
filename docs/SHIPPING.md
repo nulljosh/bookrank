@@ -14,7 +14,7 @@ Always set `ASC_BYPASS_KEYCHAIN=1` for `asc`. ASC app 6792376485, one record for
 4. Afterwards `git checkout ios/Kernel/Info.plist`.
 5. Once the version is live: `sh scripts/promo.sh` sets the promotional text from `docs/store/listing.json` (no review needed), and an in-app event goes up if the release has one ([events.md](store/events.md)).
 
-The app and its widget extension (`com.heyitsmejosh.spine.widgets`, from 88.0.0) share the App Group `group.com.heyitsmejosh.spine`. Signing is automatic, so the first archive after 88 registers the group and the extension's App ID; archive with `-allowProvisioningUpdates` (or once from Xcode) if the workflow stops on a missing profile.
+The app and its widget extension (`com.heyitsmejosh.spine.widgets`, from 88.0.0) share the App Group `group.com.heyitsmejosh.spine`; on the Mac (90.0.0) the group is `QMM486NPYC.com.heyitsmejosh.spine`, since a Mac group carries the team id. Signing is automatic, so the first archive after 88 registers the group and the extension's App ID; archive with `-allowProvisioningUpdates` (or once from Xcode) if the workflow stops on a missing profile.
 
 ## Mac
 

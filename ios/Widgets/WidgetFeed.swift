@@ -6,7 +6,11 @@ struct WidgetFeed: Codable, Equatable {
     var title: String? = nil, slug: String? = nil, chapter: Int = 0, chapters: Int = 0, left: Int = 0
     var minutes: Int = 0, target: Int = 0, days: [Int] = []
 
+    #if os(macOS)
+    static let group = "QMM486NPYC.com.heyitsmejosh.spine"   // a Mac App Group carries the team id
+    #else
     static let group = "group.com.heyitsmejosh.spine"
+    #endif
     static let key = "kernel.widget"
     static var defaults: UserDefaults? { UserDefaults(suiteName: group) }
 

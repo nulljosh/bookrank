@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 90.0.0 (2026-10-29)
+A Control Center control that plays or pauses the book you are listening to, on iPhone (iOS 18) and the Mac (macOS 26), and on the Lock Screen and Action button too. The Mac also gets the Continue and week widgets for its desktop.
+
 ## 89.0.0 (2026-10-29)
 On the iPhone Lock Screen, a widget with the book you are reading, the time left and your week; and while Kernel plays, a Live Activity on the Lock Screen and in the Dynamic Island with the chapter, playing or paused, and the time left. Tap either to open the book.
 

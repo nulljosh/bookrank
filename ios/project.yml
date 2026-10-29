@@ -12,6 +12,7 @@ targets:
       - Kernel
       - Widgets/WidgetFeed.swift
       - Widgets/ListenActivity.swift
+      - Widgets/ToggleIntent.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources
@@ -82,6 +83,7 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         CODE_SIGN_ENTITLEMENTS: Widgets/KernelWidgets.entitlements
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) WIDGET_EXTENSION"   # the shared intent runs in the app, not here
   KernelTests:
     type: bundle.unit-test
     platform: iOS
@@ -95,13 +97,35 @@ targets:
         DEVELOPMENT_TEAM: QMM486NPYC
     dependencies:
       - target: Kernel
+  KernelMacWidgets:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Widgets/WidgetFeed.swift, Widgets/KernelWidgets.swift, Widgets/ToggleIntent.swift]
+    info:
+      path: Widgets/Mac-Info.plist
+      properties:
+        CFBundleDisplayName: Kernel
+        NSExtension: { NSExtensionPointIdentifier: com.apple.widgetkit-extension }
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.widgets
+        MARKETING_VERSION: "18.0.0"
+        CURRENT_PROJECT_VERSION: "202610282009"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: QMM486NPYC
+        CODE_SIGN_ENTITLEMENTS: Widgets/KernelMacWidgets.entitlements
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) WIDGET_EXTENSION"
   KernelMac:
     type: application
     platform: macOS
+    dependencies:
+      - target: KernelMacWidgets   # Continue and the week on the Mac desktop, and the Control Center control
     deploymentTarget: "14.0"
     sources:
       - Kernel
       - Widgets/WidgetFeed.swift
+      - Widgets/ToggleIntent.swift
       - ../Kernel.icon
       - path: ../goodreads-parse.js
         buildPhase: resources
