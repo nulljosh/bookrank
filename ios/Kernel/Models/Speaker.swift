@@ -50,6 +50,14 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             if playing { Task { await play(from: line) } }
         }
     }
+    /// The natural narrator, "A" (Alice) or "B" (George): remembered per book, falling back to your last pick. Same as the web.
+    var narrator: String = UserDefaults.standard.string(forKey: "bookrank.narrator") ?? "A" {
+        didSet {
+            UserDefaults.standard.set(narrator, forKey: "bookrank.narrator")
+            if let slug { UserDefaults.standard.set(narrator, forKey: "bookrank.narrator.\(slug)") }
+            if playing { Task { await play(from: line) } }
+        }
+    }
     var status = ""
     /// There is a place to go back to: a saved position, or something already played. Opening a chapter is not one.
     private(set) var resumed = false
@@ -90,6 +98,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         stop()
         self.slug = slug; self.chapters = chapters; self.save = save; notes = false
         if let r = UserDefaults.standard.object(forKey: "bookrank.rate.\(slug)") as? Float { rate = r }
+        if let v = UserDefaults.standard.string(forKey: "bookrank.narrator.\(slug)") { narrator = v }
         updatedAt = entry?.updatedAt ?? ""
         let st = entry?.listen.flatMap { $0.for == updatedAt ? $0 : nil }
         // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
@@ -154,7 +163,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         for i in chapters.indices {
             guard self.slug == slug, let s = await script(for: i).value else { status = "Download stopped. Try again with a connection."; return }
             for l in s {
-                if await Narrator.speak(l.line, host: l.host, ch: i, slug: slug) == nil {
+                if await Narrator.speak(l.line, host: narrator, ch: i, slug: slug) == nil {
                     status = "Download stopped (\(Narrator.lastFailure ?? "unknown")). Try again later."; return
                 }
             }
@@ -310,13 +319,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// false = a line could not be fetched or played, `line` is where the device voice should pick up.
     @MainActor
     private func playNatural(_ script: [ListenState.Line], from start: Int, tok: Int) async -> Bool {
-        var next = Task { await Narrator.speak(script[start].line, host: script[start].host, ch: ch, slug: slug) }
+        var next = Task { await Narrator.speak(script[start].line, host: narrator, ch: ch, slug: slug) }
         for i in start..<script.count {
             guard tok == token else { return true }
             let clip = await next.value
             guard tok == token else { return true }
             guard let clip, let p = try? AVAudioPlayer(data: clip.audio) else { line = i; return false }
-            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: n.host, ch: ch, slug: slug) } }
+            if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: narrator, ch: ch, slug: slug) } }
             line = i; word = nil
             status = "\(chapters[ch].title) · \(i + 1)/\(lines.count)"
             player = p; p.enableRate = true; p.rate = rate; p.play()

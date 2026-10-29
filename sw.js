@@ -1,8 +1,8 @@
 // ponytail: network-first for pages, cache-first for the hashed assets they name.
 // Bump CACHE to evict everything a previous version stored.
-const CACHE = "kernel-v30";
+const CACHE = "kernel-v31";
 // Pages under their pretty paths (Pages 308s /x.html to /x), plus everything they load, so the shelf opens with no connection.
-const FILES = ["/", "/library", "/share", "/profile", "/privacy", "/listen.js", "/listen.css", "/covers.js", "/goal.js", "/marks.js", "/search.js", "/meaning.js", "/card.js", "/goodreads-export.js", "/kindle.js", "/epub.js", "/spark.js",
+const FILES = ["/", "/library", "/share", "/profile", "/privacy", "/listen.js", "/listen.css", "/covers.js", "/goal.js", "/marks.js", "/voices.js", "/search.js", "/meaning.js", "/card.js", "/goodreads-export.js", "/kindle.js", "/epub.js", "/spark.js",
   "/webmcp.js", "/onboarding.js", "/tokens.css", "/brand/tokens.css", "/books.json", "/favicon.svg", "/icon-192.png", "/manifest.webmanifest",
   ...["Regular", "Medium", "Semibold", "Bold"].map(w => `/fonts/KernelSans-${w}.woff2`),
   "https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js", "https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"];

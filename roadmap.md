@@ -42,7 +42,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 39 | Mac keyboard map and a command palette | Mac | built (a Listen menu holds every listening shortcut; ⌘K finds a book or action; works from an iPad keyboard too; shot on iPhone, the Mac sheet not yet seen) |
 | 40 | Spotlight finds your summaries and highlights | apps | built (CoreSpotlight index rebuilt when the library loads, books and highlights, a result opens its book; the simulator's Home Screen search did not show it, check on a device) |
 | 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | built (/api/summaries GET, POST, PATCH and four MCP tools, your token passed through to jaybulb-api; live 401 without one) |
-| 42 | Pick the narrator voice, per book | apps, web | open |
+| 42 | Pick the narrator voice, per book | apps, web | built (Alice or George, remembered per book like speed; voices.js split from listen.js; the Aura fallback stays one voice) |
 | 43 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
 | 44 | Storage screen: what is downloaded, how big, remove it | apps | open |
 | 45 | Sleep timer fades out; shake to add ten minutes | iPhone | open |

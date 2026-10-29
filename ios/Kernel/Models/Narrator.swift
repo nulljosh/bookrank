@@ -113,6 +113,12 @@ struct ListenControls: View {
             }
             .pickerStyle(.menu)
             Toggle("Natural voices", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
+            if speaker.natural {
+                Picker("Narrator", systemImage: "person.wave.2", selection: Binding(get: { speaker.narrator }, set: { speaker.narrator = $0 })) {
+                    Text("Alice").tag("A"); Text("George").tag("B")
+                }
+                .pickerStyle(.menu)
+            }
             Toggle("Explain it", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))
         }
     }

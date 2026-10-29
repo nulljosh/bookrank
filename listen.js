@@ -49,24 +49,9 @@ export function chunk(line, max = 200) {
   return out.filter(c => c.text.trim());
 }
 
-// A short list instead of the device's 100+: the user's language only, local voices
-// first, one per name, six at most. `preferred` (a saved name) is kept even if it is
-// past the cap.
-export function pickVoices(all, lang = 'en', preferred = '') {
-  const base = lang.split('-')[0].toLowerCase();
-  const seen = new Set();
-  const mine = all.filter(v => v.lang.toLowerCase().startsWith(base) && !seen.has(v.name) && seen.add(v.name))
-    .sort((a, b) => (b.localService === true) - (a.localService === true) || (b.default === true) - (a.default === true));
-  const pool = mine.length ? mine : all;
-  const list = pool.slice(0, 6);
-  const p = pool.find(v => v.name === preferred);
-  if (p && !list.includes(p)) list.push(p);
-  return list;
-}
-export function voicePair(list, name) {
-  const a = list.find(v => v.name === name) || list[0];
-  return [a, list.find(v => v !== a && a && v.lang === a.lang) || a];
-}
+// Device voices live in voices.js; re-exported so pages and tests keep importing from here.
+import { pickVoices, voicePair } from './voices.js';
+export { pickVoices, voicePair };
 
 // Covers and share links live in covers.js; re-exported so pages keep importing from here.
 export { matchCover, coverCandidates, shareUrl } from './covers.js';
@@ -185,6 +170,7 @@ export function mount(root, api) {
   const voiceSel = q('.lp-voice'), rateSel = q('.lp-rate'), modeSel = q('.lp-mode');
   // Speed is kept per book, falling back to the last speed picked anywhere.
   const rateKey = () => `bookrank.rate.${api.title || ''}`;
+  const voiceKey = () => `bookrank.voice.${api.title || ''}`;
   rateSel.value = localStorage.getItem(rateKey()) || localStorage.getItem('bookrank.rate') || '1';
   modeSel.value = localStorage.getItem('bookrank.mode') || 'talk';
 
@@ -192,10 +178,10 @@ export function mount(root, api) {
   function fillVoices() {
     list = pickVoices(api.voices(), navigator.language, localStorage.getItem('bookrank.voice') || '');
     voiceSel.innerHTML = '';
-    if (api.speak) voiceSel.append(new Option('Natural voices', NATURAL));
+    if (api.speak) voiceSel.append(new Option('Natural: Alice', NATURAL), new Option('Natural: George', NATURAL + 'B'));
     for (const v of list) voiceSel.append(new Option(v.name, v.name));
-    const prev = localStorage.getItem('bookrank.voice');
-    if (prev && (prev === NATURAL ? api.speak : list.some(v => v.name === prev))) voiceSel.value = prev;
+    const prev = localStorage.getItem(voiceKey()) || localStorage.getItem('bookrank.voice');   // per book first, like speed
+    if (prev && (prev.startsWith(NATURAL) ? api.speak : list.some(v => v.name === prev))) voiceSel.value = prev;
     voiceSel.hidden = voiceSel.options.length < 2;
   }
   fillVoices();
@@ -211,7 +197,7 @@ export function mount(root, api) {
   // Natural voices: ElevenLabs audio per line, played behind a speechSynthesis-shaped object so the
   // same player drives both. Word timestamps from the server light each word as it is spoken. Any
   // line it cannot fetch or play falls back to the device voice, so Listen never stalls.
-  const natural = () => voiceSel.value === NATURAL && !!api.speak;
+  const natural = () => voiceSel.value.startsWith(NATURAL) && !!api.speak;
   const toReal = u => {
     const r = new globalThis.SpeechSynthesisUtterance(u.text);
     if (u.voice?.voiceURI) { r.voice = u.voice; r.lang = u.voice.lang; }
@@ -224,7 +210,7 @@ export function mount(root, api) {
     async speak(u) {
       if (!natural()) return synth.speak(toReal(u));
       const my = gen;
-      const r = await api.speak(u.text, u.voice?.host || 'A', player.ch).catch(() => null);
+      const r = await api.speak(u.text, voiceSel.value === NATURAL + 'B' ? 'B' : 'A', player.ch).catch(() => null);   // one narrator: the voice picked
       if (my !== gen) return;
       if (!r?.audio) { status.textContent = 'Natural voice unavailable. Using the device voice.'; return synth.speak(toReal(u)); }
       const a = audio = new Audio('data:audio/mpeg;base64,' + r.audio);
@@ -336,7 +322,7 @@ export function mount(root, api) {
   play.onclick = () => player.playing ? player.stop() : player.play();
   q('.lp-prev').onclick = () => player.play(Math.max(0, player.ch - 1), 0);
   q('.lp-next').onclick = () => player.play(Math.min(chs.length - 1, player.ch + 1), 0);
-  voiceSel.onchange = () => { localStorage.setItem('bookrank.voice', voiceSel.value); if (player.playing) player.play(player.ch, player.line); };
+  voiceSel.onchange = () => { localStorage.setItem('bookrank.voice', voiceSel.value); localStorage.setItem(voiceKey(), voiceSel.value); if (player.playing) player.play(player.ch, player.line); };
   rateSel.onchange = () => { localStorage.setItem('bookrank.rate', rateSel.value); localStorage.setItem(rateKey(), rateSel.value); if (player.playing) player.play(player.ch, player.line); };
   modeSel.onchange = () => { localStorage.setItem('bookrank.mode', modeSel.value); const spot = player.script?.length ? player.line / player.script.length : 0; player.invalidate(); if (player.playing) player.play(player.ch, 0, spot); else showChapter(); };
   if ('mediaSession' in navigator) {
