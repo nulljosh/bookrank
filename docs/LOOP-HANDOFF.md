@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100. v50 tagged and checkpointed 2026-10-29.
 
-Next rows: **88 to 99**, all waiting on Joshua (below), and **67** once iPhone 1.2.1 is no longer on sale. **100** is the release once those are done. Row 67 waits until iPhone 1.2.1 is no longer the live version. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
+Next rows: **93** (narrator eval, waits on Workers AI) and **67** once iPhone 1.2.1 is no longer on sale. **100** is the release once those are done. Everything else is built and tagged.
 
 ## How to QA
 
@@ -18,9 +18,9 @@ Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the
 
 ## Waiting on Joshua
 
-Everything through 87, plus 98 and 99, is built and tagged. What is left needs one of these first:
+Everything through 99 except 93 and 67 is built and tagged. What is left needs one of these first:
 
-1. **Workers AI** (Workers Paid): rows 93 narrator eval, 95 quiz, 96 key ideas, 97 recap. On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
+1. **Workers AI** (Workers Paid): row 93 narrator eval (95 to 97 shipped without AI, from the summaries' own text). On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
 2. **Deploy jaybulb-api** (`cd ~/Documents/Code/jaybulb-api && npx wrangler deploy`): the public profile (54) and listed share pages (57) are committed and tested but not live. The agent was not allowed to deploy the shared API.
 3. **The App Group** is in the code (rows 88 to 90 and 92 are built); automatic signing registers it and the two extensions on the first archive (see SHIPPING.md).
 4. **Apple's CarPlay audio entitlement** (request it at developer.apple.com/contact/carplay): row 91 is built and waits only on it; once granted, add `com.apple.developer.carplay-audio` to `ios/Kernel/Kernel.entitlements`.
