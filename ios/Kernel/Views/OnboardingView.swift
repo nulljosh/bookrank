@@ -69,8 +69,8 @@ struct OnboardingView: View {
     private func visual(_ i: Int) -> some View {
         switch i {
         case 0: KernelMark(side: 160)
-        case 1: Image(systemName: "text.book.closed").font(.system(size: 96, weight: .regular)).foregroundStyle(amber)
-        default: Image(systemName: "books.vertical").font(.system(size: 96, weight: .regular)).foregroundStyle(amber)
+        case 1: Image(systemName: "text.book.closed").font(.system(size: 96, weight: .regular)).foregroundStyle(amber).accessibilityHidden(true)
+        default: Image(systemName: "books.vertical").font(.system(size: 96, weight: .regular)).foregroundStyle(amber).accessibilityHidden(true)
         }
     }
 

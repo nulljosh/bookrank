@@ -232,7 +232,7 @@ struct SummaryDetailView: View {
 
     private func chapterRow(_ i: Int) -> some View {
         HStack(spacing: 10) {
-            Text(speaker.chapters[i].title).lineLimit(2)
+            Text(speaker.chapters[i].title).lineLimit(4)
             Spacer(minLength: 8)
             Text("\(duration(minutes(speaker.chapters[i].text)))").font(.kernel(.footnote)).foregroundStyle(.secondary).monospacedDigit()
             if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
@@ -353,11 +353,19 @@ private struct LineView: View {
 }
 
 /// Reader text size, 0 to 4 (1 is the default): Dynamic Type steps on iOS, a body size on the Mac,
-/// where Dynamic Type does not reach custom fonts.
+/// where Dynamic Type does not reach custom fonts. An accessibility text size in Settings wins over the step.
+private struct ReaderSize: ViewModifier {
+    let step: Int
+    @Environment(\.dynamicTypeSize) private var system
+    func body(content: Content) -> some View {
+        content.dynamicTypeSize(system.isAccessibilitySize ? system : [DynamicTypeSize.medium, .large, .xLarge, .xxLarge, .xxxLarge][min(max(step, 0), 4)])
+    }
+}
+
 extension View {
     @ViewBuilder func readerSize(_ step: Int) -> some View {
         #if os(iOS)
-        dynamicTypeSize([DynamicTypeSize.medium, .large, .xLarge, .xxLarge, .xxxLarge][min(max(step, 0), 4)])
+        modifier(ReaderSize(step: step))
         #else
         font(.custom("KernelSans-Regular", size: [12, 13, 15, 17, 19][min(max(step, 0), 4)]))
         #endif

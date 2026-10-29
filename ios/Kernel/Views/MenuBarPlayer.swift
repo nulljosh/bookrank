@@ -14,11 +14,11 @@ struct MenuBarPlayer: View {
                     Text("Chapter \(speaker.ch + 1) of \(speaker.chapters.count)").font(.kernel(.footnote)).foregroundStyle(.secondary)
                 }
                 HStack(spacing: 18) {
-                    Button { speaker.nudge(-1) } label: { Image(systemName: "gobackward") }.help("Back a line")
+                    Button { speaker.nudge(-1) } label: { Image(systemName: "gobackward") }.help("Back a line").accessibilityLabel("Back a line")
                     Button { speaker.toggle() } label: { Image(systemName: speaker.playing && !speaker.paused ? "pause.fill" : "play.fill").font(.title2) }
-                        .keyboardShortcut(.space, modifiers: []).help(speaker.playing && !speaker.paused ? "Pause" : "Play")
-                    Button { speaker.nudge(1) } label: { Image(systemName: "goforward") }.help("Forward a line")
-                    Button { speaker.skip(1) } label: { Image(systemName: "forward.end") }.help("Next chapter").disabled(speaker.ch + 1 >= speaker.chapters.count)
+                        .keyboardShortcut(.space, modifiers: []).help(speaker.playing && !speaker.paused ? "Pause" : "Play").accessibilityLabel(speaker.playing && !speaker.paused ? "Pause" : "Play")
+                    Button { speaker.nudge(1) } label: { Image(systemName: "goforward") }.help("Forward a line").accessibilityLabel("Forward a line")
+                    Button { speaker.skip(1) } label: { Image(systemName: "forward.end") }.help("Next chapter").accessibilityLabel("Next chapter").disabled(speaker.ch + 1 >= speaker.chapters.count)
                 }
                 .buttonStyle(.plain).font(.title3).foregroundStyle(.tint).frame(maxWidth: .infinity)
             } else {

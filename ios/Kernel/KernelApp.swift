@@ -49,6 +49,7 @@ struct KernelApp: App {
             .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
             .tint(amber)
             .font(.kernel(.body))
+            .modifier(CalmMotion())
             .sheet(isPresented: $palette) { CommandPalette().tint(amber) }
         }
         .commands { ListenCommands(palette: $palette) }
@@ -100,4 +101,10 @@ extension Font {
         }
         #endif
     }
+}
+
+/// With Reduce Motion on, nothing slides, springs or scrolls itself: every change lands at once.
+private struct CalmMotion: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduce
+    func body(content: Content) -> some View { content.transaction { if reduce { $0.animation = nil } } }
 }

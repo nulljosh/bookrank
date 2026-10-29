@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 46.0.0 (2026-10-28)
+Accessibility: chapters follow the largest text sizes in Settings, long chapter titles wrap instead of cutting off, the Mac menu bar player names its buttons for VoiceOver, and Reduce Motion stops slides and springs everywhere.
+
 ## 45.0.0 (2026-10-28)
 The sleep timer fades the voice out over its last 30 seconds instead of cutting off, shaking the iPhone gives it ten more minutes, and the menu says when it will pause.
 
