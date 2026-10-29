@@ -56,3 +56,15 @@ extension Speaker {
         }
     }
 }
+
+import SwiftUI
+
+extension View {
+    /// Reading with no audio saves your place: the top line at least a third on screen, via Speaker.seen.
+    /// iOS 18 and macOS 15 report which lines are visible; earlier systems save only while playing.
+    @ViewBuilder func readingPlace(_ speaker: Speaker) -> some View {
+        if #available(iOS 18, macOS 15, *) {
+            onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.33) { ids in speaker.seen(ids) }
+        } else { self }
+    }
+}

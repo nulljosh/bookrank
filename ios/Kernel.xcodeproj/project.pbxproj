@@ -71,6 +71,7 @@
 		6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		70B8E24EB52F15F4F8820892 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */; };
 		71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
+		76251A9A7A7BB916A85E8E93 /* SpeedWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24258C8F8C16CC8576EE2683 /* SpeedWalk.swift */; };
 		7699430312B7D04FC801034C /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
 		77E1E2E4FF6DE7717CF9CE3D /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
@@ -177,6 +178,7 @@
 		1C110E896A31BA878678B4AF /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		1E0CD605F7A5ED78342D424E /* KernelTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KernelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EE769FDA16E1E24C359F00 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		24258C8F8C16CC8576EE2683 /* SpeedWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedWalk.swift; sourceTree = "<group>"; };
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
 		27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Bold.otf"; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				856723BDA9B438B185F67005 /* LibraryWalk.swift */,
 				C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */,
 				34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */,
+				24258C8F8C16CC8576EE2683 /* SpeedWalk.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				D63E6A6B8F231D6504401456 /* LibraryWalk.swift in Sources */,
 				5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */,
 				D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */,
+				76251A9A7A7BB916A85E8E93 /* SpeedWalk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

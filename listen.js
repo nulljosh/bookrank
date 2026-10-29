@@ -50,6 +50,7 @@ export function chunk(line, max = 200) {
 }
 
 // Device voices live in voices.js; re-exported so pages and tests keep importing from here.
+import { trackReading } from './reading.js';
 import { pickVoices, voicePair } from './voices.js';
 export { pickVoices, voicePair };
 
@@ -337,6 +338,7 @@ export function mount(root, api) {
     }
   }
   const persist = () => { if (player.playing) api.save?.({ ch: player.ch, line: player.line }, scripts, marks); };
+  trackReading(text, l => { if (!player.playing && l !== player.line) { player.line = l; api.save?.({ ch: player.ch, line: l }, scripts, marks); } });
   addEventListener('pagehide', persist);
   document.addEventListener('visibilitychange', () => { if (document.hidden) persist(); });
 

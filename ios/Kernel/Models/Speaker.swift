@@ -228,6 +228,14 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// Forget the loaded book, so the next load reads its content again.
     func unload() { stop(); slug = nil }
 
+    /// Reading with no audio saves the top line on screen once scrolling stops (and only past line one). As reading.js.
+    @ObservationIgnored private var readSave: Task<Void, Never>?
+    func seen(_ visible: [Int]) {
+        guard !playing, !paused, let top = visible.min(), top > 0 else { return }
+        readSave?.cancel()
+        readSave = Task { try? await Task.sleep(for: .seconds(2)); guard !Task.isCancelled, !playing, top != line else { return }; line = top; persist() }
+    }
+
     private func persist() {
         Task { await Goal.shared.remind() }
         guard let save else { return }

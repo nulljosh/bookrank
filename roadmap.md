@@ -74,7 +74,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 71 | Docs to 100 percent | repo | built (CHANGELOG 71.0.0) |
 | 72 | Web polish pass to match the apps (apple skill) | web | built (CHANGELOG 72.0.0) |
 | 73 | Web keyboard shortcuts and a focus mode | web | built (CHANGELOG 73.0.0) |
-| 74 | Read mode: page by page without audio, position saved | apps, web | open |
+| 74 | Read mode: page by page without audio, position saved | apps, web | built (CHANGELOG 74.0.0; the apps need iOS 18 or macOS 15 for it) |
 | 75 | Kernel Sans italic and bold for quotes | all | open |
 | 76 | Sepia reading theme | apps, web | open |
 | 77 | True black for OLED | apps | open |

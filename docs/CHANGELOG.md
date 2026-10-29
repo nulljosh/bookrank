@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 74.0.0 (2026-10-29)
+Reading saves your place too, not only listening: scroll a chapter with no audio and, once you stop, the line at the top becomes where you left off, on the web and in the apps (iOS 18 and macOS 15 or later).
+
 ## 73.0.0 (2026-10-29)
 Keyboard shortcuts on the web: Space plays or pauses, j and k move between chapters, h highlights, / searches, n starts a summary, and ? lists them all. f is a focus mode that leaves only the chapter and the play controls; Esc leaves it.
 

@@ -28,7 +28,7 @@ func parseChapters(_ markdown: String) -> [Speaker.Chapter] {
 }
 
 /// A book: just its chapters. Tap one to read or listen to it.
-/// Search inside a book: the first chapter line (as the notes show it) that holds `q`, any case. Same as listen.js findLine().
+/// The first chapter line (as the notes show it) holding `q`, any case. Same as listen.js findLine().
 func findLine(_ markdown: String, _ q: String) -> (ch: Int, line: Int, title: String, text: String)? {
     let q = q.trimmingCharacters(in: .whitespaces).lowercased()
     guard !q.isEmpty else { return nil }
@@ -84,7 +84,7 @@ struct SummaryDetailView: View {
                 Button("Share", systemImage: "square.and.arrow.up") { Task { shareURL = await store.shareURL(for: slug) } }
             }
         }
-        // Handoff: the book open here shows on your other devices; on a Mac or iPhone without Kernel it opens the web library.
+        // Handoff: this book shows on your other devices; without Kernel there, the web library opens it.
         .userActivity(Handoff.type, isActive: slug != "sample") { a in
             a.title = entry?.title; a.isEligibleForHandoff = true; a.userInfo = ["slug": slug]
             a.webpageURL = URL(string: "https://bookrank.jaybulb.com/library\(entry?.rowID.map { "#\($0)" } ?? "")")
@@ -272,14 +272,15 @@ struct ChapterView: View {
                     }
                     if let store, let slug = speaker.slug, slug != "sample" { ChapterNote(store: store, slug: slug, ch: speaker.ch) }
                 }
+                .scrollTargetLayout()
                 .padding(24)
                 .frame(maxWidth: 680, alignment: .leading)
                 .frame(maxWidth: .infinity)
                 .readerSize(textSize)
             }
-            .onChange(of: speaker.line) { _, l in withAnimation { proxy.scrollTo(l, anchor: .center) } }
-            // A long paragraph is taller than the screen, so centring the line is not enough: slide the
-            // anchor down the line as the word moves through it, so the spoken word stays on screen.
+            .readingPlace(speaker)
+            .onChange(of: speaker.line) { _, l in if speaker.playing { withAnimation { proxy.scrollTo(l, anchor: .center) } } }
+            // A paragraph taller than the screen: slide the anchor with the spoken word so it stays on screen.
             .onChange(of: speaker.word) { _, w in
                 guard let w, speaker.lines.indices.contains(speaker.line) else { return }
                 let len = max(1, speaker.lines[speaker.line].line.count)

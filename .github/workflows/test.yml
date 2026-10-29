@@ -33,8 +33,7 @@ jobs:
           cd ios && xcodegen
           xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
       - name: UI walks
-        # The silent screenshot shelf only: no sign-in, never presses Listen. Non-blocking until its first green run.
-        continue-on-error: true
+        # The silent screenshot shelf only: no sign-in, never presses Listen.
         run: |
           set -o pipefail
           cd ios

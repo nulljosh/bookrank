@@ -58,7 +58,7 @@ Every route that calls a model or another site is capped per person (by IP) per 
 
 The app's own work before the first frame stays under 50 ms: `KernelApp.init` (fonts, the navigation bar font, the notification delegate) and `DataStore.init` (books.json and the offline library). Everything else that is slow waits for `.task` after the first frame. Measured 2026-10-29 on the iPhone 17 Pro Max simulator, Release build: 2.2 s cold launch, of which about 1.4 s is the simulator loading its own runtime, about 0.25 s is SwiftUI and UIKit, and about 30 ms is Kernel.
 
-`LibraryWalk/testLaunchTime` measures cold launch five times. For the breakdown, record a trace and read the main thread:
+`SpeedWalk/testLaunchTime` measures cold launch five times. For the breakdown, record a trace and read the main thread:
 
 ```
 xcrun xctrace record --template 'Time Profiler' --device <simulator id> --time-limit 4s --output launch.trace --launch -- <path to Kernel.app> -kernel.onboarded YES
