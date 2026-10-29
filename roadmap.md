@@ -28,7 +28,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 25 | Your own note under any chapter | apps, web | built (a `notes` JSON column on jaybulb-api, not in listen, so old builds cannot drop it; in the export too) |
 | 26 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | built (long-press or swipe a Goodreads row; testSummarizeFromGoodreads) |
 | 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | built (Your reading under the library: books, chapters, hours, highlights, notes; the apps add Goodreads books finished per year and the average rating; pages wait on page counts from Goodreads) |
-| 28 | Year in review | apps, web | open |
+| 28 | Year in review | apps, web | built (Share your 2026 under Your reading: a gold card with the year, books finished and summarized, highlights, hours and one highlight; yearCard and YearCard) |
 | 29 | Goodreads on the web through your Goodreads export file | web | open |
 | 30 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
 | 31 | Import highlights from a Readwise or Apple Books export | apps, web | open |

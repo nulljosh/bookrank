@@ -30,8 +30,9 @@ struct SummaryEntry: Codable, Identifiable {
     var shareToken: String?
     var collection: String? = nil   // your own group for the book, one name or none
     var notes: [String: String]? = nil   // your note per chapter, keyed by chapter index; not in listen, so old builds cannot drop it
+    var createdAt: String? = nil         // when the book was added, for Your year
 
-    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen, cover, shareToken = "share_token", collection, notes }
+    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen, cover, shareToken = "share_token", collection, notes, createdAt = "created_at" }
 }
 
 /// Mirrors the web's `listen` jsonb: generated scripts per chapter plus the resume point.

@@ -45,7 +45,7 @@ details.gr { margin-top:1.5rem; }
 details.gr .by { display:block; }
 details.gr summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
-.stats { margin:2rem 0 1rem; } .stats h4 { margin:0 0 0.6rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .stats .tiles { display:grid; grid-template-columns:repeat(auto-fit, minmax(7.5rem, 1fr)); gap:0.5rem; } .stats .tiles div { padding:0.75rem 1rem; border-radius:16px; background:var(--bg2); } .stats b { display:block; font-size:1.375rem; font-weight:600; } .stats span { font-size:0.8125rem; color:var(--text3); }
+.stats { margin:2rem 0 1rem; } .stats h4 { margin:0 0 0.6rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .stats .tiles { display:grid; grid-template-columns:repeat(auto-fit, minmax(7.5rem, 1fr)); gap:0.5rem; } .stats > button { margin-top:0.75rem; font-size:0.8125rem; padding:0.3rem 0.7rem; } .stats .tiles div { padding:0.75rem 1rem; border-radius:16px; background:var(--bg2); } .stats b { display:block; font-size:1.375rem; font-weight:600; } .stats span { font-size:0.8125rem; color:var(--text3); }
 .today { margin:0 0 1.25rem; padding:1rem 1.25rem; border-radius:20px; background:var(--bg2); } .today h4 { margin:0 0 0.5rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .today ol { margin:0 0 0.75rem; padding-left:1.25rem; } .today li { margin:0.4rem 0; cursor:pointer; line-height:1.45; } .today li small { display:block; color:var(--text3); font-size:0.8125rem; } .today button { font-size:0.8125rem; padding:0.3rem 0.7rem; }
 .sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar #marksBtn { margin-left:auto; font-size:0.8125rem; padding:0.3rem 0.7rem; }
 ul.marks li { display:block; padding:1rem 0; } ul.marks blockquote { margin:0 0 0.4rem; cursor:pointer; line-height:1.5; } ul.marks .by { display:flex; justify-content:space-between; align-items:center; gap:1rem; } ul.marks .by button { font-size:0.8125rem; padding:0.3rem 0.7rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
@@ -177,7 +177,7 @@ import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
-import { card } from './card.js';
+import { card, yearCard } from './card.js';
 import * as goal from './goal.js';
 import { mergeMarks, marksMarkdown, dailyFive } from './marks.js';
 
@@ -502,7 +502,7 @@ const cached = async (k, q) => {
   return hit ? { data: hit, error: null, offline: true } : res;
 };
 const rows = {
-  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token,collection,notes').order('updated_at', { ascending: false })),
+  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,created_at,updated_at,listen,cover,share_token,collection,notes').order('updated_at', { ascending: false })),
   get:    (id)          => cached(id, () => db.from(TABLE).select('*').eq('id', id).single()),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
@@ -706,7 +706,17 @@ async function drawStats(list) {
   const tiles = [[s.books, s.books === 1 ? 'book' : 'books'], [s.chapters, 'chapters'], [s.minutes >= 60 ? `${Math.round(s.minutes / 60)} hr` : `${s.minutes} min`, 'to listen'], [s.highlights, 'highlights'], [s.notes, 'notes']];
   const box = Object.assign(document.createElement('div'), { className: 'tiles' });
   box.append(...tiles.map(([v, l]) => { const d = document.createElement('div'); d.append(Object.assign(document.createElement('b'), { textContent: v }), Object.assign(document.createElement('span'), { textContent: l })); return d; }));
-  $('stats').replaceChildren(Object.assign(document.createElement('h4'), { textContent: 'Your reading' }), box);
+  // Your year: the books you started this year, every highlight, and one of them, as a card to share.
+  const year = new Date().getFullYear(), fresh = list.filter(r => (r.created_at || '').startsWith(String(year)));
+  const share = Object.assign(document.createElement('button'), { type: 'button', textContent: `Share your ${year}` });
+  share.onclick = async () => {
+    const top = dailyFive(marks, String(year), 1)[0];
+    const blob = await yearCard(year, [[fresh.length, fresh.length === 1 ? 'book summarized' : 'books summarized'], [s.chapters, 'chapters in all'], [s.highlights, 'highlights'], [s.minutes >= 60 ? `${Math.round(s.minutes / 60)} hr` : `${s.minutes} min`, 'to listen']], top?.text, top?.book || '');
+    const file = new File([blob], `Kernel ${year}.png`, { type: 'image/png' });
+    if (navigator.canShare?.({ files: [file] })) navigator.share({ files: [file] }).catch(() => {});
+    else Object.assign(document.createElement('a'), { href: URL.createObjectURL(file), download: file.name }).click();
+  };
+  $('stats').replaceChildren(Object.assign(document.createElement('h4'), { textContent: 'Your reading' }), box, share);
   $('stats').classList.toggle('hide', !list.length);
 }
 async function keep(list) {

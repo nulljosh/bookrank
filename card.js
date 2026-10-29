@@ -26,3 +26,27 @@ function wrap(g, text, width) {
   if (row) rows.push(row);
   return rows;
 }
+
+// Your year as a card: the year big, a few numbers, one highlight. Same card as YearCard in the apps.
+// `rows`: [[value, label]].
+export async function yearCard(year, rows, quote, book) {
+  await document.fonts.load('700 120px "Kernel Sans"').catch(() => {});
+  const c = Object.assign(document.createElement('canvas'), { width: 1080, height: 1080 }), g = c.getContext('2d');
+  const font = (w, px) => `${w} ${px}px "Kernel Sans", -apple-system, Helvetica, Arial, sans-serif`;
+  g.fillStyle = '#f5b83d'; g.fillRect(0, 0, 1080, 1080); g.fillStyle = '#1d1d1f';
+  g.font = font(700, 120); g.fillText(String(year), 80, 190);
+  g.font = font(500, 40); g.fillText('in books', 80, 245);
+  rows.slice(0, 4).forEach(([v, l], i) => {
+    const y = 360 + i * 88;
+    g.font = font(700, 60); g.fillText(String(v), 80, y);
+    g.font = font(500, 34); g.fillText(l, 300, y - 4);
+  });
+  if (quote) {
+    g.font = font(600, 34);
+    const q = wrap(g, `“${quote}”`, 920).slice(0, 3), top = 900 - q.length * 44;
+    q.forEach((r, i) => g.fillText(r, 80, top + i * 44));
+    g.font = font(500, 28); g.fillText(book.length > 50 ? book.slice(0, 49) + '…' : book, 80, top + q.length * 44 + 8);
+  }
+  g.font = font(700, 34); g.textAlign = 'right'; g.fillText('Kernel.', 1000, 1000);
+  return new Promise(res => c.toBlob(res, 'image/png'));
+}

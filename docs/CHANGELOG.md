@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 28.0.0 (2026-10-28)
+Share your year: under Your reading, a gold card with the year, the books you finished and summarized, your highlights, the hours, and one line you saved.
+
 ## 27.0.0 (2026-10-28)
 Your reading, under the library: how many books, chapters, hours to listen, highlights and notes. With Goodreads signed in, the apps also chart the books you finished each year and your average rating.
 

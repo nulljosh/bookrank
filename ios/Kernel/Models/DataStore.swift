@@ -82,7 +82,7 @@ final class DataStore {
     func loadSummaries() async {
         if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
-            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token,collection,notes&order=title")
+            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,created_at,updated_at,listen,cover,share_token,collection,notes&order=title")
             summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
             summaryError = nil
             writeCache()
