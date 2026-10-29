@@ -318,9 +318,14 @@ else {
   $('deleteForm').onsubmit = async e => {
     e.preventDefault();
     $('pDelete').disabled = true; $('profileMsg').textContent = 'Deleting\u2026';
+    // First Kernel's own server forgets you (voice counters, the $1 record, narration made from your books),
+    // then the account goes, then this browser's copies: offline books and voices, Goodreads shelves, settings.
+    const { data: { session } } = await db.auth.getSession();
+    await fetch('/api/forget', { method: 'POST', headers: { authorization: `Bearer ${session?.access_token}` } }).catch(() => {});
     // The shared delete-account Edge Function: the anon client cannot delete its own auth user.
     const { error } = await db.functions.invoke('delete-account', { method: 'POST' });
     if (error) { $('profileMsg').textContent = error.message + ' \u2014 your account was not deleted.'; $('pDelete').disabled = false; return; }
+    try { await caches.delete('bookrank-data'); for (const k of Object.keys(localStorage)) if (/^(kernel|bookrank)\./.test(k)) localStorage.removeItem(k); } catch {}
     await db.auth.signOut(); location.href = 'library.html';
   };
 }

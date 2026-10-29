@@ -139,7 +139,10 @@ final class AuthStore {
     /// Guideline 5.1.1(v): an app offering account creation must offer account deletion.
     /// jaybulb-api removes the user and their rows.
     func deleteAccount() async throws {
+        // Kernel's own server forgets you first (voice counters, the $1 record, narration made from your books).
+        _ = try? await API.call("POST", "https://bookrank.jaybulb.com/api/forget")
         _ = try await API.call("DELETE", "/auth/user")
+        await LocalData.wipe()
         API.forget()
         user = nil
         clearBiometricCredentials()

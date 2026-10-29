@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 66.0.0 (2026-10-29)
+Deleting your account now also clears Kernel's voice records about you (usage, the $1 record, narration made from your books) and every copy on the device you delete from. The privacy policy is rewritten to say what Kernel actually keeps and sends.
+
 ## 65.0.0 (2026-10-29)
 Export everything is one zip, on the web and in the apps: every book as Markdown with its chapter notes, your highlights and notes together, a JSON copy of every row, and your Goodreads shelves.
 

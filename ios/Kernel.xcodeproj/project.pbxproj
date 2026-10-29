@@ -39,6 +39,7 @@
 		373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		3831C6DFED6164F2EC4B8F3E /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */; };
 		3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
+		3A447D6A2A312D3D86BBA73D /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42B85672810BED71114D61 /* LocalData.swift */; };
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
 		3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93033291FD3C083A496ECC0 /* Kindle.swift */; };
 		3E80D7C9704493BF7BA89CAE /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C110E896A31BA878678B4AF /* Intents.swift */; };
@@ -127,6 +128,7 @@
 		DD645625E3601F018202F4DA /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = 28F2279A9A1CB974E6CE26AD /* Kernel.icon */; };
 		DFF212C05C515848174AE351 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881CC0060AEE79428999FE2 /* Spotlight.swift */; };
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
+		E1571319D10CEC3C668E3AB9 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42B85672810BED71114D61 /* LocalData.swift */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
 		E20FA7D94F175478FA2E24F8 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		E24C6EDA6BF53702DA17FFD3 /* MenuBarPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */; };
@@ -222,6 +224,7 @@
 		D4426B0F1E4ABEE1A8FBE43C /* sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
 		D6E725F291428741C2DC63FE /* AddPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPagesView.swift; sourceTree = "<group>"; };
 		D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
+		DB42B85672810BED71114D61 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 				1C110E896A31BA878678B4AF /* Intents.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
 				F93033291FD3C083A496ECC0 /* Kindle.swift */,
+				DB42B85672810BED71114D61 /* LocalData.swift */,
 				C82E2C3E7F816D3A9C7931FA /* Meaning.swift */,
 				8457AA46B272289E03D54157 /* Narrator.swift */,
 				4C7B801F028407305CB2D2E5 /* Net.swift */,
@@ -638,6 +642,7 @@
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
+				3A447D6A2A312D3D86BBA73D /* LocalData.swift in Sources */,
 				A83E380572B1C456801F1DDD /* Meaning.swift in Sources */,
 				E24C6EDA6BF53702DA17FFD3 /* MenuBarPlayer.swift in Sources */,
 				7699430312B7D04FC801034C /* Narrator.swift in Sources */,
@@ -703,6 +708,7 @@
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
+				E1571319D10CEC3C668E3AB9 /* LocalData.swift in Sources */,
 				255D8A8DD3FFFFDAE50C15D1 /* Meaning.swift in Sources */,
 				07BCA7F041CF6853B5EE8106 /* MenuBarPlayer.swift in Sources */,
 				373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */,

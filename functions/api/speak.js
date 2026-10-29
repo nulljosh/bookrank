@@ -20,7 +20,7 @@ import { isSignedIn, isShared } from "./narrate.js";
 import { appProof } from "./apple.js";
 
 const API = "https://api.jaybulb.com";
-const DEFAULTS = { A: "Xb7hH8MSUJpSbSDYk0k2", B: "JBFqnCBsd6RMkjVDRZzb" }; // Alice, George: voices the free plan can use
+export const DEFAULTS = { A: "Xb7hH8MSUJpSbSDYk0k2", B: "JBFqnCBsd6RMkjVDRZzb" }; // Alice, George: voices the free plan can use
 const MAX = 600;
 
 export async function onRequest({ request, env }) {
@@ -169,7 +169,7 @@ export async function viaApp(auth, apikey) {
   return (await fetch("https://tjsxsqlxjmanwvmywwvw.supabase.co/auth/v1/user", { headers: { authorization: auth, apikey } })).ok;
 }
 
-async function sha(s) {
+export async function sha(s) {
   return [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map(b => b.toString(16).padStart(2, "0")).join("");
 }
 

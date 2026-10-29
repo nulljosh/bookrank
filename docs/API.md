@@ -54,6 +54,7 @@ These back the apps and the web. Most need a signed-in account; the voices also 
 | `POST /api/summarize-photo` | one image, multipart | `{ text }` |
 | `GET /api/goodreads?user=&shelf=` | a profile | the public Currently Reading box |
 | `GET /api/usage` | | voice used today and this month, and the caps |
+| `POST /api/forget` | signed in | clears your voice counters, $1 record and stored narration; called before deleting an account |
 | `GET`/`POST /api/pay` | | whether you paid; the $1 Stripe link |
 
 Summaries themselves live on jaybulb-api (`/rest/bookrank_summaries`), behind your account.
