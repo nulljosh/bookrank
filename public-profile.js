@@ -20,13 +20,13 @@ export function publicSwitches(db, user, el, handle) {
     <label><input type="checkbox" id="pubMarks"${m.public_marks ? ' checked' : ''}${m.public_profile ? '' : ' disabled'}> Show my highlights from those books</label>
     <p class="sub" id="pubMsg"></p>`;
   const msg = t => { el.querySelector('#pubMsg').textContent = t; };
-  if (m.public_profile) msg(`Anyone with bookrank.jaybulb.com/profile?u=${handle} can see it.`);
+  if (m.public_profile) msg(`Anyone with kernel.jaybulb.com/profile?u=${handle} can see it.`);
   el.querySelector('#pubOn').onchange = async e => {
     const on = e.target.checked;
     const { error } = await db.auth.updateUser({ data: { public_profile: on, ...(on && !m.username ? { username: handle } : {}) } });
     if (error) { e.target.checked = !on; msg(error.message); return; }
     m.public_profile = on; el.querySelector('#pubMarks').disabled = !on;
-    msg(on ? `Anyone with bookrank.jaybulb.com/profile?u=${handle} can see it.` : 'Your profile is private.');
+    msg(on ? `Anyone with kernel.jaybulb.com/profile?u=${handle} can see it.` : 'Your profile is private.');
   };
   el.querySelector('#pubMarks').onchange = async e => {
     const { error } = await db.auth.updateUser({ data: { public_marks: e.target.checked } });

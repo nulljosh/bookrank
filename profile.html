@@ -196,7 +196,7 @@ else {
   const handle = handleFor(user);
   if (new URLSearchParams(location.search).get('u') !== handle) history.replaceState(null, '', `?u=${handle}`);
   document.title = `${handle}, Kernel`;
-  $('pName').textContent = handle; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${handle}`;
+  $('pName').textContent = handle; $('pHandle').textContent = `kernel.jaybulb.com/profile?u=${handle}`;
   $('username').value = handle;
   $('pEmail').textContent = user.email;
   $('pProvider').textContent = (user.app_metadata?.providers || ['email']).join(', ');
@@ -234,7 +234,7 @@ else {
     const { data, error } = await db.auth.updateUser({ data: { username: u } });
     if (error) { $('profileMsg').textContent = error.message; return; }
     const h = handleFor(data.user);
-    $('pName').textContent = h; $('pHandle').textContent = `bookrank.jaybulb.com/profile?u=${h}`; $('username').value = h;
+    $('pName').textContent = h; $('pHandle').textContent = `kernel.jaybulb.com/profile?u=${h}`; $('username').value = h;
     history.replaceState(null, '', `?u=${h}`); document.title = `${h}, Kernel`;
     $('profileMsg').textContent = 'Username saved.';
   };
