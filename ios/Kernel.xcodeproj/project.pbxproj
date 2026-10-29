@@ -36,6 +36,7 @@
 		3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
 		3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93033291FD3C083A496ECC0 /* Kindle.swift */; };
+		3E80D7C9704493BF7BA89CAE /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C110E896A31BA878678B4AF /* Intents.swift */; };
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		446430E59725102456EF42D5 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */; };
@@ -78,6 +79,7 @@
 		99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
 		9C1647D46D00627BD552A07E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849BD03EBC174F2FFE54D4A /* Goal.swift */; };
+		9D93D3DC660DE6573928650E /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C110E896A31BA878678B4AF /* Intents.swift */; };
 		A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
@@ -139,6 +141,7 @@
 		13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians-for-dummies.md"; sourceTree = "<group>"; };
 		15C0CECD090752E16C1C04F3 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		189E7CC97FD4FD19768953CA /* KernelWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelWatchApp.swift; sourceTree = "<group>"; };
+		1C110E896A31BA878678B4AF /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		20EE769FDA16E1E24C359F00 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 				E7033956A451A6A740DBEDBF /* Ebook.swift */,
 				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				F52DEE4EFC635882441F8ED3 /* Goodreads.swift */,
+				1C110E896A31BA878678B4AF /* Intents.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
 				F93033291FD3C083A496ECC0 /* Kindle.swift */,
 				C82E2C3E7F816D3A9C7931FA /* Meaning.swift */,
@@ -576,6 +580,7 @@
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */,
 				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
+				9D93D3DC660DE6573928650E /* Intents.swift in Sources */,
 				BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */,
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */,
@@ -630,6 +635,7 @@
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */,
 				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,
+				3E80D7C9704493BF7BA89CAE /* Intents.swift in Sources */,
 				FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */,
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */,

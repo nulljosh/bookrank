@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 35.0.0 (2026-10-28)
+Shortcuts and Siri: Add a summary from any text, Play or pause, and Next chapter, in the Shortcuts app and by voice ("Next chapter in Kernel").
+
 ## 34.0.0 (2026-10-28)
 Keep the exact words: Add pages in the apps can read each page on your device, word for word, so the photo never leaves it. Summarize them still works the old way.
 

@@ -35,7 +35,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 32 | Import an EPUB or PDF you own into chapters | apps, web | built (epub.js and Ebook.swift unzip in place, a chapter per spine section; PDF in the apps by outline or ten pages at a time; web PDF waits on a PDF reader worth its size) |
 | 33 | Scan pages with the document camera in Add pages | iPhone, iPad | built (VisionKit document camera, flat cropped pages through the same reader; only on a device with a camera, so not seen in the simulator yet) |
 | 34 | Read the page text on the device before upload, so photos never leave it | apps | built (Pages: Keep the exact words reads each page with Vision on the device, accurate then fast; no upload, works with no AI quota; checked with a rendered page on the Mac) |
-| 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | open |
+| 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | built (App Intents: Add a summary, Play or pause, Next chapter, with Siri phrases; in the built metadata; the simulator's Shortcuts app did not list them, check on a device) |
 | 36 | Siri: "continue my book" | apps | open |
 | 37 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
 | 38 | Lock Screen widget and a Live Activity while listening | iPhone | open |
@@ -108,7 +108,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
 - [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
-- [ ] Joshua's checks: Scan pages on a real iPhone (v33), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
+- [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
 - [ ] The web player shows merged highlights only after the next toggle or a reopen.
 - [ ] The Mac Account sheet looks empty in screenshot mode.
 - [ ] Summaries still to photograph or finish: The Man Who Solved the Market (cover only), Physics I For Dummies (cover only), the rest of AI in Business and macOS Tahoe (both returned to the library, photos are the only source), The Optimist chapters 15 to 17.
