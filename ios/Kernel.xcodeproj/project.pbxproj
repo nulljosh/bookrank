@@ -81,6 +81,7 @@
 		6892694E45629DB122D66720 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
 		69797B18E555C8B2249B0112 /* InboxImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8043810585BC44FD3AEECAF /* InboxImport.swift */; };
 		6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
+		6C8B57571F2B2344EAFD461C /* CarPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E70696310B093DF4DB71E8 /* CarPlay.swift */; };
 		6CD61BE9DE06CED37947EC9D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
 		6D23E02EC87768BAC843C81E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489B04517DC64E94DE1670F4 /* Assets.xcassets */; };
 		6DFCDED286F1BB8996F2D68D /* Outbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B418C71886BBCDA4C7D77C4A /* Outbox.swift */; };
@@ -105,6 +106,7 @@
 		7D545127040FA6FF4DCB2C66 /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
 		7D91AC8FE21BD77013D341A7 /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372CE246108E47F43F82313 /* EmptyStates.swift */; };
 		7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
+		803B548EAA4AA4A95EB1F49F /* CarPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E70696310B093DF4DB71E8 /* CarPlay.swift */; };
 		80BD2E4062F6A2D29CAF6B1C /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		8EAB011874B6025CE7D03B55 /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
@@ -353,6 +355,7 @@
 		F2A3D429808DBBF594188CB0 /* KernelShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KernelShare.entitlements; sourceTree = "<group>"; };
 		F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		F52DEE4EFC635882441F8ED3 /* Goodreads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goodreads.swift; sourceTree = "<group>"; };
+		F5E70696310B093DF4DB71E8 /* CarPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlay.swift; sourceTree = "<group>"; };
 		F93033291FD3C083A496ECC0 /* Kindle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kindle.swift; sourceTree = "<group>"; };
 		FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -463,6 +466,7 @@
 				75F4E8FFFECCDF017CFF9483 /* API.swift */,
 				A1FB1817D952E630F014265C /* AuthStore.swift */,
 				EFD53A14FC46AD38DFFFA927 /* Book.swift */,
+				F5E70696310B093DF4DB71E8 /* CarPlay.swift */,
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
 				E7033956A451A6A740DBEDBF /* Ebook.swift */,
 				77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */,
@@ -921,6 +925,7 @@
 				CF8195898C51A6BFA200D9C8 /* AskView.swift in Sources */,
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
+				6C8B57571F2B2344EAFD461C /* CarPlay.swift in Sources */,
 				A0D9BE9D585C0799DEF873F3 /* CommandPalette.swift in Sources */,
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
 				AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */,
@@ -1004,6 +1009,7 @@
 				7B6C63ED03A93E438B3BDD66 /* AskView.swift in Sources */,
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
+				803B548EAA4AA4A95EB1F49F /* CarPlay.swift in Sources */,
 				2F0EFA5B971F40F98A5AE0CD /* CommandPalette.swift in Sources */,
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
 				91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */,

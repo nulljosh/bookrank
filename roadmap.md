@@ -91,7 +91,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 88 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | built (CHANGELOG 88.0.0; the Mac widget came with 90) |
 | 89 | Lock Screen widget and a Live Activity while listening | iPhone | built (CHANGELOG 89.0.0; the Live Activity itself shows only on a real device or a signed build) |
 | 90 | Control Center control for the current book | iPhone, Mac | built (CHANGELOG 90.0.0; iOS 18 and macOS 26 for the control) |
-| 91 | CarPlay audio | iPhone | open |
+| 91 | CarPlay audio | iPhone | built (CHANGELOG 91.0.0; inert until Apple grants com.apple.developer.carplay-audio, then add it to Kernel.entitlements) |
 | 92 | Share extension: save text or a web article as a summary | apps | built (CHANGELOG 92.0.0; iPhone and iPad; the extension itself shows only in a signed build) |
 | 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
 | 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | built (CHANGELOG 94.0.0; Kernel opens the page, Goodreads' own button marks it, so no one's account is touched by the agent) |

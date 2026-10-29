@@ -3037,6 +3037,28 @@
         }
       }
     },
+    "No books yet": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore de livres"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay libros"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Bücher"
+          }
+        }
+      }
+    },
     "No highlights yet": {
       "localizations": {
         "fr": {

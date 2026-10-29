@@ -31,7 +31,11 @@ targets:
         NSFaceIDUsageDescription: Sign in faster with Face ID.
         NSCameraUsageDescription: Scan book pages into a chapter. The pages are read and dropped, never kept.
         NSUserActivityTypes: [com.heyitsmejosh.spine.reading]
-        UIApplicationSceneManifest: { UIApplicationSupportsMultipleScenes: true }   # iPad Stage Manager and Split View: more than one Kernel window
+        UIApplicationSceneManifest:   # iPad Stage Manager and Split View: more than one window; and the CarPlay scene
+          UIApplicationSupportsMultipleScenes: true
+          UISceneConfigurations:
+            CPTemplateApplicationSceneSessionRoleApplication:
+              - { UISceneClassName: CPTemplateApplicationScene, UISceneConfigurationName: CarPlay, UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).CarPlayScene }
         CFBundleURLTypes: [{ CFBundleURLName: com.heyitsmejosh.spine, CFBundleURLSchemes: [kernel] }]   # kernel://book/<slug>, from the widgets
         NSSupportsLiveActivities: true   # the Lock Screen and Dynamic Island while listening
         ITSAppUsesNonExemptEncryption: false   # HTTPS only; without this every build needs the compliance flag set by hand

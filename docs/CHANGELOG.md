@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 91.0.0 (2026-10-29)
+CarPlay is ready: your books as a list with the one you are partway through first, tap to keep listening, and the system's Now Playing for the rest. It switches on once Apple grants Kernel the CarPlay audio entitlement.
+
 ## 94.0.0 (2026-10-29)
 Mark Read on Goodreads, from the chapters menu in Now Playing when you are signed in to Goodreads: the book's Goodreads page opens inside Kernel with your sign-in, you press Goodreads' own button, and Done refreshes your shelves. Kernel never presses it for you.
 
