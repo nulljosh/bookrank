@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 16.0.0 (2026-10-28)
+Download on the web book page keeps a whole book's narration on the device, so it plays with no connection, like Download in the apps. Every line you have already heard is kept too.
+
 ## 15.0.0 (2026-10-28)
 The web library works with no connection. Every book's text is kept on the device, not only the ones you opened, and an expired sign-in no longer logs you out while offline. The service worker keeps the pages, fonts and scripts, keeps your saved books across updates, and stops caching Goodreads answers.
 

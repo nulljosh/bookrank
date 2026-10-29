@@ -125,6 +125,7 @@ dl.profile dt { color:var(--text3); }
         <button id="fromPhotos">From screenshots</button>
         <input type="file" id="photos" accept="image/*" multiple hidden>
         <button id="share">Share</button>
+        <button id="download">Download</button>
         <button class="primary" id="save">Save</button>
         <button id="del">Delete</button>
         <button id="close">Close</button>
@@ -292,14 +293,41 @@ $('ask').onsubmit = async e => {
 // The player lives in listen.js (shared with share.html). This page only supplies the
 // row: content, cached scripts, the resume point, and where to save them.
 let listen = null;
-// Natural voice for one line through /api/speak (ElevenLabs, cached per line on the server).
+// Natural voice for one line through /api/speak (ElevenLabs, cached per line on the server). Every line heard
+// or downloaded is also kept on this device, so it plays with no connection.
+// ponytail: kept until sign-out, no size cap; add a Remove download when a book's audio matters (about 10 MB a book).
 async function speak(text, host, ch) {
+  const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)))].map(b => b.toString(16).padStart(2, '0')).join('');
+  const k = `voice/${host}/${hash}`, hit = await offline.get(k);
+  if (hit) return hit;
   const { data: { session } } = await db.auth.getSession();
   if (!session) return null;
-  const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host, ch }) });
-  if (res.status === 402) $('unlock').hidden = false;   // not paid: device voice plays, offer the $1
-  return res.ok ? res.json() : null;
+  const res = await fetch('/api/speak', { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ text, host, ch }) }).catch(() => null);
+  if (res?.status === 402) $('unlock').hidden = false;   // not paid: device voice plays, offer the $1
+  const out = res?.ok ? await res.json() : null;
+  if (out?.audio) offline.put(k, out);
+  return out;
 }
+// Download: every chapter's script and every line's voice, kept on this device. Same as Download in the apps.
+$('download').onclick = async () => {
+  const row = current, b = $('download'), chs = chapters(row?.content || '');
+  if (!row || b.disabled) return;
+  listen?.stop(); b.disabled = true; $('editMsg').textContent = '';
+  const st = row.listen?.for === row.updated_at ? row.listen : { ...row.listen, for: row.updated_at, chapters: {} };
+  const scripts = { ...st.chapters };
+  let msg = 'Downloaded. This book plays with no connection.';
+  book: for (let i = 0; i < chs.length; i++) {
+    b.textContent = `Downloading ${i + 1} of ${chs.length}`;
+    if (!scripts[i] || scripts[i].some(l => l.host === 'B')) scripts[i] = await narrate(i, chs[i].text, chs[i].title, chs.length);
+    if (!scripts[i]) { delete scripts[i]; msg = 'Download stopped. Try again with a connection.'; break; }
+    for (const l of scripts[i]) if (!await speak(l.line, l.host, i)) { msg = 'Download stopped: natural voices are locked or used up for today. Try again later.'; break book; }
+  }
+  row.listen = { ...st, chapters: scripts };   // the scripts the lines were made from, or the player rebuilds them and misses the audio
+  db.from(TABLE).update({ listen: row.listen, updated_at: row.updated_at }).eq('id', row.id).then(() => {});
+  offline.put(row.id, row);
+  b.disabled = false; b.textContent = 'Download';
+  if (current === row) { $('editMsg').textContent = msg; mountListen(); }
+};
 async function unlockVoices() {
   const { data: { session } } = await db.auth.getSession();
   const res = await fetch('/api/pay', { method: 'POST', headers: { authorization: `Bearer ${session.access_token}` } });
@@ -573,6 +601,7 @@ function render(reading) {
   $('body').classList.toggle('hide', reading);
   $('toggle').textContent = reading ? 'Edit' : 'Listen';
   $('share').classList.toggle('hide', !reading);
+  $('download').classList.toggle('hide', !reading || !current);
   if (reading) mountListen(); else listen?.stop();
 }
 $('new').onclick = () => { current = null; $('title').value = ''; $('body').value = ''; showEditor(false); };
