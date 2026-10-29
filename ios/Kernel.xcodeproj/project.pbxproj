@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */; };
 		04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */; };
+		05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93033291FD3C083A496ECC0 /* Kindle.swift */; };
 		0CE26E5791AEABD343806B31 /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		10DD936367C1E7ED6638B0DC /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
@@ -34,6 +35,7 @@
 		373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
+		3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93033291FD3C083A496ECC0 /* Kindle.swift */; };
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		446430E59725102456EF42D5 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */; };
@@ -191,6 +193,7 @@
 		EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelApp.swift; sourceTree = "<group>"; };
 		EFD53A14FC46AD38DFFFA927 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F52DEE4EFC635882441F8ED3 /* Goodreads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goodreads.swift; sourceTree = "<group>"; };
+		F93033291FD3C083A496ECC0 /* Kindle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kindle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -271,6 +274,7 @@
 				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				F52DEE4EFC635882441F8ED3 /* Goodreads.swift */,
 				DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */,
+				F93033291FD3C083A496ECC0 /* Kindle.swift */,
 				C82E2C3E7F816D3A9C7931FA /* Meaning.swift */,
 				8457AA46B272289E03D54157 /* Narrator.swift */,
 				8917EA02FB6A28868C756F74 /* Nudge.swift */,
@@ -565,6 +569,7 @@
 				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
 				BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */,
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
+				05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
 				A83E380572B1C456801F1DDD /* Meaning.swift in Sources */,
 				7699430312B7D04FC801034C /* Narrator.swift in Sources */,
@@ -616,6 +621,7 @@
 				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,
 				FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */,
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
+				3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
 				255D8A8DD3FFFFDAE50C15D1 /* Meaning.swift in Sources */,
 				373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */,

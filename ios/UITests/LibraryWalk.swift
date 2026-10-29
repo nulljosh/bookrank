@@ -155,6 +155,22 @@ final class LibraryWalk: XCTestCase {
         saveTo("reading-stats", XCUIScreen.main.screenshot())
     }
 
+    /// Add pages offers Import Kindle highlights, which opens the file picker (nothing is picked).
+    func testKindleImport() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "UITEST_SIGNED_IN"]
+        app.launch()
+        let row = app.staticTexts["The Man Who Solved the Market"].firstMatch
+        for _ in 0..<5 where !row.exists { app.swipeUp() }
+        XCTAssertTrue(row.waitForExistence(timeout: 10)); row.press(forDuration: 1.2)
+        app.buttons["Summarize this book"].firstMatch.tap()
+        let kindle = app.buttons["Import Kindle highlights"].firstMatch
+        for _ in 0..<3 where !kindle.isHittable { app.swipeUp() }
+        XCTAssertTrue(kindle.waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("kindle-import", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

@@ -20,6 +20,9 @@ struct AddPagesView: View {
     @State private var reading: String?
     @State private var error: String?
     @State private var saving = false
+    @State private var kindle = false
+    @State private var importing: String?
+    @State private var kindleDone: String?
 
     var body: some View {
         NavigationStack {
@@ -45,6 +48,18 @@ struct AddPagesView: View {
                     Text(error ?? "Each page is read and summarized, then the photo is dropped. Edit the text before you save.")
                         .foregroundStyle(error == nil ? Color.secondary : Color.red)
                 }
+                Section {
+                    Button { kindle = true } label: { Label(importing ?? "Import Kindle highlights", systemImage: "book.pages") }.disabled(importing != nil)
+                } footer: {
+                    Text(kindleDone ?? "Plug your Kindle in and choose documents/My Clippings.txt. Each book gets a Kindle highlights chapter.")
+                }
+            }
+            .fileImporter(isPresented: $kindle, allowedContentTypes: [.plainText, .text]) { r in
+                guard case .success(let url) = r else { return }
+                let ok = url.startAccessingSecurityScopedResource(); defer { if ok { url.stopAccessingSecurityScopedResource() } }
+                guard let text = try? String(contentsOf: url, encoding: .utf8) else { kindleDone = "Could not read that file."; return }
+                let books = Kindle.parse(text)
+                Task { importing = "Adding \(books.count) Kindle books…"; kindleDone = await store.importKindle(books); importing = nil }
             }
             .formStyle(.grouped)
             .navigationTitle("Add pages")

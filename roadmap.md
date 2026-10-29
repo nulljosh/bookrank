@@ -30,7 +30,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | built (Your reading under the library: books, chapters, hours, highlights, notes; the apps add Goodreads books finished per year and the average rating; pages wait on page counts from Goodreads) |
 | 28 | Year in review | apps, web | built (Share your 2026 under Your reading: a gold card with the year, books finished and summarized, highlights, hours and one highlight; yearCard and YearCard) |
 | 29 | Goodreads on the web through your Goodreads export file | web | built (goodreads-export.js parses the CSV in the browser, kept per account in localStorage, cleared on sign-out; never sent to the server) |
-| 30 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
+| 30 | Import Kindle highlights (My Clippings.txt) | apps, web | built (kindle.js and Kindle.swift; each book gets a Kindle highlights chapter or becomes a new book; only new lines; the app import path checked by parse and UI, not yet with a signed-in write) |
 | 31 | Import highlights from a Readwise or Apple Books export | apps, web | open |
 | 32 | Import an EPUB or PDF you own into chapters | apps, web | open |
 | 33 | Scan pages with the document camera in Add pages | iPhone, iPad | open |

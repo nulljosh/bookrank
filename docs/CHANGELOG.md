@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 30.0.0 (2026-10-28)
+Kindle highlights: plug your Kindle in and choose My Clippings.txt, under the library on the web or in Add pages in the apps. Each book gets a Kindle highlights chapter, or becomes a new book, and only lines you do not have yet are added.
+
 ## 29.0.0 (2026-10-28)
 Goodreads on the web: export your library from Goodreads and choose the file under the library. Your shelves show up beside your summaries, read in your browser and never sent to Kernel.
 
