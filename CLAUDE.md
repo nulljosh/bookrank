@@ -1,17 +1,17 @@
 # Kernel (ex-Bookrank)
 
-Chapter summaries of the books you own, read or listen to, on the web, iPhone, iPad and Mac. Renamed Bookrank to Kernel on 2026-10-28; earlier names were Books, Spine and Uprighty. Folder `~/Documents/Code/bookrank`, repo `nulljosh/bookrank`, ASC app `6792376485` (one record, iOS and Mac). History is in `docs/CHANGELOG.md`, the plan in `roadmap.md`, the loop state in `docs/LOOP-HANDOFF.md`.
+Chapter summaries of the books you own, read or listen to, on the web, iPhone, iPad and Mac. Renamed Bookrank to Kernel on 2026-10-28; earlier names were Books, Spine and Uprighty. Folder `~/Documents/Code/kernel` (`bookrank` is a symlink to it), repo `nulljosh/kernel`, ASC app `6792376485` (one record, iOS and Mac). History is in `docs/CHANGELOG.md`, the plan in `roadmap.md`, the loop state in `docs/LOOP-HANDOFF.md`, how to ship in `docs/SHIPPING.md`.
 
-**Old names kept on purpose** (renaming breaks installs, settings or the API): bundle id `com.heyitsmejosh.spine`, `spine-theme`, the `bookrank_summaries` table, `bookrank.*` UserDefaults and localStorage keys, the `bookrank` onboarding key, the `bookrank-data` cache, the `X-Bookrank-App` header, the KMP package `com.nulljosh.bookrank`, the Pages project `bookrank`, the Mac profile "Bookrank Mac App Store", and bookrank.jaybulb.com.
+**Old names kept on purpose** (renaming breaks installs, settings or the API): bundle id `com.heyitsmejosh.spine`, `spine-theme`, the `bookrank_summaries` table, `bookrank.*` UserDefaults and localStorage keys, the `bookrank` onboarding key, the `bookrank-data` cache, the `X-Bookrank-App` header, the KMP package `com.nulljosh.bookrank`, the Pages project `bookrank`, the Mac profile "Bookrank Mac App Store", and bookrank.jaybulb.com (the only host until kernel.jaybulb.com is added).
 
 ## Map
 - `library.html`: the web app (your summaries, the player, highlights, Ask, Goodreads). Its data layer is `rows`; every read goes through `cached()` so it works offline.
 - `listen.js` + `listen.css`: the player, shared by `library.html` and `share.html`. `marks.js` merges highlights, `goal.js` the weekly goal.
-- `spark.js`: the client for jaybulb-api (api.jaybulb.com). `functions/api/`: speak, narrate, ask, goodreads, apple receipts.
+- `spark.js`: the client for jaybulb-api (api.jaybulb.com). `functions/api/`: speak, narrate, ask, summarize-photo, goodreads, apple receipts, pay. The whole picture is `docs/ARCHITECTURE.md`.
 - `sw.js`: the service worker. Bump `CACHE` on every web change that touches a precached file.
 - `ios/`: SwiftUI app for iPhone, iPad and Mac from `ios/project.yml`. Run `git checkout ios/Kernel/Info.plist` after xcodegen or xcodebuild.
 - `books.json`: feeds the public /api, the MCP tools and cover matching.
-- Deploy the web: `sh scripts/build-site.sh` then `npx wrangler pages deploy dist --project-name bookrank --branch main`. A push deploys nothing.
+- Deploy the web: `sh scripts/build-site.sh` then `npx wrangler pages deploy dist --project-name bookrank --branch main --commit-dirty=true`. A push deploys nothing.
 
 ## Rules
 - **updated_at moves only on content edits.** jaybulb-api ignores a client `updated_at` and stamps a new one only when `content` is in the body. `listen.for` must equal the row's `updated_at` or the saved position and scripts are dropped.

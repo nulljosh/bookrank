@@ -1,31 +1,13 @@
-# Bookrank Money
+# Kernel Money
 
-How Bookrank makes money. The fleet-wide ledger is `GTM.md` in the Code root.
+How Kernel makes money. The fleet ledger is `GTM.md` in the Code root.
 
-## Price
+**Price.** $0.99 upfront on iPhone, iPad and Mac since 2026-10-02, no in-app purchase. The web is free to read; natural voices there are a one-time $1 Stripe Payment Link.
 
-$0.99 upfront on iOS and Mac, since 2026-10-02.
+**Why.** We sell the voices, not the summaries. The summaries are your own; the natural voices are what costs money to run.
 
-## Rail
+**How it is checked.** New app builds send StoreKit's AppTransaction as `X-Kernel-Receipt`, checked in `functions/api/apple.js`. Builds up to 1.2.1 send `X-Bookrank-App` and still work. On the web the Stripe webhook writes `paid:<user>` to KV. A 100% promo code unlocks too, so it works as a free pass for a friend.
 
-App Store, paid upfront, no in-app purchase. Web: Stripe $1 Payment Link.
+**Cost guard.** `/api/speak` stores every line forever, so a line is paid for once. A monthly budget for the app and a daily one per account keep ElevenLabs on its $5 plan. Past those the line goes to Cloudflare's Aura-2 with its own caps, and past those to the device voice. Playback never breaks.
 
-## Why
-
-We sell the voices, not the summaries. The summaries are Joshua's own notes on books he read. The natural ElevenLabs voices are what costs money to run, so they are what the dollar pays for.
-
-## Cost guard
-
-`/api/speak` stores every line forever, so a line is paid for once. A monthly character budget (25,000) for the whole app and a daily one per account keep the bill at the $5 ElevenLabs plan. Over either cap the player drops to the device voice and never breaks.
-
-## Next
-
-Done 2026-10-02: web natural voices are a Stripe $1 Payment Link. The webhook marks the account paid in KV and `/api/speak` checks it. The apps send `X-Bookrank-App`; the App Store price is their payment. Tested live with a one-use 100% promo code: a real Stripe checkout flipped the account to paid through the webhook in about 25 seconds. Promo codes unlock too, so a 100% code is a free pass for a friend.
-
-## Change it
-
-`asc pricing schedule create --app 6792376485 --price 0.99 --base-territory USA --start-date YYYY-MM-DD`
-
-Anyone who got Bookrank while it was free keeps it free. Only new customers pay.
-
-*ASC 6792376485. Set 2026-10-02.*
+**Change the price.** `asc pricing schedule create --app 6792376485 --price 0.99 --base-territory USA --start-date YYYY-MM-DD`. Anyone who got it free keeps it.

@@ -1,84 +1,48 @@
 # API
 
-Kernel has no HTTP API of its own. `library.html` — the only real app in this
-repo — talks to Supabase directly from the browser, reading and writing the
-`bookrank_summaries` table with the anon/publishable key. There is no server,
-no serverless function, and nothing to call from outside the page.
+Kernel has three surfaces an agent or a script can use.
 
-`index.html` and `rankings.html` are static content. `index.html` is a
-marketing hero with no user actions. `rankings.html`'s rankings are hardcoded
-HTML — there is no way for a user or an agent to actually rank or rate a book
-on this site. Neither page carries WebMCP tools, and neither should: a tool
-that implied you could rank a book, or take any action on those pages, would
-be lying about what the app does.
+## Your summaries, in the browser (WebMCP)
 
-## WebMCP
+`webmcp.js` registers these tools on `library.html` when the browser supports WebMCP. They call the page's own data layer (`window.__kernel.rows`), never the editor, so an agent cannot overwrite what you are typing.
 
-`webmcp.js`, loaded from `library.html` only, registers tools against
-`window.modelContext` when a WebMCP-capable browser is present. Every tool
-calls straight through to the existing functions in `library.html`'s module
-script (exposed as `window.__kernel`) — the same Supabase client, the same
-queries, no reimplementation.
-
-### Read-only
-
-| Tool | Description |
+| Tool | What it does |
 |---|---|
-| `list_summaries` | Lists the signed-in user's saved summaries (id, title, last updated). |
-| `get_summary` | Fetches the full text of one saved summary by id. |
-| `whoami` | Returns the signed-in user's email, or signed-out state. |
+| `list_summaries` | Your summaries: id, title, last updated |
+| `get_summary` | One summary's full text |
+| `whoami` | Your email, or signed out |
+| `create_summary` | A new summary from a title and markdown |
+| `save_summary` | Change a summary's title or text |
+| `delete_summary` | Delete one for good. Asks you first |
 
-### Reversible writes
+Sign-in is never a tool. Credentials do not pass through an agent.
 
-| Tool | Description |
-|---|---|
-| `create_summary` | Creates a new summary with a title and markdown body. |
-| `save_summary` | Updates an existing summary's title and/or body. |
+## The public book list (/api and /mcp)
 
-### Requires human confirmation
+Read-only, no account, over `books.json`. Both routes call `callTool()` in `src/lib/tools.js`, so they cannot disagree.
 
-| Tool | Description |
-|---|---|
-| `delete_summary` | Permanently deletes a saved summary. This cannot be undone. |
+| REST | MCP tool | Returns |
+|---|---|---|
+| `GET /api` | | The endpoint list |
+| `GET /api/sections` | `list_sections` | Each section with its count |
+| `GET /api/books?section=&limit=&offset=` | `list_books` | Books, paginated, with a total |
+| `GET /api/search?q=&limit=&section=` | `search_books` | Books whose title, author or notes match |
+| `GET /api/book?title=` | `get_book` | One book; an exact title wins |
 
-Sign-in, sign-up, password reset, OAuth, and sign-out are intentionally **not**
-exposed as tools — an agent should never drive someone's auth flow, and
-credentials must never pass through a tool call.
+MCP is `POST /mcp`, JSON-RPC, stateless.
 
-## Why tools use the data layer, not the UI
+## The app's own endpoints
 
-`webmcp.js` calls `window.__kernel.rows.*` — the query layer — never the
-editor functions `open()` or `saveCurrent()`. Routing tools through the UI would
-let a tool call reset the editor's `current` record or overwrite the open
-textareas, so a user editing a summary when an agent created another one would
-silently insert a duplicate on their next Save. Tools read and write by id and
-leave the editor alone; `refreshList()` re-renders the list only when the user
-is actually looking at it.
+These back the apps and the web. Most need a signed-in account; the voices also take a share token.
 
-## HTTP API (Cloudflare Pages Functions)
+| Endpoint | In | Out |
+|---|---|---|
+| `POST /api/narrate` | `{ text, title, ch, total, token? }` | `{ script: [{ host, line }] }` |
+| `POST /api/speak` | `{ text, host, ch?, token? }` | `{ audio, words }`, or 402 or 429 and the device voice takes over |
+| `POST /api/ask` | `{ text, title, question }` | `{ answer }` |
+| `POST /api/summarize-photo` | one image, multipart | `{ text }` |
+| `GET /api/goodreads?user=&shelf=` | a profile | the public Currently Reading box |
+| `GET /api/usage` | | voice used today and this month, and the caps |
+| `GET`/`POST /api/pay` | | whether you paid; the $1 Stripe link |
 
-That is still true of `library.html` — summaries remain a signed-in, per-user thing between
-the browser and Supabase, and nothing below touches them. What the site *does* now serve is
-the public shelf: `books.json`, read-only, for anyone who wants the rankings without
-scraping the page.
-
-Both surfaces call the same `callTool()` in `src/lib/tools.js`, so REST and MCP cannot
-describe different behaviour. `books.json` is imported into the bundle — no database.
-
-### REST (read-only, `GET`)
-
-| Endpoint | Returns |
-|---|---|
-| `/api` | The endpoint list and tool names. |
-| `/api/sections` | The shelves (`ranked`, `recent`, `toRead`, `summary`, `pick`) with counts. |
-| `/api/books?section=&limit=&offset=` | Books, paginated, with a `total`. |
-| `/api/search?q=&limit=&section=` | Books whose title, author or notes match. |
-| `/api/book?title=` | One book; an exact title wins over a partial match. |
-
-Every row has the same shape, with `null` for the fields a `pick` row legitimately lacks.
-
-### MCP
-
-`POST /mcp`, JSON-RPC, stateless. Tools: `list_sections`, `list_books`, `search_books`,
-`get_book`. All read-only — writing a summary stays in the page, where RLS can see who is
-asking.
+Summaries themselves live on jaybulb-api (`/rest/bookrank_summaries`), behind your account.

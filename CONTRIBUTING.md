@@ -1,29 +1,10 @@
-# Contributing to kernel
-
-## Setup
+# Contributing
 
 ```
-git clone https://github.com/nulljosh/bookrank.git
-cd kernel
-open Package.swift   # or the .xcodeproj/.xcworkspace, if present
+git clone https://github.com/nulljosh/kernel.git && cd kernel
+node --test                                   # web and server tests
+sh scripts/build-site.sh && npx wrangler pages dev dist   # the site
+cd ios && xcodegen && open Kernel.xcodeproj   # the apps
 ```
 
-## Run
-
-Build and run from Xcode, or `swift run` for CLI targets.
-
-## Test
-
-```
-swift test
-```
-
-## Making a change
-
-- Keep the diff scoped to what you're fixing or adding — no drive-by refactors.
-- Match the existing code style in the file you're touching.
-- Open a PR with a short description of the why, not just the what.
-
-## Reporting a bug
-
-Open a GitHub issue with steps to reproduce — the smaller the repro, the faster it gets fixed.
+Keep a change to what it fixes and match the file you touch. Open a PR that says why. Found a bug? Open an issue with the smallest steps that show it. Security problems go to the address in [SECURITY.md](SECURITY.md).
