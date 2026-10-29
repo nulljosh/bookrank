@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 73.0.0 (2026-10-29)
+Keyboard shortcuts on the web: Space plays or pauses, j and k move between chapters, h highlights, / searches, n starts a summary, and ? lists them all. f is a focus mode that leaves only the chapter and the play controls; Esc leaves it.
+
 ## 72.0.0 (2026-10-29)
 The web library looks more like the apps on a phone: the title gets its own line with the buttons under it, dates read "Oct 27" in your language instead of 2026-10-27, and Delete is red so it cannot be mistaken for Save.
 

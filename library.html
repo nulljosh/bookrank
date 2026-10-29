@@ -18,6 +18,14 @@ button, .btn { font:inherit; font-size:0.875rem; padding:0.5rem 0.9rem; border-r
 button.primary { background:var(--accent); border-color: var(--link, var(--accent)); color:var(--bg); font-weight:500; }
 button:disabled { opacity:0.5; cursor:default; }
 button.danger { color:var(--danger, #d70015); }
+/* Focus mode (f): only the chapter and the play controls, wider. Esc or f again leaves it. */
+body.focus #editView > .bar, body.focus #coll, body.focus #textsize, body.focus .lp-toc, body.focus .back, body.focus #noteWrap { display:none; }
+body.focus .lp-body { grid-template-columns:1fr; } body.focus main { max-width:44rem; }
+#keysHelp { margin:auto; border:1px solid var(--border); border-radius:var(--radius, 12px); background:var(--bg); color:var(--text); padding:1.5rem; max-width:24rem; }
+#keysHelp::backdrop { background:rgba(0,0,0,0.35); }
+#keysHelp h2 { font-size:1.125rem; margin-bottom:0.75rem; }
+#keysHelp dl { display:grid; grid-template-columns:auto 1fr; gap:0.4rem 1rem; margin-bottom:1rem; font-size:0.9375rem; }
+#keysHelp kbd { font:inherit; font-size:0.8125rem; padding:0.1rem 0.45rem; border:1px solid var(--border); border-radius:6px; background:var(--bg2); }
 @media (prefers-color-scheme: dark) { button.danger { color:var(--danger-dark, #ff6961); } }
 /* Phones: the title takes the full width and its buttons sit under it, as in the apps. */
 @media (max-width:560px) { #listView > .bar { flex-direction:column; align-items:stretch; gap:0.75rem; } #listView > .bar h1 { font-size:2rem; } }
@@ -186,6 +194,8 @@ dl.profile dt { color:var(--text3); }
 <script type="module">
 import { createClient } from './spark.js';
 import { save, flush as flushOutbox } from './outbox.js';
+import { installKeys } from './keys.js';
+installKeys();
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
