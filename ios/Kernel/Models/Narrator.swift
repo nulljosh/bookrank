@@ -10,7 +10,7 @@ enum Narrator {
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
-        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "title": title, "ch": ch, "total": total])
+        req.httpBody = try? JSONSerialization.data(withJSONObject: ["text": text, "title": title, "ch": ch, "total": total, "lang": Bundle.main.preferredLocalizations.first ?? "en"])   // narrated in the app's language
         struct Out: Decodable { let script: [ListenState.Line]? }
         guard let (data, _) = try? await URLSession.shared.data(for: req) else { return nil }
         return (try? JSONDecoder().decode(Out.self, from: data))?.script

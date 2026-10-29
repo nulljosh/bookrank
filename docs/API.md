@@ -48,7 +48,7 @@ These back the apps and the web. Most need a signed-in account; the voices also 
 
 | Endpoint | In | Out |
 |---|---|---|
-| `POST /api/narrate` | `{ text, title, ch, total, token? }` | `{ script: [{ host, line }] }` |
+| `POST /api/narrate` | `{ text, title, ch, total, token?, lang? }` (`lang`: fr, es or de) | `{ script: [{ host, line }] }` |
 | `POST /api/speak` | `{ text, host, ch?, token? }` | `{ audio, words }`, or 402 or 429 and the device voice takes over |
 | `POST /api/ask` | `{ text, title, question }` | `{ answer }` |
 | `POST /api/summarize-photo` | one image, multipart | `{ text }` |

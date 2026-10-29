@@ -18,3 +18,6 @@ assert.match(sys(0, 1), /Open briefly/);
 assert.match(sys(0, 3), /one narrator/i);
 assert.doesNotMatch(sys(0, 3), /Host B|`B:/);
 console.log('prompt ok');
+assert.match(messages('T', 'x', 0, 1, 'French')[0].content, /Speak only French/);
+assert.match(sys(0, 1), /plain spoken English/);
+console.log('lang ok');

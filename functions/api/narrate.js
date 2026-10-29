@@ -1,4 +1,5 @@
-// POST { text, title, ch, total, token? } -> { script: [{ host: "A", line }] }
+// POST { text, title, ch, total, token?, lang? } -> { script: [{ host: "A", line }] }
+// `lang` (fr, es or de) narrates in that language, whatever language the notes are in.
 // `ch`/`total` (0-based index, chapter count) shape the prompt: only chapter 0 opens the
 // conversation and only the last one closes it, so a whole book does not re-introduce
 // itself every chapter. `token` is a share link: it stands in for sign-in and the result is
@@ -9,6 +10,7 @@
 // Signed-in accounts only, same gate as summarize-photo.
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const API = "https://api.jaybulb.com";
+const LANGS = { fr: "French", es: "Spanish", de: "German" };
 const MAX_CHARS = 24000; // ponytail: ~6k tokens fits the context; longer books are truncated, chunk+merge if it matters
 
 export async function onRequest({ request, env }) {
@@ -23,18 +25,18 @@ export async function onRequest({ request, env }) {
 
   let out;
   try {
-    out = await env.AI.run(MODEL, { messages: messages(title, text, +body.ch || 0, +body.total || 1), max_tokens: 1500 });
+    out = await env.AI.run(MODEL, { messages: messages(title, text, +body.ch || 0, +body.total || 1, LANGS[body.lang]), max_tokens: 1500 });
   } catch {
     return json({ error: "Could not build the conversation." }, 502);
   }
 
   const script = parseScript(out?.response || "");
   if (!script.length) return json({ error: "Could not build the conversation." }, 502);
-  if (token) await rpc("cache_shared_script", { t: token, ch: String(+body.ch || 0), script }).catch(() => {});
+  if (token && !LANGS[body.lang]) await rpc("cache_shared_script", { t: token, ch: String(+body.ch || 0), script }).catch(() => {});
   return json({ script });
 }
 
-export function messages(title, text, ch, total) {
+export function messages(title, text, ch, total, language = "English") {
   const place = total > 1
     ? (ch === 0 ? `This is chapter 1 of ${total}: open by introducing the book in a sentence or two. Do not close the book.`
       : ch === total - 1 ? `This is the last chapter (${ch + 1} of ${total}): no greeting or re-introduction of the book, and close the whole book with the one thing to remember.`
@@ -44,7 +46,8 @@ export function messages(title, text, ch, total) {
     { role: "system", content:
       "You are one narrator explaining a book chapter out loud to one listener, like a good teacher. " +
       "No second speaker, no questions to a co-host, no dialogue. " +
-      "Do not read the notes back. Explain the main ideas in plain spoken English, say why each one matters, " +
+      `Speak only ${language}, whatever language the notes are in. ` +
+      `Do not read the notes back. Explain the main ideas in plain spoken ${language}, say why each one matters, ` +
       "give a concrete example or analogy where it helps, and connect ideas to each other. " +
       "Skip trivia, page details, and filler. 10 to 16 lines, each 1 to 3 sentences. " + place + " " +
       "Output ONLY lines in the form `A: ...`, one per line, no headings or markdown." },

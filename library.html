@@ -407,7 +407,7 @@ async function narrate(ch, text, title, total) {
     const res = await fetch('/api/narrate', {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ text, title: `${$('title').value}, ${title}`, ch, total }),
+      body: JSON.stringify({ text, title: `${$('title').value}, ${title}`, ch, total, lang: navigator.language.slice(0, 2) }),
     });
     return (await res.json()).script || null;
   } catch { return null; }
