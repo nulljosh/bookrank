@@ -112,6 +112,22 @@ final class LibraryWalk: XCTestCase {
         saveTo("todays-five", XCUIScreen.main.screenshot())
     }
 
+    /// Your note under a chapter. Never presses Listen.
+    func testChapterNote() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let book = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 15)); book.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Machine Learning Tool'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        let note = app.textFields["What you want to remember from this chapter"].firstMatch
+        for _ in 0..<4 where !note.isHittable { app.swipeUp() }
+        XCTAssertTrue(note.waitForExistence(timeout: 5)); note.tap(); note.typeText("Try WEKA on last year's reading log.")
+        sleep(2)
+        saveTo("chapter-note", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

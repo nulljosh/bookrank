@@ -132,7 +132,7 @@ struct SummaryDetailView: View {
                 #if os(macOS)
                 foundRow(f).tag(f.ch)
                 #else
-                NavigationLink { ChapterView(index: f.ch, jump: f.line) } label: { foundRow(f) }
+                NavigationLink { ChapterView(index: f.ch, store: store, jump: f.line) } label: { foundRow(f) }
                 #endif
             }
         }
@@ -142,7 +142,7 @@ struct SummaryDetailView: View {
                     #if os(macOS)
                     markRow(m).tag(m.ch)
                     #else
-                    NavigationLink { ChapterView(index: m.ch) } label: { markRow(m) }
+                    NavigationLink { ChapterView(index: m.ch, store: store) } label: { markRow(m) }
                     #endif
                 }
             }
@@ -151,7 +151,7 @@ struct SummaryDetailView: View {
             #if os(macOS)
             chapterRow(i).tag(i)
             #else
-            NavigationLink { ChapterView(index: i) } label: { chapterRow(i) }
+            NavigationLink { ChapterView(index: i, store: store) } label: { chapterRow(i) }
             #endif
         }
     }
@@ -241,6 +241,7 @@ struct SummaryDetailView: View {
 /// and followed. Mirrors listen.js mount().
 struct ChapterView: View {
     let index: Int
+    var store: DataStore? = nil   // for your note under the chapter
     var jump: Int? = nil   // a search result: open on the notes at this line
     var speaker = Speaker.shared
     @AppStorage("kernel.textSize") private var textSize = 1
@@ -263,6 +264,7 @@ struct ChapterView: View {
                             .id(i)
                             .onTapGesture { speaker.go(to: speaker.ch, line: i) }
                     }
+                    if let store, let slug = speaker.slug, slug != "sample" { ChapterNote(store: store, slug: slug, ch: speaker.ch) }
                 }
                 .padding(24)
                 .frame(maxWidth: 680, alignment: .leading)

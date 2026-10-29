@@ -9,18 +9,22 @@ export function mergeMarks(base, local, server) {
   return [...kept, ...server.filter(m => !b.has(key(m)) && !l.has(key(m)))];
 }
 
-// Every highlight as one Markdown file: a section per book, the chapter's title, each line as a quote.
+// Every highlight and note as one Markdown file: a section per book, the chapter's title, the lines as quotes,
+// then your note.
 // Same layout as exportMarkdown in HighlightsView.swift. `books`: [{ title, content, marks }].
 import { chapters } from './listen.js';
 export function marksMarkdown(books) {
   let out = '# Highlights\n';
-  for (const b of books.filter(b => b.marks?.length)) {
-    const chs = chapters(b.content || '');
+  for (const b of books) {
+    const marks = b.marks || [], notes = b.notes || {};
+    const chs = [...new Set([...marks.map(m => m.ch), ...Object.keys(notes).map(Number)])].sort((x, y) => x - y);
+    if (!chs.length) continue;
+    const titles = chapters(b.content || '');
     out = out.trimEnd() + `\n\n## ${b.title}\n\n`;
-    let last = null;
-    for (const m of [...b.marks].sort((x, y) => x.ch - y.ch)) {
-      if (m.ch !== last) { out += `### ${chs[m.ch]?.title || `Chapter ${m.ch + 1}`}\n\n`; last = m.ch; }
-      out += `> ${m.text}\n\n`;
+    for (const ch of chs) {
+      out += `### ${titles[ch]?.title || `Chapter ${ch + 1}`}\n\n`;
+      for (const m of marks.filter(m => m.ch === ch)) out += `> ${m.text}\n\n`;
+      if (notes[ch]) out += `${notes[ch]}\n\n`;
     }
   }
   return out.trimEnd() + '\n';

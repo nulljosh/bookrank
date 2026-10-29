@@ -130,7 +130,7 @@ export function createPlayer(o) {
       u.rate = o.rate();
       u.onboundary = e => { if (tok === p.token && e.name === 'word') o.onWord?.(i, c.offset + e.charIndex, c.offset + e.charIndex + (e.charLength || wordLen(c.text, e.charIndex))); };
       u.onend = speakPart;
-      // "interrupted"/"canceled" come from our own cancel(); anything else, move on rather than stall.
+      // "interrupted"/"canceled" are our own cancel(); else move on.
       u.onerror = e => { if (tok === p.token && !/interrupted|canceled/.test(e.error || '')) speakPart(); };
       o.synth.speak(u);
     };
@@ -316,7 +316,7 @@ export function mount(root, api) {
     renderMarks();
     api.save?.({ ch: player.ch, line: player.line }, scripts, marks);
   };
-  function markToc(i) { [...toc.querySelectorAll('a')].forEach((a, k) => a.classList.toggle('on', k === i)); }
+  function markToc(i) { [...toc.querySelectorAll('a')].forEach((a, k) => a.classList.toggle('on', k === i)); api.onChapter?.(i); }
   const showChapter = async () => { // idle view: the current chapter's text, no audio
     markToc(player.ch);
     text.innerHTML = '<p class="lp-loading">…</p>';

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 25.0.0 (2026-10-28)
+Your own note under every chapter, saved as you type and synced to your other devices. Notes come along in the Markdown export with your highlights.
+
 ## 24.0.0 (2026-10-28)
 Today's five: five of your highlights come back at the top of the library each day, the same five on every device, a new five tomorrow. Done puts them away until then.
 

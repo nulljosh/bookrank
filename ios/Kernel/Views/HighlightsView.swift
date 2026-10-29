@@ -90,18 +90,20 @@ private struct HighlightsButton: ViewModifier {
     }
 }
 
-/// Every highlight as one Markdown file: a section per book, the chapter's title, each line as a quote.
+/// Every highlight and note as one Markdown file: a section per book, the chapter's title, the lines as quotes, then your note.
 /// Same layout as marksMarkdown in marks.js.
 func exportMarkdown(_ books: [SummaryEntry]) -> String {
     var out = "# Highlights"
     for b in books {
-        guard let marks = b.listen?.marks, !marks.isEmpty else { continue }
-        let chs = parseChapters(b.content)
+        let marks = b.listen?.marks ?? [], notes = b.notes ?? [:]
+        let chs = Set(marks.map(\.ch) + notes.keys.compactMap { Int($0) }).sorted()
+        guard !chs.isEmpty else { continue }
+        let titles = parseChapters(b.content)
         out += "\n\n## \(b.title)\n"
-        var last: Int?
-        for m in marks.sorted(by: { $0.ch < $1.ch }) {
-            if m.ch != last { out += "\n### \(chs.indices.contains(m.ch) ? chs[m.ch].title : "Chapter \(m.ch + 1)")\n"; last = m.ch }
-            out += "\n> \(m.text)\n"
+        for ch in chs {
+            out += "\n### \(titles.indices.contains(ch) ? titles[ch].title : "Chapter \(ch + 1)")\n"
+            for m in marks where m.ch == ch { out += "\n> \(m.text)\n" }
+            if let n = notes["\(ch)"] { out += "\n\(n)\n" }
         }
     }
     return out + "\n"
@@ -150,5 +152,29 @@ struct TodaysFive: View {
             Text("\(e.title) · Ch \(m.ch + 1)").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
         }
         .padding(.vertical, 2)
+    }
+}
+
+/// Your own note under a chapter, saved a second after you stop typing. Same as the note box on the web.
+struct ChapterNote: View {
+    let store: DataStore, slug: String, ch: Int
+    @State private var text = ""
+    @State private var loaded = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Your note").font(.kernel(.footnote)).foregroundStyle(.secondary)
+            TextField("What you want to remember from this chapter", text: $text, axis: .vertical)
+                .font(.kernel(.body)).lineLimit(3...12)
+                .padding(12)
+                .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 12))
+        }
+        .padding(.top, 8)
+        .onAppear { text = store.summary(for: slug)?.notes?["\(ch)"] ?? ""; loaded = true }
+        .onChange(of: ch) { _, c in text = store.summary(for: slug)?.notes?["\(c)"] ?? "" }
+        .task(id: text) {
+            guard loaded, text != (store.summary(for: slug)?.notes?["\(ch)"] ?? ""), (try? await Task.sleep(for: .seconds(1))) != nil else { return }
+            await store.setNote(text, ch: ch, for: slug)
+        }
     }
 }

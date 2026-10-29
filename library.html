@@ -67,6 +67,7 @@ ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .textsize { display:flex; gap:4px; justify-content:flex-end; margin:8px 0 -8px; } .textsize button { min-width:40px; }
 #listen .lp-text { font-size:calc(1rem * var(--reader-scale, 1)); line-height:calc(1.45 + 0.1 * var(--reader-scale, 1)); }
 .coll { display:flex; align-items:center; gap:0.5rem; margin:-0.75rem 0 1rem; font-size:0.8125rem; color:var(--text3); } .coll input { width:14rem; padding:0.35rem 0.6rem; }
+.note { display:block; margin:24px 0 0; font-size:0.8125rem; color:var(--text3); } .note textarea { display:block; margin-top:0.4rem; font-size:1rem; line-height:1.5; resize:vertical; min-height:0; height:6rem; }
 .ask { display:flex; gap:8px; margin:24px 0 8px; } .ask input { flex:1; } .ask button { flex:none; }
 .answer { font-size:0.9375rem; line-height:1.5; color:var(--text2); margin:0 0 16px; }
 .answer:empty { display:none; }
@@ -157,6 +158,7 @@ dl.profile dt { color:var(--text3); }
     <datalist id="collections"></datalist>
     <div class="textsize hide" id="textsize"><button type="button" id="txtDown" aria-label="Smaller text">A&minus;</button><button type="button" id="txtUp" aria-label="Larger text">A+</button></div>
     <div id="listen"></div>
+    <label class="note hide" id="noteWrap"><span id="noteLabel">Your note</span><textarea id="note" rows="3" maxlength="4000" placeholder="What you want to remember from this chapter"></textarea></label>
     <form id="ask" class="ask hide"><input id="askQ" maxlength="500" placeholder="Ask this chapter a question" aria-label="Ask this chapter a question"><button class="primary">Ask</button></form>
     <p id="askA" class="answer" aria-live="polite"></p>
     <p id="unlock" hidden style="font-size:14px;color:var(--muted,#8a8a8a);margin:12px 0">Natural voices are $1 on the web. Your device voice is playing. <button type="button" onclick="unlockVoices()">Unlock for $1</button></p>
@@ -341,6 +343,25 @@ $('collection').onchange = async () => {
   const { error } = await rows.update(current.id, { collection: v });
   $('editMsg').textContent = error ? 'Could not save the collection.' : v ? `Saved to ${v}.` : 'Removed from its collection.';
 };
+// Your own note under each chapter, kept in the row's `notes` ({ "<chapter>": text }), not in listen, so a
+// listen save from an older app build cannot drop it. Saved a second after you stop typing.
+let noteCh = 0, noteTimer = 0;
+function showNote(ch) {
+  noteCh = ch;
+  $('note').value = current?.notes?.[ch] || '';
+  $('noteLabel').textContent = `Your note on ${chapters(current?.content || '')[ch]?.title || 'this chapter'}`;
+}
+$('note').oninput = () => {
+  const row = current, ch = noteCh, v = $('note').value.trim();
+  clearTimeout(noteTimer);
+  noteTimer = setTimeout(async () => {
+    if (!row) return;
+    row.notes = { ...row.notes }; if (v) row.notes[ch] = v; else delete row.notes[ch];
+    offline.put(row.id, row);
+    const { error } = await rows.update(row.id, { notes: row.notes });
+    if (current === row) $('editMsg').textContent = error ? 'Could not save the note.' : 'Note saved.';
+  }, 1000);
+};
 // Download: every chapter's script and every line's voice, kept on this device. Same as Download in the apps.
 $('download').onclick = async () => {
   const row = current, b = $('download'), chs = chapters(row?.content || '');
@@ -387,6 +408,7 @@ function mountListen() {
     title: current.title, content: current.content, scripts: st?.chapters, pos: st?.pos, narrate, speak,
     marks: current.listen?.marks || [],   // kept even when listen.for is stale: a saved line is its text
     voices: () => speechSynthesis.getVoices(),
+    onChapter: showNote,
     save: async (pos, chapters, marks) => {
       if (!current) return;
       const row = current, base = row.listen?.marks ?? [];
@@ -478,7 +500,7 @@ const cached = async (k, q) => {
   return hit ? { data: hit, error: null, offline: true } : res;
 };
 const rows = {
-  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token,collection').order('updated_at', { ascending: false })),
+  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token,collection,notes').order('updated_at', { ascending: false })),
   get:    (id)          => cached(id, () => db.from(TABLE).select('*').eq('id', id).single()),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
@@ -560,7 +582,7 @@ $('todayDone').onclick = () => { try { localStorage.setItem('kernel.reviewed', t
 // Export: one Markdown file of every highlight, by book and chapter.
 $('marksExport').onclick = async () => {
   await allTexts(listData);
-  const md = marksMarkdown(listData.map(r => ({ title: r.title, content: texts?.[r.id], marks: r.listen?.marks })));
+  const md = marksMarkdown(listData.map(r => ({ title: r.title, content: texts?.[r.id], marks: r.listen?.marks, notes: r.notes })));
   Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([md], { type: 'text/markdown' })), download: 'Kernel highlights.md' }).click();
 };
 $('marksBtn').onclick = () => {
@@ -749,6 +771,7 @@ function showEditor(reading = false) {
 function render(reading) {
   $('listen').classList.toggle('hide', !reading);
   $('ask').classList.toggle('hide', !reading); $('askA').textContent = '';
+  $('noteWrap').classList.toggle('hide', !reading || !current);
   $('textsize').classList.toggle('hide', !reading);
   $('coll').classList.toggle('hide', !reading || !current);
   $('body').classList.toggle('hide', reading);

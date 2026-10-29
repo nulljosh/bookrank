@@ -45,7 +45,7 @@ struct LibraryView: View {
                 }
             } detail: {
                 if let slug = selected, let ch = chapter {
-                    ChapterView(index: ch).id("\(slug)/\(ch)")
+                    ChapterView(index: ch, store: store).id("\(slug)/\(ch)")
                 } else {
                     ContentUnavailableView("Pick a chapter", systemImage: "text.book.closed", description: Text("Read it here, or press play to listen."))
                 }

@@ -79,7 +79,7 @@ final class DataStore {
     func loadSummaries() async {
         if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
-            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token,collection&order=title")
+            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token,collection,notes&order=title")
             summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
             summaryError = nil
             writeCache()
@@ -203,6 +203,16 @@ final class DataStore {
 
     /// Your collections, A to Z. Same as the web's.
     var collections: [String] { Set(summaryIndex.compactMap(\.collection)).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
+    /// Your note under a chapter; empty removes it. Side data, so updated_at stays.
+    func setNote(_ text: String, ch: Int, for slug: String) async {
+        guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }) else { return }
+        var notes = summaryIndex[i].notes ?? [:]
+        let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        notes["\(ch)"] = t.isEmpty ? nil : String(t.prefix(4000))
+        summaryIndex[i].notes = notes
+        writeCache()
+        if let id = summaryIndex[i].rowID { _ = try? await patch(id, ["notes": notes]) }
+    }
     /// Put a book in a collection, or none. Side data, so updated_at stays.
     func setCollection(_ name: String?, for slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }) else { return }

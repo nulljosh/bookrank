@@ -20,8 +20,9 @@ const { marksMarkdown } = await import('./marks.js');
   const md = marksMarkdown([
     { title: 'Book A', content: '# One\n\nx\n\n# Two\n\ny', marks: [{ ch: 1, text: 'later line' }, { ch: 0, text: 'first line' }] },
     { title: 'No marks', content: '', marks: [] },
+    { title: 'Note only', content: '# Only\n\nz', marks: [], notes: { 0: 'My own thought.' } },
   ]);
-  assert.equal(md, '# Highlights\n\n## Book A\n\n### One\n\n> first line\n\n### Two\n\n> later line\n');
+  assert.equal(md, '# Highlights\n\n## Book A\n\n### One\n\n> first line\n\n### Two\n\n> later line\n\n## Note only\n\n### Only\n\nMy own thought.\n');
 }
 
 // Today's five: same day, same five; another day, another order; never more than five.
