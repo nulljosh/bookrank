@@ -18,10 +18,18 @@ Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the
 
 ## Waiting on Joshua
 
-- Deploy jaybulb-api (`npx wrangler deploy` in ~/Documents/Code/jaybulb-api) so the public profile lookup from 54.0.0 and the listed flag from 57.0.0 go live. The agent was not allowed to deploy the shared API.
+Everything through 87, plus 98 and 99, is built and tagged. What is left needs one of these first:
 
-- kernel.jaybulb.com on the `bookrank` Pages project (Cloudflare blocked the agent from adding it).
-- The signed-in Mac walk and the other checks listed in roadmap.md, including a book in its own Mac window (79.0.0) and Apple Pencil highlights on an iPad (78.0.0).
+1. **Workers AI** (Workers Paid): rows 93 narrator eval, 95 quiz, 96 key ideas, 97 recap. On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
+2. **Deploy jaybulb-api** (`cd ~/Documents/Code/jaybulb-api && npx wrangler deploy`): the public profile (54) and listed share pages (57) are committed and tested but not live. The agent was not allowed to deploy the shared API.
+3. **An App Group** in the developer account (Xcode, Signing & Capabilities, for the app and its extensions): rows 88 widgets, 89 Lock Screen and Live Activity, 90 Control Center, 92 share extension.
+4. **Apple's CarPlay audio entitlement** (request it at developer.apple.com/contact/carplay): row 91.
+5. **A Goodreads sign-in on a test device**: row 94, so marking a book read can be tried without touching Joshua's account.
+6. **Row 67** waits until iPhone 2.0.0 replaces 1.2.1 and no one runs the 1.2 builds.
+7. **kernel.jaybulb.com** on the `bookrank` Pages project (Cloudflare blocked the agent).
+8. **Checks only a person can do**: Apple Pencil highlights on an iPad (78), a book in its own Mac window (79), Scan pages (33), Shortcuts (35), Handoff (37), Spotlight (40), the signed-in Mac walk.
+
+Row 100 is the release once these are in: ship the newest major on iPhone, iPad and Mac the way [SHIPPING.md](SHIPPING.md) says, then `scripts/promo.sh` and the product page test.
 
 ## Restart prompt
 
