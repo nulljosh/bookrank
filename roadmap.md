@@ -72,7 +72,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 69 | Swift unit tests (parsers, goal, nudges) run in CI | apps | built (CHANGELOG 69.0.0) |
 | 70 | Simulator UI walks run in CI | apps | built (CHANGELOG 70.0.0; the walk step is non-blocking until its first green run) |
 | 71 | Docs to 100 percent | repo | built (CHANGELOG 71.0.0) |
-| 72 | Web polish pass to match the apps (apple skill) | web | open |
+| 72 | Web polish pass to match the apps (apple skill) | web | built (CHANGELOG 72.0.0) |
 | 73 | Web keyboard shortcuts and a focus mode | web | open |
 | 74 | Read mode: page by page without audio, position saved | apps, web | open |
 | 75 | Kernel Sans italic and bold for quotes | all | open |

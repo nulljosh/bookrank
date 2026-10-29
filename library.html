@@ -17,6 +17,10 @@ h1 { font-family:var(--font-display); font-size:1.75rem; letter-spacing:-0.02em;
 button, .btn { font:inherit; font-size:0.875rem; padding:0.5rem 0.9rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); cursor:pointer; text-decoration:none; }
 button.primary { background:var(--accent); border-color: var(--link, var(--accent)); color:var(--bg); font-weight:500; }
 button:disabled { opacity:0.5; cursor:default; }
+button.danger { color:var(--danger, #d70015); }
+@media (prefers-color-scheme: dark) { button.danger { color:var(--danger-dark, #ff6961); } }
+/* Phones: the title takes the full width and its buttons sit under it, as in the apps. */
+@media (max-width:560px) { #listView > .bar { flex-direction:column; align-items:stretch; gap:0.75rem; } #listView > .bar h1 { font-size:2rem; } }
 input, textarea { font:inherit; width:100%; padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); }
 textarea { min-height:60vh; resize:vertical; line-height:1.6; }
 .gate { max-width:360px; margin:clamp(1rem,7vh,4rem) auto 0; text-align:center; }
@@ -159,7 +163,7 @@ dl.profile dt { color:var(--text3); }
         <button id="share">Share</button>
         <button id="download">Download</button>
         <button class="primary" id="save">Save</button>
-        <button id="del">Delete</button>
+        <button id="del" class="danger">Delete</button>
         <button id="close">Close</button>
       </div>
     </div>
@@ -672,7 +676,9 @@ async function load() {
     const pos = row.listen?.for === row.updated_at && row.listen.pos;
     if (pos && (pos.ch || pos.line)) name.append(Object.assign(document.createElement('span'), { className: 'resume', textContent: `Ch ${pos.ch + 1}` }));
     a.append(name);
-    a.append(Object.assign(document.createElement('time'), { textContent: row.updated_at.slice(0,10) }));
+    // A short date in the reader's own language ("Oct 27"), the year only when it is not this one.
+    const at = new Date(row.updated_at), thisYear = at.getFullYear() === new Date().getFullYear();
+    a.append(Object.assign(document.createElement('time'), { dateTime: row.updated_at, textContent: isNaN(at) ? '' : at.toLocaleDateString(navigator.language, thisYear ? { month: 'short', day: 'numeric' } : { year: 'numeric', month: 'short', day: 'numeric' }) }));
     const listenBtn = Object.assign(document.createElement('button'),
       { className: 'listen', textContent: 'Listen', title: 'Listen to ' + row.title });
     listenBtn.onclick = async () => { if (await open(row.id)) listen.player.play(); };

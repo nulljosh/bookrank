@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 72.0.0 (2026-10-29)
+The web library looks more like the apps on a phone: the title gets its own line with the buttons under it, dates read "Oct 27" in your language instead of 2026-10-27, and Delete is red so it cannot be mistaken for Save.
+
 ## 71.0.0 (2026-10-29)
 Docs caught up with everything through 70: the whitepaper (sync, finding things, languages, sharing, limits), the README's feature list, the architecture map of every web file and server route, and how to run the apps' tests. Every local link checked.
 
