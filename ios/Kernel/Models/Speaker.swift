@@ -231,7 +231,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private func persist() {
         Task { await Goal.shared.remind() }
         guard let save else { return }
-        let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line), marks: marks)
+        let st = ListenState(for: updatedAt, chapters: scripts, pos: .init(ch: ch, line: line, at: Date.now.timeIntervalSince1970 * 1000), marks: marks)
         Task { [slug] in
             let merged = await save(st)
             // Take another device's highlights, unless a toggle landed while this save was out.

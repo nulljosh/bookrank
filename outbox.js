@@ -14,11 +14,12 @@ export async function save(send, id, fields) {
   return { data: null, error: null, queued: true };
 }
 
-/** Sends what is waiting. A save the server refuses is dropped, since sending it again will not help. */
-export async function flush(send) {
+/** Sends what is waiting. `prepare(id, fields)` may adjust a save first (the listening place: newest wins).
+ *  A save the server refuses is dropped, since sending it again will not help. */
+export async function flush(send, prepare = async (id, f) => f) {
   const o = read();
   for (const [id, fields] of Object.entries(o)) {
-    const r = await send(id, fields);
+    const r = await send(id, await prepare(id, fields));
     if (r.error?.status !== 0) delete o[id];
   }
   write(o);

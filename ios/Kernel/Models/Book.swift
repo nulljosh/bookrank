@@ -43,7 +43,8 @@ struct ListenState: Codable {
         enum CodingKeys: String, CodingKey { case host, line }
         init(host: String, line: String, md: String? = nil) { self.host = host; self.line = line; self.md = md }
     }
-    struct Pos: Codable { var ch: Int; var line: Int }
+    /// `at`: when this place was reached, ms since 1970, so a save sent late loses to a newer one. Old rows have none.
+    struct Pos: Codable { var ch: Int; var line: Int; var at: Double? = nil }
     /// A saved line: its chapter and its text, so it survives a rebuilt script. Same shape as listen.js.
     struct Mark: Codable, Hashable { var ch: Int; var text: String }
     var `for`: String
@@ -53,6 +54,16 @@ struct ListenState: Codable {
 
     /// Highlights from two devices, the same rule as mergeMarks in marks.js. `base` is what this device last saw on
     /// the row: lines another device added since are kept, lines it removed go, this device's own changes win on top.
+    /// A listening save that waited offline, checked against the row as it is now: the place reached later wins,
+    /// highlights from both sides stay. Same rule as catchUp in marks.js.
+    static func catchUp(_ queued: ListenState, server: ListenState?) -> ListenState {
+        guard let server, server.for == queued.for else { return queued }
+        var out = queued
+        if (server.pos.at ?? 0) > (queued.pos.at ?? 0) { out.pos = server.pos }
+        out.marks = merge(base: [], local: queued.marks ?? [], server: server.marks ?? [])
+        return out
+    }
+
     static func merge(base: [Mark], local: [Mark], server: [Mark]) -> [Mark] {
         let b = Set(base), s = Set(server), l = Set(local)
         return local.filter { !b.contains($0) || s.contains($0) } + server.filter { !b.contains($0) && !l.contains($0) }

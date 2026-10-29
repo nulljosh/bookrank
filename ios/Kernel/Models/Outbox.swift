@@ -21,7 +21,14 @@ import Foundation
     static func flush() async {
         guard !flushing, !pending.isEmpty else { return }
         flushing = true; defer { flushing = false }
-        for (path, fields) in pending {
+        for (path, saved) in pending {
+            var fields = saved
+            // A listening place that waited offline loses to one another device reached later.
+            if let l = fields["listen"], let d = try? JSONSerialization.data(withJSONObject: l), let q = try? JSONDecoder().decode(ListenState.self, from: d) {
+                struct Row: Decodable { let listen: ListenState? }
+                let server = (try? await API.call("GET", path + "&select=listen")).flatMap { try? JSONDecoder().decode([Row].self, from: $0).first?.listen }
+                if let e = try? JSONEncoder().encode(ListenState.catchUp(q, server: server)), let j = try? JSONSerialization.jsonObject(with: e) { fields["listen"] = j }
+            }
             guard (try? await API.call("PATCH", path, json: fields)) != nil else { continue }
             pending[path] = nil
         }

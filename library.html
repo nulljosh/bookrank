@@ -181,7 +181,7 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js" integrity="sha384-XQqX/4yiUGu+oyr87jvWzRuqBUK/adrY0DunhL+tID9m/9dwSpV8h9Fk/Sg6ifVQ" crossorigin="anonymous"></script>
 <script type="module">
 import { createClient } from './spark.js';
-import { save, flush } from './outbox.js';
+import { save, flush as flushOutbox } from './outbox.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
@@ -190,7 +190,7 @@ import { parseExport } from './goodreads-export.js';
 import { parseClippings, parseReadwise, kindleChapter } from './kindle.js';
 import { epubToMarkdown } from './epub.js';
 import * as goal from './goal.js';
-import { mergeMarks, marksMarkdown, dailyFive } from './marks.js';
+import { mergeMarks, marksMarkdown, dailyFive, catchUp } from './marks.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -430,7 +430,7 @@ function mountListen() {
       // ponytail: the merged lines show on the next toggle or open; the player's list is updated in place.
       const { data } = await db.from(TABLE).select('listen').eq('id', row.id).single();   // errors come back as { error }, so offline just saves this device's list
       if (data) marks.splice(0, marks.length, ...mergeMarks(base, marks, data.listen?.marks ?? []));
-      row.listen = { for: row.updated_at, chapters, pos, marks: [...marks] };
+      row.listen = { for: row.updated_at, chapters, pos: { ...pos, at: Date.now() }, marks: [...marks] };
       save(send, row.id, { listen: row.listen, updated_at: row.updated_at });  // keep updated_at, or listen.for stops matching
     },
   });
@@ -518,6 +518,8 @@ const cached = async (k, q) => {
 };
 // A side save (where you stopped, highlights, a note, a collection); offline it waits in outbox.js.
 const send = (id, fields) => db.from(TABLE).update(fields).eq('id', id);
+// A listening place that waited offline loses to one another device reached later.
+const flush = s => flushOutbox(s, async (id, f) => f.listen ? catchUp(f, (await db.from(TABLE).select('listen').eq('id', id).single()).data?.listen) : f);
 globalThis.addEventListener?.('online', () => flush(send));
 const rows = {
   list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,created_at,updated_at,listen,cover,share_token,collection,notes').order('updated_at', { ascending: false })),

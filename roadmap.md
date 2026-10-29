@@ -44,26 +44,26 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | built (/api/summaries GET, POST, PATCH and four MCP tools, your token passed through to jaybulb-api; live 401 without one) |
 | 42 | Pick the narrator voice, per book | apps, web | built (Alice or George, remembered per book like speed; voices.js split from listen.js; the Aura fallback stays one voice) |
 | 43 | Download the next chapter's audio on Wi-Fi ahead of time | apps | built (while a chapter plays on Wi-Fi, not cellular or Low Data Mode, the next one's lines are fetched and kept with the book; no visible change, so build-checked) |
-| 44 | Storage screen: what is downloaded, how big, remove it | apps | built (Your reading, Storage on this device: each book's narration size, swipe or right-click to remove, the search index with a clear button, the offline library) |
-| 45 | Sleep timer fades out; shake to add ten minutes | iPhone | built (the natural voice fades over the last 30 seconds; a shake adds ten minutes; the menu says when it pauses. Audio and shake are not testable headless, so the fade is build-checked) |
-| 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | built (the chapter text follows the accessibility text sizes from Settings, long chapter titles wrap, the Mac menu bar player and onboarding speak properly to VoiceOver, Reduce Motion turns off slides and springs app-wide) |
-| 47 | Languages: French, Spanish and German interface | apps, web | built (apps: a string catalog with 227 strings in each language, picked from the system language; web: i18n.js swaps fixed text from i18n/<lang>.json by the browser language, never touching your summaries. Still English: durations like "4 hr 2 min" and sentences put together in code) |
-| 48 | Narrate a chapter in your own language | apps, web | built (/api/narrate takes `lang`; the apps send their interface language and the web the browser's, so a French phone hears French. Chapters already narrated keep the language they were made in; shared links stay English so their cache fits everyone. Not heard live: no signed-in test account) |
-| 49 | Localized screenshots and listings | store | built (docs/store/listing.json in English, French, Spanish and German, put on a version by `scripts/store-listing.sh`; iPhone and iPad store shots in ios/fastlane/screenshots/fr-FR, es-ES, de-DE. Both platforms are in review, so it goes up with the next version) |
-| 50 | First-run pages offer the Goodreads sign-in | apps | built (the last first-run page has "Bring my Goodreads shelves" under the sample and sign-in; it opens Goodreads' own sign-in and the shelves fill the library behind it. The first-run pages now translate too) |
-| 51 | Empty states and error messages A+ on every screen | apps, web | built (apps: the library says it could not reach your library with a Try again button instead of a raw error, Highlights and the command palette say when they are empty; web: the same failed load with a try again link, and the empty library points at New summary) |
-| 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | built (profile, then Listening, Goodreads, Appearance, Notifications and Data, which now also opens Storage, then credentials, sign out and delete) |
-| 53 | Notifications: weekly recap, quiet hours | apps | built (Account, Notifications: pick the hour the morning line arrives, 7 to noon, and nothing comes before it; a Weekly recap toggle sends your minutes and days on the week's last evening, requeued each time you listen) |
-| 54 | Public profile: the shelf and highlights you choose to share | web | built (profile?u=<name> shows the books you shared by link, and your highlights from them if you tick that; off until you turn it on in your profile, and only with a username you picked. Needs the jaybulb-api `public_profile` lookup deployed: committed, deploy waits on Joshua) |
-| 55 | Share links with cover preview cards | web | built (functions/share.js puts the book's title and cover into the link preview of /share?t=; the apps' share.html links redirect there and get it too. Checked with a local mock of the API; the card itself shows in Messages, Slack and X) |
-| 56 | Landing refresh with real app screens and the Goodreads story | web | built (the steps now cover every way in and the four languages, a row of real iPhone screens from fresh store shots, a Goodreads section, and footer links on nulljosh/kernel. The English store shots were retaken in light mode too) |
-| 57 | Opt-in public pages for shared summaries | web | built (a shared page becomes indexable, `index, follow`, only when its owner has the public profile on; every other shared page keeps `noindex`. The flag comes from jaybulb-api's shared_summary, committed with the 54 lookup; live once Joshua deploys it) |
-| 58 | 500-book library stays smooth (Goodreads scale) | apps, web | built (web: a missing cover is looked up only when its row nears the screen, 40 lookups instead of about 1,000; 500 books show in about 130 ms and a search narrows them in about 20 ms. Apps: covers drawn once stay in memory, the Goodreads match splits titles once, and testBigShelf checks a 500-book shelf against a 60-book one) |
-| 59 | Covers cached on disk | apps | built (every cover the apps draw is kept in Caches/covers as well as in memory, so the shelf shows covers at once after a relaunch and offline; Storage shows their size with a Clear button) |
-| 60 | Startup time budget with an Instruments pass | apps | built (budget in docs/ARCHITECTURE.md: Kernel's own work before the first frame under 50 ms, measured at about 30 ms with an Instruments Time Profiler trace; testLaunchTime measures cold launch, 2.2 s on the simulator, mostly the simulator itself) |
-| 61 | On-device error log you can export when something breaks | apps | built (ErrorLog keeps the last 200 failures on the device: every server or network error from API.call, a failed Goodreads sync, a narration that fell back. Account > Data > Export error log shares it with the app version and system on top; nothing is sent on its own) |
-| 62 | Retry with backoff on every network call; saves queue while offline | apps, web | built (apps: API.call tries three times, 0.5 s then 1 s apart, a dropped connection only for calls safe to repeat, a busy server for any; Outbox keeps saves made offline and sends them when the network returns or before the next load. Web: the same retries in spark.js, outbox.js for where you stopped, highlights, notes and collections, checked offline and back in a headless walk) |
-| 63 | Listen position merges across devices by time | apps, web | open |
+| 44 | Storage screen: what is downloaded, how big, remove it | apps | built (CHANGELOG 44.0.0) |
+| 45 | Sleep timer fades out; shake to add ten minutes | iPhone | built (CHANGELOG 45.0.0) |
+| 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | built (CHANGELOG 46.0.0) |
+| 47 | Languages: French, Spanish and German interface | apps, web | built (CHANGELOG 47.0.0) |
+| 48 | Narrate a chapter in your own language | apps, web | built; not heard live (CHANGELOG 48.0.0) |
+| 49 | Localized screenshots and listings | store | built; goes up with the next version (CHANGELOG 49.0.0) |
+| 50 | First-run pages offer the Goodreads sign-in | apps | built (CHANGELOG 50.0.0) |
+| 51 | Empty states and error messages A+ on every screen | apps, web | built (CHANGELOG 51.0.0) |
+| 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | built (CHANGELOG 52.0.0) |
+| 53 | Notifications: weekly recap, quiet hours | apps | built (CHANGELOG 53.0.0) |
+| 54 | Public profile: the shelf and highlights you choose to share | web | built; live once Joshua deploys jaybulb-api (CHANGELOG 54.0.0) |
+| 55 | Share links with cover preview cards | web | built (CHANGELOG 55.0.0) |
+| 56 | Landing refresh with real app screens and the Goodreads story | web | built (CHANGELOG 56.0.0) |
+| 57 | Opt-in public pages for shared summaries | web | built; live once Joshua deploys jaybulb-api (CHANGELOG 57.0.0) |
+| 58 | 500-book library stays smooth (Goodreads scale) | apps, web | built (CHANGELOG 58.0.0) |
+| 59 | Covers cached on disk | apps | built (CHANGELOG 59.0.0) |
+| 60 | Startup time budget with an Instruments pass | apps | built (CHANGELOG 60.0.0) |
+| 61 | On-device error log you can export when something breaks | apps | built (CHANGELOG 61.0.0) |
+| 62 | Retry with backoff on every network call; saves queue while offline | apps, web | built (CHANGELOG 62.0.0) |
+| 63 | Listen position merges across devices by time | apps, web | built (CHANGELOG 63.0.0) |
 | 64 | Security sweep: auth, rate limits on every model route, KV caps | api | open |
 | 65 | Export everything you have as one file | apps, web | open |
 | 66 | Account deletion also clears usage counters and audio caches | api, apps | open |

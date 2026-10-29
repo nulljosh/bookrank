@@ -37,3 +37,12 @@ export function dailyFive(marks, day, n = 5) {
   const h = s => { let x = 0x811c9dc5; for (let i = 0; i < s.length; i++) x = Math.imul(x ^ s.charCodeAt(i), 0x01000193) >>> 0; return x; };
   return [...marks].sort((a, b) => h(day + a.text) - h(day + b.text) || (a.text < b.text ? -1 : 1)).slice(0, n);
 }
+
+/** A listening save that waited offline, checked against the row as it is now: the place reached later wins
+ *  (each pos carries `at`, ms since 1970), and highlights from both sides are kept. Old rows without `at` lose. */
+export function catchUp(fields, server) {
+  const l = fields.listen;
+  if (!l || !server || server.for !== l.for) return fields;
+  const newer = (server.pos?.at ?? 0) > (l.pos?.at ?? 0);
+  return { ...fields, listen: { ...l, pos: newer ? server.pos : l.pos, marks: mergeMarks([], l.marks ?? [], server.marks ?? []) } };
+}

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 63.0.0 (2026-10-29)
+Where you stopped follows the latest device: a place saved offline no longer drags another device back when it finally goes up, and highlights from both stay.
+
 ## 62.0.0 (2026-10-29)
 A flaky connection no longer loses your place: calls are retried, and what you save offline (where you stopped, highlights, notes, collections) waits on the device and goes up when you are back online.
 

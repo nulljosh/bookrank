@@ -36,3 +36,15 @@ const { marksMarkdown } = await import('./marks.js');
   // Pinned: the apps' dailyFive (HighlightsView.swift) must give this same list.
   assert.deepEqual(a.map(x => x.text), ['line 11', 'line 10', 'line 8', 'line 9', 'line 6']);
 }
+
+import { catchUp } from './marks.js';
+{
+  const q = { listen: { for: 'v1', pos: { ch: 2, line: 0, at: 1000 }, marks: [{ ch: 0, text: 'a' }] }, updated_at: 'v1' };
+  const later = catchUp(q, { for: 'v1', pos: { ch: 5, line: 3, at: 2000 }, marks: [{ ch: 1, text: 'b' }] });
+  assert.deepEqual(later.listen.pos, { ch: 5, line: 3, at: 2000 });   // the other device got further, later
+  assert.equal(later.listen.marks.length, 2);                          // both highlights stay
+  assert.deepEqual(catchUp(q, { for: 'v1', pos: { ch: 1, line: 0, at: 500 } }).listen.pos.ch, 2);   // ours is newer
+  assert.deepEqual(catchUp(q, { for: 'v0', pos: { ch: 9, at: 9999 } }), q);   // the text changed since: leave it
+  assert.deepEqual(catchUp({ cover: 'x' }, { for: 'v1' }), { cover: 'x' });
+  console.log('catchUp ok');
+}
