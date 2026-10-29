@@ -107,7 +107,6 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
 - [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
-- [ ] Attach the Mac screenshots in `ios/fastlane/screenshots/mac/` to the next version.
 - [ ] Joshua's checks: the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
 - [ ] The web player shows merged highlights only after the next toggle or a reopen.
 - [ ] The Mac Account sheet looks empty in screenshot mode.

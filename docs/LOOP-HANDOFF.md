@@ -14,7 +14,7 @@ Next row: **19, Collections: put books in your own groups**.
 
 ## Store
 
-2.0.0 is in review on iOS and Mac. When it clears, ship the newest tagged major the way [SHIPPING.md](SHIPPING.md) says.
+Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the six 2880x1800 shots attached, notes mention Goodreads). iOS 2.0.0 is still waiting for review. When a platform clears, ship the newest tagged major on it the way [SHIPPING.md](SHIPPING.md) says.
 
 ## Waiting on Joshua
 
