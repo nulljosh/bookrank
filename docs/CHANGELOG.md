@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 29.0.0 (2026-10-28)
+Goodreads on the web: export your library from Goodreads and choose the file under the library. Your shelves show up beside your summaries, read in your browser and never sent to Kernel.
+
 ## 28.0.0 (2026-10-28)
 Share your year: under Your reading, a gold card with the year, the books you finished and summarized, your highlights, the hours, and one line you saved.
 

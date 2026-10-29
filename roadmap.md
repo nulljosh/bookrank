@@ -29,7 +29,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 26 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | built (long-press or swipe a Goodreads row; testSummarizeFromGoodreads) |
 | 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | built (Your reading under the library: books, chapters, hours, highlights, notes; the apps add Goodreads books finished per year and the average rating; pages wait on page counts from Goodreads) |
 | 28 | Year in review | apps, web | built (Share your 2026 under Your reading: a gold card with the year, books finished and summarized, highlights, hours and one highlight; yearCard and YearCard) |
-| 29 | Goodreads on the web through your Goodreads export file | web | open |
+| 29 | Goodreads on the web through your Goodreads export file | web | built (goodreads-export.js parses the CSV in the browser, kept per account in localStorage, cleared on sign-out; never sent to the server) |
 | 30 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
 | 31 | Import highlights from a Readwise or Apple Books export | apps, web | open |
 | 32 | Import an EPUB or PDF you own into chapters | apps, web | open |

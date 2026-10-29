@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100.
 
-Next row: **29, Goodreads on the web through your Goodreads export file**. Rows 36 to 39 need Workers AI: skip them until Joshua turns on Workers Paid.
+Next row: **30, Import Kindle highlights (My Clippings.txt)**. Rows 36 to 39 need Workers AI: skip them until Joshua turns on Workers Paid.
 
 ## How to QA
 
