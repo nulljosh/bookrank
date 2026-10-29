@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct LibraryView: View {
-    @State private var store = DataStore()
+    @State private var store = DataStore.shared
+    @Environment(\.openWindow) private var openWindow
     @State private var auth = AuthStore()
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var showAddPages = false
@@ -54,7 +55,7 @@ struct LibraryView: View {
             #else
             if sizeClass == .regular {
                 // iPad: the books down the side, a picked book (and its chapters) in the detail column.
-                // ponytail: two columns, not the Mac's three; the chapter pushes inside the book column.
+                // ponytail: two columns, not three; the chapter pushes inside the book column.
                 NavigationSplitView {
                     iosList.navigationSplitViewColumnWidth(min: 300, ideal: 360, max: 460)
                 } detail: {
@@ -84,7 +85,7 @@ struct LibraryView: View {
                 store.loadSample(); speaker.showPausedForScreenshot(chapters: parseChapters(store.summaryMarkdown(for: "sample")))
             }
             #if os(macOS)
-            // Mac store screenshots: a 1440x900 window opened on a book (`-UITEST_OPEN slug`) and chapter (`-UITEST_CHAPTER n`).
+            // Mac store shots: `-UITEST_OPEN slug`, `-UITEST_CHAPTER n`.
             if let open = UserDefaults.standard.string(forKey: "UITEST_OPEN") {
                 NSApp.windows.first?.setFrame(NSRect(x: 40, y: 40, width: 1440, height: 900), display: true)
                 selected = open
@@ -93,7 +94,7 @@ struct LibraryView: View {
             }
             #endif
         }
-        // First launch only, signed out. Waits for the splash, and stays out of the screenshot modes.
+        // First launch, signed out, after the splash; never in screenshot modes.
         .onChange(of: splashDone, initial: true) { _, done in
             if done && !onboarded && !auth.isSignedIn && !CommandLine.flag("UITEST_SNAPSHOT") && !CommandLine.flag("UITEST_ACCOUNT") { showOnboarding = true }
         }
@@ -347,7 +348,7 @@ struct LibraryView: View {
     @ViewBuilder
     private func bookLink(_ entry: SummaryEntry) -> some View {
         #if os(macOS)
-        summaryRow(entry).tag(entry.slug)
+        summaryRow(entry).tag(entry.slug).contextMenu { Button("Open in New Window") { openWindow(id: "book", value: entry.slug) } }
         #else
         NavigationLink { SummaryDetailView(slug: entry.slug, store: store, find: query) } label: { summaryRow(entry) }
         #endif

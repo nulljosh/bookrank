@@ -3213,6 +3213,28 @@
         }
       }
     },
+    "Open in New Window": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir dans une nouvelle fenêtre"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en una ventana nueva"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In neuem Fenster öffnen"
+          }
+        }
+      }
+    },
     "Opens Goodreads' own sign-in. Shelves, ratings, reviews and progress are read on this device; your Goodreads login never reaches Kernel.": {
       "localizations": {
         "fr": {

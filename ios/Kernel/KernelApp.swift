@@ -56,6 +56,13 @@ struct KernelApp: App {
         }
         .commands { ListenCommands(palette: $palette) }
         #if os(macOS)
+        // A book in its own window (right-click a book > Open in New Window), sharing the library's data.
+        WindowGroup("Book", id: "book", for: String.self) { $slug in
+            NavigationStack { SummaryDetailView(slug: slug ?? "", store: DataStore.shared) }
+                .preferredColorScheme(theme == "dark" || theme == "black" ? .dark : theme == "light" || theme == "sepia" ? .light : nil)
+                .tint(amber).font(.kernel(.body)).modifier(CalmMotion())
+                .frame(minWidth: 640, minHeight: 560)
+        }
         MenuBarExtra("Kernel", systemImage: Speaker.shared.playing && !Speaker.shared.paused ? "book.fill" : "book", isInserted: .constant(Speaker.shared.slug != nil)) {
             MenuBarPlayer()
         }

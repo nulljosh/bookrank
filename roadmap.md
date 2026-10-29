@@ -79,7 +79,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 76 | Sepia reading theme | apps, web | built (CHANGELOG 76.0.0) |
 | 77 | True black for OLED | apps | built (CHANGELOG 77.0.0) |
 | 78 | iPad: Stage Manager windows, Pencil highlights | iPad | built (CHANGELOG 78.0.0; Pencil needs a real iPad to try) |
-| 79 | Mac: one window per book | Mac | open |
+| 79 | Mac: one window per book | Mac | built (CHANGELOG 79.0.0; build-checked, Joshua to try it: right-click a book) |
 | 80 | Promotional text and in-app events each release | store | open |
 | 81 | Two screenshot sets tested on the product page | store | open |
 | 82 | Second Mobbin pass against the best apps; close what is left | all | open |

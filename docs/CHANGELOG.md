@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 79.0.0 (2026-10-29)
+On the Mac, right-click a book and choose Open in New Window to read it in a window of its own, next to your library. Every window shares the same books.
+
 ## 78.0.0 (2026-10-29)
 On iPad, Kernel opens in more than one window, for Stage Manager and Split View, and Apple Pencil highlights: double tap or squeeze to highlight the line you are on, again to remove it. A flaky CI walk now waits for each menu.
 

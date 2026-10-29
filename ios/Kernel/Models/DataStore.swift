@@ -3,6 +3,8 @@ import Foundation
 @Observable
 @MainActor
 final class DataStore {
+    /// One store for every window, so a book opened in its own window (Mac) shares the library's data.
+    static let shared = DataStore()
     /// ponytail: the shelf is gone from the UI (2026-09-21); books.json stays only for cover matching.
     let books: [Book]
 
