@@ -286,6 +286,23 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("now-playing", XCUIScreen.main.screenshot())
     }
 
+    /// Reader text one step up from the largest default, and the text size controls in the menu. Never presses Listen.
+    func testTextSize() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "-kernel.textSize", "3"]
+        app.launch()
+        let sample = app.buttons["Try a sample chapter"].firstMatch
+        XCTAssertTrue(sample.waitForExistence(timeout: 15)); sample.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Know the ground'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10)); chapter.tap()
+        sleep(2)
+        saveTo("text-large", XCUIScreen.main.screenshot())
+        app.buttons["More"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Larger text"].waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("text-menu", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

@@ -92,6 +92,7 @@ extension Narrator {
 /// Listen button plus one menu for the rest. Drop it in a toolbar.
 struct ListenControls: View {
     var speaker = Speaker.shared
+    @AppStorage("kernel.textSize") private var textSize = 1
 
     var body: some View {
         Button(speaker.playing && !speaker.paused ? "Pause" : "Listen",
@@ -99,12 +100,18 @@ struct ListenControls: View {
             .contentTransition(.symbolEffect(.replace))
             .animation(.spring(response: 0.35, dampingFraction: 0.8), value: speaker.playing)
         Menu("More", systemImage: "ellipsis.circle") {
+            // Text size first: a row of two, the way Books puts it at the top of its menu.
+            ControlGroup("Text size") {
+                Button("Smaller text", systemImage: "textformat.size.smaller") { textSize -= 1 }.disabled(textSize <= 0)
+                Button("Larger text", systemImage: "textformat.size.larger") { textSize += 1 }.disabled(textSize >= 4)
+            }
             Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }.keyboardShortcut("[", modifiers: .command)
             Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }.keyboardShortcut("]", modifiers: .command)
             Divider()
-            Picker("Speed", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
+            Picker("Speed", systemImage: "gauge.with.dots.needle.33percent", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
                 ForEach(Speaker.speeds, id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }
             }
+            .pickerStyle(.menu)
             Toggle("Natural voices", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
             Toggle("Explain it", isOn: Binding(get: { speaker.explain }, set: { speaker.explain = $0; speaker.invalidateScripts() }))
         }

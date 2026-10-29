@@ -182,6 +182,7 @@ struct SummaryDetailView: View {
 struct ChapterView: View {
     let index: Int
     var speaker = Speaker.shared
+    @AppStorage("kernel.textSize") private var textSize = 1
     @State private var asking = false
 
     var body: some View {
@@ -205,6 +206,7 @@ struct ChapterView: View {
                 .padding(24)
                 .frame(maxWidth: 680, alignment: .leading)
                 .frame(maxWidth: .infinity)
+                .readerSize(textSize)
             }
             .onChange(of: speaker.line) { _, l in withAnimation { proxy.scrollTo(l, anchor: .center) } }
             // A long paragraph is taller than the screen, so centring the line is not enough: slide the
@@ -246,10 +248,12 @@ private struct LineView: View {
     let word: Range<Int>?
     var marked = false
 
+    @AppStorage("kernel.textSize") private var textSize = 1
+
     var body: some View {
-        // One narrator, so no speaker label; a little air between lines for reading.
+        // One narrator, so no speaker label; a little air between lines, more as the text grows.
         text
-        .lineSpacing(5)
+        .lineSpacing(4 + CGFloat(textSize) * 1.5)
         .padding(.horizontal, 10).padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 12))
@@ -274,5 +278,17 @@ private struct LineView: View {
             return md.hasPrefix("#") ? Text(a).font(.kernel(.title3, weight: .semibold)) : Text(a)
         }
         return Text(line.line)
+    }
+}
+
+/// Reader text size, 0 to 4 (1 is the default): Dynamic Type steps on iOS, a body size on the Mac,
+/// where Dynamic Type does not reach custom fonts.
+extension View {
+    @ViewBuilder func readerSize(_ step: Int) -> some View {
+        #if os(iOS)
+        dynamicTypeSize([DynamicTypeSize.medium, .large, .xLarge, .xxLarge, .xxxLarge][min(max(step, 0), 4)])
+        #else
+        font(.custom("KernelSans-Regular", size: [12, 13, 15, 17, 19][min(max(step, 0), 4)]))
+        #endif
     }
 }
