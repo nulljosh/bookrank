@@ -1321,6 +1321,28 @@
         }
       }
     },
+    "Data": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Données"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daten"
+          }
+        }
+      }
+    },
     "Delete account": {
       "localizations": {
         "fr": {
@@ -2333,6 +2355,28 @@
         }
       }
     },
+    "Listening": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écoute"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escucha"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hören"
+          }
+        }
+      }
+    },
     "Look at one chapter first. No account needed.": {
       "localizations": {
         "fr": {
@@ -2857,6 +2901,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nichts passt zu „%@“."
+          }
+        }
+      }
+    },
+    "Notifications": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitteilungen"
           }
         }
       }

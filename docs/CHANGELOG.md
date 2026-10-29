@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 52.0.0 (2026-10-29)
+Account is grouped the way you use it: Listening, Goodreads, Appearance, Notifications and Data, with Storage reachable from Data.
+
 ## 51.0.0 (2026-10-29)
 Clearer empty and error states: a library that cannot load says so in plain words with a Try again button, and empty Highlights, an empty library and a search with no match each say what to do next. In all four languages.
 

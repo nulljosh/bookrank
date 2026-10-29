@@ -24,6 +24,7 @@ struct AccountView: View {
     @State private var exportURLs: [URL] = []
     @State private var nudge = Nudge.enabled
     @State private var showGoodreads = false
+    @State private var showStorage = false
     @State private var usage: VoiceUsage?
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
@@ -284,6 +285,23 @@ struct AccountView: View {
         }
 
         Section {
+            if let usage {
+                VStack(alignment: .leading, spacing: 6) {
+                    ProgressView(value: usage.monthFraction)
+                    Text(usage.chaptersLeft == 0 ? "Natural voices are used up for now. The device voice takes over."
+                         : "About \(usage.chaptersLeft) chapters of natural voice left").font(.kernel(.subheadline))
+                }
+            } else {
+                Text("Checking natural voice usage").foregroundStyle(.secondary)
+            }
+        } header: {
+            Text("Listening")
+        } footer: {
+            Text("A chapter is about 2,500 characters. The month resets on the 1st. Chapters you already played are free to replay.")
+        }
+        .task { usage = await Narrator.usage() }
+
+        Section {
             let gr = Goodreads.shared
             if let d = gr.data {
                 LabeledContent("Signed in", value: "\(d.shelves["read"]?.count ?? 0) read · \(d.shelves["currently-reading"]?.count ?? 0) reading")
@@ -316,23 +334,6 @@ struct AccountView: View {
             if !meta.isEmpty { try? await auth.setMetadata(meta) }
         }
 
-        Section {
-            if let usage {
-                VStack(alignment: .leading, spacing: 6) {
-                    ProgressView(value: usage.monthFraction)
-                    Text(usage.chaptersLeft == 0 ? "Natural voices are used up for now. The device voice takes over."
-                         : "About \(usage.chaptersLeft) chapters of natural voice left").font(.kernel(.subheadline))
-                }
-            } else {
-                Text("Checking natural voice usage").foregroundStyle(.secondary)
-            }
-        } header: {
-            Text("Natural voices")
-        } footer: {
-            Text("A chapter is about 2,500 characters. The month resets on the 1st. Chapters you already played are free to replay.")
-        }
-        .task { usage = await Narrator.usage() }
-
         Section { appearancePicker }
 
         Section {
@@ -343,6 +344,8 @@ struct AccountView: View {
                 Text("Off").tag(0)
                 ForEach([15, 30, 60, 120], id: \.self) { Text("\($0) min").tag($0) }
             }
+        } header: {
+            Text("Notifications")
         } footer: {
             Text("At 9:00 each morning, one of your highlights or a line from a book you summarized; tap it to open the book. With a weekly goal, one reminder at the end of the week if you are behind. Nothing leaves this device.")
         }
@@ -351,8 +354,10 @@ struct AccountView: View {
             if !exportURLs.isEmpty {
                 ShareLink(items: exportURLs) { Label("Export everything (\(exportURLs.count) files)", systemImage: "square.and.arrow.up") }
             }
+            Button("Storage on this device", systemImage: "internaldrive") { showStorage = true }
+                .sheet(isPresented: $showStorage) { StorageView(store: store) }
         } header: {
-            Text("Your data")
+            Text("Data")
         } footer: {
             Text("Every summary as a markdown file. Yours to keep.")
         }
