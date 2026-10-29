@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 26.0.0 (2026-10-28)
+Long-press or swipe a Goodreads book in the apps and pick Summarize this book: Add pages opens with its title already filled in.
+
 ## 25.0.0 (2026-10-28)
 Your own note under every chapter, saved as you type and synced to your other devices. Notes come along in the Markdown export with your highlights.
 

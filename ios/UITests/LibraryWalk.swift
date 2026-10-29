@@ -128,6 +128,21 @@ final class LibraryWalk: XCTestCase {
         saveTo("chapter-note", XCUIScreen.main.screenshot())
     }
 
+    /// Summarize this book on a Goodreads row opens Add pages with the title filled in.
+    func testSummarizeFromGoodreads() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let row = app.staticTexts["The Man Who Solved the Market"].firstMatch   // no Goodreads link in screenshot data, so it is text, not a button
+        for _ in 0..<5 where !row.exists { app.swipeUp() }
+        XCTAssertTrue(row.waitForExistence(timeout: 10)); row.press(forDuration: 1.2)
+        app.buttons["Summarize this book"].firstMatch.tap()
+        XCTAssertTrue(app.textFields["Book title"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.textFields["Book title"].value as? String, "The Man Who Solved the Market")
+        sleep(1)
+        saveTo("summarize-goodreads", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

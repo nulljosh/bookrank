@@ -12,6 +12,8 @@ struct AddPagesView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var book = ""            // slug of an existing book, "" for a new one
     @State private var newTitle = ""
+    /// `title`: a Goodreads book's title, when Summarize this book opened the sheet.
+    init(store: DataStore, title: String = "") { self.store = store; _newTitle = State(initialValue: title) }
     @State private var chapter = ""
     @State private var text = ""
     @State private var picks: [PhotosPickerItem] = []

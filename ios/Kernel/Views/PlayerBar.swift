@@ -85,7 +85,15 @@ struct MiniPlayer: View {
 /// One Goodreads book: cover, title, author, your stars and the month on the right. Tapping opens it on Goodreads.
 struct GoodreadsRow: View {
     let book: DataStore.GoodreadsBook
+    var store: DataStore? = nil   // set: the row offers Summarize this book (Add pages with the title filled in)
+    @State private var summarizing = false
     var body: some View {
+        link
+            .contextMenu { if store != nil { Button("Summarize this book", systemImage: "doc.badge.plus") { summarizing = true } } }
+            .swipeActions { if store != nil { Button("Summarize", systemImage: "doc.badge.plus") { summarizing = true }.tint(amber) } }
+            .sheet(isPresented: $summarizing) { if let store { AddPagesView(store: store, title: book.title) } }
+    }
+    @ViewBuilder private var link: some View {
         let row = HStack(spacing: 14) {
             Thumb(url: book.cover)
             VStack(alignment: .leading, spacing: 3) {

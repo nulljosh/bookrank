@@ -269,7 +269,7 @@ struct LibraryView: View {
             let (label, books) = shelf
             let open = openShelves.contains(label) || !q.isEmpty
             Section {
-                if open { ForEach(books) { GoodreadsRow(book: $0) } }
+                if open { ForEach(books) { GoodreadsRow(book: $0, store: store) } }
             } header: {
                 Button { withAnimation(.snappy) { openShelves.formSymmetricDifference([label]) } } label: {
                     HStack(spacing: 8) {
