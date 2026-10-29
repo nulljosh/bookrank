@@ -1,5 +1,5 @@
 ## Road to 100 (2026-10-28)
-One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 29 to 32 need Workers AI, so they wait for Workers Paid (Joshua, 2026-10-29); "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 36 to 39 need Workers AI, so they wait for Workers Paid (Joshua, 2026-10-29); "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
 
 | v | What | Where | Status |
 |---|---|---|---|
@@ -28,19 +28,19 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 25 | Your own note under any chapter | apps, web | built (a `notes` JSON column on jaybulb-api, not in listen, so old builds cannot drop it; in the export too) |
 | 26 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | built (long-press or swipe a Goodreads row; testSummarizeFromGoodreads) |
 | 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | built (Your reading under the library: books, chapters, hours, highlights, notes; the apps add Goodreads books finished per year and the average rating; pages wait on page counts from Goodreads) |
-| 28 | Search by voice: dictate into search, on the device | apps | open |
-| 29 | Quiz me: three questions per chapter, answers checked | apps, web | open |
-| 30 | Key ideas card at the top of each book | apps, web | open |
-| 31 | Two-line recap at the end of each chapter in Listen | apps, web | open |
-| 32 | Connections: the same idea across your books | apps, web | open |
-| 33 | Year in review | apps, web | open |
-| 34 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
-| 35 | Goodreads on the web through your Goodreads export file | web | open |
-| 36 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
-| 37 | Import highlights from a Readwise or Apple Books export | apps, web | open |
-| 38 | Import an EPUB or PDF you own into chapters | apps, web | open |
-| 39 | Scan pages with the document camera in Add pages | iPhone, iPad | open |
-| 40 | Read the page text on the device before upload, so photos never leave it | apps | open |
+| 28 | Year in review | apps, web | open |
+| 29 | Goodreads on the web through your Goodreads export file | web | open |
+| 30 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
+| 31 | Import highlights from a Readwise or Apple Books export | apps, web | open |
+| 32 | Import an EPUB or PDF you own into chapters | apps, web | open |
+| 33 | Scan pages with the document camera in Add pages | iPhone, iPad | open |
+| 34 | Read the page text on the device before upload, so photos never leave it | apps | open |
+| 35 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
+| 36 | Quiz me: three questions per chapter, answers checked | apps, web | open |
+| 37 | Key ideas card at the top of each book | apps, web | open |
+| 38 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 39 | Connections: the same idea across your books | apps, web | open |
+| 40 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
 | 41 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | open |
 | 42 | Siri: "continue my book" | apps | open |
 | 43 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
