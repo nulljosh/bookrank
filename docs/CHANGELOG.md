@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 43.0.0 (2026-10-28)
+On Wi-Fi, the apps fetch the next chapter's narration while you listen, so the book keeps going through a tunnel or a flight. Never on cellular or in Low Data Mode.
+
 ## 42.0.0 (2026-10-28)
 Pick the narrator: Alice or George, remembered for each book like the speed, in the apps' chapter menu and the web player.
 

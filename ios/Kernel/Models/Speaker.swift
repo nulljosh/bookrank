@@ -229,27 +229,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         }
     }
 
-    // ponytail: same block rule as listen.js blocks(): paragraphs join, list items and
-    // headings stand alone, rules drop. `line` is spoken, `md` is rendered.
-    static func blocks(_ md: String) -> [ListenState.Line] {
-        var out: [String] = []
-        var open = false
-        for raw in md.components(separatedBy: "\n") {
-            let t = raw.trimmingCharacters(in: .whitespaces)
-            if t.isEmpty || t.allSatisfy({ $0 == "-" }) { open = false; continue }
-            let special = t.hasPrefix("- ") || t.hasPrefix("* ") || t.hasPrefix("#") || t.range(of: "^\\d+\\. ", options: .regularExpression) != nil
-            if special || !open { out.append(t); open = !special } else { out[out.count - 1] += " " + t }
-        }
-        return out.map { .init(host: "A", line: plain($0), md: $0) }
-    }
-    static func plain(_ md: String) -> String {
-        md.replacingOccurrences(of: "^([-*]|\\d+\\.) ", with: "", options: .regularExpression)
-          .replacingOccurrences(of: "[#*_`>\\[\\]()]", with: " ", options: .regularExpression)
-          .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-          .trimmingCharacters(in: .whitespaces)
-    }
-
-    private func script(for i: Int) -> Task<[ListenState.Line]?, Never> {
+    func script(for i: Int) -> Task<[ListenState.Line]?, Never> {
         if let t = prefetch[i] { return t }
         let t = Task<[ListenState.Line]?, Never> { [talks = talks, chapters, slug] in
             guard i < chapters.count else { return nil }
@@ -267,6 +247,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         return t
     }
     func invalidateScripts() { prefetch = [:] }
+
 
     /// Idle view: the current chapter's text, no audio.
     @MainActor
@@ -289,7 +270,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         if got == nil { status = "Could not build the conversation; reading the notes."; got = Self.blocks(chapters[ch].text) }
         guard let script = got, !script.isEmpty else { playing = false; return }
         lines = script
-        if ch + 1 < chapters.count { _ = self.script(for: ch + 1) } // warm the next chapter
+        if ch + 1 < chapters.count { _ = self.script(for: ch + 1); prefetchAudio(ch + 1) } // warm the next chapter
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio)
         try? AVAudioSession.sharedInstance().setActive(true)
