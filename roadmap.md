@@ -8,7 +8,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 5 | A big Play / Continue button on the book page (A1) | apps, web | built |
 | 6 | Now Playing sheet: big cover, time left, line skip, speed, sleep, chapters (A2) | apps (the web reader already is one) | built |
 | 7 | Reader text size and line spacing (A3) | apps, web | built |
-| 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | open |
+| 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | built |
 | 9 | Highlights merge across devices instead of last writer wins (review item a) | apps, web | open |
 | 10 | `updated_at` moves only on content edits, in jaybulb-api (review b); one listen stylesheet (review c) | api, web | open |
 | 11 | iPad pass: reading column, split view, screenshots | iPad | open |
@@ -134,7 +134,7 @@ Skipped: social feeds, paywalls, 200-voice libraries, curated catalogs of other 
 | A1 | A big Play / Continue button on the book page | Blinkist, Apple Books | S | done (v5) |
 | A2 | Full Now Playing sheet from the mini player: big cover, time left, line skip, speed, sleep, chapters | Apple Books, Speechify, Blinkist | M | done (v6) |
 | A3 | Reader text size (and line spacing) in the chapter menu | Apple Books | S | done (v7) |
-| A4 | Goal streak: the week's days as dots under the ring | Apple Books | S | open |
+| A4 | Goal streak: the week's days as dots under the ring | Apple Books | S | done (v8) |
 | G1 | Goodreads sign-in inside the app (RSS died 2026-10-28): shelves, ratings, reviews, reading progress | Goodreads itself | L | built (apps; web keeps the public Currently reading). Needs Joshua's own sign-in to verify |
 
 ## Shipped 2026-09-05, Listen feature complete: shared player, share links, thumbnails, profile page, iOS/macOS account sync

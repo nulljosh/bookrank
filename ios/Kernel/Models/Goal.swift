@@ -15,18 +15,30 @@ final class Goal {
     /// Minutes per week, 0 = off.
     var target: Int { didSet { d.set(target, forKey: "kernel.goal"); Task { await remind() } } }
     private(set) var seconds: Double
+    /// Days of this week with any listening, 0 = the week's first day.
+    private(set) var days: Set<Int> = []
+    /// Days in a row with some listening, up to today or yesterday.
+    var streak: Int {
+        let last = d.double(forKey: "kernel.goal.lastDay")
+        let today = Calendar.current.startOfDay(for: .now).timeIntervalSince1970
+        return today - last <= 86400 ? d.integer(forKey: "kernel.goal.streak") : 0
+    }
 
     private init() {
         target = d.integer(forKey: "kernel.goal")
         seconds = d.double(forKey: "kernel.goal.secs")
+        days = Set(d.array(forKey: "kernel.goal.days") as? [Int] ?? [])
         roll()
-        if CommandLine.flag("UITEST_SNAPSHOT") && target > 0 { seconds = 38 * 60 }   // screenshots: a week partway there
+        if CommandLine.flag("UITEST_SNAPSHOT") && target > 0 {   // screenshots: a week partway there, three days in a row
+            seconds = 38 * 60; days = [0, 1, 2]
+            d.set(3, forKey: "kernel.goal.streak"); d.set(Calendar.current.startOfDay(for: .now).timeIntervalSince1970, forKey: "kernel.goal.lastDay")
+        }
     }
 
     /// A new week starts from zero.
     private func roll() {
         let w = Self.week().timeIntervalSince1970
-        if d.double(forKey: "kernel.goal.week") != w { d.set(w, forKey: "kernel.goal.week"); seconds = 0; d.set(0.0, forKey: "kernel.goal.secs") }
+        if d.double(forKey: "kernel.goal.week") != w { d.set(w, forKey: "kernel.goal.week"); seconds = 0; days = []; d.set(0.0, forKey: "kernel.goal.secs"); d.set([Int](), forKey: "kernel.goal.days") }
     }
 
     var minutes: Int { Int(seconds / 60) }
@@ -39,6 +51,11 @@ final class Goal {
         let wasMet = met
         seconds += s
         d.set(seconds, forKey: "kernel.goal.secs")
+        let cal = Calendar.current, today = cal.startOfDay(for: .now)
+        if let i = cal.dateComponents([.day], from: Self.week(), to: today).day, days.insert(i).inserted { d.set(Array(days), forKey: "kernel.goal.days") }
+        // The streak counts days, so only the first listen of a day moves it.
+        let last = d.double(forKey: "kernel.goal.lastDay"), t = today.timeIntervalSince1970
+        if last != t { d.set(t - last <= 86400 ? d.integer(forKey: "kernel.goal.streak") + 1 : 1, forKey: "kernel.goal.streak"); d.set(t, forKey: "kernel.goal.lastDay") }
         if met && !wasMet { Task { await remind() } }
     }
 

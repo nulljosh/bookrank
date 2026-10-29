@@ -252,9 +252,25 @@ struct LibraryView: View {
             }
             .frame(width: 36, height: 36)
             VStack(alignment: .leading, spacing: 2) {
-                Text(g.met ? "Weekly goal met" : "This week").font(.kernel(.footnote, weight: .semibold)).foregroundStyle(amber)
+                Text(g.met ? "Weekly goal met" : g.streak > 1 ? "\(g.streak)-day streak" : "This week").font(.kernel(.footnote, weight: .semibold)).foregroundStyle(amber)
                 Text("\(g.minutes) of \(g.target) min").font(.kernel(.headline)).monospacedDigit()
             }
+            Spacer(minLength: 8)
+            // The week as seven dots, the way Books shows it: gold where you listened, a ring on today.
+            let cal = Calendar.current
+            let names = cal.veryShortStandaloneWeekdaySymbols
+            let today = cal.dateComponents([.day], from: Goal.week(), to: cal.startOfDay(for: .now)).day ?? 0
+            HStack(spacing: 6) {
+                ForEach(0..<7, id: \.self) { i in
+                    VStack(spacing: 4) {
+                        Text(names[(cal.firstWeekday - 1 + i) % 7]).font(.kernel(.caption2)).foregroundStyle(.secondary)
+                        Circle().fill(g.days.contains(i) ? amber : amber.opacity(0.15)).frame(width: 9, height: 9)
+                            .overlay { if i == today { Circle().strokeBorder(amber, lineWidth: 1.5).frame(width: 15, height: 15) } }
+                            .frame(width: 15, height: 15)
+                    }
+                }
+            }
+            .accessibilityHidden(true)
         }
         .padding(.vertical, 4)
         .accessibilityElement(children: .combine)

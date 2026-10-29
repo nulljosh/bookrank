@@ -50,6 +50,14 @@ ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
+.goal { display:flex; align-items:center; gap:12px; margin:8px 0 16px; flex-wrap:wrap; }
+.goal svg { width:36px; height:36px; transform:rotate(-90deg); flex:none; }
+.goal circle { fill:none; stroke:var(--accent); stroke-opacity:.2; stroke-width:4; } .goal circle.arc { stroke-opacity:1; stroke-linecap:round; }
+.goal b { display:block; font-size:13px; color:var(--accent); } .goal span { font-weight:600; }
+.goal .gdots { display:flex; gap:6px; margin-left:auto; } .goal select { width:auto; }
+.gd { display:flex; flex-direction:column; align-items:center; gap:3px; } .gd small { font-size:11px; color:var(--text2); }
+.gd i { width:9px; height:9px; border-radius:50%; background:color-mix(in srgb, var(--accent) 15%, transparent); }
+.gd.on i { background:var(--accent); } .gd.today i { outline:1.5px solid var(--accent); outline-offset:2px; }
 .textsize { display:flex; gap:4px; justify-content:flex-end; margin:8px 0 -8px; } .textsize button { min-width:40px; }
 #listen .lp-text { font-size:calc(1rem * var(--reader-scale, 1)); line-height:calc(1.45 + 0.1 * var(--reader-scale, 1)); }
 .ask { display:flex; gap:8px; margin:24px 0 8px; } .ask input { flex:1; } .ask button { flex:none; }
@@ -130,6 +138,7 @@ dl.profile dt { color:var(--text3); }
         <button id="signout">Sign out</button>
       </div>
     </div>
+    <div class="goal" id="goal"></div>
     <input type="search" id="find" class="hide" placeholder="Search your summaries" aria-label="Search your summaries" autocomplete="off">
     <ul class="list" id="list"></ul>
     <p class="msg" id="listMsg"></p>
@@ -164,6 +173,7 @@ dl.profile dt { color:var(--text3); }
 <script type="module">
 import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
+import * as goal from './goal.js';
 
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
@@ -267,6 +277,14 @@ $('photos').onchange = async () => {
   btn.textContent = label;
   btn.disabled = false;
 };
+
+// ---- weekly goal: five seconds counted for every five the player plays ----
+const drawGoal = () => {
+  goal.render($('goal'), goal.load());
+  $('goal').querySelector('select').onchange = e => { goal.save({ ...goal.load(), target: +e.target.value }); drawGoal(); };
+};
+drawGoal();
+setInterval(() => { if (listen?.player?.playing) { goal.save(goal.add(goal.load(), 5)); drawGoal(); } }, 5000);
 
 // ---- reader text size: five steps, remembered on this browser ----
 const SIZES = [0.9, 1, 1.15, 1.3, 1.45];
