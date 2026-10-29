@@ -68,7 +68,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 65 | Export everything you have as one file | apps, web | built (CHANGELOG 65.0.0) |
 | 66 | Account deletion also clears usage counters and audio caches | api, apps | built (CHANGELOG 66.0.0) |
 | 67 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | waits: iPhone 1.2.1 is still the live version (2.0.0 in review) |
-| 68 | kernel.jaybulb.com and the repo rename | web, repo | built (CHANGELOG 68.0.0; kernel.jaybulb.com waits on Joshua) |
+| 68 | kernel.jaybulb.com and the repo rename | web, repo | built (CHANGELOG 68.0.0; kernel.jaybulb.com live 2026-10-29) |
 | 69 | Swift unit tests (parsers, goal, nudges) run in CI | apps | built (CHANGELOG 69.0.0) |
 | 70 | Simulator UI walks run in CI | apps | built (CHANGELOG 70.0.0; the walk step is non-blocking until its first green run) |
 | 71 | Docs to 100 percent | repo | built (CHANGELOG 71.0.0) |
@@ -104,7 +104,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 
 ## Open outside the table
 - [ ] Workers AI ran out of its 10,000 free daily neurons on 2026-10-28 (narration scripts, Ask, page photos and the Aura-2 fallback fail until 00:00 UTC). Workers Paid is $5 a month (Joshua's call). Then tune the meaning floor (0.6) on real bge scores.
-- [ ] Add kernel.jaybulb.com to the `bookrank` Pages project (Joshua: Cloudflare dashboard, Pages, bookrank, Custom domains). Then point canonical, sitemap, OG, the apps and the launch kit at it; the old host keeps serving.
+- [ ] Point canonical, sitemap, OG, the apps and the launch kit at kernel.jaybulb.com; the old host bookrank.jaybulb.com keeps serving.
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
 - [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.

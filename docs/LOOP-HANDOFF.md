@@ -26,8 +26,7 @@ Everything through 99 except 93 and 67 is built and tagged. What is left needs o
 4. **Apple's CarPlay audio entitlement** (request it at developer.apple.com/contact/carplay): row 91 is built and waits only on it; once granted, add `com.apple.developer.carplay-audio` to `ios/Kernel/Kernel.entitlements`.
 5. Row 94 is built: Kernel opens the book's Goodreads page and Goodreads' own button marks it. Try it once signed in to Goodreads on a phone.
 6. **Row 67** waits until iPhone 2.0.0 replaces 1.2.1 and no one runs the 1.2 builds.
-7. **kernel.jaybulb.com** on the `bookrank` Pages project (Cloudflare blocked the agent).
-8. **Checks only a person can do**: Apple Pencil highlights on an iPad (78), a book in its own Mac window (79), Scan pages (33), Shortcuts (35), Handoff (37), Spotlight (40), the signed-in Mac walk.
+7. **Checks only a person can do**: Apple Pencil highlights on an iPad (78), a book in its own Mac window (79), Scan pages (33), Shortcuts (35), Handoff (37), Spotlight (40), the signed-in Mac walk.
 
 Row 100 is the release once these are in: ship the newest major on iPhone, iPad and Mac the way [SHIPPING.md](SHIPPING.md) says, then `scripts/promo.sh` and the product page test.
 
