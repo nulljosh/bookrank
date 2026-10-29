@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 64.0.0 (2026-10-29)
+A security pass: every route that runs a model or reaches Goodreads now has an hourly cap per person on top of its sign-in check, so one caller cannot run up the bill. Webhook signatures and input checks reviewed.
+
 ## 63.0.0 (2026-10-29)
 Where you stopped follows the latest device: a place saved offline no longer drags another device back when it finally goes up, and highlights from both stay.
 

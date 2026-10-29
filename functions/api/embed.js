@@ -2,12 +2,14 @@
 // Search by meaning on the web: each line of your summaries becomes a vector once (kept in the browser by
 // meaning.js), and each search one more; the closest lines win. Signed-in accounts only, and metered in KV
 // like Ask, so it cannot become a free embedding endpoint. The apps do this on the device instead.
+import { tooMany, slowDown } from "../../src/lib/quota.js";
 import { userOf, spend } from "./speak.js";
 
 const MODEL = "@cf/baai/bge-small-en-v1.5";
 const MAX_TEXTS = 100, MAX_CHARS = 2000;
 
 export async function onRequest({ request, env }) {
+  if (await tooMany(request, "embed")) return slowDown();
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
   const uid = await userOf(request.headers.get("authorization") || "");
   if (!uid) return json({ error: "Sign in required." }, 401);

@@ -44,6 +44,10 @@ One SwiftUI codebase builds `Kernel` (iPhone and iPad) and `KernelMac` from `ios
 
 All paths above are under `ios/Kernel/` unless they say otherwise.
 
+## Limits
+
+Every route that calls a model or another site is capped per person (by IP) per hour in `src/lib/quota.js`: narrate 120, ask 60, embed 600, summarize-photo 120, goodreads 60, then a 429. The counts live in the edge cache, so they cost nothing and write no KV. The natural voices keep their own daily and monthly character budgets in KV (`speak.js`). Narrate, ask, embed and summarize-photo also need a sign-in or a share token; the Stripe webhook checks its signature.
+
 ## Startup budget
 
 The app's own work before the first frame stays under 50 ms: `KernelApp.init` (fonts, the navigation bar font, the notification delegate) and `DataStore.init` (books.json and the offline library). Everything else that is slow waits for `.task` after the first frame. Measured 2026-10-29 on the iPhone 17 Pro Max simulator, Release build: 2.2 s cold launch, of which about 1.4 s is the simulator loading its own runtime, about 0.25 s is SwiftUI and UIKit, and about 30 ms is Kernel.

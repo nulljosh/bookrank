@@ -6,11 +6,13 @@
 // empty with `login: true`, and the apps read them through a Goodreads sign-in on the device.
 // ponytail: 10 pages (1000 books) per shelf and a one-hour edge cache; raise either if a
 // real shelf outgrows it.
+import { tooMany, slowDown } from "../../src/lib/quota.js";
 const SHELVES = new Set(["read", "currently-reading", "to-read"]);
 const MAX_PAGES = 10;
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15";
 
 export async function onRequest({ request }) {
+  if (await tooMany(request, "goodreads")) return slowDown();
   const url = new URL(request.url);
   const user = userId(url.searchParams.get("user") || "");
   const shelf = url.searchParams.get("shelf") || "read";

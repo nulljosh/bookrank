@@ -8,12 +8,14 @@
 // how they connect, instead of the page reading its own markdown aloud. Every line is host
 // "A" (the field stays so old clients and cached rows keep parsing). Text only; the browser does the voices.
 // Signed-in accounts only, same gate as summarize-photo.
+import { tooMany, slowDown } from "../../src/lib/quota.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const API = "https://api.jaybulb.com";
 const LANGS = { fr: "French", es: "Spanish", de: "German" };
 const MAX_CHARS = 24000; // ponytail: ~6k tokens fits the context; longer books are truncated, chunk+merge if it matters
 
 export async function onRequest({ request, env }) {
+  if (await tooMany(request, "narrate")) return slowDown();
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
   const body = await request.json().catch(() => ({}));
   const token = typeof body.token === "string" && body.token.length > 8 ? body.token : "";

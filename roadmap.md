@@ -64,7 +64,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 61 | On-device error log you can export when something breaks | apps | built (CHANGELOG 61.0.0) |
 | 62 | Retry with backoff on every network call; saves queue while offline | apps, web | built (CHANGELOG 62.0.0) |
 | 63 | Listen position merges across devices by time | apps, web | built (CHANGELOG 63.0.0) |
-| 64 | Security sweep: auth, rate limits on every model route, KV caps | api | open |
+| 64 | Security sweep: auth, rate limits on every model route, KV caps | api | built (CHANGELOG 64.0.0; caps in docs/ARCHITECTURE.md) |
 | 65 | Export everything you have as one file | apps, web | open |
 | 66 | Account deletion also clears usage counters and audio caches | api, apps | open |
 | 67 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | open |

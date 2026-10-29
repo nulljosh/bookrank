@@ -3,11 +3,13 @@
 // of that page. The image lives only in this request's memory: it is never written to
 // disk, R2, or a database. Requires a signed-in Kernel account (checked against spark-api
 // auth) so this can't become a free public OCR endpoint.
+import { tooMany, slowDown } from "../../src/lib/quota.js";
 const VISION_MODEL = "@cf/llava-hf/llava-1.5-7b-hf";
 const API = "https://api.jaybulb.com";
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function onRequest({ request, env }) {
+  if (await tooMany(request, "photo")) return slowDown();
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
 
   const auth = request.headers.get("authorization") || "";

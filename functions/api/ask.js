@@ -2,12 +2,14 @@
 // Answers one question about one chapter, from that chapter's notes only. Signed-in accounts
 // only, and metered in KV like the voices (per account per day, the whole app per month), so it
 // cannot become a free unmetered model proxy.
+import { tooMany, slowDown } from "../../src/lib/quota.js";
 import { userOf, spend } from "./speak.js";
 
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MAX_CHARS = 24000;
 
 export async function onRequest({ request, env }) {
+  if (await tooMany(request, "ask")) return slowDown();
   if (request.method !== "POST") return json({ error: "POST only" }, 405);
   const uid = await userOf(request.headers.get("authorization") || "");
   if (!uid) return json({ error: "Sign in required." }, 401);
