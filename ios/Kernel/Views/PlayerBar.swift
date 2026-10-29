@@ -1,4 +1,5 @@
 import SwiftUI
+import CryptoKit
 
 // Shared pieces of the library: the player bar, Goodreads rows, covers, durations and Kernel gold.
 
@@ -139,14 +140,22 @@ typealias PlatformImage = NSImage
 private extension Image { init(platform i: NSImage) { self.init(nsImage: i) } }
 #endif
 
-/// Covers already drawn once, so a long shelf scrolls without fetching and decoding each one again.
-/// ponytail: NSCache drops entries under memory pressure on its own; no size limit set.
+/// Covers already drawn once, so a long shelf scrolls without fetching and decoding each one again: in memory,
+/// and on disk in Caches/covers so they show at once after a relaunch and with no connection.
+/// ponytail: NSCache drops entries under memory pressure on its own; the system clears Caches when space runs low.
 @MainActor enum CoverCache {
     static let images = NSCache<NSString, PlatformImage>()
+    static let folder = URL.cachesDirectory.appending(path: "covers")
+    static func file(_ u: String) -> URL { folder.appending(path: SHA256.hash(data: Data(u.utf8)).map { String(format: "%02x", $0) }.joined()) }
     static func load(_ u: String) async -> PlatformImage? {
         if let hit = images.object(forKey: u as NSString) { return hit }
-        guard let url = URL(string: u), let (data, _) = try? await URLSession.shared.data(from: url), let img = PlatformImage(data: data) else { return nil }
+        let f = file(u)
+        if let data = try? Data(contentsOf: f), let img = PlatformImage(data: data) { images.setObject(img, forKey: u as NSString); return img }
+        guard let url = URL(string: u), let (data, r) = try? await URLSession.shared.data(from: url),
+              (r as? HTTPURLResponse)?.statusCode == 200, let img = PlatformImage(data: data) else { return nil }
         images.setObject(img, forKey: u as NSString)
+        try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        try? data.write(to: f)
         return img
     }
 }

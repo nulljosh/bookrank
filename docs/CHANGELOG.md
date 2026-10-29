@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 59.0.0 (2026-10-29)
+Book covers are kept on the device, so your shelf shows them at once after a relaunch and with no connection. Storage shows how much room they take and can clear them.
+
 ## 58.0.0 (2026-10-29)
 A library of hundreds of books stays quick: on the web covers load as you scroll instead of all at once, and the apps keep covers they have drawn and match Goodreads shelves faster.
 

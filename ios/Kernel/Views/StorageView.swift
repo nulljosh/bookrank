@@ -22,7 +22,7 @@ struct StorageView: View {
         let voices = ((try? FileManager.default.contentsOfDirectory(atPath: Self.support.appending(path: "voice").path)) ?? []).sorted()
             .map { slug in (slug, store.summary(for: slug)?.title ?? slug, Self.size(Narrator.offlineDir(slug)), speaker.offline.contains(slug)) }
             .filter { $0.2 > 0 }
-        let meaning = Self.size(Self.support.appending(path: "meaning")), library = Self.size(Self.support.appending(path: "summaries.json"))
+        let meaning = Self.size(Self.support.appending(path: "meaning")), library = Self.size(Self.support.appending(path: "summaries.json")), covers = Self.size(CoverCache.folder)
         NavigationStack {
             List {
                 Section {
@@ -43,8 +43,12 @@ struct StorageView: View {
                 Section("Other") {
                     LabeledContent("Search by meaning", value: bytes(meaning))
                     LabeledContent("Your library, for offline", value: bytes(library))
+                    LabeledContent("Book covers", value: bytes(covers))
                     if meaning > 0 {
                         Button("Clear the search index", role: .destructive) { try? FileManager.default.removeItem(at: Self.support.appending(path: "meaning")); refresh += 1 }
+                    }
+                    if covers > 0 {
+                        Button("Clear book covers", role: .destructive) { try? FileManager.default.removeItem(at: CoverCache.folder); CoverCache.images.removeAllObjects(); refresh += 1 }
                     }
                 }
             }

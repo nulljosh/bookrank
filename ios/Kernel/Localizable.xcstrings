@@ -705,6 +705,28 @@
         }
       }
     },
+    "Book covers": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couvertures"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portadas"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buchcover"
+          }
+        }
+      }
+    },
     "Book title": {
       "localizations": {
         "fr": {
@@ -1009,6 +1031,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nutzung der natürlichen Stimme wird geprüft"
+          }
+        }
+      }
+    },
+    "Clear book covers": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer les couvertures"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar las portadas"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buchcover löschen"
           }
         }
       }
