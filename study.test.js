@@ -14,3 +14,5 @@ assert.ok(qs.every(q => q.choices.length === 3 && q.choices.includes(q.answer)))
 assert.deepEqual(quiz(book, book), qs);                                                      // the same quiz every time
 assert.deepEqual(quiz('# One\n\nNo bold terms here at all, just plain prose that is long enough.'), []);
 console.log('study ok');
+const labels = '# L\n\n- **Practical application**: readers learn not just what to do but also why behind the advice given here.\n\n**Good Fengshui** is designed to introduce readers to practical principles. The core philosophy emphasizes:\n\nA **flying star** chart maps how energy moves through a home across the years and the seasons alike.';
+assert.deepEqual(quiz(labels, labels + '\n**One** **Two**').map(q => q.answer), ['Practical application', 'flying star']); // no question that stops on a colon

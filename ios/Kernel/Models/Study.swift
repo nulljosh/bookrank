@@ -71,7 +71,8 @@ enum Study {
             for m in line.matches(of: bold) {
                 let answer = String(m.1).trimmingCharacters(in: .whitespaces).replacing(/:$/, with: ""), sentence = clean(line)
                 let words = sentence.replacingOccurrences(of: answer, with: "").split(separator: " ").filter { $0.contains(where: \.isLetter) || $0.contains(where: \.isNumber) }
-                if answer.firstMatch(of: label) != nil || words.count < 8 || qs.contains(where: { $0.answer == answer }) { continue }
+                // A sentence that stops on a colon (it introduces a list) makes a poor question.
+                if sentence.hasSuffix(":") || answer.firstMatch(of: label) != nil || words.count < 8 || qs.contains(where: { $0.answer == answer }) { continue }
                 let others = terms.filter { $0 != answer }
                 guard others.count >= 2 else { continue }
                 var pick = [others[(answer.count * 7) % others.count], others[(answer.count * 13 + 1) % others.count]]

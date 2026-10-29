@@ -80,6 +80,8 @@ final class KernelTests: XCTestCase {
         XCTAssertTrue(qs[0].question.contains("_____") && !qs[0].question.contains("compound interest"))
         XCTAssertTrue(qs.allSatisfy { $0.choices.count == 3 && $0.choices.contains($0.answer) })
         XCTAssertEqual(Study.quiz(book, book: book), qs)
+        let labels = "# L\n\n- **Practical application**: readers learn not just what to do but also why behind the advice given here.\n\n**Good Fengshui** is designed to introduce readers to practical principles. The core philosophy emphasizes:\n\nA **flying star** chart maps how energy moves through a home across the years and the seasons alike."
+        XCTAssertEqual(Study.quiz(labels, book: labels + "\n**One** **Two**").map(\.answer), ["Practical application", "flying star"])
     }
 
     func testMorningLineIsReadable() {

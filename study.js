@@ -50,7 +50,8 @@ export function quiz(text, bookContent = text, n = 3) {
     for (const m of line.matchAll(/\*\*([^*\n]{2,40})\*\*/g)) {
       const answer = m[1].trim().replace(/:$/, ''), sentence = clean(line);
       // A question needs a real sentence around the blank: eight words or more besides the term.
-      if (LABEL.test(answer) || sentence.replace(answer, '').split(/\s+/).filter(w => /\w/.test(w)).length < 8 || qs.some(q => q.answer === answer)) continue;
+      // A sentence that stops on a colon (it introduces a list) makes a poor question.
+      if (/:$/.test(sentence) || LABEL.test(answer) || sentence.replace(answer, '').split(/\s+/).filter(w => /\w/.test(w)).length < 8 || qs.some(q => q.answer === answer)) continue;
       const others = terms.filter(t => t !== answer);
       if (others.length < 2) continue;
       const pick = [others[(answer.length * 7) % others.length], others[(answer.length * 13 + 1) % others.length]];

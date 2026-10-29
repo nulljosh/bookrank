@@ -406,6 +406,7 @@ function showChapterEnd(ch) {
   const qs = c ? quiz(c.text, current.content) : [];
   $('quizBtn').classList.toggle('hide', !qs.length);
   $('quizBtn').onclick = () => {
+    $('quizBtn').classList.add('hide');
     let right = 0, done = 0;
     $('quizBox').replaceChildren(...qs.map(q => {
       const box = document.createElement('div'), msg = Object.assign(document.createElement('p'), { className: 'msg' });
