@@ -2,6 +2,12 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 99.0.0 (2026-10-29)
+Search by voice is already there: the keyboard's microphone on iPhone and iPad and dictation on the Mac and the web fill the search field, on the device. Kernel adds no mic of its own unless people miss one.
+
+## 98.0.0 (2026-10-29)
+Connections: press Connections on a highlight (long-press it in the apps) and the same idea shows up from your other books, from the search-by-meaning index each book already has, so most of the time nothing new is sent anywhere.
+
 ## 87.0.0 (2026-10-29)
 Release candidate. Every row through 86 checked together: on iPhone all 9 unit tests and 22 walks pass; on iPad the unit tests and six walks pass in dark mode; the Mac Release build succeeds; the web's 50 tests pass and every live page answers. CI's walks never really ran before (the book texts are private, so GitHub's shelf was empty): the test shelf now falls back to the public sample under each title, CI runs the walks that need only titles, and Storage is reached through Account so the same walk works on iPad.
 

@@ -22,3 +22,8 @@ export function closest(qv, books, n = 5, floor = 0.6) {
   for (const b of books) b.lines.forEach((l, i) => { const score = cosine(qv, b.vecs[i]); if (score >= floor) hits.push({ ...l, id: b.id, book: b.title, score }); });
   return hits.sort((a, b) => b.score - a.score).slice(0, n);
 }
+
+/** Connections: the lines in your other books closest in meaning to one line, with a higher bar than search. */
+export function related(v, books, exceptId, n = 3, floor = 0.7) {
+  return closest(v, books.filter(b => b.id !== exceptId), n, floor);
+}

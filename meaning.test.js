@@ -32,3 +32,13 @@ test('/api/embed needs an account and stops at the cap', async () => {
   env.AI.run = () => { throw new Error('model must not run past the cap'); };
   assert.equal((await onRequest({ request: post({ texts: ['too much text'] }, 'Bearer t'), env })).status, 429);
 });
+
+import { related } from './meaning.js';
+{
+  const b = (id, vecs) => ({ id, title: id, lines: vecs.map((_, i) => ({ ch: 0, line: i, title: 'c', text: `${id} ${i}` })), vecs });
+  const books = [b('mine', [[1, 0]]), b('other', [[0.9, 0.1], [0, 1]]), b('third', [[0.6, 0.4]])];
+  const hits = related([1, 0], books, 'mine');
+  assert.deepEqual(hits.map(h => h.id), ['other', 'third']);   // never the book it came from; the unrelated line is under the bar
+  assert.ok(hits[0].score > hits[1].score);
+  console.log('related ok');
+}

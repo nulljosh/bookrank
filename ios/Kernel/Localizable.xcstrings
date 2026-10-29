@@ -507,6 +507,28 @@
         }
       }
     },
+    "Also in your books": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aussi dans vos livres"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También en tus libros"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auch in deinen Büchern"
+          }
+        }
+      }
+    },
     "Answer": {
       "localizations": {
         "fr": {
@@ -1185,6 +1207,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sammlung, %@"
+          }
+        }
+      }
+    },
+    "Connections": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liens"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexiones"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindungen"
           }
         }
       }
@@ -2509,6 +2553,28 @@
         }
       }
     },
+    "Looking across your books…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche dans vos livres…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando en tus libros…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche in deinen Büchern…"
+          }
+        }
+      }
+    },
     "Match device": {
       "localizations": {
         "fr": {
@@ -3033,6 +3099,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nicht begonnen"
+          }
+        }
+      }
+    },
+    "Nothing close in your other books yet.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien de proche dans vos autres livres pour l'instant."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay nada parecido en tus otros libros."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nichts Ähnliches in deinen anderen Büchern."
           }
         }
       }

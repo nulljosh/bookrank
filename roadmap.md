@@ -98,8 +98,8 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 95 | Quiz me: three questions per chapter, answers checked | apps, web | open |
 | 96 | Key ideas card at the top of each book | apps, web | open |
 | 97 | Two-line recap at the end of each chapter in Listen | apps, web | open |
-| 98 | Connections: the same idea across your books | apps, web | open |
-| 99 | Search by voice: dictate into search, on the device | apps | open (the keyboard mic and Mac dictation already do this; build only a visible mic if people miss it) |
+| 98 | Connections: the same idea across your books | apps, web | built (CHANGELOG 98.0.0; on the search-by-meaning index, no new model) |
+| 99 | Search by voice: dictate into search, on the device | apps | built (CHANGELOG 99.0.0: the keyboard mic and Mac dictation fill search; a visible mic only if people miss it) |
 | 100 | Kernel 100 | all | open |
 
 ## Open outside the table

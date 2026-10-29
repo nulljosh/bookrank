@@ -345,6 +345,22 @@ final class LibraryWalk: XCTestCase {
         saveTo("\(theme)-chapter", XCUIScreen.main.screenshot())
     }
 
+    /// Connections: long-press a highlight, and the same idea elsewhere in your books comes up. Never presses Play.
+    func testConnections() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let open = app.buttons["Highlights"].firstMatch
+        XCTAssertTrue(open.waitForExistence(timeout: 15)); open.tap()
+        let line = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Gephi'")).firstMatch
+        XCTAssertTrue(line.waitForExistence(timeout: 5)); line.press(forDuration: 1.2)
+        let item = app.buttons["Connections"].firstMatch
+        XCTAssertTrue(item.waitForExistence(timeout: 5)); item.tap()
+        XCTAssertTrue(app.staticTexts["Also in your books"].waitForExistence(timeout: 30) || app.staticTexts["Nothing close in your other books yet."].exists)
+        sleep(1)
+        saveTo("connections", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

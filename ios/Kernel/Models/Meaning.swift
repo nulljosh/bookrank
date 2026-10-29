@@ -28,6 +28,20 @@ actor Meaning {
         return Array(hits.sorted { $0.score > $1.score }.prefix(limit))
     }
 
+    /// Connections: the lines in your other books closest in meaning to one line of yours. The line's own vector
+    /// comes from its book's index when it is there, so most of the time this asks the server for nothing.
+    func related(to text: String, from slug: String, in books: [SummaryEntry], limit: Int = 3, floor: Double = 0.7) async -> [Hit] {
+        var v: [Double]? = nil
+        if let own = books.first(where: { $0.slug == slug }) { v = await rows(own).first { $0.text == text }?.v }
+        if v == nil { v = await Self.embed([text])?.first }
+        guard let v else { return [] }
+        var hits: [Hit] = []
+        for b in books where b.slug != slug {
+            for r in await rows(b) { let s = cosine(v, r.v); if s >= floor { hits.append(Hit(slug: b.slug, title: b.title, ch: r.ch, line: r.line, chapter: r.chapter, text: r.text, score: s)) } }
+        }
+        return Array(hits.sorted { $0.score > $1.score }.prefix(limit))
+    }
+
     private func rows(_ b: SummaryEntry) async -> [Row] {
         let version = b.updatedAt ?? "\(b.content.count)", file = Self.dir.appending(path: "\(b.slug).json")
         if let k = index[b.slug] ?? (try? JSONDecoder().decode(Kept.self, from: Data(contentsOf: file))), k.version == version { index[b.slug] = k; return k.rows }
@@ -72,10 +86,11 @@ import SwiftUI
 struct MeaningResults: View {
     let hits: [Meaning.Hit]
     let store: DataStore
+    var title: LocalizedStringKey = "Close in meaning"
 
     var body: some View {
         if !hits.isEmpty {
-            Section("Close in meaning") {
+            Section(title) {
                 ForEach(hits) { h in
                     #if os(macOS)
                     row(h).tag(h.slug)
@@ -93,5 +108,31 @@ struct MeaningResults: View {
             Text("Ch \(h.ch + 1) · \(h.text)").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(2)
         }
         .padding(.vertical, 2)
+    }
+}
+
+/// One highlight's connections: the same idea elsewhere in your books, from the search-by-meaning index.
+struct ConnectionsView: View {
+    let text: String, slug: String, store: DataStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var hits: [Meaning.Hit]? = nil
+    var body: some View {
+        NavigationStack {
+            List {
+                Text(text).font(.kernelItalic(.body)).foregroundStyle(.secondary)
+                if let hits {
+                    if hits.isEmpty { Text("Nothing close in your other books yet.").foregroundStyle(.secondary) }
+                    MeaningResults(hits: hits, store: store, title: "Also in your books")
+                } else {
+                    HStack(spacing: 8) { ProgressView(); Text("Looking across your books…").foregroundStyle(.secondary) }
+                }
+            }
+            .navigationTitle("Connections")
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            .task { hits = await Meaning.shared.related(to: text, from: slug, in: store.summaryIndex) }
+        }
+        #if os(macOS)
+        .frame(minWidth: 480, minHeight: 420)
+        #endif
     }
 }

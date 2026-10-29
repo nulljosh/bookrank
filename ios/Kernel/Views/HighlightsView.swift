@@ -5,6 +5,8 @@ import UniformTypeIdentifiers
 struct HighlightsView: View {
     let store: DataStore
     @Environment(\.dismiss) private var dismiss
+    @State private var connect: Connect?
+    struct Connect: Identifiable { let text: String, slug: String; var id: String { slug + text } }
 
     var body: some View {
         let marks = store.summaryIndex.flatMap { e in (e.listen?.marks ?? []).map { (e, $0) } }
@@ -23,8 +25,10 @@ struct HighlightsView: View {
                     }
                     .padding(.vertical, 4)
                 }
+                .contextMenu { Button("Connections", systemImage: "point.3.connected.trianglepath.dotted") { connect = Connect(text: m.text, slug: e.slug) } }
             }
             .listStyle(.plain)
+            .sheet(item: $connect) { c in ConnectionsView(text: c.text, slug: c.slug, store: store) }
             .overlay { if marks.isEmpty { ContentUnavailableView("No highlights yet", systemImage: "highlighter", description: Text("Hold a line in any chapter and choose Highlight. It shows up here.")) } }
             .navigationTitle("Highlights")
             .toolbar {
