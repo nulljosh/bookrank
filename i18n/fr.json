@@ -20,6 +20,7 @@
 "Click to generate a new avatar": "Cliquez pour générer un nouvel avatar",
 "Close": "Fermer",
 "Close in meaning": "Proche en sens",
+"Could not reach your library. Check your connection, then": "Impossible d'accéder à votre bibliothèque. Vérifiez votre connexion, puis",
 "Credentials": "Identifiants",
 "Delete": "Supprimer",
 "Delete account": "Supprimer le compte",
@@ -69,9 +70,11 @@
 "New password (8+ characters)": "Nouveau mot de passe (8 caractères minimum)",
 "New summary": "Nouveau résumé",
 "Next chapter": "Chapitre suivant",
+"No summaries yet. Start one with New summary.": "Aucun résumé pour l'instant. Commencez avec Nouveau résumé.",
 "No weekly goal": "Pas d'objectif hebdomadaire",
 "None": "Aucun",
 "Not started": "Pas commencé",
+"Offline. Showing your last copy.": "Hors ligne. Votre dernière copie est affichée.",
 "One narrator explains each chapter, on your phone, your Mac or the web. Share one book with a link.": "Un narrateur explique chaque chapitre, sur votre téléphone, votre Mac ou le web. Partagez un livre avec un lien.",
 "Open my library": "Ouvrir ma bibliothèque",
 "Password": "Mot de passe",
@@ -133,6 +136,7 @@
 "choose the file": "choisissez le fichier",
 "from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.": "depuis le dossier documents de votre Kindle, ou un export CSV de Readwise. Chaque livre reçoit un chapitre de passages surlignés.",
 "iPhone, iPad, Mac and the web. Free and open source.": "iPhone, iPad, Mac et web. Gratuit et open source.",
+"try again": "réessayez",
 "without DRM and it becomes a book, a chapter per section. PDFs import in the apps.": "sans DRM et il devient un livre, un chapitre par section. Les PDF s'importent dans les applications.",
 "← My summaries": "← Mes résumés"
 }

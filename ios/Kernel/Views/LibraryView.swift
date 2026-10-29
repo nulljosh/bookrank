@@ -205,8 +205,8 @@ struct LibraryView: View {
                     #endif
                 }
             }
-        } else if let error = store.summaryError {
-            ContentUnavailableView("Could not load", systemImage: "exclamationmark.triangle", description: Text(error))
+        } else if store.summaryError != nil {
+            LoadFailed { await store.loadSummaries() }
         } else if store.summaryIndex.isEmpty {
             ContentUnavailableView("No summaries yet", systemImage: "books.vertical", description: Text("Summaries on this account show up here."))
         } else {

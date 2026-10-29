@@ -207,6 +207,9 @@ final class LibraryWalk: XCTestCase {
         field.tap(); field.typeText("data")
         XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch.waitForExistence(timeout: 5))
         saveTo("palette-typed", XCUIScreen.main.screenshot())
+        field.typeText("zzq")
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Nothing matches'")).firstMatch.waitForExistence(timeout: 5))
+        saveTo("palette-none", XCUIScreen.main.screenshot())
     }
 
     /// Storage: what is kept on this device, opened from Your reading at the bottom of the library.

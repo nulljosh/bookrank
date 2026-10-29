@@ -25,6 +25,7 @@ struct HighlightsView: View {
                 }
             }
             .listStyle(.plain)
+            .overlay { if marks.isEmpty { ContentUnavailableView("No highlights yet", systemImage: "highlighter", description: Text("Hold a line in any chapter and choose Highlight. It shows up here.")) } }
             .navigationTitle("Highlights")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }

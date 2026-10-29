@@ -947,6 +947,28 @@
         }
       }
     },
+    "Check your connection, then try again.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifiez votre connexion, puis réessayez."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisa tu conexión y vuelve a intentarlo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prüfe deine Verbindung und versuch es noch einmal."
+          }
+        }
+      }
+    },
     "Checking natural voice usage": {
       "localizations": {
         "fr": {
@@ -1163,6 +1185,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Laden fehlgeschlagen"
+          }
+        }
+      }
+    },
+    "Could not reach your library": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'accéder à votre bibliothèque"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo acceder a tu biblioteca"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Bibliothek ist nicht erreichbar"
           }
         }
       }
@@ -1981,6 +2025,28 @@
         }
       }
     },
+    "Hold a line in any chapter and choose Highlight. It shows up here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez une ligne dans un chapitre et choisissez Surligner. Elle apparaîtra ici."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén pulsada una línea de cualquier capítulo y elige Resaltar. Aparecerá aquí."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halte eine Zeile in einem Kapitel gedrückt und wähle Markieren. Sie erscheint hier."
+          }
+        }
+      }
+    },
     "In progress": {
       "localizations": {
         "fr": {
@@ -2663,6 +2729,28 @@
         }
       }
     },
+    "No highlights yet": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun passage surligné"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay subrayados"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Markierungen"
+          }
+        }
+      }
+    },
     "No narration kept yet. Download a book, or listen on Wi-Fi.": {
       "localizations": {
         "fr": {
@@ -2747,6 +2835,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nicht begonnen"
+          }
+        }
+      }
+    },
+    "Nothing matches “%@”.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun résultat pour « %@ »."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada coincide con «%@»."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nichts passt zu „%@“."
           }
         }
       }
@@ -4764,13 +4874,35 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intentar de nuevo"
+            "value": "Reintentar"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Erneut versuchen"
+          }
+        }
+      }
+    },
+    "Trying…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvel essai…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intentando…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird versucht…"
           }
         }
       }

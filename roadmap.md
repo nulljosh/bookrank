@@ -51,7 +51,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 48 | Narrate a chapter in your own language | apps, web | built (/api/narrate takes `lang`; the apps send their interface language and the web the browser's, so a French phone hears French. Chapters already narrated keep the language they were made in; shared links stay English so their cache fits everyone. Not heard live: no signed-in test account) |
 | 49 | Localized screenshots and listings | store | built (docs/store/listing.json in English, French, Spanish and German, put on a version by `scripts/store-listing.sh`; iPhone and iPad store shots in ios/fastlane/screenshots/fr-FR, es-ES, de-DE. Both platforms are in review, so it goes up with the next version) |
 | 50 | First-run pages offer the Goodreads sign-in | apps | built (the last first-run page has "Bring my Goodreads shelves" under the sample and sign-in; it opens Goodreads' own sign-in and the shelves fill the library behind it. The first-run pages now translate too) |
-| 51 | Empty states and error messages A+ on every screen | apps, web | open |
+| 51 | Empty states and error messages A+ on every screen | apps, web | built (apps: the library says it could not reach your library with a Try again button instead of a raw error, Highlights and the command palette say when they are empty; web: the same failed load with a try again link, and the empty library points at New summary) |
 | 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | open |
 | 53 | Notifications: weekly recap, quiet hours | apps | open |
 | 54 | Public profile: the shelf and highlights you choose to share | web | open |

@@ -21,6 +21,7 @@
 "Close": "Cerrar",
 "Close in meaning": "Similar en significado",
 "Collection": "Colección",
+"Could not reach your library. Check your connection, then": "No se pudo acceder a tu biblioteca. Revisa tu conexión y",
 "Credentials": "Credenciales",
 "Delete": "Eliminar",
 "Delete account": "Eliminar cuenta",
@@ -70,9 +71,11 @@
 "New password (8+ characters)": "Nueva contraseña (8 caracteres o más)",
 "New summary": "Nuevo resumen",
 "Next chapter": "Capítulo siguiente",
+"No summaries yet. Start one with New summary.": "Aún no hay resúmenes. Empieza con Nuevo resumen.",
 "No weekly goal": "Sin meta semanal",
 "None": "Ninguno",
 "Not started": "No iniciado",
+"Offline. Showing your last copy.": "Sin conexión. Se muestra tu última copia.",
 "One narrator explains each chapter, on your phone, your Mac or the web. Share one book with a link.": "Un narrador explica cada capítulo, en tu teléfono, tu Mac o la web. Comparte un libro con un enlace.",
 "Open my library": "Abrir mi biblioteca",
 "Password": "Contraseña",
@@ -136,6 +139,7 @@
 "choose the file": "elige el archivo",
 "from your Kindle's documents folder, or a Readwise CSV export. Each book gets a highlights chapter.": "desde la carpeta de documentos de tu Kindle, o una exportación CSV de Readwise. Cada libro recibe un capítulo de subrayados.",
 "iPhone, iPad, Mac and the web. Free and open source.": "iPhone, iPad, Mac y web. Gratis y de código abierto.",
+"try again": "vuelve a intentarlo",
 "without DRM and it becomes a book, a chapter per section. PDFs import in the apps.": "sin DRM y se convierte en un libro, un capítulo por sección. Los PDF se importan en las apps.",
 "← My summaries": "← Mis resúmenes"
 }

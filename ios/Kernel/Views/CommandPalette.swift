@@ -55,6 +55,7 @@ struct CommandPalette: View {
                 .buttonStyle(.plain)
             }
             .listStyle(.plain)
+            .overlay { if shown.isEmpty { Text("Nothing matches “\(query)”.").foregroundStyle(.secondary) } }
         }
         #if os(macOS)
         .frame(width: 520, height: 360)

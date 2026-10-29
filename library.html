@@ -621,10 +621,10 @@ $('show').onchange = () => { try { localStorage.setItem('kernel.show', $('show')
 async function load() {
   listen?.stop();
   const { data, error, offline: off } = await rows.list();
-  if (error) { $('listMsg').textContent = error.message; return []; }
+  if (error) { $('listMsg').replaceChildren('Could not reach your library. Check your connection, then', ' ', Object.assign(document.createElement('button'), { type: 'button', className: 'link', textContent: 'try again', onclick: load }), '.'); return []; }
   texts = null;   // ponytail: refetched once per list view when search or a sort needs it; keep() could feed it instead
   $('list').innerHTML = '';
-  $('listMsg').textContent = off ? 'Offline. Showing your last copy.' : data.length ? '' : 'No summaries yet.';
+  $('listMsg').textContent = off ? 'Offline. Showing your last copy.' : data.length ? '' : 'No summaries yet. Start one with New summary.';
   // Rows with a live resume point come first under "Currently playing"; the untouched
   // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
   const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
@@ -697,7 +697,7 @@ async function load() {
       for (const li of d.querySelectorAll('li')) { const on = !q || li.dataset.text.includes(q); li.classList.toggle('hide', !on); n += on; }
       d.classList.toggle('hide', !n); if (q && n) d.open = true; shown += n;
     }
-    $('listMsg').textContent = q && !shown ? `Nothing matches "${$('find').value.trim()}".` : (data.length ? '' : 'No summaries yet.');
+    $('listMsg').textContent = q && !shown ? `Nothing matches "${$('find').value.trim()}".` : (data.length ? '' : 'No summaries yet. Start one with New summary.');
     clearTimeout(meaningTimer);
     $('meaning').classList.add('hide');
     if (q.length >= 4) meaningTimer = setTimeout(() => byMeaning(q, data), 500);   // once typing stops

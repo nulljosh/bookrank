@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 51.0.0 (2026-10-29)
+Clearer empty and error states: a library that cannot load says so in plain words with a Try again button, and empty Highlights, an empty library and a search with no match each say what to do next. In all four languages.
+
 ## 50.0.0 (2026-10-29)
 The first-run pages offer "Bring my Goodreads shelves": Goodreads' own sign-in, and your shelves fill the library. The pages themselves now translate.
 
