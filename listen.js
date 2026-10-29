@@ -254,7 +254,7 @@ export function mount(root, api) {
       const el = text.children[i]; if (!el) return;
       [...text.querySelectorAll('.on')].forEach(e => { e.classList.remove('on'); e.innerHTML = e.dataset.raw; });
       el.classList.add('on');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
       status.textContent = `${chs[ch].title} · ${i + 1}/${text.children.length}`;
       fill.style.width = (progress(ch, i, text.children.length, chs.length) * 100) + '%';
     },
