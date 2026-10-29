@@ -20,7 +20,7 @@ export function createClient(url, _anonKey, opts = {}) {
   async function fresh() {
     if (session && expired()) {
       refreshing ??= raw("POST", "/auth/token?grant_type=refresh_token", { refresh_token: session.refresh_token }, false)
-        .then((r) => { r.error ? save(null, "SIGNED_OUT") : save(r.data, "TOKEN_REFRESHED"); }).finally(() => { refreshing = null; });
+        .then((r) => { if (!r.error) save(r.data, "TOKEN_REFRESHED"); else if (r.error.status && r.error.status < 500) save(null, "SIGNED_OUT"); })   // offline or a server hiccup keeps the session, so cached pages still open.finally(() => { refreshing = null; });
       await refreshing;
     }
     return session?.access_token;

@@ -372,6 +372,7 @@ async function resolveCover(row) {
 }
 function thumb(row) {
   const img = Object.assign(document.createElement('img'), { className: 'thumb', alt: '', loading: 'lazy' });
+  img.onerror = () => { img.removeAttribute('src'); img.className = 'thumb-empty'; };   // offline, the cover host is out of reach
   resolveCover(row).then(u => { if (u) img.src = u; else img.className = 'thumb-empty'; });
   return img;
 }
@@ -471,7 +472,7 @@ async function load() {
     if (q && !texts) {
       texts = {};
       const { data: full } = await db.from(TABLE).select('id,content');
-      for (const r of full || []) texts[r.id] = (r.content || '').toLowerCase();
+      for (const r of full || await Promise.all(data.map(r => offline.get(r.id)))) if (r) texts[r.id] = (r.content || '').toLowerCase();   // offline: the kept copies
       if ($('find').value.trim().toLowerCase() !== q) return; // a newer keystroke took over
     }
     const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || (texts?.[r.id] || '').includes(q)).map(r => r.id));
@@ -490,7 +491,17 @@ async function load() {
   };
   if ($('find').value) $('find').oninput();
   goodreadsQueue(data);
+  if (!off) keep(data);
   return data;
+}
+// Keep every book's full text on this device, not just the ones opened here, so any of them opens offline.
+// Only rows changed since the kept copy are fetched. ponytail: one in.() query; chunk it if a shelf passes ~150 books.
+async function keep(list) {
+  const stale = [];
+  for (const r of list) if ((await offline.get(r.id))?.updated_at !== r.updated_at) stale.push(r.id);
+  if (!stale.length) return;
+  const { data } = await db.from(TABLE).select('*').in('id', stale);
+  for (const r of data || []) offline.put(r.id, r);
 }
 
 // ---- editor ----
