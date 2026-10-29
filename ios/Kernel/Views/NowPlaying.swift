@@ -64,6 +64,7 @@ struct NowPlaying: View {
                             ForEach([15, 30, 45, 60], id: \.self) { Text("\($0) min").tag($0) }
                             Text("End of chapter").tag(-1)
                         }
+                        if let note = speaker.sleepNote { Text(note) }
                     } label: { Image(systemName: speaker.sleep == 0 ? "moon" : "moon.fill").accessibilityLabel("Sleep timer") }
                     Spacer()
                     Menu {

@@ -123,18 +123,28 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         Task { await play(from: 0) }
     }
     /// Sleep timer: 0 off, -1 at the end of this chapter, otherwise minutes from when it was set.
-    var sleep = 0 { didSet { armSleep() } }
+    var sleep = 0 { didSet { sleepEnds = sleep > 0 ? .now + Double(sleep * 60) : nil; armSleep() } }
+    /// When a timed sleep pauses; a shake pushes it ten minutes on.
+    private(set) var sleepEnds: Date?
+    /// The natural voice fades over the last 30 seconds. ponytail: the device voice queues a chapter at once, so it just pauses.
+    private var fade: Float = 1 { didSet { player?.volume = fade } }
     private var sleepTask: Task<Void, Never>?
     private func armSleep() {
-        sleepTask?.cancel(); sleepTask = nil
-        guard sleep > 0 else { return }
-        let m = sleep
+        sleepTask?.cancel(); sleepTask = nil; fade = 1
+        guard sleepEnds != nil else { return }
         sleepTask = Task { @MainActor in
-            try? await Task.sleep(for: .seconds(m * 60))
-            guard !Task.isCancelled else { return }
+            while let end = sleepEnds, case let left = end.timeIntervalSinceNow, left > 0 {
+                fade = Float(min(1, left / 30))
+                try? await Task.sleep(for: .seconds(left > 31 ? left - 30 : 1))
+                if Task.isCancelled { return }
+            }
             if playing && !paused { toggle() }   // pause, so Play picks up the same line
             sleep = 0
         }
+    }
+    func addSleepTime() {
+        guard let end = sleepEnds else { return }
+        sleepEnds = end + 600; armSleep(); status = "Ten more minutes."
     }
 
     /// The last line of a chapter finished: on to the next, unless the sleep timer says stop here.
@@ -309,7 +319,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             if i + 1 < script.count { let n = script[i + 1]; next = Task { await Narrator.speak(n.line, host: narrator, ch: ch, slug: slug) } }
             line = i; word = nil
             status = "\(chapters[ch].title) · \(i + 1)/\(lines.count)"
-            player = p; p.enableRate = true; p.rate = rate; p.play()
+            player = p; p.volume = fade; p.enableRate = true; p.rate = rate; p.play()
             var w = 0
             while p.isPlaying || paused {
                 guard tok == token else { p.stop(); return true }

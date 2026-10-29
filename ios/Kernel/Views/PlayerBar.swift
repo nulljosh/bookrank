@@ -53,6 +53,7 @@ struct MiniPlayer: View {
                         Text("End of chapter").tag(-1)
                     }
                     .pickerStyle(.menu)
+                    if let note = speaker.sleepNote { Text(note) }
                     Toggle("Natural voice", isOn: Binding(get: { speaker.natural }, set: { speaker.natural = $0 }))
                 } label: {
                     HStack(spacing: 4) {

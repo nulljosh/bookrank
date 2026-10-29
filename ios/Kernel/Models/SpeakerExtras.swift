@@ -1,7 +1,28 @@
 import Foundation
+#if os(iOS)
+import UIKit
+
+/// Shake the phone while the sleep timer runs to give it ten more minutes.
+extension UIWindow {
+    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake { Speaker.shared.addSleepTime() }
+        super.motionEnded(motion, with: event)
+    }
+}
+#endif
 
 /// The parts of the player that need no state of their own: the notes split into lines, and the next chapter fetched ahead.
 extension Speaker {
+    /// Under the sleep menu while a timer runs: when it pauses, and on iPhone how to push it back.
+    var sleepNote: String? {
+        guard let end = sleepEnds else { return nil }
+        let at = "Pauses at \(end.formatted(date: .omitted, time: .shortened))."
+        #if os(iOS)
+        return at + " Shake for ten more minutes."
+        #else
+        return at
+        #endif
+    }
     // ponytail: same block rule as listen.js blocks(): paragraphs join, list items and
     // headings stand alone, rules drop. `line` is spoken, `md` is rendered.
     static func blocks(_ md: String) -> [ListenState.Line] {

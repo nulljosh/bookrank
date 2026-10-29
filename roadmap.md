@@ -45,7 +45,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 42 | Pick the narrator voice, per book | apps, web | built (Alice or George, remembered per book like speed; voices.js split from listen.js; the Aura fallback stays one voice) |
 | 43 | Download the next chapter's audio on Wi-Fi ahead of time | apps | built (while a chapter plays on Wi-Fi, not cellular or Low Data Mode, the next one's lines are fetched and kept with the book; no visible change, so build-checked) |
 | 44 | Storage screen: what is downloaded, how big, remove it | apps | built (Your reading, Storage on this device: each book's narration size, swipe or right-click to remove, the search index with a clear button, the offline library) |
-| 45 | Sleep timer fades out; shake to add ten minutes | iPhone | open |
+| 45 | Sleep timer fades out; shake to add ten minutes | iPhone | built (the natural voice fades over the last 30 seconds; a shake adds ten minutes; the menu says when it pauses. Audio and shake are not testable headless, so the fade is build-checked) |
 | 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | open |
 | 47 | Languages: French, Spanish and German interface | apps, web | open |
 | 48 | Narrate a chapter in your own language | apps, web | open |

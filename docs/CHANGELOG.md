@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 45.0.0 (2026-10-28)
+The sleep timer fades the voice out over its last 30 seconds instead of cutting off, shaking the iPhone gives it ten more minutes, and the menu says when it will pause.
+
 ## 44.0.0 (2026-10-28)
 A Storage screen in the apps, under Your reading: how much room each book's narration takes, removed with a swipe or a right-click, plus the search index and the offline library.
 

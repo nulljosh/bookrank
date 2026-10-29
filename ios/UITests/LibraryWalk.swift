@@ -222,6 +222,23 @@ final class LibraryWalk: XCTestCase {
         saveTo("storage", XCUIScreen.main.screenshot())
     }
 
+    /// Sleep timer set to 15 minutes from the player bar menu: the menu then says when it pauses and that a shake adds ten. Never presses Play.
+    func testSleepNote() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_PLAYER"]
+        app.launch()
+        let speed = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Speed'")).firstMatch
+        XCTAssertTrue(speed.waitForExistence(timeout: 15)); speed.tap()
+        let timer = app.buttons["Sleep timer"].firstMatch
+        XCTAssertTrue(timer.waitForExistence(timeout: 5)); timer.tap()
+        let fifteen = app.buttons["15 min"].firstMatch
+        XCTAssertTrue(fifteen.waitForExistence(timeout: 5)); fifteen.tap()
+        sleep(1); speed.tap()
+        sleep(1)
+        saveTo("sleep-note", XCUIScreen.main.screenshot())
+        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS 'Shake for ten more'")).firstMatch.exists)
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
