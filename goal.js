@@ -32,3 +32,17 @@ export function render(el, s, now = new Date()) {
        <div><b>${min >= s.target ? 'Weekly goal met' : 'This week'}</b><span>${min} of ${s.target} min</span></div><div class="gdots" aria-hidden="true">${dots}</div>${pick}`
     : pick;
 }
+
+// Your reading in numbers, under the library: the same counts as ReadingStats in the apps.
+// `books`: [{ content, marks, notes }].
+import { chapters, minutes } from './listen.js';
+export function readingStats(books) {
+  const s = { books: books.length, chapters: 0, minutes: 0, highlights: 0, notes: 0 };
+  for (const b of books) {
+    s.chapters += chapters(b.content || '').length;
+    if (b.content) s.minutes += minutes(b.content);
+    s.highlights += b.marks?.length || 0;
+    s.notes += Object.keys(b.notes || {}).length;
+  }
+  return s;
+}

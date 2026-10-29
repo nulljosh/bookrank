@@ -25,6 +25,7 @@ final class DataStore {
     private(set) var goodreadsReading: [GoodreadsBook] = []
     private(set) var goodreadsToRead: [GoodreadsBook] = []
     private(set) var goodreadsQueue: [GoodreadsBook] = []
+    private(set) var goodreadsRead: [GoodreadsBook] = []   // the whole read shelf, for Your reading
     func loadGoodreads(_ id: String?) async {
         if CommandLine.flag("UITEST_SNAPSHOT") && Goodreads.shared.data == nil {   // screenshots: the shelves without a linked account
             let b = { (t: String, a: String, r: Double?, d: String?) in GoodreadsBook(title: t, author: a, cover: nil, url: nil, readAt: d, rating: r) }
@@ -32,6 +33,7 @@ final class DataStore {
             goodreadsReading = [r]
             var q = b("How AI Thinks", "Nigel Toon", 4, "2026-09-28"); q.review = "Clear on how models actually work, without the hype. The chapter on training data is worth the price alone."
             goodreadsQueue = [q, b("Fiend", "Peter Stenson", 3.5, "2026-08-11")]
+            goodreadsRead = goodreadsQueue + [b("Atomic Habits", "James Clear", 4, "2025-03-02"), b("Deep Work", "Cal Newport", 4.5, "2025-07-19"), b("Sapiens", "Yuval Noah Harari", 4, "2024-11-30")]
             goodreadsToRead = [b("System Design Interview", "Alex Xu", nil, nil)]
             return
         }
@@ -43,11 +45,12 @@ final class DataStore {
             let url = URL(string: "https://bookrank.jaybulb.com/api/goodreads?user=\(id)&shelf=currently-reading")!
             let data = try? await URLSession.shared.data(from: url).0
             (reading, read, toRead) = (data.flatMap { try? JSONDecoder().decode(Out.self, from: $0) }?.books ?? [], [], [])
-        } else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; return }
+        } else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; goodreadsRead = []; return }
         let norm = { (s: String) in s.lowercased().replacingOccurrences(of: "[^a-z0-9]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespaces) }
         let have = summaryIndex.map { norm($0.title) }.filter { !$0.isEmpty }
         goodreadsReading = reading
         goodreadsToRead = toRead
+        goodreadsRead = read
         goodreadsQueue = read.filter { b in
             let t = norm(b.title), words = Set(t.split(separator: " "))
             return !have.contains { h in h.split(separator: " ").allSatisfy(words.contains) || t.replacingOccurrences(of: " ", with: "").contains(h.replacingOccurrences(of: " ", with: "")) }

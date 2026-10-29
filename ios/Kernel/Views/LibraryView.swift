@@ -287,6 +287,7 @@ struct LibraryView: View {
                 .accessibilityHint(open ? "Hides the shelf" : "Shows the shelf")
             }
         }
+        if q.isEmpty { ReadingStats(store: store) }
     }
 
     /// The weekly goal: a gold ring and the minutes so far.

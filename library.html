@@ -45,6 +45,7 @@ details.gr { margin-top:1.5rem; }
 details.gr .by { display:block; }
 details.gr summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
+.stats { margin:2rem 0 1rem; } .stats h4 { margin:0 0 0.6rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .stats .tiles { display:grid; grid-template-columns:repeat(auto-fit, minmax(7.5rem, 1fr)); gap:0.5rem; } .stats .tiles div { padding:0.75rem 1rem; border-radius:16px; background:var(--bg2); } .stats b { display:block; font-size:1.375rem; font-weight:600; } .stats span { font-size:0.8125rem; color:var(--text3); }
 .today { margin:0 0 1.25rem; padding:1rem 1.25rem; border-radius:20px; background:var(--bg2); } .today h4 { margin:0 0 0.5rem; font-size:0.75rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); } .today ol { margin:0 0 0.75rem; padding-left:1.25rem; } .today li { margin:0.4rem 0; cursor:pointer; line-height:1.45; } .today li small { display:block; color:var(--text3); font-size:0.8125rem; } .today button { font-size:0.8125rem; padding:0.3rem 0.7rem; }
 .sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar #marksBtn { margin-left:auto; font-size:0.8125rem; padding:0.3rem 0.7rem; }
 ul.marks li { display:block; padding:1rem 0; } ul.marks blockquote { margin:0 0 0.4rem; cursor:pointer; line-height:1.5; } ul.marks .by { display:flex; justify-content:space-between; align-items:center; gap:1rem; } ul.marks .by button { font-size:0.8125rem; padding:0.3rem 0.7rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
@@ -137,6 +138,7 @@ dl.profile dt { color:var(--text3); }
     <ul class="list" id="list"></ul>
     <div id="meaning" class="hide"><h4 class="group">Close in meaning</h4><ul class="list"></ul></div>
     <p class="msg" id="listMsg"></p>
+    <div class="stats hide" id="stats"></div>
   </section>
 
   <!-- editor / listen -->
@@ -692,17 +694,27 @@ async function load() {
   };
   if ($('find').value) $('find').oninput();
   goodreadsQueue(data);
-  if (!off) keep(data);
+  if (!off) keep(data).then(() => drawStats(data)); else drawStats(data);
   return data;
 }
 // Keep every book's full text on this device, not just the ones opened here, so any of them opens offline.
 // Only rows changed since the kept copy are fetched. ponytail: one in.() query; chunk it if a shelf passes ~150 books.
+// Your reading in numbers, from the copies keep() holds, so it costs no extra fetch.
+async function drawStats(list) {
+  const kept = await Promise.all(list.map(r => offline.get(r.id)));
+  const s = goal.readingStats(list.map((r, i) => ({ content: kept[i]?.content || '', marks: r.listen?.marks, notes: r.notes })));
+  const tiles = [[s.books, s.books === 1 ? 'book' : 'books'], [s.chapters, 'chapters'], [s.minutes >= 60 ? `${Math.round(s.minutes / 60)} hr` : `${s.minutes} min`, 'to listen'], [s.highlights, 'highlights'], [s.notes, 'notes']];
+  const box = Object.assign(document.createElement('div'), { className: 'tiles' });
+  box.append(...tiles.map(([v, l]) => { const d = document.createElement('div'); d.append(Object.assign(document.createElement('b'), { textContent: v }), Object.assign(document.createElement('span'), { textContent: l })); return d; }));
+  $('stats').replaceChildren(Object.assign(document.createElement('h4'), { textContent: 'Your reading' }), box);
+  $('stats').classList.toggle('hide', !list.length);
+}
 async function keep(list) {
   const stale = [];
   for (const r of list) if ((await offline.get(r.id))?.updated_at !== r.updated_at) stale.push(r.id);
   if (!stale.length) return;
   const { data } = await db.from(TABLE).select('*').in('id', stale);
-  for (const r of data || []) offline.put(r.id, r);
+  await Promise.all((data || []).map(r => offline.put(r.id, r)));
 }
 
 // ---- editor ----

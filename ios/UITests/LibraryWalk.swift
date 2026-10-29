@@ -143,6 +143,18 @@ final class LibraryWalk: XCTestCase {
         saveTo("summarize-goodreads", XCUIScreen.main.screenshot())
     }
 
+    /// Your reading at the bottom of the library: the counts, and Goodreads books by year.
+    func testReadingStats() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let header = app.staticTexts["Your reading"].firstMatch
+        for _ in 0..<8 where !header.isHittable { app.swipeUp() }
+        XCTAssertTrue(header.waitForExistence(timeout: 10))
+        app.swipeUp(); sleep(1)
+        saveTo("reading-stats", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

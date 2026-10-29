@@ -27,7 +27,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 24 | Daily review: five highlights resurface on a schedule | apps, web | built (Today's five on the library, the same five on every device by FNV of the day, Done until tomorrow; a daily shuffle, not spaced repetition) |
 | 25 | Your own note under any chapter | apps, web | built (a `notes` JSON column on jaybulb-api, not in listen, so old builds cannot drop it; in the export too) |
 | 26 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | built (long-press or swipe a Goodreads row; testSummarizeFromGoodreads) |
-| 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | open |
+| 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | built (Your reading under the library: books, chapters, hours, highlights, notes; the apps add Goodreads books finished per year and the average rating; pages wait on page counts from Goodreads) |
 | 28 | Search by voice: dictate into search, on the device | apps | open |
 | 29 | Quiz me: three questions per chapter, answers checked | apps, web | open |
 | 30 | Key ideas card at the top of each book | apps, web | open |

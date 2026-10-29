@@ -38,6 +38,7 @@
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		446430E59725102456EF42D5 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */; };
 		45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
+		485245FF235D4C63C91869FB /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DE465914D0C6444A386E /* StatsView.swift */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
 		54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
@@ -106,6 +107,7 @@
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
+		F5D34F362488A7DD2DADE92F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DE465914D0C6444A386E /* StatsView.swift */; };
 		F7C5BBBC7B5C9F3E4AC9723D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
 		F7D405CA6423FBFA213E6E20 /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
 		F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
@@ -185,6 +187,7 @@
 		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E9350AD17532E2632CEBF4A5 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
 		EADD79E8481EC276F89FE4B1 /* KernelUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KernelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED27DE465914D0C6444A386E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelApp.swift; sourceTree = "<group>"; };
 		EFD53A14FC46AD38DFFFA927 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F52DEE4EFC635882441F8ED3 /* Goodreads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goodreads.swift; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 				E2296F31EB47281BF6AF3961 /* OnboardingView.swift */,
 				706C79B39012060E094ED3A4 /* PlayerBar.swift */,
 				68D42622E422604FB14F1EF9 /* SplashView.swift */,
+				ED27DE465914D0C6444A386E /* StatsView.swift */,
 				474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */,
 			);
 			path = Views;
@@ -570,6 +574,7 @@
 				80BD2E4062F6A2D29CAF6B1C /* PlayerBar.swift in Sources */,
 				E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */,
 				B72C4EA1CA39F51878968A75 /* SplashView.swift in Sources */,
+				F5D34F362488A7DD2DADE92F /* StatsView.swift in Sources */,
 				6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */,
 				191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */,
 			);
@@ -620,6 +625,7 @@
 				77E1E2E4FF6DE7717CF9CE3D /* PlayerBar.swift in Sources */,
 				C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */,
 				B8C0EFF15FD313627FFB4073 /* SplashView.swift in Sources */,
+				485245FF235D4C63C91869FB /* StatsView.swift in Sources */,
 				16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */,
 				31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */,
 			);

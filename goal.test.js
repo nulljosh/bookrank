@@ -12,3 +12,10 @@ const el = {}; render(el, s, thu);
 assert.match(el.innerHTML, /15 of 60 min/); assert.match(el.innerHTML, /class="gd on today"/);
 render(el, { ...s, target: 0 }, thu); assert.doesNotMatch(el.innerHTML, /of 60 min/); assert.match(el.innerHTML, /No weekly goal/);
 console.log('goal ok');
+
+// Reading stats: books, chapters, listening minutes, highlights and notes add up across books.
+{
+  const { readingStats } = await import('./goal.js');
+  const s = readingStats([{ content: '# A\n\nx\n\n# B\n\ny', marks: [{ ch: 0, text: 'x' }], notes: { 1: 'n' } }, { content: '', marks: [], notes: {} }]);
+  assert.deepEqual(s, { books: 2, chapters: 2, minutes: 1, highlights: 1, notes: 1 });
+}

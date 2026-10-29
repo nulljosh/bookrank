@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100.
 
-Next row: **27, Reading stats: books per year, pages, average rating (Goodreads plus Kernel)**.
+Next row: **28, Search by voice: dictate into search, on the device**.
 
 ## How to QA
 
