@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 68.0.0 (2026-10-29)
+Bookrank is Kernel everywhere it can be: the repo is nulljosh/kernel, the folder is kernel, and the sign-in mails say Kernel. kernel.jaybulb.com goes live once it is added to the Pages project. (67.0.0, retiring the old Supabase path, waits until no one runs the 1.2 apps.)
+
 ## 66.0.0 (2026-10-29)
 Deleting your account now also clears Kernel's voice records about you (usage, the $1 record, narration made from your books) and every copy on the device you delete from. The privacy policy is rewritten to say what Kernel actually keeps and sends.
 
