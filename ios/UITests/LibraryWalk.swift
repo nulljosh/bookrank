@@ -335,6 +335,16 @@ final class LibraryWalk: XCTestCase {
         measure(metrics: [XCTOSSignpostMetric.scrollingAndDecelerationMetric], options: options) { app.swipeUp(velocity: .fast); app.swipeDown(velocity: .fast) }
     }
 
+    /// Cold launch to the first frame, measured by the system. The budget is in docs/ARCHITECTURE.md.
+    func testLaunchTime() {
+        let options = XCTMeasureOptions(); options.iterationCount = 5
+        measure(metrics: [XCTApplicationLaunchMetric()], options: options) {
+            let app = XCUIApplication()
+            app.launchArguments = ["-kernel.onboarded", "YES"]
+            app.launch()
+        }
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

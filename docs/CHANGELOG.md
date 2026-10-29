@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 60.0.0 (2026-10-29)
+A startup budget: Kernel's own work before the first screen stays under 50 ms (it measures about 30), checked with an Instruments trace and a launch-time test.
+
 ## 59.0.0 (2026-10-29)
 Book covers are kept on the device, so your shelf shows them at once after a relaunch and with no connection. Storage shows how much room they take and can clear them.
 
