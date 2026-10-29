@@ -69,8 +69,8 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 66 | Account deletion also clears usage counters and audio caches | api, apps | built (CHANGELOG 66.0.0) |
 | 67 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | waits: iPhone 1.2.1 is still the live version (2.0.0 in review) |
 | 68 | kernel.jaybulb.com and the repo rename | web, repo | built (CHANGELOG 68.0.0; kernel.jaybulb.com waits on Joshua) |
-| 69 | Swift unit tests (parsers, goal, nudges) run in CI | apps | built (CHANGELOG 69.0.0; the CI job is non-blocking until its first green run) |
-| 70 | Simulator UI walks run in CI | apps | open |
+| 69 | Swift unit tests (parsers, goal, nudges) run in CI | apps | built (CHANGELOG 69.0.0) |
+| 70 | Simulator UI walks run in CI | apps | built (CHANGELOG 70.0.0; the walk step is non-blocking until its first green run) |
 | 71 | Docs to 100 percent | repo | open |
 | 72 | Web polish pass to match the apps (apple skill) | web | open |
 | 73 | Web keyboard shortcuts and a focus mode | web | open |

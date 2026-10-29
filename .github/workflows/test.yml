@@ -21,11 +21,9 @@ jobs:
       - run: node --test
 
   swift:
-    # The apps' pure rules (ios/Tests) on a simulator. continue-on-error until the first green run on
-    # GitHub's Xcode, which is a release behind the one Kernel is built with.
+    # The apps' pure rules (ios/Tests), then a few UI walks over the screenshot shelf, on a simulator.
     runs-on: macos-26
-    timeout-minutes: 30
-    continue-on-error: true
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - run: brew install xcodegen
@@ -34,6 +32,16 @@ jobs:
           set -o pipefail
           cd ios && xcodegen
           xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
+      - name: UI walks
+        # The silent screenshot shelf only: no sign-in, never presses Listen. Non-blocking until its first green run.
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO \
+            -only-testing:KernelUITests/LibraryWalk/testSearch -only-testing:KernelUITests/LibraryWalk/testSortFilter \
+            -only-testing:KernelUITests/LibraryWalk/testCommandPalette -only-testing:KernelUITests/LibraryWalk/testAccountSections \
+            -only-testing:KernelUITests/LibraryWalk/testSleepNote | tail -40
 
   docs:
     runs-on: ubuntu-latest

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 70.0.0 (2026-10-29)
+CI walks the iPhone app on a simulator after the unit tests: search, sort and filter, the command palette, Account and the sleep timer menu, on the silent screenshot shelf.
+
 ## 69.0.0 (2026-10-29)
 The apps' rules have unit tests (ios/Tests): chapters, search, the notes split into lines, highlights merging, the offline catch-up, Kindle clippings, Today's five, durations and the morning line. They run on every push on a macOS runner.
 
