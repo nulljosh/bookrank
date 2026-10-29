@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 37.0.0 (2026-10-28)
+Handoff: the book open on your iPhone shows up on your Mac's Dock (and the other way), and opens in the web library on a device without the app.
+
 ## 36.0.0 (2026-10-28)
 "Continue my book in Kernel": Siri opens the book you are partway through and plays from where you stopped.
 

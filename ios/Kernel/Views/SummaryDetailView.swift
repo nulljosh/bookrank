@@ -84,6 +84,11 @@ struct SummaryDetailView: View {
                 Button("Share", systemImage: "square.and.arrow.up") { Task { shareURL = await store.shareURL(for: slug) } }
             }
         }
+        // Handoff: the book open here shows on your other devices; on a Mac or iPhone without Kernel it opens the web library.
+        .userActivity(Handoff.type, isActive: slug != "sample") { a in
+            a.title = entry?.title; a.isEligibleForHandoff = true; a.userInfo = ["slug": slug]
+            a.webpageURL = URL(string: "https://bookrank.jaybulb.com/library\(entry?.rowID.map { "#\($0)" } ?? "")")
+        }
         .task {
             if let t = entry?.shareToken { shareURL = URL(string: "https://bookrank.jaybulb.com/share.html?t=\(t)") }
             speaker.load(slug: slug, chapters: parseChapters(store.summaryMarkdown(for: slug)),

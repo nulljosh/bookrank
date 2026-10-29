@@ -87,6 +87,9 @@ final class Goal {
     }
 }
 
+/// Handoff between your devices: the book you have open. Listed under NSUserActivityTypes in Info.plist.
+enum Handoff { static let type = "com.heyitsmejosh.spine.reading" }
+
 /// A tapped reminder opens its book: the nudge carries the slug, the library watches `slug`.
 @Observable
 final class NoteTap: NSObject, UNUserNotificationCenterDelegate {

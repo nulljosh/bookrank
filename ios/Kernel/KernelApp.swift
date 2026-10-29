@@ -32,6 +32,7 @@ struct KernelApp: App {
         WindowGroup {
             ZStack {
                 LibraryView(splashDone: !showSplash)
+                    .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
                 if showSplash {
                     SplashView { showSplash = false }
                         .transition(.identity)   // SplashView fades itself out before it calls back
