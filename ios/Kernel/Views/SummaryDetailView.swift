@@ -88,6 +88,7 @@ struct SummaryDetailView: View {
             if let t = entry?.shareToken { shareURL = URL(string: "https://bookrank.jaybulb.com/share.html?t=\(t)") }
             speaker.load(slug: slug, chapters: parseChapters(store.summaryMarkdown(for: slug)),
                          entry: entry) { await store.saveListen($0, for: slug) }
+            if NoteTap.shared.play { NoteTap.shared.play = false; speaker.toggle() }   // Siri: continue my book
         }
     }
 

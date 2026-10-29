@@ -92,6 +92,7 @@ final class Goal {
 final class NoteTap: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NoteTap()
     var slug: String?
+    var play = false   // "Continue my book": play once the book page has loaded it
     func userNotificationCenter(_ c: UNUserNotificationCenter, didReceive r: UNNotificationResponse) async {
         let s = r.notification.request.content.userInfo["slug"] as? String
         await MainActor.run { slug = s }

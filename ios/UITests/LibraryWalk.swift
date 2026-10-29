@@ -185,6 +185,16 @@ final class LibraryWalk: XCTestCase {
         saveTo("pages-on-device", XCUIScreen.main.screenshot())
     }
 
+    /// Continue my book (Siri): the library opens the book you are partway through. Silent in screenshot runs.
+    func testContinueMyBook() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "UITEST_CONTINUE"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["The Optimist"].waitForExistence(timeout: 15))
+        sleep(2)
+        saveTo("continue-my-book", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

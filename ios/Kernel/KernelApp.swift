@@ -14,6 +14,8 @@ struct KernelApp: App {
     init() {
         URLCache.shared = URLCache(memoryCapacity: 20 << 20, diskCapacity: 200 << 20)
         UNUserNotificationCenter.current().delegate = NoteTap.shared   // a tapped reminder opens its book
+        // Screenshot runs: act as if Siri ran Continue my book (the player stays silent under UITEST_SNAPSHOT).
+        if CommandLine.flag("UITEST_CONTINUE"), let e = DataStore.lastStarted() { NoteTap.shared.play = true; NoteTap.shared.slug = e.slug }
         #if os(iOS)
         // Navigation titles are UIKit's; give them Kernel Sans too. Register it first: UIFont(name:) finds nothing until then.
         _ = kernelFontsRegistered

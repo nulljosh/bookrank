@@ -45,8 +45,23 @@ struct NextChapterIntent: AppIntent {
     }
 }
 
+/// "Continue my book": opens the book you are partway through and plays from where you stopped.
+struct ContinueBookIntent: AppIntent {
+    static let title: LocalizedStringResource = "Continue my book"
+    static let description = IntentDescription("Opens the book you are partway through and plays from where you stopped.")
+    static let openAppWhenRun = true
+
+    @MainActor func perform() async throws -> some IntentResult & ProvidesDialog {
+        // The library keeps its rows on disk: the started book with the latest saved place wins.
+        guard let e = DataStore.lastStarted() else { return .result(dialog: "Pick a book in Kernel to start.") }
+        NoteTap.shared.play = true; NoteTap.shared.slug = e.slug
+        return .result(dialog: "Continuing \(e.title).")
+    }
+}
+
 struct KernelShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
+        AppShortcut(intent: ContinueBookIntent(), phrases: ["Continue my book in \(.applicationName)", "Continue my book with \(.applicationName)", "Keep reading in \(.applicationName)"], shortTitle: "Continue my book", systemImageName: "book")
         AppShortcut(intent: PlayPauseIntent(), phrases: ["Play or pause \(.applicationName)", "Pause \(.applicationName)"], shortTitle: "Play or pause", systemImageName: "playpause")
         AppShortcut(intent: NextChapterIntent(), phrases: ["Next chapter in \(.applicationName)", "Skip the chapter in \(.applicationName)"], shortTitle: "Next chapter", systemImageName: "forward.end")
         AppShortcut(intent: AddSummaryIntent(), phrases: ["Add a summary to \(.applicationName)"], shortTitle: "Add a summary", systemImageName: "doc.badge.plus")

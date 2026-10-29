@@ -204,6 +204,12 @@ final class DataStore {
 
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
 
+    /// The book you are partway through, from the rows kept on disk (or the screenshot shelf), for Continue my book.
+    static func lastStarted() -> SummaryEntry? {
+        let rows = CommandLine.flag("UITEST_SNAPSHOT") ? sampleShelf() : readCache()
+        return rows.first { e in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
+    }
+
     /// Your collections, A to Z. Same as the web's.
     var collections: [String] { Set(summaryIndex.compactMap(\.collection)).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
     /// Your note under a chapter; empty removes it. Side data, so updated_at stays.

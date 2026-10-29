@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 36.0.0 (2026-10-28)
+"Continue my book in Kernel": Siri opens the book you are partway through and plays from where you stopped.
+
 ## 35.0.0 (2026-10-28)
 Shortcuts and Siri: Add a summary from any text, Play or pause, and Next chapter, in the Shortcuts app and by voice ("Next chapter in Kernel").
 

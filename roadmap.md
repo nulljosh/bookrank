@@ -36,7 +36,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 33 | Scan pages with the document camera in Add pages | iPhone, iPad | built (VisionKit document camera, flat cropped pages through the same reader; only on a device with a camera, so not seen in the simulator yet) |
 | 34 | Read the page text on the device before upload, so photos never leave it | apps | built (Pages: Keep the exact words reads each page with Vision on the device, accurate then fast; no upload, works with no AI quota; checked with a rendered page on the Mac) |
 | 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | built (App Intents: Add a summary, Play or pause, Next chapter, with Siri phrases; in the built metadata; the simulator's Shortcuts app did not list them, check on a device) |
-| 36 | Siri: "continue my book" | apps | open |
+| 36 | Siri: "continue my book" | apps | built (ContinueBookIntent opens the book you are partway through and plays it; testContinueMyBook with a silent stand-in) |
 | 37 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
 | 38 | Lock Screen widget and a Live Activity while listening | iPhone | open |
 | 39 | Control Center control for the current book | iPhone, Mac | open |
