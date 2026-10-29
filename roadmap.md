@@ -39,7 +39,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 36 | Siri: "continue my book" | apps | built (ContinueBookIntent opens the book you are partway through and plays it; testContinueMyBook with a silent stand-in) |
 | 37 | Handoff: pick up the same chapter on the Mac | apps | built (NSUserActivity on the book page, web library link for devices without the app; needs two devices to see) |
 | 38 | Mac menu bar mini player | Mac | built (MenuBarExtra while a book is loaded: chapter, play or pause, a line back or forward, next chapter; shots from -UITEST_MENUBAR_SHOT) |
-| 39 | Mac keyboard map and a command palette | Mac | open |
+| 39 | Mac keyboard map and a command palette | Mac | built (a Listen menu holds every listening shortcut; ⌘K finds a book or action; works from an iPad keyboard too; shot on iPhone, the Mac sheet not yet seen) |
 | 40 | Spotlight finds your summaries and highlights | apps | open |
 | 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
 | 42 | Pick the narrator voice, per book | apps, web | open |

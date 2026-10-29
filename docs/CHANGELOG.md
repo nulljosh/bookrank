@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 39.0.0 (2026-10-28)
+A Listen menu on the Mac with every listening shortcut, and ⌘K to find a book or an action by typing. Both work from an iPad keyboard too.
+
 ## 38.0.0 (2026-10-28)
 A mini player in the Mac menu bar while a book is open: the chapter, play or pause, a line back or forward, and the next chapter.
 

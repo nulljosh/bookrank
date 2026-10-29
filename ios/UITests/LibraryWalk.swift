@@ -195,6 +195,20 @@ final class LibraryWalk: XCTestCase {
         saveTo("continue-my-book", XCUIScreen.main.screenshot())
     }
 
+    /// The command palette (⌘K on a Mac or an iPad keyboard), opened at launch for the shot, filtered to one book.
+    func testCommandPalette() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "UITEST_PALETTE"]
+        app.launch()
+        let field = app.textFields["Find a book or action"].firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 15))
+        sleep(1)
+        saveTo("palette", XCUIScreen.main.screenshot())
+        field.tap(); field.typeText("data")
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch.waitForExistence(timeout: 5))
+        saveTo("palette-typed", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

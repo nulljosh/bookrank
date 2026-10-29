@@ -105,8 +105,8 @@ struct ListenControls: View {
                 Button("Smaller text", systemImage: "textformat.size.smaller") { textSize -= 1 }.disabled(textSize <= 0)
                 Button("Larger text", systemImage: "textformat.size.larger") { textSize += 1 }.disabled(textSize >= 4)
             }
-            Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }.keyboardShortcut("[", modifiers: .command)
-            Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }.keyboardShortcut("]", modifiers: .command)
+            Button("Previous chapter", systemImage: "backward.end") { speaker.skip(-1) }
+            Button("Next chapter", systemImage: "forward.end") { speaker.skip(1) }
             Divider()
             Picker("Speed", systemImage: "gauge.with.dots.needle.33percent", selection: Binding(get: { speaker.rate }, set: { speaker.rate = $0 })) {
                 ForEach(Speaker.speeds, id: \.self) { Text("\(($0 * 100).rounded() / 100, specifier: "%g")×").tag($0) }

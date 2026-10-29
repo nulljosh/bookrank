@@ -204,10 +204,11 @@ final class DataStore {
 
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
 
+    /// Your books as last kept on disk (the screenshot shelf in screenshot runs), for Siri and the command palette.
+    static func shelf() -> [SummaryEntry] { CommandLine.flag("UITEST_SNAPSHOT") ? sampleShelf() : readCache() }
     /// The book you are partway through, from the rows kept on disk (or the screenshot shelf), for Continue my book.
     static func lastStarted() -> SummaryEntry? {
-        let rows = CommandLine.flag("UITEST_SNAPSHOT") ? sampleShelf() : readCache()
-        return rows.first { e in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
+        shelf().first { e in e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }
     }
 
     /// Your collections, A to Z. Same as the web's.

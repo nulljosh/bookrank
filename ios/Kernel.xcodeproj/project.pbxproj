@@ -30,6 +30,7 @@
 		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */; };
 		2E7C473755BE443C32332247 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
+		2F0EFA5B971F40F98A5AE0CD /* CommandPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */; };
 		3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */; };
 		31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
 		36B7AE29E79211DF6BD35B01 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
@@ -81,6 +82,7 @@
 		9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
 		9C1647D46D00627BD552A07E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849BD03EBC174F2FFE54D4A /* Goal.swift */; };
 		9D93D3DC660DE6573928650E /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C110E896A31BA878678B4AF /* Intents.swift */; };
+		A0D9BE9D585C0799DEF873F3 /* CommandPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */; };
 		A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
@@ -150,6 +152,7 @@
 		27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Bold.otf"; sourceTree = "<group>"; };
 		28F2279A9A1CB974E6CE26AD /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		29A3854E0210223CC5024821 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPalette.swift; sourceTree = "<group>"; };
 		32D10340DE121C50437BAE35 /* KernelMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
@@ -304,6 +307,7 @@
 				20EE769FDA16E1E24C359F00 /* AccountView.swift */,
 				D6E725F291428741C2DC63FE /* AddPagesView.swift */,
 				7553A26F78E2CFC07C8E8C6D /* AskView.swift */,
+				30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */,
 				D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
 				FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */,
@@ -579,6 +583,7 @@
 				CF8195898C51A6BFA200D9C8 /* AskView.swift in Sources */,
 				6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */,
 				7B30D137EE790240CF857092 /* Book.swift in Sources */,
+				A0D9BE9D585C0799DEF873F3 /* CommandPalette.swift in Sources */,
 				10F487E9EED7735E635DD4E6 /* DataStore.swift in Sources */,
 				AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */,
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
@@ -635,6 +640,7 @@
 				7B6C63ED03A93E438B3BDD66 /* AskView.swift in Sources */,
 				FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */,
 				E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */,
+				2F0EFA5B971F40F98A5AE0CD /* CommandPalette.swift in Sources */,
 				012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */,
 				91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */,
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,

@@ -27,8 +27,7 @@ struct MiniPlayer: View {
                 // A line back or forward; whole chapters are in the book's list and on the lock screen.
                 Button("Back a line", systemImage: "gobackward") { speaker.nudge(-1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 Button(speaker.playing && !speaker.paused ? "Pause" : "Play", systemImage: speaker.loading ? "stop.fill" : (speaker.playing && !speaker.paused ? "pause.fill" : "play.fill")) { speaker.toggle() }
-                    .labelStyle(.iconOnly).font(.kernel(.title2)).contentTransition(.symbolEffect(.replace))
-                    .keyboardShortcut("p", modifiers: [.command, .shift])
+                    .labelStyle(.iconOnly).font(.kernel(.title2)).contentTransition(.symbolEffect(.replace))   // ⌘⇧P lives in the Listen menu
                 Button("Forward a line", systemImage: "goforward") { speaker.nudge(1) }.labelStyle(.iconOnly).foregroundStyle(.secondary)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(speaker.chapters.indices.contains(speaker.ch) ? speaker.chapters[speaker.ch].title : "Listening").font(.kernel(.subheadline)).lineLimit(1)
@@ -67,7 +66,6 @@ struct MiniPlayer: View {
                 .menuStyle(.button).buttonStyle(.plain).fixedSize()
                 .accessibilityLabel("Speed, \(speaker.rate.formatted()) times")
                 Button("Stop", systemImage: "xmark") { speaker.stop() }.labelStyle(.iconOnly).foregroundStyle(.secondary)
-                    .keyboardShortcut(".", modifiers: .command)
             }
             .buttonStyle(.plain)
             .padding(.horizontal, 20).padding(.vertical, 10)

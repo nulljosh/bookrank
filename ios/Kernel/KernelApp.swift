@@ -30,6 +30,7 @@ struct KernelApp: App {
     // One splash per cold launch. Store screenshots skip it so they stay the same.
     @State private var showSplash = !CommandLine.flag("UITEST_SNAPSHOT")
     @AppStorage("spine-theme") private var theme: String = "system"
+    @State private var palette = CommandLine.flag("UITEST_PALETTE")
 
     var body: some Scene {
         WindowGroup {
@@ -44,7 +45,9 @@ struct KernelApp: App {
             .preferredColorScheme(theme == "dark" ? .dark : theme == "light" ? .light : nil)
             .tint(amber)
             .font(.kernel(.body))
+            .sheet(isPresented: $palette) { CommandPalette().tint(amber) }
         }
+        .commands { ListenCommands(palette: $palette) }
         #if os(macOS)
         MenuBarExtra("Kernel", systemImage: Speaker.shared.playing && !Speaker.shared.paused ? "book.fill" : "book", isInserted: .constant(Speaker.shared.slug != nil)) {
             MenuBarPlayer()
