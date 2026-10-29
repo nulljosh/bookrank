@@ -55,7 +55,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | built (profile, then Listening, Goodreads, Appearance, Notifications and Data, which now also opens Storage, then credentials, sign out and delete) |
 | 53 | Notifications: weekly recap, quiet hours | apps | built (Account, Notifications: pick the hour the morning line arrives, 7 to noon, and nothing comes before it; a Weekly recap toggle sends your minutes and days on the week's last evening, requeued each time you listen) |
 | 54 | Public profile: the shelf and highlights you choose to share | web | built (profile?u=<name> shows the books you shared by link, and your highlights from them if you tick that; off until you turn it on in your profile, and only with a username you picked. Needs the jaybulb-api `public_profile` lookup deployed: committed, deploy waits on Joshua) |
-| 55 | Share links with cover preview cards | web | open |
+| 55 | Share links with cover preview cards | web | built (functions/share.js puts the book's title and cover into the link preview of /share?t=; the apps' share.html links redirect there and get it too. Checked with a local mock of the API; the card itself shows in Messages, Slack and X) |
 | 56 | Landing refresh with real app screens and the Goodreads story | web | open |
 | 57 | Opt-in public pages for shared summaries | web | open |
 | 58 | 500-book library stays smooth (Goodreads scale) | apps, web | open |

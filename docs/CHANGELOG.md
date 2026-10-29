@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 55.0.0 (2026-10-29)
+A shared summary link now shows up as a card with the book's title and cover in Messages, Slack and X, instead of a bare link.
+
 ## 54.0.0 (2026-10-29)
 A public profile, if you want one: turn it on in your profile and bookrank.jaybulb.com/profile?u=<your name> shows the books you already shared by link, and your highlights from them if you choose. Off by default.
 
