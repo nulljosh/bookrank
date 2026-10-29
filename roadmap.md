@@ -93,7 +93,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 90 | Control Center control for the current book | iPhone, Mac | built (CHANGELOG 90.0.0; iOS 18 and macOS 26 for the control) |
 | 91 | CarPlay audio | iPhone | built (CHANGELOG 91.0.0; inert until Apple grants com.apple.developer.carplay-audio, then add it to Kernel.entitlements) |
 | 92 | Share extension: save text or a web article as a summary | apps | built (CHANGELOG 92.0.0; iPhone and iPad; the extension itself shows only in a signed build) |
-| 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
+| 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | eval built (`node narrate-eval.mjs`, nine chapters, seven rules); tuning waits on Workers AI, 0 of 9 while it answers 502 |
 | 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | built (CHANGELOG 94.0.0; Kernel opens the page, Goodreads' own button marks it, so no one's account is touched by the agent) |
 | 95 | Quiz me: three questions per chapter, answers checked | apps, web | built (CHANGELOG 95.0.0; blanks the chapter's own bold terms, no model) |
 | 96 | Key ideas card at the top of each book | apps, web | built (CHANGELOG 96.0.0; the summary's own takeaways, five at most) |

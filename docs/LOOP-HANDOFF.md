@@ -20,7 +20,7 @@ Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the
 
 Everything through 99 except 93 and 67 is built and tagged. What is left needs one of these first:
 
-1. **Workers AI** (Workers Paid): row 93 narrator eval (95 to 97 shipped without AI, from the summaries' own text). On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
+1. **Workers AI** (Workers Paid): row 93: the eval is built, run `node narrate-eval.mjs`, tune the prompt in functions/api/narrate.js until 9 of 9 pass (95 to 97 shipped without AI). On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
 2. **Deploy jaybulb-api** (`cd ~/Documents/Code/jaybulb-api && npx wrangler deploy`): the public profile (54) and listed share pages (57) are committed and tested but not live. The agent was not allowed to deploy the shared API.
 3. **The App Group** is in the code (rows 88 to 90 and 92 are built); automatic signing registers it and the two extensions on the first archive (see SHIPPING.md).
 4. **Apple's CarPlay audio entitlement** (request it at developer.apple.com/contact/carplay): row 91 is built and waits only on it; once granted, add `com.apple.developer.carplay-audio` to `ios/Kernel/Kernel.entitlements`.
