@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 82.0.0 (2026-10-29)
+A second look at Blinkist, Shortform, Readwise Reader and Headway. Kernel already has their continue card, weekly goal and stats, audio or text, highlights, offline and imports; the web player now also says how much of the chapter is left, like the apps. What remains (key ideas, exercises, a coach) waits on Workers AI.
+
 ## 81.0.0 (2026-10-29)
 A second screenshot set for the App Store's product page test: the same three screens in dark mode, iPhone and iPad, against today's light set. The plan is in docs/store/ppo.md; it starts once the version in the screenshots is the one on sale.
 

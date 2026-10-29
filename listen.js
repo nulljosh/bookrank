@@ -256,7 +256,7 @@ export function mount(root, api) {
       [...text.querySelectorAll('.on')].forEach(e => { e.classList.remove('on'); e.innerHTML = e.dataset.raw; });
       el.classList.add('on');
       el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
-      status.textContent = `${chs[ch].title} · ${i + 1}/${text.children.length}`;
+      status.textContent = `${chs[ch].title} · ${duration(minutes([...text.children].slice(i).map(e => e.textContent).join('')))} left`;   // as the apps' Now Playing
       fill.style.width = (progress(ch, i, text.children.length, chs.length) * 100) + '%';
     },
     onWord: (i, s, e) => {
