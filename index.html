@@ -112,6 +112,12 @@ a:hover { text-decoration:underline; }
 .steps .n { font-size:13px; font-weight:600; letter-spacing:.12em; color:var(--accent); }
 @media (max-width:760px) { .steps { grid-template-columns:1fr; } }
 
+.screens, .goodreads { padding-bottom:96px; scroll-margin-top:80px; }
+.screens h2, .goodreads h2 { font-size:clamp(32px, 5vw, 56px); font-weight:700; letter-spacing:-.03em; line-height:1.05; text-align:center; margin-bottom:40px; }
+.shots { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; max-width:880px; margin:0 auto; }
+.shots img { width:100%; height:auto; border-radius:24px; border:1px solid var(--border); background:var(--bg2); }
+.goodreads p { max-width:640px; margin:0 auto; text-align:center; font-size:19px; color:var(--text2); }
+@media (max-width:760px) { .shots { grid-template-columns:1fr 1fr; } .shots img:last-child { display:none; } }
 .gold-band { border-radius:var(--card); background:var(--accent); color:var(--on-accent); text-align:center; padding:96px 24px; }
 .gold-band p { font-size:clamp(19px, 2.2vw, 22px); max-width:30em; margin:24px auto 32px; opacity:.9; }
 .gold-band .btn { background:var(--on-accent); color:var(--accent); }
@@ -175,10 +181,24 @@ footer nav svg { width:16px; height:16px; flex:none; fill:none; stroke:currentCo
 <section class="how wrap" id="how">
   <h2>Three steps.</h2>
   <div class="steps">
-    <div><p class="n">01</p><h3>Photograph the pages</h3><p>Shoot each chapter of a book you own. The photos stay yours and go once the summary is done.</p></div>
+    <div><p class="n">01</p><h3>Bring your books</h3><p>Photos of the pages, an EPUB or PDF, your Kindle and Readwise highlights, or your Goodreads shelves.</p></div>
     <div><p class="n">02</p><h3>Get the kernel</h3><p>Each chapter becomes a short summary in plain words: the ideas, then the takeaways.</p></div>
-    <div><p class="n">03</p><h3>Read it or hear it</h3><p>One narrator explains each chapter, on your phone, your Mac or the web. Share one book with a link.</p></div>
+    <div><p class="n">03</p><h3>Read it or hear it</h3><p>One narrator explains each chapter, in English, French, Spanish or German. Download a book and it plays offline.</p></div>
   </div>
+</section>
+
+<section class="wrap screens" aria-label="The iPhone app">
+  <h2>On your iPhone.</h2>
+  <div class="shots">
+    <img src="/screens/library.jpg" alt="The library: the book you are reading, today's five highlights, and your shelf" width="390" height="848" loading="lazy">
+    <img src="/screens/book.jpg" alt="A book's page: its chapters, with Continue and Download" width="390" height="848" loading="lazy">
+    <img src="/screens/chapter.jpg" alt="A chapter, ready to read or hear" width="390" height="848" loading="lazy">
+  </div>
+</section>
+
+<section class="wrap goodreads" id="goodreads">
+  <h2>Your Goodreads, with the ideas back.</h2>
+  <p>Sign in on Goodreads' own page inside the app and your shelves come along: what you are reading, what you have read, what you want to read. Books you finished but never summarized wait in their own row, so the next one is obvious. Your Goodreads login stays on your device and never reaches Kernel.</p>
 </section>
 
 <section class="wrap">
@@ -197,8 +217,8 @@ footer nav svg { width:16px; height:16px; flex:none; fill:none; stroke:currentCo
       <a href="https://apps.apple.com/app/id6792376485"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>App Store</a>
       <a href="/privacy.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>Privacy</a>
       <a href="/brand/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Brand</a>
-      <a href="https://github.com/nulljosh/bookrank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5"/></svg>Source</a>
-      <a href="https://github.com/nulljosh/bookrank/blob/main/docs/API.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5c-2 0-3 1-3 3v2c0 1.5-.8 2.5-2.5 2.5C5.2 12 6 13 6 14.5v2c0 2 1 3 3 3M15 4.5c2 0 3 1 3 3v2c0 1.5.8 2.5 2.5 2.5-1.7 0-2.5 1-2.5 2.5v2c0 2-1 3-3 3"/></svg>API</a>
+      <a href="https://github.com/nulljosh/kernel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5M15.5 7l5 5-5 5"/></svg>Source</a>
+      <a href="https://github.com/nulljosh/kernel/blob/main/docs/API.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5c-2 0-3 1-3 3v2c0 1.5-.8 2.5-2.5 2.5C5.2 12 6 13 6 14.5v2c0 2 1 3 3 3M15 4.5c2 0 3 1 3 3v2c0 1.5.8 2.5 2.5 2.5-1.7 0-2.5 1-2.5 2.5v2c0 2-1 3-3 3"/></svg>API</a>
       <a href="https://jaybulb.com"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>jaybulb.com</a>
     </nav>
   </div>

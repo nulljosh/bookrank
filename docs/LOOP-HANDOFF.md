@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100. v50 tagged and checkpointed 2026-10-29.
 
-Next row: **56, Landing refresh with real app screens and the Goodreads story**. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
+Next row: **57, Opt-in public pages for shared summaries**. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
 
 ## How to QA
 

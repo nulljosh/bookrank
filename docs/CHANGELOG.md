@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 56.0.0 (2026-10-29)
+The landing tells the current story: every way to bring books in, narration in four languages, real iPhone screens, and what Goodreads does for you. Fresh English store screenshots.
+
 ## 55.0.0 (2026-10-29)
 A shared summary link now shows up as a card with the book's title and cover in Messages, Slack and X, instead of a bare link.
 
