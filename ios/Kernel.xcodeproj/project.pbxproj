@@ -56,6 +56,7 @@
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
 		622B713EAD540119BE0B693E /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
+		647DD44F3E5C566CA0D538B7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */; };
 		6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
 		66FA3A9E0BF6F1B90DCF99C4 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
 		670187A13FCDD35DCBEBF3C9 /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = 28F2279A9A1CB974E6CE26AD /* Kernel.icon */; };
@@ -97,6 +98,7 @@
 		AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
+		B36F0C2C58643588AF88C076 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		B4355185817350A40674BF08 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		B72C4EA1CA39F51878968A75 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D42622E422604FB14F1EF9 /* SplashView.swift */; };
@@ -210,6 +212,7 @@
 		D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
 		DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		DFFB1269057E127A040B9672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E2296F31EB47281BF6AF3961 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E7033956A451A6A740DBEDBF /* Ebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
 		E9350AD17532E2632CEBF4A5 /* the-optimist.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-optimist.md"; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 				7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */,
 				EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */,
 				44143EBB20DFD72FEE93B4B2 /* KernelMac.entitlements */,
+				E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */,
 				8880599E6CAD5AF3B050787B /* Models */,
 				2CCA063270FC224D0BE2A4CF /* Resources */,
 				91B30A93D47B31BF00C908FC /* Views */,
@@ -494,7 +498,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				de,
 				en,
+				es,
+				fr,
 			);
 			mainGroup = F3C8B680AD9BD3B1C3777E0C;
 			minimizedProjectReferenceProxies = 1;
@@ -530,6 +537,7 @@
 				FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */,
 				59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */,
 				D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */,
+				B36F0C2C58643588AF88C076 /* Localizable.xcstrings in Resources */,
 				7BF9CE9EC2D13D4F8B4C7A07 /* accounting-for-canadians-for-dummies.md in Resources */,
 				7D545127040FA6FF4DCB2C66 /* accounting-for-canadians.md in Resources */,
 				B78C98F75A0D69F52D3EEE78 /* acing-the-system-design-interview.md in Resources */,
@@ -563,6 +571,7 @@
 				1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */,
 				235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */,
 				E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */,
+				647DD44F3E5C566CA0D538B7 /* Localizable.xcstrings in Resources */,
 				2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */,
 				76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */,
 				54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */,

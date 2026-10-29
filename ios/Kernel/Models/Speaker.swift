@@ -144,7 +144,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     }
     func addSleepTime() {
         guard let end = sleepEnds else { return }
-        sleepEnds = end + 600; armSleep(); status = "Ten more minutes."
+        sleepEnds = end + 600; armSleep(); status = String(localized: "Ten more minutes.")
     }
 
     /// The last line of a chapter finished: on to the next, unless the sleep timer says stop here.

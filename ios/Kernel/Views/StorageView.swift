@@ -15,7 +15,7 @@ struct StorageView: View {
         }
         return e.compactMap { ($0 as? URL).flatMap { try? $0.resourceValues(forKeys: [.fileSizeKey]).fileSize } }.reduce(0) { $0 + Int64($1) }
     }
-    private func bytes(_ n: Int64) -> String { n == 0 ? "None" : n.formatted(.byteCount(style: .file)) }
+    private func bytes(_ n: Int64) -> String { n == 0 ? String(localized: "None") : n.formatted(.byteCount(style: .file)) }
 
     var body: some View {
         let _ = refresh

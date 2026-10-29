@@ -47,7 +47,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 44 | Storage screen: what is downloaded, how big, remove it | apps | built (Your reading, Storage on this device: each book's narration size, swipe or right-click to remove, the search index with a clear button, the offline library) |
 | 45 | Sleep timer fades out; shake to add ten minutes | iPhone | built (the natural voice fades over the last 30 seconds; a shake adds ten minutes; the menu says when it pauses. Audio and shake are not testable headless, so the fade is build-checked) |
 | 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | built (the chapter text follows the accessibility text sizes from Settings, long chapter titles wrap, the Mac menu bar player and onboarding speak properly to VoiceOver, Reduce Motion turns off slides and springs app-wide) |
-| 47 | Languages: French, Spanish and German interface | apps, web | open |
+| 47 | Languages: French, Spanish and German interface | apps, web | built (apps: a string catalog with 227 strings in each language, picked from the system language; web: i18n.js swaps fixed text from i18n/<lang>.json by the browser language, never touching your summaries. Still English: durations like "4 hr 2 min" and sentences put together in code) |
 | 48 | Narrate a chapter in your own language | apps, web | open |
 | 49 | Localized screenshots and listings | store | open |
 | 50 | First-run pages offer the Goodreads sign-in | apps | open |

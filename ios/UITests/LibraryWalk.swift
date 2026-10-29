@@ -255,6 +255,19 @@ final class LibraryWalk: XCTestCase {
         if chapter.waitForExistence(timeout: 10) { chapter.tap(); sleep(3); saveTo("ax-chapter", XCUIScreen.main.screenshot()) }
     }
 
+    /// The interface in French: the library and Storage, with the books themselves left as written.
+    func testFrench() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-AppleLanguages", "(fr)", "-AppleLocale", "fr_FR"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Résumés"].waitForExistence(timeout: 10))
+        sleep(3)
+        saveTo("fr-library", XCUIScreen.main.screenshot())
+        let open = app.buttons["Stockage sur cet appareil"].firstMatch
+        for _ in 0..<10 where !open.isHittable { app.swipeUp() }
+        if open.waitForExistence(timeout: 5) { open.tap(); sleep(1); saveTo("fr-storage", XCUIScreen.main.screenshot()) }
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

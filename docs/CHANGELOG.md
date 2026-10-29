@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 47.0.0 (2026-10-28)
+Kernel speaks French, Spanish and German: the apps follow the system language and the website follows the browser's. Your summaries stay as you wrote them.
+
 ## 46.0.0 (2026-10-28)
 Accessibility: chapters follow the largest text sizes in Settings, long chapter titles wrap instead of cutting off, the Mac menu bar player names its buttons for VoiceOver, and Reduce Motion stops slides and springs everywhere.
 
