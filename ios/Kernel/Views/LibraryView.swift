@@ -49,13 +49,18 @@ struct LibraryView: View {
             }
             .onChange(of: selected) { _, _ in chapter = nil }
             #else
-            NavigationStack {
-                list
-                    .navigationDestination(isPresented: $showSample) { SummaryDetailView(slug: "sample", store: store) }
-                    .navigationDestination(item: $openSlug) { SummaryDetailView(slug: $0, store: store) }
-                    .navigationTitle("Summaries")
-                    .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
-                    .toolbar { accountButton }
+            if sizeClass == .regular {
+                // iPad: the books down the side, a picked book (and its chapters) in the detail column.
+                // ponytail: two columns, not the Mac's three; the chapter pushes inside the book column.
+                NavigationSplitView {
+                    iosList.navigationSplitViewColumnWidth(min: 300, ideal: 360, max: 460)
+                } detail: {
+                    NavigationStack {
+                        ContentUnavailableView("Pick a book", systemImage: "books.vertical", description: Text("Its chapters open here."))
+                    }
+                }
+            } else {
+                NavigationStack { iosList }
             }
             #endif
         }
@@ -142,6 +147,17 @@ struct LibraryView: View {
                 .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
         }
     }
+
+    #if os(iOS)
+    private var iosList: some View {
+        list
+            .navigationDestination(isPresented: $showSample) { SummaryDetailView(slug: "sample", store: store) }
+            .navigationDestination(item: $openSlug) { SummaryDetailView(slug: $0, store: store) }
+            .navigationTitle("Summaries")
+            .navigationBarTitleDisplayMode(sizeClass == .regular ? .inline : .automatic)
+            .toolbar { accountButton }
+    }
+    #endif
 
     /// A book you are partway through.
     private func started(_ e: SummaryEntry) -> Bool { e.listen?.for == e.updatedAt && ((e.listen?.pos.ch ?? 0) > 0 || (e.listen?.pos.line ?? 0) > 0) }

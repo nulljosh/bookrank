@@ -11,7 +11,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 8 | Goal streak dots under the ring (A4), weekly goal on the web | apps, web | built |
 | 9 | Highlights merge across devices instead of last writer wins (review item a) | apps, web | built (three-way merge on save: marks.js and ListenState.merge) |
 | 10 | `updated_at` moves only on content edits, in jaybulb-api (review b); one listen stylesheet (review c) | api, web | built (jaybulb-api `touch: ["content"]`, listen.css) |
-| 11 | iPad pass: reading column, split view, screenshots | iPad | open |
+| 11 | iPad pass: reading column, split view, screenshots | iPad | built (two-column split view on regular width, testIPad) |
 | 12 | Mac store screenshots at 2880x1800, signed-in Mac walk | Mac | open |
 | 13 | Icon and Kernel Sans A+ at small sizes | all | open |
 | 14 | Cold launch: Release build timing, no white flash | apps | open |

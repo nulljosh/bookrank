@@ -303,6 +303,27 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("text-menu", XCUIScreen.main.screenshot())
     }
 
+    /// iPad in landscape: the books beside the picked book, then a chapter in the same column. Never presses Listen.
+    func testIPad() throws {
+        try XCTSkipUnless(UIDevice.current.userInterfaceIdiom == .pad, "iPad only")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES", "UITEST_SNAPSHOT"]
+        app.launch()
+        let book = app.buttons.matching(NSPredicate(format: "label CONTAINS 'The Optimist'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 15))
+        sleep(1)
+        saveTo("ipad-library", XCUIScreen.main.screenshot())
+        book.tap()
+        let chapter = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Chicago'")).firstMatch
+        XCTAssertTrue(chapter.waitForExistence(timeout: 10))
+        sleep(2)
+        saveTo("ipad-book", XCUIScreen.main.screenshot())
+        chapter.tap()
+        sleep(2)
+        saveTo("ipad-chapter", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
