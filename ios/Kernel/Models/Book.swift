@@ -56,3 +56,18 @@ struct ListenState: Codable {
         return local.filter { !b.contains($0) || s.contains($0) } + server.filter { !b.contains($0) && !l.contains($0) }
     }
 }
+
+extension [SummaryEntry] {
+    /// The library in the order picked in Sort (recent, title, progress, short), books in progress first. Same orders as the web.
+    /// ponytail: progress parses every book's chapters per call; cache it if a big library stutters.
+    func sorted(by sort: String, started: @escaping (SummaryEntry) -> Bool) -> [SummaryEntry] {
+        let frac = { (e: SummaryEntry) in started(e) ? Double((e.listen?.pos.ch ?? 0) + 1) / Double(Swift.max(1, parseChapters(e.content).count)) : 0 }
+        let by: [SummaryEntry] = switch sort {
+        case "title": self.sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
+        case "progress": self.sorted { frac($0) > frac($1) }
+        case "short": self.sorted { $0.content.count < $1.content.count }
+        default: self.sorted { ($0.updatedAt ?? "") > ($1.updatedAt ?? "") }
+        }
+        return by.filter(started) + by.filter { !started($0) }
+    }
+}

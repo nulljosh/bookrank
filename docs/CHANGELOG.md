@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 20.0.0 (2026-10-28)
+Sort the library by recently edited, title, progress or shortest first, and show all books, the ones in progress or the ones not started. Each device remembers your pick.
+
 ## 19.0.0 (2026-10-28)
 Collections: put a book in a group of your own from its page, and the library lists your collections A to Z, then everything else. The same on the apps and the web.
 

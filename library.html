@@ -45,6 +45,7 @@ details.gr { margin-top:1.5rem; }
 details.gr .by { display:block; }
 details.gr summary { cursor:pointer; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); padding:0.4rem 0; }
 ul.list li .by { color:var(--text3); font-size:0.8125rem; }
+.sortbar { display:flex; gap:0.5rem; margin:-0.25rem 0 0.5rem; } .sortbar select, #goal select { font:inherit; font-size:0.8125rem; padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
 #find { width:100%; margin:0.25rem 0 0.75rem; padding:0.7rem 0.9rem; border:1px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); font:inherit; }
 ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
 ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
@@ -114,6 +115,10 @@ dl.profile dt { color:var(--text3); }
     </div>
     <div class="goal" id="goal"></div>
     <input type="search" id="find" class="hide" placeholder="Search your summaries" aria-label="Search your summaries" autocomplete="off">
+    <div class="sortbar hide" id="sortbar">
+      <select id="sort" aria-label="Sort"><option value="recent">Recently edited</option><option value="title">Title</option><option value="progress">Progress</option><option value="short">Shortest first</option></select>
+      <select id="show" aria-label="Show"><option value="all">All books</option><option value="started">In progress</option><option value="new">Not started</option></select>
+    </div>
     <ul class="list" id="list"></ul>
     <p class="msg" id="listMsg"></p>
   </section>
@@ -471,20 +476,43 @@ const stamp = (title, body, slug) => ({
 });
 
 // ---- list ----
+// Every book's full text (the list rows skip it): search, progress and length read it. Offline, the kept copies.
+let texts = null;
+async function allTexts(data) {
+  if (texts) return texts;
+  const { data: full } = await db.from(TABLE).select('id,content');
+  const t = {};
+  for (const r of full || await Promise.all(data.map(r => offline.get(r.id)))) if (r) t[r.id] = r.content || '';
+  return texts = t;
+}
+const pref = (k, d) => { try { return localStorage.getItem(k) || d; } catch { return d; } };
+$('sort').onchange = () => { try { localStorage.setItem('kernel.sort', $('sort').value); } catch {} load(); };
+$('show').onchange = () => { try { localStorage.setItem('kernel.show', $('show').value); } catch {} load(); };
 async function load() {
   listen?.stop();
   const { data, error, offline: off } = await rows.list();
   if (error) { $('listMsg').textContent = error.message; return []; }
+  texts = null;   // ponytail: refetched once per list view when search or a sort needs it; keep() could feed it instead
   $('list').innerHTML = '';
   $('listMsg').textContent = off ? 'Offline. Showing your last copy.' : data.length ? '' : 'No summaries yet.';
   // Rows with a live resume point come first under "Currently playing"; the untouched
   // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
   const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
+  // Sort and filter, remembered in this browser. Progress and length need the text, fetched once.
+  const sort = $('sort').value = pref('kernel.sort', 'recent'), show = $('show').value = pref('kernel.show', 'all');
+  $('sortbar').classList.toggle('hide', data.length < 2);
+  if (sort === 'progress' || sort === 'short') await allTexts(data);
+  const len = r => (texts?.[r.id] || '').length;
+  const frac = r => started(r) ? (r.listen.pos.ch + 1) / Math.max(1, chapters(texts?.[r.id] || '').length) : 0;
+  const order = { title: (a, b) => a.title.localeCompare(b.title), progress: (a, b) => frac(b) - frac(a), short: (a, b) => len(a) - len(b) }[sort];
+  const shown = data.filter(r => show === 'all' || (show === 'started') === !!started(r));
+  if (order) shown.sort(order);   // recent is the server's order
+  if (!shown.length && data.length) $('listMsg').textContent = show === 'started' ? 'Nothing in progress.' : 'Every book is started.';
   // Then your collections, A to Z, then everything in none of them.
-  const rest = data.filter(r => !started(r));
+  const rest = shown.filter(r => !started(r));
   const names = [...new Set(data.map(r => r.collection).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   $('collections').replaceChildren(...names.map(n => new Option(n)));
-  const groups = [['Currently playing', data.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),
+  const groups = [['Currently playing', shown.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),
     [data.some(started) || names.length ? 'Library' : '', rest.filter(r => !r.collection)]];
   for (const [label, rows] of groups) {
     if (!rows.length) continue;
@@ -510,13 +538,10 @@ async function load() {
   // Search by title or by anything in the text. Appears once the list is long enough to need it.
   // The list rows skip the text to stay light; the first keystroke fetches it once, then search is local.
   $('find').classList.toggle('hide', data.length < 6);
-  let texts = null;
   $('find').oninput = async () => {
     const q = $('find').value.trim().toLowerCase();
     if (q && !texts) {
-      texts = {};
-      const { data: full } = await db.from(TABLE).select('id,content');
-      for (const r of full || await Promise.all(data.map(r => offline.get(r.id)))) if (r) texts[r.id] = r.content || '';   // offline: the kept copies
+      await allTexts(data);
       if ($('find').value.trim().toLowerCase() !== q) return; // a newer keystroke took over
     }
     const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || (texts?.[r.id] || '').toLowerCase().includes(q)).map(r => r.id));

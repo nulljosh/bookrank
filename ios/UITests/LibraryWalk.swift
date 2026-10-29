@@ -48,6 +48,26 @@ final class LibraryWalk: XCTestCase {
         saveTo("collection-library", XCUIScreen.main.screenshot())
     }
 
+    /// Sort and filter: shortest first, then only the books in progress.
+    func testSortFilter() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]   // no -kernel.sort here: an argument would pin the setting
+        app.launch()
+        let menu = app.buttons["Sort and filter"].firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 15)); menu.tap()
+        app.buttons["All books"].firstMatch.tap()   // settings persist between runs
+        menu.tap()
+        app.buttons["Shortest first"].firstMatch.tap()
+        sleep(2)
+        saveTo("sort-short", XCUIScreen.main.screenshot())
+        menu.tap()
+        app.buttons["In progress"].firstMatch.tap()
+        sleep(2)
+        saveTo("show-started", XCUIScreen.main.screenshot())
+        menu.tap(); app.buttons["All books"].firstMatch.tap()   // back to the defaults, so later store shots are not filtered
+        menu.tap(); app.buttons["Recently edited"].firstMatch.tap()
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

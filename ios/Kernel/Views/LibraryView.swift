@@ -8,6 +8,8 @@ struct LibraryView: View {
     @State private var openSlug: String?
     @State private var showAccount = false
     @State private var query = ""
+    @AppStorage("kernel.sort") private var sort = "recent"   // recent, title, progress, short; same keys as the web
+    @AppStorage("kernel.show") private var show = "all"      // all, started, new
     @State private var openShelves: Set<String> = ["Currently reading"]
     private static let shelfIcon = ["Currently reading": "book", "Read on Goodreads, no summary yet": "checkmark.circle", "Want to read": "bookmark"]
     @State private var showSample = false
@@ -151,6 +153,17 @@ struct LibraryView: View {
                 Button("Add pages", systemImage: "plus") { showAddPages = true }
             }
         }
+        if store.summaryIndex.count > 1 {
+            ToolbarItem(placement: .automatic) {
+                Menu {
+                    Picker("Sort", selection: $sort) {
+                        Text("Recently edited").tag("recent"); Text("Title").tag("title"); Text("Progress").tag("progress"); Text("Shortest first").tag("short")
+                    }
+                    Picker("Show", selection: $show) { Text("All books").tag("all"); Text("In progress").tag("started"); Text("Not started").tag("new") }
+                } label: { Image(systemName: "line.3.horizontal.decrease") }
+                .accessibilityLabel("Sort and filter")
+            }
+        }
         ToolbarItem(placement: .automatic) {
             Button { showAccount = true } label: { Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle") }
                 .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
@@ -196,7 +209,7 @@ struct LibraryView: View {
             ContentUnavailableView("No summaries yet", systemImage: "books.vertical", description: Text("Summaries on this account show up here."))
         } else {
             // Books you are partway through come first; no group headers.
-            let rows = store.summaryIndex.filter(started) + store.summaryIndex.filter { !started($0) }
+            let rows = store.summaryIndex.filter { show == "all" || (show == "started") == started($0) }.sorted(by: sort, started: started)
             let q = query.trimmingCharacters(in: .whitespaces).lowercased()
             let shown = q.isEmpty ? rows : rows.filter { $0.title.lowercased().contains(q) || $0.content.lowercased().contains(q) }
             // The Goodreads shelves, folded so a few hundred read books do not bury the
