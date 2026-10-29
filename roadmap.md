@@ -95,9 +95,9 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 92 | Share extension: save text or a web article as a summary | apps | built (CHANGELOG 92.0.0; iPhone and iPad; the extension itself shows only in a signed build) |
 | 93 | Narrator quality: an eval set of chapters, prompt tuned against it | api | open |
 | 94 | Mark a book read on Goodreads from the app (signed-in web view) | apps | built (CHANGELOG 94.0.0; Kernel opens the page, Goodreads' own button marks it, so no one's account is touched by the agent) |
-| 95 | Quiz me: three questions per chapter, answers checked | apps, web | open |
-| 96 | Key ideas card at the top of each book | apps, web | open |
-| 97 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 95 | Quiz me: three questions per chapter, answers checked | apps, web | built (CHANGELOG 95.0.0; blanks the chapter's own bold terms, no model) |
+| 96 | Key ideas card at the top of each book | apps, web | built (CHANGELOG 96.0.0; the summary's own takeaways, five at most) |
+| 97 | Two-line recap at the end of each chapter in Listen | apps, web | built (CHANGELOG 97.0.0; In short, from the chapter's key sentences) |
 | 98 | Connections: the same idea across your books | apps, web | built (CHANGELOG 98.0.0; on the search-by-meaning index, no new model) |
 | 99 | Search by voice: dictate into search, on the device | apps | built (CHANGELOG 99.0.0: the keyboard mic and Mac dictation fill search; a visible mic only if people miss it) |
 | 100 | Kernel 100 | all | open |

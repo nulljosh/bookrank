@@ -5,7 +5,7 @@
 set -e
 cd "$(dirname "$0")/.."
 rm -rf dist && mkdir -p dist
-cp index.html spark.js _redirects _headers library.html share.html profile.html listen.js listen.css covers.js goal.js marks.js voices.js search.js meaning.js card.js goodreads-export.js kindle.js epub.js privacy.html tokens.css webmcp.js sw.js onboarding.js i18n.js public-profile.js outbox.js keys.js reading.js \
+cp index.html spark.js _redirects _headers library.html share.html profile.html listen.js listen.css covers.js goal.js marks.js voices.js search.js meaning.js card.js goodreads-export.js kindle.js epub.js privacy.html tokens.css webmcp.js sw.js onboarding.js i18n.js public-profile.js outbox.js keys.js reading.js study.js \
    manifest.webmanifest books.json icon.svg icon-192.png icon-512.png \
    icon-512-maskable.png architecture.svg ad.mp4 ad-poster.jpg og.png favicon.svg favicon-32.png apple-touch-icon.png dist/
 cp -R fonts brand i18n screens dist/

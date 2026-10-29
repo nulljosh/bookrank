@@ -391,6 +391,28 @@ final class LibraryWalk: XCTestCase {
         saveTo("goodreads-book", XCUIScreen.main.screenshot())
     }
 
+    /// Key ideas on a book, then a chapter's "In short" and a quiz answered once. All from the summary's own text.
+    func testStudy() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-kernel.show", "all"]
+        app.launch()
+        let find = app.searchFields.firstMatch
+        XCTAssertTrue(find.waitForExistence(timeout: 15)); find.tap(); find.typeText("Feng")
+        let book = app.descendants(matching: .any).matching(NSPredicate(format: "label BEGINSWITH 'Good Feng Shui'")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 5)); book.tap()
+        XCTAssertTrue(app.staticTexts["Key ideas"].waitForExistence(timeout: 10) || app.staticTexts["KEY IDEAS"].exists)
+        sleep(1); saveTo("key-ideas", XCUIScreen.main.screenshot())
+        let ch = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Chapter 1:'")).firstMatch
+        for _ in 0..<4 where !ch.isHittable { app.swipeUp() }
+        ch.tap(); sleep(2)
+        let quiz = app.buttons["Quiz me"].firstMatch
+        for _ in 0..<40 where !quiz.isHittable { app.swipeUp(velocity: .fast) }
+        saveTo("chapter-bottom", XCUIScreen.main.screenshot())
+        XCTAssertTrue(quiz.waitForExistence(timeout: 5)); quiz.tap(); sleep(1)
+        app.swipeUp(); sleep(1)
+        saveTo("chapter-end", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

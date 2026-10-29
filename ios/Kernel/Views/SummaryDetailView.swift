@@ -133,6 +133,7 @@ struct SummaryDetailView: View {
         playButton
             .listRowSeparator(.hidden)
             .selectionDisabled()
+        KeyIdeas(markdown: store.summaryMarkdown(for: slug))
         if let f = findLine(store.summaryMarkdown(for: slug), find) {
             Section("Found") {
                 #if os(macOS)
@@ -270,7 +271,7 @@ struct ChapterView: View {
                             .id(i)
                             .onTapGesture { speaker.go(to: speaker.ch, line: i) }
                     }
-                    if let store, let slug = speaker.slug, slug != "sample" { ChapterNote(store: store, slug: slug, ch: speaker.ch) }
+                    if let store, let slug = speaker.slug, slug != "sample" { ChapterEnd(store: store, slug: slug, ch: speaker.ch) }
                 }
                 .scrollTargetLayout()
                 .padding(24)

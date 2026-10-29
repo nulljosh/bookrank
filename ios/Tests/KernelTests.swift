@@ -67,6 +67,21 @@ final class KernelTests: XCTestCase {
         XCTAssertEqual(Inbox.article(fromHTML: html), ["The first real paragraph of the article, long enough to be prose and kept.", "A second paragraph with a link & an entity, also long enough."])
     }
 
+    func testStudyAidsFromTheSummaryItself() {
+        let book = "# One\n\nHabits are the **compound interest** of self-improvement, small changes adding up over the years.\n\n## Key takeaways\n- Small habits compound into remarkable results over time.\n- Focus on systems rather than goals for lasting change.\n\n# Two\n\nThe **habit loop** has four parts: cue, craving, response and reward, and each can be designed.\n\nEnvironment shapes behavior more than motivation does, so design the space around you.\n\n# Three\n\nMake good habits obvious with an **implementation intention** that names a time and place for the action."
+        let ideas = Study.keyIdeas(book)
+        XCTAssertEqual(ideas.first, "Small habits compound into remarkable results over time.")
+        XCTAssertTrue(ideas[1].hasPrefix("The habit loop has four parts"))
+        XCTAssertEqual(ideas.count, 3)
+        XCTAssertEqual(Study.recap("# Two\n\nThe habit loop has four parts, and each one can be designed on purpose.\n\nEnvironment shapes behavior more than motivation does. Design the space around you and the habit follows."),
+                       ["Environment shapes behavior more than motivation does.", "Design the space around you and the habit follows."])
+        let qs = Study.quiz(book, book: book)
+        XCTAssertEqual(qs.count, 3)
+        XCTAssertTrue(qs[0].question.contains("_____") && !qs[0].question.contains("compound interest"))
+        XCTAssertTrue(qs.allSatisfy { $0.choices.count == 3 && $0.choices.contains($0.answer) })
+        XCTAssertEqual(Study.quiz(book, book: book), qs)
+    }
+
     func testMorningLineIsReadable() {
         let content = "# Title\n\nShort.\n\n" + String(repeating: "A long readable paragraph with words. ", count: 10)
         let line = Nudge.line(from: content)

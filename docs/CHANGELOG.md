@@ -2,6 +2,15 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 97.0.0 (2026-10-29)
+In short: at the end of each chapter, one or two lines that sum it up, taken from the chapter's own key sentences. On the iPhone, iPad, Mac and the web.
+
+## 96.0.0 (2026-10-29)
+Key ideas at the top of each book: up to five, from the summary's own takeaways, numbered. Books without clear takeaways skip the card.
+
+## 95.0.0 (2026-10-29)
+Quiz me, under the In short card: up to three questions per chapter, each a sentence with one of the chapter's bold terms blanked out and choices from the same book. Pick one and it shows right or wrong, then your score. No model, nothing leaves the device.
+
 ## 91.0.0 (2026-10-29)
 CarPlay is ready: your books as a list with the one you are partway through first, tap to keep listening, and the system's Now Playing for the rest. It switches on once Apple grants Kernel the CarPlay audio entitlement.
 
