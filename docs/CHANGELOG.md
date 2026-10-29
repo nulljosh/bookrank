@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 81.0.0 (2026-10-29)
+A second screenshot set for the App Store's product page test: the same three screens in dark mode, iPhone and iPad, against today's light set. The plan is in docs/store/ppo.md; it starts once the version in the screenshots is the one on sale.
+
 ## 80.0.0 (2026-10-29)
 Each release now refreshes the App Store's promotional text (`scripts/promo.sh`, on the newest live version of each platform, no review needed) and can carry an in-app event, planned in docs/store/events.md. The first run waits for the next version, so the text never names a feature the live app lacks.
 
