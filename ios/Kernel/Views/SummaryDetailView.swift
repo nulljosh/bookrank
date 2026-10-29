@@ -168,7 +168,7 @@ struct SummaryDetailView: View {
         HStack(spacing: 10) {
             Text(speaker.chapters[i].title).lineLimit(2)
             Spacer(minLength: 8)
-            Text("\(duration(minutes(speaker.chapters[i].text)))").font(.kernel(.footnote)).foregroundStyle(.tertiary).monospacedDigit()
+            Text("\(duration(minutes(speaker.chapters[i].text)))").font(.kernel(.footnote)).foregroundStyle(.secondary).monospacedDigit()
             if i == speaker.ch && (speaker.line > 0 || speaker.playing) {
                 Label("Resume", systemImage: "play.circle").font(.kernel(.footnote)).foregroundStyle(.secondary).labelStyle(.titleAndIcon)
             }

@@ -13,7 +13,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 10 | `updated_at` moves only on content edits, in jaybulb-api (review b); one listen stylesheet (review c) | api, web | built (jaybulb-api `touch: ["content"]`, listen.css) |
 | 11 | iPad pass: reading column, split view, screenshots | iPad | built (two-column split view on regular width, testIPad) |
 | 12 | Mac store screenshots at 2880x1800, signed-in Mac walk | Mac | built (6 shots in ios/fastlane/screenshots/mac, captured at 1440x900 on a 1080p screen and scaled 2x; attach to the next version; signed-in walk is Joshua's step) |
-| 13 | Icon and Kernel Sans A+ at small sizes | all | open |
+| 13 | Icon and Kernel Sans A+ at small sizes | all | built (16 px icon and favicon redrawn bolder: brand/icon-small.svg; small labels secondary not tertiary; Mac footnote 11 pt) |
 | 14 | Cold launch: Release build timing, no white flash | apps | open |
 | 15 | Web offline mode: the shelf and chapters work with no connection | web | open |
 | 16 | Web offline audio: Download on the web book page | web | open |

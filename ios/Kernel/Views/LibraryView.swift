@@ -252,7 +252,7 @@ struct LibraryView: View {
                     HStack(spacing: 8) {
                         Image(systemName: Self.shelfIcon[label] ?? "books.vertical").foregroundStyle(.secondary)
                         Text(label)
-                        Text("\(books.count)").monospacedDigit().foregroundStyle(.tertiary)
+                        Text("\(books.count)").monospacedDigit().foregroundStyle(.secondary)
                         Spacer()
                         Image(systemName: "chevron.right").font(.kernel(.caption, weight: .semibold)).foregroundStyle(.tertiary)
                             .rotationEffect(.degrees(open ? 90 : 0))

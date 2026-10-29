@@ -266,7 +266,7 @@ struct AccountView: View {
                         .onSubmit(saveUsername)
                         #endif
                     Text("bookrank.jaybulb.com/profile?u=\(auth.handle)").font(.kernel(.caption2)).foregroundStyle(.secondary)
-                    Text("Tap the avatar for a new one.").font(.kernel(.caption2)).foregroundStyle(.tertiary)
+                    Text("Tap the avatar for a new one.").font(.kernel(.caption2)).foregroundStyle(.secondary)
                 }
             }
             .onAppear { username = auth.handle }

@@ -102,7 +102,7 @@ struct GoodreadsRow: View {
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 3) {
                 if let r = book.rating { Stars(r) }
-                if let when = book.when { Text(when).font(.kernel(.caption)).foregroundStyle(.tertiary) }
+                if let when = book.when { Text(when).font(.kernel(.caption)).foregroundStyle(.secondary) }
             }
         }
         .padding(.vertical, 2)

@@ -69,8 +69,8 @@ extension Font {
         #if os(macOS)
         switch style {
         case .largeTitle: 26; case .title: 22; case .title2: 17; case .title3: 15
-        case .headline, .body: 13; case .callout: 12; case .subheadline: 11
-        default: 10
+        case .headline, .body: 13; case .callout: 12; case .subheadline, .footnote: 11
+        default: 10   // ponytail: Kernel Sans sets tighter than SF, so footnote (chapter minutes) sits a point above the system size
         }
         #else
         switch style {
