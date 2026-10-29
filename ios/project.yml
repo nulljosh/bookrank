@@ -57,6 +57,19 @@ targets:
         DEVELOPMENT_TEAM: QMM486NPYC
     dependencies:
       - target: Kernel
+  KernelTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources: [Tests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.tests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: QMM486NPYC
+    dependencies:
+      - target: Kernel
   KernelMac:
     type: application
     platform: macOS
@@ -122,16 +135,18 @@ schemes:
       targets:
         Kernel: all
         KernelUITests: [test]
+        KernelTests: [test]
     test:
-      targets: [KernelUITests]
+      targets: [KernelTests, KernelUITests]
     shared: true
   Kernel:
     build:
       targets:
         Kernel: all
         KernelUITests: [test]
+        KernelTests: [test]
     test:
-      targets: [KernelUITests]
+      targets: [KernelTests, KernelUITests]
     shared: true
   KernelMac:
     build:

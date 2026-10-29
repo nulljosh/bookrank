@@ -20,6 +20,21 @@ jobs:
       # No package.json, so nothing to install — node's own runner finds *.test.js itself.
       - run: node --test
 
+  swift:
+    # The apps' pure rules (ios/Tests) on a simulator. continue-on-error until the first green run on
+    # GitHub's Xcode, which is a release behind the one Kernel is built with.
+    runs-on: macos-26
+    timeout-minutes: 30
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - name: Unit tests
+        run: |
+          set -o pipefail
+          cd ios && xcodegen
+          xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
+
   docs:
     runs-on: ubuntu-latest
     timeout-minutes: 5

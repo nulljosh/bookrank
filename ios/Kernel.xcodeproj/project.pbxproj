@@ -115,6 +115,7 @@
 		BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF805AA6C2148C3ABD263FF3 /* KernelApp.swift */; };
 		BC1123D744FF56E042D95869 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */; };
 		C2B26317A76AB98D25A2E216 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = AAB8DB870805E0D468BF923B /* books.json */; };
+		C51CD4BB582F1905019F7C25 /* KernelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DECB595714C49AC4A2167F /* KernelTests.swift */; };
 		C5A43D757F591D5877D8B1FA /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		CA3B1BAD9B33C357CAC89A95 /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372CE246108E47F43F82313 /* EmptyStates.swift */; };
 		CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
@@ -149,6 +150,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5B8B2699E03761AAF42F3698 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE60390B29FD39CD2989D32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F4B54A97C1D34A2C8C4EFF3;
+			remoteInfo = Kernel;
+		};
 		BF2253D58FC74B3237C12AC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEE60390B29FD39CD2989D32 /* Project object */;
@@ -167,6 +175,7 @@
 		15C0CECD090752E16C1C04F3 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		189E7CC97FD4FD19768953CA /* KernelWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelWatchApp.swift; sourceTree = "<group>"; };
 		1C110E896A31BA878678B4AF /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
+		1E0CD605F7A5ED78342D424E /* KernelTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KernelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EE769FDA16E1E24C359F00 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
@@ -190,6 +199,7 @@
 		52E50E1C377807E014AE18C2 /* good-feng-shui.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "good-feng-shui.md"; sourceTree = "<group>"; };
 		56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "living-well-in-a-down-economy-for-dummies.md"; sourceTree = "<group>"; };
 		6031C7693DB73B68A9F6ADED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		60DECB595714C49AC4A2167F /* KernelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelTests.swift; sourceTree = "<group>"; };
 		6372CE246108E47F43F82313 /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
 		640F6C819D393938A8ED5317 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -303,10 +313,19 @@
 			children = (
 				9C9F810A2EE7CDD4B516ADEF /* Kernel.app */,
 				32D10340DE121C50437BAE35 /* KernelMac.app */,
+				1E0CD605F7A5ED78342D424E /* KernelTests.xctest */,
 				EADD79E8481EC276F89FE4B1 /* KernelUITests.xctest */,
 				5143E3D28C23EEE7661B6DDE /* KernelWatch.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		79D335B6625713AE7E396B15 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				60DECB595714C49AC4A2167F /* KernelTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		8880599E6CAD5AF3B050787B /* Models */ = {
@@ -389,6 +408,7 @@
 				FBA8AD8272F433C19F1171F0 /* Kernel */,
 				C33E2ACDD5A8E7A09AEAB085 /* kernel */,
 				B639F1186DEF4C633D487E80 /* KernelWatch */,
+				79D335B6625713AE7E396B15 /* Tests */,
 				1A2FED814490F5B9BF67D7D0 /* UITests */,
 				3BEFBFF1973B1DD95CDE5364 /* Products */,
 			);
@@ -485,6 +505,24 @@
 			productReference = 5143E3D28C23EEE7661B6DDE /* KernelWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EABF55C6048A8F41A55BCFFF /* KernelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37C0D86FE2319896BA1A047 /* Build configuration list for PBXNativeTarget "KernelTests" */;
+			buildPhases = (
+				2FF4E9A3F0A173506BF54ED3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE600DBBDEA4284D2505F66A /* PBXTargetDependency */,
+			);
+			name = KernelTests;
+			packageProductDependencies = (
+			);
+			productName = KernelTests;
+			productReference = 1E0CD605F7A5ED78342D424E /* KernelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -511,6 +549,10 @@
 						DevelopmentTeam = QMM486NPYC;
 						ProvisioningStyle = Automatic;
 					};
+					EABF55C6048A8F41A55BCFFF = {
+						DevelopmentTeam = QMM486NPYC;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = E54E733234E04585FF62C0B7 /* Build configuration list for PBXProject "Kernel" */;
@@ -532,6 +574,7 @@
 			targets = (
 				1F4B54A97C1D34A2C8C4EFF3 /* Kernel */,
 				67EEB91CB1045ED71966746E /* KernelUITests */,
+				EABF55C6048A8F41A55BCFFF /* KernelTests */,
 				641E7359B150E204B5A5C28A /* KernelMac */,
 				ADB3F2D5E33115FA40F87DB2 /* KernelWatch */,
 			);
@@ -674,6 +717,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FF4E9A3F0A173506BF54ED3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C51CD4BB582F1905019F7C25 /* KernelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C2D86787F37B326A7897DD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -738,9 +789,54 @@
 			target = 1F4B54A97C1D34A2C8C4EFF3 /* Kernel */;
 			targetProxy = BF2253D58FC74B3237C12AC8 /* PBXContainerItemProxy */;
 		};
+		CE600DBBDEA4284D2505F66A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F4B54A97C1D34A2C8C4EFF3 /* Kernel */;
+			targetProxy = 5B8B2699E03761AAF42F3698 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		11010EF4B0DAF9BB1FE12890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kernel.app/Kernel";
+			};
+			name = Release;
+		};
+		4120EB4367AE87DE31EB712E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QMM486NPYC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kernel.app/Kernel";
+			};
+			name = Debug;
+		};
 		432CB788341AA447E8293464 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1061,6 +1157,15 @@
 			buildConfigurations = (
 				B38EB94702FE7EA01DC28B97 /* Debug */,
 				F9328AC3A2051FAB359B2280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A37C0D86FE2319896BA1A047 /* Build configuration list for PBXNativeTarget "KernelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4120EB4367AE87DE31EB712E /* Debug */,
+				11010EF4B0DAF9BB1FE12890 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

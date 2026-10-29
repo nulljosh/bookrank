@@ -29,6 +29,20 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EABF55C6048A8F41A55BCFFF"
+               BuildableName = "KernelTests.xctest"
+               BlueprintName = "KernelTests"
+               ReferencedContainer = "container:Kernel.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "67EEB91CB1045ED71966746E"
                BuildableName = "KernelUITests.xctest"
                BlueprintName = "KernelUITests"
@@ -53,6 +67,17 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EABF55C6048A8F41A55BCFFF"
+               BuildableName = "KernelTests.xctest"
+               BlueprintName = "KernelTests"
+               ReferencedContainer = "container:Kernel.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO"
             parallelizable = "NO">
