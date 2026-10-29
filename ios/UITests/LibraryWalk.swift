@@ -321,9 +321,14 @@ final class LibraryWalk: XCTestCase {
     }
 
     /// Sepia from Account > Appearance: the chapter reader on warm paper, even with the system in dark mode.
-    func testSepia() {
+    func testSepia() { readerShot("sepia") }
+
+    /// Black from Account > Appearance: the reader on true black, for OLED screens.
+    func testBlack() { readerShot("black") }
+
+    private func readerShot(_ theme: String) {
         let app = XCUIApplication()
-        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-spine-theme", "sepia", "-kernel.show", "all"]
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-spine-theme", theme, "-kernel.show", "all"]
         app.launch()
         let find = app.searchFields.firstMatch
         XCTAssertTrue(find.waitForExistence(timeout: 15)); find.tap(); find.typeText("Feng")
@@ -332,7 +337,7 @@ final class LibraryWalk: XCTestCase {
         let ch = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS ' min'")).element(boundBy: 2)
         XCTAssertTrue(ch.waitForExistence(timeout: 10)); ch.tap()
         sleep(2)
-        saveTo("sepia-chapter", XCUIScreen.main.screenshot())
+        saveTo("\(theme)-chapter", XCUIScreen.main.screenshot())
     }
 
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {

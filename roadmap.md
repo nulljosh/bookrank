@@ -77,7 +77,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 74 | Read mode: page by page without audio, position saved | apps, web | built (CHANGELOG 74.0.0; the apps need iOS 18 or macOS 15 for it) |
 | 75 | Kernel Sans italic and bold for quotes | all | built (CHANGELOG 75.0.0) |
 | 76 | Sepia reading theme | apps, web | built (CHANGELOG 76.0.0) |
-| 77 | True black for OLED | apps | open |
+| 77 | True black for OLED | apps | built (CHANGELOG 77.0.0) |
 | 78 | iPad: Stage Manager windows, Pencil highlights | iPad | open |
 | 79 | Mac: one window per book | Mac | open |
 | 80 | Promotional text and in-app events each release | store | open |

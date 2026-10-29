@@ -48,7 +48,7 @@ struct KernelApp: App {
                         .transition(.identity)   // SplashView fades itself out before it calls back
                 }
             }
-            .preferredColorScheme(theme == "dark" ? .dark : theme == "light" || theme == "sepia" ? .light : nil)
+            .preferredColorScheme(theme == "dark" || theme == "black" ? .dark : theme == "light" || theme == "sepia" ? .light : nil)
             .tint(amber)
             .font(.kernel(.body))
             .modifier(CalmMotion())

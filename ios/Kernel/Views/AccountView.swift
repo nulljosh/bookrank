@@ -132,6 +132,7 @@ struct AccountView: View {
             Text("Light").tag("light")
             Text("Dark").tag("dark")
             Text("Sepia").tag("sepia")
+            Text("Black").tag("black")
         }
     }
 

@@ -69,11 +69,14 @@ extension View {
     }
 }
 
-/// Sepia (Account > Appearance): the reader on warm paper, in light mode. Same colours as the web's sepia theme.
+/// Account > Appearance: Sepia puts the reader on warm paper in light mode (the web's sepia colours); Black puts it
+/// on true black in dark mode, so an OLED screen lights only the words.
 private struct Paper: ViewModifier {
     @AppStorage("spine-theme") private var theme = "system"
     func body(content: Content) -> some View {
-        if theme == "sepia" {
+        if theme == "black" {
+            content.background(Color.black.ignoresSafeArea())
+        } else if theme == "sepia" {
             content.background(Color(red: 0.957, green: 0.925, blue: 0.847).ignoresSafeArea())
                 .foregroundStyle(Color(red: 0.231, green: 0.184, blue: 0.125))
         } else { content }

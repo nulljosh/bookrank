@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 77.0.0 (2026-10-29)
+A Black appearance in the apps: dark mode with the chapter reader on true black, so an OLED screen lights only the words.
+
 ## 76.0.0 (2026-10-29)
 A sepia reading theme: warm paper and brown ink for long reading. On the web it sits beside the text size buttons with Auto, Light and Dark; in the apps it is under Account > Appearance and colours the chapter reader.
 
