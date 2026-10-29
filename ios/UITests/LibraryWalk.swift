@@ -209,6 +209,19 @@ final class LibraryWalk: XCTestCase {
         saveTo("palette-typed", XCUIScreen.main.screenshot())
     }
 
+    /// Storage: what is kept on this device, opened from Your reading at the bottom of the library.
+    func testStorage() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let open = app.buttons["Storage on this device"].firstMatch
+        for _ in 0..<10 where !open.isHittable { app.swipeUp() }
+        XCTAssertTrue(open.waitForExistence(timeout: 10)); open.tap()
+        XCTAssertTrue(app.staticTexts["Storage"].waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("storage", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

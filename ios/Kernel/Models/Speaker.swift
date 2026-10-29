@@ -173,8 +173,8 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         offline.insert(slug)
         persist()   // the scripts fetched on the way are what the lines were made from
     }
-    func removeDownload() {
-        guard let slug else { return }
+    func removeDownload(_ book: String? = nil) {   // this book, or any book (the Storage screen)
+        guard let slug = book ?? slug else { return }
         try? FileManager.default.removeItem(at: Narrator.offlineDir(slug))
         offline.remove(slug)
     }

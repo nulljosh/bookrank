@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 44.0.0 (2026-10-28)
+A Storage screen in the apps, under Your reading: how much room each book's narration takes, removed with a swipe or a right-click, plus the search index and the offline library.
+
 ## 43.0.0 (2026-10-28)
 On Wi-Fi, the apps fetch the next chapter's narration while you listen, so the book keeps going through a tunnel or a flight. Never on cellular or in Low Data Mode.
 

@@ -6,6 +6,7 @@ import UniformTypeIdentifiers
 /// signed in, the books you finished each year and your average rating.
 struct ReadingStats: View {
     let store: DataStore
+    @State private var storage = false
 
     var body: some View {
         let books = store.summaryIndex.filter { $0.slug != "sample" }
@@ -31,6 +32,8 @@ struct ReadingStats: View {
                 .listRowSeparator(.hidden)
                 goodreads
                 yearShare(books, mins)
+                Button("Storage on this device", systemImage: "internaldrive") { storage = true }.font(.kernel(.footnote))
+                    .sheet(isPresented: $storage) { StorageView(store: store) }
             }
         }
     }
