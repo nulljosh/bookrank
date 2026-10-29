@@ -1,5 +1,5 @@
 ## Road to 100 (2026-10-28)
-One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. Rows 29 to 32 need Workers AI, so they wait for Workers Paid (Joshua, 2026-10-29); "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
 
 | v | What | Where | Status |
 |---|---|---|---|
@@ -25,16 +25,16 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 22 | All highlights in one place; share a highlight as an image card | apps, web | built (Highlights button on the library, a 1080 gold card from card.js and HighlightCard; the app card is rendered only when shared, not yet seen in a shot) |
 | 23 | Export highlights and notes as Markdown | apps, web | built (highlights, by book and chapter: marksMarkdown and exportMarkdown; notes join when row 29 lands) |
 | 24 | Daily review: five highlights resurface on a schedule | apps, web | built (Today's five on the library, the same five on every device by FNV of the day, Done until tomorrow; a daily shuffle, not spaced repetition) |
-| 25 | Quiz me: three questions per chapter, answers checked | apps, web | open |
-| 26 | Key ideas card at the top of each book | apps, web | open |
-| 27 | Two-line recap at the end of each chapter in Listen | apps, web | open |
-| 28 | Connections: the same idea across your books | apps, web | open |
-| 29 | Your own note under any chapter (moved from 21; Joshua 2026-10-28: AI should be quiet and useful, not more chat) | apps, web | open |
-| 30 | Ask by voice (on-device dictation) | apps | open |
-| 31 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
-| 32 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | open |
-| 33 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | open |
-| 34 | Year in review | apps, web | open |
+| 25 | Your own note under any chapter | apps, web | open |
+| 26 | "Summarize this" on a Goodreads read book opens Add pages with the title filled in | apps | open |
+| 27 | Reading stats: books per year, pages, average rating (Goodreads plus Kernel) | apps, web | open |
+| 28 | Search by voice: dictate into search, on the device | apps | open |
+| 29 | Quiz me: three questions per chapter, answers checked | apps, web | open |
+| 30 | Key ideas card at the top of each book | apps, web | open |
+| 31 | Two-line recap at the end of each chapter in Listen | apps, web | open |
+| 32 | Connections: the same idea across your books | apps, web | open |
+| 33 | Year in review | apps, web | open |
+| 34 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
 | 35 | Goodreads on the web through your Goodreads export file | web | open |
 | 36 | Import Kindle highlights (My Clippings.txt) | apps, web | open |
 | 37 | Import highlights from a Readwise or Apple Books export | apps, web | open |
