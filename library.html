@@ -181,6 +181,7 @@ dl.profile dt { color:var(--text3); }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js" integrity="sha384-XQqX/4yiUGu+oyr87jvWzRuqBUK/adrY0DunhL+tID9m/9dwSpV8h9Fk/Sg6ifVQ" crossorigin="anonymous"></script>
 <script type="module">
 import { createClient } from './spark.js';
+import { save, flush } from './outbox.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
 import { lines as meaningLines, closest } from './meaning.js';
@@ -352,8 +353,8 @@ $('collection').onchange = async () => {
   if (!current) return;
   const v = $('collection').value.trim() || null;
   current.collection = v; offline.put(current.id, current);
-  const { error } = await rows.update(current.id, { collection: v });
-  $('editMsg').textContent = error ? 'Could not save the collection.' : v ? `Saved to ${v}.` : 'Removed from its collection.';
+  const { error, queued } = await save(send, current.id, { collection: v });
+  $('editMsg').textContent = error ? 'Could not save the collection.' : queued ? 'Saved on this device. It goes up when you are back online.' : v ? `Saved to ${v}.` : 'Removed from its collection.';
 };
 // Your own note under each chapter, kept in the row's `notes` ({ "<chapter>": text }), not in listen, so a
 // listen save from an older app build cannot drop it. Saved a second after you stop typing.
@@ -370,8 +371,8 @@ $('note').oninput = () => {
     if (!row) return;
     row.notes = { ...row.notes }; if (v) row.notes[ch] = v; else delete row.notes[ch];
     offline.put(row.id, row);
-    const { error } = await rows.update(row.id, { notes: row.notes });
-    if (current === row) $('editMsg').textContent = error ? 'Could not save the note.' : 'Note saved.';
+    const { error, queued } = await save(send, row.id, { notes: row.notes });
+    if (current === row) $('editMsg').textContent = error ? 'Could not save the note.' : queued ? 'Saved on this device. It goes up when you are back online.' : 'Note saved.';
   }, 1000);
 };
 // Download: every chapter's script and every line's voice, kept on this device. Same as Download in the apps.
@@ -389,7 +390,7 @@ $('download').onclick = async () => {
     for (const l of scripts[i]) if (!await speak(l.line, l.host, i)) { msg = 'Download stopped: natural voices are locked or used up for today. Try again later.'; break book; }
   }
   row.listen = { ...st, chapters: scripts };   // the scripts the lines were made from, or the player rebuilds them and misses the audio
-  db.from(TABLE).update({ listen: row.listen, updated_at: row.updated_at }).eq('id', row.id).then(() => {});
+  save(send, row.id, { listen: row.listen, updated_at: row.updated_at });
   offline.put(row.id, row);
   b.disabled = false; b.textContent = 'Download';
   if (current === row) { $('editMsg').textContent = msg; mountListen(); }
@@ -430,7 +431,7 @@ function mountListen() {
       const { data } = await db.from(TABLE).select('listen').eq('id', row.id).single();   // errors come back as { error }, so offline just saves this device's list
       if (data) marks.splice(0, marks.length, ...mergeMarks(base, marks, data.listen?.marks ?? []));
       row.listen = { for: row.updated_at, chapters, pos, marks: [...marks] };
-      db.from(TABLE).update({ listen: row.listen, updated_at: row.updated_at }).eq('id', row.id).then(() => {});  // keep updated_at, or listen.for stops matching
+      save(send, row.id, { listen: row.listen, updated_at: row.updated_at });  // keep updated_at, or listen.for stops matching
     },
   });
 }
@@ -515,6 +516,9 @@ const cached = async (k, q) => {
   const hit = await offline.get(k);
   return hit ? { data: hit, error: null, offline: true } : res;
 };
+// A side save (where you stopped, highlights, a note, a collection); offline it waits in outbox.js.
+const send = (id, fields) => db.from(TABLE).update(fields).eq('id', id);
+globalThis.addEventListener?.('online', () => flush(send));
 const rows = {
   list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,created_at,updated_at,listen,cover,share_token,collection,notes').order('updated_at', { ascending: false })),
   get:    (id)          => cached(id, () => db.from(TABLE).select('*').eq('id', id).single()),
@@ -624,6 +628,7 @@ $('sort').onchange = () => { try { localStorage.setItem('kernel.sort', $('sort')
 $('show').onchange = () => { try { localStorage.setItem('kernel.show', $('show').value); } catch {} load(); };
 async function load() {
   listen?.stop();
+  await flush(send);   // saves made offline go first, or the list would show them undone
   const { data, error, offline: off } = await rows.list();
   if (error) { $('listMsg').replaceChildren('Could not reach your library. Check your connection, then', ' ', Object.assign(document.createElement('button'), { type: 'button', className: 'link', textContent: 'try again', onclick: load }), '.'); return []; }
   texts = null;   // ponytail: refetched once per list view when search or a sort needs it; keep() could feed it instead

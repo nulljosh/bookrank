@@ -82,6 +82,7 @@ final class DataStore {
     /// ponytail: fetch-everything; page it if a shelf ever runs to hundreds of rows.
     func loadSummaries() async {
         if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); Spotlight.index(summaryIndex); return }
+        _ = Net.shared; await Outbox.flush()   // offline saves go first, or the fetch would show them undone
         do {
             let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,created_at,updated_at,listen,cover,share_token,collection,notes&order=title")
             summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
@@ -205,7 +206,8 @@ final class DataStore {
     private func patch(_ id: String, _ fields: [String: Any]) async throws {
         var fields = fields
         if let at = summaryIndex.first(where: { $0.rowID == id })?.updatedAt { fields["updated_at"] = at }
-        _ = try await API.call("PATCH", "/rest/bookrank_summaries?id=eq.\(id)", json: fields)
+        do { _ = try await API.call("PATCH", "/rest/bookrank_summaries?id=eq.\(id)", json: fields) }
+        catch is URLError { Outbox.add("/rest/bookrank_summaries?id=eq.\(id)", fields) }   // offline: kept, sent when back
     }
 
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }

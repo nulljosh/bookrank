@@ -6,7 +6,10 @@ final class Net: @unchecked Sendable {
     private(set) var wifi = false
     private let monitor = NWPathMonitor()
     private init() {
-        monitor.pathUpdateHandler = { [weak self] p in self?.wifi = p.status == .satisfied && !p.isExpensive && !p.isConstrained }
+        monitor.pathUpdateHandler = { [weak self] p in
+            self?.wifi = p.status == .satisfied && !p.isExpensive && !p.isConstrained
+            if p.status == .satisfied { Task { @MainActor in await Outbox.flush() } }   // back online: send saves made offline
+        }
         monitor.start(queue: DispatchQueue(label: "kernel.net"))
     }
 }

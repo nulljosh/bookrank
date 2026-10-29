@@ -28,9 +28,19 @@ export function createClient(url, _anonKey, opts = {}) {
   async function raw(method, path, body, authed = true, headers = {}) {
     const token = authed ? await fresh() : null;
     let res;
-    try {
-      res = await fetch(API + path, { method, headers: { ...(body !== undefined && !(body instanceof ArrayBuffer) && !(body instanceof Blob) && { "Content-Type": "application/json" }), ...(token && { Authorization: `Bearer ${token}` }), ...headers }, body: body === undefined ? undefined : body instanceof ArrayBuffer || body instanceof Blob || typeof body === "string" ? body : JSON.stringify(body) });
-    } catch (e) { return fail(String(e.message || e), 0); }
+    // Up to three tries, 0.5 s then 1 s apart. A dropped connection is retried only for calls safe to repeat;
+    // a busy server (429, 502 to 504) for any call, since it did nothing. Offline fails at once (outbox.js keeps saves).
+    const wait = (n) => new Promise((r) => setTimeout(r, 500 * 2 ** n + Math.random() * 200));
+    for (let attempt = 0; ; attempt++) {
+      try {
+        res = await fetch(API + path, { method, headers: { ...(body !== undefined && !(body instanceof ArrayBuffer) && !(body instanceof Blob) && { "Content-Type": "application/json" }), ...(token && { Authorization: `Bearer ${token}` }), ...headers }, body: body === undefined ? undefined : body instanceof ArrayBuffer || body instanceof Blob || typeof body === "string" ? body : JSON.stringify(body) });
+      } catch (e) {
+        if (attempt < 2 && method !== "POST" && globalThis.navigator?.onLine !== false) { await wait(attempt); continue; }
+        return fail(String(e.message || e), 0);
+      }
+      if ([429, 502, 503, 504].includes(res.status) && attempt < 2) { await wait(attempt); continue; }
+      break;
+    }
     const text = await res.text(); let json = null; try { json = JSON.parse(text); } catch { json = text; }
     return res.ok ? { data: json, error: null } : fail(json?.error || res.statusText, res.status);
   }

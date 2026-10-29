@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 62.0.0 (2026-10-29)
+A flaky connection no longer loses your place: calls are retried, and what you save offline (where you stopped, highlights, notes, collections) waits on the device and goes up when you are back online.
+
 ## 61.0.0 (2026-10-29)
 When something breaks, Account > Data > Export error log hands you a text file of what went wrong lately, to send with a bug report. It stays on your device until you share it.
 

@@ -36,9 +36,21 @@ enum API {
             r.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         let place = "\(method) \(r.url?.path() ?? path)"   // no query string: it can carry ids
-        let data: Data, res: URLResponse
-        do { (data, res) = try await URLSession.shared.data(for: r) } catch { ErrorLog.note("\(place): \(error.localizedDescription)"); throw error }
-        let code = (res as? HTTPURLResponse)?.statusCode ?? 0
+        var data = Data(), code = 0
+        // Up to three tries, 0.5 s then 1 s apart with a little jitter. A dropped connection is retried only for
+        // calls that are safe to repeat; a busy server (429, 502 to 504) is retried for any call, since it did nothing.
+        // ponytail: no retry when there is no connection at all; the Outbox holds those saves instead.
+        for attempt in 0..<3 {
+            if attempt > 0 { try? await Task.sleep(for: .seconds(0.5 * pow(2, Double(attempt - 1)) + .random(in: 0...0.2))) }
+            do {
+                let (d, res) = try await URLSession.shared.data(for: r)
+                (data, code) = (d, (res as? HTTPURLResponse)?.statusCode ?? 0)
+                if [429, 502, 503, 504].contains(code) && attempt < 2 { continue }
+                break
+            } catch let e as URLError where attempt < 2 && method != "POST" && ![.notConnectedToInternet, .cancelled].contains(e.code) {
+                continue
+            } catch { ErrorLog.note("\(place): \(error.localizedDescription)"); throw error }
+        }
         guard (200..<300).contains(code) else {
             struct E: Decodable { let error: String?; let message: String?; let msg: String? }
             let e = try? JSONDecoder().decode(E.self, from: data)
