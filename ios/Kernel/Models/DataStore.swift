@@ -80,12 +80,13 @@ final class DataStore {
     /// it keeps `summaryMarkdown(for:)` synchronous so the reader view stays unchanged.
     /// ponytail: fetch-everything; page it if a shelf ever runs to hundreds of rows.
     func loadSummaries() async {
-        if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
+        if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); Spotlight.index(summaryIndex); return }
         do {
             let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,created_at,updated_at,listen,cover,share_token,collection,notes&order=title")
             summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
             summaryError = nil
             writeCache()
+            Spotlight.index(summaryIndex)
             Task { await fillCovers() }
         } catch {
             // Offline or the server failed: keep whatever is on disk and only show the error if there is nothing.

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 40.0.0 (2026-10-28)
+Spotlight: search your iPhone or Mac for a line or a title and your Kernel books and highlights come up; a result opens the book.
+
 ## 39.0.0 (2026-10-28)
 A Listen menu on the Mac with every listening shortcut, and ⌘K to find a book or an action by typing. Both work from an iPad keyboard too.
 

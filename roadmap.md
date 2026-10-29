@@ -40,7 +40,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 37 | Handoff: pick up the same chapter on the Mac | apps | built (NSUserActivity on the book page, web library link for devices without the app; needs two devices to see) |
 | 38 | Mac menu bar mini player | Mac | built (MenuBarExtra while a book is loaded: chapter, play or pause, a line back or forward, next chapter; shots from -UITEST_MENUBAR_SHOT) |
 | 39 | Mac keyboard map and a command palette | Mac | built (a Listen menu holds every listening shortcut; ⌘K finds a book or action; works from an iPad keyboard too; shot on iPhone, the Mac sheet not yet seen) |
-| 40 | Spotlight finds your summaries and highlights | apps | open |
+| 40 | Spotlight finds your summaries and highlights | apps | built (CoreSpotlight index rebuilt when the library loads, books and highlights, a result opens its book; the simulator's Home Screen search did not show it, check on a device) |
 | 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
 | 42 | Pick the narrator voice, per book | apps, web | open |
 | 43 | Download the next chapter's audio on Wi-Fi ahead of time | apps | open |
@@ -108,7 +108,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
 - [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
-- [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
+- [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), Spotlight results (v40), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
 - [ ] The web player shows merged highlights only after the next toggle or a reopen.
 - [ ] The Mac Account sheet looks empty in screenshot mode.
 - [ ] Summaries still to photograph or finish: The Man Who Solved the Market (cover only), Physics I For Dummies (cover only), the rest of AI in Business and macOS Tahoe (both returned to the library, photos are the only source), The Optimist chapters 15 to 17.

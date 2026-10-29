@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreSpotlight
 import UserNotifications
 import CoreText
 
@@ -37,6 +38,9 @@ struct KernelApp: App {
             ZStack {
                 LibraryView(splashDone: !showSplash)
                     .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
+                    .onContinueUserActivity(CSSearchableItemActionType) { a in   // a Spotlight result
+                        if let id = a.userInfo?[CSSearchableItemActivityIdentifier] as? String, let s = Spotlight.slug(from: id) { NoteTap.shared.slug = s }
+                    }
                 if showSplash {
                     SplashView { showSplash = false }
                         .transition(.identity)   // SplashView fades itself out before it calls back
