@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 85.0.0 (2026-10-29)
+A performance audit with no regressions since 58 and 60: the web still shows 500 books in about 130 ms and searches them in about 20, and the iPhone app launches and scrolls a 500-book shelf as fast as before. The numbers live in a table in docs/ARCHITECTURE.md for the next audit.
+
 ## 84.0.0 (2026-10-29)
 A security and privacy audit. Every place the web writes HTML escapes what users typed, avatars load only as images, every server route needs its sign-in and has its cap, and an account deletion clears everything. The one gap, response headers, is closed: the site can no longer be framed by another, browsers keep to HTTPS, and pages never ask for the camera, microphone or location.
 

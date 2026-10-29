@@ -64,6 +64,22 @@ The app's own work before the first frame stays under 50 ms: `KernelApp.init` (f
 xcrun xctrace record --template 'Time Profiler' --device <simulator id> --time-limit 4s --output launch.trace --launch -- <path to Kernel.app> -kernel.onboarded YES
 ```
 
+## Performance
+
+Checked at each audit against the last one; a number that grows by more than a tenth is a regression to fix first.
+
+| Measure | 58.0.0 / 60.0.0 | 85.0.0 |
+|---|---|---|
+| Web: 500 books on screen | 130 ms | 130 ms |
+| Web: a search over 500 books | 20 ms | 21 ms |
+| Web: cover lookups on load, 500 books | 40 | 40 |
+| Web: library.html gzipped | | 21 KB |
+| iPhone: cold launch, Debug, simulator | 2.36 s | 2.26 s |
+| iPhone: 500-book shelf on screen | 8.2 s | 8.4 s |
+| iPhone: 12 swipes, 500 against 60 books | 32 s / 22 s | 32 s / 22 s |
+
+The web numbers come from a headless walk with mocked data; the iPhone ones from `SpeedWalk`.
+
 ## Share-link readers
 
 `kmp/` (Android and desktop, Kotlin Multiplatform) and `tui/` (`kernel-tui`, SwiftTUI) open a share link and read that summary, no account. Both still ask the old Supabase project for shared rows, so links made since the move to jaybulb-api do not open there yet (open in roadmap.md).
