@@ -23,6 +23,7 @@ targets:
         NSFaceIDUsageDescription: Sign in faster with Face ID.
         NSCameraUsageDescription: Scan book pages into a chapter. The pages are read and dropped, never kept.
         NSUserActivityTypes: [com.heyitsmejosh.spine.reading]
+        UIApplicationSceneManifest: { UIApplicationSupportsMultipleScenes: true }   # iPad Stage Manager and Split View: more than one Kernel window
         ITSAppUsesNonExemptEncryption: false   # HTTPS only; without this every build needs the compliance flag set by hand
         # NOTE: xcodegen ignores CFBundleVersion / CFBundleShortVersionString /
         # UISupportedInterfaceOrientations~ipad if set here — it rewrites Info.plist

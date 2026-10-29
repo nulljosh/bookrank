@@ -64,8 +64,21 @@ extension View {
     /// iOS 18 and macOS 15 report which lines are visible; earlier systems save only while playing.
     @ViewBuilder func readingPlace(_ speaker: Speaker) -> some View {
         if #available(iOS 18, macOS 15, *) {
-            onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.33) { ids in speaker.seen(ids) }.modifier(Paper())
-        } else { modifier(Paper()) }
+            onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.33) { ids in speaker.seen(ids) }.modifier(Paper()).pencilHighlights(speaker)
+        } else { modifier(Paper()).pencilHighlights(speaker) }
+    }
+
+    /// Apple Pencil: a double tap or a squeeze highlights the line you are on (or removes its highlight), the
+    /// same as Highlight in the line's menu. iPad with iPadOS 17.5 or later.
+    @ViewBuilder func pencilHighlights(_ speaker: Speaker) -> some View {
+        #if os(iOS)
+        if #available(iOS 17.5, *) {
+            let mark = { if speaker.lines.indices.contains(speaker.line) { speaker.toggleMark(speaker.lines[speaker.line]) } }
+            onPencilDoubleTap { _ in mark() }.onPencilSqueeze { phase in if case .ended = phase { mark() } }
+        } else { self }
+        #else
+        self
+        #endif
     }
 }
 

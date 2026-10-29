@@ -53,19 +53,22 @@ final class LibraryWalk: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]   // no -kernel.sort here: an argument would pin the setting
         app.launch()
-        let menu = app.buttons["Sort and filter"].firstMatch
-        XCTAssertTrue(menu.waitForExistence(timeout: 15)); menu.tap()
-        app.buttons["All books"].firstMatch.tap()   // settings persist between runs
-        menu.tap()
-        app.buttons["Shortest first"].firstMatch.tap()
-        sleep(2)
+        // The toolbar redraws after each pick, so wait for the menu and the item every time (CI's simulator is slower).
+        func pick(_ item: String) {
+            let menu = app.buttons["Sort and filter"].firstMatch
+            XCTAssertTrue(menu.waitForExistence(timeout: 15)); menu.tap()
+            let b = app.buttons[item].firstMatch
+            XCTAssertTrue(b.waitForExistence(timeout: 5)); b.tap()
+            sleep(1)
+        }
+        pick("All books")   // settings persist between runs
+        pick("Shortest first")
+        sleep(1)
         saveTo("sort-short", XCUIScreen.main.screenshot())
-        menu.tap()
-        app.buttons["In progress"].firstMatch.tap()
-        sleep(2)
+        pick("In progress")
+        sleep(1)
         saveTo("show-started", XCUIScreen.main.screenshot())
-        menu.tap(); app.buttons["All books"].firstMatch.tap()   // back to the defaults, so later store shots are not filtered
-        menu.tap(); app.buttons["Recently edited"].firstMatch.tap()
+        pick("All books"); pick("Recently edited")   // back to the defaults, so later store shots are not filtered
     }
 
     /// Search by meaning: words that are not in the book still find the line that means it. On the device, no network.
