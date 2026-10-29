@@ -727,6 +727,28 @@
         }
       }
     },
+    "Bring my Goodreads shelves": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer mes étagères Goodreads"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traer mis estanterías de Goodreads"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meine Goodreads-Regale holen"
+          }
+        }
+      }
+    },
     "Cancel": {
       "localizations": {
         "fr": {
@@ -811,6 +833,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kapitel %lld von %lld · noch %@"
+          }
+        }
+      }
+    },
+    "Chapter summaries of the books you own, read or listened to.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des résumés de chapitres des livres que vous possédez, lisez ou écoutez."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resúmenes de capítulos de los libros que tienes, lees o escuchas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapitel-Zusammenfassungen der Bücher, die du besitzt, liest oder hörst."
           }
         }
       }
@@ -1449,6 +1493,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kapitelende"
+          }
+        }
+      }
+    },
+    "Every chapter in plain words.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque chapitre en termes simples."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada capítulo en palabras sencillas."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jedes Kapitel in einfachen Worten."
           }
         }
       }
@@ -2197,6 +2263,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Anhören"
+          }
+        }
+      }
+    },
+    "Look at one chapter first. No account needed.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Découvrez d'abord un chapitre. Aucun compte nécessaire."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira primero un capítulo. No hace falta cuenta."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir zuerst ein Kapitel an. Kein Konto nötig."
           }
         }
       }
@@ -3257,6 +3345,28 @@
         }
       }
     },
+    "Read it, or press play and one narrator explains it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisez-le, ou appuyez sur lecture et un narrateur l'explique."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Léelo, o pulsa reproducir y un narrador lo explica."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lies es, oder tippe auf Abspielen und ein Erzähler erklärt es."
+          }
+        }
+      }
+    },
     "Reading your Goodreads shelves…": {
       "localizations": {
         "fr": {
@@ -3297,6 +3407,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kürzlich bearbeitet"
+          }
+        }
+      }
+    },
+    "Remember every book.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retenez chaque livre."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recuerda cada libro."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behalte jedes Buch."
           }
         }
       }
@@ -4111,6 +4243,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Geschwindigkeit, %@-fach"
+          }
+        }
+      }
+    },
+    "Start with a sample.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencez par un extrait."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza con una muestra."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fang mit einer Probe an."
           }
         }
       }

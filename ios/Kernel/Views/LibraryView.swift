@@ -136,6 +136,7 @@ struct LibraryView: View {
         switch choice {
         case .skip: break
         case .signIn: showAccount = true
+        case .goodreads: Task { await store.loadGoodreads(nil) }
         case .sample:
             guard !auth.isSignedIn else { break }   // the sample replaces the shelf; an account already has one
             store.loadSample()

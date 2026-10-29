@@ -268,6 +268,21 @@ final class LibraryWalk: XCTestCase {
         if open.waitForExistence(timeout: 5) { open.tap(); sleep(1); saveTo("fr-storage", XCUIScreen.main.screenshot()) }
     }
 
+    /// First run, last page: Goodreads sits under the sample and sign-in, and opens Goodreads' own sign-in. Types nothing.
+    func testOnboardingGoodreads() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "NO"]
+        app.launch()
+        let next = app.buttons["Next"].firstMatch
+        XCTAssertTrue(next.waitForExistence(timeout: 15)); next.tap(); sleep(1)
+        app.buttons["Next"].firstMatch.tap(); sleep(1)
+        saveTo("onboard-goodreads", XCUIScreen.main.screenshot())
+        let gr = app.buttons["Bring my Goodreads shelves"].firstMatch
+        XCTAssertTrue(gr.exists); gr.tap()
+        sleep(5)
+        saveTo("onboard-goodreads-sheet", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)

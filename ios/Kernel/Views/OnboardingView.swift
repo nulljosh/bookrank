@@ -1,15 +1,16 @@
 import SwiftUI
 
 /// What the user picked on the last page. LibraryView acts on it after the cover closes.
-enum OnboardingChoice { case sample, signIn, skip }
+enum OnboardingChoice { case sample, signIn, goodreads, skip }
 
 /// Three short first-run pages. iPhone swipes between them, the Mac shows one at a time;
-/// both have Next. The last page offers the sample chapter or sign-in.
+/// both have Next. The last page offers the sample chapter, sign-in, or your Goodreads shelves.
 struct OnboardingView: View {
     let finish: (OnboardingChoice) -> Void
     @State private var page = 0
+    @State private var goodreads = false
 
-    private static let pages: [(title: String, body: String)] = [
+    private static let pages: [(title: LocalizedStringKey, body: LocalizedStringKey)] = [
         ("Remember every book.", "Chapter summaries of the books you own, read or listened to."),
         ("Every chapter in plain words.", "Read it, or press play and one narrator explains it."),
         ("Start with a sample.", "Look at one chapter first. No account needed."),
@@ -97,6 +98,11 @@ struct OnboardingView: View {
                     .keyboardShortcut(.defaultAction)
                 Button("Sign in") { finish(.signIn) }
                     .buttonStyle(OutlineCapsule())
+                // Goodreads' own sign-in, kept on this device: the shelves show up in the library behind it.
+                Button("Bring my Goodreads shelves") { goodreads = true }
+                    .font(.kernel(.subheadline, weight: .semibold)).foregroundStyle(amber)
+                    .frame(minHeight: 44)
+                    .sheet(isPresented: $goodreads) { GoodreadsSignIn { finish(.goodreads) } }
             }
         }
     }

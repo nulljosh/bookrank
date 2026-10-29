@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 50.0.0 (2026-10-29)
+The first-run pages offer "Bring my Goodreads shelves": Goodreads' own sign-in, and your shelves fill the library. The pages themselves now translate.
+
 ## 49.0.0 (2026-10-28)
 A new store listing in English, French, Spanish and German, with iPhone and iPad screenshots in each language, ready for the next version. Two buttons that stayed English in the apps now translate.
 
