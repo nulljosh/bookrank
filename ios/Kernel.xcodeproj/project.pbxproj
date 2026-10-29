@@ -10,6 +10,7 @@
 		012B570A79FF2EEF40F9EA8A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */; };
 		04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */; };
 		05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93033291FD3C083A496ECC0 /* Kindle.swift */; };
+		07BCA7F041CF6853B5EE8106 /* MenuBarPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */; };
 		0CE26E5791AEABD343806B31 /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		10DD936367C1E7ED6638B0DC /* living-well-in-a-down-economy-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 56EC8DD0F365A27F54BB7BDF /* living-well-in-a-down-economy-for-dummies.md */; };
@@ -108,6 +109,7 @@
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
 		E20FA7D94F175478FA2E24F8 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
+		E24C6EDA6BF53702DA17FFD3 /* MenuBarPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */; };
 		E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
 		E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
 		E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
@@ -203,6 +205,7 @@
 		EFD53A14FC46AD38DFFFA927 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F52DEE4EFC635882441F8ED3 /* Goodreads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goodreads.swift; sourceTree = "<group>"; };
 		F93033291FD3C083A496ECC0 /* Kindle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kindle.swift; sourceTree = "<group>"; };
+		FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -303,6 +306,7 @@
 				7553A26F78E2CFC07C8E8C6D /* AskView.swift */,
 				D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
+				FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */,
 				39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */,
 				E2296F31EB47281BF6AF3961 /* OnboardingView.swift */,
 				706C79B39012060E094ED3A4 /* PlayerBar.swift */,
@@ -586,6 +590,7 @@
 				05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
 				A83E380572B1C456801F1DDD /* Meaning.swift in Sources */,
+				E24C6EDA6BF53702DA17FFD3 /* MenuBarPlayer.swift in Sources */,
 				7699430312B7D04FC801034C /* Narrator.swift in Sources */,
 				6CD61BE9DE06CED37947EC9D /* NowPlaying.swift in Sources */,
 				622B713EAD540119BE0B693E /* Nudge.swift in Sources */,
@@ -641,6 +646,7 @@
 				3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
 				255D8A8DD3FFFFDAE50C15D1 /* Meaning.swift in Sources */,
+				07BCA7F041CF6853B5EE8106 /* MenuBarPlayer.swift in Sources */,
 				373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */,
 				F7C5BBBC7B5C9F3E4AC9723D /* NowPlaying.swift in Sources */,
 				6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */,

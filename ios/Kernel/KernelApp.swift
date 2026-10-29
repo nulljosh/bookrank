@@ -16,6 +16,9 @@ struct KernelApp: App {
         UNUserNotificationCenter.current().delegate = NoteTap.shared   // a tapped reminder opens its book
         // Screenshot runs: act as if Siri ran Continue my book (the player stays silent under UITEST_SNAPSHOT).
         if CommandLine.flag("UITEST_CONTINUE"), let e = DataStore.lastStarted() { NoteTap.shared.play = true; NoteTap.shared.slug = e.slug }
+        #if os(macOS)
+        if CommandLine.flag("UITEST_MENUBAR_SHOT") { DispatchQueue.main.async { MainActor.assumeIsolated { menuBarShots() } } }
+        #endif
         #if os(iOS)
         // Navigation titles are UIKit's; give them Kernel Sans too. Register it first: UIFont(name:) finds nothing until then.
         _ = kernelFontsRegistered
@@ -42,6 +45,12 @@ struct KernelApp: App {
             .tint(amber)
             .font(.kernel(.body))
         }
+        #if os(macOS)
+        MenuBarExtra("Kernel", systemImage: Speaker.shared.playing && !Speaker.shared.paused ? "book.fill" : "book", isInserted: .constant(Speaker.shared.slug != nil)) {
+            MenuBarPlayer()
+        }
+        .menuBarExtraStyle(.window)
+        #endif
     }
 }
 

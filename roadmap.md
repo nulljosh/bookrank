@@ -38,7 +38,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 35 | Shortcuts: add a summary, play my book, next chapter (braindump 2026-08-19) | apps | built (App Intents: Add a summary, Play or pause, Next chapter, with Siri phrases; in the built metadata; the simulator's Shortcuts app did not list them, check on a device) |
 | 36 | Siri: "continue my book" | apps | built (ContinueBookIntent opens the book you are partway through and plays it; testContinueMyBook with a silent stand-in) |
 | 37 | Handoff: pick up the same chapter on the Mac | apps | built (NSUserActivity on the book page, web library link for devices without the app; needs two devices to see) |
-| 38 | Mac menu bar mini player | Mac | open |
+| 38 | Mac menu bar mini player | Mac | built (MenuBarExtra while a book is loaded: chapter, play or pause, a line back or forward, next chapter; shots from -UITEST_MENUBAR_SHOT) |
 | 39 | Mac keyboard map and a command palette | Mac | open |
 | 40 | Spotlight finds your summaries and highlights | apps | open |
 | 41 | API and MCP routes to create, read and update summaries (braindump 2026-08-19) | api | open |
