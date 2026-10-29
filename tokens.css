@@ -58,8 +58,20 @@
   --cell4: #E4002B;
 }
 
+/* Sepia: warm paper for long reading, chosen in the reader. */
+[data-theme="sepia"] {
+  --bg: #f4ecd8;
+  --bg2: #ebe0c6;
+  --text: #3b2f20;
+  --text2: rgba(59,47,32,0.72);
+  --text3: rgba(59,47,32,0.6);
+  --accent: #8a5200;
+  --border: #e2d5b8;
+  --border2: #d6c7a3;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]):not([data-theme="sepia"]) {
     --bg: #0a0a0a;
     --bg2: #121212;
     --text: #fafafa;

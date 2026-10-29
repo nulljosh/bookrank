@@ -131,6 +131,7 @@ struct AccountView: View {
             Text("Match device").tag("system")
             Text("Light").tag("light")
             Text("Dark").tag("dark")
+            Text("Sepia").tag("sepia")
         }
     }
 

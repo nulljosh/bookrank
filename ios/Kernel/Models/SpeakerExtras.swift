@@ -64,7 +64,18 @@ extension View {
     /// iOS 18 and macOS 15 report which lines are visible; earlier systems save only while playing.
     @ViewBuilder func readingPlace(_ speaker: Speaker) -> some View {
         if #available(iOS 18, macOS 15, *) {
-            onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.33) { ids in speaker.seen(ids) }
-        } else { self }
+            onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.33) { ids in speaker.seen(ids) }.modifier(Paper())
+        } else { modifier(Paper()) }
+    }
+}
+
+/// Sepia (Account > Appearance): the reader on warm paper, in light mode. Same colours as the web's sepia theme.
+private struct Paper: ViewModifier {
+    @AppStorage("spine-theme") private var theme = "system"
+    func body(content: Content) -> some View {
+        if theme == "sepia" {
+            content.background(Color(red: 0.957, green: 0.925, blue: 0.847).ignoresSafeArea())
+                .foregroundStyle(Color(red: 0.231, green: 0.184, blue: 0.125))
+        } else { content }
     }
 }

@@ -4049,6 +4049,28 @@
         }
       }
     },
+    "Sepia": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sépia"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sepia"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sepia"
+          }
+        }
+      }
+    },
     "Share": {
       "localizations": {
         "fr": {

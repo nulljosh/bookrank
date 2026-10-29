@@ -26,7 +26,8 @@ body.focus .lp-body { grid-template-columns:1fr; } body.focus main { max-width:4
 #keysHelp h2 { font-size:1.125rem; margin-bottom:0.75rem; }
 #keysHelp dl { display:grid; grid-template-columns:auto 1fr; gap:0.4rem 1rem; margin-bottom:1rem; font-size:0.9375rem; }
 #keysHelp kbd { font:inherit; font-size:0.8125rem; padding:0.1rem 0.45rem; border:1px solid var(--border); border-radius:6px; background:var(--bg2); }
-@media (prefers-color-scheme: dark) { button.danger { color:var(--danger-dark, #ff6961); } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="sepia"]) button.danger { color:#ff6961; } }
+[data-theme="dark"] button.danger { color:#ff6961; }
 /* Phones: the title takes the full width and its buttons sit under it, as in the apps. */
 @media (max-width:560px) { #listView > .bar { flex-direction:column; align-items:stretch; gap:0.75rem; } #listView > .bar h1 { font-size:2rem; } }
 input, textarea { font:inherit; width:100%; padding:0.55rem 0.75rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg2); color:var(--text); }
@@ -81,7 +82,7 @@ ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .gd { display:flex; flex-direction:column; align-items:center; gap:3px; } .gd small { font-size:11px; color:var(--text2); }
 .gd i { width:9px; height:9px; border-radius:50%; background:color-mix(in srgb, var(--accent) 15%, transparent); }
 .gd.on i { background:var(--accent); } .gd.today i { outline:1.5px solid var(--accent); outline-offset:2px; }
-.textsize { display:flex; gap:4px; justify-content:flex-end; margin:8px 0 -8px; } .textsize button { min-width:40px; }
+.textsize { display:flex; gap:4px; justify-content:flex-end; margin:8px 0 -8px; } .textsize button { min-width:40px; } .textsize select { font:inherit; font-size:0.8125rem; padding:0 0.5rem; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); }
 #listen .lp-text { font-size:calc(1rem * var(--reader-scale, 1)); line-height:calc(1.45 + 0.1 * var(--reader-scale, 1)); }
 .coll { display:flex; align-items:center; gap:0.5rem; margin:-0.75rem 0 1rem; font-size:0.8125rem; color:var(--text3); } .coll input { width:14rem; padding:0.35rem 0.6rem; }
 .note { display:block; margin:24px 0 0; font-size:0.8125rem; color:var(--text3); } .note textarea { display:block; margin-top:0.4rem; font-size:1rem; line-height:1.5; resize:vertical; min-height:0; height:6rem; }
@@ -177,7 +178,7 @@ dl.profile dt { color:var(--text3); }
     </div>
     <label class="coll hide" id="coll">Collection <input id="collection" list="collections" placeholder="None" maxlength="60"></label>
     <datalist id="collections"></datalist>
-    <div class="textsize hide" id="textsize"><button type="button" id="txtDown" aria-label="Smaller text">A&minus;</button><button type="button" id="txtUp" aria-label="Larger text">A+</button></div>
+    <div class="textsize hide" id="textsize"><select id="theme" aria-label="Reading theme"><option value="">Auto</option><option value="light">Light</option><option value="dark">Dark</option><option value="sepia">Sepia</option></select><button type="button" id="txtDown" aria-label="Smaller text">A&minus;</button><button type="button" id="txtUp" aria-label="Larger text">A+</button></div>
     <div id="listen"></div>
     <label class="note hide" id="noteWrap"><span id="noteLabel">Your note</span><textarea id="note" rows="3" maxlength="4000" placeholder="What you want to remember from this chapter"></textarea></label>
     <form id="ask" class="ask hide"><input id="askQ" maxlength="500" placeholder="Ask this chapter a question" aria-label="Ask this chapter a question"><button class="primary">Ask</button></form>
@@ -209,6 +210,10 @@ import { mergeMarks, marksMarkdown, dailyFive, catchUp } from './marks.js';
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
+// The reading theme: Auto follows the system, or Light, Dark or Sepia, kept in this browser.
+const applyTheme = t => { if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme; };
+try { applyTheme(localStorage.getItem('kernel.theme') || ''); $('theme').value = localStorage.getItem('kernel.theme') || ''; } catch {}
+$('theme').onchange = () => { applyTheme($('theme').value); try { localStorage.setItem('kernel.theme', $('theme').value); } catch {} };
 const show = (...ids) => ['gate','listView','editView','marksView'].forEach(s => $(s).classList.toggle('hide', !ids.includes(s)));
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'untitled';
 
