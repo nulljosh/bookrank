@@ -119,3 +119,6 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 `sync-summaries.sh` copies iCloud over the repo, it does not merge. On 2026-08-17 it replaced a full The Optimist with a shorter iCloud copy, and git was the only place four chapters still lived. After every sync run `git diff --stat` and treat a summary that got smaller as a bug, never a change to commit.
 
 History is in [docs/CHANGELOG.md](docs/CHANGELOG.md) and git. How to ship is in [docs/SHIPPING.md](docs/SHIPPING.md).
+
+## Ingested 2026-10-29
+- [ ] Refresh the README screenshots, they are stale. Homepage on GitHub now points at kernel.jaybulb.com (done 2026-10-29).
