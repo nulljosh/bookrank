@@ -22,7 +22,7 @@ struct AccountView: View {
     @State private var showDelete = false
     @State private var username = ""
     @State private var goodreads = ""
-    @State private var exportURLs: [URL] = []
+    @State private var exportZip: URL?
     @State private var nudge = Nudge.enabled
     @State private var showGoodreads = false
     @State private var showStorage = false
@@ -362,8 +362,8 @@ struct AccountView: View {
         }
 
         Section {
-            if !exportURLs.isEmpty {
-                ShareLink(items: exportURLs) { Label("Export everything (\(exportURLs.count) files)", systemImage: "square.and.arrow.up") }
+            if let exportZip {
+                ShareLink(item: exportZip) { Label("Export everything", systemImage: "square.and.arrow.up") }
             }
             Button("Storage on this device", systemImage: "internaldrive") { showStorage = true }
                 .sheet(isPresented: $showStorage) { StorageView(store: store) }
@@ -373,9 +373,9 @@ struct AccountView: View {
         } header: {
             Text("Data")
         } footer: {
-            Text("Every summary as a markdown file. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.")
+            Text("One zip: every book with its notes, your highlights, all your data and your Goodreads shelves. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.")
         }
-        .task(id: store.summaryIndex.count) { exportURLs = store.writeExport() }
+        .task(id: store.summaryIndex.count) { exportZip = store.writeExport() }
 
         Section("Credentials") {
             TextField("New email", text: $newEmail).textContentType(.emailAddress).autocorrectionDisabled()

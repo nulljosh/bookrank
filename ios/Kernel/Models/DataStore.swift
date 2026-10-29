@@ -261,16 +261,6 @@ final class DataStore {
     }
 
     /// One markdown file per summary in a temp folder, for the share sheet (Files, AirDrop, Mail, anything).
-    func writeExport() -> [URL] {
-        let dir = FileManager.default.temporaryDirectory.appending(path: "kernel-export", directoryHint: .isDirectory)
-        try? FileManager.default.removeItem(at: dir)
-        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        return summaryIndex.compactMap { e in
-            let url = dir.appending(path: "\(e.slug).md")
-            return (try? "# \(e.title)\n\n\(e.content)\n".write(to: url, atomically: true, encoding: .utf8)) != nil ? url : nil
-        }
-    }
-
     func summaryMarkdown(for slug: String) -> String {
         summaryIndex.first { $0.slug == slug }?.content
             ?? "This summary isn't on your shelf."

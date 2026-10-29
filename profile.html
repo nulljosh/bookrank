@@ -113,7 +113,7 @@ dl.profile dt { color:var(--text3); }
     </form>
     <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
     <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Your data</h2>
-    <p class="sub" style="margin-bottom:0.9rem">Every summary as markdown, one file per book, plus a JSON copy with your listening positions. Yours to keep.</p>
+    <p class="sub" style="margin-bottom:0.9rem">One zip: every book as Markdown with its notes, your highlights, a JSON copy of everything, and your Goodreads shelves. Yours to keep.</p>
     <div class="row" style="margin-bottom:0.5rem"><button type="button" id="export">Export everything</button></div>
     <hr style="border:none;border-top:1px solid var(--border2);margin:2rem 0 1.25rem">
     <h2 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Delete account</h2>
@@ -134,6 +134,7 @@ dl.profile dt { color:var(--text3); }
 // when a second person asks.
 import { createClient } from './spark.js';
 import { showPublic, publicSwitches } from './public-profile.js';
+import { marksMarkdown } from './marks.js';
 const db = createClient('https://api.jaybulb.com');
 const TABLE = 'bookrank_summaries';
 const $ = id => document.getElementById(id);
@@ -278,14 +279,20 @@ else {
   // zipped in the browser with the store format (no compression), so it is a few lines of code.
   $('export').onclick = async () => {
     $('profileMsg').textContent = 'Preparing your export\u2026';
-    const { data, error } = await db.from(TABLE).select('slug,title,content,updated_at,listen,cover').order('title');
+    const { data, error } = await db.from(TABLE).select('slug,title,content,created_at,updated_at,listen,cover,collection,notes,share_token').order('title');
     if (error) { $('profileMsg').textContent = error.message; return; }
-    const files = data.map(r => [`${r.slug}.md`, `# ${r.title}\n\n${r.content}\n`]);
+    // One zip: each book with its chapter notes, highlights and notes together, every row, and the Goodreads
+    // shelves this browser has. Same contents as the apps' export.
+    const note = r => Object.entries(r.notes || {}).sort((a, b) => a[0] - b[0]).map(([ch, t]) => `## Note, chapter ${+ch + 1}\n\n${t}`).join('\n\n');
+    const files = data.map(r => [`${r.slug}.md`, `# ${r.title}\n\n${r.content}\n${note(r) ? `\n${note(r)}\n` : ''}`]);
+    files.push(['Highlights.md', marksMarkdown(data.map(r => ({ title: r.title, content: r.content, marks: r.listen?.marks, notes: r.notes })))]);
     files.push(['kernel.json', JSON.stringify(data, null, 2)]);
+    const gr = (() => { try { return localStorage.getItem(`kernel.goodreads.${user.id}`); } catch { return null; } })();
+    if (gr) files.push(['goodreads.json', gr]);
     const blob = zip(files);
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `kernel-${new Date().toISOString().slice(0, 10)}.zip` });
     a.click(); URL.revokeObjectURL(a.href);
-    $('profileMsg').textContent = `Exported ${data.length} summaries.`;
+    $('profileMsg').textContent = `Exported ${data.length === 1 ? '1 book' : `${data.length} books`}, your highlights and notes${gr ? ', and your Goodreads shelves' : ''}.`;
   };
   function zip(files) {
     const enc = new TextEncoder(), parts = [], central = []; let offset = 0;

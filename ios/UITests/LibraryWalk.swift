@@ -296,6 +296,7 @@ final class LibraryWalk: XCTestCase {
         saveTo("account-1", XCUIScreen.main.screenshot())
         app.swipeUp(); sleep(1)
         saveTo("account-2", XCUIScreen.main.screenshot())
+        XCTAssertTrue(app.buttons["Export everything"].firstMatch.waitForExistence(timeout: 10), "the one-zip export should be ready")
         app.swipeUp(); sleep(1)
         saveTo("account-3", XCUIScreen.main.screenshot())
     }

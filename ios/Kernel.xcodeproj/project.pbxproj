@@ -35,6 +35,7 @@
 		3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB58A46E3C7CDBCBF3C08A1 /* KeychainHelper.swift */; };
 		31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C819D393938A8ED5317 /* WatchSync.swift */; };
 		36B7AE29E79211DF6BD35B01 /* ibs-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 06979FA6911D08580D145C57 /* ibs-for-dummies.md */; };
+		36DE38F92D235CDF83C7C8B6 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67431B1D26A68A4341C3EF29 /* Export.swift */; };
 		373DEB81E21E2ABA17514E00 /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		3831C6DFED6164F2EC4B8F3E /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */; };
 		3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
@@ -98,6 +99,7 @@
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		A83E380572B1C456801F1DDD /* Meaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E2C3E7F816D3A9C7931FA /* Meaning.swift */; };
 		A8CB625B3301A3A4194CAE1A /* SpeakerExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B1514899126444871DA82 /* SpeakerExtras.swift */; };
+		A97EE35FB36D1FB329CE47EE /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67431B1D26A68A4341C3EF29 /* Export.swift */; };
 		AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
 		AD42C274C025C2507F73F186 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
@@ -189,6 +191,7 @@
 		6372CE246108E47F43F82313 /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
 		640F6C819D393938A8ED5317 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		67431B1D26A68A4341C3EF29 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		68D42622E422604FB14F1EF9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6F0125A8FD2EEAEACF09305E /* sobriety-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "sobriety-for-dummies.md"; sourceTree = "<group>"; };
 		6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 				6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */,
 				E7033956A451A6A740DBEDBF /* Ebook.swift */,
 				77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */,
+				67431B1D26A68A4341C3EF29 /* Export.swift */,
 				A849BD03EBC174F2FFE54D4A /* Goal.swift */,
 				F52DEE4EFC635882441F8ED3 /* Goodreads.swift */,
 				1C110E896A31BA878678B4AF /* Intents.swift */,
@@ -625,6 +629,7 @@
 				AC2314AA32BC1A67DF788F42 /* Ebook.swift in Sources */,
 				7D91AC8FE21BD77013D341A7 /* EmptyStates.swift in Sources */,
 				AD42C274C025C2507F73F186 /* ErrorLog.swift in Sources */,
+				A97EE35FB36D1FB329CE47EE /* Export.swift in Sources */,
 				9C1647D46D00627BD552A07E /* Goal.swift in Sources */,
 				E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */,
 				D84D644F5D0E2C5DD531C208 /* HighlightsView.swift in Sources */,
@@ -689,6 +694,7 @@
 				91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */,
 				CA3B1BAD9B33C357CAC89A95 /* EmptyStates.swift in Sources */,
 				BC1123D744FF56E042D95869 /* ErrorLog.swift in Sources */,
+				36DE38F92D235CDF83C7C8B6 /* Export.swift in Sources */,
 				27E1DD64DF68F214B45D74CB /* Goal.swift in Sources */,
 				71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */,
 				446430E59725102456EF42D5 /* HighlightsView.swift in Sources */,

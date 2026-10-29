@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 65.0.0 (2026-10-29)
+Export everything is one zip, on the web and in the apps: every book as Markdown with its chapter notes, your highlights and notes together, a JSON copy of every row, and your Goodreads shelves.
+
 ## 64.0.0 (2026-10-29)
 A security pass: every route that runs a model or reaches Goodreads now has an hourly cap per person on top of its sign-in check, so one caller cannot run up the bill. Webhook signatures and input checks reviewed.
 

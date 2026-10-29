@@ -1673,28 +1673,6 @@
         }
       }
     },
-    "Every summary as a markdown file. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chaque résumé en fichier Markdown, à vous. Le journal d'erreurs liste ce qui a mal tourné récemment, sur cet appareil uniquement ; joignez-le à un signalement de bug."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cada resumen como archivo Markdown, tuyo para siempre. El registro de errores muestra lo que falló hace poco, solo en este dispositivo; envíalo con un informe de error."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jede Zusammenfassung als Markdown-Datei, für dich. Das Fehlerprotokoll zeigt, was zuletzt schiefging, nur auf diesem Gerät; schick es mit einem Fehlerbericht."
-          }
-        }
-      }
-    },
     "Explain it": {
       "localizations": {
         "fr": {
@@ -1761,24 +1739,24 @@
         }
       }
     },
-    "Export everything (%lld files)": {
+    "Export everything": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tout exporter (%lld fichiers)"
+            "value": "Tout exporter"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar todo (%lld archivos)"
+            "value": "Exportar todo"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alles exportieren (%lld Dateien)"
+            "value": "Alles exportieren"
           }
         }
       }
@@ -3143,6 +3121,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auf diesem Gerät"
+          }
+        }
+      }
+    },
+    "One zip: every book with its notes, your highlights, all your data and your Goodreads shelves. Yours to keep. The error log lists what went wrong lately, on this device only; send it with a bug report.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un seul zip : chaque livre avec ses notes, vos passages surlignés, toutes vos données et vos étagères Goodreads. À vous. Le journal d'erreurs liste ce qui a mal tourné récemment, sur cet appareil uniquement ; joignez-le à un signalement de bug."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un solo zip: cada libro con sus notas, tus subrayados, todos tus datos y tus estanterías de Goodreads. Tuyo para siempre. El registro de errores muestra lo que falló hace poco, solo en este dispositivo; envíalo con un informe de error."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine ZIP-Datei: jedes Buch mit seinen Notizen, deine Markierungen, alle deine Daten und deine Goodreads-Regale. Für dich. Das Fehlerprotokoll zeigt, was zuletzt schiefging, nur auf diesem Gerät; schick es mit einem Fehlerbericht."
           }
         }
       }

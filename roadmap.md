@@ -65,7 +65,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 62 | Retry with backoff on every network call; saves queue while offline | apps, web | built (CHANGELOG 62.0.0) |
 | 63 | Listen position merges across devices by time | apps, web | built (CHANGELOG 63.0.0) |
 | 64 | Security sweep: auth, rate limits on every model route, KV caps | api | built (CHANGELOG 64.0.0; caps in docs/ARCHITECTURE.md) |
-| 65 | Export everything you have as one file | apps, web | open |
+| 65 | Export everything you have as one file | apps, web | built (CHANGELOG 65.0.0) |
 | 66 | Account deletion also clears usage counters and audio caches | api, apps | open |
 | 67 | Retire `viaApp`, the Supabase fallback and the Supabase project (once 1.2.x is gone) | api | open |
 | 68 | kernel.jaybulb.com and the repo rename | web, repo | built (repo nulljosh/kernel, folder kernel with a bookrank link, auth mails say Kernel; kernel.jaybulb.com waits on Joshua adding it to the Pages project) |
