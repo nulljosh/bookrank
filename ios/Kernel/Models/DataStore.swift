@@ -116,8 +116,9 @@ final class DataStore {
             .init(ch: 1, text: "Gephi is an open-source network-graph visualization tool, good for exploring relationships and connections as node-and-edge graphs."),
             .init(ch: 0, text: "ImageQuilts lets you compile grids of related images into a single collage, useful for quick visual analysis.")])
         let shelf: [SummaryEntry] = picks.compactMap { slug in
-            guard let url = Bundle.main.url(forResource: slug, withExtension: "md") ?? Bundle.main.url(forResource: slug, withExtension: "md", subdirectory: "summaries"),
-                  let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
+            // The real summaries are private and not in the repo; a CI checkout reads the public sample under each title.
+            let file = { (n: String) in Bundle.main.url(forResource: n, withExtension: "md") ?? Bundle.main.url(forResource: n, withExtension: "md", subdirectory: "summaries") }
+            guard let url = file(slug) ?? file("sample"), let text = try? String(contentsOf: url, encoding: .utf8) else { return nil }
             // The Optimist is partway through, so the store shots show the Continue card.
             let partway = slug == "the-optimist"
             return SummaryEntry(rowID: nil, slug: slug, title: titles[slug] ?? slug, content: text, updatedAt: partway ? "snapshot" : nil,

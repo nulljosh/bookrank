@@ -34,12 +34,13 @@ jobs:
           cd ios && xcodegen
           xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' -only-testing:KernelTests CODE_SIGNING_ALLOWED=NO | tail -40
       - name: UI walks
-        # The silent screenshot shelf only: no sign-in, never presses Listen.
+        # The silent screenshot shelf only: no sign-in, never presses Listen. The book texts are private and not in
+        # the repo, so CI's shelf is the public sample under each title, and only walks that need titles run here.
         run: |
           set -o pipefail
           cd ios
           xcodebuild test -project Kernel.xcodeproj -scheme Kernel -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' CODE_SIGNING_ALLOWED=NO -resultBundlePath walks.xcresult \
-            -only-testing:KernelUITests/LibraryWalk/testSearch -only-testing:KernelUITests/LibraryWalk/testSortFilter \
+            -only-testing:KernelUITests/LibraryWalk/testStorage -only-testing:KernelUITests/LibraryWalk/testSortFilter \
             -only-testing:KernelUITests/LibraryWalk/testCommandPalette -only-testing:KernelUITests/LibraryWalk/testAccountSections \
             -only-testing:KernelUITests/LibraryWalk/testSleepNote | tail -40
       - name: Keep the walk results when they fail

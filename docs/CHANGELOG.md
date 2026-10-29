@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 87.0.0 (2026-10-29)
+Release candidate. Every row through 86 checked together: on iPhone all 9 unit tests and 22 walks pass; on iPad the unit tests and six walks pass in dark mode; the Mac Release build succeeds; the web's 50 tests pass and every live page answers. CI's walks never really ran before (the book texts are private, so GitHub's shelf was empty): the test shelf now falls back to the public sample under each title, CI runs the walks that need only titles, and Storage is reached through Account so the same walk works on iPad.
+
 ## 86.0.0 (2026-10-29)
 The final docs pass: the whitepaper and README cover reading your way (themes, shortcuts, iPad windows and Pencil, a Mac window per book) and the security headers, and the landing's third step says your place is saved whether you read or listen. The landing's newer text now reads in French, Spanish and German too, and "Get the kernel" no longer comes out as "get the app".
 

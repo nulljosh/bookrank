@@ -215,13 +215,15 @@ final class LibraryWalk: XCTestCase {
         saveTo("palette-none", XCUIScreen.main.screenshot())
     }
 
-    /// Storage: what is kept on this device, opened from Your reading at the bottom of the library.
+    /// Storage: what is kept on this device, opened from Account > Data (the same on iPhone and iPad, where the
+    /// library's own Storage row sits at the foot of the sidebar).
     func testStorage() {
         let app = XCUIApplication()
-        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launchArguments += ["UITEST_SNAPSHOT", "UITEST_ACCOUNT", "-kernel.onboarded", "YES"]
         app.launch()
         let open = app.buttons["Storage on this device"].firstMatch
-        for _ in 0..<10 where !open.isHittable { app.swipeUp() }
+        XCTAssertTrue(app.staticTexts["Listening"].waitForExistence(timeout: 10))
+        for _ in 0..<6 where !open.isHittable { app.swipeUp() }
         XCTAssertTrue(open.waitForExistence(timeout: 10)); open.tap()
         XCTAssertTrue(app.staticTexts["Storage"].waitForExistence(timeout: 5))
         sleep(1)

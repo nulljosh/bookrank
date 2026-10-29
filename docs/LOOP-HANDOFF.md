@@ -4,7 +4,7 @@ The loop takes Kernel to 100, one major per tick, from the Road to 100 table in 
 
 Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100. v50 tagged and checkpointed 2026-10-29.
 
-Next row: **87, Release candidate: every row above on iPhone, iPad, Mac and web**. Row 67 waits until iPhone 1.2.1 is no longer the live version. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
+Next rows: **88 to 99**, all waiting on Joshua (below), and **67** once iPhone 1.2.1 is no longer on sale. **100** is the release once those are done. Row 67 waits until iPhone 1.2.1 is no longer the live version. Rows 88 to 99 wait on Joshua (Workers Paid, Goodreads sign-in, an App Group in Xcode for widgets and extensions, Apple's CarPlay entitlement); build them when those are in place.
 
 ## How to QA
 
