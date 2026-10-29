@@ -1,0 +1,8 @@
+# Security headers for every page. The pages use inline module scripts, so the CSP covers what it safely can:
+# no framing, no plugins, no foreign <base>. Kernel never asks for the camera, microphone or location on the web.
+/*
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

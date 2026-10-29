@@ -52,7 +52,7 @@ All paths above are under `ios/Kernel/` unless they say otherwise.
 
 ## Limits
 
-Every route that calls a model or another site is capped per person (by IP) per hour in `src/lib/quota.js`: narrate 120, ask 60, embed 600, summarize-photo 120, goodreads 60, then a 429. The counts live in the edge cache, so they cost nothing and write no KV. The natural voices keep their own daily and monthly character budgets in KV (`speak.js`). Narrate, ask, embed and summarize-photo also need a sign-in or a share token; the Stripe webhook checks its signature.
+Every route that calls a model or another site is capped per person (by IP) per hour in `src/lib/quota.js`: narrate 120, ask 60, embed 600, summarize-photo 120, goodreads 60, then a 429. The counts live in the edge cache, so they cost nothing and write no KV. The natural voices keep their own daily and monthly character budgets in KV (`speak.js`). Narrate, ask, embed and summarize-photo also need a sign-in or a share token; the Stripe webhook checks its signature. Every page is served with `_headers`: no framing, no plugins, HSTS, and no camera, microphone or location. Page text from users is escaped before it is written as HTML, and avatars load only as images.
 
 ## Startup budget
 

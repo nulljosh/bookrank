@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 84.0.0 (2026-10-29)
+A security and privacy audit. Every place the web writes HTML escapes what users typed, avatars load only as images, every server route needs its sign-in and has its cap, and an account deletion clears everything. The one gap, response headers, is closed: the site can no longer be framed by another, browsers keep to HTTPS, and pages never ask for the camera, microphone or location.
+
 ## 83.0.0 (2026-10-29)
 An Apple-style pass over the web: every button, picker and field is one 44 point height, buttons and pickers are capsules with a drawn chevron, search has a magnifier, and keyboard focus is a soft ring in the accent. The apps already use the system's own controls.
 
