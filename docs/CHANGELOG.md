@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 19.0.0 (2026-10-28)
+Collections: put a book in a group of your own from its page, and the library lists your collections A to Z, then everything else. The same on the apps and the web.
+
 ## 18.0.0 (2026-10-28)
 Search finds words inside your chapters, not only titles. Each result shows the chapter and the line that matched, and opening it lands on that line, marked, in the apps and on the web.
 

@@ -1,0 +1,56 @@
+import XCTest
+
+/// Library walks added after PreviewScreenshot grew too long: search and collections. Never presses Listen.
+/// Shots go to SHOTS_DIR (TEST_RUNNER_SHOTS_DIR on the xcodebuild line).
+@MainActor
+final class LibraryWalk: XCTestCase {
+    /// Search inside the books: the matching line under the row, a Found row on the book, the chapter opened at that line.
+    func testSearch() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        sleep(4)
+        app.swipeDown()
+        let field = app.searchFields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText("gephi")
+        sleep(2)
+        saveTo("search-results", XCUIScreen.main.screenshot())
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5)); row.tap()
+        let found = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Gephi'")).firstMatch
+        XCTAssertTrue(found.waitForExistence(timeout: 10))
+        sleep(1)
+        saveTo("search-found", XCUIScreen.main.screenshot())
+        found.tap()
+        sleep(2)
+        saveTo("search-jumped", XCUIScreen.main.screenshot())
+    }
+
+    /// Collections: put a book in a new one from its page, then the library groups it.
+    func testCollections() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
+        app.launch()
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 15)); row.tap()
+        let menu = app.buttons["Add to a collection"].firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10)); menu.tap()
+        app.buttons["New collection…"].firstMatch.tap()
+        let name = app.textFields["Name"].firstMatch
+        XCTAssertTrue(name.waitForExistence(timeout: 5)); name.typeText("Work")
+        app.buttons["Add"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Collection, Work"].waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("collection-book", XCUIScreen.main.screenshot())
+        app.navigationBars.buttons.firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Work"].waitForExistence(timeout: 5))
+        sleep(2)
+        saveTo("collection-library", XCUIScreen.main.screenshot())
+    }
+
+    private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
+        let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
+        try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
+        try? shot.pngRepresentation.write(to: URL(fileURLWithPath: "\(dir)/\(name).png"))
+    }
+}

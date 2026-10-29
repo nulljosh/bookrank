@@ -235,13 +235,15 @@ struct LibraryView: View {
                 .listRowSeparator(.hidden)
             #endif
         }
-        ForEach(shown.filter { $0.slug != cont?.slug }) { entry in
-            #if os(macOS)
-            summaryRow(entry).tag(entry.slug)
-            #else
-            NavigationLink { SummaryDetailView(slug: entry.slug, store: store, find: query) } label: { summaryRow(entry) }
-            #endif
+        // Your collections, A to Z, then the books in none. A search shows one plain list.
+        let plain = shown.filter { $0.slug != cont?.slug }
+        let names = q.isEmpty ? store.collections.filter { n in plain.contains { $0.collection == n } } : []
+        ForEach(names, id: \.self) { name in
+            Section(name) { ForEach(plain.filter { $0.collection == name }) { bookLink($0) } }
         }
+        let rest = plain.filter { names.isEmpty || $0.collection == nil }
+        if names.isEmpty { ForEach(rest) { bookLink($0) } }
+        else if !rest.isEmpty { Section("Library") { ForEach(rest) { bookLink($0) } } }
         ForEach(shelves, id: \.0) { shelf in
             let (label, books) = shelf
             let open = openShelves.contains(label) || !q.isEmpty
@@ -317,6 +319,15 @@ struct LibraryView: View {
         }
         .padding(.vertical, 8)
         .accessibilityElement(children: .combine)
+    }
+
+    @ViewBuilder
+    private func bookLink(_ entry: SummaryEntry) -> some View {
+        #if os(macOS)
+        summaryRow(entry).tag(entry.slug)
+        #else
+        NavigationLink { SummaryDetailView(slug: entry.slug, store: store, find: query) } label: { summaryRow(entry) }
+        #endif
     }
 
     private func summaryRow(_ entry: SummaryEntry) -> some View {

@@ -62,6 +62,7 @@ ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
 .gd.on i { background:var(--accent); } .gd.today i { outline:1.5px solid var(--accent); outline-offset:2px; }
 .textsize { display:flex; gap:4px; justify-content:flex-end; margin:8px 0 -8px; } .textsize button { min-width:40px; }
 #listen .lp-text { font-size:calc(1rem * var(--reader-scale, 1)); line-height:calc(1.45 + 0.1 * var(--reader-scale, 1)); }
+.coll { display:flex; align-items:center; gap:0.5rem; margin:-0.75rem 0 1rem; font-size:0.8125rem; color:var(--text3); } .coll input { width:14rem; padding:0.35rem 0.6rem; }
 .ask { display:flex; gap:8px; margin:24px 0 8px; } .ask input { flex:1; } .ask button { flex:none; }
 .answer { font-size:0.9375rem; line-height:1.5; color:var(--text2); margin:0 0 16px; }
 .answer:empty { display:none; }
@@ -132,6 +133,8 @@ dl.profile dt { color:var(--text3); }
         <button id="close">Close</button>
       </div>
     </div>
+    <label class="coll hide" id="coll">Collection <input id="collection" list="collections" placeholder="None" maxlength="60"></label>
+    <datalist id="collections"></datalist>
     <div class="textsize hide" id="textsize"><button type="button" id="txtDown" aria-label="Smaller text">A&minus;</button><button type="button" id="txtUp" aria-label="Larger text">A+</button></div>
     <div id="listen"></div>
     <form id="ask" class="ask hide"><input id="askQ" maxlength="500" placeholder="Ask this chapter a question" aria-label="Ask this chapter a question"><button class="primary">Ask</button></form>
@@ -308,6 +311,14 @@ async function speak(text, host, ch) {
   if (out?.audio) offline.put(k, out);
   return out;
 }
+// A book's collection: one name, or none. Not a content edit, so updated_at stays.
+$('collection').onchange = async () => {
+  if (!current) return;
+  const v = $('collection').value.trim() || null;
+  current.collection = v; offline.put(current.id, current);
+  const { error } = await rows.update(current.id, { collection: v });
+  $('editMsg').textContent = error ? 'Could not save the collection.' : v ? `Saved to ${v}.` : 'Removed from its collection.';
+};
 // Download: every chapter's script and every line's voice, kept on this device. Same as Download in the apps.
 $('download').onclick = async () => {
   const row = current, b = $('download'), chs = chapters(row?.content || '');
@@ -445,7 +456,7 @@ const cached = async (k, q) => {
   return hit ? { data: hit, error: null, offline: true } : res;
 };
 const rows = {
-  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token').order('updated_at', { ascending: false })),
+  list:   ()            => cached('list', () => db.from(TABLE).select('id,slug,title,updated_at,listen,cover,share_token,collection').order('updated_at', { ascending: false })),
   get:    (id)          => cached(id, () => db.from(TABLE).select('*').eq('id', id).single()),
   insert: (row)         => db.from(TABLE).insert(row).select().single(),
   update: (id, row)     => db.from(TABLE).update(row).eq('id', id).select().single(),
@@ -469,7 +480,12 @@ async function load() {
   // Rows with a live resume point come first under "Currently playing"; the untouched
   // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
   const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
-  const groups = [['Currently playing', data.filter(started)], [data.some(started) ? 'Library' : '', data.filter(r => !started(r))]];
+  // Then your collections, A to Z, then everything in none of them.
+  const rest = data.filter(r => !started(r));
+  const names = [...new Set(data.map(r => r.collection).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  $('collections').replaceChildren(...names.map(n => new Option(n)));
+  const groups = [['Currently playing', data.filter(started)], ...names.map(n => [n, rest.filter(r => r.collection === n)]),
+    [data.some(started) || names.length ? 'Library' : '', rest.filter(r => !r.collection)]];
   for (const [label, rows] of groups) {
     if (!rows.length) continue;
     if (label) $('list').append(Object.assign(document.createElement('li'), { className: 'group', textContent: label }));
@@ -546,6 +562,7 @@ async function open(id) {
   current = data;
   $('title').value = data.title;
   $('body').value = data.content;
+  $('collection').value = data.collection || '';
   $('share').textContent = data.share_token ? 'Stop sharing' : 'Share';
   showEditor(true);
   if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
@@ -605,6 +622,7 @@ function render(reading) {
   $('listen').classList.toggle('hide', !reading);
   $('ask').classList.toggle('hide', !reading); $('askA').textContent = '';
   $('textsize').classList.toggle('hide', !reading);
+  $('coll').classList.toggle('hide', !reading || !current);
   $('body').classList.toggle('hide', reading);
   $('toggle').textContent = reading ? 'Edit' : 'Listen';
   $('share').classList.toggle('hide', !reading);

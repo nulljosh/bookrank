@@ -303,28 +303,6 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("text-menu", XCUIScreen.main.screenshot())
     }
 
-    /// Search inside the books: the matching line under the row, a Found row on the book, the chapter opened at that line.
-    func testSearch() {
-        let app = XCUIApplication()
-        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES"]
-        app.launch()
-        sleep(4)
-        app.swipeDown()
-        let field = app.searchFields.firstMatch
-        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText("gephi")
-        sleep(2)
-        saveTo("search-results", XCUIScreen.main.screenshot())
-        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Data Science'")).firstMatch
-        XCTAssertTrue(row.waitForExistence(timeout: 5)); row.tap()
-        let found = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Gephi'")).firstMatch
-        XCTAssertTrue(found.waitForExistence(timeout: 10))
-        sleep(1)
-        saveTo("search-found", XCUIScreen.main.screenshot())
-        found.tap()
-        sleep(2)
-        saveTo("search-jumped", XCUIScreen.main.screenshot())
-    }
-
     /// Cold launch to first frame, five runs. Run against a Release build (`-configuration Release`) for real numbers.
     func testLaunchTime() {
         let app = XCUIApplication()

@@ -34,7 +34,6 @@
 		3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
 		3D530ABE1D05E9375B1723CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6A07A84C932C63B346AE7 /* ContentView.swift */; };
 		3F4315F9DCE3F96D1E0A5FAE /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
-		429BBA687C5B50266FD1E658 /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 4CB11F508FEB77B4CAAD7EF3 /* goodreads-parse.js */; };
 		4340AD27703B3A0C81C395B2 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426B0F1E4ABEE1A8FBE43C /* sample.md */; };
 		45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
@@ -49,6 +48,7 @@
 		62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */ = {isa = PBXBuildFile; fileRef = 251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */; };
 		6539F6EAE152BB3329E74AA8 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
 		66FA3A9E0BF6F1B90DCF99C4 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
+		670187A13FCDD35DCBEBF3C9 /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = 28F2279A9A1CB974E6CE26AD /* Kernel.icon */; };
 		6892694E45629DB122D66720 /* AddPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725F291428741C2DC63FE /* AddPagesView.swift */; };
 		6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */; };
 		6CD61BE9DE06CED37947EC9D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
@@ -56,7 +56,6 @@
 		6E5D930EBBB1E8AD6C3B4CBD /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8917EA02FB6A28868C756F74 /* Nudge.swift */; };
 		71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
 		7699430312B7D04FC801034C /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
-		76A0A9AB5E70EF5F54180419 /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = A918FA2D7AF3995D74F8E133 /* Kernel.icon */; };
 		76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
 		77E1E2E4FF6DE7717CF9CE3D /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
 		79E0EA8196E45333523FD67F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EE769FDA16E1E24C359F00 /* AccountView.swift */; };
@@ -76,8 +75,8 @@
 		A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */; };
 		A336E3C4F79EC6817275505A /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
 		A45E26D9E93A43680F4B1919 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
-		ABB3578271ADDB49C6476803 /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = A918FA2D7AF3995D74F8E133 /* Kernel.icon */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
+		AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		B4355185817350A40674BF08 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
 		B72C4EA1CA39F51878968A75 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D42622E422604FB14F1EF9 /* SplashView.swift */; };
@@ -92,6 +91,8 @@
 		D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */; };
 		D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
 		D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
+		D63E6A6B8F231D6504401456 /* LibraryWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856723BDA9B438B185F67005 /* LibraryWalk.swift */; };
+		DD645625E3601F018202F4DA /* Kernel.icon in Resources */ = {isa = PBXBuildFile; fileRef = 28F2279A9A1CB974E6CE26AD /* Kernel.icon */; };
 		E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		E1DAAFF0A9136A82FBA6D304 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD53A14FC46AD38DFFFA927 /* Book.swift */; };
 		E20FA7D94F175478FA2E24F8 /* macos-tahoe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F942CD0B0198ADDFCC43A16 /* macos-tahoe.md */; };
@@ -100,9 +101,9 @@
 		E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		E9F035857054622655969C14 /* ai-in-business.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */; };
-		EB4F30C8338DC50096BFCB66 /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 4CB11F508FEB77B4CAAD7EF3 /* goodreads-parse.js */; };
 		EF1CA0C4F6AD8AC3C98EB22F /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7556DD94ED3DCD7AE92DF /* Lines.swift */; };
 		F7C5BBBC7B5C9F3E4AC9723D /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */; };
+		F7D405CA6423FBFA213E6E20 /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
 		F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */ = {isa = PBXBuildFile; fileRef = 52E50E1C377807E014AE18C2 /* good-feng-shui.md */; };
 		FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */; };
 		FDD2B88F7FC93EC43D72A433 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB1817D952E630F014265C /* AuthStore.swift */; };
@@ -129,6 +130,7 @@
 		251DB09CB24CCE86DD2F5DDE /* the-contrarian.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "the-contrarian.md"; sourceTree = "<group>"; };
 		27226F6EBAA2E0996484A737 /* how-ai-thinks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "how-ai-thinks.md"; sourceTree = "<group>"; };
 		27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Bold.otf"; sourceTree = "<group>"; };
+		28F2279A9A1CB974E6CE26AD /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		29A3854E0210223CC5024821 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		32D10340DE121C50437BAE35 /* KernelMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -139,7 +141,6 @@
 		474F2B34359A0AAD47074F04 /* SummaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetailView.swift; sourceTree = "<group>"; };
 		489B04517DC64E94DE1670F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "trading-for-canadians-for-dummies.md"; sourceTree = "<group>"; };
-		4CB11F508FEB77B4CAAD7EF3 /* goodreads-parse.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "goodreads-parse.js"; sourceTree = "<group>"; };
 		4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "adult-autism.md"; sourceTree = "<group>"; };
 		4E7D1A7F1D756D4BACE9D442 /* ai-in-business.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ai-in-business.md"; sourceTree = "<group>"; };
 		5143E3D28C23EEE7661B6DDE /* KernelWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KernelWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,14 +157,15 @@
 		75F4E8FFFECCDF017CFF9483 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kernel.entitlements; sourceTree = "<group>"; };
 		8457AA46B272289E03D54157 /* Narrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narrator.swift; sourceTree = "<group>"; };
+		856723BDA9B438B185F67005 /* LibraryWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWalk.swift; sourceTree = "<group>"; };
 		86F8D3888306DB3496A66700 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		8917EA02FB6A28868C756F74 /* Nudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
+		93C297DC0982C944762380D7 /* goodreads-parse.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "goodreads-parse.js"; sourceTree = "<group>"; };
 		957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Medium.otf"; sourceTree = "<group>"; };
 		9C9F810A2EE7CDD4B516ADEF /* Kernel.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Kernel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1FB1817D952E630F014265C /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Regular.otf"; sourceTree = "<group>"; };
 		A849BD03EBC174F2FFE54D4A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		A918FA2D7AF3995D74F8E133 /* Kernel.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Kernel.icon; sourceTree = "<group>"; };
 		AAB8DB870805E0D468BF923B /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "statistics-for-dummies.md"; sourceTree = "<group>"; };
 		B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "acing-the-system-design-interview.md"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		1A2FED814490F5B9BF67D7D0 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
+				856723BDA9B438B185F67005 /* LibraryWalk.swift */,
 				C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */,
 				34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */,
 			);
@@ -247,16 +250,6 @@
 				5143E3D28C23EEE7661B6DDE /* KernelWatch.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6A3EE226D4E25B6020FCE81E /* bookrank */ = {
-			isa = PBXGroup;
-			children = (
-				4CB11F508FEB77B4CAAD7EF3 /* goodreads-parse.js */,
-				A918FA2D7AF3995D74F8E133 /* Kernel.icon */,
-			);
-			name = bookrank;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		8880599E6CAD5AF3B050787B /* Models */ = {
@@ -304,12 +297,22 @@
 			path = KernelWatch;
 			sourceTree = "<group>";
 		};
+		C33E2ACDD5A8E7A09AEAB085 /* kernel */ = {
+			isa = PBXGroup;
+			children = (
+				93C297DC0982C944762380D7 /* goodreads-parse.js */,
+				28F2279A9A1CB974E6CE26AD /* Kernel.icon */,
+			);
+			name = kernel;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		F3C8B680AD9BD3B1C3777E0C = {
 			isa = PBXGroup;
 			children = (
-				6A3EE226D4E25B6020FCE81E /* bookrank */,
 				0E26F8CC828070D4E6EE2F07 /* fonts */,
 				FBA8AD8272F433C19F1171F0 /* Kernel */,
+				C33E2ACDD5A8E7A09AEAB085 /* kernel */,
 				B639F1186DEF4C633D487E80 /* KernelWatch */,
 				1A2FED814490F5B9BF67D7D0 /* UITests */,
 				3BEFBFF1973B1DD95CDE5364 /* Products */,
@@ -470,7 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A95C82729E2AFBF7FDEAA8 /* Assets.xcassets in Resources */,
-				76A0A9AB5E70EF5F54180419 /* Kernel.icon in Resources */,
+				DD645625E3601F018202F4DA /* Kernel.icon in Resources */,
 				45CE77ADC37826235076160A /* KernelSans-Bold.otf in Resources */,
 				FD448C9A829C3DE83D0F1875 /* KernelSans-Medium.otf in Resources */,
 				59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */,
@@ -484,7 +487,7 @@
 				E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */,
 				CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */,
 				F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */,
-				EB4F30C8338DC50096BFCB66 /* goodreads-parse.js in Resources */,
+				AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */,
 				15D930050CBDA1658CCCD3A4 /* how-ai-thinks.md in Resources */,
 				36B7AE29E79211DF6BD35B01 /* ibs-for-dummies.md in Resources */,
 				10DD936367C1E7ED6638B0DC /* living-well-in-a-down-economy-for-dummies.md in Resources */,
@@ -503,7 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */,
-				ABB3578271ADDB49C6476803 /* Kernel.icon in Resources */,
+				670187A13FCDD35DCBEBF3C9 /* Kernel.icon in Resources */,
 				4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */,
 				1E38C284CB6C699CB38194F5 /* KernelSans-Medium.otf in Resources */,
 				235323D2084A5C77CB5F6856 /* KernelSans-Regular.otf in Resources */,
@@ -517,7 +520,7 @@
 				8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */,
 				49854BF8C5BA099616FA2888 /* fiend.md in Resources */,
 				3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */,
-				429BBA687C5B50266FD1E658 /* goodreads-parse.js in Resources */,
+				F7D405CA6423FBFA213E6E20 /* goodreads-parse.js in Resources */,
 				7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */,
 				9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */,
 				95FCAC2BC4AF7525D3C06B7C /* living-well-in-a-down-economy-for-dummies.md in Resources */,
@@ -576,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63E6A6B8F231D6504401456 /* LibraryWalk.swift in Sources */,
 				5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */,
 				D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */,
 			);
@@ -627,7 +631,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/KernelMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -636,7 +640,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -728,13 +732,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -748,13 +752,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -824,7 +828,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/KernelMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -833,7 +837,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -846,7 +850,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/Kernel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -855,7 +859,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -889,7 +893,7 @@
 				CODE_SIGN_ENTITLEMENTS = Kernel/Kernel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202610281242;
+				CURRENT_PROJECT_VERSION = 202610282009;
 				DEVELOPMENT_TEAM = QMM486NPYC;
 				INFOPLIST_FILE = Kernel/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -898,7 +902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 18.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

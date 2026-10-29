@@ -54,6 +54,8 @@ struct SummaryDetailView: View {
     var find = ""                       // the library search that opened this book, if any
     var speaker = Speaker.shared
     @State private var shareURL: URL?
+    @State private var naming = false
+    @State private var newCollection = ""
     #if os(iOS)
     #endif
 
@@ -107,6 +109,7 @@ struct SummaryDetailView: View {
             Text(entry?.title ?? "Summary").font(.kernel(.title2, weight: .bold)).multilineTextAlignment(.center).lineLimit(3)
             Text("\(speaker.chapters.count) chapters · \(duration(minutes(speaker.chapters.map(\.text).joined())))").font(.kernel(.footnote)).foregroundStyle(.secondary)
             if speaker.natural && slug != "sample" { offlineButton }
+            if entry != nil && slug != "sample" { collectionMenu(entry?.collection) }
         }
         .frame(maxWidth: .infinity)
         .padding(.bottom, 6)
@@ -191,6 +194,26 @@ struct SummaryDetailView: View {
             if speaker.chapters.indices.contains(m.ch) { Text(speaker.chapters[m.ch].title).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1) }
         }
         .padding(.vertical, 3)
+    }
+
+    /// Which collection the book is in: pick one, make a new one, or none.
+    private func collectionMenu(_ current: String?) -> some View {
+        Menu {
+            ForEach(store.collections, id: \.self) { n in
+                Button { Task { await store.setCollection(n, for: slug) } } label: { if n == current { Label(n, systemImage: "checkmark") } else { Text(n) } }
+            }
+            Button("New collection…", systemImage: "plus") { newCollection = ""; naming = true }
+            if current != nil { Button("Remove from \(current!)", systemImage: "minus.circle", role: .destructive) { Task { await store.setCollection(nil, for: slug) } } }
+        } label: {
+            HStack(spacing: 4) { Image(systemName: "folder"); Text(current ?? "Add to a collection") }
+        }
+        .font(.kernel(.footnote)).menuStyle(.button).buttonStyle(.borderless)
+        .accessibilityLabel(current.map { "Collection, \($0)" } ?? "Add to a collection")
+        .alert("New collection", isPresented: $naming) {
+            TextField("Name", text: $newCollection)
+            Button("Cancel", role: .cancel) {}
+            Button("Add") { Task { await store.setCollection(newCollection, for: slug) } }
+        }
     }
 
     private func foundRow(_ f: (ch: Int, line: Int, title: String, text: String)) -> some View {

@@ -79,7 +79,7 @@ final class DataStore {
     func loadSummaries() async {
         if CommandLine.flag("UITEST_SNAPSHOT") { summaryIndex = Self.sampleShelf(); return }
         do {
-            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token&order=title")
+            let data = try await API.call("GET", "/rest/bookrank_summaries?select=id,slug,title,content,updated_at,listen,cover,share_token,collection&order=title")
             summaryIndex = try JSONDecoder().decode([SummaryEntry].self, from: data)
             summaryError = nil
             writeCache()
@@ -196,6 +196,17 @@ final class DataStore {
     }
 
     func summary(for slug: String) -> SummaryEntry? { summaryIndex.first { $0.slug == slug } }
+
+    /// Your collections, A to Z. Same as the web's.
+    var collections: [String] { Set(summaryIndex.compactMap(\.collection)).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
+    /// Put a book in a collection, or none. Side data, so updated_at stays.
+    func setCollection(_ name: String?, for slug: String) async {
+        guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }) else { return }
+        let name = String(name?.trimmingCharacters(in: .whitespaces).prefix(60) ?? "")
+        summaryIndex[i].collection = name.isEmpty ? nil : name
+        writeCache()
+        if let id = summaryIndex[i].rowID { _ = try? await patch(id, ["collection": name.isEmpty ? NSNull() as Any : name]) }
+    }
 
     /// Persist listen progress + scripts on the row (same shape the web writes).
     /// Highlights are merged with the row first, so another device's highlights survive; returns the merged list.

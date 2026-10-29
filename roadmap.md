@@ -19,7 +19,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 16 | Web offline audio: Download on the web book page | web | built (every line heard or downloaded is kept on the device; Download fetches the rest) |
 | 17 | Web Add pages parity: per-photo progress, edit before save | web | built (Add pages button, progress bar, failed pages named, new text selected in the editor until Save) |
 | 18 | Search inside chapter text, results jump to the line | apps, web | built (matching line under each result; the book opens on the notes at that line, marked; testSearch) |
-| 19 | Collections: put books in your own groups | apps, web | open |
+| 19 | Collections: put books in your own groups | apps, web | built (one collection per book, a `collection` column on jaybulb-api; library groups A to Z, then Library; testCollections) |
 | 20 | Sort and filter the library (recent, title, progress, length) | apps, web | open |
 | 21 | Your own note under any chapter | apps, web | open |
 | 22 | All highlights in one place; share a highlight as an image card | apps, web | open |

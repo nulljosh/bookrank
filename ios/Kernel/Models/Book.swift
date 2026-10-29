@@ -28,8 +28,9 @@ struct SummaryEntry: Codable, Identifiable {
     var listen: ListenState?
     var cover: String?
     var shareToken: String?
+    var collection: String? = nil   // your own group for the book, one name or none
 
-    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen, cover, shareToken = "share_token" }
+    enum CodingKeys: String, CodingKey { case rowID = "id", slug, title, content, updatedAt = "updated_at", listen, cover, shareToken = "share_token", collection }
 }
 
 /// Mirrors the web's `listen` jsonb: generated scripts per chapter plus the resume point.
