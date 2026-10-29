@@ -82,7 +82,7 @@ struct AddPagesView: View {
                         }
                     Button { kindle = true } label: { Label(importing ?? "Import Kindle or Readwise highlights", systemImage: "book.pages") }.disabled(importing != nil)
                 } footer: {
-                    Text(kindleDone ?? "An EPUB without DRM or a PDF becomes a book, a chapter per section. For highlights, choose My Clippings.txt from your Kindle's documents folder, or a Readwise CSV export.")
+                    kindleDone.map(Text.init(verbatim:)) ?? Text("An EPUB without DRM or a PDF becomes a book, a chapter per section. For highlights, choose My Clippings.txt from your Kindle's documents folder, or a Readwise CSV export.")
                 }
             }
             .fileImporter(isPresented: $kindle, allowedContentTypes: [.plainText, .text, .commaSeparatedText]) { r in

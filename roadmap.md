@@ -49,7 +49,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 46 | Accessibility: VoiceOver on every screen, largest text sizes, Reduce Motion | apps, web | built (the chapter text follows the accessibility text sizes from Settings, long chapter titles wrap, the Mac menu bar player and onboarding speak properly to VoiceOver, Reduce Motion turns off slides and springs app-wide) |
 | 47 | Languages: French, Spanish and German interface | apps, web | built (apps: a string catalog with 227 strings in each language, picked from the system language; web: i18n.js swaps fixed text from i18n/<lang>.json by the browser language, never touching your summaries. Still English: durations like "4 hr 2 min" and sentences put together in code) |
 | 48 | Narrate a chapter in your own language | apps, web | built (/api/narrate takes `lang`; the apps send their interface language and the web the browser's, so a French phone hears French. Chapters already narrated keep the language they were made in; shared links stay English so their cache fits everyone. Not heard live: no signed-in test account) |
-| 49 | Localized screenshots and listings | store | open |
+| 49 | Localized screenshots and listings | store | built (docs/store/listing.json in English, French, Spanish and German, put on a version by `scripts/store-listing.sh`; iPhone and iPad store shots in ios/fastlane/screenshots/fr-FR, es-ES, de-DE. Both platforms are in review, so it goes up with the next version) |
 | 50 | First-run pages offer the Goodreads sign-in | apps | open |
 | 51 | Empty states and error messages A+ on every screen | apps, web | open |
 | 52 | Account reorganized: Listening, Goodreads, Notifications, Data | apps, web | open |

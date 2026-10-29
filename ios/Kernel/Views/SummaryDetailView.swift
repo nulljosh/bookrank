@@ -165,7 +165,7 @@ struct SummaryDetailView: View {
     /// One big gold control for the book: Play, Continue where you left off, Pause, Resume.
     private var playButton: some View {
         let on = speaker.playing && !speaker.paused
-        let title = on ? "Pause" : speaker.paused ? "Resume" : speaker.resumed ? "Continue" : "Play"
+        let title: LocalizedStringKey = on ? "Pause" : speaker.paused ? "Resume" : speaker.resumed ? "Continue" : "Play"
         return Button { speaker.toggle() } label: {
             Label(title, systemImage: on ? "pause.fill" : "play.fill")
                 .font(.kernel(.headline)).frame(maxWidth: .infinity)
@@ -211,7 +211,7 @@ struct SummaryDetailView: View {
             Button("New collection…", systemImage: "plus") { newCollection = ""; naming = true }
             if current != nil { Button("Remove from \(current!)", systemImage: "minus.circle", role: .destructive) { Task { await store.setCollection(nil, for: slug) } } }
         } label: {
-            HStack(spacing: 4) { Image(systemName: "folder"); Text(current ?? "Add to a collection") }
+            HStack(spacing: 4) { Image(systemName: "folder"); current.map(Text.init(verbatim:)) ?? Text("Add to a collection") }
         }
         .font(.kernel(.footnote)).menuStyle(.button).buttonStyle(.borderless)
         .accessibilityLabel(current.map { "Collection, \($0)" } ?? "Add to a collection")

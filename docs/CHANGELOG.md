@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 49.0.0 (2026-10-28)
+A new store listing in English, French, Spanish and German, with iPhone and iPad screenshots in each language, ready for the next version. Two buttons that stayed English in the apps now translate.
+
 ## 48.0.0 (2026-10-28)
 "Explain it" narrates in your language: French, Spanish or German, following the app's or the browser's language, whatever language the notes are in.
 
