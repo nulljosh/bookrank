@@ -2,7 +2,7 @@
 
 Chapter summaries of the books you own, read or listen to, on the web, iPhone, iPad and Mac. Renamed Bookrank to Kernel on 2026-10-28; earlier names were Books, Spine and Uprighty. Folder `~/Documents/Code/kernel` (`bookrank` is a symlink to it), repo `nulljosh/kernel`, ASC app `6792376485` (one record, iOS and Mac). History is in `docs/CHANGELOG.md`, the plan in `roadmap.md`, the loop state in `docs/LOOP-HANDOFF.md`, how to ship in `docs/SHIPPING.md`.
 
-**Old names kept on purpose** (renaming breaks installs, settings or the API): bundle id `com.heyitsmejosh.spine`, `spine-theme`, the `bookrank_summaries` table, `bookrank.*` UserDefaults and localStorage keys, the `bookrank` onboarding key, the `bookrank-data` cache, the `X-Bookrank-App` header, the KMP package `com.nulljosh.bookrank`, the Pages project `bookrank`, the Mac profile "Bookrank Mac App Store", and bookrank.jaybulb.com (the only host until kernel.jaybulb.com is added).
+**Old names kept on purpose** (renaming breaks installs, settings or the API): bundle id `com.heyitsmejosh.spine`, `spine-theme`, the `bookrank_summaries` table, `bookrank.*` UserDefaults and localStorage keys, the `bookrank` onboarding key, the `bookrank-data` cache, the `X-Bookrank-App` header, the KMP package `com.nulljosh.bookrank`, the Pages project `bookrank`, the Mac profile "Bookrank Mac App Store", and bookrank.jaybulb.com (the old host, still served beside kernel.jaybulb.com, which is canonical).
 
 ## Map
 - `library.html`: the web app (your summaries, the player, highlights, Ask, Goodreads). Its data layer is `rows`; every read goes through `cached()` so it works offline.
