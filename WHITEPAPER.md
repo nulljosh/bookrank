@@ -1,6 +1,6 @@
 # Kernel Technical Whitepaper
 
-**v70** | October 2026
+**v86** | October 2026
 
 You finish a book and a month later you remember one idea. Kernel keeps the rest: every chapter in plain words, read in a minute or explained aloud by one narrator while the words light up. Your summaries sit behind your account, and deleting the account deletes all of it. Free at [bookrank.jaybulb.com](https://bookrank.jaybulb.com), and $0.99 on iPhone, iPad and Mac.
 
@@ -23,6 +23,10 @@ Web and apps sign in to jaybulb-api, a Cloudflare Worker on D1, and read the sam
 ## Finding things
 
 Search looks inside every chapter and opens at the line. Search by meaning embeds each paragraph with `/api/embed` once and keeps the index on the device, so an idea is found without its words. Today's five brings back five highlights a day, the same five on every device.
+
+## Reading
+
+Reading saves your place as well as listening: once you stop scrolling, the top line on screen is where you left off. The reader comes in light, dark, sepia and true black, with Kernel Sans in an italic for quotes. On the web, Space, j, k, h and / do what the buttons do and f leaves only the text; on iPad, Kernel opens in several windows and Apple Pencil highlights the line you are on; on the Mac, a book can have a window of its own.
 
 ## Languages
 
@@ -50,7 +54,7 @@ A summary can be shared with a link. The link carries a random token, and only t
 
 ## Limits and leaving
 
-Every route that runs a model or reaches Goodreads has an hourly cap per person, counted in the edge cache. Export everything is one zip. Deleting an account also clears its voice records on Kernel's server and every copy on the device it is deleted from.
+Every route that runs a model or reaches Goodreads has an hourly cap per person, counted in the edge cache, and every page carries headers that stop framing and keep to HTTPS. Export everything is one zip. Deleting an account also clears its voice records on Kernel's server and every copy on the device it is deleted from.
 
 ## License
 

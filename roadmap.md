@@ -86,7 +86,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 83 | apple skill audit of every screen, zero findings | all | built (CHANGELOG 83.0.0; Kernel Sans stays, it was Joshua's brief, and sepia stays as a reading choice) |
 | 84 | Security and privacy audit, zero findings | all | built (CHANGELOG 84.0.0) |
 | 85 | Performance audit, zero regressions | all | built (CHANGELOG 85.0.0; the table is in docs/ARCHITECTURE.md) |
-| 86 | Docs, README, WHITEPAPER and landing final pass | repo, web | open |
+| 86 | Docs, README, WHITEPAPER and landing final pass | repo, web | built (CHANGELOG 86.0.0) |
 | 87 | Release candidate: every row above on iPhone, iPad, Mac and web | all | open |
 | 88 | Home Screen widgets: Continue and the weekly ring | iPhone, iPad, Mac | open |
 | 89 | Lock Screen widget and a Live Activity while listening | iPhone | open |

@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 86.0.0 (2026-10-29)
+The final docs pass: the whitepaper and README cover reading your way (themes, shortcuts, iPad windows and Pencil, a Mac window per book) and the security headers, and the landing's third step says your place is saved whether you read or listen. The landing's newer text now reads in French, Spanish and German too, and "Get the kernel" no longer comes out as "get the app".
+
 ## 85.0.0 (2026-10-29)
 A performance audit with no regressions since 58 and 60: the web still shows 500 books in about 130 ms and searches them in about 20, and the iPhone app launches and scrolls a 500-book shelf as fast as before. The numbers live in a table in docs/ARCHITECTURE.md for the next audit.
 

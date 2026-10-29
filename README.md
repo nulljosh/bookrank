@@ -15,6 +15,7 @@ Free on the [web](https://bookrank.jaybulb.com), $0.99 on iPhone, iPad and Mac. 
 - **Search.** Find words inside your chapters, or ideas close in meaning.
 - **Bring your books.** Photos of pages, EPUB and PDF, Kindle and Readwise highlights.
 - **Four languages.** English, French, Spanish and German, narration included.
+- **Read your way.** Light, dark, sepia or true black; your place is saved whether you listen or read.
 - **Offline.** Your books stay on the device, the apps download the audio, and saves made offline go up later.
 - **Yours.** Export everything as one zip. Deleting your account deletes all of it.
 
