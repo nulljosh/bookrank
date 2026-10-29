@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 18.0.0 (2026-10-28)
+Search finds words inside your chapters, not only titles. Each result shows the chapter and the line that matched, and opening it lands on that line, marked, in the apps and on the web.
+
 ## 17.0.0 (2026-10-28)
 Add pages on the web works like the apps: a progress bar while each photo is read, the pages that could not be read named, and the new text selected in the editor so you can fix it before you save.
 

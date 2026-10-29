@@ -31,7 +31,9 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             if playing { Task { await play(from: 0, fraction: spot) } } else { Task { await showChapter() } }
         }
     }
-    private var talks: Bool { explain && slug != "sample" }
+    private var talks: Bool { explain && slug != "sample" && !notes }
+    /// A search result opened the notes view; it lasts until another chapter or book is opened, and is never saved as your mode.
+    private var notes = false
     /// Steps people actually use, from a slow read to a fast skim. 2x is the ceiling both the device voice and the player allow.
     /// AVSpeech's scale is not linear: the raw max (1.0) is about three times normal speech. This maps 1x to the default and 2x
     /// to a brisk 0.65, so a 2x on the device voice sounds like 2x.
@@ -86,7 +88,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     func load(slug: String, chapters: [Chapter], entry: SummaryEntry?, save: @escaping (ListenState) async -> [ListenState.Mark]) {
         if self.slug == slug { return }
         stop()
-        self.slug = slug; self.chapters = chapters; self.save = save
+        self.slug = slug; self.chapters = chapters; self.save = save; notes = false
         if let r = UserDefaults.standard.object(forKey: "bookrank.rate.\(slug)") as? Float { rate = r }
         updatedAt = entry?.updatedAt ?? ""
         let st = entry?.listen.flatMap { $0.for == updatedAt ? $0 : nil }
@@ -187,7 +189,13 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         self.chapters = chapters; slug = "sample"; ch = 0; lines = Self.blocks(chapters.first?.text ?? ""); line = min(2, max(lines.count - 1, 0)); paused = true; status = ""
     }
     /// Show a chapter without speaking it.
-    func open(_ chapter: Int) { stop(); ch = chapter; line = 0; Task { await showChapter() } }
+    func open(_ chapter: Int) { stop(); if notes { notes = false; prefetch = [:] }; ch = chapter; line = 0; Task { await showChapter() } }
+    /// A search result: the chapter's notes, at the line that matched. Play reads on from there. Same as listen.js find().
+    func showNotes(_ chapter: Int, at l: Int) {
+        guard chapters.indices.contains(chapter) else { return }
+        stop(); notes = true; prefetch = [:]; resumed = true
+        ch = chapter; lines = Self.blocks(chapters[chapter].text); line = min(l, max(lines.count - 1, 0))
+    }
     func go(to chapter: Int, line l: Int = 0) { ch = chapter; line = l; Task { await play(from: l) } }
 
     func stop() {

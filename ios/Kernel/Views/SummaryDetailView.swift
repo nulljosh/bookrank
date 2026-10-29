@@ -28,10 +28,30 @@ func parseChapters(_ markdown: String) -> [Speaker.Chapter] {
 }
 
 /// A book: just its chapters. Tap one to read or listen to it.
+/// Search inside a book: the first chapter line (as the notes show it) that holds `q`, any case. Same as listen.js findLine().
+func findLine(_ markdown: String, _ q: String) -> (ch: Int, line: Int, title: String, text: String)? {
+    let q = q.trimmingCharacters(in: .whitespaces).lowercased()
+    guard !q.isEmpty else { return nil }
+    for (ch, c) in parseChapters(markdown).enumerated() {
+        let lines = Speaker.blocks(c.text)
+        if let l = lines.firstIndex(where: { $0.line.lowercased().contains(q) }) { return (ch, l, c.title, lines[l].line) }
+    }
+    return nil
+}
+
+/// "…around the words…", for a search result row.
+func snippet(_ text: String, _ q: String) -> String {
+    guard let r = text.range(of: q.trimmingCharacters(in: .whitespaces), options: .caseInsensitive) else { return text }
+    let from = text.index(r.lowerBound, offsetBy: -40, limitedBy: text.startIndex) ?? text.startIndex
+    let to = text.index(r.upperBound, offsetBy: 60, limitedBy: text.endIndex) ?? text.endIndex
+    return (from > text.startIndex ? "…" : "") + text[from..<to] + (to < text.endIndex ? "…" : "")
+}
+
 struct SummaryDetailView: View {
     let slug: String
     let store: DataStore
     var chapter: Binding<Int?>? = nil   // Mac: this column picks the chapter the text column shows
+    var find = ""                       // the library search that opened this book, if any
     var speaker = Speaker.shared
     @State private var shareURL: URL?
     #if os(iOS)
@@ -104,6 +124,15 @@ struct SummaryDetailView: View {
         playButton
             .listRowSeparator(.hidden)
             .selectionDisabled()
+        if let f = findLine(store.summaryMarkdown(for: slug), find) {
+            Section("Found") {
+                #if os(macOS)
+                foundRow(f).tag(f.ch)
+                #else
+                NavigationLink { ChapterView(index: f.ch, jump: f.line) } label: { foundRow(f) }
+                #endif
+            }
+        }
         if !speaker.marks.isEmpty {
             Section("Highlights") {
                 ForEach(speaker.marks, id: \.self) { m in
@@ -164,6 +193,14 @@ struct SummaryDetailView: View {
         .padding(.vertical, 3)
     }
 
+    private func foundRow(_ f: (ch: Int, line: Int, title: String, text: String)) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(snippet(f.text, find)).lineLimit(3)
+            Text(f.title).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
+        }
+        .padding(.vertical, 3)
+    }
+
     private func chapterRow(_ i: Int) -> some View {
         HStack(spacing: 10) {
             Text(speaker.chapters[i].title).lineLimit(2)
@@ -181,6 +218,7 @@ struct SummaryDetailView: View {
 /// and followed. Mirrors listen.js mount().
 struct ChapterView: View {
     let index: Int
+    var jump: Int? = nil   // a search result: open on the notes at this line
     var speaker = Speaker.shared
     @AppStorage("kernel.textSize") private var textSize = 1
     @State private var asking = false
@@ -194,7 +232,7 @@ struct ChapterView: View {
                         LineView(line: speaker.lines[i], on: i == speaker.line && (speaker.playing || speaker.paused),
                                  dim: speaker.playing || speaker.paused,
                                  word: i == speaker.line ? speaker.word : nil,
-                                 marked: speaker.isMarked(speaker.lines[i], in: speaker.ch))
+                                 marked: speaker.isMarked(speaker.lines[i], in: speaker.ch), found: i == jump && !speaker.playing)
                             .contextMenu {
                                 let m = speaker.isMarked(speaker.lines[i], in: speaker.ch)
                                 Button(m ? "Remove highlight" : "Highlight", systemImage: m ? "highlighter.badge.minus" : "highlighter") { speaker.toggleMark(speaker.lines[i]) }
@@ -218,6 +256,7 @@ struct ChapterView: View {
                 let f = min(max(Double(w.lowerBound) / Double(len), 0.12), 0.8)
                 withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(speaker.line, anchor: UnitPoint(x: 0.5, y: f)) }
             }
+            .task { if let jump { try? await Task.sleep(for: .milliseconds(200)); withAnimation { proxy.scrollTo(jump, anchor: .center) } } }
         }
         // The chapter's own heading opens the text, so on iPhone the bar holds only the controls.
         #if os(iOS)
@@ -233,7 +272,7 @@ struct ChapterView: View {
             ListenControls()
         }
         .sheet(isPresented: $asking) { AskView(chapter: speaker.chapters[speaker.ch]).presentationDetents([.medium, .large]) }
-        .task { if speaker.ch != index { speaker.open(index) } }
+        .task { if let jump { speaker.showNotes(index, at: jump) } else if speaker.ch != index { speaker.open(index) } }
     }
 }
 
@@ -247,6 +286,7 @@ private struct LineView: View {
     let dim: Bool   // only dim the other lines while something is being read
     let word: Range<Int>?
     var marked = false
+    var found = false   // the line a search jumped to
 
     @AppStorage("kernel.textSize") private var textSize = 1
 
@@ -256,7 +296,7 @@ private struct LineView: View {
         .lineSpacing(4 + CGFloat(textSize) * 1.5)
         .padding(.horizontal, 10).padding(.vertical, 6)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(on ? Color.secondary.opacity(0.12) : .clear, in: RoundedRectangle(cornerRadius: 12))
+        .background(on ? Color.secondary.opacity(0.12) : found ? Color.accentColor.opacity(0.14) : .clear, in: RoundedRectangle(cornerRadius: 12))
         .overlay(alignment: .leading) { if marked { Capsule().fill(amber).frame(width: 3).padding(.vertical, 6) } }
         .foregroundStyle(on || !dim ? .primary : .secondary)
     }

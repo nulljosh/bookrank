@@ -34,7 +34,7 @@ struct LibraryView: View {
                     .toolbar { accountButton }
             } content: {
                 if let slug = selected {
-                    SummaryDetailView(slug: slug, store: store, chapter: $chapter).id(slug)
+                    SummaryDetailView(slug: slug, store: store, chapter: $chapter, find: query).id(slug)
                         .navigationSplitViewColumnWidth(min: 280, ideal: 360, max: 560)
                 } else {
                     ContentUnavailableView("Pick a book", systemImage: "books.vertical", description: Text("Its chapters open here."))
@@ -239,7 +239,7 @@ struct LibraryView: View {
             #if os(macOS)
             summaryRow(entry).tag(entry.slug)
             #else
-            NavigationLink { SummaryDetailView(slug: entry.slug, store: store) } label: { summaryRow(entry) }
+            NavigationLink { SummaryDetailView(slug: entry.slug, store: store, find: query) } label: { summaryRow(entry) }
             #endif
         }
         ForEach(shelves, id: \.0) { shelf in
@@ -329,6 +329,10 @@ struct LibraryView: View {
                     else { Text("\(duration(minutes(entry.content)))") }
                 }
                 .font(.kernel(.footnote)).foregroundStyle(.secondary)
+                // Where a search matched inside the book: chapter and the line, cut around the words.
+                if let f = findLine(entry.content, query) {
+                    Text("Ch \(f.ch + 1) · \(snippet(f.text, query))").font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(2)
+                }
             }
         }
         .padding(.vertical, 2)

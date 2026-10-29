@@ -97,7 +97,7 @@ export function createPlayer(o) {
 
   p.stop = () => { p.token++; o.synth.cancel(); p.playing = false; p.loading = false; emit(); };
 
-  // `fraction` (0..1) resumes at the same relative place in a different script, e.g. after switching explain/read mode.
+  // `fraction` (0..1) resumes at the same place in another script, e.g. after a mode switch.
   p.play = async (ch = p.ch, line = p.line, fraction = null) => {
     const tok = ++p.token;
     o.synth.cancel();
@@ -160,7 +160,7 @@ export const duration = m => m < 60 ? `${m} min` : m % 60 ? `${Math.floor(m / 60
 export function mount(root, api) {
   const synth = globalThis.speechSynthesis;
   const chs = chapters(api.content);
-  // Scripts cached before the one-narrator switch are two-host dialogue; drop them so they get rebuilt.
+  // Old two-host scripts are dropped so they get rebuilt.
   const marks = [...(api.marks || [])];
   let resumed = !!(api.pos && (api.pos.ch || api.pos.line));
   const scripts = Object.fromEntries(Object.entries(api.scripts || {}).filter(([, s]) => !s?.some?.(l => l.host === 'B')));
@@ -183,7 +183,7 @@ export function mount(root, api) {
   const q = s => root.querySelector(s);
   const toc = q('.lp-toc ol'), text = q('.lp-text'), fill = q('.lp-fill'), play = q('.lp-play'), status = q('.lp-status');
   const voiceSel = q('.lp-voice'), rateSel = q('.lp-rate'), modeSel = q('.lp-mode');
-  // Remembered per book (a dense text slows down, a story speeds up); the last speed you picked anywhere is the fallback.
+  // Speed is kept per book, falling back to the last speed picked anywhere.
   const rateKey = () => `bookrank.rate.${api.title || ''}`;
   rateSel.value = localStorage.getItem(rateKey()) || localStorage.getItem('bookrank.rate') || '1';
   modeSel.value = localStorage.getItem('bookrank.mode') || 'talk';
@@ -326,6 +326,13 @@ export function mount(root, api) {
     if (api.pos && (api.pos.ch || api.pos.line)) status.textContent = `Resume at ${chs[player.ch].title} · line ${player.line + 1}`;
   };
 
+  // A search.js hit: its chapter's notes, at the line, marked. The mode is not saved.
+  const find = f => {
+    player.stop(); modeSel.value = 'read'; player.invalidate(); player.ch = f.ch; player.line = f.line; resumed = true;
+    showChapter(); const el = text.children[f.line];
+    el?.classList.add('found'); el?.scrollIntoView({ block: 'center' }); status.textContent = `Found in ${f.title}`;
+  };
+
   play.onclick = () => player.playing ? player.stop() : player.play();
   q('.lp-prev').onclick = () => player.play(Math.max(0, player.ch - 1), 0);
   q('.lp-next').onclick = () => player.play(Math.min(chs.length - 1, player.ch + 1), 0);
@@ -350,7 +357,7 @@ export function mount(root, api) {
   if (!chs.length) { text.innerHTML = '<p class="msg">Nothing to read yet.</p>'; play.disabled = true; }
   else showChapter();
   renderMarks();
-  return { player, stop: () => player.stop(), scripts, marks };
+  return { player, stop: () => player.stop(), scripts, marks, find };
 }
 // Markdown from a summary (possibly someone else's, via a share link) is untrusted: render it
 // through DOMPurify, and fall back to plain escaped text if either library failed to load.

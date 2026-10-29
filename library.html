@@ -48,6 +48,7 @@ ul.list li .by { color:var(--text3); font-size:0.8125rem; }
 #find { width:100%; margin:0.25rem 0 0.75rem; padding:0.7rem 0.9rem; border:1px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); font:inherit; }
 ul.list li.group { display:block; border:0; padding:1.5rem 0 0.4rem; font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); }
 ul.list .resume { color:var(--text3); font-size:0.75rem; margin-left:0.5rem; }
+ul.list .snip { display:block; color:var(--text3); font-size:0.8125rem; margin-top:0.25rem; line-height:1.35; }
 ul.list .listen { flex:none; font-size:0.8125rem; padding:0.3rem 0.6rem; }
 ul.list a:hover { color: var(--link, var(--accent)); }
 ul.list time { color:var(--text3); font-size:0.8125rem; white-space:nowrap; }
@@ -147,6 +148,7 @@ dl.profile dt { color:var(--text3); }
 <script type="module">
 import { createClient } from './spark.js';
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
+import { findLine } from './search.js';
 import * as goal from './goal.js';
 import { mergeMarks } from './marks.js';
 
@@ -476,7 +478,7 @@ async function load() {
     li.dataset.id = row.id;
     const a = document.createElement('a');
     a.href = '#';
-    a.onclick = e => { e.preventDefault(); open(row.id); };
+    a.onclick = async e => { e.preventDefault(); const q = $('find').value; const f = await open(row.id) && findLine(row.content ?? current?.content, q); if (f) listen?.find(f); };   // a search opens at the line
     const name = Object.assign(document.createElement('span'), { textContent: row.title });
     const pos = row.listen?.for === row.updated_at && row.listen.pos;
     if (pos && (pos.ch || pos.line)) name.append(Object.assign(document.createElement('span'), { className: 'resume', textContent: `Ch ${pos.ch + 1}` }));
@@ -498,14 +500,21 @@ async function load() {
     if (q && !texts) {
       texts = {};
       const { data: full } = await db.from(TABLE).select('id,content');
-      for (const r of full || await Promise.all(data.map(r => offline.get(r.id)))) if (r) texts[r.id] = (r.content || '').toLowerCase();   // offline: the kept copies
+      for (const r of full || await Promise.all(data.map(r => offline.get(r.id)))) if (r) texts[r.id] = r.content || '';   // offline: the kept copies
       if ($('find').value.trim().toLowerCase() !== q) return; // a newer keystroke took over
     }
-    const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || (texts?.[r.id] || '').includes(q)).map(r => r.id));
+    const hit = new Set(data.filter(r => !q || r.title.toLowerCase().includes(q) || (texts?.[r.id] || '').toLowerCase().includes(q)).map(r => r.id));
     let shown = 0;
     for (const li of $('list').children) {
       if (li.classList.contains('group')) continue;
       const on = !q || hit.has(li.dataset.id); li.classList.toggle('hide', !on); shown += on;
+      // Where in the book it matched: chapter and the line, cut around the words.
+      li.querySelector('.snip')?.remove();
+      const f = on && q && findLine(texts?.[li.dataset.id], q);
+      if (f) {
+        const at = f.text.toLowerCase().indexOf(q), from = Math.max(0, at - 40);
+        li.querySelector('a > span').append(Object.assign(document.createElement('span'), { className: 'snip', textContent: `Ch ${f.ch + 1} · ${from ? '…' : ''}${f.text.slice(from, at + q.length + 60)}${at + q.length + 60 < f.text.length ? '…' : ''}` }));
+      }
     }
     for (const g of $('list').querySelectorAll('li.group')) g.classList.toggle('hide', !!q);
     for (const d of document.querySelectorAll('details.gr')) {

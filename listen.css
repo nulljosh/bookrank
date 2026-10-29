@@ -13,6 +13,7 @@
 .lp-toc a:hover { color:var(--text); background:var(--bg2); }
 .lp-toc small { color:var(--text3); font-size:.85em; white-space:nowrap; }
 .lp-text > div.marked { box-shadow: inset 3px 0 0 var(--accent); }
+.lp-text > div.found { background: color-mix(in srgb, var(--accent) 14%, transparent); border-radius: 8px; }
 .lp-toc .lp-marks a::before { content:none; }
 .lp-toc .lp-marks a { padding:6px 0; border-radius:0; background:none; }
 .lp-marks h4 { font-size:13px; font-weight:600; color:var(--text2); margin:24px 0 8px; }

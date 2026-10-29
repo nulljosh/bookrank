@@ -155,3 +155,12 @@ console.log('minutes ok');
 import { duration } from './listen.js';
 assert.equal(duration(45), '45 min'); assert.equal(duration(261), '4 hr 21 min'); assert.equal(duration(120), '2 hr');
 console.log('duration ok');
+
+test('findLine finds the chapter and line that hold the words, any case', async () => {
+  const { findLine } = await import('./search.js');
+  const md = '# Book\n\n## One\n\nFirst para.\n\n- A list item about Ideas.\n\n## Two\n\nThe kernel of it all.';
+  assert.deepEqual(findLine(md, 'IDEAS'), { ch: 0, line: 2, title: 'One', text: 'A list item about Ideas.' });
+  assert.equal(findLine(md, 'kernel').ch, 1);
+  assert.equal(findLine(md, 'nowhere'), null);
+  assert.equal(findLine(md, '  '), null);
+});
