@@ -2,6 +2,7 @@ import SwiftUI
 import PhotosUI
 import ImageIO
 import UniformTypeIdentifiers
+import Vision
 #if os(iOS)
 import VisionKit
 #endif
@@ -25,6 +26,7 @@ struct AddPagesView: View {
     @State private var saving = false
     @State private var kindle = false
     @State private var scanning = false
+    @AppStorage("kernel.pagesOnDevice") private var onDevice = false   // read on this device: the photo never leaves it
     @State private var ebook = false
     @State private var importing: String?
     @State private var kindleDone: String?
@@ -41,6 +43,10 @@ struct AddPagesView: View {
                     TextField("Chapter title", text: $chapter)
                 }
                 Section {
+                    Picker("Pages", selection: $onDevice) {
+                        Text("Summarize them").tag(false)
+                        Text("Keep the exact words").tag(true)
+                    }
                     PhotosPicker(selection: $picks, matching: .images) {
                         Label(reading ?? "Choose page photos", systemImage: "photo.on.rectangle")
                     }
@@ -56,7 +62,7 @@ struct AddPagesView: View {
                             if text.isEmpty { Text("The pages' text shows up here.").foregroundStyle(.tertiary).padding(.top, 8).padding(.leading, 5).allowsHitTesting(false) }
                         }
                 } footer: {
-                    Text(error ?? "Each page is read and summarized, then the photo is dropped. Edit the text before you save.")
+                    Text(error ?? (onDevice ? "Each page is read on this device, word for word; the photo never leaves it. Edit the text before you save." : "Each page is read and summarized, then the photo is dropped. Edit the text before you save."))
                         .foregroundStyle(error == nil ? Color.secondary : Color.red)
                 }
                 Section {
@@ -104,7 +110,7 @@ struct AddPagesView: View {
         error = nil
         for (i, jpeg) in pages.enumerated() {
             reading = "Reading \(i + 1) of \(pages.count)…"
-            do { let page = try await Self.summarize(jpeg); text += (text.isEmpty ? "" : "\n\n") + page }
+            do { let page = onDevice ? try await Self.ocr(jpeg) : try await Self.summarize(jpeg); text += (text.isEmpty ? "" : "\n\n") + page }
             catch { self.error = (error as? API.Failure)?.message ?? "Could not read a page." }
         }
         reading = nil
@@ -117,7 +123,7 @@ struct AddPagesView: View {
             reading = "Reading \(i + 1) of \(items.count)…"
             guard let raw = try? await item.loadTransferable(type: Data.self), let jpeg = Self.jpeg(raw) else { error = "Could not open a photo."; continue }
             do {
-                let page = try await Self.summarize(jpeg)
+                let page = onDevice ? try await Self.ocr(jpeg) : try await Self.summarize(jpeg)
                 text += (text.isEmpty ? "" : "\n\n") + page
             } catch { self.error = (error as? API.Failure)?.message ?? "Could not read a photo." }
         }
@@ -141,6 +147,25 @@ struct AddPagesView: View {
         guard let dst = CGImageDestinationCreateWithData(out, UTType.jpeg.identifier as CFString, 1, nil) else { return nil }
         CGImageDestinationAddImage(dst, img, [kCGImageDestinationLossyCompressionQuality: 0.8] as CFDictionary)
         return CGImageDestinationFinalize(dst) ? out as Data : nil
+    }
+
+    /// The page's own words, read on this device with Vision; nothing is uploaded. Lines join into paragraphs,
+    /// and a line ending a sentence ends one.
+    static func ocr(_ jpeg: Data) async throws -> String {
+        do { return try await ocr(jpeg, .accurate) } catch let e as API.Failure { throw e } catch { return try await ocr(jpeg, .fast) }   // accurate can fail to load its model; fast still reads print well
+    }
+    private static func ocr(_ jpeg: Data, _ level: VNRequestTextRecognitionLevel) async throws -> String {
+        try await withCheckedThrowingContinuation { done in
+            let req = VNRecognizeTextRequest { r, e in
+                let lines = (r.results as? [VNRecognizedTextObservation])?.compactMap { $0.topCandidates(1).first?.string } ?? []
+                var out = ""
+                for l in lines { out += l + (l.hasSuffix(".") || l.hasSuffix("?") || l.hasSuffix("!") || l.hasSuffix(":") ? "\n\n" : " ") }
+                let t = out.trimmingCharacters(in: .whitespacesAndNewlines)
+                if let e { done.resume(throwing: e) } else if t.isEmpty { done.resume(throwing: API.Failure(message: "No words found on that page.")) } else { done.resume(returning: t) }
+            }
+            req.recognitionLevel = level; req.usesLanguageCorrection = true
+            do { try VNImageRequestHandler(data: jpeg).perform([req]) } catch { done.resume(throwing: error) }
+        }
     }
 
     static func summarize(_ jpeg: Data) async throws -> String {

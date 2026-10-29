@@ -2,6 +2,9 @@
 
 Every tagged version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
+## 34.0.0 (2026-10-28)
+Keep the exact words: Add pages in the apps can read each page on your device, word for word, so the photo never leaves it. Summarize them still works the old way.
+
 ## 33.0.0 (2026-10-28)
 Scan pages in Add pages on iPhone and iPad: the document camera finds each page's edges, flattens it and reads it, no photo library needed.
 

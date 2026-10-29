@@ -34,7 +34,7 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 31 | Import highlights from a Readwise or Apple Books export | apps, web | built (Readwise CSV through the Kindle path, a Readwise highlights chapter; Apple Books has no export file, so it is out) |
 | 32 | Import an EPUB or PDF you own into chapters | apps, web | built (epub.js and Ebook.swift unzip in place, a chapter per spine section; PDF in the apps by outline or ten pages at a time; web PDF waits on a PDF reader worth its size) |
 | 33 | Scan pages with the document camera in Add pages | iPhone, iPad | built (VisionKit document camera, flat cropped pages through the same reader; only on a device with a camera, so not seen in the simulator yet) |
-| 34 | Read the page text on the device before upload, so photos never leave it | apps | open |
+| 34 | Read the page text on the device before upload, so photos never leave it | apps | built (Pages: Keep the exact words reads each page with Vision on the device, accurate then fast; no upload, works with no AI quota; checked with a rendered page on the Mac) |
 | 35 | Mark a book read on Goodreads from the app (signed-in web view) | apps | open |
 | 36 | Quiz me: three questions per chapter, answers checked | apps, web | open |
 | 37 | Key ideas card at the top of each book | apps, web | open |

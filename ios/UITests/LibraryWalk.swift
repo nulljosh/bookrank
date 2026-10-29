@@ -171,6 +171,20 @@ final class LibraryWalk: XCTestCase {
         saveTo("kindle-import", XCUIScreen.main.screenshot())
     }
 
+    /// Add pages can keep each page's exact words, read on this device, instead of summarizing on the server.
+    func testPagesOnDevice() {
+        let app = XCUIApplication()
+        app.launchArguments += ["UITEST_SNAPSHOT", "-kernel.onboarded", "YES", "-kernel.pagesOnDevice", "YES"]
+        app.launch()
+        let row = app.staticTexts["The Man Who Solved the Market"].firstMatch
+        for _ in 0..<5 where !row.exists { app.swipeUp() }
+        XCTAssertTrue(row.waitForExistence(timeout: 10)); row.press(forDuration: 1.2)
+        app.buttons["Summarize this book"].firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Each page is read on this device, word for word; the photo never leaves it. Edit the text before you save."].waitForExistence(timeout: 5))
+        sleep(1)
+        saveTo("pages-on-device", XCUIScreen.main.screenshot())
+    }
+
     private func saveTo(_ name: String, _ shot: XCUIScreenshot) {
         let dir = ProcessInfo.processInfo.environment["SHOTS_DIR"] ?? NSTemporaryDirectory()
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true)
