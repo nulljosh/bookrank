@@ -303,6 +303,13 @@ final class PreviewScreenshot: XCTestCase {
         saveTo("text-menu", XCUIScreen.main.screenshot())
     }
 
+    /// Cold launch to first frame, five runs. Run against a Release build (`-configuration Release`) for real numbers.
+    func testLaunchTime() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-kernel.onboarded", "YES"]
+        measure(metrics: [XCTApplicationLaunchMetric()]) { app.launch(); app.terminate() }
+    }
+
     /// iPad in landscape: the books beside the picked book, then a chapter in the same column. Never presses Listen.
     func testIPad() throws {
         try XCTSkipUnless(UIDevice.current.userInterfaceIdiom == .pad, "iPad only")

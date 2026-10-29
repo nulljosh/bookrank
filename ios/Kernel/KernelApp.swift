@@ -15,7 +15,8 @@ struct KernelApp: App {
         URLCache.shared = URLCache(memoryCapacity: 20 << 20, diskCapacity: 200 << 20)
         UNUserNotificationCenter.current().delegate = NoteTap.shared   // a tapped reminder opens its book
         #if os(iOS)
-        // Navigation titles are UIKit's; give them Kernel Sans too.
+        // Navigation titles are UIKit's; give them Kernel Sans too. Register it first: UIFont(name:) finds nothing until then.
+        _ = kernelFontsRegistered
         let bar = UINavigationBar.appearance()
         if let big = UIFont(name: "KernelSans-Bold", size: 34) { bar.largeTitleTextAttributes = [.font: UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: big)] }
         if let small = UIFont(name: "KernelSans-Semibold", size: 17) { bar.titleTextAttributes = [.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: small)] }

@@ -77,6 +77,8 @@ struct SplashView: View {
     @State private var lines = [false, false, false]
     @State private var seed = false
     @State private var fading = false
+    @AppStorage("spine-theme") private var theme: String = "system"
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         GeometryReader { geo in
@@ -84,6 +86,9 @@ struct SplashView: View {
                 .frame(width: geo.size.width, height: geo.size.height)
         }
         .background(Self.background.ignoresSafeArea())
+        // preferredColorScheme reaches the window a beat late, so a dark theme on a light phone showed the
+        // splash white; set here, it applies from the first frame.
+        .environment(\.colorScheme, theme == "dark" ? .dark : theme == "light" ? .light : scheme)
         .opacity(fading ? 0 : 1)
         .ignoresSafeArea()
         .task { await run() }
