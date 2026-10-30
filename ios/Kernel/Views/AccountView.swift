@@ -29,6 +29,7 @@ struct AccountView: View {
     @AppStorage("kernel.nudgeHour") private var nudgeHour = 9
     @AppStorage("kernel.recap") private var recap = false
     @State private var usage: VoiceUsage?
+    @State private var usageChecked = false
     @AppStorage("spine-theme") private var theme: String = "system"
     @State private var newEmail = ""
     @State private var newPassword = ""
@@ -258,7 +259,7 @@ struct AccountView: View {
             HStack(spacing: 14) {
                 Button { run { try await auth.setMetadata(["avatar": .string(AvatarArt.svg()), "avatar_source": .string("generated")]); return nil } } label: {
                     AvatarView(svg: generated ? auth.user?.userMetadata["avatar"]?.stringValue : (linkedPhoto == nil ? AvatarArt.svg(seed: auth.user?.email ?? "") : nil),
-                               initial: String(auth.user?.email?.first ?? "?"), photo: generated ? nil : linkedPhoto)
+                               initial: String(auth.email?.first ?? "?"), photo: generated ? nil : linkedPhoto)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Generate a new avatar")
@@ -271,12 +272,12 @@ struct AccountView: View {
                         .textInputAutocapitalization(.never)
                         .onSubmit(saveUsername)
                         #endif
-                    Text("bookrank.jaybulb.com/profile?u=\(auth.handle)").font(.kernel(.caption2)).foregroundStyle(.secondary)
+                    Text("kernel.jaybulb.com/profile?u=\(auth.handle)").font(.kernel(.caption2)).foregroundStyle(.secondary)
                     Text("Tap the avatar for a new one.").font(.kernel(.caption2)).foregroundStyle(.secondary)
                 }
             }
             .onAppear { username = auth.handle }
-            LabeledContent("Email", value: auth.user?.email ?? "—")
+            LabeledContent("Email", value: auth.email ?? "—")
             LabeledContent("Summaries", value: "\(store.summaryIndex.count)")
             if let q = goodreadsProfile?["quote"]?.objectValue, let text = q["text"]?.stringValue {
                 Text("\u{201C}\(text)\u{201D}" + (q["author"]?.stringValue.map { " \($0)" } ?? ""))
@@ -297,14 +298,14 @@ struct AccountView: View {
                          : "About \(usage.chaptersLeft) chapters of natural voice left").font(.kernel(.subheadline))
                 }
             } else {
-                Text("Checking natural voice usage").foregroundStyle(.secondary)
+                Text(usageChecked ? "Natural voice usage is unavailable right now." : "Checking natural voice usage").foregroundStyle(.secondary)
             }
         } header: {
             Text("Listening")
         } footer: {
             Text("A chapter is about 2,500 characters. The month resets on the 1st. Chapters you already played are free to replay.")
         }
-        .task { usage = await Narrator.usage() }
+        .task { usage = await Narrator.usage(); usageChecked = true }
 
         Section {
             let gr = Goodreads.shared

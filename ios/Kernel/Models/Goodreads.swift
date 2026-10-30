@@ -41,7 +41,7 @@ final class Goodreads: NSObject, WKNavigationDelegate {
     /// Read every shelf and the latest progress. False when Goodreads says nobody is signed in.
     @discardableResult
     func sync() async -> Bool {
-        guard !syncing, let src = Bundle.main.url(forResource: "goodreads-parse", withExtension: "js").flatMap({ try? String(contentsOf: $0, encoding: .utf8) }) else { return false }
+        guard !syncing, !CommandLine.flag("UITEST_SNAPSHOT"), let src = Bundle.main.url(forResource: "goodreads-parse", withExtension: "js").flatMap({ try? String(contentsOf: $0, encoding: .utf8) }) else { return false }
         syncing = true; error = nil
         defer { syncing = false }
         await withCheckedContinuation { loaded = $0; web.load(URLRequest(url: URL(string: "https://www.goodreads.com/robots.txt")!)) }

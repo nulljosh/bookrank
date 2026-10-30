@@ -5,6 +5,9 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+
+## 18.2.2 (2026-10-30)
+Account: the profile link shows kernel.jaybulb.com, and when voice usage cannot be read it says so instead of "Checking" forever. Screenshot mode fills in the name, email, usage and Goodreads so the Mac store shots are complete.
 ## 18.2.1 (2026-10-30)
 On the web, highlights made on another device show in the player as soon as they merge, instead of after the next toggle or a reopen.
 ## 18.2.0 (2026-10-30)

@@ -32,6 +32,9 @@ struct VoiceUsage: Decodable {
 
 extension Narrator {
     static func usage() async -> VoiceUsage? {
+        if CommandLine.flag("UITEST_SNAPSHOT") {   // screenshots: a month partway used
+            return try? JSONDecoder().decode(VoiceUsage.self, from: Data(#"{"you":{"day":0,"month":0},"app":{"month":40000},"caps":{"day":60000,"month":100000},"chapter":2500}"#.utf8))
+        }
         guard let token = await API.token() else { return nil }
         var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/usage")!)
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")

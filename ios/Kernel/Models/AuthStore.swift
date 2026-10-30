@@ -19,6 +19,7 @@ final class AuthStore {
     private let mockSignedIn = CommandLine.flag("UITEST_SNAPSHOT")
 
     var isSignedIn: Bool { mockSignedIn || user != nil }
+    var email: String? { mockSignedIn ? "reader@example.com" : user?.email }
 
     init() {
         if mockSignedIn {
@@ -118,6 +119,7 @@ final class AuthStore {
 
     /// Username shown on the profile: saved one, else the email's local part (same rule as profile.html).
     var handle: String {
+        if mockSignedIn { return "reader" }   // screenshots
         let raw = user?.userMetadata["username"]?.stringValue ?? user?.email?.components(separatedBy: "@").first ?? ""
         return raw.lowercased().filter { $0.isLetter || $0.isNumber || "._-".contains($0) }
     }
