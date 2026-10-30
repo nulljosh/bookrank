@@ -3,10 +3,10 @@ Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is 
 
 | Minor | What | Status |
 |---|---|---|
-| 18.2.0 | Refresh the README screenshots | open |
-| 18.3.0 | Android, desktop and terminal readers open shared links through jaybulb-api | open |
-| 18.4.0 | Web player shows merged highlights right away | open |
-| 18.5.0 | Mac Account sheet filled in screenshot mode | open |
+| docs | Refresh the README screenshots (no version: nothing in the app changed) | built 2026-10-30, light and dark, iPhone |
+| 18.2.0 | Android, desktop and terminal readers open shared links through jaybulb-api | open |
+| 18.2.1 | Web player shows merged highlights right away (a fix) | open |
+| 18.2.2 | Mac Account sheet filled in screenshot mode (a fix) | open |
 | 19.0.0 | Next major, Joshua's call: Mobbin pass, new roadmap table, opus-ad film | waits on Joshua |
 
 ## Rows built (2026-10-28 to 10-30)

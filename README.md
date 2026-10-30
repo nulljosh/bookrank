@@ -6,6 +6,8 @@
 
 [![Kernel, 32 seconds. Click to play.](ad/ad-poster.jpg)](https://github.com/nulljosh/kernel/releases/download/v1.0.2/kernel-ad.mp4)
 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/Library-dark.jpg"><img src="docs/screenshots/Library-light.jpg" width="260" alt="Library"></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/Summary-dark.jpg"><img src="docs/screenshots/Summary-light.jpg" width="260" alt="Summary"></picture></p>
+
 Free on the [web](https://kernel.jaybulb.com), $0.99 on iPhone, iPad and Mac. Formerly Bookrank.
 
 - **Chapters.** Open a book, pick a chapter, read it.
