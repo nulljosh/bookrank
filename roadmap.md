@@ -7,7 +7,18 @@ Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is 
 | 18.2.0 | Android, desktop and terminal readers open shared links through jaybulb-api | built |
 | 18.2.1 | Web player shows merged highlights right away (a fix) | built |
 | 18.2.2 | Mac Account sheet filled in screenshot mode (a fix) | built |
-| 19.0.0 | Next major, Joshua's call: Mobbin pass, new roadmap table, opus-ad film | waits on Joshua |
+| 19.0.0 | Major (Joshua's call, 2026-10-30): Mobbin pass below, launch film | in progress |
+
+## 19.x: gaps from the 19.0 Mobbin pass (2026-10-30)
+App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hit the wrong app). Kernel already matches them on chapters, audio, highlights, key ideas, a weekly goal and offline. Skipped: AI rewrites of a selection (Workers AI is down), community, paywalls. One row is one minor, apps and web together.
+
+| Minor | Gap | Seen in | Size | Status |
+|---|---|---|---|---|
+| 19.1.0 | Browse your books by topic (chips from each book's subject) | Blinkist, Shortform | M | open |
+| 19.2.0 | Stats screen: books finished, minutes listened, streak | Blinkist | M | open |
+| 19.3.0 | Export highlights as Markdown, Obsidian-ready, one file per book | Readwise | S | open |
+| 19.4.0 | One-page summary per book, built from the chapters' In short lines | Shortform | S | open |
+| 19.5.0 | A reflection prompt at the end of each chapter, from its key ideas | Shortform | S | open |
 
 ## Rows built (2026-10-28 to 10-30)
 The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are 18.1.0 (they were tagged one major each by mistake; those tags are gone). Rows 67 and 93 still wait on the store and Workers AI.
