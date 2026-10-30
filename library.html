@@ -496,9 +496,8 @@ function mountListen() {
       const row = current, base = row.listen?.marks ?? [];
       marks ??= base;
       // Another device may have highlighted since this page loaded: merge with the row, not over it.
-      // ponytail: the merged lines show on the next toggle or open; the player's list is updated in place.
       const { data } = await db.from(TABLE).select('listen').eq('id', row.id).single();   // errors come back as { error }, so offline just saves this device's list
-      if (data) marks.splice(0, marks.length, ...mergeMarks(base, marks, data.listen?.marks ?? []));
+      if (data) { marks.splice(0, marks.length, ...mergeMarks(base, marks, data.listen?.marks ?? [])); listen?.refreshMarks(); }
       row.listen = { for: row.updated_at, chapters, pos: { ...pos, at: Date.now() }, marks: [...marks] };
       save(send, row.id, { listen: row.listen, updated_at: row.updated_at });  // keep updated_at, or listen.for stops matching
     },

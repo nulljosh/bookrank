@@ -4,6 +4,9 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+
+## 18.2.1 (2026-10-30)
+On the web, highlights made on another device show in the player as soon as they merge, instead of after the next toggle or a reopen.
 ## 18.2.0 (2026-10-30)
 Share links open again in the Android, desktop and terminal readers. They read shared summaries from jaybulb-api, the same place the web and the apps use, instead of the retired Supabase project.
 ## 18.1.0 (2026-10-30)

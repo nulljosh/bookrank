@@ -5,7 +5,7 @@ Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is 
 |---|---|---|
 | docs | Refresh the README screenshots (no version: nothing in the app changed) | built 2026-10-30, light and dark, iPhone |
 | 18.2.0 | Android, desktop and terminal readers open shared links through jaybulb-api | built |
-| 18.2.1 | Web player shows merged highlights right away (a fix) | open |
+| 18.2.1 | Web player shows merged highlights right away (a fix) | built |
 | 18.2.2 | Mac Account sheet filled in screenshot mode (a fix) | open |
 | 19.0.0 | Next major, Joshua's call: Mobbin pass, new roadmap table, opus-ad film | waits on Joshua |
 
@@ -117,7 +117,6 @@ The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are
 - [ ] Point the apps and the launch kit at kernel.jaybulb.com; the old host bookrank.jaybulb.com keeps serving. Canonical, sitemap, OG, robots and profile links are done.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
 - [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), Spotlight results (v40), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
-- [ ] The web player shows merged highlights only after the next toggle or a reopen.
 - [ ] The Mac Account sheet looks empty in screenshot mode.
 - [ ] Summaries still to photograph or finish: The Man Who Solved the Market (cover only), Physics I For Dummies (cover only), the rest of AI in Business and macOS Tahoe (both returned to the library, photos are the only source), The Optimist chapters 15 to 17.
 - [ ] `content/masterclasses/` (15 books from Patois) has no reader. Import them as summaries or drop them.

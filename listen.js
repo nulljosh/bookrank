@@ -195,9 +195,8 @@ export function mount(root, api) {
     const li = document.createElement('li'); li.append(a); toc.append(li);
   });
 
-  // Natural voices: ElevenLabs audio per line, played behind a speechSynthesis-shaped object so the
-  // same player drives both. Word timestamps from the server light each word as it is spoken. Any
-  // line it cannot fetch or play falls back to the device voice, so Listen never stalls.
+  // Natural voices: ElevenLabs audio per line behind a speechSynthesis-shaped object, so one player
+  // drives both; server word timestamps light each word. A line that fails falls back to the device voice.
   const natural = () => voiceSel.value.startsWith(NATURAL) && !!api.speak;
   const toReal = u => {
     const r = new globalThis.SpeechSynthesisUtterance(u.text);
@@ -293,6 +292,7 @@ export function mount(root, api) {
       box.append(a);
     }
   }
+  const refreshMarks = () => { renderMarks(); for (const p of text.children) p.classList.toggle('marked', isMarked(player.ch, p.dataset.line)); };
   q('.lp-markbtn').hidden = !api.save;   // share links cannot keep highlights
   q('.lp-markbtn').onclick = () => {
     const el = text.children[player.line] || text.querySelector('.on');
@@ -345,7 +345,7 @@ export function mount(root, api) {
   if (!chs.length) { text.innerHTML = '<p class="msg">Nothing to read yet.</p>'; play.disabled = true; }
   else showChapter();
   renderMarks();
-  return { player, stop: () => player.stop(), scripts, marks, find };
+  return { player, stop: () => player.stop(), scripts, marks, find, refreshMarks };
 }
 // Markdown from a summary (possibly someone else's, via a share link) is untrusted: render it
 // through DOMPurify, and fall back to plain escaped text if either library failed to load.
