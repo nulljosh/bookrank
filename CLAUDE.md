@@ -28,4 +28,4 @@ Chapter summaries of the books you own, read or listen to, on the web, iPhone, i
 Web and apps sign in through jaybulb-api. The apps keep the refresh token in the data-protection keychain and refresh single-flight (refresh tokens are single use). Natural voices are paid for by the App Store price: new builds send StoreKit's AppTransaction as `X-Kernel-Receipt`, checked in `functions/api/apple.js`. Builds up to 1.2.1 still send `X-Bookrank-App` with a Supabase token; keep that path and the Supabase project until nobody runs 1.2.x.
 
 ## The loop
-The Road to 100 loop state and its restart prompt live in `docs/LOOP-HANDOFF.md`. Read it first.
+The loop state and its restart prompt live in `docs/LOOP-HANDOFF.md`. Read it first. Semver is honest: a feature is a minor, a fix is a patch, a major only on Joshua's call. Never aim a loop at a version number.

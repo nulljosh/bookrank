@@ -1,7 +1,18 @@
-## Road to 100 (2026-10-28)
-One row is one major version in the repo, tagged when it is built and QA'd in light and dark. Apple reviews one version at a time, so the store gets the newest tagged major each time the last one clears review. Summaries stay the heart of the app; Goodreads and the rest sit around them. The last rows before 100 wait on something outside the code: Workers AI (Workers Paid), Joshua's Goodreads sign-in, an App Group for widgets and extensions (set up once in Xcode with Joshua's account), and Apple's CarPlay entitlement; rows move freely; "ask by voice" was dropped as more chat. Rows 5 to 100 are proposals built from the gap matrix, the A+ pass, the code review and the braindumps below; reorder freely. The watch app stays retired (2026-10-02).
+## Next: 18.x minors, then 19.0.0
+Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is a patch, and a major only on Joshua's call. Each major ships with a Mobbin pass and an opus-ad film. Live on the store: iPhone 2.0.0, Mac 18.0.0. The repo is 18.1.0.
 
-| v | What | Where | Status |
+| Minor | What | Status |
+|---|---|---|
+| 18.2.0 | Refresh the README screenshots | open |
+| 18.3.0 | Android, desktop and terminal readers open shared links through jaybulb-api | open |
+| 18.4.0 | Web player shows merged highlights right away | open |
+| 18.5.0 | Mac Account sheet filled in screenshot mode | open |
+| 19.0.0 | Next major, Joshua's call: Mobbin pass, new roadmap table, opus-ad film | waits on Joshua |
+
+## Rows built (2026-10-28 to 10-30)
+The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are 18.1.0 (they were tagged one major each by mistake; those tags are gone). Rows 67 and 93 still wait on the store and Workers AI.
+
+| Row | What | Where | Status |
 |---|---|---|---|
 | 3 | Gap rows 1 to 5: minutes, Continue card, line skip, speed presets, sleep timer; resume fix | apps, web | built |
 | 4 | Gap rows 6 to 10: highlights, offline audio, add pages, ask the chapter, weekly goal; Goodreads sign-in; book avatars; review fixes | apps, web | built |
@@ -100,13 +111,11 @@ One row is one major version in the repo, tagged when it is built and QA'd in li
 | 97 | Two-line recap at the end of each chapter in Listen | apps, web | built (CHANGELOG 97.0.0; In short, from the chapter's key sentences) |
 | 98 | Connections: the same idea across your books | apps, web | built (CHANGELOG 98.0.0; on the search-by-meaning index, no new model) |
 | 99 | Search by voice: dictate into search, on the device | apps | built (CHANGELOG 99.0.0: the keyboard mic and Mac dictation fill search; a visible mic only if people miss it) |
-| 100 | Kernel 100 | all | open |
 
 ## Open outside the table
 - [ ] Workers AI ran out of its 10,000 free daily neurons on 2026-10-28 (narration scripts, Ask, page photos and the Aura-2 fallback fail until 00:00 UTC). Workers Paid is $5 a month (Joshua's call). Then tune the meaning floor (0.6) on real bge scores.
 - [ ] Point the apps and the launch kit at kernel.jaybulb.com; the old host bookrank.jaybulb.com keeps serving. Canonical, sitemap, OG, robots and profile links are done.
 - [ ] The Android, desktop and terminal readers still read shared summaries from Supabase, so links made since the move to jaybulb-api do not open there. Point them at jaybulb-api's share route.
-- [ ] `scripts/build.py` still writes the retired rankings page and `book_rankings.md`. Cut it down to the iOS copy of `books.json`.
 - [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
 - [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), Spotlight results (v40), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
 - [ ] The web player shows merged highlights only after the next toggle or a reopen.

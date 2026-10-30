@@ -1,10 +1,8 @@
 # Kernel loop handoff
 
-The loop takes Kernel to 100, one major per tick, from the Road to 100 table in roadmap.md. Each row: build it on every platform it names, take light and dark screenshots, mark it built, add a CHANGELOG entry, commit by path, tag `vN.0.0` and push the tag by name, make the GitHub release "Kernel N.0.0", deploy the web if it changed. Replies to Joshua stay under two lines, in plain English.
+The loop builds the next open row of the table at the top of roadmap.md. Each row is a minor (18.2.0, 18.3.0 ...): build it on every platform it names, take light and dark screenshots, mark it built, add a CHANGELOG entry, set MARKETING_VERSION in ios/project.yml, commit by path, tag `v18.N.0` and push the tag by name, make the GitHub release "Kernel 18.N.0", deploy the web if it changed. A fix is a patch. A major (19.0.0) only on Joshua's call, with a Mobbin pass and an opus-ad film. Never aim the loop at a version number. Replies to Joshua stay under two lines, in plain English.
 
-Joshua, 2026-10-28: loop to v50, run `/checkpoint` once v50 is tagged, then keep going to 100. v50 tagged and checkpointed 2026-10-29.
-
-Next rows: **93** (narrator eval, waits on Workers AI) and **67** once iPhone 1.2.1 is no longer on sale. **100** is the release once those are done. Everything else is built and tagged.
+Semver fixed 2026-10-30: the loop had tagged one major per row (v3 to v99). Tags v3 to v17 and v19 to v99 and their GitHub releases were deleted; rows 3 to 18 are Mac 18.0.0 (approved) and rows 19 to 99 are 18.1.0. Rows 67 and 93 still wait (below).
 
 ## How to QA
 
@@ -28,10 +26,10 @@ Everything through 99 except 93 and 67 is built and tagged. What is left needs o
 6. **Row 67** waits until iPhone 2.0.0 replaces 1.2.1 and no one runs the 1.2 builds.
 7. **Checks only a person can do**: Apple Pencil highlights on an iPad (78), a book in its own Mac window (79), Scan pages (33), Shortcuts (35), Handoff (37), Spotlight (40), the signed-in Mac walk.
 
-Row 100 is the release once these are in: ship the newest major on iPhone, iPad and Mac the way [SHIPPING.md](SHIPPING.md) says, then `scripts/promo.sh` and the product page test.
+Once these are in, ship the newest version on iPhone, iPad and Mac the way [SHIPPING.md](SHIPPING.md) says, then `scripts/promo.sh` and the product page test.
 
 ## Restart prompt
 
 ```
-/loop Kernel loop to v100, in ~/Documents/Code/kernel. Read docs/LOOP-HANDOFF.md first, then build the next open row of the Road to 100 table in roadmap.md, one major per tick. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
+/loop Kernel loop, in ~/Documents/Code/kernel. Read docs/LOOP-HANDOFF.md first, then build the next open row of the table at the top of roadmap.md, one minor per tick. Stop when the 18.x rows are done; 19.0.0 is Joshua's call. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
 ```
