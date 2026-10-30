@@ -7,7 +7,7 @@ Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is 
 | 18.2.0 | Android, desktop and terminal readers open shared links through jaybulb-api | built |
 | 18.2.1 | Web player shows merged highlights right away (a fix) | built |
 | 18.2.2 | Mac Account sheet filled in screenshot mode (a fix) | built |
-| 19.0.0 | Major (Joshua's call, 2026-10-30): Mobbin pass below, launch film | in progress |
+| 19.0.0 | Major (Joshua's call, 2026-10-30): Mobbin pass below, launch film (ad/kernel-19.json) | built |
 
 ## 19.x: gaps from the 19.0 Mobbin pass (2026-10-30)
 App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hit the wrong app). Kernel already matches them on chapters, audio, highlights, key ideas, a weekly goal and offline. Skipped: AI rewrites of a selection (Workers AI is down), community, paywalls. One row is one minor, apps and web together.
