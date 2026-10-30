@@ -3,6 +3,9 @@
 Every version of Kernel, newest first. Before 2026-10-28 the app was called Bookrank, and before that Uprighty, Spine and Books.
 
 
+
+## 18.2.0 (2026-10-30)
+Share links open again in the Android, desktop and terminal readers. They read shared summaries from jaybulb-api, the same place the web and the apps use, instead of the retired Supabase project.
 ## 18.1.0 (2026-10-30)
 One minor for rows 19 to 99 of the old roadmap table. They were tagged 19.0.0 to 99.0.0, one major per row, which inflated the number; those tags and GitHub releases are gone and the work is one release on top of Mac 18.0.0, the version Apple approved. Each row's note follows.
 

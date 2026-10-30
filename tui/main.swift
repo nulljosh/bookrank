@@ -24,9 +24,8 @@ struct Shared: Decodable { let title: String; let content: String }
 func shared(_ link: String) async -> Shared? {
     var token = link
     if let r = link.range(of: "t=") { token = String(link[r.upperBound...]).components(separatedBy: "&")[0] }
-    var req = URLRequest(url: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co/rest/v1/rpc/shared_summary")!)
+    var req = URLRequest(url: URL(string: "https://api.jaybulb.com/rpc/shared_summary")!)
     req.httpMethod = "POST"
-    req.setValue("sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90", forHTTPHeaderField: "apikey")
     req.setValue("application/json", forHTTPHeaderField: "content-type")
     req.httpBody = try? JSONSerialization.data(withJSONObject: ["t": token])
     guard let (data, _) = try? await URLSession.shared.data(for: req) else { return nil }

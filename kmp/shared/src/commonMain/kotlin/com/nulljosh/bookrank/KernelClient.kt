@@ -4,7 +4,6 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
-import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
@@ -49,8 +48,7 @@ class KernelClient(private val baseUrl: String = "https://bookrank.jaybulb.com")
     suspend fun shared(linkOrToken: String): SharedSummary? {
         val token = linkOrToken.substringAfter("t=", linkOrToken).substringBefore("&").trim()
         if (token.length < 8) return null
-        val rows: List<SharedSummary> = http.post("$SUPABASE/rest/v1/rpc/shared_summary") {
-            header("apikey", ANON)
+        val rows: List<SharedSummary> = http.post("$API/rpc/shared_summary") {
             contentType(ContentType.Application.Json)
             setBody(mapOf("t" to token))
         }.body()
@@ -58,7 +56,6 @@ class KernelClient(private val baseUrl: String = "https://bookrank.jaybulb.com")
     }
 
     private companion object {
-        const val SUPABASE = "https://tjsxsqlxjmanwvmywwvw.supabase.co"
-        const val ANON = "sb_publishable_3a5WLExQ3oF_kPV3KRCjdg_iEOiHO90"
+        const val API = "https://api.jaybulb.com"
     }
 }
