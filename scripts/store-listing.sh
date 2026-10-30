@@ -10,5 +10,5 @@ for l in $(python3 -c "import json; print(' '.join(json.load(open('docs/store/li
   f() { python3 -c "import json,sys; print(json.load(open('docs/store/listing.json'))['$l']['$1'])"; }
   ASC_BYPASS_KEYCHAIN=1 asc localizations create --version "$V" --locale "$l" --if-exists update \
     --description "$(f description)" --keywords "$(f keywords)" --promotional-text "$(f promotionalText)" \
-    --support-url https://bookrank.jaybulb.com --marketing-url https://bookrank.jaybulb.com >/dev/null && echo "$l ok"
+    --support-url https://kernel.jaybulb.com --marketing-url https://kernel.jaybulb.com >/dev/null && echo "$l ok"
 done
