@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.1.1 (2026-10-30)
+Recaps and key ideas no longer show stray italics asterisks. The one-page summary sits centred on the web, with Done focused and spaced below the text.
 ## 19.1.0 (2026-10-30)
 One-page summary. Under a book's key ideas, one button opens the whole book on a page: each chapter's title and its two-line recap. On iPhone, iPad, Mac and the web, in all four languages.
 ## 19.0.0 (2026-10-30)

@@ -1150,7 +1150,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1171,7 +1171,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1194,7 +1194,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1237,7 +1237,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1338,7 +1338,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1357,7 +1357,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1377,7 +1377,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1400,7 +1400,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1477,7 +1477,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1499,7 +1499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1521,7 +1521,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1564,7 +1564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.1.0;
+				MARKETING_VERSION = 19.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

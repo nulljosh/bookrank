@@ -10,7 +10,7 @@ enum Study {
     private static let bold = /\*\*([^*\n]{2,40})\*\*/
 
     static func clean(_ s: String) -> String {
-        s.replacing(/^\s*(?:[-*•]|\d+\.)\s+/, with: "").replacing(/\*\*|__|`/, with: "")
+        s.replacing(/^\s*(?:[-*•]|\d+\.)\s+/, with: "").replacing(/\*\*|__|`/, with: "").replacing("*", with: "")
             .replacing(/\[([^\]]+)\]\([^)]+\)/) { String($0.1) }.trimmingCharacters(in: .whitespaces)
     }
     /// Splits after . ! or ? when a capital, a digit or a quote starts the next sentence (as study.js).

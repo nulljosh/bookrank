@@ -3,7 +3,7 @@
 import { chapters } from './listen.js';
 
 const TAKE = /^#{1,6}\s*(key takeaways?|takeaways?|key ideas|key points|lessons|in short|summary)\b/i;
-const clean = s => s.replace(/^\s*(?:[-*•]|\d+\.)\s+/, '').replace(/\*\*|__|`/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+const clean = s => s.replace(/^\s*(?:[-*•]|\d+\.)\s+/, '').replace(/\*\*|__|`/g, '').replace(/\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
 // Bold labels are not terms worth asking about.
 const LABEL = /^(key|note|tip|example|photo|warning|remember|important|takeaway|summary|chapter|part)\b/i;
 const sentences = p => clean(p).split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).filter(s => s.length >= 25);
