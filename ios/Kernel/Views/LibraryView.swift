@@ -170,6 +170,19 @@ struct LibraryView: View {
                 .accessibilityLabel("Sort and filter")
             }
         }
+        #if os(iOS)
+        // iPhone: Settings (your account) sits in a bottom bar, search at the top (#86).
+        if sizeClass == .compact {
+            ToolbarItem(placement: .bottomBar) {
+                Button { showAccount = true } label: { Label("Settings", systemImage: "gearshape").labelStyle(.titleAndIcon) }
+            }
+        } else { accountItem }
+        #else
+        accountItem
+        #endif
+    }
+
+    private var accountItem: some ToolbarContent {
         ToolbarItem(placement: .automatic) {
             Button { showAccount = true } label: { Image(systemName: auth.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle") }
                 .accessibilityLabel(auth.isSignedIn ? "Account" : "Sign in")
@@ -230,7 +243,11 @@ struct LibraryView: View {
                 List { listRows(shown, shelves, q) }.frame(maxWidth: 680).frame(maxWidth: .infinity).listStyle(.plain)
                 #endif
             }
+            #if os(iOS)
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search your summaries")   // at the top (#86)
+            #else
             .searchable(text: $query, prompt: "Search your summaries")
+            #endif
             .overlay { if shown.isEmpty && shelves.isEmpty && meaning.isEmpty && !q.isEmpty { ContentUnavailableView.search(text: query) } }
             .task(id: q) {   // search by meaning once typing stops, on the device
                 meaning = []

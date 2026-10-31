@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.5.0 (2026-10-30)
+iPhone layout: search sits at the top of the library, always visible, and Settings (your account) moved to a bottom bar. iPad and Mac keep the account button in the toolbar.
 ## 19.4.0 (2026-10-30)
 Mark a book finished. Under the title on iPhone, iPad and Mac, and on the book page on the web, one tap marks it done; the Show menu gets a Finished filter. The day is kept with the book's notes, so every device sees it with no server change. Also: the Mac and iPhone book page's collection menu moved to its own file, and notes counts skip the finished mark.
 ## 19.3.2 (2026-10-30)
