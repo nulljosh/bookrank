@@ -4,9 +4,9 @@ Reuse this for AlternativeTo, Indie Hackers products, Uneed and SaaSHub.
 
 Name: Kernel
 
-One-liner: Find the book worth reading next in ten seconds.
+One-liner: Chapter summaries of the books you own, to read or hear.
 
-Description: A ranked shelf built from Goodreads ratings and review volume, not one person's taste, plus private chapter summaries and your own shelves. Free on web, iPhone, iPad and Mac.
+Description: Keep each chapter of your books as a short summary, then read it or listen to it in a natural voice. Highlights, search by meaning, a one-page view of the whole book, topics, offline. Web, iPhone, iPad and Mac.
 
 Category: Books / Productivity
 

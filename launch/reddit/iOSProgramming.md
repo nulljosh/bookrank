@@ -1,12 +1,12 @@
 Note: check karma/flair requirements first, unknown. Use "Show and Tell" flair. Public post, not beta-only.
 
-Title: Kernel, a ranked book shelf with a shared SwiftUI target for iOS, Mac and Apple Watch
+Title: Kernel: one SwiftUI target for iPhone, iPad and Mac that reads book chapters aloud
 
 Body:
-I wanted one shelf of books to read next, ranked instead of just listed, with private chapter notes on the ones I already finished. The web version came first, then I built native apps on top of it.
+Kernel keeps chapter summaries of the books you own and plays them back. ios/Kernel is one SwiftUI target for iPhone, iPad and Mac, with widgets and a Watch app beside it.
 
-ios/Kernel is SwiftUI with a shared KernelMac target, same shelf and account and private summaries as the web. The Apple Watch app is a separate standalone SwiftUI target built with WKWatchOnly. It's a full local port rather than a network client, the ranked shelf and to-read list are the same JSON bundled into the iOS app and copied into watch resources, so it works with no pairing step and nothing goes stale offline. Per-account chapter summaries stay iOS and Mac only since that needs a sign-in flow that doesn't belong on a watch face.
+The parts that took the most work: a player that resumes at the exact line on any device (the saved place is tied to the summary's version, so an edit never lands you on the wrong line), downloads that keep every line's voice for offline, and a keychain-backed session that refreshes single-flight because refresh tokens are single use.
 
-Free on the App Store. Curious what other people did for watch-app data sharing without a live connection.
+Curious how others handle resume points across edits.
 
 https://apps.apple.com/app/id6792376485

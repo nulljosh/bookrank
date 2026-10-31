@@ -1,6 +1,6 @@
-1/ Kernel is live. Find the book worth reading next in ten seconds. https://kernel.jaybulb.com
+1/ Kernel is live. Chapter summaries of the books you own, to read or hear. https://kernel.jaybulb.com
 
-2/ A ranked shelf built from Goodreads ratings and review volume, not one person's taste, plus chapter summaries and your own shelves. Free on the web, $0.99 once on iPhone and Mac.
+2/ Snap the pages or paste your notes, and every chapter becomes a short summary you can read or hear in a natural voice. Highlights, search by meaning, offline. Free on the web, $0.99 once on iPhone and Mac.
 
 3/ Native on Apple platforms, web build for everything else. On Product Hunt: producthunt.com/products/kernel
 

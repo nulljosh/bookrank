@@ -2,9 +2,9 @@
 
 Name: Kernel
 
-Tagline (47): Find the book worth reading next in ten seconds
+Tagline (47): Chapter summaries of your books, read or heard
 
-Description (160): A ranked shelf built from Goodreads ratings and review volume, not one person's taste, plus chapter summaries and your own shelves. Free on web, iPhone and Mac.
+Description (160): Every chapter of the books you own as a short summary you read or hear. Highlights, search by meaning, offline. Web, iPhone and Mac.
 
 Topics: Books, Productivity, Education
 
@@ -19,6 +19,6 @@ GitHub: https://github.com/nulljosh/bookrank
 
 Hi, I'm Josh, I built Kernel.
 
-Every best books list is one person's opinion. Kernel ranks by the crowd: Goodreads rating weighted by how many people actually read it. You browse the shelf, read a chapter summary, and keep your own shelves of what is next. It took the decision of what to read from an hour to ten seconds for me.
+I forget most of what I read. Kernel keeps each chapter of a book I own as a short summary, private to my account, and reads it to me in a natural voice. Five highlights come back each day, search finds a line by meaning, and the whole book fits on one page. It works offline on the web, iPhone, iPad and Mac.
 
 Free. Happy to answer anything.

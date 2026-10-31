@@ -1,12 +1,12 @@
 Note: general build-story sub, no known karma/flair gate. Public post, not beta-only.
 
-Title: Find the book worth reading next in ten seconds
+Title: I forget most of what I read, so I built Kernel
 
 Body:
-I kept a to-be-read list scattered across notes apps and my own memory, and it was useless the moment I was actually standing in a bookstore. So I built Kernel: a ranked shelf of 111 books, plus private chapter summaries for the ones that mattered.
+I read a lot of nonfiction and remember almost none of it a month later. Kernel keeps every chapter of a book I own as a short summary, private to my account. I read them, or listen in a natural voice on a walk.
 
-Built with a static site, a single books.json as the source of truth, and native iOS, Mac and Apple Watch apps sharing the same shelf and account. Chapter summaries can be played back with an AI-generated two-host conversation explaining the ideas, or read as plain notes.
+What made it stick: five highlights come back each day, search finds a line by what it means and not just its words, the whole book fits on one page, and everything works offline. You can snap pages with the camera, paste notes, or bring Kindle and Readwise highlights.
 
-Free on web, iPhone, iPad and Mac. Would love feedback on the ranking and the summary flow.
+Web, iPhone, iPad and Mac. Feedback on the listening and the summary flow is very welcome.
 
 https://kernel.jaybulb.com

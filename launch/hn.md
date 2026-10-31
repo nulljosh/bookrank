@@ -1,5 +1,5 @@
-Skip: no technical hook
+Skip unless a technical angle lands (the offline player is the best one).
 
-Show HN: Kernel: Find the book worth reading next in ten seconds
+Show HN: Kernel: Chapter summaries of the books you own, read or heard
 
-Every best books list is one person's opinion. Kernel ranks by the crowd: Goodreads rating weighted by how many people actually read it. You browse the shelf, read a chapter summary, and keep your own shelves of what is next. It took the decision of what to read from an hour to ten seconds for me. Web at kernel.jaybulb.com, source on GitHub.
+I forget most of what I read. Kernel keeps each chapter of a book I own as a short summary, private to my account, and reads it to me in a natural voice on a walk. Highlights come back a few a day, a search finds a line by meaning, and the whole book fits on one page. Web at kernel.jaybulb.com, source on GitHub.

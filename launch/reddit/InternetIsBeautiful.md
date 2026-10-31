@@ -1,7 +1,8 @@
 Note: no known karma/flair gate found for this sub, check first. Public post, not beta-only. Sub culture is strict about no self-promo tone, keep it plain and about the site itself.
 
-Title: A ranked shelf of books with private chapter notes
+Title: Chapter summaries of your own books that read themselves to you
 
-Body: A site that ranks books and lets you keep chapter notes only you can see. Any summary can be played back as a short two-host conversation explaining the chapter, or read as plain text. A private link lets you share one summary without exposing your account or your list.
+Body:
+A site where each chapter of a book you own becomes a short summary only you can see. Read it, or press Listen and hear it in a natural voice. Highlights come back a few a day, and a private link shares one summary without your account or your list.
 
 https://kernel.jaybulb.com
