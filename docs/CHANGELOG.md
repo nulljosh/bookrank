@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.2.0 (2026-10-30)
+Browse by topic. The Show menu lists the topics two or more of your books share (AI and tech, Money, Health, Science and math, Lives and history), worked out on the device from each title. One keyword list in `topics.js` feeds the web, and the apps get it as `topics.json`.
 ## 19.1.1 (2026-10-30)
 Recaps and key ideas no longer show stray italics asterisks. The one-page summary sits centred on the web, with Done focused and spaced below the text.
 ## 19.1.0 (2026-10-30)

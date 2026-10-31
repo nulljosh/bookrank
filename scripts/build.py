@@ -70,7 +70,15 @@ def write_ios(books):
         "notes": b["notes"],
     } for b in by(books, "ranked")]
     (res / "books.json").write_text(json.dumps(ranked, indent=2, ensure_ascii=False) + "\n")
+    (res / "topics.json").write_text(topics_json())   # the browse-by-topic keywords from topics.js
     return len(ranked)
+
+
+def topics_json():
+    """The JSON object literal in topics.js, checked, for Topics.swift."""
+    js = (ROOT / "topics.js").read_text()
+    body = js[js.index("const TOPICS = ") + 15:js.index("};") + 1]
+    return json.dumps(json.loads(body), indent=2, ensure_ascii=False) + "\n"
 
 
 if __name__ == "__main__":

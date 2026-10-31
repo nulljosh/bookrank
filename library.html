@@ -214,6 +214,7 @@ import { installKeys } from './keys.js';
 installKeys();
 import { mount, matchCover, shareUrl, coverCandidates, chapters } from './listen.js';
 import { findLine } from './search.js';
+import { topicsOf, shelfTopics } from './topics.js';
 import { lines as meaningLines, closest, related } from './meaning.js';
 import { card, yearCard } from './card.js';
 import { parseExport } from './goodreads-export.js';
@@ -734,13 +735,17 @@ async function load() {
   // shelf follows. Progress lives on the row (`listen.pos`), so this survives devices.
   const started = r => r.listen?.for === r.updated_at && r.listen.pos && (r.listen.pos.ch || r.listen.pos.line);
   // Sort and filter, remembered in this browser. Progress and length need the text, fetched once.
-  const sort = $('sort').value = pref('kernel.sort', 'recent'), show = $('show').value = pref('kernel.show', 'all');
+  // Show: all, started, new, or a topic (topics.js) that two books or more share.
+  const topics = shelfTopics(data.map(r => r.title));
+  $('show').replaceChildren(...[['all', 'All books'], ['started', 'In progress'], ['new', 'Not started'], ...topics.map(t => ['topic:' + t, t])].map(([v, l]) => new Option(l, v)));
+  let show = pref('kernel.show', 'all'); if (show.startsWith('topic:') && !topics.includes(show.slice(6))) show = 'all';
+  const sort = $('sort').value = pref('kernel.sort', 'recent'); $('show').value = show;
   $('sortbar').classList.toggle('hide', data.length < 2);
   if (sort === 'progress' || sort === 'short') await allTexts(data);
   const len = r => (texts?.[r.id] || '').length;
   const frac = r => started(r) ? (r.listen.pos.ch + 1) / Math.max(1, chapters(texts?.[r.id] || '').length) : 0;
   const order = { title: (a, b) => a.title.localeCompare(b.title), progress: (a, b) => frac(b) - frac(a), short: (a, b) => len(a) - len(b) }[sort];
-  const shown = data.filter(r => show === 'all' || (show === 'started') === !!started(r));
+  const shown = data.filter(r => show === 'all' || (show.startsWith('topic:') ? topicsOf(r.title).includes(show.slice(6)) : (show === 'started') === !!started(r)));
   if (order) shown.sort(order);   // recent is the server's order
   if (!shown.length && data.length) $('listMsg').textContent = show === 'started' ? 'Nothing in progress.' : 'Every book is started.';
   // Then your collections, A to Z, then everything in none of them.

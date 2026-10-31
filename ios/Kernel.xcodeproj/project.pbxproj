@@ -62,10 +62,12 @@
 		485245FF235D4C63C91869FB /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DE465914D0C6444A386E /* StatsView.swift */; };
 		49854BF8C5BA099616FA2888 /* fiend.md in Resources */ = {isa = PBXBuildFile; fileRef = 46781F0CAA35C79B2C8CCE29 /* fiend.md */; };
 		4B7E78989E303989CF5093AC /* KernelSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27964BCEEC32FD8FCABD5DF8 /* KernelSans-Bold.otf */; };
+		50C11E5FB151357B7E17D0B6 /* topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 91770BC0DC008038C080C201 /* topics.json */; };
 		51FE98DB0403D6F417FB365A /* WidgetFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1C8308572FB76ACF005C1 /* WidgetFeed.swift */; };
 		54A2643F09195A9F72FFBD66 /* acing-the-system-design-interview.md in Resources */ = {isa = PBXBuildFile; fileRef = B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */; };
 		599BE2FAB724AF643A6619DD /* statistics-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = ADC6DD919D1DE9BF0D360A5E /* statistics-for-dummies.md */; };
 		59D550613903843E4EE8F206 /* KernelSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A84496FC7E73EA0B07EB6CB6 /* KernelSans-Regular.otf */; };
+		5AC6C8D6DA12B557E049A9D9 /* LibraryRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65460514EB8626984BC4A7C2 /* LibraryRows.swift */; };
 		5C88017850B92C2908EBCB1D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2296F31EB47281BF6AF3961 /* OnboardingView.swift */; };
 		5CBD1AC6A3E89F9A12037581 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
 		5D89276FC03C9719CF1D817F /* PreviewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */; };
@@ -91,6 +93,7 @@
 		70B8E24EB52F15F4F8820892 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B2AE7B1F0E5FBE8BF1790 /* StorageView.swift */; };
 		71F2B85483E0768628F1FA81 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
 		72593BFF1ED1F1CE28838C4A /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
+		728B6A7A6F31305780BA4871 /* LibraryRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65460514EB8626984BC4A7C2 /* LibraryRows.swift */; };
 		76251A9A7A7BB916A85E8E93 /* SpeedWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24258C8F8C16CC8576EE2683 /* SpeedWalk.swift */; };
 		7699430312B7D04FC801034C /* Narrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457AA46B272289E03D54157 /* Narrator.swift */; };
 		76B9EA462EBBD9D8C7A21CBB /* accounting-for-canadians.md in Resources */ = {isa = PBXBuildFile; fileRef = 86F8D3888306DB3496A66700 /* accounting-for-canadians.md */; };
@@ -137,6 +140,7 @@
 		AD42C274C025C2507F73F186 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */; };
 		ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
 		AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */ = {isa = PBXBuildFile; fileRef = 93C297DC0982C944762380D7 /* goodreads-parse.js */; };
+		AF0F0C145F186B833E7C466E /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABAAF6830C003A8BE8E6C7 /* Topics.swift */; };
 		B057561980863A3A3C7129DF /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC8189B3E0AA39B0CCA6314 /* Inbox.swift */; };
 		B36F0C2C58643588AF88C076 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E21D9EB6A3F3D7AD9ADF6D8E /* Localizable.xcstrings */; };
 		B38764BE5BA0F5CCEA80BA42 /* adult-autism.md in Resources */ = {isa = PBXBuildFile; fileRef = 4DA33DE5B310BC8BD249F5D4 /* adult-autism.md */; };
@@ -160,6 +164,7 @@
 		CF8195898C51A6BFA200D9C8 /* AskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7553A26F78E2CFC07C8E8C6D /* AskView.swift */; };
 		D12FF4622CE8F058B45883AE /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF7AFBD9AF2A74C9FCF5D3 /* SnapshotHelper.swift */; };
 		D4615545AD53FDA0841B2EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFB1269057E127A040B9672 /* Assets.xcassets */; };
+		D470113015BA41ABC9A2BC58 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABAAF6830C003A8BE8E6C7 /* Topics.swift */; };
 		D565C3A78EC5B90DC5167013 /* LiveListen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2790342906ACA09570911 /* LiveListen.swift */; };
 		D617FAA22554FBE8456BD192 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
 		D63E6A6B8F231D6504401456 /* LibraryWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856723BDA9B438B185F67005 /* LibraryWalk.swift */; };
@@ -175,6 +180,7 @@
 		E24C6EDA6BF53702DA17FFD3 /* MenuBarPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */; };
 		E4B3867048DDFF3F232515B7 /* WidgetPublish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B6EDFC536C3F30CA7C666 /* WidgetPublish.swift */; };
 		E55BCBA74CB56A40AB05BF22 /* KernelSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */; };
+		E6454719002FDAC5E181073F /* topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 91770BC0DC008038C080C201 /* topics.json */; };
 		E7EFB7009BA2C1163CD69EB9 /* Goodreads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52DEE4EFC635882441F8ED3 /* Goodreads.swift */; };
 		E8033AB753A9B789DBE63EC3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A3854E0210223CC5024821 /* Speaker.swift */; };
 		E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B41FCC033897F854A72754C /* trading-for-canadians-for-dummies.md */; };
@@ -302,6 +308,7 @@
 		63DDF21C40031895E52C6117 /* KernelWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelWidgets.swift; sourceTree = "<group>"; };
 		640F6C819D393938A8ED5317 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
 		6492F0C39C7AD9CB08FFE5B4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		65460514EB8626984BC4A7C2 /* LibraryRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryRows.swift; sourceTree = "<group>"; };
 		65D4C50C9872E0E46384D1D7 /* Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mac-Info.plist"; sourceTree = "<group>"; };
 		67431B1D26A68A4341C3EF29 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		68D42622E422604FB14F1EF9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -317,6 +324,7 @@
 		856723BDA9B438B185F67005 /* LibraryWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWalk.swift; sourceTree = "<group>"; };
 		86F8D3888306DB3496A66700 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
 		8917EA02FB6A28868C756F74 /* Nudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
+		91770BC0DC008038C080C201 /* topics.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = topics.json; sourceTree = "<group>"; };
 		93C297DC0982C944762380D7 /* goodreads-parse.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "goodreads-parse.js"; sourceTree = "<group>"; };
 		957C80D998A1AC994E7FD9B8 /* KernelSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Medium.otf"; sourceTree = "<group>"; };
 		970B6EDFC536C3F30CA7C666 /* WidgetPublish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPublish.swift; sourceTree = "<group>"; };
@@ -333,6 +341,7 @@
 		B1E1E13095CE31D4022A0B95 /* acing-the-system-design-interview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "acing-the-system-design-interview.md"; sourceTree = "<group>"; };
 		B418C71886BBCDA4C7D77C4A /* Outbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbox.swift; sourceTree = "<group>"; };
 		B8043810585BC44FD3AEECAF /* InboxImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxImport.swift; sourceTree = "<group>"; };
+		BBABAAF6830C003A8BE8E6C7 /* Topics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
 		BC1AADD74EBA0362D0D7CC88 /* KernelSans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KernelSans-Semibold.otf"; sourceTree = "<group>"; };
 		C02F014FE819A18AF33F8140 /* KernelMacWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KernelMacWidgets.entitlements; sourceTree = "<group>"; };
 		C313FC4E891AE9CCEFA3C3B0 /* PreviewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshot.swift; sourceTree = "<group>"; };
@@ -421,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB8DB870805E0D468BF923B /* books.json */,
+				91770BC0DC008038C080C201 /* topics.json */,
 				0A125829F63DE65E184F0577 /* summaries */,
 			);
 			path = Resources;
@@ -494,6 +504,7 @@
 				A51B1514899126444871DA82 /* SpeakerExtras.swift */,
 				0881CC0060AEE79428999FE2 /* Spotlight.swift */,
 				0E5E5547CBBADD9080F8D961 /* Study.swift */,
+				BBABAAF6830C003A8BE8E6C7 /* Topics.swift */,
 				640F6C819D393938A8ED5317 /* WatchSync.swift */,
 				970B6EDFC536C3F30CA7C666 /* WidgetPublish.swift */,
 			);
@@ -509,6 +520,7 @@
 				30E89FDE042DF5AF90F2C756 /* CommandPalette.swift */,
 				6372CE246108E47F43F82313 /* EmptyStates.swift */,
 				D7C24DF3A97A8C08A72C74B5 /* HighlightsView.swift */,
+				65460514EB8626984BC4A7C2 /* LibraryRows.swift */,
 				6F2C295ADDE4B8387B9ABF88 /* LibraryView.swift */,
 				FC601E6CE08B974D79782AEA /* MenuBarPlayer.swift */,
 				39AB081ED5D2B0F3ABE43AB8 /* NowPlaying.swift */,
@@ -859,6 +871,7 @@
 				9A2F8720B8BC535B6C677787 /* statistics-for-dummies.md in Resources */,
 				0CE26E5791AEABD343806B31 /* the-contrarian.md in Resources */,
 				2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */,
+				50C11E5FB151357B7E17D0B6 /* topics.json in Resources */,
 				E94E956C1DC1279BBF50323B /* trading-for-canadians-for-dummies.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -895,6 +908,7 @@
 				599BE2FAB724AF643A6619DD /* statistics-for-dummies.md in Resources */,
 				62F86084135CA2CE819D3DCA /* the-contrarian.md in Resources */,
 				A336E3C4F79EC6817275505A /* the-optimist.md in Resources */,
+				E6454719002FDAC5E181073F /* topics.json in Resources */,
 				ADD3E63E47566EE3D4EFAF0F /* trading-for-canadians-for-dummies.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -949,6 +963,7 @@
 				BA2AC7AEF3EE4A747A3034D5 /* KernelApp.swift in Sources */,
 				04FCB7CF76BA206D10B511AF /* KeychainHelper.swift in Sources */,
 				05ADAEDE19F4DD01678D264E /* Kindle.swift in Sources */,
+				728B6A7A6F31305780BA4871 /* LibraryRows.swift in Sources */,
 				10D1708CBB9E42E1681902A2 /* LibraryView.swift in Sources */,
 				6FB9D32EE441567B36649298 /* ListenActivity.swift in Sources */,
 				D565C3A78EC5B90DC5167013 /* LiveListen.swift in Sources */,
@@ -974,6 +989,7 @@
 				2B74D800C355932888DD26BA /* StudyViews.swift in Sources */,
 				6B7E27DC5B47B2E39C58132D /* SummaryDetailView.swift in Sources */,
 				72593BFF1ED1F1CE28838C4A /* ToggleIntent.swift in Sources */,
+				D470113015BA41ABC9A2BC58 /* Topics.swift in Sources */,
 				191B7DACA4E2F02BFCC3AFDD /* WatchSync.swift in Sources */,
 				0898458199122CC1480F8A7C /* WidgetFeed.swift in Sources */,
 				37C54EC54D35BC77579D7AA5 /* WidgetPublish.swift in Sources */,
@@ -1035,6 +1051,7 @@
 				FFFBDA37D66055E4D74656C7 /* KernelApp.swift in Sources */,
 				3025C9C80485FAEC4CDD8690 /* KeychainHelper.swift in Sources */,
 				3E23EF187C70DB7602BB46F0 /* Kindle.swift in Sources */,
+				5AC6C8D6DA12B557E049A9D9 /* LibraryRows.swift in Sources */,
 				A14DD4B013F0842DDC4EEC64 /* LibraryView.swift in Sources */,
 				BF3BAC35EDC0D9CA7FD394A3 /* LiveListen.swift in Sources */,
 				E1571319D10CEC3C668E3AB9 /* LocalData.swift in Sources */,
@@ -1058,6 +1075,7 @@
 				CE07B90FC1190BF1CE69DD83 /* StudyViews.swift in Sources */,
 				16946F906125B71A0F68C257 /* SummaryDetailView.swift in Sources */,
 				6118A1928E5DAF6B691FEB1F /* ToggleIntent.swift in Sources */,
+				AF0F0C145F186B833E7C466E /* Topics.swift in Sources */,
 				31F0C0E04C40C7F67518F78D /* WatchSync.swift in Sources */,
 				63351371081E50673664542D /* WidgetFeed.swift in Sources */,
 				E4B3867048DDFF3F232515B7 /* WidgetPublish.swift in Sources */,
@@ -1150,7 +1168,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1171,7 +1189,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1194,7 +1212,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1237,7 +1255,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1338,7 +1356,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1357,7 +1375,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1377,7 +1395,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1400,7 +1418,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1477,7 +1495,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1499,7 +1517,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1521,7 +1539,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1564,7 +1582,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.1.1;
+				MARKETING_VERSION = 19.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
