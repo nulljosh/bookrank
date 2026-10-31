@@ -2,7 +2,7 @@
 
 **v86** | October 2026
 
-You finish a book and a month later you remember one idea. Kernel keeps the rest: every chapter in plain words, read in a minute or explained aloud by one narrator while the words light up. Your summaries sit behind your account, and deleting the account deletes all of it. Free at [bookrank.jaybulb.com](https://bookrank.jaybulb.com), and $0.99 on iPhone, iPad and Mac.
+You finish a book and a month later you remember one idea. Kernel keeps the rest: every chapter in plain words, read in a minute or explained aloud by one narrator while the words light up. Your summaries sit behind your account, and deleting the account deletes all of it. Free at [kernel.jaybulb.com](https://kernel.jaybulb.com), and $0.99 on iPhone, iPad and Mac.
 
 ## The shape
 

@@ -69,7 +69,7 @@ actor Meaning {
             return texts.map { t in [0.05] + groups.map { g in Double(g.filter { t.lowercased().contains($0) }.count) } }
         }
         struct Out: Decodable { let vectors: [[Double]] }
-        guard let data = try? await API.call("POST", "https://bookrank.jaybulb.com/api/embed", json: ["texts": texts]) else { return nil }
+        guard let data = try? await API.call("POST", "https://kernel.jaybulb.com/api/embed", json: ["texts": texts]) else { return nil }
         return (try? JSONDecoder().decode(Out.self, from: data))?.vectors
     }
 

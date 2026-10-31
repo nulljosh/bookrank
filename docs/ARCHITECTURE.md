@@ -2,7 +2,7 @@
 
 ![How Kernel fits together](../architecture.svg)
 
-Your summaries live in one table on jaybulb-api (api.jaybulb.com, a Cloudflare Worker on D1). The web, iPhone, iPad and Mac all sign in there and read the same rows. Everything that costs money or needs a key (the narrator, the voices, page photos, Ask, payments) runs as Pages Functions beside the website at bookrank.jaybulb.com. Goodreads is read on your own device and never touches either server. The rules every platform shares are in [CLAUDE.md](../CLAUDE.md).
+Your summaries live in one table on jaybulb-api (api.jaybulb.com, a Cloudflare Worker on D1). The web, iPhone, iPad and Mac all sign in there and read the same rows. Everything that costs money or needs a key (the narrator, the voices, page photos, Ask, payments) runs as Pages Functions beside the website at kernel.jaybulb.com. Goodreads is read on your own device and never touches either server. The rules every platform shares are in [CLAUDE.md](../CLAUDE.md).
 
 ## Web
 

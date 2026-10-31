@@ -45,7 +45,7 @@ struct AskView: View {
         asking = true; defer { asking = false }
         struct Out: Decodable { let answer: String?; let error: String? }
         do {
-            let data = try await API.call("POST", "https://bookrank.jaybulb.com/api/ask",
+            let data = try await API.call("POST", "https://kernel.jaybulb.com/api/ask",
                                           json: ["text": chapter.text, "title": chapter.title, "question": q])
             let out = try? JSONDecoder().decode(Out.self, from: data)
             answer = out?.answer ?? out?.error ?? "Could not answer that right now."

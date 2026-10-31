@@ -9,4 +9,4 @@ The interesting part was the summary playback. Every chapter summary can be play
 
 No backend beyond that, no accounts required to browse the shelf. Free to use.
 
-https://bookrank.jaybulb.com
+https://kernel.jaybulb.com

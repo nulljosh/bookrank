@@ -173,7 +173,7 @@ struct AddPagesView: View {
         let boundary = UUID().uuidString
         var body = Data("--\(boundary)\r\nContent-Disposition: form-data; name=\"image\"; filename=\"page.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n".utf8)
         body += jpeg + Data("\r\n--\(boundary)--\r\n".utf8)
-        var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/summarize-photo")!)
+        var req = URLRequest(url: URL(string: "https://kernel.jaybulb.com/api/summarize-photo")!)
         req.httpMethod = "POST"; req.timeoutInterval = 60
         req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")

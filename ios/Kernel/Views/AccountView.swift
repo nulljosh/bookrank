@@ -42,7 +42,7 @@ struct AccountView: View {
 
     /// Photo, genres, about, interests and best quote from the public profile, saved with the link.
     private func goodreadsMeta(_ id: String) async -> [String: AnyJSON] {
-        guard let url = URL(string: "https://bookrank.jaybulb.com/api/goodreads?user=\(id)&profile=1"),
+        guard let url = URL(string: "https://kernel.jaybulb.com/api/goodreads?user=\(id)&profile=1"),
               let (data, resp) = try? await URLSession.shared.data(from: url), (resp as? HTTPURLResponse)?.statusCode == 200,
               let json = try? JSONDecoder().decode(AnyJSON.self, from: data), let o = json.objectValue, o["name"]?.stringValue != nil else { return [:] }
         var profile: [String: AnyJSON] = [:]

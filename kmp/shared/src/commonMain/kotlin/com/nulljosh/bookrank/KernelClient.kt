@@ -38,7 +38,7 @@ fun chapters(md: String): List<Pair<String, String>> {
 }
 
 // Reads shared summaries via the public RPC (no account needed, a token is the whole credential).
-class KernelClient(private val baseUrl: String = "https://bookrank.jaybulb.com") {
+class KernelClient(private val baseUrl: String = "https://kernel.jaybulb.com") {
     private val http = HttpClient {
         install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
     }

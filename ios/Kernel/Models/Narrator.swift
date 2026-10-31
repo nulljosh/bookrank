@@ -6,7 +6,7 @@ import Observation
 enum Narrator {
     static func narrate(text: String, title: String, ch: Int, total: Int) async -> [ListenState.Line]? {
         guard let token = await API.token() else { return nil }
-        var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/narrate")!)
+        var req = URLRequest(url: URL(string: "https://kernel.jaybulb.com/api/narrate")!)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "content-type")
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
@@ -36,7 +36,7 @@ extension Narrator {
             return try? JSONDecoder().decode(VoiceUsage.self, from: Data(#"{"you":{"day":0,"month":0},"app":{"month":40000},"caps":{"day":60000,"month":100000},"chapter":2500}"#.utf8))
         }
         guard let token = await API.token() else { return nil }
-        var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/usage")!)
+        var req = URLRequest(url: URL(string: "https://kernel.jaybulb.com/api/usage")!)
         req.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         guard let (data, resp) = try? await URLSession.shared.data(for: req), (resp as? HTTPURLResponse)?.statusCode == 200 else { return nil }
         return try? JSONDecoder().decode(VoiceUsage.self, from: data)
@@ -68,7 +68,7 @@ extension Narrator {
         for attempt in 0..<2 {
             if attempt > 0 { try? await Task.sleep(for: .milliseconds(700)) }
             guard let token = await API.token() else { lastFailure = "not signed in"; return nil }
-            var req = URLRequest(url: URL(string: "https://bookrank.jaybulb.com/api/speak")!)
+            var req = URLRequest(url: URL(string: "https://kernel.jaybulb.com/api/speak")!)
             req.httpMethod = "POST"
             req.timeoutInterval = 25
             req.setValue("application/json", forHTTPHeaderField: "content-type")

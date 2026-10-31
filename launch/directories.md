@@ -11,7 +11,7 @@ Description: A ranked shelf built from Goodreads ratings and review volume, not 
 Category: Books / Productivity
 
 Links
-Web: https://bookrank.jaybulb.com
+Web: https://kernel.jaybulb.com
 App Store: https://apps.apple.com/app/id6792376485
 GitHub: https://github.com/nulljosh/bookrank
 

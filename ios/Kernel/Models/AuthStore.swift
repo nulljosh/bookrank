@@ -106,7 +106,7 @@ final class AuthStore {
     /// Always false: a new email account confirms by mail before it can sign in, and the caller says so.
     func signUp(email: String, password: String) async throws -> Bool {
         _ = try await API.call("POST", "/auth/signup", json: ["email": email, "password": password,
-                                                             "redirect_to": "https://bookrank.jaybulb.com/library.html"], authed: false)
+                                                             "redirect_to": "https://kernel.jaybulb.com/library.html"], authed: false)
         return false
     }
 
@@ -128,21 +128,21 @@ final class AuthStore {
     }
     /// A new email only takes over once its confirmation link is opened.
     func updateCredentials(email: String?, password: String?) async throws {
-        var body: [String: Any] = ["redirect_to": "https://bookrank.jaybulb.com/profile.html"]
+        var body: [String: Any] = ["redirect_to": "https://kernel.jaybulb.com/profile.html"]
         if let email { body["email"] = email }
         if let password { body["password"] = password }
         user = try JSONDecoder().decode(User.self, from: try await API.call("PUT", "/auth/user", json: body))
     }
 
     func resetPassword(email: String) async throws {
-        _ = try await API.call("POST", "/auth/recover", json: ["email": email, "redirect_to": "https://bookrank.jaybulb.com/profile.html"], authed: false)
+        _ = try await API.call("POST", "/auth/recover", json: ["email": email, "redirect_to": "https://kernel.jaybulb.com/profile.html"], authed: false)
     }
 
     /// Guideline 5.1.1(v): an app offering account creation must offer account deletion.
     /// jaybulb-api removes the user and their rows.
     func deleteAccount() async throws {
         // Kernel's own server forgets you first (voice counters, the $1 record, narration made from your books).
-        _ = try? await API.call("POST", "https://bookrank.jaybulb.com/api/forget")
+        _ = try? await API.call("POST", "https://kernel.jaybulb.com/api/forget")
         _ = try await API.call("DELETE", "/auth/user")
         await LocalData.wipe()
         API.forget()

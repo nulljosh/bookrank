@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.3.2 (2026-10-30)
+The apps, the Android and terminal readers, the docs and the launch kit now use kernel.jaybulb.com. bookrank.jaybulb.com still serves the same site for older builds.
 ## 19.3.1 (2026-10-30)
 Took the chapter questions back out. The note box is just the note box again.
 ## 19.3.0 (2026-10-30)

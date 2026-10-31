@@ -5853,24 +5853,24 @@
         }
       }
     },
-    "bookrank.jaybulb.com/profile?u=%@": {
+    "kernel.jaybulb.com/profile?u=%@": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "bookrank.jaybulb.com/profile?u=%@"
+            "value": "kernel.jaybulb.com/profile?u=%@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "bookrank.jaybulb.com/profile?u=%@"
+            "value": "kernel.jaybulb.com/profile?u=%@"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "bookrank.jaybulb.com/profile?u=%@"
+            "value": "kernel.jaybulb.com/profile?u=%@"
           }
         }
       }

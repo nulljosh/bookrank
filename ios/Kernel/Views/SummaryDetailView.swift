@@ -87,10 +87,10 @@ struct SummaryDetailView: View {
         // Handoff: this book shows on your other devices; without Kernel there, the web library opens it.
         .userActivity(Handoff.type, isActive: slug != "sample") { a in
             a.title = entry?.title; a.isEligibleForHandoff = true; a.userInfo = ["slug": slug]
-            a.webpageURL = URL(string: "https://bookrank.jaybulb.com/library\(entry?.rowID.map { "#\($0)" } ?? "")")
+            a.webpageURL = URL(string: "https://kernel.jaybulb.com/library\(entry?.rowID.map { "#\($0)" } ?? "")")
         }
         .task {
-            if let t = entry?.shareToken { shareURL = URL(string: "https://bookrank.jaybulb.com/share.html?t=\(t)") }
+            if let t = entry?.shareToken { shareURL = URL(string: "https://kernel.jaybulb.com/share.html?t=\(t)") }
             speaker.load(slug: slug, chapters: parseChapters(store.summaryMarkdown(for: slug)),
                          entry: entry) { await store.saveListen($0, for: slug) }
             if NoteTap.shared.play { NoteTap.shared.play = false; speaker.toggle() }   // Siri: continue my book

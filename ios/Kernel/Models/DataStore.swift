@@ -44,7 +44,7 @@ final class DataStore {
             (reading, read, toRead) = (g.shelves["currently-reading"] ?? [], g.shelves["read"] ?? [], g.shelves["to-read"] ?? [])
         } else if let id {   // only a profile link: the public Currently Reading box is all Goodreads still shows
             struct Out: Decodable { let books: [GoodreadsBook]? }
-            let url = URL(string: "https://bookrank.jaybulb.com/api/goodreads?user=\(id)&shelf=currently-reading")!
+            let url = URL(string: "https://kernel.jaybulb.com/api/goodreads?user=\(id)&shelf=currently-reading")!
             let data = try? await URLSession.shared.data(from: url).0
             (reading, read, toRead) = (data.flatMap { try? JSONDecoder().decode(Out.self, from: $0) }?.books ?? [], [], [])
         } else { goodreadsReading = []; goodreadsToRead = []; goodreadsQueue = []; goodreadsRead = []; return }
@@ -194,7 +194,7 @@ final class DataStore {
             guard (try? await patch(id, ["share_token": token])) != nil else { return nil }
             summaryIndex[i].shareToken = token
         }
-        return URL(string: "https://bookrank.jaybulb.com/share.html?t=\(summaryIndex[i].shareToken!)")
+        return URL(string: "https://kernel.jaybulb.com/share.html?t=\(summaryIndex[i].shareToken!)")
     }
     func stopSharing(_ slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }), let id = summaryIndex[i].rowID else { return }

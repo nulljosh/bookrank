@@ -9,4 +9,4 @@ Built with a static site, a single books.json as the source of truth, and native
 
 Free on web, iPhone, iPad and Mac. Would love feedback on the ranking and the summary flow.
 
-https://bookrank.jaybulb.com
+https://kernel.jaybulb.com
