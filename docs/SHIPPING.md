@@ -22,6 +22,8 @@ Archive `KernelMac` and export with `ios/ExportOptionsMac.plist` (automatic sign
 
 If export fails, the manual path works: copy the `.app` out of the archive, embed the current profile from `asc signing fetch --bundle-id com.heyitsmejosh.spine --profile-type MAC_APP_STORE`, sign with the entitlements Xcode expanded into the archive (`codesign -d --entitlements - --xml <archive app>`), not the source file, then `productbuild` with the installer certificate. A Mac App Store signed app will not launch locally; for screenshots ad-hoc sign a copy.
 
+Before archiving `KernelMac`, run `python3 scripts/prepare-plist.py <build>`. Without it the archive is stamped 2.0.0 from the committed Info.plist. For the Mac export, `asc xcode export` takes `--pkg-path`, not `--ipa-path`.
+
 ## Gotchas
 
 - `asc builds upload` can say success when Apple's processing failed. Check `asc builds uploads list`.
