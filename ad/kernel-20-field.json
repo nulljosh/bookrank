@@ -1,0 +1,4 @@
+{"out": "v20/kernel-20-field.mp4", "number": "20", "name": "KERNEL", "bars": 20, "mark": "v20/mark.png",
+ "font_bold": "../fonts/KernelSans-Bold.otf",
+ "palette": {"ink": "#141311", "paper": "#faf8f4", "gold": "#a56200", "light": "#f5b83d"},
+ "shots": ["v20/finished-dark.png", "v20/nav-dark.png", "v20/ipad-dark.png", "v20/finished-light.png", "v20/nav-light.png"]}
