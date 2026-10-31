@@ -233,7 +233,7 @@ struct LibraryView: View {
             let shown = q.isEmpty ? rows : rows.filter { $0.title.lowercased().contains(q) || $0.content.lowercased().contains(q) }
             // The Goodreads shelves, folded so a few hundred read books do not bury the
             // summaries. Currently reading starts open; a search opens whatever it hits.
-            let shelves = [("Currently reading", store.goodreadsReading), ("Read on Goodreads, no summary yet", store.goodreadsQueue), ("Want to read", store.goodreadsToRead)]
+            let shelves = [("Currently reading", store.goodreadsReading), ("Read on Goodreads, no summary yet", PhotoNext.shared.ordered(store.goodreadsQueue)), ("Want to read", store.goodreadsToRead)]
                 .map { ($0.0, q.isEmpty ? $0.1 : $0.1.filter { $0.title.lowercased().contains(q) || $0.author.lowercased().contains(q) }) }
                 .filter { !$0.1.isEmpty }
             Group {

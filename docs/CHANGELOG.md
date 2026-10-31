@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.7.0 (2026-10-30)
+Photograph next. In "Read on Goodreads, no summary yet", mark the books you mean to summarize; they sort to the top, so the read list doubles as the summary queue. Swipe or right-click in the apps, a button on the web. Kept on each device for now.
 ## 19.6.0 (2026-10-30)
 Goodreads export import in the apps. A private profile a sign-in cannot reach can bring in Goodreads' own export file (Account > Goodreads > Import a Goodreads export). The apps read it with the same goodreads-export.js the web uses, on the device; the hourly sync leaves an imported copy alone.
 ## 19.5.0 (2026-10-30)

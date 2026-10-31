@@ -814,6 +814,9 @@ async function goodreadsQueue(data) {
   const have = data.map(d => norm(d.title)).filter(Boolean);
   const same = (h, t) => { const tw = new Set(t.split(' ')); return h.split(' ').every(w => tw.has(w)) || t.replace(/ /g, '').includes(h.replace(/ /g, '')); };
   const todo = read.filter(b => { const t = norm(b.title); return !have.some(h => same(h, t)); }).sort((a, b) => (b.readAt || '').localeCompare(a.readAt || ''));
+  // Photograph next (#81): read books you mean to summarize, marked in this browser and sorted to the top. Same as the apps.
+  const nextIds = new Set((() => { try { return JSON.parse(localStorage.getItem('kernel.photoNext')) || []; } catch { return []; } })());
+  todo.sort((a, b) => nextIds.has(b.title + b.author) - nextIds.has(a.title + a.author));
   const month = d => d ? new Date(d + 'T00:00').toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : '';
   let anchor = $('list');
   for (const [label, books, open] of [['Currently reading', reading, true], ['Read on Goodreads, no summary yet', todo, false], ['Want to read', toRead, false]]) {
@@ -832,7 +835,14 @@ async function goodreadsQueue(data) {
       const stars = r => '\u2605'.repeat(Math.floor(r)) + (r % 1 ? '\u00bd' : '') + '\u2606'.repeat(5 - Math.ceil(r));   // halves as ½
       const meta = [b.rating && stars(b.rating), month(b.readAt)].filter(Boolean).join(' · ');
       if (meta) a.append(Object.assign(document.createElement('time'), { textContent: meta, ariaLabel: [b.rating && `${b.rating} of 5 stars`, month(b.readAt)].filter(Boolean).join(', ') }));
-      li.append(img, a); ul.append(li);
+      li.append(img, a);
+      if (books === todo) {
+        const id = b.title + b.author, btn = Object.assign(document.createElement('button'), { type: 'button', textContent: 'Photograph next' });
+        const draw = () => { btn.classList.toggle('primary', nextIds.has(id)); btn.ariaPressed = String(nextIds.has(id)); };
+        btn.onclick = () => { if (!nextIds.delete(id)) nextIds.add(id); try { localStorage.setItem('kernel.photoNext', JSON.stringify([...nextIds])); } catch {} draw(); };
+        draw(); li.append(btn);
+      }
+      ul.append(li);
     }
     d.append(ul); anchor.after(d); anchor = d;
   }

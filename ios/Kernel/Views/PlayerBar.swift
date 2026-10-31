@@ -89,16 +89,28 @@ struct GoodreadsRow: View {
     @State private var summarizing = false
     var body: some View {
         link
-            .contextMenu { if store != nil { Button("Summarize this book", systemImage: "doc.badge.plus") { summarizing = true } } }
-            .swipeActions { if store != nil { Button("Summarize", systemImage: "doc.badge.plus") { summarizing = true }.tint(amber) } }
+            .contextMenu {
+                if store != nil {
+                    Button("Summarize this book", systemImage: "doc.badge.plus") { summarizing = true }
+                    Button(next ? "Not next" : "Photograph next", systemImage: next ? "camera.badge.ellipsis" : "camera") { PhotoNext.shared.toggle(book.id) }
+                }
+            }
+            .swipeActions {
+                if store != nil {
+                    Button("Summarize", systemImage: "doc.badge.plus") { summarizing = true }.tint(amber)
+                    Button(next ? "Not next" : "Next", systemImage: "camera") { PhotoNext.shared.toggle(book.id) }
+                }
+            }
             .sheet(isPresented: $summarizing) { if let store { AddPagesView(store: store, title: book.title) } }
     }
+    private var next: Bool { PhotoNext.shared.ids.contains(book.id) }
     @ViewBuilder private var link: some View {
         let row = HStack(spacing: 14) {
             Thumb(url: book.cover)
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title).font(.kernel(.body)).lineLimit(2)
                 Text(book.author).font(.kernel(.footnote)).foregroundStyle(.secondary).lineLimit(1)
+                if next { Label("Photograph next", systemImage: "camera").font(.kernel(.caption, weight: .semibold)).foregroundStyle(amber) }
                 // Currently reading: the latest Goodreads progress. Read: the start of your review.
                 if let p = book.progress {
                     ProgressView(value: Double(p), total: 100).tint(amber).padding(.top, 2)
