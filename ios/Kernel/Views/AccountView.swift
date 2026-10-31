@@ -25,6 +25,7 @@ struct AccountView: View {
     @State private var exportZip: URL?
     @State private var nudge = Nudge.enabled
     @State private var showGoodreads = false
+    @State private var importingCSV = false
     @State private var showStorage = false
     @AppStorage("kernel.nudgeHour") private var nudgeHour = 9
     @AppStorage("kernel.recap") private var recap = false
@@ -310,16 +311,27 @@ struct AccountView: View {
         Section {
             let gr = Goodreads.shared
             if let d = gr.data {
-                LabeledContent("Signed in", value: "\(d.shelves["read"]?.count ?? 0) read · \(d.shelves["currently-reading"]?.count ?? 0) reading")
-                Button(gr.syncing ? "Syncing…" : "Sync now", systemImage: "arrow.triangle.2.circlepath") {
-                    Task { await gr.sync(); await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+                LabeledContent(gr.imported ? "Imported" : "Signed in", value: "\(d.shelves["read"]?.count ?? 0) read · \(d.shelves["currently-reading"]?.count ?? 0) reading")
+                if !gr.imported {
+                    Button(gr.syncing ? "Syncing…" : "Sync now", systemImage: "arrow.triangle.2.circlepath") {
+                        Task { await gr.sync(); await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+                    }
+                    .disabled(gr.syncing)
                 }
-                .disabled(gr.syncing)
-                Button("Sign out of Goodreads", role: .destructive) {
+                Button(gr.imported ? "Remove the import" : "Sign out of Goodreads", role: .destructive) {
                     Task { await gr.signOut(); await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
                 }
             } else {
                 Button("Sign in to Goodreads", systemImage: "person.badge.key") { showGoodreads = true }
+                // A private profile: Goodreads' own export file instead of a sign-in.
+                Button("Import a Goodreads export", systemImage: "doc.badge.plus") { importingCSV = true }
+                    .fileImporter(isPresented: $importingCSV, allowedContentTypes: [.commaSeparatedText]) { r in
+                        guard let url = try? r.get() else { return }
+                        let ok = url.startAccessingSecurityScopedResource(); defer { if ok { url.stopAccessingSecurityScopedResource() } }
+                        if let text = try? String(contentsOf: url, encoding: .utf8), gr.importExport(text) {
+                            Task { await store.loadGoodreads(auth.user?.userMetadata["goodreads"]?.stringValue) }
+                        }
+                    }
             }
             if let e = gr.error { Text(e).font(.kernel(.footnote)).foregroundStyle(.secondary) }
             TextField("Goodreads profile link", text: $goodreads, onCommit: saveGoodreads)

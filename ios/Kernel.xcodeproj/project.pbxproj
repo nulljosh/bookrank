@@ -38,6 +38,7 @@
 		2B17B7865DD62CF46BF23E4F /* ToggleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E12B00D200582798742517 /* ToggleIntent.swift */; };
 		2B74D800C355932888DD26BA /* StudyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA77A1586E4C2F1342CB0E /* StudyViews.swift */; };
 		2C3D452B880E6F1055E74533 /* the-optimist.md in Resources */ = {isa = PBXBuildFile; fileRef = E9350AD17532E2632CEBF4A5 /* the-optimist.md */; };
+		2CCE05C8A136F2D80832FE7D /* goodreads-export.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F606F811C028208A2BC559 /* goodreads-export.js */; };
 		2CFA0E400E0D1D38BA872F70 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4E8FFFECCDF017CFF9483 /* API.swift */; };
 		2D22E7FC1961723E71545049 /* WidgetFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1C8308572FB76ACF005C1 /* WidgetFeed.swift */; };
 		2E4E18250E7310D0EB8C51EB /* accounting-for-canadians-for-dummies.md in Resources */ = {isa = PBXBuildFile; fileRef = 13E196E15D2C1CEC423BA9FF /* accounting-for-canadians-for-dummies.md */; };
@@ -114,6 +115,7 @@
 		7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */ = {isa = PBXBuildFile; fileRef = 27226F6EBAA2E0996484A737 /* how-ai-thinks.md */; };
 		803B548EAA4AA4A95EB1F49F /* CarPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E70696310B093DF4DB71E8 /* CarPlay.swift */; };
 		80BD2E4062F6A2D29CAF6B1C /* PlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C79B39012060E094ED3A4 /* PlayerBar.swift */; };
+		882032A3DA5CCDA7144C7A1D /* goodreads-export.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F606F811C028208A2BC559 /* goodreads-export.js */; };
 		8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */ = {isa = PBXBuildFile; fileRef = D2CEA9519827D51461348E47 /* data-science.md */; };
 		8EAB011874B6025CE7D03B55 /* KernelSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A47DFF9E51A5C87B1AACD310 /* KernelSans-Italic.ttf */; };
 		91C415CFDA9075D5D7042AD3 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033956A451A6A740DBEDBF /* Ebook.swift */; };
@@ -323,6 +325,7 @@
 		76DC0692BF3E7057D9688487 /* BookActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookActions.swift; sourceTree = "<group>"; };
 		77227AA9D8E08DE7D4BAA0B6 /* ErrorLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLog.swift; sourceTree = "<group>"; };
 		7B5D7D7D8E4B96BA7A8ED69B /* Kernel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kernel.entitlements; sourceTree = "<group>"; };
+		80F606F811C028208A2BC559 /* goodreads-export.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "goodreads-export.js"; sourceTree = "<group>"; };
 		8457AA46B272289E03D54157 /* Narrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narrator.swift; sourceTree = "<group>"; };
 		856723BDA9B438B185F67005 /* LibraryWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWalk.swift; sourceTree = "<group>"; };
 		86F8D3888306DB3496A66700 /* accounting-for-canadians.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "accounting-for-canadians.md"; sourceTree = "<group>"; };
@@ -554,6 +557,7 @@
 		C33E2ACDD5A8E7A09AEAB085 /* kernel */ = {
 			isa = PBXGroup;
 			children = (
+				80F606F811C028208A2BC559 /* goodreads-export.js */,
 				93C297DC0982C944762380D7 /* goodreads-parse.js */,
 				28F2279A9A1CB974E6CE26AD /* Kernel.icon */,
 			);
@@ -865,6 +869,7 @@
 				E0A4DA0B37DD74AD292ACC79 /* data-science.md in Resources */,
 				CDCC1EAA5A43EE585EB017A1 /* fiend.md in Resources */,
 				F8C65483EE098585E3083F94 /* good-feng-shui.md in Resources */,
+				2CCE05C8A136F2D80832FE7D /* goodreads-export.js in Resources */,
 				AEF39CDBDB3E4637A6AF044A /* goodreads-parse.js in Resources */,
 				15D930050CBDA1658CCCD3A4 /* how-ai-thinks.md in Resources */,
 				36B7AE29E79211DF6BD35B01 /* ibs-for-dummies.md in Resources */,
@@ -902,6 +907,7 @@
 				8E9B6F15227295C6A4F3B26E /* data-science.md in Resources */,
 				49854BF8C5BA099616FA2888 /* fiend.md in Resources */,
 				3853C79C721447646DCDEDA4 /* good-feng-shui.md in Resources */,
+				882032A3DA5CCDA7144C7A1D /* goodreads-export.js in Resources */,
 				F7D405CA6423FBFA213E6E20 /* goodreads-parse.js in Resources */,
 				7F8BBA420C28387C4A55E3DE /* how-ai-thinks.md in Resources */,
 				9278C8CFCFA664DD8B9C42B4 /* ibs-for-dummies.md in Resources */,
@@ -1174,7 +1180,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1195,7 +1201,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1218,7 +1224,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1261,7 +1267,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1362,7 +1368,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1381,7 +1387,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1401,7 +1407,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kernel;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.heyitsmejosh.spine;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.watchkitapp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1424,7 +1430,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.share;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1501,7 +1507,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = macosx;
 			};
@@ -1523,7 +1529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1545,7 +1551,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine.widgets;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
@@ -1588,7 +1594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 19.5.0;
+				MARKETING_VERSION = 19.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.heyitsmejosh.spine;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

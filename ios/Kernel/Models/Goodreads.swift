@@ -1,3 +1,4 @@
+import JavaScriptCore
 import SwiftUI
 import WebKit
 
@@ -38,10 +39,31 @@ final class Goodreads: NSObject, WKNavigationDelegate {
         data = (try? Data(contentsOf: Self.file)).flatMap { try? JSONDecoder().decode(Synced.self, from: $0) }
     }
 
+    /// The user name on shelves read from an export file; sync() leaves those alone.
+    static let exportUser = "export"
+    var imported: Bool { data?.user == Self.exportUser }
+
+    /// Goodreads' own export file (goodreads.com/review/import, Export Library), read on the device with the web's
+    /// goodreads-export.js. For a private profile a sign-in cannot reach. Nothing goes to our server.
+    func importExport(_ text: String) -> Bool {
+        guard let src = Bundle.main.url(forResource: "goodreads-export", withExtension: "js").flatMap({ try? String(contentsOf: $0, encoding: .utf8) }),
+              let js = JSContext() else { return false }
+        js.evaluateScript(src.replacingOccurrences(of: "export function", with: "function"))
+        js.setObject(text, forKeyedSubscript: "file" as NSString)
+        guard let json = js.evaluateScript("JSON.stringify(parseExport(file))")?.toString(), js.exception == nil,
+              let o = try? JSONDecoder().decode([String: [DataStore.GoodreadsBook]].self, from: Data(json.utf8)) else {
+            error = "That is not a Goodreads export file."; return false
+        }
+        let s = Synced(user: Self.exportUser, shelves: ["currently-reading": o["reading"] ?? [], "read": o["read"] ?? [], "to-read": o["toRead"] ?? []], status: [:])
+        data = s; error = nil
+        try? JSONEncoder().encode(s).write(to: Self.file)
+        return true
+    }
+
     /// Read every shelf and the latest progress. False when Goodreads says nobody is signed in.
     @discardableResult
     func sync() async -> Bool {
-        guard !syncing, !CommandLine.flag("UITEST_SNAPSHOT"), let src = Bundle.main.url(forResource: "goodreads-parse", withExtension: "js").flatMap({ try? String(contentsOf: $0, encoding: .utf8) }) else { return false }
+        guard !syncing, !imported, !CommandLine.flag("UITEST_SNAPSHOT"), let src = Bundle.main.url(forResource: "goodreads-parse", withExtension: "js").flatMap({ try? String(contentsOf: $0, encoding: .utf8) }) else { return false }
         syncing = true; error = nil
         defer { syncing = false }
         await withCheckedContinuation { loaded = $0; web.load(URLRequest(url: URL(string: "https://www.goodreads.com/robots.txt")!)) }

@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.6.0 (2026-10-30)
+Goodreads export import in the apps. A private profile a sign-in cannot reach can bring in Goodreads' own export file (Account > Goodreads > Import a Goodreads export). The apps read it with the same goodreads-export.js the web uses, on the device; the hourly sync leaves an imported copy alone.
 ## 19.5.0 (2026-10-30)
 iPhone layout: search sits at the top of the library, always visible, and Settings (your account) moved to a bottom bar. iPad and Mac keep the account button in the toolbar.
 ## 19.4.0 (2026-10-30)
