@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { takeaways, keyIdeas, recap, quiz, reflect } from './study.js';
+import { takeaways, keyIdeas, recap, quiz } from './study.js';
 const book = `# One\n\nHabits are the **compound interest** of self-improvement, small changes adding up over the years.\n\n## Key takeaways\n- Small habits compound into remarkable results over time.\n- Focus on systems rather than goals for lasting change.\n\n# Two\n\nThe **habit loop** has four parts: cue, craving, response and reward, and each can be designed.\n\nEnvironment shapes behavior more than motivation does, so design the space around you.\n\n# Three\n\nMake good habits obvious with an **implementation intention** that names a time and place for the action.`;
 assert.deepEqual(takeaways(book.split('# Two')[0]), ['Small habits compound into remarkable results over time.', 'Focus on systems rather than goals for lasting change.']);
 const ideas = keyIdeas(book);
@@ -17,4 +17,3 @@ console.log('study ok');
 const labels = '# L\n\n- **Practical application**: readers learn not just what to do but also why behind the advice given here.\n\n**Good Fengshui** is designed to introduce readers to practical principles. The core philosophy emphasizes:\n\nA **flying star** chart maps how energy moves through a home across the years and the seasons alike.';
 assert.deepEqual(quiz(labels, labels + '\n**One** **Two**').map(q => q.answer), ['Practical application', 'flying star']); // no question that stops on a colon
 assert.deepEqual(recap('# C\n\nSome text first that runs long enough to count here.\n\n*(Covered: Part 1 and Part 2 of the book so far.)*'), ['(Covered: Part 1 and Part 2 of the book so far.)']); // no stray italics marks
-assert.equal(reflect(0), reflect(3)); assert.notEqual(reflect(0), reflect(1));                // one question per chapter, turn about

@@ -7,8 +7,10 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.3.1 (2026-10-30)
+Took the chapter questions back out. The note box is just the note box again.
 ## 19.3.0 (2026-10-30)
-A question to think over. Above each chapter's note sits one of three questions (where you could use the idea this week, what you would push back on, what you will do differently), the same one for that chapter every time. Web and apps, in all four languages. That closes the 19.x table.
+A question to think over above each chapter's note. Removed in 19.3.1.
 ## 19.2.0 (2026-10-30)
 Browse by topic. The Show menu lists the topics two or more of your books share (AI and tech, Money, Health, Science and math, Lives and history), worked out on the device from each title. One keyword list in `topics.js` feeds the web, and the apps get it as `topics.json`.
 ## 19.1.1 (2026-10-30)
