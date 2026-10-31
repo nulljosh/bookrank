@@ -18,9 +18,9 @@ enum Topics {
         all.filter { $0.re.firstMatch(in: title, range: NSRange(title.startIndex..., in: title)) != nil }.map(\.name)
     }
 
-    /// For a "topic:<name>" Show filter, whether the title is in that topic; nil for any other filter.
-    static func keep(_ show: String, _ title: String) -> Bool? {
-        show.hasPrefix("topic:") ? of(title).contains(String(show.dropFirst(6))) : nil
+    /// For the "finished" or a "topic:<name>" Show filter, whether the book stays; nil for any other filter.
+    static func keep(_ show: String, _ e: SummaryEntry) -> Bool? {
+        show == "finished" ? e.notes?["finished"] != nil : show.hasPrefix("topic:") ? of(e.title).contains(String(show.dropFirst(6))) : nil
     }
 
     /// The topics two books or more share.

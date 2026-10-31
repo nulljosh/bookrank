@@ -42,7 +42,7 @@ export function readingStats(books) {
     s.chapters += chapters(b.content || '').length;
     if (b.content) s.minutes += minutes(b.content);
     s.highlights += b.marks?.length || 0;
-    s.notes += Object.keys(b.notes || {}).length;
+    s.notes += Object.keys(b.notes || {}).filter(k => /^\d+$/.test(k)).length;
   }
   return s;
 }

@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.4.0 (2026-10-30)
+Mark a book finished. Under the title on iPhone, iPad and Mac, and on the book page on the web, one tap marks it done; the Show menu gets a Finished filter. The day is kept with the book's notes, so every device sees it with no server change. Also: the Mac and iPhone book page's collection menu moved to its own file, and notes counts skip the finished mark.
 ## 19.3.2 (2026-10-30)
 The apps, the Android and terminal readers, the docs and the launch kit now use kernel.jaybulb.com. bookrank.jaybulb.com still serves the same site for older builds.
 ## 19.3.1 (2026-10-30)

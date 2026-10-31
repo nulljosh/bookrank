@@ -225,11 +225,16 @@ final class DataStore {
     /// Your collections, A to Z. Same as the web's.
     var collections: [String] { Set(summaryIndex.compactMap(\.collection)).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
     /// Your note under a chapter; empty removes it. Side data, so updated_at stays.
-    func setNote(_ text: String, ch: Int, for slug: String) async {
+    func setNote(_ text: String, ch: Int, for slug: String) async { await setNote(text, key: "\(ch)", for: slug) }
+    /// Finished: the day you marked it done, in its notes under "finished" (no new column; same key as the web).
+    func setFinished(_ on: Bool, for slug: String) async {
+        await setNote(on ? String(ISO8601DateFormatter().string(from: .now).prefix(10)) : "", key: "finished", for: slug)
+    }
+    private func setNote(_ text: String, key: String, for slug: String) async {
         guard let i = summaryIndex.firstIndex(where: { $0.slug == slug }) else { return }
         var notes = summaryIndex[i].notes ?? [:]
         let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        notes["\(ch)"] = t.isEmpty ? nil : String(t.prefix(4000))
+        notes[key] = t.isEmpty ? nil : String(t.prefix(4000))
         summaryIndex[i].notes = notes
         writeCache()
         if let id = summaryIndex[i].rowID { _ = try? await patch(id, ["notes": notes]) }

@@ -42,6 +42,7 @@ struct KernelApp: App {
                     .onContinueUserActivity(Handoff.type) { a in if let s = a.userInfo?["slug"] as? String { NoteTap.shared.slug = s } }
                     .onOpenURL { u in if u.host() == "book", let s = u.pathComponents.last, s != "/" { NoteTap.shared.slug = s } }   // a widget
                     .task { WidgetFeed.publish(); await Inbox.importAll(into: DataStore.shared) }   // what was shared to Kernel
+                    .task { if CommandLine.flag("UITEST_SNAPSHOT"), let s = UserDefaults.standard.string(forKey: "UITEST_BOOK") { NoteTap.shared.slug = s } }   // screenshots: open one book
                     #if os(iOS)
                     .onChange(of: Speaker.shared.playing) { LiveListen.update() }
                     .onChange(of: Speaker.shared.paused) { LiveListen.update() }

@@ -20,6 +20,19 @@ App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hi
 | 19.2.0 | Browse your books by topic (in the Show menu, from each title) | Blinkist, Shortform | M | built |
 | 19.3.0 | A reflection prompt at the end of each chapter | Shortform | S | shipped, then cut in 19.3.1 (Joshua: no questions) |
 
+### Toward 20.0: real features and stability (Joshua, 2026-10-30)
+From the open GitHub issues. One row per minor; fixes ship as patches.
+
+| Minor | What | Issue | Status |
+|---|---|---|---|
+| 19.4.0 | Mark a book finished, and a Finished filter | #83 | built |
+| next | Search at the top, Account in a bottom bar on iPhone | #86, #75 | open |
+| next | Goodreads CSV import in the apps (the web has it) | #80 | open |
+| next | Mark a read book "photograph next" so the read list is the summary queue | #81 | open |
+| next | Natural voice: show minutes left and a gentler fallback | #78 | open |
+| fix | QA the iPad and Mac layouts | #3, #87 | open |
+| fix | Pull the live store text into metadata/ (19.0.0, en es de; add fr-FR as Noyau once 19.0 clears) | #99 | built |
+
 ## Rows built (2026-10-28 to 10-30)
 The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are 18.1.0 (they were tagged one major each by mistake; those tags are gone). Rows 67 and 93 still wait on the store and Workers AI.
 
@@ -125,7 +138,7 @@ The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are
 
 ## Open outside the table
 - [ ] Workers AI ran out of its 10,000 free daily neurons on 2026-10-28 (narration scripts, Ask, page photos and the Aura-2 fallback fail until 00:00 UTC). Workers Paid is $5 a month (Joshua's call). Then tune the meaning floor (0.6) on real bge scores.
-- [ ] `metadata/` holds the old rankings listing. Pull the live Kernel text from App Store Connect before the next `asc metadata push`.
+- [ ] French listing: Apple refused "Kernel" in fr-FR (taken). Use Noyau; the app info is locked while 19.0.0 is in review, so add it on the next version (`asc apps rename --locale fr-FR --name Noyau`).
 - [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), Spotlight results (v40), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
 - [ ] Summaries still to photograph or finish: The Man Who Solved the Market (cover only), Physics I For Dummies (cover only), the rest of AI in Business and macOS Tahoe (both returned to the library, photos are the only source), The Optimist chapters 15 to 17.
 

@@ -81,6 +81,7 @@
         <input type="file" id="photos" accept="image/*" multiple hidden>
         <button id="share">Share</button>
         <button id="download">Download</button>
+        <button id="finish">Mark finished</button>
         <button class="primary" id="save">Save</button>
         <button id="del" class="danger">Delete</button>
         <button id="close">Close</button>
@@ -355,6 +356,15 @@ $('note').oninput = () => {
     if (current === row) $('editMsg').textContent = error ? 'Could not save the note.' : queued ? 'Saved on this device. It goes up when you are back online.' : 'Note saved.';
   }, 1000);
 };
+// Finished: the day you marked the book done, kept in its notes under "finished" (no new column). Same as the apps.
+$('finish').onclick = async () => {
+  const row = current; if (!row) return;
+  row.notes = { ...row.notes }; if (row.notes.finished) delete row.notes.finished; else row.notes.finished = new Date().toISOString().slice(0, 10);
+  $('finish').textContent = row.notes.finished ? 'Finished' : 'Mark finished';
+  offline.put(row.id, row);
+  const { error } = await save(send, row.id, { notes: row.notes });
+  if (error) $('editMsg').textContent = 'Could not save.';
+};
 // Download: every chapter's script and every line's voice, kept on this device. Same as Download in the apps.
 $('download').onclick = async () => {
   const row = current, b = $('download'), chs = chapters(row?.content || '');
@@ -599,7 +609,7 @@ async function load() {
   // Sort and filter, remembered in this browser. Progress and length need the text, fetched once.
   // Show: all, started, new, or a topic (topics.js) that two books or more share.
   const topics = shelfTopics(data.map(r => r.title));
-  $('show').replaceChildren(...[['all', 'All books'], ['started', 'In progress'], ['new', 'Not started'], ...topics.map(t => ['topic:' + t, t])].map(([v, l]) => new Option(l, v)));
+  $('show').replaceChildren(...[['all', 'All books'], ['started', 'In progress'], ['new', 'Not started'], ['finished', 'Finished'], ...topics.map(t => ['topic:' + t, t])].map(([v, l]) => new Option(l, v)));
   let show = pref('kernel.show', 'all'); if (show.startsWith('topic:') && !topics.includes(show.slice(6))) show = 'all';
   const sort = $('sort').value = pref('kernel.sort', 'recent'); $('show').value = show;
   $('sortbar').classList.toggle('hide', data.length < 2);
@@ -607,7 +617,7 @@ async function load() {
   const len = r => (texts?.[r.id] || '').length;
   const frac = r => started(r) ? (r.listen.pos.ch + 1) / Math.max(1, chapters(texts?.[r.id] || '').length) : 0;
   const order = { title: (a, b) => a.title.localeCompare(b.title), progress: (a, b) => frac(b) - frac(a), short: (a, b) => len(a) - len(b) }[sort];
-  const shown = data.filter(r => show === 'all' || (show.startsWith('topic:') ? topicsOf(r.title).includes(show.slice(6)) : (show === 'started') === !!started(r)));
+  const shown = data.filter(r => show === 'all' || (show === 'finished' ? !!r.notes?.finished : show.startsWith('topic:') ? topicsOf(r.title).includes(show.slice(6)) : (show === 'started') === !!started(r)));
   if (order) shown.sort(order);   // recent is the server's order
   if (!shown.length && data.length) $('listMsg').textContent = show === 'started' ? 'Nothing in progress.' : 'Every book is started.';
   // Then your collections, A to Z, then everything in none of them.
@@ -720,6 +730,7 @@ async function open(id) {
   $('body').value = data.content;
   $('collection').value = data.collection || '';
   $('share').textContent = data.share_token ? 'Stop sharing' : 'Share';
+  $('finish').textContent = data.notes?.finished ? 'Finished' : 'Mark finished';
   showEditor(true);
   if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
   return data;

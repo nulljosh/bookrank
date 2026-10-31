@@ -17,7 +17,7 @@ export function marksMarkdown(books) {
   let out = '# Highlights\n';
   for (const b of books) {
     const marks = b.marks || [], notes = b.notes || {};
-    const chs = [...new Set([...marks.map(m => m.ch), ...Object.keys(notes).map(Number)])].sort((x, y) => x - y);
+    const chs = [...new Set([...marks.map(m => m.ch), ...Object.keys(notes).map(Number).filter(Number.isInteger)])].sort((x, y) => x - y);
     if (!chs.length) continue;
     const titles = chapters(b.content || '');
     out = out.trimEnd() + `\n\n## ${b.title}\n\n`;

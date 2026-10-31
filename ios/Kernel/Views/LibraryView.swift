@@ -163,7 +163,7 @@ struct LibraryView: View {
                         Text("Recently edited").tag("recent"); Text("Title").tag("title"); Text("Progress").tag("progress"); Text("Shortest first").tag("short")
                     }
                     Picker("Show", selection: $show) {
-                        Text("All books").tag("all"); Text("In progress").tag("started"); Text("Not started").tag("new")
+                        Text("All books").tag("all"); Text("In progress").tag("started"); Text("Not started").tag("new"); Text("Finished").tag("finished")
                         ForEach(Topics.shelf(store.summaryIndex.map(\.title)), id: \.self) { Text(LocalizedStringKey($0)).tag("topic:" + $0) }
                     }
                 } label: { Image(systemName: "line.3.horizontal.decrease") }
@@ -215,7 +215,7 @@ struct LibraryView: View {
             ContentUnavailableView("No summaries yet", systemImage: "books.vertical", description: Text("Summaries on this account show up here."))
         } else {
             // Books you are partway through come first; no group headers.
-            let rows = store.summaryIndex.filter { show == "all" || (Topics.keep(show, $0.title) ?? ((show == "started") == started($0))) }.sorted(by: sort, started: started)
+            let rows = store.summaryIndex.filter { show == "all" || (Topics.keep(show, $0) ?? ((show == "started") == started($0))) }.sorted(by: sort, started: started)
             let q = query.trimmingCharacters(in: .whitespaces).lowercased()
             let shown = q.isEmpty ? rows : rows.filter { $0.title.lowercased().contains(q) || $0.content.lowercased().contains(q) }
             // The Goodreads shelves, folded so a few hundred read books do not bury the

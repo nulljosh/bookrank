@@ -177,5 +177,9 @@
   "Money": "Argent",
   "Health": "Santé",
   "Science and math": "Sciences et maths",
-  "Lives and history": "Vies et histoire"
+  "Lives and history": "Vies et histoire",
+  "Finished": "Terminé",
+  "Mark finished": "Marquer comme terminé",
+  "Finished. Tap to mark not finished.": "Terminé. Touchez pour le marquer comme non terminé.",
+  "Could not save.": "Enregistrement impossible."
 }

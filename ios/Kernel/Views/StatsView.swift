@@ -17,7 +17,7 @@ struct ReadingStats: View {
                 ("\(books.map { parseChapters($0.content).count }.reduce(0, +))", "chapters"),
                 (mins >= 60 ? "\(Int((Double(mins) / 60).rounded())) hr" : "\(mins) min", "to listen"),
                 ("\(books.map { $0.listen?.marks?.count ?? 0 }.reduce(0, +))", "highlights"),
-                ("\(books.map { $0.notes?.count ?? 0 }.reduce(0, +))", "notes")]
+                ("\(books.map { $0.notes?.keys.filter { Int($0) != nil }.count ?? 0 }.reduce(0, +))", "notes")]
             Section("Your reading") {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 96), spacing: 8)], spacing: 8) {
                     ForEach(tiles, id: \.1) { v, l in

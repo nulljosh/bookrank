@@ -179,5 +179,9 @@
   "Money": "Dinero",
   "Health": "Salud",
   "Science and math": "Ciencia y matemáticas",
-  "Lives and history": "Vidas e historia"
+  "Lives and history": "Vidas e historia",
+  "Finished": "Terminado",
+  "Mark finished": "Marcar como terminado",
+  "Finished. Tap to mark not finished.": "Terminado. Toca para marcarlo como no terminado.",
+  "Could not save.": "No se pudo guardar."
 }

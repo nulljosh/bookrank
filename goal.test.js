@@ -16,6 +16,6 @@ console.log('goal ok');
 // Reading stats: books, chapters, listening minutes, highlights and notes add up across books.
 {
   const { readingStats } = await import('./goal.js');
-  const s = readingStats([{ content: '# A\n\nx\n\n# B\n\ny', marks: [{ ch: 0, text: 'x' }], notes: { 1: 'n' } }, { content: '', marks: [], notes: {} }]);
+  const s = readingStats([{ content: '# A\n\nx\n\n# B\n\ny', marks: [{ ch: 0, text: 'x' }], notes: { 1: 'n', finished: '2026-10-30' } }, { content: '', marks: [], notes: {} }]);   // finished is not a note
   assert.deepEqual(s, { books: 2, chapters: 2, minutes: 1, highlights: 1, notes: 1 });
 }
