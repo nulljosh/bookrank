@@ -50,7 +50,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         ASSETCATALOG_COMPILER_APPICON_NAME: Kernel
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
@@ -88,7 +88,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.widgets
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         CODE_SIGN_ENTITLEMENTS: Widgets/KernelWidgets.entitlements
@@ -111,7 +111,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.share
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         CODE_SIGN_ENTITLEMENTS: Share/KernelShare.entitlements
@@ -142,7 +142,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.widgets
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
         CODE_SIGN_ENTITLEMENTS: Widgets/KernelMacWidgets.entitlements
@@ -179,7 +179,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         ASSETCATALOG_COMPILER_APPICON_NAME: Kernel
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: QMM486NPYC
@@ -199,7 +199,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.spine.watchkitapp
         MARKETING_VERSION: "20.0.1"
-        CURRENT_PROJECT_VERSION: "202610301628"
+        CURRENT_PROJECT_VERSION: "202610302010"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Kernel
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.heyitsmejosh.spine
