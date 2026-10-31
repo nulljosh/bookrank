@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 19.1.0 (2026-10-30)
+One-page summary. Under a book's key ideas, one button opens the whole book on a page: each chapter's title and its two-line recap. On iPhone, iPad, Mac and the web, in all four languages.
 ## 19.0.0 (2026-10-30)
 The next major. Everything since the Mac 18.0.0 and iPhone 2.0.0 store versions in one release: rows 19 to 99, share links in every reader, live highlight merging on the web and a filled-in Account sheet. A comparison with Blinkist, Shortform and Readwise Reader set the 19.x roadmap. New launch film: Keep the rest.
 ## 18.2.2 (2026-10-30)

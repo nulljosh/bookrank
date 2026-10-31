@@ -3,6 +3,7 @@ import SwiftUI
 /// Key ideas at the top of a book, from its own takeaways (Study.keyIdeas). Hidden when a book has none.
 struct KeyIdeas: View {
     let markdown: String
+    @State private var onePage = false
     var body: some View {
         let ideas = Study.keyIdeas(markdown)
         if !ideas.isEmpty {
@@ -14,8 +15,33 @@ struct KeyIdeas: View {
                     }
                     .selectionDisabled()
                 }
+                Button("One-page summary", systemImage: "doc.plaintext") { onePage = true }
             }
+            .sheet(isPresented: $onePage) { OnePage(markdown: markdown) }
         }
+    }
+}
+
+/// The whole book on one page: each chapter's title and its In short lines (Study.recap).
+struct OnePage: View {
+    let markdown: String
+    @Environment(\.dismiss) private var dismiss
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(Array(parseChapters(markdown).enumerated()), id: \.offset) { _, c in
+                    let lines = Study.recap(c.text)
+                    if !lines.isEmpty {
+                        Section(c.title) { ForEach(lines, id: \.self) { Text($0).font(.kernel(.body)) } }
+                    }
+                }
+            }
+            .navigationTitle("One-page summary")
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+        }
+        #if os(macOS)
+        .frame(minWidth: 520, minHeight: 600)
+        #endif
     }
 }
 

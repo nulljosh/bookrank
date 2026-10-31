@@ -14,11 +14,11 @@ App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hi
 
 | Minor | Gap | Seen in | Size | Status |
 |---|---|---|---|---|
-| 19.1.0 | Browse your books by topic (chips from each book's subject) | Blinkist, Shortform | M | open |
-| 19.2.0 | Stats screen: books finished, minutes listened, streak | Blinkist | M | open |
-| 19.3.0 | Export highlights as Markdown, Obsidian-ready, one file per book | Readwise | S | open |
-| 19.4.0 | One-page summary per book, built from the chapters' In short lines | Shortform | S | open |
-| 19.5.0 | A reflection prompt at the end of each chapter, from its key ideas | Shortform | S | open |
+| had it | Stats: books finished per year, minutes, streak (StatsView, the weekly goal) | Blinkist | | already built |
+| had it | Export highlights as Markdown (Highlights > Export on web and apps) | Readwise | | already built |
+| 19.1.0 | One-page summary per book, built from the chapters' In short lines | Shortform | S | built |
+| 19.2.0 | Browse your books by topic (chips from each book's subject) | Blinkist, Shortform | M | open |
+| 19.3.0 | A reflection prompt at the end of each chapter, from its key ideas | Shortform | S | open |
 
 ## Rows built (2026-10-28 to 10-30)
 The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are 18.1.0 (they were tagged one major each by mistake; those tags are gone). Rows 67 and 93 still wait on the store and Workers AI.

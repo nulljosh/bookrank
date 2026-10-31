@@ -5918,6 +5918,28 @@
           }
         }
       }
+    },
+    "One-page summary": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Résumé en une page"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumen en una página"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zusammenfassung auf einer Seite"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
