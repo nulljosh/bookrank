@@ -18,7 +18,7 @@ struct NowPlaying: View {
         NavigationStack {
             VStack(spacing: 20) {
                 Spacer(minLength: 8)
-                Thumb(url: cover, width: 200)
+                Thumb(url: cover, width: 200, title: entry?.title)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: .black.opacity(0.3), radius: 24, y: 14)
                     .scaleEffect(on ? 1 : 0.92)

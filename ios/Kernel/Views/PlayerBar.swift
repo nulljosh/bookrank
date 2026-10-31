@@ -175,10 +175,21 @@ private extension Image { init(platform i: NSImage) { self.init(nsImage: i) } }
 struct Thumb: View {
     let url: String?
     var width: CGFloat = 36
+    /// With no cover, the big sizes set the title on the page instead of a grey box.
+    var title: String? = nil
     @State private var image: PlatformImage?
     var body: some View {
         Group {
             if let image { Image(platform: image).resizable().scaledToFill() }
+            else if let title, width >= 100 {
+                Color.secondary.opacity(0.16).overlay(alignment: .topLeading) {
+                    VStack(alignment: .leading, spacing: width * 0.06) {
+                        Rectangle().fill(amber).frame(width: width * 0.2, height: 3)
+                        Text(title).font(.system(size: width * 0.11, weight: .bold)).foregroundStyle(.primary)
+                            .lineLimit(5).minimumScaleFactor(0.6)
+                    }.padding(width * 0.1)
+                }
+            }
             else { Color.secondary.opacity(0.12).overlay(Image(systemName: "book.closed").font(.kernel(.footnote)).foregroundStyle(.tertiary)) }
         }
             .task(id: url) { image = url.flatMap { CoverCache.images.object(forKey: $0 as NSString) }; if image == nil, let url { image = await CoverCache.load(url) } }

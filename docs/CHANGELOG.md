@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 20.0.1 (2026-10-30)
+A book with no cover shows its title on a plain cover, under a short amber line, on the book page and in Now Playing, instead of an empty grey box.
 ## 20.0.0 (2026-10-30)
 The next major (Joshua's call): real features and stability, everything since 19.0 in one release. A one-page summary of the whole book, browse by topic, mark a book finished, search at the top and Settings at the bottom on iPhone, Goodreads export import in the apps, and Photograph next to turn the read list into a summary queue. Under the hood: every app, reader and doc on kernel.jaybulb.com, library.html split into library.css and thumbs.js, two big Swift views split, and the GitHub backlog cut from 43 issues to a handful that wait on Joshua or a Mac QA pass. The 19.0 Mobbin pass from the same day stands; every row it found is built. New launch film: a wordless cut of field lines, twenty chapters and the number 20 (ad/field.py).
 ## 19.7.0 (2026-10-30)

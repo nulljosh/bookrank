@@ -8,7 +8,7 @@ QA: web in headless Chrome with light and dark set, served by `npx wrangler page
 
 ## Where things stand
 
-- The repo is at 20.0.0, tagged and the GitHub Latest release. Zero open issues, zero open PRs, zero stale branches, CI green on 20.0.0.
+- The repo is at 20.0.1 (title covers for books with no cover), tagged and the GitHub Latest release. Zero open issues, zero open PRs, zero stale branches, CI green on 20.0.0.
 - The iPhone and Mac builds for 19.0.0 are waiting for App Review.
 - Every feature row in roadmap.md is built except row 67 (waits until 1.2.1 is off sale) and the rows that need Workers AI or Joshua's checks.
 - Workers AI is out of its free daily allowance (since 2026-10-28), so narration, Ask and the Aura-2 fallback fail until the paid plan, which is Joshua's call.

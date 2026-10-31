@@ -102,7 +102,7 @@ struct SummaryDetailView: View {
         // half speed and fades, so the page slides over it (parallax).
         let cover = entry.flatMap { store.cover(for: $0) }
         VStack(spacing: 6) {
-            Thumb(url: cover, width: 150)
+            Thumb(url: cover, width: 150, title: entry?.title)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .shadow(color: .black.opacity(0.3), radius: 20, y: 12)
                 .padding(.top, 12).padding(.bottom, 14)
