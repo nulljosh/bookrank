@@ -169,6 +169,7 @@ struct ChapterNote: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Your note").font(.kernel(.footnote)).foregroundStyle(.secondary)
+            Text(Study.reflect(ch)).font(.kernelItalic(.subheadline))
             TextField("What you want to remember from this chapter", text: $text, axis: .vertical)
                 .font(.kernel(.body)).lineLimit(3...12)
                 .padding(12)

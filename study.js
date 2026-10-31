@@ -32,6 +32,11 @@ export function keyIdeas(content, n = 5) {
   return out;
 }
 
+/** A question to think over under each chapter's note, turn about so the same chapter always asks the same. */
+export const reflect = ch => ["Where could you use this idea this week?",
+  "What would you push back on in this chapter?",
+  "What will you do differently after this chapter?"][ch % 3];
+
 /** Two lines to close a chapter: its first two takeaways, or the last paragraph's first two sentences. */
 export function recap(text) {
   const t = takeaways(text);

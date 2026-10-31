@@ -18,7 +18,7 @@ App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hi
 | had it | Export highlights as Markdown (Highlights > Export on web and apps) | Readwise | | already built |
 | 19.1.0 | One-page summary per book, built from the chapters' In short lines | Shortform | S | built |
 | 19.2.0 | Browse your books by topic (in the Show menu, from each title) | Blinkist, Shortform | M | built |
-| 19.3.0 | A reflection prompt at the end of each chapter, from its key ideas | Shortform | S | open |
+| 19.3.0 | A question to think over above each chapter's note | Shortform | S | built |
 
 ## Rows built (2026-10-28 to 10-30)
 The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are 18.1.0 (they were tagged one major each by mistake; those tags are gone). Rows 67 and 93 still wait on the store and Workers AI.

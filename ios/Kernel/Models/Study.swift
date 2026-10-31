@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 /// Study aids pulled from a summary's own text, on the device, no model: a book's key ideas, a chapter's two-line
 /// recap, and a short quiz that blanks out the chapter's bold terms. The same rules as study.js on the web.
@@ -53,6 +54,11 @@ enum Study {
     }
 
     /// Two lines to close a chapter: its first two takeaways, or the last paragraph's first two sentences.
+    /// A question to think over under each chapter's note, the same one per chapter (as study.js).
+    static func reflect(_ ch: Int) -> LocalizedStringKey {
+        ["Where could you use this idea this week?", "What would you push back on in this chapter?", "What will you do differently after this chapter?"][ch % 3]
+    }
+
     static func recap(_ text: String) -> [String] {
         let t = takeaways(text)
         return t.isEmpty ? Array(sentences(paragraphs(text).last ?? "").prefix(2)) : Array(t.prefix(2))

@@ -6050,6 +6050,72 @@
           }
         }
       }
+    },
+    "Where could you use this idea this week?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Où pourriez-vous appliquer cette idée cette semaine ?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Dónde podrías usar esta idea esta semana?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wo könnten Sie diese Idee diese Woche anwenden?"
+          }
+        }
+      }
+    },
+    "What would you push back on in this chapter?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qu'est-ce que vous contesteriez dans ce chapitre ?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué le discutirías a este capítulo?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wo würden Sie diesem Kapitel widersprechen?"
+          }
+        }
+      }
+    },
+    "What will you do differently after this chapter?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que ferez-vous autrement après ce chapitre ?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué harás distinto después de este capítulo?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was machen Sie nach diesem Kapitel anders?"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
