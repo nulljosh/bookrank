@@ -7,6 +7,8 @@ Every version of Kernel, newest first. Before 2026-10-28 the app was called Book
 
 
 
+## 20.0.0 (2026-10-30)
+The next major (Joshua's call): real features and stability, everything since 19.0 in one release. A one-page summary of the whole book, browse by topic, mark a book finished, search at the top and Settings at the bottom on iPhone, Goodreads export import in the apps, and Photograph next to turn the read list into a summary queue. Under the hood: every app, reader and doc on kernel.jaybulb.com, library.html split into library.css and thumbs.js, two big Swift views split, and the GitHub backlog cut from 43 issues to a handful that wait on Joshua or a Mac QA pass. The 19.0 Mobbin pass from the same day stands; every row it found is built. New launch film: Read. Hear. Finish.
 ## 19.7.0 (2026-10-30)
 Photograph next. In "Read on Goodreads, no summary yet", mark the books you mean to summarize; they sort to the top, so the read list doubles as the summary queue. Swipe or right-click in the apps, a button on the web. Kept on each device for now.
 ## 19.6.0 (2026-10-30)

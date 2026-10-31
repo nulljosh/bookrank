@@ -20,7 +20,7 @@ App Store sheets read: Blinkist, Shortform, Readwise Reader (Headway's search hi
 | 19.2.0 | Browse your books by topic (in the Show menu, from each title) | Blinkist, Shortform | M | built |
 | 19.3.0 | A reflection prompt at the end of each chapter | Shortform | S | shipped, then cut in 19.3.1 (Joshua: no questions) |
 
-### Toward 20.0: real features and stability (Joshua, 2026-10-30)
+### 20.0.0 (built 2026-10-30): real features and stability (Joshua, 2026-10-30)
 From the open GitHub issues. One row per minor; fixes ship as patches.
 
 | Minor | What | Issue | Status |
