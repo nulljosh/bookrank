@@ -137,6 +137,7 @@ The old Road to 100 table. Rows 3 to 18 shipped as Mac 18.0.0; rows 19 to 99 are
 | 99 | Search by voice: dictate into search, on the device | apps | built (CHANGELOG 99.0.0: the keyboard mic and Mac dictation fill search; a visible mic only if people miss it) |
 
 ## Open outside the table
+- [ ] Icon and font A+: check the icon at 16 to 32 px, and whether the seed belongs on the other dots (Joshua's eye).
 - [ ] Workers AI ran out of its 10,000 free daily neurons on 2026-10-28 (narration scripts, Ask, page photos and the Aura-2 fallback fail until 00:00 UTC). Workers Paid is $5 a month (Joshua's call). Then tune the meaning floor (0.6) on real bge scores.
 - [ ] French listing: Apple refused "Kernel" in fr-FR (taken). Use Noyau; the app info is locked while 19.0.0 is in review, so add it on the next version (`asc apps rename --locale fr-FR --name Noyau`).
 - [ ] Joshua's checks: Scan pages on a real iPhone (v33), Kernel's actions in the Shortcuts app (v35), Handoff between iPhone and Mac (v37), Spotlight results (v40), the signed-in Mac walk, Listen on a real phone with the screen locked, Goodreads in iOS dark mode, two devices merging highlights.
