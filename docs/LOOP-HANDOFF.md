@@ -1,35 +1,27 @@
-# Kernel loop handoff
+# Kernel loop handoff (2026-10-30, evening)
 
-The loop builds the next open row of the table at the top of roadmap.md. Each row is a minor (18.2.0, 18.3.0 ...): build it on every platform it names, take light and dark screenshots, mark it built, add a CHANGELOG entry, set MARKETING_VERSION in ios/project.yml, commit by path, tag `v18.N.0` and push the tag by name, make the GitHub release "Kernel 18.N.0", deploy the web if it changed. A fix is a patch. A major (19.0.0) only on Joshua's call, with a Mobbin pass and an opus-ad film. Never aim the loop at a version number. Replies to Joshua stay under two lines, in plain English.
+## What the loop is
 
-Semver fixed 2026-10-30: the loop had tagged one major per row (v3 to v99). Tags v3 to v17 and v19 to v99 and their GitHub releases were deleted; rows 3 to 18 are Mac 18.0.0 (approved) and rows 19 to 99 are 18.1.0. Rows 67 and 93 still wait (below).
+The loop takes the open feature rows in roadmap.md, one at a time. A feature is a minor and a fix is a patch. A major only on Joshua's call, with a Mobbin pass and a film. Never aim the loop at a version number. Each feature is built on every platform its row names, checked with light and dark screenshots, marked built, added to the CHANGELOG, committed by exact path, tagged and pushed by name, and released on GitHub. The web is deployed when it changed. Replies to Joshua stay under two lines, in plain English.
 
-## How to QA
+QA: web in headless Chrome with light and dark set, served by `npx wrangler pages dev dist`. Apps with `sh ios/scripts/shots.sh` on headless simulators. Never press Listen in a simulator. No GUI launches on Joshua's screen without asking.
 
-- Web: headless Chrome over CDP with `prefers-color-scheme` set to light and dark, the site served by `npx wrangler pages dev dist`.
-- Apps: `sh ios/scripts/shots.sh` on headless simulators (this Mac has no Simulator.app). Never press Listen; `Speaker.play` returns under `UITEST_PLAYER` and `UITEST_SNAPSHOT`. A hung `xcodebuild test` is usually a leftover runner: `pkill -f "xcodebuild test"; xcrun simctl shutdown all`.
-- Mac by hand: `xcodebuild -scheme KernelMac -derivedDataPath <scratch> build CODE_SIGNING_ALLOWED=NO`, then `open -n KernelMac.app --args -kernel.onboarded YES -UITEST_SNAPSHOT 1`. One instance, killed afterwards.
+## Where things stand
 
-## Store
+- The repo is at 20.0.0, tagged and the GitHub Latest release. Zero open issues, zero open PRs, zero stale branches, CI green on 20.0.0.
+- The iPhone and Mac builds for 19.0.0 are waiting for App Review.
+- Every feature row in roadmap.md is built except row 67 (waits until 1.2.1 is off sale) and the rows that need Workers AI or Joshua's checks.
+- Workers AI is out of its free daily allowance (since 2026-10-28), so narration, Ask and the Aura-2 fallback fail until the paid plan, which is Joshua's call.
+- Media files under `ad/` and `.asc/release/` are untracked on purpose and stay out of git.
 
-Mac 2.0.0 is live; Mac 18.0.0 went to review 2026-10-28 (build 202610282009, the six 2880x1800 shots attached, notes mention Goodreads). iOS 2.0.0 is still waiting for review. When a platform clears, ship the newest tagged major on it the way [SHIPPING.md](SHIPPING.md) says, with `scripts/store-listing.sh` for the four languages, then `scripts/promo.sh` once it is live, and start the product page test in docs/store/ppo.md.
+## Next, in order
 
-## Waiting on Joshua
-
-Everything through 99 except 93 and 67 is built and tagged. What is left needs one of these first:
-
-1. **Workers AI** (Workers Paid): row 93: the eval is built, run `node narrate-eval.mjs`, tune the prompt in functions/api/narrate.js until 9 of 9 pass (95 to 97 shipped without AI). On 2026-10-29 /api/narrate answered 502 for the QA account, so the model is still out.
-2. **Deploy jaybulb-api** (`cd ~/Documents/Code/jaybulb-api && npx wrangler deploy`): the public profile (54) and listed share pages (57) are committed and tested but not live. The agent was not allowed to deploy the shared API.
-3. **The App Group** is in the code (rows 88 to 90 and 92 are built); automatic signing registers it and the two extensions on the first archive (see SHIPPING.md).
-4. **Apple's CarPlay audio entitlement** (request it at developer.apple.com/contact/carplay): row 91 is built and waits only on it; once granted, add `com.apple.developer.carplay-audio` to `ios/Kernel/Kernel.entitlements`.
-5. Row 94 is built: Kernel opens the book's Goodreads page and Goodreads' own button marks it. Try it once signed in to Goodreads on a phone.
-6. **Row 67** waits until iPhone 2.0.0 replaces 1.2.1 and no one runs the 1.2 builds.
-7. **Checks only a person can do**: Apple Pencil highlights on an iPad (78), a book in its own Mac window (79), Scan pages (33), Shortcuts (35), Handoff (37), Spotlight (40), the signed-in Mac walk.
-
-Once these are in, ship the newest version on iPhone, iPad and Mac the way [SHIPPING.md](SHIPPING.md) says, then `scripts/promo.sh` and the product page test.
+1. When the 19.0.0 builds clear review on iPhone and Mac, submit 20.0 on both platforms the way [SHIPPING.md](SHIPPING.md) says. Add the French store name in the same pass with `asc apps rename --locale fr-FR --name Noyau`, since the app info is locked while 19.0.0 is in review. Then run `scripts/store-listing.sh` for the four languages, and `scripts/promo.sh` once it is live.
+2. Joshua's checks, listed in roadmap.md: the icon and font at 16 to 32 px, the Workers AI decision, Scan pages on a real iPhone, Shortcuts actions, Handoff, Spotlight, the signed-in Mac walk, Listen with the screen locked, Goodreads in dark mode, merging highlights across two devices, and the summaries still to photograph or finish.
+3. Then the loop picks the next open feature row in roadmap.md.
 
 ## Restart prompt
 
 ```
-/loop Kernel loop, in ~/Documents/Code/kernel. Read docs/LOOP-HANDOFF.md first, then build the next open row of the table at the top of roadmap.md, one minor per tick. Stop when the 18.x rows are done; 19.0.0 is Joshua's call. Refresh any background task older than 5 minutes each tick. QA every visible change with screenshots in light and dark, never press Listen in a simulator, no GUI launches on Joshua's screen without asking. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, deploy the web with wrangler pages deploy. Replies under 2 lines, plain English.
+/loop Kernel loop, in ~/Documents/Code/kernel. Read docs/LOOP-HANDOFF.md first, then take the next open feature row in roadmap.md (skip rows marked waits, and anything that needs Joshua's check). Each feature is a minor and each fix a patch. Never pick a version number yourself, and never start a major, which is Joshua's call. Build it on every platform the row names, QA with light and dark screenshots, never press Listen in a simulator, and no GUI launches on Joshua's screen without asking. Refresh any background task older than 5 minutes each tick. Use ASC_BYPASS_KEYCHAIN=1 for asc. Commit by exact path, push, and deploy the web with wrangler pages deploy if it changed. Stop when no open feature row is left. Replies under 2 lines, plain English.
 ```

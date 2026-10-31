@@ -1,5 +1,5 @@
-## Next: 18.x minors, then 19.0.0
-Semver is honest from here: a feature is a minor (18.2.0, 18.3.0 ...), a fix is a patch, and a major only on Joshua's call. Each major ships with a Mobbin pass and an opus-ad film. Live on the store: iPhone 2.0.0, Mac 18.0.0. The repo is 18.1.0.
+## Next: open feature rows, then Joshua's checks
+Semver is honest from here: a feature is a minor, a fix is a patch, and a major only on Joshua's call. Each major ships with a Mobbin pass and an opus-ad film. The repo is at 20.0.0 (GitHub Latest). The iPhone and Mac builds for 19.0.0 are waiting for App Review.
 
 | Minor | What | Status |
 |---|---|---|
